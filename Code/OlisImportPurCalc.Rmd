@@ -361,6 +361,7 @@ OlisSpectraMetaData_red <- OlisSpectraMetaData %>%
  remove(OlisSpectraMetaCombined)
 
  glimpse(OlisSpectraMetaData)
+ 
 ```
 
 Normalization
@@ -396,7 +397,7 @@ glimpse(OlisSpectraMetaData)
 ```
 
 Find Strain specific average PUR for each spectral color and each growth PAR 
-```{r}
+```{r Calc mean PUR}
 
 OlisSpectraMetaData <- OlisSpectraMetaData %>%
   group_by(Strain, WL) %>% 
@@ -427,7 +428,7 @@ PicoNestedPurOlisData <- OlisSpectraMetaData %>%
 
 saveRDS(object = PicoNestedPurOlisData, file = file.path(DataOut, "PicoNestedPurOlisData.Rds"))
 
-write_csv(PicoNestedPurOlisData, file = file.path(DataOut, paste(Project, "NestedPurOlisData",".csv",sep = ""),fsep = .Platform$file.sep))
+# write_csv(PicoNestedPurOlisData, file = file.path(DataOut, paste(Project, "NestedPurOlisData",".csv",sep = ""),fsep = .Platform$file.sep))
 
 ```
  
@@ -594,7 +595,6 @@ OlisSpectraMetaData %>%
   labs(colour = "Strain")
 
 
-AbsAllStrains
 ```
 
 ```{r remove unnecessary DF}
