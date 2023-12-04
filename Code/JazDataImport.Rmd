@@ -95,8 +95,8 @@ JazSpec[1:10]
 ```{r filename separation}
 
 JazSpec <- JazSpec %>% 
-  mutate(Filename = str_remove(Filename, pattern = "../")) |>
-  separate(col = Filename, into = c("Instrument","Date", "MultiCulti", "Par", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE)
+  mutate(Filename = str_remove(Filename, pattern = "../Data/RawData/MCEmissionSpectra/")) |>
+  separate(col = Filename, into = c("Date", "MultiCulti", "Par", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE)
 
 
 # JazSpecTrim <- JazSpecTrim %>% 
@@ -106,8 +106,6 @@ JazSpec <- JazSpec %>%
 mutate(Date = ymd(Date),
        Par = as.numeric(Par),
        WL = as.factor(WL))
-
-JazSpec[1:10]
 
 ```
 
@@ -159,6 +157,13 @@ JazSpecTrim <- JazSpecTrim %>%
 
 JazSpecNest <- JazSpecTrim %>%
   nest(Spectra = c(Wavelength, Counts, rollmeanCounts))
+
+```
+
+```{r remove redundant DF}
+
+remove(JazSpecTrim)
+remove(JazSpec)
 
 ```
 
