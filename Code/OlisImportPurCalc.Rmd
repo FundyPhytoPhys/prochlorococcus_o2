@@ -20,18 +20,17 @@ knitr::opts_chunk$set(fig.path='Figs/')
 ```{r set project variables, include = FALSE}
 
 Project <- "PICO"
-DataOut <- file.path("..", "GrowthAssessData")
 
 
+DataIn <- file.path("..", "Data","RawData", "OLISSpectraCorr", fsep = .Platform$file.sep)
 
-#Mireille's file path
-DataIn <- file.path("..", "OLISSpectraCorr", "MiSa", fsep = .Platform$file.sep)
+DataInCatalog <- file.path("..", "Data", fsep = .Platform$file.sep)
 
-DataInSpectra <- file.path("..", "ImportedData", "Jaz", fsep = .Platform$file.sep)
+DataInSpectra <- file.path("..", "Data", "ProcessedData",  fsep = .Platform$file.sep)
 
-DataInPAR <- file.path("..", "MultiCultiSpectra", fsep = .Platform$file.sep)
+DataInPAR <- file.path("..", "Data","RawData","MCEmissionSpectra", fsep = .Platform$file.sep)
 
-
+DataOut <- file.path("..", "ProcessedData")
 
 FileID <- "Smooth"
 
@@ -52,15 +51,15 @@ library(tidyverse)
 library(lubridate)
 library(stringr)
 library(broom)
-library(knitr)
-library(OneR)
+# library(knitr)
+# library(OneR)
 library(zoo)
-library(strucchange)
-library(plotly)
-library(dplyr)
-library(magrittr)
-library(googledrive)
-library(googlesheets4)
+# library(strucchange)
+# library(plotly)
+# library(dplyr)
+# library(magrittr)
+# library(googledrive)
+# library(googlesheets4)
 library(readxl)
 
 library(ggspectra)
@@ -151,28 +150,26 @@ TargetSpectra <- TargetFile %>% map_df(~read.delim_plus(flnm = ., filencode = Fi
     
   #separate(col = SampleID, into = c("SampleID", "Replicate"), sep = "_")
 
-TargetSpectraLong <- TargetSpectra %>%
+TargetSpectra <- TargetSpectra %>%
   # rename(nm = OLIS.3D.ASCII) %>%
-  separate(col = Filename, into = c("fp1", "fp2", "fp3", "SpectraDate", "Project", "Source", "Range", "Type", "Correction", "Smooth"), sep = "([\\/\\_\\:])", remove = FALSE) 
+  separate(col = Filename, into = c("fp1", "fp2", "fp3", "fp4","SpectraDate", "Project", "CultureID", "Range", "Type", "Correction", "Smooth"), sep = "([\\/\\_\\:])", remove = FALSE) 
 
 
-TargetSpectraLong2 <- TargetSpectraLong %>%
-  select(-c(fp1, fp2, fp3, Type, Correction, Smooth)) %>% 
-  rename(CultureID = Source) %>% 
+TargetSpectra <- TargetSpectra %>%
+  select(-c(fp1, fp2, fp3, fp4, Type, Correction, Smooth)) %>% 
   mutate(SpectraDate = str_extract(Filename, "/202[:digit:][:digit:][:digit:][:digit:][:digit:]"),
            SpectraDate = ymd(str_extract(SpectraDate, "202[:digit:][:digit:][:digit:][:digit:][:digit:]")))
 
-glimpse(TargetSpectraLong2)
+glimpse(TargetSpectra)
 ```
 
 Load Multiculti catalog
 ```{r load local multiculticatalog, message = FALSE, warning = FALSE, echo=FALSE}
-gs4_deauth()
 
-# imagine this is the URL or ID of a Sheet readable by anyone (with a link)
-# MultiCulti metadata
-MetaData <- read_sheet("https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0") %>%
-  # read_sheet has an annoying "feature" to set the type of columns it can't parse to a list.
+
+# MultiCulti metadata filtered to include only runs for Prochlorococcus O2 Project
+CultureCatalog <- readRDS(file = file.path(DataInCatalog, "CultureCatalog.Rds")) %>%
+ 
   # ggplot/dplyr doesn't like working with a dataframe of lists.
   # In this case WL is set to a list since some values are numbers, some are strings, some are blank.
   # To fix this, first drop all rows missing WL, then unlist.
@@ -180,12 +177,12 @@ MetaData <- read_sheet("https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVd
   drop_na(WL) %>%
   mutate(WL = unlist(WL))
 
-as.data.frame(MetaData)
 
-MetaData <- MetaData %>%
+
+CultureCatalog <- CultureCatalog %>%
    mutate(ExpDate = ymd(ExpDate),
-          ExpEndDate = ymd_hms(`ExpEndDate`)) %>% 
-  select(-c(...46,...47))
+          ExpEndDate = ymd_hms(`ExpEndDate`)) 
+
 
 ```
 
@@ -194,8 +191,8 @@ MetaData <- MetaData %>%
 ```{r OLISDateSpectra with MetaData}
 
 
-OLISSpectraMeta <- MetaData %>%
-  right_join(., TargetSpectraLong2, by = c("ID" = "CultureID"))
+OLISSpectraMeta <- CultureCatalog %>%
+  right_join(., TargetSpectra, by = c("ID" = "CultureID"))
 
 
 OLISSpectraMeta <- OLISSpectraMeta %>%
@@ -205,16 +202,9 @@ group_by(ID) %>%
 ungroup() 
 
 remove(TargetSpectra)
-remove(TargetSpectraLong)
-remove(TargetSpectraLong2)
-rm(MetaData)
+remove(CultureCatalog)
 
 glimpse(OLISSpectraMeta)
-```
-# remove extra columns from metacatelog
-```{r remove columns}
- OLISSpectraMeta <- OLISSpectraMeta %>% 
-  select(-c(OptodeMeasure,SampleID))
 
 ```
 
@@ -227,6 +217,7 @@ OlisRdsFiles
 #test for duplicate file names
 unique(duplicated(OlisRdsFiles))
 ```
+
 # Read .Rds, Summarize, Combine to single data frame
 
 ## Create function using to read in .Rds, adding source filename as a column
