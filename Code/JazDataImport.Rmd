@@ -1,0 +1,280 @@
+---
+title: "Import Jaz data"
+output: html_notebook
+---
+
+
+```{r libraries}
+#library(dplyr) 
+library(tidyverse)
+library(lubridate)
+library(googledrive)
+library(googlesheets4)
+
+library(gghighlight)
+library(ggrepel)
+
+#library(ggplot2)
+library(scales)
+library(photobiology)
+library(photobiologyWavebands)
+library(ggspectra)
+library(ggrepel)
+```
+
+```{r import the data}
+Project <- "PICO"
+
+#DataIn <- file.path("..", "Jaz", fsep = .Platform$file.sep)
+DataIn <- file.path("..", "MultiCultiSpectra", fsep = .Platform$file.sep)
+
+#ExpDate <- "20220520"
+DataOut<- file.path("..", "ImportedData", "Jaz", fsep = .Platform$file.sep)
+#CatalogGoogle <- "https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0"
+
+#set variables for file import & processing of fluorescence files Jaz
+#DataPathCS <- file.path("..", "Jaz", fsep = .Platform$file.sep)
+#FileIDSingle <- "202205201054_PICO_SySl1246_445_LL_Subt6_10-59-24-712"
+
+Jazfile <- list.files(path = DataIn, pattern = ".txt", full.names = TRUE)
+
+Jazfile[1:10]
+
+
+unique(duplicated(Jazfile))
+SkipCS <- 14
+FileEncodeCS <- "UTF-8"
+DelimCS <- "\t"
+RollWindow <- 10
+
+```
+
+```{r set colours}
+Wavelengths_nm = c(405, 450, 470, 530, 620, 660, 720, "WW")
+Colours_nm = c("yellow", "dodgerblue", "darkblue", "yellowgreen", "darkgreen", "Red",  "darkorange", "black")
+
+
+names(Colours_nm) <- Wavelengths_nm
+Colours_nm
+```
+
+
+```{r read multiculti PAR data}
+
+MultiCultiPAR <- read.csv(file.path(DataIn, "MultiCulti_PAR.csv"))
+
+```
+
+
+```{r read Jaz data using map_df}
+fread_plus <- function(Flnm, Skip, FileEncode, Delim){data.table::fread(file = Flnm, skip = Skip, encoding = FileEncode, sep = Delim, header = FALSE) %>%
+    mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(Flnm)$ctime))
+}
+
+JazSpec <- Jazfile %>%
+  map_df(~fread_plus(Flnm = ., Skip = SkipCS, FileEncode = FileEncodeCS, Delim = DelimCS))
+
+# JazSpec <- JazSpec %>%
+#   filter(!str_detect(V2, pattern = "Content"))
+
+colnames(JazSpec)[1] <- "Wavelength"
+colnames(JazSpec)[2] <- "Counts"
+
+JazSpec[1:10]
+
+# JazSpec |>
+#   ggplot() +
+#   geom_point(aes(x = Wavelength, y = Counts)) +
+#   theme_bw()
+```
+
+```{r filename separation}
+
+JazSpec <- JazSpec %>% 
+  mutate(Filename = str_remove(Filename, pattern = "../")) |>
+  separate(col = Filename, into = c("Instrument","Date", "MultiCulti", "Par", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE)
+
+
+# JazSpecTrim <- JazSpecTrim %>% 
+# select(-fp1, -fp2, -fp3, -txt, -date_experiment, -device2, -Project, -CDateTime, -Subt, -subseconde)
+
+JazSpec <- JazSpec %>% 
+mutate(Date = ymd(Date),
+       Par = as.numeric(Par),
+       WL = as.factor(WL))
+
+JazSpec[1:10]
+
+```
+
+```{r remove the wl < 350 and > 750}
+
+JazSpecTrim <- JazSpec %>% 
+  subset(JazSpec$Wavelength >= 350 & JazSpec$Wavelength <= 750)
+
+```
+
+
+Remove all NA columns & empty rows, fix column types
+```{r remove missing columns}
+
+#https://community.rstudio.com/t/drop-all-na-columns-from-a-dataframe/5844/2
+not_all_na <- function(x) {!all(is.na(x))}
+
+JazSpecTrim <- JazSpecTrim %>%
+  select_if(not_all_na)  
+
+# JazSpecTrim <- JazSpecTrim %>%
+#   mutate(JazTimeHMS = lubridate::hms(stringr::str_sub(CDateTime, start = 1L, end = 8L)), .after = CDateTime)
+  
+# JazData2 <- JazData %>%
+#   filter(!is.na(Wavelength))
+# 
+# JazSpecTrim <- JazSpecTrim %>%
+#   mutate(Duration_s = as.numeric(Duration_s)) %>% 
+#   mutate(AquisitionTime_ms = as.numeric(AquisitionTime_ms))
+  
+```
+
+
+Find nm at max count and compare with rolling mean of counts
+```{r, fig.height = 6, fig.width = 8}
+
+JazSpecTrim <- JazSpecTrim %>% 
+  group_by(WL, MultiCulti) %>%
+   mutate(rollmeanCounts = zoo::rollmean(Counts, k = RollWindow, align = "left", fill = NA),
+          is_nm = round(Wavelength[which.max(Counts)]),
+          is_nm_rollmean= round(Wavelength[which.max(rollmeanCounts)])) %>% 
+  ungroup()
+
+
+```
+
+
+```{r nest the spectral data}
+
+JazSpecNest <- JazSpecTrim %>%
+  nest(Spectra = c(Wavelength, Counts, rollmeanCounts))
+
+```
+
+
+```{r annotate measured nm, fig.height = 6, fig.width = 8}
+
+JazSpecNest %>%
+  unnest(Spectra) %>%
+    ggplot() +
+  geom_point(aes(x = Wavelength, y = Counts, colour = as.factor(WL))) +
+  # geom_point(aes(x = Wavelength, y = is_nm, colour = as.factor(WL))) +
+  geom_text(aes(x = is_nm, y= max(Counts), label= is_nm), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
+  scale_color_manual(values = Colours_nm) +
+  guides(colour = "none") +
+  geom_vline(aes(xintercept = is_nm), linetype = "dashed") +
+  scale_y_continuous(limits = c(0,100000)) +
+  ggh4x::facet_nested(rows = vars(MultiCulti, WL), labeller = labeller(WL = label_both, Par = label_both, MultiCulti = label_both)) +
+  theme_bw() 
+
+
+```
+
+
+
+```{r estimate peak ratios}
+# JazSpecWideNest <- JazSpecWide %>%
+#   nest(Spectra = c(One_Wavelength, One_Counts, Two_Counts, Three_Counts, Four_Counts, CountsAv, CountsMax, CountsMin)) %>%
+#   mutate(CountsBack = map_dbl(.x = Spectra, ~mean(.$CountsAv[.$One_Wavelength > 740])),
+#     Counts680690 = map_dbl(.x = Spectra, ~mean(.$CountsAv[.$One_Wavelength > 680 & .$One_Wavelength < 690])),
+#          Counts715725 = map_dbl(.x = Spectra, ~mean(.$CountsAv[.$One_Wavelength > 715 & .$One_Wavelength < 725])),
+#          Counts685_720 = Counts680690/Counts715725,
+#     Counts685_720back = (Counts680690 - CountsBack)/(Counts715725 - CountsBack)
+#     )
+# 
+# JazSpecWideNest %>%
+#   filter(Par_ue == 60) %>%
+#   #filter(Ex_WL != 445) %>%
+#   ggplot() +
+#   geom_point(aes(x = Ex_WL, y = Counts685_720)) +
+#   geom_point(aes(x = Ex_WL, y = Counts685_720back), colour = "red") +
+#   scale_color_manual(values = Colours_nm) +
+#   guides(colour = "none") +
+#   #coord_cartesian(xlim = c(660, 750), ylim =  c(0,5000)) +
+#   ggh4x::facet_nested(cols = vars(Strain, Par_ue, WL), labeller = labeller(strain = label_value, Par_ue = label_both, WL = label_both))  +
+#   theme_bw()
+```
+
+XXXX6 June 2022XXX
+
+
+Adding the maximum (peak) value in ggplot for geom_smoth
+https://stackoverflow.com/questions/71162252/adding-the-maximum-peak-value-in-ggplot-for-geom-smoth
+```{r}
+
+# sm_max <- JazSpecTrim %>% 
+#   group_by(WL) %>%
+#   mutate(smooth =predict(loess(Counts~as.numeric(Wavelength), span=.05))) %>%
+#   slice_max(order_by = smooth)
+# 
+# JazSpecTrim |>
+#   group_by(WL) %>%
+#   mutate(is_nm = Wavelength[which.max(Counts)]) %>%
+#   ggplot(df, mapping = aes(Wavelength, Counts, color = MultiCulti)) +
+#   geom_point(aes(x = Wavelength, y = Counts, colour = as.factor(MultiCulti))) +
+#   scale_color_manual(values = Colours_nm) +
+#   guides(colour = FALSE) +
+#   scale_y_continuous(limits = c(0,60000)) +
+#   ggh4x::facet_nested(rows = vars(WL), labeller = labeller(WL = label_both, strain = label_value, Par = label_both, WL = label_both))  +
+#   geom_smooth(span=.05, se=F) +
+#   geom_point(size = 3) +
+#   gghighlight(is_max,
+#               n = 1,
+#               unhighlighted_params = list(alpha = 0),
+#               label_key = Counts)
+  
+```
+ggspectra:
+https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide1-grammar.html
+https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide2-autoplot-methods.html
+```{r}
+
+# JazSpecTrim |> 
+#   # group_by(Filename) %>%
+#     filter(
+#          Ex_WL != "470",
+#          Ex_WL != "505") %>%
+#   #mutate(is_max = Counts == max(Counts)) %>%
+#   ggplot(df, mapping = aes(Wavelength, Counts, color = Filename)) +
+# 
+#   geom_point(aes(x = Wavelength, y = Counts, colour = as.factor(Ex_WL))) +
+#   scale_color_manual(values = Colours_nm) +
+#   guides(colour = FALSE) +
+# 
+#   scale_y_continuous(limits = c(0,60000)) +
+#   ggh4x::facet_nested(rows = vars(Ex_WL), cols = vars(Strain, Par_ue, WL), labeller = labeller(Ex_WL = label_both, strain = label_value, Par_ue = label_both, WL = label_both))  +
+#   #geom_point(size = 3) +
+#   geom_line() +
+#   stat_peaks(geom = "point",
+#              span = 51,
+#              color = "red",
+#              vjust = "bottom",
+#              position = position_nudge(y = 0.01)) +
+#   theme_bw() +
+#   theme(axis.text.x = element_text(angle = 45))
+# # 
+# 
+# 
+# #Showed y-value on spectra
+# ggplot(sun.spct) + geom_line() + 
+#   stat_peaks(shape = 21, span = 35, size = 2) + 
+#   stat_label_peaks(aes(label = stat(y.label)),
+#                    span = 35, geom = "label", size = 3,
+#                    position = position_nudge(y = 0.04),
+#                    label.fmt = "%1.2f") +
+#   expand_limits(y = 1) +
+#   scale_fill_identity() + scale_color_identity()
+
+```
+
+```{r save rds}
+ saveRDS(JazSpecNest, file.path(DataOut, paste(Project, "MultiCultiSpectra.Rds", sep = "_"), fsep = .Platform$file.sep))
+```
+
