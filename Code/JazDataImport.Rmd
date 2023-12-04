@@ -22,15 +22,15 @@ library(ggspectra)
 library(ggrepel)
 ```
 
+
 ```{r import the data}
 Project <- "PICO"
 
-#DataIn <- file.path("..", "Jaz", fsep = .Platform$file.sep)
-DataIn <- file.path("..", "MultiCultiSpectra", fsep = .Platform$file.sep)
 
-#ExpDate <- "20220520"
-DataOut<- file.path("..", "ImportedData", "Jaz", fsep = .Platform$file.sep)
-#CatalogGoogle <- "https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0"
+DataIn <- file.path("..", "Data","RawData", "MCEmissionSpectra", fsep = .Platform$file.sep)
+
+
+DataOut<- file.path("..", "Data", "ProcessedData", fsep = .Platform$file.sep)
 
 #set variables for file import & processing of fluorescence files Jaz
 #DataPathCS <- file.path("..", "Jaz", fsep = .Platform$file.sep)
@@ -48,6 +48,7 @@ DelimCS <- "\t"
 RollWindow <- 10
 
 ```
+
 
 ```{r set colours}
 Wavelengths_nm = c(405, 450, 470, 530, 620, 660, 720, "WW")
@@ -67,6 +68,7 @@ MultiCultiPAR <- read.csv(file.path(DataIn, "MultiCulti_PAR.csv"))
 
 
 ```{r read Jaz data using map_df}
+
 fread_plus <- function(Flnm, Skip, FileEncode, Delim){data.table::fread(file = Flnm, skip = Skip, encoding = FileEncode, sep = Delim, header = FALSE) %>%
     mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(Flnm)$ctime))
 }
@@ -86,7 +88,9 @@ JazSpec[1:10]
 #   ggplot() +
 #   geom_point(aes(x = Wavelength, y = Counts)) +
 #   theme_bw()
+
 ```
+
 
 ```{r filename separation}
 
@@ -107,7 +111,7 @@ JazSpec[1:10]
 
 ```
 
-```{r remove the wl < 350 and > 750}
+```{r remove wl < 350 and > 750}
 
 JazSpecTrim <- JazSpec %>% 
   subset(JazSpec$Wavelength >= 350 & JazSpec$Wavelength <= 750)
@@ -231,6 +235,7 @@ https://stackoverflow.com/questions/71162252/adding-the-maximum-peak-value-in-gg
 #               label_key = Counts)
   
 ```
+
 ggspectra:
 https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide1-grammar.html
 https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide2-autoplot-methods.html
@@ -274,7 +279,10 @@ https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide2-autoplot-
 
 ```
 
+
 ```{r save rds}
+
  saveRDS(JazSpecNest, file.path(DataOut, paste(Project, "MultiCultiSpectra.Rds", sep = "_"), fsep = .Platform$file.sep))
+
 ```
 
