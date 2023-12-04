@@ -233,8 +233,7 @@ readRDS_plus <- function(Flnm){readRDS(file = Flnm)
 ```{r read selected ProcessedData}
                                     
 RdsData <-  OlisRdsFiles %>%
-    map_df(~readRDS_plus(Flnm = .)) %>% 
-  select(-c(...44,...45))
+    map_df(~readRDS_plus(Flnm = .)) 
 
 glimpse(RdsData)
 
