@@ -43,8 +43,7 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 -move filter for negative OD to point of log curve fitting Filtering
 negative points needed for current noise filtering, so placed just
-before noise filtering; with more sophisticated noise filtering -add
-dynamic extraction of StartTime from first row of AbsTime Done
+before noise filtering; with more sophisticated noise filtering 
 
 # Introduction
 
@@ -86,6 +85,7 @@ library(zoo)
 library(data.table)
 library(googledrive)
 library(googlesheets4)
+library(photobiologyWavebands)
 
 ```
 
@@ -101,11 +101,18 @@ Skip <- 20
 
 #set Photobiology colors
 ```{r set colours}
-MyWavelengths = c(405, 450, 475, 530, 615, 660, 730, "WW")
-MCMIXColours = c("violet", "darkblue", "dodgerblue", "green","orange","red","purple", "black")
+MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
+
+# MyWavelengths = c(450, 530, 660, "WW")
+# MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
+
+
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
+
+
 
 ```
 
@@ -150,42 +157,32 @@ CultureCatalog <- readRDS(file = file.path("..", "Data","CultureCatalog.Rds"))
 list.files(path = DataOut, pattern = Project, full.names = TRUE)
 ```
 
-# List MultiCulti files
-
-for Project that are saved in DataIn
+# List MultiCulti files for Project that are saved in DataIn
 
 ```{r MultiCulti files}
 
-
 #List files in the extracted folder with a ".asc" extension
-# MCFiles <- unzip(DataIn, list = TRUE)
-# MCFiles <- MCFiles[grepl(".csv$", MCFiles$Name), "Name"]
-# print(MCFiles)
+MCFiles <- unzip(DataIn, list = TRUE)
+MCFiles <- MCFiles[grepl(".csv$", MCFiles$Name), "Name"]
+print(MCFiles)
 
 ```
 
 # Set Target File
+```{r set TargetFile and read csv}
 
-Could implement function to list difference between
-unique(GrowthSummaryAppend\$Filename) and MultiFiles if needed later;
-scan visually to set TargetFile for now.
-
-
-
-```{r set TargetFile}
-
-TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
+TargetFile <- "20221021_PICO_MCMIX006_RUN96.csv"
 
 
 # This opens a compressed file without decompressing.
-TargetData <- read_csv(unz(DataIn, TargetFile),  skip = Skip, id = "path", col_names = c("key", "time", "abs-time", "value")) %>% 
-  separate(col = path, into = c("path", "Filename"), sep = ":") 
+TargetData <- read_csv(unz(DataIn, TargetFile),  skip = Skip, id = "Path", col_names = c("key", "time", "abs-time", "value")) %>% 
+  separate(col =Path, into = c("Path", "Filename"), sep = ":") 
 
 
 
-# TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
-# 
-# TargetFileName
+TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
+
+TargetFileName
 
 ```
 
@@ -274,7 +271,7 @@ TargetData <- TargetData %>%
   
 #extract ExpDate for matching with Catalog
 TargetData <- TargetData %>% 
-    mutate(ExpDate = str_extract(Filename, "/202[:digit:][:digit:][:digit:][:digit:][:digit:]_"),
+    mutate(ExpDate = str_extract(Filename, "202[:digit:][:digit:][:digit:][:digit:][:digit:]_"),
            ExpDate = ymd(str_extract(ExpDate, "202[:digit:][:digit:][:digit:][:digit:][:digit:]")))
 
 #extract MC for matching with Catalog
@@ -428,49 +425,7 @@ rm(TargetDataWide)
 
 ```
 
-Run this chunk only for tubes with OD680 and/or OD720 < 0
-This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk
-Remember to comment out after use 
-```{r, Add dummy points if a tube has OD values less than zero}
 
-# TargetDataMeta <- TargetDataMeta %>%
-# mutate(OD680 = if_else(Tube == 1, 0.005, OD680),
-#        OD720 = if_else(Tube == 1, 0.003, OD720))
-
-```
-
-Run this chunk if some tubes have poor data
-This is bad practice;
-Only use if light recordings were actually wrong
-Consider a rule-based filtering to eliminate points after curve reaches peak
-```{r filter aberrant tube(s)}
-# TargetDataMeta <- TargetDataMeta %>%
-#   filter(Tube != 1) %>%
-#   filter(Tube != 8)
-# 
-# TargetDataMeta5 <- TargetDataMeta %>%
-#   filter(Tube == 5,
-#          time <= 300)
-# 
-# TargetDataMeta <- TargetDataMeta %>%
-#   filter(Tube != 5) %>%
-#   rbind(., TargetDataMeta5)
-# 
-# TargetDataMeta %>% ggplot() +
-#   geom_point(aes(x = time, y = OD680, colour = as.factor(WL)), size = 0.1) +
-#   geom_point(aes(x = time, y = OD720), size = 0.01, alpha = 0.1, colour = "black") +
-#   geom_point(aes(x = time, y = Actinic_par/1000),  colour = "orange", size = 0.0001) +
-#   geom_vline(aes(xintercept = 7 * 24), linetype = "dashed") + 
-#   geom_vline(aes(xintercept = 14 * 24), linetype = "dashed") + 
-#   #scale_x_continuous(breaks=seq(0, 800, by = 125)) +
-#   #coord_cartesian(xlim = c(-10, 800)) +
-#   #scale_colour_manual(values = MCMIXColours) +
-#   labs(y = "Optical Density (OD)", x = "Elapsed Time (h)", subtitle = "Growth Light (µE); Strain; ID; Tube") +
-#   facet_grid(rows = vars(as.factor(O2)), cols = vars(as.factor(Tube), as.factor(Par_ue),Strain, ID)) +
-#   theme_bw() +  
-#   labs(colour = "Actinic PAR (nm)")
-
-```
 
 # Filter OD outliers
 
@@ -484,8 +439,8 @@ MAD is median absolute deviation Used median as opposed to mean to filter anomal
 ```{r filter bad OD and data points after experiment end time }
 
 #moving average screen
-MovAvgScreen <- 6
-MovAvgWindow <- 20
+MovAvgScreen <- 6 # 6
+MovAvgWindow <- 20 # 20
 
 TargetDataMetaFilter <- TargetDataMeta %>%
   # filter(OD680 > 0) %>% # consider this rule for OD720 as well
@@ -551,7 +506,8 @@ TargetDataMetaFilter %>%
 
 #labelling dynamically offset from data traces.
 #use 'median' for 'x' and OD680 + offset for 'y'
-ExpandTube = 1
+ExpandTube = 2
+
 OD680_x = median(TargetDataMetaFilter$time)
 OD720_x = median(TargetDataMetaFilter$time) 
 Light_x = max(TargetDataMetaFilter$time) + 100
