@@ -92,7 +92,7 @@ library(googlesheets4)
 ```{r set project variables}
 #"..", takes up a level in the directory path
 Project <- "PICO"
-DataIn <- file.path("..", "Data", "RawData", "MultiCulti")
+DataIn <- file.path("..", "Data", "RawData", "MultiCultiData.zip")
 DataOut <- file.path("..","Data", "ImportedData", "MultiCultiData")
 
 ```
@@ -154,10 +154,10 @@ for Project that are saved in DataIn
 
 ```{r MultiCulti files}
 
-MultiFiles <- list.files(path = DataIn, pattern = Project, full.names = TRUE)
+unzip(DataIn, list = TRUE)
 
 #check file names
-MultiFiles
+
 
 ```
 
@@ -170,14 +170,16 @@ scan visually to set TargetFile for now.
 
 
 ```{r set TargetFile}
-TargetFile <- "../MultiCultiData/20230413_PICO_MCMIX004_RUN113.csv"
+
+TargetFile <- unzip(DataIn, "20211223_PICO_MCMIX006_RUN42.csv")
 
 
-
-TargetFileName <- str_split(string = TargetFile, "/")[[1]][3] %>%
-  str_remove(pattern = ".csv")
+TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
 
 TargetFileName
+
+
+
 ```
 
 ## Create function using data.table::fread to skip the beginning comments and starts reading file after key word Skip
@@ -389,7 +391,7 @@ TargetDataWide[1:10,]
 
 ```{r metadata merge}
 #This generates 'NA' values for ~1,000,000 rows of 'O2'; possibly the temperature rows?
-TargetDataMeta <- left_join(x = TargetDataWide, y= Catalog, by = c("ExpDate", "MC", "Tube"), suffix  = c("_multi", "_cat"))
+TargetDataMeta <- left_join(x = TargetDataWide, y= CultureCatalog, by = c("ExpDate", "MC", "Tube"))
 
 TargetDataMeta
 
@@ -476,7 +478,7 @@ MovAvgScreen <- 6
 MovAvgWindow <- 20
 
 TargetDataMetaFilter <- TargetDataMeta %>%
-  filter(OD680 > 0) %>% # consider this rule for OD720 as well
+  # filter(OD680 > 0) %>% # consider this rule for OD720 as well
   group_by(ID) %>%
   arrange(Filename, MC, Tube, time) %>%
   mutate(ExpEndHour = (difftime(ExpEndDate, StartDate, units = "hours"))) %>%
@@ -536,6 +538,7 @@ TargetDataMetaFilter %>%
 
 
 ```{r filterdataplotexpand}
+
 #labelling dynamically offset from data traces.
 #use 'median' for 'x' and OD680 + offset for 'y'
 ExpandTube = 1
@@ -561,7 +564,7 @@ TargetDataMetaFilter %>%
   # scale_x_continuous(breaks=seq(0, 800, by = 125)) +
   # coord_cartesian(xlim = c(0, 800)) +
   labs(y = "Optical Density (OD)", x = "Elapsed Time (h)",subtitle = "Growth Light (µE); Strain; ID; Tube") +
-  facet_grid(rows = vars(O2), cols = vars(Tube, Par_ue, Strain, ID)) +
+  # facet_grid(rows = vars(O2), cols = vars(Tube, Par_ue, Strain, ID)) +
   annotate(geom = "text", x = OD680_x, y = OD680_y, label = "OD680", size = 5, colour = "darkblue") +
   annotate(geom = "text", x = OD720_x, y = OD720_y, label = "OD720", size = 5, colour = "black") +
   annotate(geom = "text", x = Light_x, y = Light_y, label = "Light level", size = 5, colour = "orange") +
