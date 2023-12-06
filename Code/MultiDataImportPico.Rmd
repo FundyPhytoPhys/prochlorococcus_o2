@@ -222,22 +222,6 @@ select(-c(V5)) only needed for some files.
 # unique(TargetData$key)
 ```
 
-```{r read in all MultiData}
-# MultiData <- MultiFiles %>%
-#   map_df(~fread_plus(Flnm = ., Skip = "key")) %>%
-#   select(-c(V5))
-# 
-# MultiData[1:10,]
-
-# MultiDataTarget <- MultiData %>%
-   #filter(Filename == TargetFile)
-```
-
-```{r TargetFile actinic light NA to 0}
-# TargetData <- TargetData %>%
-#   mutate(value = if_else(grepl("actinic-lights", key), if_else(is.na(value), 0, value), value))
-
-```
 
 # Filter superfluous rows, Add ToD column, extract ExpDate, extract MC, 
 
@@ -249,6 +233,7 @@ TargetData <- TargetData %>%
   #        key != "mc-airpump.airpump") %>%
   filter(str_detect(key, "od-720|od-680|actinic-lights.light"))
 
+# some files have "V5"  instead of "value" column
 TargetData <- TargetData %>%
   select(key, time, `abs-time`, value, Filename) %>% #, CDateTime
   mutate(Tube = str_extract(key, "-[:digit:]"),
@@ -425,6 +410,17 @@ rm(TargetDataWide)
 
 ```
 
+Run this chunk only for tubes with OD680 and/or OD720 < 0
+This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk
+Remember to comment out after use 
+```{r, Add dummy points if a tube has OD values less than zero}
+
+# TargetDataMeta <- TargetDataMeta %>%
+# mutate(OD680 = if_else(Tube == 1, 0.005, OD680),
+#        OD720 = if_else(Tube == 1, 0.003, OD720))
+
+```
+
 
 
 # Filter OD outliers
@@ -439,11 +435,11 @@ MAD is median absolute deviation Used median as opposed to mean to filter anomal
 ```{r filter bad OD and data points after experiment end time }
 
 #moving average screen
-MovAvgScreen <- 6 # 6
-MovAvgWindow <- 20 # 20
+MovAvgScreen <- 2 # 6
+MovAvgWindow <- 2 # 20
 
 TargetDataMetaFilter <- TargetDataMeta %>%
-  # filter(OD680 > 0) %>% # consider this rule for OD720 as well
+ filter(OD680 > 0) %>% # consider this rule for OD720 as well
   group_by(ID) %>%
   arrange(Filename, MC, Tube, time) %>%
   mutate(ExpEndHour = (difftime(ExpEndDate, StartDate, units = "hours"))) %>%
@@ -479,7 +475,7 @@ TargetDataMetaFilter <- TargetDataMetaFilter %>%
 
 #rm(TargetDataMeta)
 ```
-
+# check to confirm filter and ensure there are data points for all 8 tubes. If there is a missing tube, confirm that data was filtered out because OD680 and/or OD720 <0. If this is the case run the chunk "Add dummy points if a tube has OD values less than zero" above and rerun subsequent chunks.
 ```{r filterdataplot}
 
 TargetDataMetaFilter %>% 
@@ -604,6 +600,15 @@ TargetDataMetaFilter %>%
 
 
 ```
+
+```{r remove redundant columns}
+
+TargetDataMetaFilter <- TargetDataMetaFilter %>% 
+select(-c("MovMAD680", "MovMAD720",  "MovMedian680", "MovMedian720", "IsMovMAD680Outlier", "IsMovMAD720Outlier","ActinicMin_parOD680", "ActinicMid_parOD680", "ActinicMin_parOD720", "ActinicMid_intervalOD720", "abs_time" , "TimeFlag"))
+
+```
+
+
 
 # Save .Rds of Imported Data from TargetFile
 
