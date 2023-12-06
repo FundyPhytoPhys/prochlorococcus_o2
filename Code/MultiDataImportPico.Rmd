@@ -95,6 +95,8 @@ Project <- "PICO"
 DataIn <- file.path("..", "Data", "RawData", "MultiCultiData.zip")
 DataOut <- file.path("..","Data", "ImportedData", "MultiCultiData")
 
+Skip <- 19
+
 ```
 
 #set Photobiology colors
@@ -154,10 +156,11 @@ for Project that are saved in DataIn
 
 ```{r MultiCulti files}
 
-unzip(DataIn, list = TRUE)
 
-#check file names
-
+#List files in the extracted folder with a ".asc" extension
+# MCFiles <- unzip(DataIn, list = TRUE)
+# MCFiles <- MCFiles[grepl(".csv$", MCFiles$Name), "Name"]
+# print(MCFiles)
 
 ```
 
@@ -171,23 +174,29 @@ scan visually to set TargetFile for now.
 
 ```{r set TargetFile}
 
-TargetFile <- unzip(DataIn, "20211223_PICO_MCMIX006_RUN42.csv")
+TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
 
 
-TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
+# This opens a compressed file without decompressing.
+TargetData <- read_csv(unz(DataIn, TargetFile),  skip = 20, id = "path", col_names = c("key", "time", "abs-time", "value")) %>% 
+  separate(col = path, into = c("path", "Filename"), sep = ":") 
 
-TargetFileName
 
 
+# TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
+# 
+# TargetFileName
 
 ```
+
+
 
 ## Create function using data.table::fread to skip the beginning comments and starts reading file after key word Skip
 
 ```{r fread_plus}
-fread_plus <- function(Flnm, Skip){data.table::fread(file = Flnm, skip = Skip) %>%
-    mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(Flnm)$ctime))
-}
+# fread_plus <- function(Flnm, Skip){data.table::fread(file = Flnm, skip = Skip) %>%
+#     mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(Flnm)$ctime))
+# }
 ```
 
 # Read in TargetFile
@@ -195,24 +204,25 @@ fread_plus <- function(Flnm, Skip){data.table::fread(file = Flnm, skip = Skip) %
 select(-c(V5)) only needed for some files.
 
 ```{r Read TargetFile}
-#abs-time is failing because it contains ',' in the variable values; file is actually a .tsv, not a .csv
-#abs-time not currently used?
-# TargetData <- fread_plus(Flnm = TargetFile, Skip = "key") %>%
-# select(-c(V5))
-
-#run this if V5 is the 'value' column
-TargetData <- fread_plus(Flnm = TargetFile, Skip = "key")  %>%
-   select(-c(V5))
-
-# %>%
-#  select(-c(value)) %>%
-#   rename(value = V5)
-
-
-TargetData[1:10,]
-
-#check whether all necessary values for 'key' are present; people forget to 'export all' values from PSI
-unique(TargetData$key)
+# #abs-time is failing because it contains ',' in the variable values; file is actually a .tsv, not a .csv
+# #abs-time not currently used?
+# # TargetData <- fread_plus(Flnm = TargetFile, Skip = "key") %>%
+# # select(-c(V5))
+# 
+# #run this if V5 is the 'value' column
+# TargetData <- fread_plus(Flnm = TargetFile, Skip = "key")  %>%
+#    select(-c(V5))
+# TargetData <- fread_plus(Flnm = paste(DataIn, "20211223_PICO_MCMIX006_RUN42.csv", sep = ":"), Skip = "key")  %>%
+#    select(-c(V5))
+# # %>%
+# #  select(-c(value)) %>%
+# #   rename(value = V5)
+# 
+# 
+# TargetData[1:10,]
+# 
+# #check whether all necessary values for 'key' are present; people forget to 'export all' values from PSI
+# unique(TargetData$key)
 ```
 
 ```{r read in all MultiData}
@@ -243,7 +253,7 @@ TargetData <- TargetData %>%
   filter(str_detect(key, "od-720|od-680|actinic-lights.light"))
 
 TargetData <- TargetData %>%
-  select(key, time, `abs-time`, value, Filename, CDateTime) %>%
+  select(key, time, `abs-time`, value, Filename) %>% #, CDateTime
   mutate(Tube = str_extract(key, "-[:digit:]"),
          Tube = as.numeric(str_extract(Tube, "[:digit:]")),
          abs_time = dmy_hms(`abs-time`)) %>%
