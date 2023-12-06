@@ -95,7 +95,7 @@ Project <- "PICO"
 DataIn <- file.path("..", "Data", "RawData", "MultiCultiData.zip")
 DataOut <- file.path("..","Data", "ImportedData", "MultiCultiData")
 
-Skip <- 19
+Skip <- 20
 
 ```
 
@@ -178,7 +178,7 @@ TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
 
 
 # This opens a compressed file without decompressing.
-TargetData <- read_csv(unz(DataIn, TargetFile),  skip = 20, id = "path", col_names = c("key", "time", "abs-time", "value")) %>% 
+TargetData <- read_csv(unz(DataIn, TargetFile),  skip = Skip, id = "path", col_names = c("key", "time", "abs-time", "value")) %>% 
   separate(col = path, into = c("path", "Filename"), sep = ":") 
 
 
