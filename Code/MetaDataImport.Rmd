@@ -60,7 +60,7 @@ library(googlesheets4)
 Project <- "PICO"
 DataOut <- file.path("..","Data")
 ProjectRows <- c("MiSa|JuNa|SaAr")
-ProjectCols <- c("PrimaryOperator", "SampleID", "Run", "ID", "Strain", "ExpCul", "ExpDate", "ExpStartTime", "Par_ue", "Photoperiod", "Temp_c", "MC", "Tube", "EndDate","O2", "O2_Category", "WL","LightShape", "Optode","OptodeCh","OptodeMeasure", "ExpEndDate")
+ProjectCols <- c("PrimaryOperator", "SampleID", "Run", "ID", "Strain", "ExpCul", "ExpDate", "ExpStartTime", "Par_ue", "Photoperiod", "Temp_c", "MC", "Tube","O2", "O2_Category", "WL","LightShape", "Optode","OptodeCh","OptodeMeasure", "ExpEndDate")
 
 ```
 
@@ -85,7 +85,8 @@ CultureCatalog <- read_sheet("https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto
    mutate(ExpDate = ymd(ExpDate),
           ExpEndDate = ymd_hms(`ExpEndDate`)) %>% 
   filter(str_detect(ID,  ProjectRows)) %>% 
-  select(ProjectCols)          
+  select(ProjectCols) %>% 
+  rename(CultureID = ID)
 
 saveRDS(object = CultureCatalog, file = file.path("..", "Data", "CultureCatalog.Rds"), compress = "xz")
 
