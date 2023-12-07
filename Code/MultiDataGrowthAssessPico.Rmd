@@ -45,7 +45,6 @@ knitr::opts_chunk$set(fig.path='Figs/')
 ```{r load libraries, message= TRUE}
 # libraries; Note check actual dependencies
 
-library(tidyverse)
 library(lubridate)
 library(stringr)
 library(broom)
@@ -54,11 +53,8 @@ library(zoo)
 library(RColorBrewer)
 library(grid)
 library(photobiologyWavebands)
-#library(tidyquant)
-#library(data.table)
-#library(googledrive)
-#library(googlesheets4)
-#library(dplyr)
+library(tidyverse)
+
 ```
 
 ```{r set project variables}
@@ -121,18 +117,6 @@ readRDS_plus <- function(Flnm){readRDS(file = Flnm) %>%
                                     
 LogFitsData <-  ProcessedFiles %>%
     map_df(~readRDS_plus(Flnm = .)) 
-
-%>%
-    # select(-c("Motivation", "doi", "SourceSalinity", "EndDate", "Salinity",  "InocpH","lognormdeltaOD_Gompertz", "lognormOD720_Gompertz", "OD720_logistic", "deltaOD_logistic","OD720trunc_logistic", "deltaODtrunc_logistic", "OD720trunc_exp", "deltaODtrunc_exp",
-              # "lognormOD720_Gompertz_param",
-              # "lognormdeltaOD_Gompertz_param",
-              # "OD720_logistic_param",
-              # "OD720trunc_exp_param",
-              # "deltaODtrunc_logistic_param",
-              # "OD720trunc_logistic_param",
-              # "deltaOD_logistic_param",
-              # "deltaODtrunc_exp_param"
-              # ))
 
 ```
 
