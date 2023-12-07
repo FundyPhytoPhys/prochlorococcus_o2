@@ -39,7 +39,7 @@ Run only first time in session
 
 ```{r load libraries}
 # libraries; Note check actual dependencies
-library(tidyverse)
+
 library(lubridate)
 library(stringr)
 library(broom)
@@ -47,6 +47,7 @@ library(knitr)
 library(zoo)
 library(minpack.lm)
 library(photobiologyWavebands)
+library(tidyverse)
 
 ```
 
@@ -118,7 +119,7 @@ Run for each file in a session; all chunks below run for each file.
 
 Moving this template to a working project folder will need editing of this file path to a relative path within the project folder.
 ```{r read ProcessFile}
-ProcessFile <- "../Data/ImportedData/ImportedMCData/20211223_PICO_MCMIX006_RUN42_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/ImportedMCData/20221021_PICO_MCMIX006_RUN96_TargetDataMetaFilter.Rds"
 
 ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
