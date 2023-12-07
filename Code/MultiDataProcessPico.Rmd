@@ -548,8 +548,8 @@ glimpse(ProcessDataNestGrowth)
 
 
 
-# Save .Rds of ProcessDataNestGrowth containing logistic and gompertz fits of growth data from time resolved and whole interval fits.
-This .Rds is the substrate for the 'MultiCultiCompare.Rmd to compare information across multiple runs.
+# Save .Rds of ProcessDataNestGrowth containing logistic fits of growth data from time resolved and whole interval fits.
+This .Rds is the substrate for the 'MultiDataGrowthAssessPico.Rmd to compare information across multiple runs.
 ```{r save rds}
 
  saveRDS(object = ProcessDataNestGrowth, file = file.path(DataOut, paste(ProcessFileName,  "ProcessDataNestGrowth.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
@@ -839,6 +839,47 @@ scale_colour_manual(values = MCMIXColours) +
 
 ```
 
+Plot all Fit Terms vs. conditions- no filters
+```{r plot all}
+ProcessDataNestGrowth %>%
+ unnest(cols = c(OD720_logistic_tidied),names_sep = "_") %>%
+  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, OD720_logistic_tidied_term, OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error)) %>%
+  pivot_wider(names_from =  OD720_logistic_tidied_term, values_from = c(OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error), names_sep = "_") %>%
+  rename(OD720_Lmax = OD720_logistic_tidied_estimate_Lmax,
+         OD720_Lmax_se = OD720_logistic_tidied_std.error_Lmax,
+         OD720_Lmu = OD720_logistic_tidied_estimate_Lmu,
+         OD720_Lmu_se = OD720_logistic_tidied_std.error_Lmu,
+         OD720_Lintercept = OD720_logistic_tidied_estimate_Lintercept,
+         OD720_Lintercept_se = OD720_logistic_tidied_std.error_Lintercept) %>%
+  ggplot() +
+  geom_point(aes(x = Par_ue, y = OD720_Lmu, colour = as.factor(WL))) +
+  geom_errorbar(aes(x = Par_ue, ymin = OD720_Lmu - OD720_Lmu_se, ymax = OD720_Lmu + OD720_Lmu_se, colour = as.factor(WL))) +
+  scale_colour_manual(values = MCMIXColours) +
+  facet_grid (cols = vars(Strain), rows = vars(O2)) +
+  theme_bw() +
+  labs(title = "Logistic cell Specific Growth Rate - All data")
+
+ProcessDataNestGrowth %>%
+ unnest(cols = c(deltaOD_logistic_tidied),names_sep = "_") %>%
+  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, deltaOD_logistic_tidied_term, deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error)) %>%
+  pivot_wider(names_from =  deltaOD_logistic_tidied_term, values_from = c(deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error), names_sep = "_") %>%
+  rename(deltaOD_Lmax = deltaOD_logistic_tidied_estimate_Lmax,
+         deltaOD_Lmax_se = deltaOD_logistic_tidied_std.error_Lmax,
+         deltaOD_Lmu = deltaOD_logistic_tidied_estimate_Lmu,
+         deltaOD_Lmu_se = deltaOD_logistic_tidied_std.error_Lmu,
+         deltaOD_Lintercept = deltaOD_logistic_tidied_estimate_Lintercept,
+         deltaOD_Lintercept_se = deltaOD_logistic_tidied_std.error_Lintercept) %>%
+  ggplot() +
+  geom_point(aes(x = Par_ue, y = deltaOD_Lmu, colour = as.factor(WL))) +
+  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu - deltaOD_Lmu_se, ymax = deltaOD_Lmu + deltaOD_Lmu_se, colour = as.factor(WL))) +
+  scale_colour_manual(values = MCMIXColours) +
+  facet_grid (cols = vars(Strain), rows = vars(O2)) +
+  theme_bw() +
+  labs(title = "Logistic chlorophyll specific - All data")
+
+
+
+```
 
 
 Plot Fit Terms vs. conditions - High Std error filtered out by flag argument
@@ -889,47 +930,7 @@ ProcessDataNestGrowth %>%
 ```
 
 
-Plot all Fit Terms vs. conditions- no filters
-```{r plot all}
-ProcessDataNestGrowth %>%
- unnest(cols = c(OD720_logistic_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, OD720_logistic_tidied_term, OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error)) %>%
-  pivot_wider(names_from =  OD720_logistic_tidied_term, values_from = c(OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error), names_sep = "_") %>%
-  rename(OD720_Lmax = OD720_logistic_tidied_estimate_Lmax,
-         OD720_Lmax_se = OD720_logistic_tidied_std.error_Lmax,
-         OD720_Lmu = OD720_logistic_tidied_estimate_Lmu,
-         OD720_Lmu_se = OD720_logistic_tidied_std.error_Lmu,
-         OD720_Lintercept = OD720_logistic_tidied_estimate_Lintercept,
-         OD720_Lintercept_se = OD720_logistic_tidied_std.error_Lintercept) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = OD720_Lmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = OD720_Lmu - OD720_Lmu_se, ymax = OD720_Lmu + OD720_Lmu_se, colour = as.factor(WL))) +
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Logistic cell Specific Growth Rate - All Growth")
 
-ProcessDataNestGrowth %>%
- unnest(cols = c(deltaOD_logistic_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, deltaOD_logistic_tidied_term, deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error)) %>%
-  pivot_wider(names_from =  deltaOD_logistic_tidied_term, values_from = c(deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error), names_sep = "_") %>%
-  rename(deltaOD_Lmax = deltaOD_logistic_tidied_estimate_Lmax,
-         deltaOD_Lmax_se = deltaOD_logistic_tidied_std.error_Lmax,
-         deltaOD_Lmu = deltaOD_logistic_tidied_estimate_Lmu,
-         deltaOD_Lmu_se = deltaOD_logistic_tidied_std.error_Lmu,
-         deltaOD_Lintercept = deltaOD_logistic_tidied_estimate_Lintercept,
-         deltaOD_Lintercept_se = deltaOD_logistic_tidied_std.error_Lintercept) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu - deltaOD_Lmu_se, ymax = deltaOD_Lmu + deltaOD_Lmu_se, colour = as.factor(WL))) +
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Logistic chlorophyll specific - All Growth")
-
-
-
-```
 
 Compare truncated vs full run 
 ```{r compare}
