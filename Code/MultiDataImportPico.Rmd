@@ -171,7 +171,7 @@ print(MCFiles)
 # Set Target File
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20221021_PICO_MCMIX006_RUN96.csv"
+TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
 
 
 # This opens a compressed file without decompressing.
@@ -435,8 +435,8 @@ MAD is median absolute deviation Used median as opposed to mean to filter anomal
 ```{r filter bad OD and data points after experiment end time }
 
 #moving average screen
-MovAvgScreen <- 2 # 6
-MovAvgWindow <- 2 # 20
+MovAvgScreen <- 6 # 6
+MovAvgWindow <- 20 # 20
 
 TargetDataMetaFilter <- TargetDataMeta %>%
  filter(OD680 > 0) %>% # consider this rule for OD720 as well

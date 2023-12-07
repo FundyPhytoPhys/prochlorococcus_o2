@@ -22,12 +22,6 @@ editor_options:
     wrap: 72
 ---
 
-## Set figure caption font size
-```{css, echo=FALSE}
-p.caption {
-  font-size: 18px;
-}
-```
 
 ## Set Chunk Options
 ```{r setup, include = FALSE}
@@ -51,16 +45,8 @@ library(stringr)
 library(broom)
 library(knitr)
 library(zoo)
-#library(tidyquant)
-#library(data.table)
-#library(googledrive)
-#library(googlesheets4)
 library(minpack.lm)
-#library(dplyr)
-
-#attach psych for harmonic.mean() for averaging rates
-#library(psych)
-#library(RcppRoll) #replaced by zoo::rollmean for rolling mean consistent with MultiDataImportPico.Rmd usage
+library(photobiologyWavebands)
 
 ```
 
@@ -69,9 +55,8 @@ Run only first time in session
 ```{r set project variables}
 #"..", takes up a level in the directory path
 Project <- "PICO"
-DataIn <- file.path("ImportedData")
-PlotsPath <- file.path("..","Plots")
-DataOut <- file.path("ProcessedData", "MultiCultiData")
+DataIn <- file.path("..", "Data", "ImportedData", "MultiCultiData")
+DataOut <- file.path("..", "Data","ProcessedData", "MultiCultiData")
 
 
 InitialTime <- 24 #hours to filter off start of data set to eliminate initial fluctuations common in SS120
@@ -80,9 +65,7 @@ ReplaceOD <- 0.0001 #replace OD720 and/or deltaOD when log of original OD result
 
 TruncFactor = 0.5 # fraction of max OD for truncating full growth trajectory to compare mu.
 
-GrowthFlagError <- 0.20 # percentage of growth parameter is flagged as growth when std error is less than xx of mu .
-
-Sensor <- "od-680"
+GrowthFlagError <- 0.20 # percentage of growth parameter is flagged as growth when std error is less than xx of mu.
 
 RollWindow = 20 #measurements every 5 min; 20 points is 1 h to generate rolling averages
 
@@ -96,21 +79,14 @@ MaxAmpHour <- 48  # used to determine if max OD was achieved within xx hours whi
 
 DeclineWindow <- 12 #duration in hours overwhich we test for decline from max by amplitude GrowthFlagValue in OD720 or deltaOD
 
-
-
-
-#set the hour of day at which photoperiod starts for later generation of ToD Time of Day
-#replaced by extraction of StartHour from first row of data file in MultiDataImport.Rmd
-#StartHour <- 6
-#EndHour <- 18
-
 ```
 
-Run only first time in session
+
 
 ```{r set colours}
-MyWavelengths = c(405, 450, 470, 530, 620, 660, 730, "WW")
-MCMIXColours = c("violet", "darkblue", "dodgerblue", "green","orange","red","purple", "black")
+MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
+
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -142,11 +118,12 @@ Run for each file in a session; all chunks below run for each file.
 
 Moving this template to a working project folder will need editing of this file path to a relative path within the project folder.
 ```{r read ProcessFile}
-ProcessFile <- "ImportedData/20220929_PICO_MCMIX006_RUN92_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/MultiCultiData/20211223_PICO_MCMIX006_RUN42_TargetDataMetaFilter.Rds"
 
-ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][2] %>%
+ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
   str_remove(pattern = "_TargetDataMetaFilter")
+
 ProcessFileName
 
 ProcessData <- readRDS(ProcessFile)  %>%
@@ -570,11 +547,6 @@ glimpse(ProcessDataNestGrowth)
 ```
 
 
-```{r filter }
-ProcessDataNestGrowth <- ProcessDataNestGrowth %>% 
-  select(-contains(c("trunc", "Gompertz", "Gomp", "OD720_G", "deltaOD_G")))
-```
-
 
 # Save .Rds of ProcessDataNestGrowth containing logistic and gompertz fits of growth data from time resolved and whole interval fits.
 This .Rds is the substrate for the 'MultiCultiCompare.Rmd to compare information across multiple runs.
@@ -619,7 +591,7 @@ Predict_x = 4
 Predict_y = 0.06
 
 # #predictions of condition specific fits
-OD720LogGrowthPlot <-ProcessDataNestGrowth %>%
+ProcessDataNestGrowth %>%
 #drop_na(OD720_logistic) %>%
   mutate(OD720_logistic_predict = map(OD720_logistic, possibly(augment, otherwise = NULL))) %>%
   unnest(cols = c(tubedata, OD720_logistic_predict),names_sep = "_", keep_empty = TRUE) %>%
@@ -638,11 +610,7 @@ OD720LogGrowthPlot <-ProcessDataNestGrowth %>%
   guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1)))
 
 
-OD720LogGrowthPlot
-
-
-
-deltaODLogGrowthPlot <- ProcessDataNestGrowth %>%
+ProcessDataNestGrowth %>%
   mutate(deltaOD_logistic_predict = map(deltaOD_logistic, possibly(augment, otherwise = NULL))) %>%
   unnest(cols = c(tubedata, deltaOD_logistic_predict),names_sep = "_", keep_empty = TRUE) %>%
   ggplot() +
@@ -658,10 +626,6 @@ deltaODLogGrowthPlot <- ProcessDataNestGrowth %>%
   theme_bw() +
   labs(colour = "Actinic PAR (nm)")+
   guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1)))
-
-
-deltaODLogGrowthPlot
-
 
 
 ProcessDataNestGrowth %>%
@@ -794,205 +758,14 @@ ProcessDataNestGrowth %>%
   guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1)))
 
 
-lognormOD720GompertzGrowthPlot <- ProcessDataNestGrowth %>%
-  mutate(lognormOD720_Gompertz_predict = map(lognormOD720_Gompertz, possibly(augment, otherwise = NULL))) %>%
-  unnest(cols = c(tubedata, lognormOD720_Gompertz_predict),names_sep = "_", keep_empty = TRUE) %>%
-  ggplot() +
-  geom_point(aes(x = tubedata_time, y = tubedata_lognormOD720), colour = "darkgreen", size = 0.1) +
-  scale_colour_manual(values = MCMIXColours) +
-  geom_point(aes(x = tubedata_time, y = lognormOD720_Gompertz_predict_.fitted), colour = "black", size = 0.1) +
-  geom_point(aes(x = tubedata_time, y = lognormOD720_Gompertz_predict_.resid), colour = "gold", size = 0.05) +
-  geom_point(aes(x = tubedata_time, y = tubedata_Actinic_par/10000, colour = as.factor(WL)), size = 0.05, alpha = 0.1) +
-  #coord_cartesian(xlim = c(-5, 675)) +
-  #scale_x_continuous(breaks=seq(0, 675, by = 125)) +
-  facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
-  labs(subtitle = "lognormOD720_Gompertz; Tube; Growth Light (nm; µE); Strain; Photoperiod", caption = ProcessFileName, y = "lognormOD720", x = "Elapsed Time (h)") +
-  theme_bw() +
-  labs(colour = "Actinic PAR (nm)")+ 
-  guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1))) 
-
-
-lognormOD720GompertzGrowthPlot
-
-
-
-ProcessDataNestGrowth %>%
-  filter(Tube == 5) %>%
-  mutate(lognormOD720_Gompertz_predict = map(lognormOD720_Gompertz, possibly(augment, otherwise = NULL))) %>%
-  unnest(cols = c(tubedata, lognormOD720_Gompertz_predict),names_sep = "_", keep_empty = TRUE) %>%
-  ggplot() +
-  geom_point(aes(x = tubedata_time, y = tubedata_lognormOD720), colour = "darkgreen", size = 0.1) +
-  scale_colour_manual(values = MCMIXColours) +
-  geom_point(aes(x = tubedata_time, y = lognormOD720_Gompertz_predict_.fitted), colour = "black", size = 0.1) +
-  geom_point(aes(x = tubedata_time, y = lognormOD720_Gompertz_predict_.resid), colour = "gold", size = 0.05) +
-  geom_point(aes(x = tubedata_time, y = tubedata_Actinic_par/1000, colour = as.factor(WL)), size = 0.05, alpha = 0.1) +
-  #coord_cartesian(xlim = c(-5, 675)) +
-  #scale_x_continuous(breaks=seq(0, 675, by = 125)) +
-  facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
-  labs(subtitle = "lognormOD720_Gompertz; Tube; Growth Light (nm; µE); Strain; Photoperiod", caption = ProcessFileName, y = "lognormOD720", x = "Elapsed Time (h)") +
-  theme_bw() +
-  labs(colour = "Actinic PAR (nm)")+ 
-  guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1))) 
-
-
-lognormdeltaODGompertzGrowthPlot <- ProcessDataNestGrowth %>%
-  mutate(lognormdeltaOD_Gompertz_predict = map(lognormdeltaOD_Gompertz, possibly(augment, otherwise = NULL))) %>%
-  unnest(cols = c(tubedata, lognormdeltaOD_Gompertz_predict),names_sep = "_", keep_empty = TRUE) %>%
-  ggplot() +
-  geom_point(aes(x = tubedata_time, y = tubedata_lognormdeltaOD), colour = "darkgreen", size = 0.1) +
-  scale_colour_manual(values = MCMIXColours) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.fitted), colour = "black", size = 0.1) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.resid), colour = "gold", size = 0.05) +geom_point(aes(x = tubedata_time, y = tubedata_Actinic_par/1000, colour = as.factor(WL)), size = 0.05, alpha = 0.1) +
-  #coord_cartesian(xlim = c(-5, 675)) +
-  #scale_x_continuous(breaks=seq(0, 675, by = 125)) +
-  facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
-  labs(subtitle = "lognormdeltaOD_Gompertz; Tube; Growth Light (nm; µE); Strain; Photoperiod", caption = ProcessFileName, y = "lognormdeltaOD", x = "Elapsed Time (h)") +
-  theme_bw() +
-  labs(colour = "Actinic PAR (nm)")+ 
-  guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1))) 
-
-
-lognormdeltaODGompertzGrowthPlot
-
-
-ProcessDataNestGrowth %>%
-  filter(Tube == 2) %>%
-  mutate(lognormdeltaOD_Gompertz_predict = map(lognormdeltaOD_Gompertz, possibly(augment, otherwise = NULL))) %>%
-  unnest(cols = c(tubedata, lognormdeltaOD_Gompertz_predict),names_sep = "_", keep_empty = TRUE) %>%
-  ggplot() +
-  geom_point(aes(x = tubedata_time, y = tubedata_lognormdeltaOD), colour = "darkgreen", size = 0.1) +
-  scale_colour_manual(values = MCMIXColours) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.fitted), colour = "black", size = 0.1) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.resid), colour = "gold", size = 0.05) +geom_point(aes(x = tubedata_time, y = tubedata_Actinic_par/10000, colour = as.factor(WL)), size = 0.05, alpha = 0.1) +
-  #coord_cartesian(xlim = c(-5, 675)) +
-  #scale_x_continuous(breaks=seq(0, 675, by = 125)) +
-  facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
-  labs(subtitle = "lognormdeltaOD_Gompertz; Tube; Growth Light (nm; µE); Strain; Photoperiod", caption = ProcessFileName, y = "lognormdeltaOD", x = "Elapsed Time (h)") +
-  theme_bw() +
-  labs(colour = "Actinic PAR (nm)")+ 
-  guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1))) 
-
-
-ProcessDataNestGrowth %>%
-  filter(Tube == 5) %>%
-  mutate(PhotoperiodLabel = "Photoperiod",
-         OxygenLabel = "Oxygen level") %>% 
-  mutate(lognormdeltaOD_Gompertz_predict = map(lognormdeltaOD_Gompertz, possibly(augment, otherwise = NULL))) %>%
-  unnest(cols = c(tubedata, lognormdeltaOD_Gompertz_predict),names_sep = "_", keep_empty = TRUE) %>%
-  ggplot() +
-  geom_point(aes(x = tubedata_time, y = tubedata_lognormdeltaOD), colour = "darkgreen", size = 0.1) +
-  scale_colour_manual(values = MCMIXColours) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.fitted), colour = "black", size = 0.1) +
-  geom_point(aes(x = tubedata_time, y = lognormdeltaOD_Gompertz_predict_.resid), colour = "gold", size = 0.05) +geom_point(aes(x = tubedata_time, y = tubedata_Actinic_par/10000, colour = as.factor(WL)), size = 0.05, alpha = 0.1) +
-  #coord_cartesian(xlim = c(-5, 675)) +
-  #scale_x_continuous(breaks=seq(0, 675, by = 125)) +
-   facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
- # guides(fill = "none") +
-  labs(subtitle = "lognormdeltaOD_Gompertz; Tube; Growth Light (nm; µE); Strain; Photoperiod", caption = ProcessFileName, y = "lognormdeltaOD", x = "Elapsed Time (h)") +
-  theme_bw() +
-  labs(colour = "Actinic PAR (nm)")+ 
-  guides(colour = guide_legend(override.aes = list(size = 3,  alpha = 1))) 
-
-
 ```
 
-
-```{r save logistic model plots}
-# ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "OD720LogGrowthPlot",".png",sep = "")), plot = OD720LogGrowthPlot, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "deltaODLogGrowthPlot",".png",sep = "")), plot = deltaODLogGrowthPlot, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
-
- # ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "OD720LogGrowthPlotExpand",".png",sep = "")), plot = OD720LogGrowthPlotExpand, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-
- # ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "DeltaODLogGrowthPlotExpand",".png",sep = "")), plot = DeltaODLogGrowthPlotExpand, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
- 
- # ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "lognormOD720GompertzGrowthPlot",".png",sep = "")), plot = lognormOD720GompertzGrowthPlot, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
- # 
- #  ggsave(file = file.path(PlotsPath, paste(ProcessFileName, "lognormdeltaODGompertzGrowthPlot",".png",sep = "")), plot = lognormdeltaODGompertzGrowthPlot, device = NULL, scale = 1, height=10, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
-
-```
 
 ```{r exclude poor fits}
 # TestProcessDataNestGrowth %>%
 #   filter(Tube != 4)
 ```
 
-
-```{r logistic vs gompertz fit plots}
-
-ProcessDataNestGrowth %>%
-unnest(cols = c(OD720_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  OD720_logistic_tidied_term, values_from = c(OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error, OD720_logistic_tidied_statistic, OD720_logistic_tidied_p.value), names_sep = "_")  %>%
-  rename(OD720_Lmax = OD720_logistic_tidied_estimate_Lmax,
-         OD720_Lmax_se = OD720_logistic_tidied_std.error_Lmax,
-         OD720_Lmu = OD720_logistic_tidied_estimate_Lmu,
-         OD720_Lmu_se = OD720_logistic_tidied_std.error_Lmu,
-         OD720_Lintercept = OD720_logistic_tidied_estimate_Lintercept,
-         OD720_Lintercept_se = OD720_logistic_tidied_std.error_Lintercept)  %>%
-  unnest(cols = c(lognormOD720_Gompertz_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  lognormOD720_Gompertz_tidied_term, values_from = c(lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error, lognormOD720_Gompertz_tidied_statistic, lognormOD720_Gompertz_tidied_p.value), names_sep = "_") %>%
-  rename(OD720_Gmax = lognormOD720_Gompertz_tidied_estimate_Gmax,
-         OD720_Gmax_se = lognormOD720_Gompertz_tidied_std.error_Gmax,
-         OD720_Gmu = lognormOD720_Gompertz_tidied_estimate_Gmu,
-         OD720_Gmu_se = lognormOD720_Gompertz_tidied_std.error_Gmu,
-         OD720_GLag = lognormOD720_Gompertz_tidied_estimate_GLag,             
-         OD720_GLag_se = lognormOD720_Gompertz_tidied_std.error_GLag)  %>%
-   ggplot() +
-  geom_point(aes(x = OD720_Lmu, y = OD720_Gmu, colour = as.factor(WL),  shape = as.factor(IsOD720_GLagNeg)), size = 4)  +
-  ggrepel::geom_text_repel(aes(x = OD720_Lmu, y = OD720_Gmu, label= Tube),hjust=0, vjust=0) +
-scale_colour_manual(values = MCMIXColours) +
-  scale_shape_manual(values = c(13, 16)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
-  coord_fixed(ratio = 1) +
-  coord_cartesian(xlim = c (0, 0.06), ylim = c(0, 0.06)) +
-  scale_x_continuous(breaks=seq(0, 0.06, by = 0.02)) +
-  labs(subtitle = "Strain, O2, Actinic PAR (nm)", y = "Gompertz Growth Rate (OD720_Gmu)", x = "Logistic Growth Rate (OD720_Lmu)") +
-  facet_grid(rows = vars(Strain), cols = vars(O2, WL)) + 
-  theme_bw() + 
-  labs(title = "Logistic vs. Gompertz Cell Specific Growth Rates (µ" ~ h^-1~")- All Growth",
-       colour = "Actinic PAR (nm)")
-
-
-ProcessDataNestGrowth %>%
-unnest(cols = c(deltaOD_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  deltaOD_logistic_tidied_term, values_from = c(deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error, deltaOD_logistic_tidied_statistic, deltaOD_logistic_tidied_p.value), names_sep = "_")  %>%
-  rename(deltaOD_Lmax = deltaOD_logistic_tidied_estimate_Lmax,
-         deltaOD_Lmax_se = deltaOD_logistic_tidied_std.error_Lmax,
-         deltaOD_Lmu = deltaOD_logistic_tidied_estimate_Lmu,
-         deltaOD_Lmu_se = deltaOD_logistic_tidied_std.error_Lmu,
-         deltaOD_Lintercept = deltaOD_logistic_tidied_estimate_Lintercept,
-         deltaOD_Lintercept_se = deltaOD_logistic_tidied_std.error_Lintercept)  %>%
-  unnest(cols = c(lognormdeltaOD_Gompertz_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  lognormdeltaOD_Gompertz_tidied_term, values_from = c(lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error, lognormdeltaOD_Gompertz_tidied_statistic, lognormdeltaOD_Gompertz_tidied_p.value), names_sep = "_") %>%
-  rename(deltaOD_Gmax = lognormdeltaOD_Gompertz_tidied_estimate_Gmax,
-         deltaOD_Gmax_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmax,
-         deltaOD_Gmu = lognormdeltaOD_Gompertz_tidied_estimate_Gmu,
-         deltaOD_Gmu_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmu,
-         deltaOD_GLag = lognormdeltaOD_Gompertz_tidied_estimate_GLag,             
-         deltaOD_GLag_se = lognormdeltaOD_Gompertz_tidied_std.error_GLag)  %>%
-   ggplot() +
-  geom_point(aes(x = deltaOD_Lmu, y = deltaOD_Gmu, colour = as.factor(WL),  shape = as.factor(IsdeltaOD_GLagNeg)), size = 4) +
-  ggrepel::geom_text_repel(aes(x = deltaOD_Lmu, y = deltaOD_Gmu, label= Tube),hjust=0, vjust=0) +
-scale_colour_manual(values = MCMIXColours) +
-  scale_shape_manual(values = c(13, 16)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
-  coord_fixed(ratio = 1) +
-  coord_cartesian(xlim = c (0, 0.06), ylim = c(0, 0.06)) +
-  scale_x_continuous(breaks=seq(0, 0.06, by = 0.02)) +
-  labs(subtitle = "Strain, O2, Actinic PAR (nm)", y = "Gompertz Growth Rate (deltaOD_Gmu)", x = "Logistic Growth Rate (deltaOD_Lmu)") +
-  facet_grid(rows = vars(Strain), cols = vars(O2, WL)) + 
-  theme_bw() + 
-  labs(title = "Logistic vs. Gompertz Chlorophyll Specific Growth Rates (µ" ~ h^-1~")- All Growth",
-       colour = "Actinic PAR (nm)")
-
-
-
-```
 
 Truncated Logistic fits vs. Logistic fits
 ```{r compare trunc to full plots}
@@ -1089,7 +862,7 @@ ProcessDataNestGrowth %>%
   scale_colour_manual(values = MCMIXColours) +
   facet_grid (cols = vars(Strain), rows = vars(O2)) +
   theme_bw() +
-  labs(title = "Logistic cell Specific Growth rates - Flagged High Std error Omitted")
+  labs(title = "Logistic cell scatter growth rates - High std error fits omitted")
 
 ProcessDataNestGrowth %>%
  unnest(cols = c(deltaOD_logistic_tidied),names_sep = "_") %>%
@@ -1110,94 +883,8 @@ ProcessDataNestGrowth %>%
   scale_colour_manual(values = MCMIXColours) +
   facet_grid (cols = vars(Strain), rows = vars(O2)) +
   theme_bw() +
-  labs(title = "Logistic chlorophyll specific - Flagged High Std error Omitted")
+  labs(title = "Logistic chlorophyll specific growth rates - High Std error fits omitted")
 
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormOD720_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormOD720_Gompertz_tidied_term, lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormOD720_Gompertz_tidied_term, values_from = c(lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(OD720_Gmax = lognormOD720_Gompertz_tidied_estimate_Gmax,
-         OD720_Gmax_se = lognormOD720_Gompertz_tidied_std.error_Gmax,
-         OD720_Gmu = lognormOD720_Gompertz_tidied_estimate_Gmu,
-         OD720_Gmu_se = lognormOD720_Gompertz_tidied_std.error_Gmu,
-         OD720_GLag = lognormOD720_Gompertz_tidied_estimate_GLag,
-         OD720_GLag_se = lognormOD720_Gompertz_tidied_std.error_GLag) %>%
-  mutate(GmuOD720Flag = if_else(OD720_Gmu_se < OD720_Gmu * GrowthFlagError, 1, 0)) %>%
- # mutate(GrowthFlag = if_else((OD720_GLag + OD720_GLag_se) < ((OD720_Gmax - OD720_Gmax_se) & (OD720_Gmu_se < OD720_Gmu * GrowthFlagError) & (OD720_Gmax_se < OD720_Gmax * GrowthFlagError) ), 1, 0)) %>%
-  filter(GmuOD720Flag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = OD720_Gmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = OD720_Gmu - OD720_Gmu_se, ymax = OD720_Gmu + OD720_Gmu_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Gompertz Cell Specific Growth rates - Flagged High Std error Omitted")
-
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormdeltaOD_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormdeltaOD_Gompertz_tidied_term, lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormdeltaOD_Gompertz_tidied_term, values_from = c(lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(deltaOD_Gmax = lognormdeltaOD_Gompertz_tidied_estimate_Gmax,
-         deltaOD_Gmax_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmax,
-         deltaOD_Gmu = lognormdeltaOD_Gompertz_tidied_estimate_Gmu,
-         deltaOD_Gmu_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmu,
-         deltaOD_GLag = lognormdeltaOD_Gompertz_tidied_estimate_GLag,
-         deltaOD_GLag_se = lognormdeltaOD_Gompertz_tidied_std.error_GLag) %>%
-  mutate(GmudeltaODFlag = if_else(deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError, 1, 0)) %>%
- # mutate(GrowthFlag = if_else((deltaOD_GLag + deltaOD_GLag_se) < ((deltaOD_Gmax - deltaOD_Gmax_se) & (deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError) & (deltaOD_Gmax_se < deltaOD_Gmax * GrowthFlagError) ), 1, 0)) %>%
-  filter(GmudeltaODFlag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Gmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Gmu - deltaOD_Gmu_se, ymax = deltaOD_Gmu + deltaOD_Gmu_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Gompertz Chlorophyll Specific Growth rates - Flagged High Std error Omitted")
-
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormOD720_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormOD720_Gompertz_tidied_term, lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormOD720_Gompertz_tidied_term, values_from = c(lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(OD720_Gmax = lognormOD720_Gompertz_tidied_estimate_Gmax,
-         OD720_Gmax_se = lognormOD720_Gompertz_tidied_std.error_Gmax,
-         OD720_Gmu = lognormOD720_Gompertz_tidied_estimate_Gmu,
-         OD720_Gmu_se = lognormOD720_Gompertz_tidied_std.error_Gmu,
-         OD720_GLag = lognormOD720_Gompertz_tidied_estimate_GLag,
-         OD720_GLag_se = lognormOD720_Gompertz_tidied_std.error_GLag) %>%
-   mutate(GmuOD720Flag = if_else(OD720_Gmu_se < OD720_Gmu * GrowthFlagError, 1, 0)) %>%
-  # mutate(GrowthFlag = if_else((OD720_GLag + OD720_GLag_se) < ((OD720_Gmax - OD720_Gmax_se) & (OD720_Gmu_se < OD720_Gmu * GrowthFlagError) & (OD720_Gmax_se < OD720_Gmax * GrowthFlagError) ), 1, 0)) %>%
-   filter(GmuOD720Flag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = OD720_Gmax)) +
-  geom_errorbar(aes(x = Par_ue, ymin = OD720_Gmax - OD720_Gmax_se, ymax = OD720_Gmax + OD720_Gmax_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Gompertz Cell Specific gmax - Flagged High Std error Omitted")
-
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormdeltaOD_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormdeltaOD_Gompertz_tidied_term, lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormdeltaOD_Gompertz_tidied_term, values_from = c(lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(deltaOD_Gmax = lognormdeltaOD_Gompertz_tidied_estimate_Gmax,
-         deltaOD_Gmax_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmax,
-         deltaOD_Gmu = lognormdeltaOD_Gompertz_tidied_estimate_Gmu,
-         deltaOD_Gmu_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmu,
-         deltaOD_GLag = lognormdeltaOD_Gompertz_tidied_estimate_GLag,
-         deltaOD_GLag_se = lognormdeltaOD_Gompertz_tidied_std.error_GLag) %>%
-   mutate(GmudeltaODFlag = if_else(deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError, 1, 0)) %>%
-  # mutate(GrowthFlag = if_else((deltaOD_GLag + deltaOD_GLag_se) < ((deltaOD_Gmax - deltaOD_Gmax_se) & (deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError) & (deltaOD_Gmax_se < deltaOD_Gmax * GrowthFlagError) ), 1, 0)) %>%
-   filter(GmudeltaODFlag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Gmax)) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Gmax - deltaOD_Gmax_se, ymax = deltaOD_Gmax + deltaOD_Gmax_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Gompertz Chlorophyll Specific gmax - Flagged High Std error Omitted")
 
 ```
 
@@ -1239,85 +926,6 @@ ProcessDataNestGrowth %>%
   facet_grid (cols = vars(Strain), rows = vars(O2)) +
   theme_bw() +
   labs(title = "Logistic chlorophyll specific - All Growth")
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormOD720_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormOD720_Gompertz_tidied_term, lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormOD720_Gompertz_tidied_term, values_from = c(lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(OD720_Gmax = lognormOD720_Gompertz_tidied_estimate_Gmax,
-         OD720_Gmax_se = lognormOD720_Gompertz_tidied_std.error_Gmax,
-         OD720_Gmu = lognormOD720_Gompertz_tidied_estimate_Gmu,
-         OD720_Gmu_se = lognormOD720_Gompertz_tidied_std.error_Gmu,
-         OD720_GLag = lognormOD720_Gompertz_tidied_estimate_GLag,
-         OD720_GLag_se = lognormOD720_Gompertz_tidied_std.error_GLag) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = OD720_Gmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = OD720_Gmu - OD720_Gmu_se, ymax = OD720_Gmu + OD720_Gmu_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw()+
-  labs(title = "Gompertz Cell Specific Growth Rates- All Growth")
-
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(lognormdeltaOD_Gompertz_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormdeltaOD_Gompertz_tidied_term, lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error)) %>%
-  pivot_wider(names_from =  lognormdeltaOD_Gompertz_tidied_term, values_from = c(lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error), names_sep = "_") %>%
-  rename(deltaOD_Gmax = lognormdeltaOD_Gompertz_tidied_estimate_Gmax,
-         deltaOD_Gmax_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmax,
-         deltaOD_Gmu = lognormdeltaOD_Gompertz_tidied_estimate_Gmu,
-         deltaOD_Gmu_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmu,
-         deltaOD_GLag = lognormdeltaOD_Gompertz_tidied_estimate_GLag,
-         deltaOD_GLag_se = lognormdeltaOD_Gompertz_tidied_std.error_GLag) %>%
-  mutate(GmudeltaODFlag = if_else(deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError, 1, 0)) %>%
- # mutate(GrowthFlag = if_else((deltaOD_GLag + deltaOD_GLag_se) < ((deltaOD_Gmax - deltaOD_Gmax_se) & (deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError) & (deltaOD_Gmax_se < deltaOD_Gmax * GrowthFlagError) ), 1, 0)) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Gmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Gmu - deltaOD_Gmu_se, ymax = deltaOD_Gmu + deltaOD_Gmu_se, colour = as.factor(WL))) + 
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Gompertz Chlorophyll Specific Growth rates - All Growth")
-
-# ProcessDataNestGrowth %>%
-#  unnest(cols = c(lognormOD720_Gompertz_tidied),names_sep = "_") %>%
-#   select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormOD720_Gompertz_tidied_term, lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error)) %>%
-#   pivot_wider(names_from =  lognormOD720_Gompertz_tidied_term, values_from = c(lognormOD720_Gompertz_tidied_estimate, lognormOD720_Gompertz_tidied_std.error), names_sep = "_") %>%
-#   rename(OD720_Gmax = lognormOD720_Gompertz_tidied_estimate_Gmax,
-#          OD720_Gmax_se = lognormOD720_Gompertz_tidied_std.error_Gmax,
-#          OD720_Gmu = lognormOD720_Gompertz_tidied_estimate_Gmu,
-#          OD720_Gmu_se = lognormOD720_Gompertz_tidied_std.error_Gmu,
-#          OD720_GLag = lognormOD720_Gompertz_tidied_estimate_GLag,
-#          OD720_GLag_se = lognormOD720_Gompertz_tidied_std.error_GLag) %>%
-#   ggplot() +
-#   geom_point(aes(x = Par_ue, y = OD720_Gmax)) +
-#   geom_errorbar(aes(x = Par_ue, ymin = OD720_Gmax - OD720_Gmax_se, ymax = OD720_Gmax + OD720_Gmax_se, colour = as.factor(WL))) + 
-#   scale_colour_manual(values = MCMIXColours) +
-#   facet_grid (cols = vars(Strain), rows = vars(O2)) +
-#   theme_bw()+
-#   labs(title = "Gompertz Cell Specific gmax - All Growth")
-
-
-# 
-# ProcessDataNestGrowth %>%
-#  unnest(cols = c(lognormdeltaOD_Gompertz_tidied),names_sep = "_") %>%
-#   select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, lognormdeltaOD_Gompertz_tidied_term, lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error)) %>%
-#   pivot_wider(names_from =  lognormdeltaOD_Gompertz_tidied_term, values_from = c(lognormdeltaOD_Gompertz_tidied_estimate, lognormdeltaOD_Gompertz_tidied_std.error), names_sep = "_") %>%
-#   rename(deltaOD_Gmax = lognormdeltaOD_Gompertz_tidied_estimate_Gmax,
-#          deltaOD_Gmax_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmax,
-#          deltaOD_Gmu = lognormdeltaOD_Gompertz_tidied_estimate_Gmu,
-#          deltaOD_Gmu_se = lognormdeltaOD_Gompertz_tidied_std.error_Gmu,
-#          deltaOD_GLag = lognormdeltaOD_Gompertz_tidied_estimate_GLag,
-#          deltaOD_GLag_se = lognormdeltaOD_Gompertz_tidied_std.error_GLag) %>%
-#    mutate(GmudeltaODFlag = if_else(deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError, 1, 0)) %>%
-#   # mutate(GrowthFlag = if_else((deltaOD_GLag + deltaOD_GLag_se) < ((deltaOD_Gmax - deltaOD_Gmax_se) & (deltaOD_Gmu_se < deltaOD_Gmu * GrowthFlagError) & (deltaOD_Gmax_se < deltaOD_Gmax * GrowthFlagError) ), 1, 0)) %>%
-#   ggplot() +
-#   geom_point(aes(x = Par_ue, y = deltaOD_Gmax)) +
-#   geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Gmax - deltaOD_Gmax_se, ymax = deltaOD_Gmax + deltaOD_Gmax_se, colour = as.factor(WL))) + 
-#   scale_colour_manual(values = MCMIXColours) +
-#   facet_grid (cols = vars(Strain), rows = vars(O2)) +
-#   theme_bw() +
-#   labs(title = "Gompertz Chlorophyll Specific gmax - All Growth")
 
 
 
