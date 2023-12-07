@@ -74,8 +74,7 @@ widely, aberrant when a bubble interrupts the measurement, and if the
 MultiCultivator is running properly these bubble aberration events are
 rare.
 
-# Load Libraries and set Project Variables
-
+# Load Libraries
 ```{r load libraries}
 # libraries; Note check actual dependencies
 library(tidyverse)
@@ -89,12 +88,14 @@ library(photobiologyWavebands)
 
 ```
 
+# Set Project Variables
 ```{r set project variables}
 #"..", takes up a level in the directory path
 Project <- "PICO"
 DataIn <- file.path("..", "Data", "RawData", "MultiCultiData.zip")
 DataOut <- file.path("..","Data", "ImportedData", "MultiCultiData")
 
+# number of rows to skip upon read csv
 Skip <- 20
 
 ```
@@ -107,12 +108,8 @@ MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_le
 # MyWavelengths = c(450, 530, 660, "WW")
 # MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
 
-
-
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
-
-
 
 ```
 
@@ -152,13 +149,12 @@ CultureCatalog <- readRDS(file = file.path("..", "Data","CultureCatalog.Rds"))
 
 
 # List previously imported MultiCulti files
-
 ```{r previously imported files}
 list.files(path = DataOut, pattern = Project, full.names = TRUE)
 ```
 
-# List MultiCulti files for Project that are saved in DataIn
 
+# List MultiCulti files for Project that are saved in DataIn
 ```{r MultiCulti files}
 
 #List files in the extracted folder with a ".asc" extension
@@ -168,7 +164,7 @@ print(MCFiles)
 
 ```
 
-# Set Target File
+# Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
 TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
@@ -184,42 +180,6 @@ TargetFileName <- str_remove(string = TargetFile, pattern = ".csv")
 
 TargetFileName
 
-```
-
-
-
-## Create function using data.table::fread to skip the beginning comments and starts reading file after key word Skip
-
-```{r fread_plus}
-# fread_plus <- function(Flnm, Skip){data.table::fread(file = Flnm, skip = Skip) %>%
-#     mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(Flnm)$ctime))
-# }
-```
-
-# Read in TargetFile
-
-select(-c(V5)) only needed for some files.
-
-```{r Read TargetFile}
-# #abs-time is failing because it contains ',' in the variable values; file is actually a .tsv, not a .csv
-# #abs-time not currently used?
-# # TargetData <- fread_plus(Flnm = TargetFile, Skip = "key") %>%
-# # select(-c(V5))
-# 
-# #run this if V5 is the 'value' column
-# TargetData <- fread_plus(Flnm = TargetFile, Skip = "key")  %>%
-#    select(-c(V5))
-# TargetData <- fread_plus(Flnm = paste(DataIn, "20211223_PICO_MCMIX006_RUN42.csv", sep = ":"), Skip = "key")  %>%
-#    select(-c(V5))
-# # %>%
-# #  select(-c(value)) %>%
-# #   rename(value = V5)
-# 
-# 
-# TargetData[1:10,]
-# 
-# #check whether all necessary values for 'key' are present; people forget to 'export all' values from PSI
-# unique(TargetData$key)
 ```
 
 
@@ -406,21 +366,19 @@ rm(TargetDataWide)
   theme_bw() +  
   labs(colour = "Actinic PAR (nm)")
 
-
-
 ```
 
-Run this chunk only for tubes with OD680 and/or OD720 < 0
-This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk
-Remember to comment out after use 
-```{r, Add dummy points if a tube has OD values less than zero}
+
+ Run this chunk only for tubes with OD680 and/or OD720 < 0 --> -->
+This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk.
+Remember to comment out after use.
+```{r, Add positive OD dummy points}
 
 # TargetDataMeta <- TargetDataMeta %>%
 # mutate(OD680 = if_else(Tube == 1, 0.005, OD680),
 #        OD720 = if_else(Tube == 1, 0.003, OD720))
 
 ```
-
 
 
 # Filter OD outliers
@@ -431,7 +389,7 @@ removed b/c of divisions
 Experiment end times are tube specific taken from metacatalog
 StartDate taken from first abs_time point from MC software
 
-MAD is median absolute deviation Used median as opposed to mean to filter anomalous OD values due to affects of bubbling interference because determining outliers from the mean in a given window with many outliers were not detected since deviations from the mean were low. 
+MAD is median absolute deviation. Used median as opposed to mean to filter anomalous OD values due to affects of bubbling interference because determining outliers from the mean in a given window with many outliers were not detected since deviations from the mean were low. 
 ```{r filter bad OD and data points after experiment end time }
 
 #moving average screen
@@ -475,7 +433,8 @@ TargetDataMetaFilter <- TargetDataMetaFilter %>%
 
 #rm(TargetDataMeta)
 ```
-# check to confirm filter and ensure there are data points for all 8 tubes. If there is a missing tube, confirm that data was filtered out because OD680 and/or OD720 <0. If this is the case run the chunk "Add dummy points if a tube has OD values less than zero" above and rerun subsequent chunks.
+
+# check to confirm filter and ensure there are data points for all 8 tubes. If there is a missing tube, confirm that data was filtered out because OD680 and/or OD720 <0. If this is the case run the chunk "Add positive OD dummy points" above and rerun subsequent chunks.
 ```{r filterdataplot}
 
 TargetDataMetaFilter %>% 
@@ -532,7 +491,6 @@ TargetDataMetaFilter %>%
   annotate(geom = "text", x = Light_x, y = Light_y, label = "Light level", size = 5, colour = "orange") +
   theme_bw() +
   labs(colour = "Actinic PAR (nm)")
-
 
 ```
 
