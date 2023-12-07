@@ -118,7 +118,7 @@ Run for each file in a session; all chunks below run for each file.
 
 Moving this template to a working project folder will need editing of this file path to a relative path within the project folder.
 ```{r read ProcessFile}
-ProcessFile <- "../Data/ImportedData/ImportedMCData/20230210_PICO_MCMIX006_RUN108_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/ImportedMCData/20211223_PICO_MCMIX006_RUN42_TargetDataMetaFilter.Rds"
 
 ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
@@ -131,8 +131,6 @@ ProcessData <- readRDS(ProcessFile)  %>%
 
 colnames(ProcessData)
 ```
-
-Remove extraneous columns from ProcessData; could have been done at end of MultiDataImport.Rmd
 
 SS120 show anomalous jump in OD720 within first 24 h after inoculation.
 Therefore we add a filter to remove the first InitialTime  from all SS120 runs.
