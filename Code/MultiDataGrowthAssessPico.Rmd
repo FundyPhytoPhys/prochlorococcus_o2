@@ -1,5 +1,5 @@
 ---
-title: "MultiDataGrowthAssess"
+title: "MultiDataGrowthAssessPico"
 author:
 - Laurel Genge
 - Carlie Barnhill
@@ -45,6 +45,7 @@ knitr::opts_chunk$set(fig.path='Figs/')
 ```{r load libraries, message= TRUE}
 # libraries; Note check actual dependencies
 
+library(tidyverse)
 library(lubridate)
 library(stringr)
 library(broom)
@@ -52,7 +53,7 @@ library(knitr)
 library(zoo)
 library(RColorBrewer)
 library(grid)
-library(tidyverse)
+library(photobiologyWavebands)
 #library(tidyquant)
 #library(data.table)
 #library(googledrive)
@@ -62,28 +63,27 @@ library(tidyverse)
 
 ```{r set project variables}
 #"..", takes up a level in the directory path
-Project <- "PICO"
-DataIn1 <- file.path("..","ProcessedData", "LogGrowthFits1")
-DataIn2 <- file.path("..","ProcessedData", "LogGrowthFits2")
-PlotsPath <- file.path("..","Plots")
-ShinyPath <- file.path("..", "ShinyPico", "data")
-DataOut <- file.path("..","GrowthAssessData")
-MetaCatalog <- file.path("..","PicoCatalog.csv")
 
-GrowthFlagError <- 0.2       # percentage of mu that std error must be less than
+Project <- "PICO"
+
+DataOut <- file.path("..", "Data", "CleanData", "CleanedMCData")
+DataIn <- file.path("..", "Data","ProcessedData", "ProcessedMCData")
+
+
+GrowthFlagError <- 0.2     # percentage of mu that std error must be less than
 
 OD720GrowthAmpFlagValue = 0.010 # OD720 absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
 
 deltaODGrowthAmpFlagValue = 0.007 # deltaOD absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
 
-GrowthTerm <- "Gompertz Growth Rate"
-
-
 ```
 
 ```{r set colours}
-MyWavelengths = c(405, 450, 475, 530, 615, 660, 730, "WW")
-MCMIXColours = c("violet", "darkblue", "dodgerblue", "darkgreen","orange","red","purple", "black")
+
+MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530),
+                   w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
+
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -95,13 +95,11 @@ MCMIXColours
 Note: Split files will not be correct for Par_ue, but Actinic_par should be OK Fix: replace MetaData Par_ue with max(Actinic_par) for each file or split file
 
 ```{r previous ProcessedData}
-ProcessedFiles1 <- list.files(path = DataIn1, pattern = Project, full.names = TRUE)
 
-ProcessedFiles1
+ProcessedFiles <- list.files(path = DataIn, pattern = Project, full.names = TRUE)
 
-ProcessedFiles2 <- list.files(path = DataIn2, pattern = Project, full.names = TRUE)
+ProcessedFiles
 
-ProcessedFiles2
 ```
 
 # Read .Rds, Summarize, Combine to single data frame
@@ -115,48 +113,26 @@ readRDS_plus <- function(Flnm){readRDS(file = Flnm) %>%
 ```
 
 ## Read in ProcessedFiles .Rds 
-## April 2023, Had to split the read in into 2 as there was not enough memory to read all files at once.
 
 ```{r read selected ProcessedData}
 
 # TestData <- readRDS_plus(Flnm = file.path("../ProcessedData/LogGrowthFits/20200731_PICO_MCMIX004_RUN17_ProcessDataNestGrowth.Rds"))
  
                                     
-LogFitsData1 <-  ProcessedFiles1 %>%
-    map_df(~readRDS_plus(Flnm = .)) %>%
-    select(-c("Motivation", "doi", "SourceSalinity", "EndDate", "Salinity",  "InocpH","lognormdeltaOD_Gompertz", "lognormOD720_Gompertz", "OD720_logistic", "deltaOD_logistic","OD720trunc_logistic", "deltaODtrunc_logistic", "OD720trunc_exp", "deltaODtrunc_exp",
-              "lognormOD720_Gompertz_param",
-              "lognormdeltaOD_Gompertz_param",
-              "OD720_logistic_param",
-              "OD720trunc_exp_param",
-              "deltaODtrunc_logistic_param",
-              "OD720trunc_logistic_param",
-              "deltaOD_logistic_param",
-              "deltaODtrunc_exp_param"
-              ))
+LogFitsData <-  ProcessedFiles %>%
+    map_df(~readRDS_plus(Flnm = .)) 
 
-LogFitsData2 <-  ProcessedFiles2 %>%
-    map_df(~readRDS_plus(Flnm = .)) %>%
-    select(-c("Motivation", "doi", "SourceSalinity", "EndDate", "Salinity",  "InocpH","lognormdeltaOD_Gompertz", "lognormOD720_Gompertz", "OD720_logistic", "deltaOD_logistic","OD720trunc_logistic", "deltaODtrunc_logistic", "OD720trunc_exp", "deltaODtrunc_exp",
-              "lognormOD720_Gompertz_param",
-              "lognormdeltaOD_Gompertz_param",
-              "OD720_logistic_param",
-              "OD720trunc_exp_param",
-              "deltaODtrunc_logistic_param",
-              "OD720trunc_logistic_param",
-              "deltaOD_logistic_param",
-              "deltaODtrunc_exp_param"
-              ))
-
-
-
-glimpse(LogFitsData1)
-glimpse(LogFitsData2)
-
-LogFitsData <- rbind(LogFitsData1, LogFitsData2)
-
-remove(LogFitsData1)
-remove(LogFitsData2)
+%>%
+    # select(-c("Motivation", "doi", "SourceSalinity", "EndDate", "Salinity",  "InocpH","lognormdeltaOD_Gompertz", "lognormOD720_Gompertz", "OD720_logistic", "deltaOD_logistic","OD720trunc_logistic", "deltaODtrunc_logistic", "OD720trunc_exp", "deltaODtrunc_exp",
+              # "lognormOD720_Gompertz_param",
+              # "lognormdeltaOD_Gompertz_param",
+              # "OD720_logistic_param",
+              # "OD720trunc_exp_param",
+              # "deltaODtrunc_logistic_param",
+              # "OD720trunc_logistic_param",
+              # "deltaOD_logistic_param",
+              # "deltaODtrunc_exp_param"
+              # ))
 
 ```
 
