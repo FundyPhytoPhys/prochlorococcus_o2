@@ -30,7 +30,7 @@ DataInSpectra <- file.path("..", "Data", "ProcessedData",  fsep = .Platform$file
 
 DataInPAR <- file.path("..", "Data","RawData","MCEmissionSpectra", fsep = .Platform$file.sep)
 
-DataOut <- file.path("..", "Data", "ProcessedData")
+DataOut <- file.path("..", "Data", "ProcessedData","MultiCultiEmissionData")
 
 FileID <- "Smooth"
 
@@ -426,9 +426,9 @@ PicoNestedPurOlisData <- OlisSpectraMetaData %>%
 # save nested 
 ```{r Save rds}
 
-saveRDS(object = PicoNestedPurOlisData, file = file.path(DataOut, "PicoNestedPurOlisData.Rds"))
+# saveRDS(object = PicoNestedPurOlisData, file = file.path(DataOut, "PicoNestedPurOlisData.Rds"))
 
-# write_csv(PicoNestedPurOlisData, file = file.path(DataOut, paste(Project, "NestedPurOlisData",".csv",sep = ""),fsep = .Platform$file.sep))
+saveRDS(PicoNestedPurOlisData, file.path(DataOut, paste(Project, "PicoNestedPurOlisData.Rds", sep = "_"), fsep = .Platform$file.sep))
 
 ```
  
