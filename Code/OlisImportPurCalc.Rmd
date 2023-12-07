@@ -26,11 +26,11 @@ DataIn <- file.path("..", "Data","RawData", "OLISSpectraCorr", fsep = .Platform$
 
 DataInCatalog <- file.path("..", "Data", fsep = .Platform$file.sep)
 
-DataInSpectra <- file.path("..", "Data", "ProcessedData",  fsep = .Platform$file.sep)
+DataInSpectra <- file.path("..", "Data", "ImportedData","ImportedJazEmData",  fsep = .Platform$file.sep)
 
-DataInPAR <- file.path("..", "Data","RawData","MCEmissionSpectra", fsep = .Platform$file.sep)
+DataInPAR <- file.path("..", "Data","RawData","JazEm", fsep = .Platform$file.sep)
 
-DataOut <- file.path("..", "Data", "ProcessedData","OlisData")
+DataOut <- file.path("..", "Data", "ImportedData","ImportedOlisData")
 
 FileID <- "Smooth"
 

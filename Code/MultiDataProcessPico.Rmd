@@ -55,8 +55,8 @@ Run only first time in session
 ```{r set project variables}
 #"..", takes up a level in the directory path
 Project <- "PICO"
-DataIn <- file.path("..", "Data", "ImportedData", "MultiCultiData")
-DataOut <- file.path("..", "Data","ProcessedData", "MultiCultiData")
+DataIn <- file.path("..", "Data", "ImportedData", "ImportedMCData")
+DataOut <- file.path("..", "Data","ProcessedData", "ProcessedMCData")
 
 
 InitialTime <- 24 #hours to filter off start of data set to eliminate initial fluctuations common in SS120

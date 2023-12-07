@@ -27,10 +27,10 @@ library(ggrepel)
 Project <- "PICO"
 
 
-DataIn <- file.path("..", "Data","RawData", "MCEmissionSpectra", fsep = .Platform$file.sep)
+DataIn <- file.path("..", "Data","RawData", "JazEm", fsep = .Platform$file.sep)
 
 
-DataOut<- file.path("..", "Data", "ProcessedData", fsep = .Platform$file.sep)
+DataOut<- file.path("..", "Data", "ImportedData", "ImportedJazEmData", fsep = .Platform$file.sep)
 
 #set variables for file import & processing of fluorescence files Jaz
 #DataPathCS <- file.path("..", "Jaz", fsep = .Platform$file.sep)
