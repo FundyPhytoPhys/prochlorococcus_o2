@@ -167,7 +167,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
+TargetFile <- "20230210_PICO_MCMIX006_RUN108.csv"
 
 
 # This opens a compressed file without decompressing.
@@ -226,17 +226,11 @@ TargetData <- TargetData %>%
     mutate(MC = str_extract(Filename, "MC.*[:digit:][:digit:][:digit:]"),
            MC = str_remove(MC, pattern = "\\_.*"))
 
-
-#add ln(value) later
-
-
 ```
 
 ## Create preliminary plot for TargetData
-
+# Plots all OD values. True detection is OD680 and false detection is OD720.
 ```{r prelim plot}
-#Run <- c("MultiCulti/20200124_PICO_MCMIX004_RUN1.csv", "MultiCulti/20200124_PICO_MCMIX006_RUN2.csv")
-
 
   TargetData %>%
   filter(grepl("od-", key)) %>%
@@ -259,10 +253,8 @@ TargetData <- TargetData %>%
 # Generate par_ue column with rows aligned with OD measures
 
 Pivot_wider to get actinic-lights data aligned with relevant sensor
-data. Why are there NULL values in the OD sensor columns? Should always
-have a value? Import issue? Misalignment b/t light and OD? Need to
-include arrange(Filename, time, Tube) to keep things aligned! Need to
-group_by and/or reorder rows appropirately; Be Careful
+data. Need to include arrange(Filename, time, Tube) to keep things aligned! Need to
+group_by and/or reorder rows appropriately; Be Careful
 
 ```{r pivot_wider}
 #possible issue with data structure; there are multiple values for some of the rows of actinic light columns, so the column becomes a list.
@@ -280,8 +272,8 @@ rm(TargetData)
 
 Actinic light values do not align time wise with OD measures.
 Interpolate NA in actinic light columns from last observation, arrange
-by MC & Tube Then generate Actinic_par summary column If multiple lights
-are activated this chunk will give the summed par of all different
+by MC & Tube Then generate Actinic_par summary column. If multiple lights
+are activated, this chunk will give the summed par of all different
 colours for the tube. If a single actinic light is activated per tube,
 this gives the par for that tube. Filter rows where !is.na(Actinic_par)
 to check for incorrect row sums.
@@ -314,8 +306,6 @@ TargetDataWide <- TargetDataWide %>%
   filter(!is.na(Actinic_par)) %>%
    select(!contains("actinic-lights.light"))
 
-#drop original actinic light columns?
-# select(!contains("actinic-lights.light")) 
 
 TargetDataWide[1:10,]
 ```
@@ -324,17 +314,14 @@ Now that Actinic_par is aligned with each row, coalesce
 od-sensors-X.od-720 and od-sensors-X.od-680 into 2 columns, b/c 'Tube'
 is already a column, so no need to identify tube X in
 od-sensors-X.od-680 columns. This might cause problems later matching OD
-measures to actinic light colours. Filter out rows where OD \<= 0
+measures to actinic light colours.
 
 ```{r consolidate OD}
 TargetDataWide <- TargetDataWide  %>%
    mutate(OD680 = rowSums(.[grep("od-680", names(.))], na.rm = TRUE),
           OD720 = rowSums(.[grep("od-720", names(.))], na.rm = TRUE)) %>%
    select(!contains("od-sensors"))
-  # filter(OD680 > 0,
-  #        OD720 > 0
 
-#move filtering for OD680 >0 until just before curve fitting to avoid data structure problems
 TargetDataWide[1:10,]
 
 ```
@@ -349,7 +336,7 @@ TargetDataMeta
 
 rm(TargetDataWide)
 ```
-
+# Prelim plot with culture meta data
 ```{r second prelim plot}
 
   TargetDataMeta %>% ggplot() +
@@ -411,14 +398,11 @@ TargetDataMetaFilter <- TargetDataMeta %>%
          IsMovMAD720Outlier = if_else(OD720 > MovMedian720 + (MovMAD720 * MovAvgScreen) | OD720 < MovMedian720 - (MovMAD720 * MovAvgScreen), 1,0))
 
 
-         # OD680 = if_else(OD680 > MovMedian680 + (MovMAD680 * MovAvgScreen) | OD680 < MovMedian680 - (MovMAD680 * MovAvgScreen), MovMedian680, OD680), #consider replacing OD680 and OD720 rather than filter
-         # OD720 = if_else(OD720 > MovMedian720 + (MovMAD720 * MovAvgScreen) | OD720 < MovMedian720 - (MovMAD720 * MovAvgScreen), MovMedian720, OD720)
-
-
 print(paste("Outliers caught by IsMovMAD680Outlier filter:",
             sum(TargetDataMetaFilter$IsMovMAD680Outlier, na.rm = TRUE)))
 print(paste("Outliers caught by IsMovMAD720Outlier filter:",
             sum(TargetDataMetaFilter$IsMovMAD720Outlier, na.rm = TRUE)))
+
 
 TargetDataMetaFilter <- TargetDataMetaFilter %>%
   filter(
@@ -502,7 +486,7 @@ TargetDataMetaFilter <- TargetDataMetaFilter %>%
 
 ```
 
-Implement Daily Cumulative PAR for Corrected Actinic by numeric integration
+# Implement Daily Cumulative PAR for Corrected Actinic by numeric integration
 
 ```{r Actinic_parOD}
 #generate corrected values of Actinic_par accounting for OD
@@ -566,10 +550,7 @@ select(-c("MovMAD680", "MovMAD720",  "MovMedian680", "MovMedian720", "IsMovMAD68
 
 ```
 
-
-
-# Save .Rds of Imported Data from TargetFile
-
+# Save compressed .Rds of Imported Data from TargetFile
 ```{r save Rds of imported data}
 saveRDS(object = TargetDataMetaFilter, file = file.path(DataOut, paste(TargetFileName, "TargetDataMetaFilter.Rds",  sep = "_")), ascii = FALSE, version = NULL,
         compress = "xz", refhook = NULL)
