@@ -95,8 +95,9 @@ JazSpec[1:10]
 ```{r filename separation}
 
 JazSpec <- JazSpec %>% 
-  mutate(Filename = str_remove(Filename, pattern = "../Data/RawData/MCEmissionSpectra/")) |>
-  separate(col = Filename, into = c("Date", "MultiCulti", "Par", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE)
+  mutate(Filename = str_remove(Filename, pattern = DataIn)) |>
+  separate(col = Filename, into = c("FP0","Date", "MultiCulti", "Par", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
+  select(-FP0)
 
 
 # JazSpecTrim <- JazSpecTrim %>% 
@@ -287,7 +288,7 @@ https://cran.r-project.org/web/packages/ggspectra/vignettes/userguide2-autoplot-
 
 ```{r save rds}
 
- saveRDS(JazSpecNest, file.path(DataOut, paste(Project, "MultiCultiSpectra.Rds", sep = "_"), fsep = .Platform$file.sep))
+ saveRDS(JazSpecNest, file.path(DataOut, paste(Project, "JazEmSpectra.Rds", sep = "_"), fsep = .Platform$file.sep))
 
 ```
 

@@ -61,19 +61,19 @@ library(zoo)
 # library(googledrive)
 # library(googlesheets4)
 library(readxl)
-
+library(photobiologyWavebands)
 library(ggspectra)
 library(ggpubr)
 library(caret)
 ```
 
 ```{r set colours}
-Wavelengths_nm = c(405, 450, 475, 530, 615, 660, 730, "WW")
-Colours_nm = c("violet", "darkblue", "dodgerblue", "darkgreen","orange","red","purple", "black")
+MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530), 
+                   w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
 
-names(Colours_nm) <- Wavelengths_nm
-Colours_nm
-
+names(MCMIXColours) <- MyWavelengths
+MCMIXColours
 
 # StrainNames = c("MIT9313" , "SS120", "MED4")
 # ColoursStrain <- c("#E69F00","#F0E442","#CC79A7")
@@ -253,7 +253,7 @@ remove(RdsData)
 read emission spectras from MultiCultis for PUR determinations
 ```{r}
 
-MC_Spectra <- readRDS(file = file.path(DataInSpectra, "PICO_MultiCultiSpectra.Rds"))
+MC_Spectra <- readRDS(file = file.path(DataInSpectra, "PICO_JazEmSpectra.Rds"))
 
 ```
 
@@ -437,7 +437,7 @@ saveRDS(PicoNestedPurOlisData, file.path(DataOut, paste(Project, "PicoNestedPurO
 OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(y = "Absorbance", x = "Wavelength (nm)") +
   scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -455,7 +455,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Blue_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(subtitle = "Normalized to Max Abs in blue range (400 to 460 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   #scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -473,7 +473,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Red_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
   #guides(colour = FALSE) +
  labs(subtitle = "Normalized to Max Abs in red range (575 to 750 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   # scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -489,7 +489,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Blue_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(subtitle = "Normalized to Max Abs in blue range (400 to 460 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   #scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -507,7 +507,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Red_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
   #guides(colour = FALSE) +
  labs(subtitle = "Normalized to Max Abs in red range (575 to 750 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   # scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -523,7 +523,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Blue_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(subtitle = "Normalized to Max Abs in blue range (400 to 460 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   #scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -541,7 +541,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Red_nm, colour = "violet", label = ID)) +
   geom_point(aes(x = nm, y = Absorbance, colour = as.factor(WL), label = ID)) +
-  scale_color_manual(values = Colours_nm) +
+  scale_color_manual(values = MCMIXColours) +
   #guides(colour = FALSE) +
  labs(subtitle = "Normalized to Max Abs in red range (575 to 750 nm)", y = "Normalized Absorbance", x = "Wavelength (nm)") +
   # scale_y_continuous(breaks=seq(0, 0.2, by = 0.05)) +
@@ -573,7 +573,7 @@ OlisSpectraMetaData %>%
   ggplot() +
   geom_point(aes(x = nm, y = NormAbs_Blue_nm, colour = (ID))) +
  # geom_point(aes(x = nm, y = Absorbance, colour = ID)) +
- #scale_color_manual(values = Colours_nm) +
+ #scale_color_manual(values = MCMIXColours) +
   #guides(colour = FALSE) +
  labs(y = "Normalized Absorbance", x = "Wavelength (nm)", size = 20, color = "black" ) +
     scale_y_continuous(breaks = c(0,0.2, 0.4,0.6, 0.8, 1.0, 1.2), limits = c (0, 1.2)) +
