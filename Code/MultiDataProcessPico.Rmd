@@ -397,13 +397,10 @@ ProcessDataNestGrowth2 <- ProcessDataNestGrowth %>%
           maxRollMeanOD720_14days = as.numeric(maxRollMeanOD720_14days),
           minRollMeandeltaOD_14days = as.numeric(minRollMeandeltaOD_14days),
           maxRollMeandeltaOD_14days = as.numeric(maxRollMeandeltaOD_14days)
-           ) %>%
-       mutate(DoubleOD720Flag_14days = if_else(maxRollMeanOD720_14days >= minRollMeanOD720_14days * 2 & !is.na(OD720_TimetoMax) >= MaxAmpHour & !is.na(OD720_TimetoMax) & GrowthAmpOD720_14days >= 0, 1, 0),
-             DoubledeltaODFlag_14days = if_else(maxRollMeandeltaOD_14days >= minRollMeandeltaOD_14days * 2 & !is.na(deltaOD_TimetoMax) >= MaxAmpHour & !is.na(deltaOD_TimetoMax) & GrowthAmpdeltaOD_14days >= 0, 1, 0)
-           )
+           ) 
 
 ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
-  left_join(., ProcessDataNestGrowth2 %>% select(Tube, GrowthAmpdeltaOD_14days, GrowthAmpOD720_14days,  minRollMeanOD720_14days, maxRollMeanOD720_14days, minRollMeandeltaOD_14days, maxRollMeandeltaOD_14days,  DoubledeltaODFlag_14days, DoubleOD720Flag_14days), by = "Tube")
+  left_join(., ProcessDataNestGrowth2 %>% select(Tube, GrowthAmpdeltaOD_14days, GrowthAmpOD720_14days,  minRollMeanOD720_14days, maxRollMeanOD720_14days, minRollMeandeltaOD_14days, maxRollMeandeltaOD_14days), by = "Tube")
 
 remove(ProcessDataNestGrowth2)
 
@@ -623,53 +620,6 @@ ProcessDataNestGrowth %>%
 
 ```
 
-
-Plot Fit Terms vs. conditions - High Std error filtered out by flag argument
-```{r logistic fit terms plot}
-ProcessDataNestGrowth %>%
- unnest(cols = c(OD720_logistic_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, OD720_logistic_tidied_term, OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error)) %>%
-  pivot_wider(names_from =  OD720_logistic_tidied_term, values_from = c(OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error), names_sep = "_") %>%
-  rename(OD720_Lmax = OD720_logistic_tidied_estimate_Lmax,
-         OD720_Lmax_se = OD720_logistic_tidied_std.error_Lmax,
-         OD720_Lmu = OD720_logistic_tidied_estimate_Lmu,
-         OD720_Lmu_se = OD720_logistic_tidied_std.error_Lmu,
-         OD720_Lintercept = OD720_logistic_tidied_estimate_Lintercept,
-         OD720_Lintercept_se = OD720_logistic_tidied_std.error_Lintercept) %>%
-  mutate(LmuOD720Flag = if_else(OD720_Lmu_se < OD720_Lmu * GrowthFlagError, 1, 0)) %>%
-# mutate(GrowthFlag = if_else((OD720_Lintercept + OD720_Lintercept_se) < ((OD720_Lmax - OD720_Lmax_se) & (OD720_Lmu_se < OD720_Lmu * GrowthFlagError) & (OD720_Lmax_se < OD720_Lmax * GrowthFlagError) ), 1, 0)) %>%
-  filter(LmuOD720Flag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = OD720_Lmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = OD720_Lmu - OD720_Lmu_se, ymax = OD720_Lmu + OD720_Lmu_se, colour = as.factor(WL))) +
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Logistic cell scatter growth rates - High std error fits omitted")
-
-ProcessDataNestGrowth %>%
- unnest(cols = c(deltaOD_logistic_tidied),names_sep = "_") %>%
-  select(c(Filename, Tube, Strain, Par_ue, Photoperiod, Temp_c, O2, WL, LightShape, deltaOD_logistic_tidied_term, deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error)) %>%
-  pivot_wider(names_from =  deltaOD_logistic_tidied_term, values_from = c(deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error), names_sep = "_") %>%
-  rename(deltaOD_Lmax = deltaOD_logistic_tidied_estimate_Lmax,
-         deltaOD_Lmax_se = deltaOD_logistic_tidied_std.error_Lmax,
-         deltaOD_Lmu = deltaOD_logistic_tidied_estimate_Lmu,
-         deltaOD_Lmu_se = deltaOD_logistic_tidied_std.error_Lmu,
-         deltaOD_Lintercept = deltaOD_logistic_tidied_estimate_Lintercept,
-         deltaOD_Lintercept_se = deltaOD_logistic_tidied_std.error_Lintercept) %>%
-  mutate(LmudeltaODFlag = if_else(deltaOD_Lmu_se < deltaOD_Lmu * GrowthFlagError, 1, 0)) %>%
- # mutate(GrowthFlag = if_else((deltaOD_Lintercept + deltaOD_Lintercept_se) < ((deltaOD_Lmax - deltaOD_Lmax_se) & (deltaOD_Lmu_se < deltaOD_Lmu * GrowthFlagError) & (deltaOD_Lmax_se < deltaOD_Lmax * GrowthFlagError) ), 1, 0)) %>%
-  filter(LmudeltaODFlag == 1) %>%
-  ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu, colour = as.factor(WL))) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu - deltaOD_Lmu_se, ymax = deltaOD_Lmu + deltaOD_Lmu_se, colour = as.factor(WL))) +
-  scale_colour_manual(values = MCMIXColours) +
-  facet_grid (cols = vars(Strain), rows = vars(O2)) +
-  theme_bw() +
-  labs(title = "Logistic chlorophyll specific growth rates - High Std error fits omitted")
-
-
-```
 
 
 
