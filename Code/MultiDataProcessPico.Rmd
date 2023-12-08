@@ -7,14 +7,6 @@ author:
 - Douglas A. Campbell
 - Mireille Savoie
 date: "`r format(Sys.Date())`"
-output:
-bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
 bibliography: Prochlorococcus_O2_NPQ.bib
 csl: plos-one.csl
 editor_options: 
@@ -41,7 +33,6 @@ Run only first time in session
 # libraries; Note check actual dependencies
 
 library(lubridate)
-library(stringr)
 library(broom)
 library(knitr)
 library(zoo)
@@ -78,15 +69,15 @@ GrowthAmpWindow = 14 * 24 # maximum hours to determine if cultures doubled.
 
 MaxAmpHour <- 48  # used to determine if max OD was achieved within xx hours which then is used to calculate growthAmp on decline growth.
 
-DeclineWindow <- 12 #duration in hours overwhich we test for decline from max by amplitude GrowthFlagValue in OD720 or deltaOD
+DeclineWindow <- 12 #duration in hours overwhich we test for decline from max in OD720 or deltaOD
 
 ```
 
 
 
 ```{r set colours}
-MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
-MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
+MyWavelengths = c(405, 450, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(450), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
 
 
 names(MCMIXColours) <- MyWavelengths
@@ -119,7 +110,7 @@ Run for each file in a session; all chunks below run for each file.
 
 Moving this template to a working project folder will need editing of this file path to a relative path within the project folder.
 ```{r read ProcessFile}
-ProcessFile <- "../Data/ImportedData/ImportedMCData/20221021_PICO_MCMIX006_RUN96_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/ImportedMCData/20211223_PICO_MCMIX006_RUN42_TargetDataMetaFilter.Rds"
 
 ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
@@ -200,6 +191,20 @@ ProcessData <- ProcessData %>%
 ```
 
 
+```{r add min and max meanOD}
+
+ProcessData <- ProcessData %>%
+  group_by(Tube) %>%
+   mutate(minRollMeanOD720 = min(rollmeanOD720, na.rm = TRUE),
+          minRollMeandeltaOD = min(rollmeandeltaOD, na.rm = TRUE),
+          maxRollMeanOD720 = max(rollmeanOD720, na.rm = TRUE),
+          maxRollMeandeltaOD = max(rollmeandeltaOD, na.rm = TRUE)) %>% 
+  ungroup()
+
+glimpse(ProcessData)
+
+```
+
 # Generate a plot of the data in the selected tidied MultiCulti file.
 # Remember data has been filtered to remove first InitialTime h after start of Multiculti program, which is actually InitialTime + ~18 h after inoculation.
 
@@ -248,7 +253,8 @@ ProcessData <- ProcessData %>%
          DeclineFlagOD720 = if_else(time > (time[which.max(TrimRollMeanOD720)] + DeclineWindow) & (max(TrimRollMeanOD720, na.rm = TRUE) - min(TrimRollMeanOD720, na.rm = TRUE)) > OD720GrowthFlagValue, 1, 0)) %>%
     filter(DeclineFlagdeltaOD == 0,
            DeclineFlagOD720 == 0) %>%
-  select(-c("TrimRollMeanOD720", "TrimRollMeandeltaOD")) %>%
+  select(-c("TrimRollMeanOD720", "TrimRollMeandeltaOD", "DeclineFlagdeltaOD", 
+            "DeclineFlagOD720")) %>%
   ungroup()
 
 glimpse(ProcessData)
@@ -256,18 +262,6 @@ glimpse(ProcessData)
 ```
 
 
-
-```{r add min meanOD}
-
-ProcessData <- ProcessData %>%
-  group_by(Tube) %>%
-   mutate(minRollMeanOD720 = min(rollmeanOD720, na.rm = TRUE),
-          minRollMeandeltaOD = min(rollmeandeltaOD, na.rm = TRUE)) %>% 
-  ungroup()
-
-glimpse(ProcessData)
-
-```
 
 ```{r plot filtered data}
 
@@ -327,7 +321,7 @@ growth_amp_decline <- function(y){(min(as.numeric(y), na.rm = TRUE)) - max(as.nu
 ProcessDataNestGrowth  <- ProcessData %>%
   filter(lognormdeltaOD >= 0) %>%
   filter(lognormOD720 >= 0) %>%
-nest(tubedata = c(time, ToD, Day, Actinic_par, OD680, OD720, deltaOD, ActinicMid_parOD720, ActinicMid_dayOD720,rollmeanOD720,rollmeandeltaOD,lognormOD720, lognormdeltaOD, LagSeedOD720, LagSeeddeltaOD))
+nest(tubedata = c(time, ToD, Day, Actinic_par, OD680, OD720, deltaOD, ActinicMid_parOD720, ActinicMid_dayOD720, rollmeanOD720, rollmeandeltaOD, lognormOD720, lognormdeltaOD, LagSeedOD720, LagSeeddeltaOD))
 
 #test of nesting
 nrow(ProcessDataNestGrowth)
@@ -385,13 +379,9 @@ ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
          ) %>%
    mutate(GrowthAmpdeltaOD = if_else(deltaOD_TimetoMax <= MaxAmpHour | is.na(deltaOD_TimetoMax), map(tubedata, ~growth_amp_decline(y = .$rollmeandeltaOD)), map(tubedata, ~growth_amp(y = .$rollmeandeltaOD))),
           GrowthAmpOD720 = if_else(OD720_TimetoMax <= MaxAmpHour | is.na(OD720_TimetoMax), map(tubedata, ~growth_amp_decline(y = .$rollmeanOD720)), map(tubedata, ~growth_amp(y = .$rollmeanOD720)))
-         ) %>%
-   mutate(GrowthAmpdeltaODFlag = if_else(GrowthAmpdeltaOD >= deltaODGrowthFlagValue , 1, 0),
-           GrowthAmpOD720Flag = if_else(GrowthAmpOD720 >= OD720GrowthFlagValue, 1, 0)
-           )
+         )
 
-
-#Growthamp flags for growth up to 14 days 
+#Growthamp flags to determine if growth occurred before 14 days 
 ProcessDataNestGrowth2 <- ProcessDataNestGrowth %>%
   unnest(c(tubedata)) %>%
    filter(time <= GrowthAmpWindow) %>%
@@ -408,15 +398,12 @@ ProcessDataNestGrowth2 <- ProcessDataNestGrowth %>%
           minRollMeandeltaOD_14days = as.numeric(minRollMeandeltaOD_14days),
           maxRollMeandeltaOD_14days = as.numeric(maxRollMeandeltaOD_14days)
            ) %>%
-      mutate(GrowthAmpdeltaODFlag_14days = if_else(GrowthAmpdeltaOD_14days >= deltaODGrowthFlagValue, 1, 0),
-             GrowthAmpOD720Flag_14days = if_else(GrowthAmpOD720_14days >= OD720GrowthFlagValue, 1, 0)
-      ) %>% 
        mutate(DoubleOD720Flag_14days = if_else(maxRollMeanOD720_14days >= minRollMeanOD720_14days * 2 & !is.na(OD720_TimetoMax) >= MaxAmpHour & !is.na(OD720_TimetoMax) & GrowthAmpOD720_14days >= 0, 1, 0),
              DoubledeltaODFlag_14days = if_else(maxRollMeandeltaOD_14days >= minRollMeandeltaOD_14days * 2 & !is.na(deltaOD_TimetoMax) >= MaxAmpHour & !is.na(deltaOD_TimetoMax) & GrowthAmpdeltaOD_14days >= 0, 1, 0)
            )
 
 ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
-  left_join(., ProcessDataNestGrowth2 %>% select(Tube, GrowthAmpdeltaOD_14days, GrowthAmpOD720_14days,  minRollMeanOD720_14days, maxRollMeanOD720_14days, minRollMeandeltaOD_14days, maxRollMeandeltaOD_14days, GrowthAmpdeltaODFlag_14days, GrowthAmpOD720Flag_14days, DoubledeltaODFlag_14days, DoubleOD720Flag_14days), by = "Tube")
+  left_join(., ProcessDataNestGrowth2 %>% select(Tube, GrowthAmpdeltaOD_14days, GrowthAmpOD720_14days,  minRollMeanOD720_14days, maxRollMeanOD720_14days, minRollMeandeltaOD_14days, maxRollMeandeltaOD_14days,  DoubledeltaODFlag_14days, DoubleOD720Flag_14days), by = "Tube")
 
 remove(ProcessDataNestGrowth2)
 
@@ -633,8 +620,6 @@ ProcessDataNestGrowth %>%
   facet_grid (cols = vars(Strain), rows = vars(O2)) +
   theme_bw() +
   labs(title = "Logistic chlorophyll specific - All data")
-
-
 
 ```
 
