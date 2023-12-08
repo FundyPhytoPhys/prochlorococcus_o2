@@ -39,11 +39,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 knitr::opts_chunk$set(fig.path='Figs/')
 ```
 
-# To Do
-
--move filter for negative OD to point of log curve fitting Filtering
-negative points needed for current noise filtering, so placed just
-before noise filtering; with more sophisticated noise filtering 
 
 # Introduction
 
@@ -139,7 +134,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20230210_PICO_MCMIX006_RUN108.csv"
+TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
 
 
 # This opens a compressed file without decompressing.
