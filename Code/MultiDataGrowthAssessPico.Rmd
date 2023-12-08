@@ -304,8 +304,7 @@ remove(OD720_unnest,
        UnnestedLogData,
        OD720truncLog_unnest,
        deltaODtruncLog_unnest,
-       UnnestedTruncLogData,
-       UnnestedFullData
+       UnnestedTruncLogData
        )
 
 ```
@@ -398,8 +397,6 @@ remove(Longer_OD720_Joined, Longer_deltaOD_Joined)
 glimpse(LongerFitsData)
 
 ```
-
-
 
 Save Long DF for GAM and Nested for further analysis 
 ```{r save files}
