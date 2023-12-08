@@ -36,4 +36,4 @@ vignettes/*.pdf
 .DS_Store
 
 # .nb.html
-.nb.html
+*.nb.html
