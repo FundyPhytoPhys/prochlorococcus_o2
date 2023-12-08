@@ -85,8 +85,7 @@ CultureCatalog <- read_sheet("https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto
    mutate(ExpDate = ymd(ExpDate),
           ExpEndDate = ymd_hms(`ExpEndDate`)) %>% 
   filter(str_detect(SampleID,  ProjectRows)) %>% 
-  select(ProjectCols) %>% 
-  rename(CultureID = SampleID)
+  select(ProjectCols)
 
 saveRDS(object = CultureCatalog, file = file.path("..", "Data", "CultureCatalog.Rds"), compress = "xz")
 
