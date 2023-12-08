@@ -7,14 +7,6 @@ author:
 - Mireille Savoie
 - Douglas A. Campbell
 date: "`r format(Sys.Date())`"
-output:
-bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
 bibliography: Prochlorococcus_O2_NPQ.bib
 csl: plos-one.csl
 editor_options: 
@@ -72,6 +64,7 @@ rare.
 # Load Libraries
 ```{r load libraries}
 # libraries; Note check actual dependencies
+
 library(tidyverse)
 library(lubridate)
 library(broom)
