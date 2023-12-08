@@ -77,8 +77,6 @@ library(lubridate)
 library(broom)
 library(zoo)
 library(data.table)
-library(googledrive)
-library(googlesheets4)
 library(photobiologyWavebands)
 
 ```
@@ -97,8 +95,8 @@ Skip <- 20
 
 #set Photobiology colors
 ```{r set colours}
-MyWavelengths = c(405, 445, 470, 530, 620, 660, 730, "WW")
-MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
+MyWavelengths = c(405, 450, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(450), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
 
 # MyWavelengths = c(450, 530, 660, "WW")
 # MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
