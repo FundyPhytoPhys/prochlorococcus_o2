@@ -439,7 +439,7 @@ TargetDataMetaFilter %>%
 
 ```{r DailyPAR}
 TargetDataMetaFilter <- TargetDataMetaFilter %>%
-  mutate(SetActinic_day = case_when(LightShape == 'Sine' ~ Par_ue/2 * 3600 * Photoperiod,
+  mutate(PARPhotonDose_day = case_when(LightShape == 'Sine' ~ Par_ue/2 * 3600 * Photoperiod,
                                   LightShape == 'Square' ~ Par_ue * 3600 * Photoperiod))
 
 ```
