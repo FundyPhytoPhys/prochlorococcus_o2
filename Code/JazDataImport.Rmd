@@ -1,13 +1,11 @@
 ---
 title: "Import Jaz data"
-output: html_notebook
 ---
 
 
 ```{r libraries}
 #library(dplyr) 
 library(tidyverse)
-library(lubridate)
 library(googledrive)
 library(googlesheets4)
 
@@ -62,7 +60,7 @@ Colours_nm
 
 ```{r read multiculti PAR data}
 
-MultiCultiPAR <- read.csv(file.path(DataIn, "MultiCulti_PAR.csv"))
+MultiCultiPAR <- read_csv(file.path(DataIn, "MultiCulti_PAR.csv"))
 
 ```
 
