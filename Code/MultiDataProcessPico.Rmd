@@ -107,10 +107,8 @@ list.files(path = DataIn, pattern = Project, full.names = TRUE)
 # Select and Read ProcessFile
 
 Run for each file in a session; all chunks below run for each file.
-
-Moving this template to a working project folder will need editing of this file path to a relative path within the project folder.
 ```{r read ProcessFile}
-ProcessFile <- "../Data/ImportedData/ImportedMCData/20230210_PICO_MCMIX006_RUN108_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/ImportedMCData/20221021_PICO_MCMIX006_RUN96_TargetDataMetaFilter.Rds"
 
 ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
@@ -507,78 +505,6 @@ ProcessDataNestGrowth %>%
 #   filter(Tube != 4)
 ```
 
-
-Truncated Logistic fits vs. Logistic fits
-```{r compare trunc to full plots}
-
-ProcessDataNestGrowth %>%
-unnest(cols = c(OD720_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  OD720_logistic_tidied_term, values_from = c(OD720_logistic_tidied_estimate, OD720_logistic_tidied_std.error, OD720_logistic_tidied_statistic, OD720_logistic_tidied_p.value), names_sep = "_")  %>%
-  rename(OD720_Lmax = OD720_logistic_tidied_estimate_Lmax,
-         OD720_Lmax_se = OD720_logistic_tidied_std.error_Lmax,
-         OD720_Lmu = OD720_logistic_tidied_estimate_Lmu,
-         OD720_Lmu_se = OD720_logistic_tidied_std.error_Lmu,
-         OD720_Lintercept = OD720_logistic_tidied_estimate_Lintercept,
-         OD720_Lintercept_se = OD720_logistic_tidied_std.error_Lintercept)  %>%
-  unnest(cols = c(OD720trunc_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  OD720trunc_logistic_tidied_term, values_from = c(OD720trunc_logistic_tidied_estimate, OD720trunc_logistic_tidied_std.error, OD720trunc_logistic_tidied_statistic, OD720trunc_logistic_tidied_p.value), names_sep = "_") %>%
-  rename(OD720_Trunc_Lmax = OD720trunc_logistic_tidied_estimate_Lmax,
-         OD720_Trunc_Lmax_se = OD720trunc_logistic_tidied_std.error_Lmax,
-         OD720_Trunc_Lmu = OD720trunc_logistic_tidied_estimate_Lmu,
-         OD720_Trunc_Lmu_se = OD720trunc_logistic_tidied_std.error_Lmu)  %>%
-   ggplot() +
-  geom_point(aes(x = OD720_Lmu, y = OD720_Trunc_Lmu, colour = as.factor(WL)), size = 4)  +
-  ggrepel::geom_text_repel(aes(x = OD720_Lmu, y = OD720_Trunc_Lmu, label= Tube),hjust=0, vjust=0) +
-scale_colour_manual(values = MCMIXColours) +
-  scale_shape_manual(values = c(13, 16)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
-  coord_fixed(ratio = 1) +
-  coord_cartesian(xlim = c (0, 0.3), ylim = c(0, 0.3)) +
-  scale_x_continuous(breaks=seq(0, 0.3, by = 0.1)) +
-  labs(subtitle = "Strain, O2, Actinic PAR (nm)", y = "Truncated Logistic Growth Rate (OD720_Lmu)", x = "Logistic Growth Rate (OD720_Lmu)") +
-  facet_grid(rows = vars(Strain), cols = vars(O2, WL)) + 
-  theme_bw() + 
-  labs(title = "Logistic vs. Truncated Logistic Cell Specific Growth Rates (µ" ~ h^-1~")- All Growth",
-       colour = "Actinic PAR (nm)")
-
-
-ProcessDataNestGrowth %>%
-unnest(cols = c(deltaOD_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  deltaOD_logistic_tidied_term, values_from = c(deltaOD_logistic_tidied_estimate, deltaOD_logistic_tidied_std.error, deltaOD_logistic_tidied_statistic, deltaOD_logistic_tidied_p.value), names_sep = "_")  %>%
-  rename(deltaOD_Lmax = deltaOD_logistic_tidied_estimate_Lmax,
-         deltaOD_Lmax_se = deltaOD_logistic_tidied_std.error_Lmax,
-         deltaOD_Lmu = deltaOD_logistic_tidied_estimate_Lmu,
-         deltaOD_Lmu_se = deltaOD_logistic_tidied_std.error_Lmu,
-         deltaOD_Lintercept = deltaOD_logistic_tidied_estimate_Lintercept,
-         deltaOD_Lintercept_se = deltaOD_logistic_tidied_std.error_Lintercept)  %>%
-  unnest(cols = c(deltaODtrunc_logistic_tidied), names_sep = "_", keep_empty = TRUE) %>%
-  pivot_wider(names_from =  deltaODtrunc_logistic_tidied_term, values_from = c(deltaODtrunc_logistic_tidied_estimate, deltaODtrunc_logistic_tidied_std.error, deltaODtrunc_logistic_tidied_statistic, deltaODtrunc_logistic_tidied_p.value), names_sep = "_") %>%
-  rename(deltaOD_Trunc_Lmax = deltaODtrunc_logistic_tidied_estimate_Lmax,
-         deltaOD_Trunc_Lmax_se = deltaODtrunc_logistic_tidied_std.error_Lmax,
-         deltaOD_Trunc_Lmu = deltaODtrunc_logistic_tidied_estimate_Lmu,
-         deltaOD_Trunc_Lmu_se = deltaODtrunc_logistic_tidied_std.error_Lmu)  %>%
-   ggplot() +
-  geom_point(aes(x = deltaOD_Lmu, y = deltaOD_Trunc_Lmu, colour = as.factor(WL)), size = 4)  +
-  ggrepel::geom_text_repel(aes(x = deltaOD_Lmu, y = deltaOD_Trunc_Lmu, label= Tube), hjust=0, vjust=0) +
-scale_colour_manual(values = MCMIXColours) +
-  scale_shape_manual(values = c(13, 16)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
-  coord_fixed(ratio = 1) +
-  coord_cartesian(xlim = c (0, 0.1), ylim = c(0, 0.1)) +
-  scale_x_continuous(breaks=seq(0, 0.1, by = 0.02)) +
-  labs(subtitle = "Strain, O2, Actinic PAR (nm)", y = "Truncated Logistic Growth Rate (deltaOD_Lmu)", x = "Logistic Growth Rate (deltaOD_Lmu)") +
-  facet_grid(rows = vars(Strain), cols = vars(O2, WL)) + 
-  theme_bw() + 
-  labs(title = "Logistic vs. Truncated Logistic Chlorophyll Specific Growth Rates (µ" ~ h^-1~")- All Growth",
-       colour = "Actinic PAR (nm)")
-
-
-
-```
 
 Plot all Fit Terms vs. conditions- no filters
 ```{r plot all}
