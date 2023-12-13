@@ -31,10 +31,10 @@ List keywords separated by commas
 ## Additional information and support
 
 - Sensitive Data Flag - Human Participants:  NO
-- Sensitive Data Flag - Indigenous Partnerships: YES or NO
-- Sensitive Data Flag - Government Partnerships: YES or NO
-- Sensitive Data Flag - Industry Partnerships: YES or NO
-- Access Restrictions
+- Sensitive Data Flag - Indigenous Partnerships: NO
+- Sensitive Data Flag - Government Partnerships: NO
+- Sensitive Data Flag - Industry Partnerships: NO
+- Access Restrictions: NO
 
 ## Software  
 
@@ -45,15 +45,13 @@ The software (and version) used to create the dataset.
 Use the space below to summarize the structure of the repository with a decription of each folder, as applicable.
 
 ### MetaDataCatalog
-URL for MetaDataCatalog, or MetaDataCatalog filename
-example:
-https://docs.google.com/spreadsheets/d/1rlj03Q_wq83qlyiY7mXq8BK6C-L0Ko799JsyhfA1TGI/edit#gid=0
-Use standard variable names for MetaDataCatalog
+URL for MetaDataCatalog, or MetaDataCatalog filename:
+https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
+
 
 ### Data Dictionary
-URL for Data Dictionary, or Data Dictionary filename
-example:
-https://docs.google.com/spreadsheets/d/1KzHZETwASnt4XW69HYufHwlWaE_E-yHkLDqetiOYqBg/edit#gid=671854404
+URL for Data Dictionary, or Data Dictionary filename:
+https://docs.google.com/spreadsheets/d/1YT3R3UwI9F9DxFCJwukHQ-Hs7fIs0E72duzFqr9QuZs/edit?usp=sharing
 
 ### Data/RawData
 
