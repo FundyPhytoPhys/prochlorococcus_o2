@@ -125,7 +125,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20211223_PICO_MCMIX006_RUN42.csv"
+TargetFile <- "20231207_PICO_MCMIX004_RUN131.csv"
 
 
 # This opens a compressed file without decompressing.
