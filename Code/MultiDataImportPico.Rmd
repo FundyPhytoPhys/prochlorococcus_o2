@@ -80,6 +80,7 @@ library(photobiologyWavebands)
 Project <- "PICO"
  # DataIn <- file.path("..", "Data", "RawData", "MultiCultiData1.zip")
 DataIn <- file.path("..", "Data", "RawData", "MultiCultiData2.zip")
+# DataIn <- file.path("..", "Data", "RawData", "MultiCultiData3.zip")
 
 DataOut <- file.path("..","Data", "ImportedData", "ImportedMCData")
 
@@ -126,7 +127,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20231207_PICO_MCMIX004_RUN131.csv"
+TargetFile <- "20220910_PICO_MCMIX004_RUN88.csv"
 
 
 # This opens a compressed file without decompressing.
@@ -319,10 +320,10 @@ rm(TargetDataWide)
 This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk.
 Remember to comment out after use.
 ```{r, Add positive OD dummy points}
-
+# 
 # TargetDataMeta <- TargetDataMeta %>%
-# mutate(OD680 = if_else(Tube == 1, 0.005, OD680),
-#        OD720 = if_else(Tube == 1, 0.003, OD720))
+# mutate(OD680 = if_else(Tube == 7, 0.005, OD680),
+#        OD720 = if_else(Tube == 7, 0.003, OD720))
 
 ```
 
@@ -469,7 +470,7 @@ TargetDataMetaFilter <- TargetDataMetaFilter %>%
 ```{r filterdataplotexpandActinicMid_parOD720}
 #labelling dynamically offset from data traces.
 #use 'median' for 'x' and OD680 + offset for 'y'
-ExpandTube = 5
+ExpandTube = 3
 OD680_x = median(TargetDataMetaFilter$time)
 OD720_x = median(TargetDataMetaFilter$time) + 100
 Light_x = max(TargetDataMetaFilter$time) + 72
