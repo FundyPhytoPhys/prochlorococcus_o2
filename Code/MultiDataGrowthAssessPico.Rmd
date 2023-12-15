@@ -395,7 +395,7 @@ Save Long DF for GAM and Nested for further analysis
 
 saveRDS(object = LongerFitsData, file = file.path(DataOut, paste(Project, "LongerFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
-saveRDS(object = NestedFitsData, file = file.path(DataOut, paste(Project, "NestedFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = TRUE, refhook = NULL)
+saveRDS(object = NestedFitsData, file = file.path(DataOut, paste(Project, "NestedFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
 ```
 
