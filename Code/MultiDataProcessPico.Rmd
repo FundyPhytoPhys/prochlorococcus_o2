@@ -108,7 +108,7 @@ list.files(path = DataIn, pattern = Project, full.names = TRUE)
 
 Run for each file in a session; all chunks below run for each file.
 ```{r read ProcessFile}
-ProcessFile <- "../Data/ImportedData/ImportedMCData/20221021_PICO_MCMIX006_RUN96_TargetDataMetaFilter.Rds"
+ProcessFile <- "../Data/ImportedData/ImportedMCData/20231026_PICO_MCMIX006_RUN126_TargetDataMetaFilter.Rds"
 
 ProcessFileName <- str_split(string = ProcessFile, "/")[[1]][5] %>%
   str_remove(pattern = ".Rds") %>%
@@ -123,7 +123,7 @@ colnames(ProcessData)
 ```
 
 SS120 show anomalous jump in OD720 within first 24 h after inoculation.
-Therefore we add a filter to remove the first InitialTime  from all SS120 runs.
+Therefore we add a filter to remove the first InitialTime  from anomalous SS120 runs.
 ```{r filter initial data  ProcessData}
 
 # ProcessData <- ProcessData %>%
@@ -145,12 +145,12 @@ Therefore we add a filter to remove the first InitialTime  from all SS120 runs.
 # ProcessData <- ProcessData %>%
 #   filter(Tube == 1 |
 #          Tube == 2 |
-#          Tube == 3 & time >= 24 & time <= 125  |
+#          Tube == 3  |
 #          Tube == 4 |
 #          Tube == 5 |
 #          Tube == 6 |
 #          Tube == 7 |
-#          Tube == 8 )
+#          Tube == 8 & time >= 48 & time <= 250)
 
 
 ```
