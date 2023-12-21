@@ -1,0 +1,154 @@
+---
+title: "Import_JazEmData"
+author:
+- Sylwia Sliwinska-Wilczewska
+- Douglas A. Campbell
+date: "`r format(Sys.Date())`"
+output:
+bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+bibliography: BalticPhotoperiod.bib
+csl: plos-one.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Set Chunk Options
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
+# Introduction
+
+Import_JazEmData.Rmd imports Jaz radiospectrometer files from Data/RawData/JazEmData.zip folder and stored in Data/ImportedData/ImportedJazEmData folder as: 
+Baltic_Photoperiod_Imported_JazEmData.Rds
+
+# Load Libraries and set Project Variables
+
+```{r load libraries, warning = FALSE, echo=FALSE}
+library(tidyverse)
+library(lubridate)
+library(googledrive)
+```
+
+```{r set project variables, read zipped files, list available files, warning = FALSE, echo=FALSE}
+Project <- "Baltic_Photoperiod"
+DataOut <- file.path("..", "Data", "ImportedData", "ImportedJazEmData")
+
+# Set the path to the zip folder and the destination folder
+zip_file <- file.path("..", "Data", "RawData", "JazEmData.zip")
+
+# List files in the extracted folder with a ".txt" extension
+Jazfile <- unzip(zip_file, list = TRUE)
+Jazfile <- Jazfile[grepl(".txt$", Jazfile$Name), "Name"]
+print(Jazfile)
+```
+
+# Set up fread_plus function
+
+```{r set up fread_plus, warning = FALSE, echo=FALSE}
+SkipCS <- 14
+FileEncodeCS <- "UTF-8"
+DelimCS <- "\t"
+RollWindow <- 10
+
+# Define function to read and process each file
+fread_plus <- function(Flnm, Skip, FileEncode, Delim) {
+  con <- unz(zip_file, Flnm)  # Corrected the file path within the zip archive
+  data <- read.table(con, skip = Skip, encoding = FileEncode, sep = Delim, header = FALSE)
+  
+# Use tryCatch to handle errors during the closing of the connection
+  tryCatch(
+    close(con),
+    error = function(e) {
+      warning("Error closing connection: ", e$message)
+    })
+  
+  data <- data %>%
+    mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(zip_file)$ctime)) 
+  return(data)
+}
+
+# Use map_df to read and process all files in Jazfile
+JazSpec <- Jazfile %>%
+  map_df(~fread_plus(Flnm = ., Skip = SkipCS, FileEncode = FileEncodeCS, Delim = DelimCS))
+
+# Rename columns
+colnames(JazSpec)[1] <- "Wavelength"
+colnames(JazSpec)[2] <- "Counts"
+```
+
+# Import and prepare files
+
+```{r filename separation, warning = FALSE, echo=FALSE}
+JazSpec <- JazSpec %>% 
+  mutate(Filename = str_remove(Filename, pattern = " "))  %>% 
+  separate(col = Filename, into = c("ObsDate", "Strain", "Par_ue", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
+  mutate(FilenameJaz=Filename) %>% 
+  select(-c("Filename"))
+
+JazSpec <- JazSpec %>% 
+mutate(ObsDate = ymd(ObsDate),
+       Par_ue = as.numeric(Par_ue),
+       WL = as.factor(WL))
+```
+
+# Select wavelength range from 400 to 700 nm
+
+```{r select range of nm}
+JazSpecTrim <- JazSpec %>% 
+  subset(JazSpec$Wavelength >= 400 & JazSpec$Wavelength <= 701)
+```
+
+# Remove all NA columns & empty rows, fix column types
+
+```{r remove empty rows and fix column types}
+not_all_na <- function(x) {!all(is.na(x))}
+
+JazSpecTrim <- JazSpecTrim %>%
+  select_if(not_all_na)
+```
+
+# Find nm at max count and compare with rolling mean of counts
+
+```{r find nm at max count}
+JazSpecTrim <- JazSpecTrim %>% 
+  group_by(WL, Strain) %>%
+   mutate(rollmeanCounts = zoo::rollmean(Counts, k = RollWindow, align = "left", fill = NA),
+          is_nm = round(Wavelength[which.max(Counts)]),
+          is_nm_rollmean= round(Wavelength[which.max(rollmeanCounts)])) %>% 
+  ungroup()
+```
+
+# Cleaning df before saving as rds and removed unnecessary files from the environment
+
+```{r cleaning JazSpecTrim for final rds}
+JazSpecTrim<-JazSpecTrim %>% 
+  select(-c(CDateTime))
+
+colnames(JazSpecTrim)
+```
+
+```{r removed unnecessary files from environment}
+rm(JazSpec)
+```
+
+# Save rds for further analysis
+
+```{r save rds}
+saveRDS(JazSpecTrim, file.path(DataOut, paste(Project, "Imported_JazEmData.Rds", sep = "_"), fsep = .Platform$file.sep), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
+```
+
+# Variable names used in Data Dictionary
+
+```{r}
+colnames(JazSpecTrim)
+```
