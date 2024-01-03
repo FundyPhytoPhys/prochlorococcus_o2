@@ -1,6 +1,7 @@
 ---
 title: "Import_JazEmData"
 author:
+- Mireille Savoie
 - Sylwia Sliwinska-Wilczewska
 - Douglas A. Campbell
 date: "`r format(Sys.Date())`"
@@ -12,7 +13,7 @@ bookdown::html_document2:
     toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
-bibliography: BalticPhotoperiod.bib
+bibliography: [Prochlorococcus_O2_NPQ.bib, RPackages.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
@@ -28,22 +29,31 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 # Introduction
 
-Import_JazEmData.Rmd imports Jaz radiospectrometer files from Data/RawData/JazEmData.zip folder and stored in Data/ImportedData/ImportedJazEmData folder as: 
-Baltic_Photoperiod_Imported_JazEmData.Rds
+Import_JazEmData.Rmd imports and tidies Jaz radiospectrometer files from Data/RawData/JazEmData.zip The tidied data is saved as a .Rds in Data/ImportedData/ImportedJazEmData folder as: 
+PICO_Imported_JazEmData.Rds
 
-# Load Libraries and set Project Variables
-
+# Load Libraries 
 ```{r load libraries, warning = FALSE, echo=FALSE}
 library(tidyverse)
-library(lubridate)
-library(googledrive)
+library(photobiologyWavebands)
 ```
 
-```{r set project variables, read zipped files, list available files, warning = FALSE, echo=FALSE}
-Project <- "Baltic_Photoperiod"
-DataOut <- file.path("..", "Data", "ImportedData", "ImportedJazEmData")
+#set Photobiology colors
+```{r set colours}
+Wavelengths_nm = c(405, 445, 470, 530, 620, 660, 730, "WW")
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(445), w_length2rgb(470), w_length2rgb(530), 
+                   w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
 
-# Set the path to the zip folder and the destination folder
+names(MCMIXColours) <- Wavelengths_nm
+MCMIXColours
+```
+
+# Set Project Variables
+```{r set project variables, read zipped files, list available files, warning = FALSE, echo=FALSE}
+Project <- "PICO"
+DataOut <- file.path("..", "Data", "ImportedData", "ImportedJazEmData", fsep = .Platform$file.sep)
+
+# Set the path to the zip folder
 zip_file <- file.path("..", "Data", "RawData", "JazEmData.zip")
 
 # List files in the extracted folder with a ".txt" extension
@@ -53,7 +63,6 @@ print(Jazfile)
 ```
 
 # Set up fread_plus function
-
 ```{r set up fread_plus, warning = FALSE, echo=FALSE}
 SkipCS <- 14
 FileEncodeCS <- "UTF-8"
@@ -62,7 +71,7 @@ RollWindow <- 10
 
 # Define function to read and process each file
 fread_plus <- function(Flnm, Skip, FileEncode, Delim) {
-  con <- unz(zip_file, Flnm)  # Corrected the file path within the zip archive
+  con <- unz(zip_file, Flnm)  # Connect to the file path within the zip archive
   data <- read.table(con, skip = Skip, encoding = FileEncode, sep = Delim, header = FALSE)
   
 # Use tryCatch to handle errors during the closing of the connection
@@ -86,12 +95,11 @@ colnames(JazSpec)[1] <- "Wavelength"
 colnames(JazSpec)[2] <- "Counts"
 ```
 
-# Import and prepare files
-
+# Import and tidy columns
 ```{r filename separation, warning = FALSE, echo=FALSE}
 JazSpec <- JazSpec %>% 
   mutate(Filename = str_remove(Filename, pattern = " "))  %>% 
-  separate(col = Filename, into = c("ObsDate", "Strain", "Par_ue", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
+  separate(col = Filename, into = c("ObsDate", "MultiCulti", "Par_ue", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
   mutate(FilenameJaz=Filename) %>% 
   select(-c("Filename"))
 
@@ -101,15 +109,13 @@ mutate(ObsDate = ymd(ObsDate),
        WL = as.factor(WL))
 ```
 
-# Select wavelength range from 400 to 700 nm
-
+# Select wavelength range from 350 to 750 nm
 ```{r select range of nm}
 JazSpecTrim <- JazSpec %>% 
-  subset(JazSpec$Wavelength >= 400 & JazSpec$Wavelength <= 701)
+  subset(JazSpec$Wavelength >= 350 & JazSpec$Wavelength <= 750)
 ```
 
 # Remove all NA columns & empty rows, fix column types
-
 ```{r remove empty rows and fix column types}
 not_all_na <- function(x) {!all(is.na(x))}
 
@@ -118,23 +124,56 @@ JazSpecTrim <- JazSpecTrim %>%
 ```
 
 # Find nm at max count and compare with rolling mean of counts
-
 ```{r find nm at max count}
 JazSpecTrim <- JazSpecTrim %>% 
-  group_by(WL, Strain) %>%
+  group_by(WL, MultiCulti) %>%
    mutate(rollmeanCounts = zoo::rollmean(Counts, k = RollWindow, align = "left", fill = NA),
-          is_nm = round(Wavelength[which.max(Counts)]),
-          is_nm_rollmean= round(Wavelength[which.max(rollmeanCounts)])) %>% 
+          EmMax_nm = round(Wavelength[which.max(Counts)]),
+          EmMax_nm_rollmean= round(Wavelength[which.max(rollmeanCounts)])) %>% 
   ungroup()
 ```
 
-# Cleaning df before saving as rds and removed unnecessary files from the environment
 
+# Nest data for each MC emission wavelenth
+```{r nest the spectral data}
+
+JazSpecNest <- JazSpecTrim %>%
+  nest(Spectra = c(Wavelength, Counts, rollmeanCounts))
+
+```
+
+
+```{r remove redundant DF}
+remove(JazSpecTrim)
+remove(JazSpec)
+```
+
+# Plot to confirm data tidy
+```{r Prelim plot}
+
+# Adding the maximum (peak) value in ggplot for geom_smoth
+# https://stackoverflow.com/questions/71162252/adding-the-maximum-peak-value-in-ggplot-for-geom-smooth
+
+JazSpecNest %>%
+  unnest(Spectra) %>%
+    ggplot() +
+  geom_point(aes(x = Wavelength, y = Counts, colour = as.factor(WL))) +
+  geom_text(aes(x = EmMax_nm, y= max(Counts), label= EmMax_nm), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
+  scale_color_manual(values = MCMIXColours) +
+  guides(colour = "none") +
+  geom_vline(aes(xintercept = EmMax_nm), linetype = "dashed") +
+  scale_y_continuous(limits = c(0,100000)) +
+  ggh4x::facet_nested(rows = vars(MultiCulti, WL), labeller = labeller(WL = label_both, Par = label_both, MultiCulti = label_both)) +
+  theme_bw() 
+```
+
+
+# Cleaning df before saving as rds and removed unnecessary files from the environment
 ```{r cleaning JazSpecTrim for final rds}
-JazSpecTrim<-JazSpecTrim %>% 
+JazSpecNest <- JazSpecNest %>% 
   select(-c(CDateTime))
 
-colnames(JazSpecTrim)
+colnames(JazSpecNest)
 ```
 
 ```{r removed unnecessary files from environment}
