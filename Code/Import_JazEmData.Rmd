@@ -54,12 +54,22 @@ Project <- "PICO"
 DataOut <- file.path("..", "Data", "ImportedData", "ImportedJazEmData", fsep = .Platform$file.sep)
 
 # Set the path to the zip folder
-zip_file <- file.path("..", "Data", "RawData", "JazEmData.zip")
+DataIn <- file.path("..", "Data", "RawData", "JazEmData.zip")
+
+RollWindow <- 10
 
 # List files in the extracted folder with a ".txt" extension
-Jazfile <- unzip(zip_file, list = TRUE)
+Jazfile <- unzip(DataIn, list = TRUE)
 Jazfile <- Jazfile[grepl(".txt$", Jazfile$Name), "Name"]
 print(Jazfile)
+```
+# Import MultiCulti actinic par data
+```{r read multiculti PAR data}
+
+TargetFile <- "MultiCulti_PAR.csv"
+
+MultiCultiPAR <- read_csv(unz(DataIn, TargetFile)) %>% 
+  rename(MultiCulti = "Multiculti")
 ```
 
 # Set up fread_plus function
@@ -67,11 +77,11 @@ print(Jazfile)
 SkipCS <- 14
 FileEncodeCS <- "UTF-8"
 DelimCS <- "\t"
-RollWindow <- 10
+
 
 # Define function to read and process each file
 fread_plus <- function(Flnm, Skip, FileEncode, Delim) {
-  con <- unz(zip_file, Flnm)  # Connect to the file path within the zip archive
+  con <- unz(DataIn, Flnm)  # Connect to the file path within the zip archive
   data <- read.table(con, skip = Skip, encoding = FileEncode, sep = Delim, header = FALSE)
   
 # Use tryCatch to handle errors during the closing of the connection
@@ -82,7 +92,7 @@ fread_plus <- function(Flnm, Skip, FileEncode, Delim) {
     })
   
   data <- data %>%
-    mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(zip_file)$ctime)) 
+    mutate(Filename = Flnm, CDateTime = ymd_hms(file.info(DataIn)$ctime)) 
   return(data)
 }
 
@@ -95,7 +105,7 @@ colnames(JazSpec)[1] <- "Wavelength"
 colnames(JazSpec)[2] <- "Counts"
 ```
 
-# Import and tidy columns
+# Import and tidy emission data columns
 ```{r filename separation, warning = FALSE, echo=FALSE}
 JazSpec <- JazSpec %>% 
   mutate(Filename = str_remove(Filename, pattern = " "))  %>% 
@@ -123,29 +133,58 @@ JazSpecTrim <- JazSpecTrim %>%
   select_if(not_all_na)
 ```
 
-# Find nm at max count and compare with rolling mean of counts
+# Find nm at max count
 ```{r find nm at max count}
 JazSpecTrim <- JazSpecTrim %>% 
   group_by(WL, MultiCulti) %>%
-   mutate(rollmeanCounts = zoo::rollmean(Counts, k = RollWindow, align = "left", fill = NA),
-          EmMax_nm = round(Wavelength[which.max(Counts)]),
-          EmMax_nm_rollmean= round(Wavelength[which.max(rollmeanCounts)])) %>% 
+   mutate(EmMax_nm = round(Wavelength[which.max(Counts)])) %>% 
   ungroup()
 ```
+
+
+# Get 1 mean emission count for each wavelength after rounding for a resolution of 1 nm   
+```{r tidy to get one count for each wavelength}
+JazSpecTrim <- JazSpecTrim %>% 
+   group_by(MultiCulti, Par_ue, WL, Wavelength) %>%
+  mutate(MCEm_nm = round(Wavelength)) %>%
+  ungroup() %>%
+  group_by(FilenameJaz, MultiCulti, Par_ue, WL, MCEm_nm, EmMax_nm, ObsDate) %>%
+  summarise(MeanEmission = mean(Counts)) %>%
+  ungroup() %>%
+  mutate(Emission = round(MeanEmission, digits = 1),
+         MC = MultiCulti,
+         SetPar_uE = Par_ue,
+         MC_SpectralID = paste(MC,WL, sep = "_")) %>% 
+  select(-c(MeanEmission))
+
+```
+
+# Join MulitiCulti par data with emission data
+```{r join par with spectral data}
+MC_SpectraPAR <- left_join(JazSpecTrim, MultiCultiPAR, by = c("WL" = "Actinic_nm", "SetPar_uE", "MC" = "MultiCulti")) %>%
+  rename(MCSetPar_uE = 'SetPar_uE',
+         MCMeasuredPar_uE = 'MeasuredPar_uE') %>% 
+  select(-c(Par_ue, MultiCulti, Date))
+  
+```
+
 
 
 # Nest data for each MC emission wavelenth
 ```{r nest the spectral data}
 
-JazSpecNest <- JazSpecTrim %>%
-  nest(Spectra = c(Wavelength, Counts, rollmeanCounts))
+JazSpecNest <- MC_SpectraPAR %>%
+  nest(Spectra = c(MCEm_nm, Emission))
 
+colnames(JazSpecNest)
 ```
 
 
 ```{r remove redundant DF}
 remove(JazSpecTrim)
 remove(JazSpec)
+remove(MC_SpectraPAR)
+remove(MultiCultiPAR)
 ```
 
 # Plot to confirm data tidy
@@ -157,37 +196,26 @@ remove(JazSpec)
 JazSpecNest %>%
   unnest(Spectra) %>%
     ggplot() +
-  geom_point(aes(x = Wavelength, y = Counts, colour = as.factor(WL))) +
-  geom_text(aes(x = EmMax_nm, y= max(Counts), label= EmMax_nm), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
+  geom_point(aes(x = MCEm_nm, y = Emission, colour = as.factor(WL))) +
+  geom_text(aes(x = EmMax_nm, y= max(Emission), label= EmMax_nm), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
   scale_color_manual(values = MCMIXColours) +
   guides(colour = "none") +
   geom_vline(aes(xintercept = EmMax_nm), linetype = "dashed") +
   scale_y_continuous(limits = c(0,100000)) +
-  ggh4x::facet_nested(rows = vars(MultiCulti, WL), labeller = labeller(WL = label_both, Par = label_both, MultiCulti = label_both)) +
+  ggh4x::facet_nested(rows = vars(MC, WL), labeller = labeller(WL = label_both, Par = label_both, MultiCulti = label_both)) +
   theme_bw() 
+
 ```
 
-
-# Cleaning df before saving as rds and removed unnecessary files from the environment
-```{r cleaning JazSpecTrim for final rds}
-JazSpecNest <- JazSpecNest %>% 
-  select(-c(CDateTime))
-
-colnames(JazSpecNest)
-```
-
-```{r removed unnecessary files from environment}
-rm(JazSpec)
-```
 
 # Save rds for further analysis
 
 ```{r save rds}
-saveRDS(JazSpecTrim, file.path(DataOut, paste(Project, "Imported_JazEmData.Rds", sep = "_"), fsep = .Platform$file.sep), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
+saveRDS(JazSpecNest, file.path(DataOut, paste(Project, "Imported_JazEmData.Rds", sep = "_"), fsep = .Platform$file.sep), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 ```
 
 # Variable names used in Data Dictionary
 
 ```{r}
-colnames(JazSpecTrim)
+colnames(JazSpecNest)
 ```
