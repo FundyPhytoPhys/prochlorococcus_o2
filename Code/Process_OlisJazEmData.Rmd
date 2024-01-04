@@ -45,9 +45,9 @@ library(ggspectra)
 library(ggpubr)
 library(caret)
 library(photobiologyWavebands)
-library(reshape2)
+# library(reshape2)
 library(photobiology)
-library(gcookbook)
+# library(gcookbook)
 ```
 
 ```{r set project variables}
@@ -59,34 +59,36 @@ DataInJaz <- file.path("..", "Data", "ImportedData", "ImportedJazEmData", fsep =
 PlotsPath <- file.path("..", "Output", "Plots")
 RDSPlotPath <- file.path("..", "Output", "PlotsRDS")
 
-FileEncode <- "UTF-8" 
-Delimiter <- ""
-HeaderRows <- 0
 ```
 
-# List and read imported Olis and Jaz files
-
+# List imported Olis and Jaz files
 ```{r exported Rmd only first time in session}
-list.files(path = DataInOlis, pattern = Project, full.names = TRUE)
-list.files(path = DataInJaz, pattern = Project, full.names = TRUE)
+list.files(path = DataInOlis, pattern = ".Rds", full.names = TRUE)
+list.files(path = DataInJaz, pattern = ".Rds", full.names = TRUE)
+```
+# Read Olis whole cell absorbance and MultiCulti Jaz emission files
+```{r read imported Olis and Jaz file}
+OLISSpectraFile <- readRDS(file = file.path(DataInOlis,"PICO_Imported_OlisData.Rds"))
+
+JazEmFile <- readRDS(file = file.path(DataInJaz,"PICO_Imported_JazEmData.Rds"))
 ```
 
-```{r read imported Olis file}
-OLISSpectraFile <- "../Data/ImportedData/ImportedOlisData/Baltic_Photoperiod_Imported_OlisData.Rds"
-OLISSpectraFileName <- str_split(string = OLISSpectraFile, "/")[[1]][3] %>%
-  str_remove(pattern = ".Rds")
-OLISSpectra <- readRDS(OLISSpectraFile)  %>%
-  ungroup()
-
-JazFile <- "../Data/ImportedData/ImportedJazEmData/Baltic_Photoperiod_Imported_JazEmData.Rds"
-JazFileName <- str_split(string = JazFile, "/")[[1]][3] %>%
-  str_remove(pattern = ".Rds")
-JazData <- readRDS(JazFile)  %>%
-  ungroup()
+#Left off here
+```{r}
+JazEmFile <- JazEmFile %>% 
+  filter(MC_SpectralID != "MCMIX004_WW",
+         MCSetPar_uE == 30 ) %>% 
+  select(-c( FilenameJaz, MC)) %>% 
+  unnest(Spectra) %>%  
+  group_by(WL) %>% 
+  mutate(MC_NormEm = round(Emission / Emission[which.max(Emission)], digits = 4)) %>% 
+ungroup()
 ```
+
+
+
 
 # Preparing df for further analysis
-
 ```{r round nm}
 JazData <- JazData %>%
    mutate(WavelengthRound = round(Wavelength))
