@@ -73,19 +73,59 @@ OLISSpectraFile <- readRDS(file = file.path(DataInOlis,"PICO_Imported_OlisData.R
 JazEmFile <- readRDS(file = file.path(DataInJaz,"PICO_Imported_JazEmData.Rds"))
 ```
 
-#Left off here
-```{r}
+# Filter out the white light emission data for mixed light color MC since not used. Calculate MC normalized emission to the emission maxima for each wavelength.
+```{r calculate normalized emission for each WL}
 JazEmFile <- JazEmFile %>% 
   filter(MC_SpectralID != "MCMIX004_WW",
-         MCSetPar_uE == 30 ) %>% 
+         MCSetPar_uE == 30 |
+         MCSetPar_uE == 15) %>% 
   select(-c( FilenameJaz, MC)) %>% 
   unnest(Spectra) %>%  
   group_by(WL) %>% 
   mutate(MC_NormEm = round(Emission / Emission[which.max(Emission)], digits = 4)) %>% 
+  select(-c(ObsDate)) %>% 
 ungroup()
 ```
 
+# Unnest the Olis whole cell absorbance data and calculate absorbance maxima for 675 nm (red) and 450 (blue) and extract nm (wavelength) at maxima 
+```{r}
+OLISSpectraUnnest <- OLISSpectraFile %>% 
+  unnest(AbsSpectra) 
 
+OlisSpectra_red <- OLISSpectraUnnest %>% 
+  group_by(SampleID, E_days) %>%
+  filter(OlisAbs_nm >= 575 & OlisAbs_nm <= 750) %>% 
+   mutate(Red_nm = round(OlisAbs_nm[which.max(Absorbance)]),
+          MaxAbs_Red = Absorbance[which.max(Absorbance)]) %>% 
+  filter(OlisAbs_nm == 675) %>% 
+  select(SampleID, Run, Strain, Red_nm, MaxAbs_Red, Par_ue, E_days) %>% 
+     ungroup()
+
+OlisSpectra_blue <- OLISSpectraUnnest %>% 
+  group_by(SampleID, E_days) %>%
+  filter(OlisAbs_nm >= 400 & OlisAbs_nm <= 460) %>% 
+   mutate(Blue_nm = round(OlisAbs_nm[which.max(Absorbance)]),
+          MaxAbs_Blue = Absorbance[which.max(Absorbance)])  %>% 
+  filter(OlisAbs_nm == 440) %>% 
+  select(SampleID, Run, Strain, Blue_nm, MaxAbs_Blue,  Par_ue, E_days) %>% 
+  ungroup()
+
+OLISSpectraFile <- OLISSpectraFile %>%
+  group_by(SampleID, E_days) %>%
+  nest(AbsSpectra = c(OlisAbs_nm, Absorbance)) 
+
+ OlisSpectraMeta_red <- left_join(OLISSpectraFile, OlisSpectra_red)
+
+```
+
+
+# Left join Olis whole cell absorbance data with Jaz MC emission data. Emission measurements were performed on the mixed color MCMIX004 and the white light MC257
+```{r join whole cell absorbance with MC emission data}
+
+
+OlisJazMetaData <- left_join(OLISSpectraFile , JazEmFile, by = c("WL", "OlisAbs_nm" = "MCEm_nm")) %>% 
+  mutate(MCEm_nm = OlisAbs_nm)
+```
 
 
 # Preparing df for further analysis
