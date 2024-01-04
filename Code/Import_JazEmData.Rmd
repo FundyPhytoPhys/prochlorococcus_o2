@@ -174,7 +174,7 @@ MC_SpectraPAR <- left_join(JazSpecTrim, MultiCultiPAR, by = c("WL" = "Actinic_nm
 ```{r nest the spectral data}
 
 JazSpecNest <- MC_SpectraPAR %>%
-  nest(Spectra = c(MCEm_nm, Emission))
+  nest(EmSpectra = c(MCEm_nm, Emission))
 
 colnames(JazSpecNest)
 ```
