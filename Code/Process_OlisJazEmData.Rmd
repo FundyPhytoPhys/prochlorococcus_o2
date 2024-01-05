@@ -87,34 +87,39 @@ JazEmFile <- JazEmFile %>%
 ungroup()
 ```
 
-# Unnest the Olis whole cell absorbance data and calculate absorbance maxima for 675 nm (red) and 450 (blue) and extract nm (wavelength) at maxima 
+# Unnest the Olis whole cell absorbance data and extract absorbance maxima for 675 nm (red) and 450 (blue) regions and extract nm (wavelength) at that absorbance maxima 
 ```{r}
 OLISSpectraUnnest <- OLISSpectraFile %>% 
   unnest(AbsSpectra) 
 
+
 OlisSpectra_red <- OLISSpectraUnnest %>% 
   group_by(SampleID, E_days) %>%
-  filter(OlisAbs_nm >= 575 & OlisAbs_nm <= 750) %>% 
-   mutate(Red_nm = round(OlisAbs_nm[which.max(Absorbance)]),
+  filter(OlisAbs_nm >= 625 & OlisAbs_nm <= 750) %>% 
+   mutate(RedMaxima_nm = round(OlisAbs_nm[which.max(Absorbance)]),
           MaxAbs_Red = Absorbance[which.max(Absorbance)]) %>% 
-  filter(OlisAbs_nm == 675) %>% 
-  select(SampleID, Run, Strain, Red_nm, MaxAbs_Red, Par_ue, E_days) %>% 
+  filter(OlisAbs_nm == 675) %>% # filter only 675 nm to get df that matches the nested df to join
+  select(SampleID, Run, Strain, RedMaxima_nm, MaxAbs_Red, Par_ue, E_days) %>% 
      ungroup()
+
 
 OlisSpectra_blue <- OLISSpectraUnnest %>% 
   group_by(SampleID, E_days) %>%
   filter(OlisAbs_nm >= 400 & OlisAbs_nm <= 460) %>% 
-   mutate(Blue_nm = round(OlisAbs_nm[which.max(Absorbance)]),
+   mutate(BlueMaxima_nm = round(OlisAbs_nm[which.max(Absorbance)]),
           MaxAbs_Blue = Absorbance[which.max(Absorbance)])  %>% 
-  filter(OlisAbs_nm == 440) %>% 
-  select(SampleID, Run, Strain, Blue_nm, MaxAbs_Blue,  Par_ue, E_days) %>% 
+  filter(OlisAbs_nm == 440) %>% # filter only 440 nm to get df that matches the nested df to join
+  select(SampleID, Run, Strain, BlueMaxima_nm, MaxAbs_Blue,  Par_ue, E_days) %>% 
   ungroup()
 
-OLISSpectraFile <- OLISSpectraFile %>%
-  group_by(SampleID, E_days) %>%
-  nest(AbsSpectra = c(OlisAbs_nm, Absorbance)) 
+ OlisSpectraMeta <- left_join(OLISSpectraFile, OlisSpectra_red)
+ OlisSpectraMeta <- left_join(OlisSpectraMeta, OlisSpectra_blue)
+ 
+ 
 
- OlisSpectraMeta_red <- left_join(OLISSpectraFile, OlisSpectra_red)
+remove(OlisSpectra_red)
+remove(OlisSpectra_blue)
+remove(OLISSpectraUnnest)
 
 ```
 
@@ -122,10 +127,56 @@ OLISSpectraFile <- OLISSpectraFile %>%
 # Left join Olis whole cell absorbance data with Jaz MC emission data. Emission measurements were performed on the mixed color MCMIX004 and the white light MC257
 ```{r join whole cell absorbance with MC emission data}
 
+OlisSpectraMeta <- OlisSpectraMeta %>% 
+  unnest(AbsSpectra) 
 
-OlisJazMetaData <- left_join(OLISSpectraFile , JazEmFile, by = c("WL", "OlisAbs_nm" = "MCEm_nm")) %>% 
+
+OlisJazMetaData <- left_join(OlisSpectraMeta, JazEmFile, by = c("WL", "OlisAbs_nm" = "MCEm_nm")) %>% 
   mutate(MCEm_nm = OlisAbs_nm)
+
+remove(OlisSpectraMeta)
+remove(JazEmFile)
+remove(OLISSpectraFile)
 ```
+
+# Normalization. Used max peak of each spectra to normalize peaks to red Chla region (625 to 750 nm) and blue Chla region (400 to 460 nm).
+```{r normalization }
+
+OlisJazMetaData <- OlisJazMetaData %>% 
+  group_by(SampleID, E_days) %>%
+ mutate(AbsNorm440 = Absorbance / MaxAbs_Blue,
+        AbsNorm675 = Absorbance / MaxAbs_Red) %>% 
+  ungroup()
+
+glimpse(OlisJazMetaData)
+```
+
+# Calculate Photosynthetic Usable Radiation (PUR) from MC normalized emission and normalized Olis whole cell absorbance spectrums.  
+```{r PUR}
+OlisJazMetaData <- OlisJazMetaData %>%
+    filter(OlisAbs_nm >= 400 &
+           OlisAbs_nm <= 700) %>%
+  mutate(PURAbsWholeCell_Norm = MC_NormEm * AbsNorm440) %>% 
+  group_by(ID, E_days) %>% 
+  mutate(SumPURAbsWholeCell_Norm = sum(MC_NormEm * AbsNorm440),
+         Pur_ue = round(Par_ue * (SumPURAbsWholeCell_Norm / sum(MC_NormEm))),
+         ParPurRatio = sum(MC_NormEm) / SumPURAbsWholeCell_Norm,
+         PurParRatio =  SumPURAbsWholeCell_Norm / sum(MC_NormEm)) %>% 
+ungroup() %>% 
+  select(-SumPURAbsWholeCell_Norm)
+
+glimpse(OlisJazMetaData)
+
+```
+
+
+# Calculate daily PUR photon dose
+
+
+
+
+
+
 
 
 # Preparing df for further analysis
