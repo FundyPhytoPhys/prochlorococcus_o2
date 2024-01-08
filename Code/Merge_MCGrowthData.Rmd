@@ -49,9 +49,9 @@ library(lubridate)
 library(broom)
 library(knitr)
 library(zoo)
-library(RColorBrewer)
+# library(RColorBrewer)
 library(grid)
-library(photobiologyWavebands)
+# library(photobiologyWavebands)
 library(tidyverse)
 
 ```
@@ -86,7 +86,6 @@ MCMIXColours
 ```
 
 ## List processed data
-
 ```{r previous ProcessedData}
 
 ProcessedFiles <- list.files(path = DataIn, pattern = Project, full.names = TRUE)
@@ -95,18 +94,14 @@ ProcessedFiles
 
 ```
 
-# Read .Rds, Summarize, Combine to single data frame
-
-## Create function using to read in .Rds, adding source filename as a column
-
+# Read .Rds, Summarize, Combine to single data frame. Create function using to read in .Rds, adding source filename as a column
 ```{r readRDS_plus}
 readRDS_plus <- function(Flnm){readRDS(file = Flnm) %>%
     mutate(Filename = Flnm)
 }
 ```
 
-## Read in ProcessedFiles .Rds 
-
+# Read in ProcessedFiles .Rds 
 ```{r read selected ProcessedData}
                                     
 LogFitsData <-  ProcessedFiles %>%
@@ -117,9 +112,8 @@ glimpse(LogFitsData)
 
 ```
 
-#Unnest data
+# Unnest data
 # assign growth rate to zero if model returns mu < 0 or if growth amplitude flag = 0 
-
 ```{r unnest fits}
 
 # OD720 logistic fits
@@ -288,14 +282,13 @@ deltaODtruncLog_unnest <- deltaODtruncLog_unnest %>%
 
 
 # Join Full Growth Rate Data
-
 UnnestedLogData <- left_join(x = OD720_unnest, y = deltaOD_unnest)
 
 # Join Truncated Growth Rate Data
 UnnestedTruncLogData <- left_join(x = OD720truncLog_unnest, y =  deltaODtruncLog_unnest)
 
-#combine Full and Truncated unnested data
-NestedFitsData <- left_join(x = UnnestedLogData, y = UnnestedTruncLogData)
+#combine Full and Truncated fits data
+MCGrowthFits <- left_join(x = UnnestedLogData, y = UnnestedTruncLogData)
 
 
 #remove redundant objects
@@ -307,14 +300,15 @@ remove(OD720_unnest,
        UnnestedTruncLogData
        )
 
+glimpse(MCGrowthFits)
+
 ```
 
 
-<!-- Chunk to convert categorize oxygen levels based on input in metacatalog. Have to do this here as this column was added after many runs were already processed and the merge with metacatalog already occured. Run numbers >= 36 and <= 91 and 0% oxygen are labelled 'Low', runs <= 35  and 0% oxygen are labelled 'Intermediate'.  All runs >= 92 are from the metacatelog. All runs with 21% oxygen are labelled 'High'.  Assign [O2] to O2_uM based on category -->
+# Chunk to convert categorize oxygen levels based on input in metacatalog. Have to do this here as this column was added after many runs were already processed and the merge with metacatalog already occured. Run numbers >= 36 and <= 91 and 0% oxygen are labelled 'Low', runs <= 35  and 0% oxygen are labelled 'Intermediate'.  All runs >= 92 are from the metacatelog. All runs with 21% oxygen are labelled 'High'.  Assign [O2] to O2_uM based on category 
+```{r O2 levels}
 
-```{r}
-
-NestedFitsData <- NestedFitsData %>% 
+MCGrowthFits <- MCGrowthFits %>% 
   mutate(O2_uM = case_when(O2_Category == "Low" ~ 2.5,
                             O2_Category == "Intermediate" ~ 25,
                             O2_Category == "High" ~ 250))
@@ -326,14 +320,14 @@ NestedFitsData <- NestedFitsData %>%
 ```{r, pivot Nested data longer for GAM}
 
 # OD720 pivot longer Gmax, Gmu, Glag, Lmu, Lmax and Lintercept estimates
-Pivot_Longer_OD720_est <- NestedFitsData %>%
+Pivot_Longer_OD720_est <- MCGrowthFits %>%
   select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue, Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpOD720_14days, GrowthAmpOD720Flag_14days,  OD720_LseGrowthFlag, OD720trunc_LseGrowthFlag,  OD720_Lmu_corr, OD720_Lmax, OD720_Lintercept, OD720trunc_Lmu_corr, OD720trunc_Lmax, OD720trunc_Lintercept
             )) %>%
    pivot_longer(c(OD720_Lmu_corr, OD720_Lmax, OD720_Lintercept, OD720trunc_Lmu_corr, OD720trunc_Lmax, OD720trunc_Lintercept), names_to = c("Wavelength", "term"), values_to = c("estimate"), names_sep = '\\_')
 
 
 # OD720 pivot longer Gmax, Gmu, Glag , Lmu, Lmax and Lintercept standard error
-Pivot_Longer_OD720_se <- NestedFitsData %>%
+Pivot_Longer_OD720_se <- MCGrowthFits %>%
   select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape, GrowthAmpOD720_14days, GrowthAmpOD720Flag_14days,  OD720_LseGrowthFlag, OD720trunc_LseGrowthFlag,   OD720_Lmu_se, OD720_Lmax_se, OD720_Lintercept_se,OD720trunc_Lmu_se, OD720trunc_Lmax_se, OD720trunc_Lintercept_se
             )) %>%
    pivot_longer(c(OD720_Lmu_se, OD720_Lmax_se, OD720_Lintercept_se, OD720trunc_Lmu_se, OD720trunc_Lmax_se, OD720trunc_Lintercept_se), names_to = c("Wavelength", "term"), values_to = c("se"), names_sep = '\\_') 
@@ -354,13 +348,13 @@ Longer_OD720_Joined <- Longer_OD720_Joined %>%
 
 
 # deltaOD pivot longer Gmax, Gmu, Glag, Lmu, Lmax and Lintercept estimates
-Pivot_Longer_deltaOD_est <- NestedFitsData %>%
+Pivot_Longer_deltaOD_est <- MCGrowthFits %>%
   select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpdeltaOD_14days, GrowthAmpdeltaODFlag_14days,  deltaOD_LseGrowthFlag, deltaODtrunc_LseGrowthFlag,  deltaOD_Lmu_corr, deltaOD_Lmax, deltaOD_Lintercept, deltaODtrunc_Lmu_corr, deltaODtrunc_Lmax, deltaODtrunc_Lintercept
             )) %>%
    pivot_longer(c( deltaOD_Lmu_corr, deltaOD_Lmax, deltaOD_Lintercept, deltaODtrunc_Lmu_corr, deltaODtrunc_Lmax, deltaODtrunc_Lintercept), names_to = c("Wavelength", "term"), values_to = c("estimate"), names_sep = '\\_') 
 
 # deltaOD pivot longer Gmax, Gmu, Glag , Lmu, Lmax and Lintercept standard error
-Pivot_Longer_deltaOD_se <- NestedFitsData %>%
+Pivot_Longer_deltaOD_se <- MCGrowthFits %>%
   select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpdeltaOD_14days, GrowthAmpdeltaODFlag_14days,  deltaOD_LseGrowthFlag, deltaODtrunc_LseGrowthFlag,  deltaOD_Lmu_se, deltaOD_Lmax_se, deltaOD_Lintercept_se, deltaODtrunc_Lmu_se, deltaODtrunc_Lmax_se, deltaODtrunc_Lintercept_se
             )) %>%
    pivot_longer(c(deltaOD_Lmu_se, deltaOD_Lmax_se, deltaOD_Lintercept_se, deltaODtrunc_Lmu_se, deltaODtrunc_Lmax_se, deltaODtrunc_Lintercept_se), names_to = c("Wavelength", "term"), values_to = c("se"), names_sep = '\\_') 
@@ -395,14 +389,14 @@ Save Long DF for GAM and Nested for further analysis
 
 saveRDS(object = LongerFitsData, file = file.path(DataOut, paste(Project, "LongerFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
-saveRDS(object = NestedFitsData, file = file.path(DataOut, paste(Project, "NestedFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
+saveRDS(object = MCGrowthFits, file = file.path(DataOut, paste(Project, "Processed_MCGrowthFits.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
 ```
 
 Plot All
 ```{r LogisticdeltaODPlots, fig.height= 10, fig.width= 10}
 
-NestedFitsData %>%
+MCGrowthFits %>%
    filter(Strain == "SS120") %>%
   ggplot() +
   geom_point(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.5) +
@@ -421,7 +415,7 @@ NestedFitsData %>%
   labs(colour = "Actinic PAR (nm)")
 
 
-NestedFitsData %>%
+MCGrowthFits %>%
    filter(Strain == "MIT9313",
           deltaOD_Lmu_corr == 0 |
           deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
@@ -443,7 +437,7 @@ NestedFitsData %>%
   labs(colour = "Actinic PAR (nm)")
 
 
- NestedFitsData %>%
+ MCGrowthFits %>%
    filter(Strain == "MED4",
           deltaOD_Lmu_corr == 0 |
           deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
@@ -463,7 +457,7 @@ NestedFitsData %>%
   theme_bw() +
   labs(colour = "Actinic PAR (nm)")
 
- NestedFitsData %>%
+ MCGrowthFits %>%
    filter(Strain == "MIT9313" |
          Strain == "SS120" |
          Strain == "MED4",
