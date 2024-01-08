@@ -31,8 +31,7 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 Process_OlisSpectraJazEmData.Rmd processes and combines Baltic_Photoperiod_Imported_JazEmData.Rds from Data/ImportedData/ImportedJazEmData folder and Baltic_Photoperiod_Imported_OlisData.Rds from Data/ImportedData/ImportedOlisData folder. This .Rmd generates Baltic_Photoperiod_Processed_OlisSpectraAll.Rds and Baltic_Photoperiod_Processed_OlisSpectraTidy.Rds (both stored in Data/ProcessedData/ProcessedOlisJazData folder) and OlisSpectra_Plot.png (stored in Output/Plots folder).
 
-# Load Libraries and set Project Variables
-
+# Load Libraries
 ```{r load libraries, warning = FALSE, echo=FALSE} 
 
 library(tidyverse)
@@ -47,10 +46,10 @@ library(photobiologyWavebands)
 ```{r set project variables}
 
 Project <- "PICO"
-DataOut <- file.path("..", "Data", "ProcessedData", "ProcessedOlisJazData")
+
 DataInOlis <- file.path("..", "Data", "ImportedData", "ImportedOlisData", fsep = .Platform$file.sep)
 DataInJaz <- file.path("..", "Data", "ImportedData", "ImportedJazEmData", fsep = .Platform$file.sep)
-
+DataOut <- file.path("..", "Data", "ProcessedData", "ProcessedOlisJazData")
 PlotsPath <- file.path("..", "Output", "Plots")
 
 SectoHour <- 3600 #convert seconds to hours for PUR photon dose per day
