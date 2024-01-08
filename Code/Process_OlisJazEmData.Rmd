@@ -34,21 +34,14 @@ Process_OlisSpectraJazEmData.Rmd processes and combines Baltic_Photoperiod_Impor
 # Load Libraries and set Project Variables
 
 ```{r load libraries, warning = FALSE, echo=FALSE} 
+
 library(tidyverse)
 library(lubridate)
-# library(stringr)
 library(broom)
 library(knitr)
-# library(OneR)
 library(zoo)
-# library(strucchange)
-# library(ggspectra)
-# library(ggpubr)
-# library(caret)
 library(photobiologyWavebands)
-# library(reshape2)
-# library(photobiology)
-# library(gcookbook)
+
 ```
 
 ```{r set project variables}
