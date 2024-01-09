@@ -220,8 +220,7 @@ unnest(cols = c(deltaODtrunc_logistic_tidied), names_sep = "_", keep_empty = TRU
 
 ```
 
-```{r combine unnested fits for PICO Shiny App}
-
+```{r combine unnested fits}
 
 # OD720 logistic fits
 OD720_unnest <- OD720_unnest %>%
@@ -315,7 +314,20 @@ MCGrowthFits <- MCGrowthFits %>%
 
 ```
 
+# Add mean growth estimates for conditions that were replicated. 
+```{r add mean growth estimates}
+MCGrowthFits <- MCGrowthFits %>% 
+   group_by(Strain, WL,  Par_ue, Photoperiod, O2_uM) %>% 
+  mutate(ReplicateMean_deltaOD_Lmu_corr = mean(deltaOD_Lmu_corr),
+         ReplicateSD_deltaOD_Lmu_corr = case_when(ReplicateMean_deltaOD_Lmu_corr > 0 ~ sd(deltaOD_Lmu_corr),
+                                                  ReplicateMean_deltaOD_Lmu_corr <= 0 ~ 0), 
+         ReplicateSE_deltaOD_Lmu_corr = ReplicateSD_deltaOD_Lmu_corr/n()^(1/2),
+         ReplicateMean_deltaOD_Lmu_corr_day = ReplicateMean_deltaOD_Lmu_corr * 24,
+         ReplicateSE_deltaOD_Lmu_corr_day = ReplicateSE_deltaOD_Lmu_corr *24) %>% 
+  ungroup() %>% 
+  glimpse()
 
+```
 
 ```{r, pivot Nested data longer for GAM}
 
@@ -387,7 +399,7 @@ glimpse(LongerFitsData)
 Save Long DF for GAM and Nested for further analysis 
 ```{r save files}
 
-saveRDS(object = LongerFitsData, file = file.path(DataOut, paste(Project, "LongerFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
+saveRDS(object = LongerFitsData, file = file.path(DataOut, paste(Project, "LongerGrowthFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
 saveRDS(object = MCGrowthFits, file = file.path(DataOut, paste(Project, "Processed_MCGrowthFits.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
@@ -399,11 +411,11 @@ Plot All
 MCGrowthFits %>%
    filter(Strain == "SS120") %>%
   ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.5) +
- geom_line(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
+  geom_point(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.5) +
+ geom_line(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
    labs(subtitle = "Strain, [Oxygen], Photoperiod, Actinic PAR (nm)", y = "deltaOD [~Chl] " ~ "Logistic Growth Rate" ~ "("~h^-1~")" , x = "Growth Light (µmol photons" ~m^-2 ~s^-1~")") +
- geom_text(aes(x = Par_ue, y = deltaOD_Lmu_corr, label= Run), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
-  geom_errorbar(aes(x = Par_ue, ymin = (deltaOD_Lmu_corr - deltaOD_Lmu_se), ymax = (deltaOD_Lmu_corr + deltaOD_Lmu_se)), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+ geom_text(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, label= Run), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
+  geom_errorbar(aes(x = Par_ue, ymin = (ReplicateMean_deltaOD_Lmu_corr - deltaOD_Lmu_se), ymax = (ReplicateMean_deltaOD_Lmu_corr + deltaOD_Lmu_se)), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
   scale_x_continuous(breaks=seq(0, 200, by = 50)) +
   coord_cartesian(xlim = c (0, 200)) +
   #   scale_y_continuous(breaks=seq(-0.03, 0.07, by = 0.01)) +
@@ -417,15 +429,15 @@ MCGrowthFits %>%
 
 MCGrowthFits %>%
    filter(Strain == "MIT9313",
-          deltaOD_Lmu_corr == 0 |
-          deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
+          ReplicateMean_deltaOD_Lmu_corr == 0 |
+          ReplicateMean_deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
   ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.4) +
- geom_line(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
+  geom_point(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+ geom_line(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
  labs(subtitle = "Strain, [Oxygen],Photoperiod, Actinic PAR (nm) - Of cultures that grew, outliers filtered by standard error > 20% of growth rate.", y = "deltaOD [~Chl] " ~ "Logistic Growth Rate" ~ "("~h^-1~")" , x = "Growth Light (µmol photons" ~m^-2 ~s^-1~")") +
-   geom_text(aes(x = Par_ue, y = deltaOD_Lmu_corr, label= Run), alpha = 0.5,hjust = 0.5, vjust=-0.5) +
-  # geom_jitter(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 6) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+   geom_text(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, label= Run), alpha = 0.5,hjust = 0.5, vjust=-0.5) +
+  # geom_jitter(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), size = 6) +
+  geom_errorbar(aes(x = Par_ue, ymin = ReplicateMean_deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = ReplicateMean_deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
   scale_x_continuous(breaks=seq(0, 200, by = 50)) +
   coord_cartesian(xlim = c (0, 200)) +
   #   scale_y_continuous(breaks=seq(0, 0.07, by = 0.01)) +
@@ -439,14 +451,14 @@ MCGrowthFits %>%
 
  MCGrowthFits %>%
    filter(Strain == "MED4",
-          deltaOD_Lmu_corr == 0 |
-          deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
+          ReplicateMean_deltaOD_Lmu_corr == 0 |
+          ReplicateMean_deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
   ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.4) +
- geom_line(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
+  geom_point(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+ geom_line(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
    labs(subtitle = "Strain, [Oxygen],Photoperiod, Actinic PAR (nm) - Of cultures that grew, outliers filtered by standard error > 20% of growth rate.", y = "deltaOD [~Chl] " ~ "Logistic Growth Rate" ~ "("~h^-1~")" , x = "Growth Light (µmol photons" ~m^-2 ~s^-1~")") +
- geom_text(aes(x = Par_ue, y = deltaOD_Lmu_corr, label= Run), alpha = 0.5,hjust = 0.5, vjust=-0.5) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+ geom_text(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, label= Run), alpha = 0.5,hjust = 0.5, vjust=-0.5) +
+  geom_errorbar(aes(x = Par_ue, ymin = ReplicateMean_deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = ReplicateMean_deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
   scale_x_continuous(breaks=seq(0, 200, by = 50)) +
   coord_cartesian(xlim = c (0, 200)) +
   #   scale_y_continuous(breaks=seq(0, 0.115, by = 0.01)) +
@@ -461,14 +473,14 @@ MCGrowthFits %>%
    filter(Strain == "MIT9313" |
          Strain == "SS120" |
          Strain == "MED4",
-          deltaOD_Lmu_corr == 0 |
-          deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
+          ReplicateMean_deltaOD_Lmu_corr == 0 |
+          ReplicateMean_deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
   ggplot() +
-  geom_point(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.5) +
-  geom_line(aes(x = Par_ue, y = deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
+  geom_point(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), size = 3, alpha = 0.5) +
+  geom_line(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, colour = as.factor(WL)), linewidth = 0.1, alpha = 0.4) +
 labs(subtitle = "Strain, [Oxygen], Photoperiod, Actinic PAR (nm)", y = "deltaOD [~Chl] " ~ "Logistic Growth Rate" ~ "("~h^-1~")" , x = "Growth Light (µmol photons" ~m^-2 ~s^-1~")") +
- geom_text(aes(x = Par_ue, y = deltaOD_Lmu_corr, label= Run),alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
-  geom_errorbar(aes(x = Par_ue, ymin = deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+ geom_text(aes(x = Par_ue, y = ReplicateMean_deltaOD_Lmu_corr, label= Run),alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
+  geom_errorbar(aes(x = Par_ue, ymin = ReplicateMean_deltaOD_Lmu_corr - deltaOD_Lmu_se, ymax = ReplicateMean_deltaOD_Lmu_corr + deltaOD_Lmu_se), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
   scale_x_continuous(breaks=seq(0, 200, by = 50)) +
   coord_cartesian(xlim = c (0, 200)) +
  #   scale_y_continuous(breaks=seq(-0.03, 0.07, by = 0.01)) +
