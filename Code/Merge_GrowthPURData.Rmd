@@ -1,0 +1,135 @@
+---
+title: "Merge_PICO_Growth_PUR"
+author: 
+- Mireille Savoie
+date: "`r format(Sys.Date())`"
+output:
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+bibliography: [Prochlorococcus_O2_NPQ.bib, RPackages.bib]
+csl: plos-one.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+## Set figure caption font size
+```{css, echo=FALSE}
+p.caption {
+  font-size: 25px;
+}
+```
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = F)
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
+
+```{r load libraries, include=FALSE}
+# libraries; Note check actual dependencies
+library(tidyverse)
+library(lubridate)
+library(broom)
+library(knitr)
+library(zoo)
+library(RColorBrewer)
+library(grid)
+library(bookdown)
+library(glue)
+library(egg)
+library(ggspectra)
+library(minpack.lm)
+
+knitr::write_bib(c("tidyverse", "lubridate","knitr", "broom", "zoo", "RColorBrewer", "grid", "glue", "bookdown"), 'RPackages.bib')
+
+```
+
+
+```{r set project variables}
+#"..", takes up a level in the directory path
+Project <- "PICO"
+
+DataInPUR <- file.path("..", "Data", "ProcessedData", "ProcessedOlisJazData", fsep = .Platform$file.sep)
+DataInGrowth <- file.path("..", "Data", "CleanData", "CleanedMCData", fsep = .Platform$file.sep)
+DataOut <- file.path("..", "Data", "CleanData")
+PlotsPath <- file.path("..", "Output", "Plots")
+
+SectoHour <- 3600 #seconds to hour
+```
+
+
+# Read in MC growth fits and PUR .Rds
+```{r read ProcessFile}
+
+NestedFitsData <- readRDS(file = file.path(DataInGrowth, "PICO_Processed_MCGrowthFits.Rds"))
+NestedPURData <- readRDS(file = file.path(DataInPUR, "PICO_Processed_OlisJazMetaPUR.Rds"))
+
+glimpse(NestedPURData)
+```
+
+# Join PUR data to wide dataframe containing growth estimates and PAR. Note: PUR data were calculated using whole cell spectras of cultures grown in high [O2] only. Assumed PUR results were same for all [O2], thus the calculated PUR results were joined to the appropriate matching PAR and WL for each strain.  
+```{r Join PUR with PAR and growth fits data}
+#add Purdata, e-days and parpurratios to PurParFits
+PurData <- NestedPURData %>% 
+  select(c("Strain", "SampleID", "WL", "Run",  "Par_ue",  "PurData", "E_days", "PurParRatio", "PURPhotonDose_day")) %>% 
+ group_by(Strain, WL, SampleID, Run, Par_ue) %>% 
+  summarise(E_days, PurData, PurParRatio, PURPhotonDose_day) %>% 
+ungroup
+
+glimpse(PurData)
+
+PURPARFits <- right_join(PurData, NestedFitsData,  by = c("Strain", "SampleID", "WL", "Run",  "Par_ue"), keep = NULL)
+
+glimpse(PURPARFits)
+
+
+PurDataSum <- NestedPURData %>% 
+  select(c("Strain", "WL", "Par_ue", "Pur_ue")) %>% 
+ group_by(Strain, WL, Par_ue, Pur_ue) %>% 
+  summarise() %>% 
+ungroup
+
+glimpse(PurDataSum)
+
+
+PURPARFits <- left_join(PURPARFits, PurDataSum, by = c("Strain", "WL", "Par_ue"))
+
+glimpse(PURPARFits)
+
+remove(PurDataSum)
+remove(PurData)
+```
+# mutate PurParRatio to get ratios for all growth estimates as well as PURPhotonDose_day
+```{r purparratio}
+PURPARFits <- PURPARFits %>% 
+  mutate(PurParRatio = Pur_ue / Par_ue,
+         PURPhotonDose_day = case_when(LightShape == 'Sine' ~ Pur_ue/2 * SectoHour * Photoperiod,
+                                  LightShape == 'Square' ~ Pur_ue * SectoHour * Photoperiod))
+
+glimpse (PURPARFits)
+```
+
+```{r save Growth estimates with PUR and PAR combined }
+saveRDS(object = PURPARFits, file = file.path(DataOut, paste(Project, "Merged_GrowthFitsPURPAR.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
+```
+
