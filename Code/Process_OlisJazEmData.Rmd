@@ -155,8 +155,7 @@ OlisJazMetaPUR <- OlisJazMetaData %>%
   mutate(PURAbsWholeCell_Norm440 = MC_NormEm * AbsNorm440) %>% 
   group_by(SampleID, E_days) %>% 
   mutate(SumPURAbsWholeCell_Norm440 = sum(MC_NormEm * AbsNorm440),
-         CalcPur_ue = round(Par_ue * (SumPURAbsWholeCell_Norm440 / sum(MC_NormEm))),
-         CalcPurParRatio = round(CalcPur_ue / Par_ue, 3)) %>% 
+         CalcPur_ue = round(Par_ue * (SumPURAbsWholeCell_Norm440 / sum(MC_NormEm)))) %>% 
 ungroup() %>% 
   select(-SumPURAbsWholeCell_Norm440)
 
@@ -169,15 +168,11 @@ glimpse(OlisJazMetaPUR)
 ```{r Calc mean PUR}
 
 OlisJazMetaPUR <- OlisJazMetaPUR %>%
-  group_by(Strain, WL) %>% 
-  mutate(PurParRatio = (mean(CalcPurParRatio)))%>% 
-ungroup() 
-
-OlisJazMetaPUR <- OlisJazMetaPUR %>%
   group_by(Strain, WL, Par_ue) %>% 
-  mutate(Pur_ue = round(mean(CalcPur_ue)))%>% 
+  mutate(Pur_ue = round(mean(CalcPur_ue)),
+         PurParRatio = (Pur_ue / Par_ue))%>% 
 ungroup()  %>% 
-  select(-c(CalcPurParRatio, CalcPur_ue))
+  select(-c(CalcPur_ue))
 
 glimpse(OlisJazMetaPUR)
 ```
