@@ -51,14 +51,6 @@ library(tidyverse)
 library(lubridate)
 library(broom)
 library(knitr)
-library(zoo)
-library(RColorBrewer)
-library(grid)
-library(bookdown)
-library(glue)
-library(egg)
-library(ggspectra)
-library(minpack.lm)
 
 knitr::write_bib(c("tidyverse", "lubridate","knitr", "broom", "zoo", "RColorBrewer", "grid", "glue", "bookdown"), 'RPackages.bib')
 
@@ -91,9 +83,9 @@ glimpse(NestedPURData)
 ```{r Join PUR with PAR and growth fits data}
 #add Purdata, e-days and parpurratios to PurParFits
 PurData <- NestedPURData %>% 
-  select(c("Strain", "SampleID", "WL", "Run",  "Par_ue",  "PurData", "E_days", "PurParRatio", "PURPhotonDose_day")) %>% 
+  select(c("Strain", "SampleID", "WL", "Run",  "Par_ue",  "PurData", "ObsDate", "E_days", "PurParRatio", "PURPhotonDose_day")) %>% 
  group_by(Strain, WL, SampleID, Run, Par_ue) %>% 
-  summarise(E_days, PurData, PurParRatio, PURPhotonDose_day) %>% 
+  summarise(ObsDate, E_days, PurData, PurParRatio, PURPhotonDose_day) %>% 
 ungroup
 
 glimpse(PurData)
