@@ -64,7 +64,7 @@ Project <- "PICO"
 DataInPUR <- file.path("..", "Data", "ProcessedData", "ProcessedOlisJazData", fsep = .Platform$file.sep)
 DataInGrowth <- file.path("..", "Data", "CleanData", "CleanedMCData", fsep = .Platform$file.sep)
 DataOut <- file.path("..", "Data", "CleanData")
-PlotsPath <- file.path("..", "Output", "Plots")
+PlotsPath <- file.path("..", "Output", "Figures")
 
 SectoHour <- 3600 #seconds to hour
 ```
