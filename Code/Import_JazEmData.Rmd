@@ -194,7 +194,7 @@ remove(MultiCultiPAR)
 # https://stackoverflow.com/questions/71162252/adding-the-maximum-peak-value-in-ggplot-for-geom-smooth
 
 JazSpecNest %>%
-  unnest(Spectra) %>%
+  unnest(EmSpectra) %>%
     ggplot() +
   geom_point(aes(x = MCEm_nm, y = Emission, colour = as.factor(WL))) +
   geom_text(aes(x = EmMax_nm, y= max(Emission), label= EmMax_nm), alpha = 0.5 ,hjust = 0.5, vjust=-0.5) +
