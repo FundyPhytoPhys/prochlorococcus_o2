@@ -1,5 +1,5 @@
 ---
-title: "MultiDataGrowthAssessPico"
+title: "Merge_MCGrowthData"
 author:
 - Laurel Genge
 - Carlie Barnhill
@@ -37,11 +37,10 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 
 # Introduction
+This Rmd, "Merge_MCGrowthData", reads in all individually processed MultiCulti runs from the "\Data\ProcessedData\ProcessedMCData" folder and merges the data into 1 data frame. Growth estimate flags are defined based on absolute amplitude change. Growth estimates are set to 0 for models that returned a negative growth estimate and if the absolute amplitude change threshold was not met. For conditions that were replicated, a mean growth estimate was calculated. This single data frame is saved as a .Rds for further analysis called "PICO_Processed_MCGrowthFits.Rds" in the "\Data\CleanData\CleanedMCData" folder.
 
-# Materials and Methods
 
-## Load Libraries and set project variables
-
+# Load Libraries and set project variables
 ```{r load libraries, message= TRUE}
 # libraries; Note check actual dependencies
 
@@ -67,7 +66,7 @@ DataIn <- file.path("..", "Data","ProcessedData", "ProcessedMCData")
 
 GrowthFlagError <- 0.2     # percentage of mu that std error must be less than
 
-OD720GrowthAmpFlagValue = 0.010 # OD720 absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
+OD720GrowthAmpFlagValue = 0.010 # OD720 absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show growth; 
 
 deltaODGrowthAmpFlagValue = 0.007 # deltaOD absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
 
@@ -94,7 +93,7 @@ ProcessedFiles
 
 ```
 
-# Read .Rds, Summarize, Combine to single data frame. Create function using to read in .Rds, adding source filename as a column
+# Create function using to read in .Rds, adding source filename as a column. Read .Rds, summarize, combine to single data frame. 
 ```{r readRDS_plus}
 readRDS_plus <- function(Flnm){readRDS(file = Flnm) %>%
     mutate(Filename = Flnm)
@@ -109,10 +108,9 @@ LogFitsData <-  ProcessedFiles %>%
 
 glimpse(LogFitsData)
 
-
 ```
 
-#Fix ExpStartTime such that only time is extracted
+#Fix ExpStartTime to extract only time 
 ```{r fix start time column}
 LogFitsData <- LogFitsData %>%
    mutate(ExpStartTime = hms::as_hms(ymd_hms(ExpStartTime)))
@@ -230,6 +228,7 @@ unnest(cols = c(deltaODtrunc_logistic_tidied), names_sep = "_", keep_empty = TRU
 
 ```
 
+# Merge OD720 with deltaOD fits
 ```{r combine unnested fits}
 
 # OD720 logistic fits
@@ -339,72 +338,7 @@ MCGrowthFits <- MCGrowthFits %>%
 
 ```
 
-```{r, pivot Nested data longer for GAM}
 
-# OD720 pivot longer Gmax, Gmu, Glag, Lmu, Lmax and Lintercept estimates
-Pivot_Longer_OD720_est <- MCGrowthFits %>%
-  select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue, Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpOD720_14days, GrowthAmpOD720Flag_14days,  OD720_LseGrowthFlag, OD720trunc_LseGrowthFlag,  OD720_Lmu_corr, OD720_Lmax, OD720_Lintercept, OD720trunc_Lmu_corr, OD720trunc_Lmax, OD720trunc_Lintercept
-            )) %>%
-   pivot_longer(c(OD720_Lmu_corr, OD720_Lmax, OD720_Lintercept, OD720trunc_Lmu_corr, OD720trunc_Lmax, OD720trunc_Lintercept), names_to = c("Wavelength", "term"), values_to = c("estimate"), names_sep = '\\_')
-
-
-# OD720 pivot longer Gmax, Gmu, Glag , Lmu, Lmax and Lintercept standard error
-Pivot_Longer_OD720_se <- MCGrowthFits %>%
-  select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape, GrowthAmpOD720_14days, GrowthAmpOD720Flag_14days,  OD720_LseGrowthFlag, OD720trunc_LseGrowthFlag,   OD720_Lmu_se, OD720_Lmax_se, OD720_Lintercept_se,OD720trunc_Lmu_se, OD720trunc_Lmax_se, OD720trunc_Lintercept_se
-            )) %>%
-   pivot_longer(c(OD720_Lmu_se, OD720_Lmax_se, OD720_Lintercept_se, OD720trunc_Lmu_se, OD720trunc_Lmax_se, OD720trunc_Lintercept_se), names_to = c("Wavelength", "term"), values_to = c("se"), names_sep = '\\_') 
-
-# Join OD720 estimate and se DF 
-Longer_OD720_Joined <- full_join(Pivot_Longer_OD720_est, Pivot_Longer_OD720_se)
-
-remove(Pivot_Longer_OD720_est, Pivot_Longer_OD720_se)
-
-
-# rename common columns for full join
-Longer_OD720_Joined <- Longer_OD720_Joined %>%
-  rename(GrowthAmp_14days = 'GrowthAmpOD720_14days',
-         GrowthAmp_14daysFlag = 'GrowthAmpOD720Flag_14days',
-         Lmu_seFlag = 'OD720_LseGrowthFlag',
-         Lmutrunc_seFlag = 'OD720trunc_LseGrowthFlag'
-         )
-
-
-# deltaOD pivot longer Gmax, Gmu, Glag, Lmu, Lmax and Lintercept estimates
-Pivot_Longer_deltaOD_est <- MCGrowthFits %>%
-  select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpdeltaOD_14days, GrowthAmpdeltaODFlag_14days,  deltaOD_LseGrowthFlag, deltaODtrunc_LseGrowthFlag,  deltaOD_Lmu_corr, deltaOD_Lmax, deltaOD_Lintercept, deltaODtrunc_Lmu_corr, deltaODtrunc_Lmax, deltaODtrunc_Lintercept
-            )) %>%
-   pivot_longer(c( deltaOD_Lmu_corr, deltaOD_Lmax, deltaOD_Lintercept, deltaODtrunc_Lmu_corr, deltaODtrunc_Lmax, deltaODtrunc_Lintercept), names_to = c("Wavelength", "term"), values_to = c("estimate"), names_sep = '\\_') 
-
-# deltaOD pivot longer Gmax, Gmu, Glag , Lmu, Lmax and Lintercept standard error
-Pivot_Longer_deltaOD_se <- MCGrowthFits %>%
-  select(c(Filename, Tube, SampleID, Run, PrimaryOperator, Strain, Par_ue,  Photoperiod, PARPhotonDose_day, Temp_c, O2, O2_Category,O2_uM, WL, LightShape,  GrowthAmpdeltaOD_14days, GrowthAmpdeltaODFlag_14days,  deltaOD_LseGrowthFlag, deltaODtrunc_LseGrowthFlag,  deltaOD_Lmu_se, deltaOD_Lmax_se, deltaOD_Lintercept_se, deltaODtrunc_Lmu_se, deltaODtrunc_Lmax_se, deltaODtrunc_Lintercept_se
-            )) %>%
-   pivot_longer(c(deltaOD_Lmu_se, deltaOD_Lmax_se, deltaOD_Lintercept_se, deltaODtrunc_Lmu_se, deltaODtrunc_Lmax_se, deltaODtrunc_Lintercept_se), names_to = c("Wavelength", "term"), values_to = c("se"), names_sep = '\\_') 
-
-# Join deltaOD estimate and se DF 
-Longer_deltaOD_Joined <- full_join(Pivot_Longer_deltaOD_est, Pivot_Longer_deltaOD_se)
-
-remove(Pivot_Longer_deltaOD_est, Pivot_Longer_deltaOD_se)
-
-
-# rename common columns for full join
-Longer_deltaOD_Joined <- Longer_deltaOD_Joined %>%
-  rename(GrowthAmp_14days = 'GrowthAmpdeltaOD_14days',
-         GrowthAmp_14daysFlag = 'GrowthAmpdeltaODFlag_14days',
-         Lmu_seFlag = 'deltaOD_LseGrowthFlag',
-         Lmutrunc_seFlag = 'deltaODtrunc_LseGrowthFlag'
-         )
-
-
-#Join OD720 and deltaOD fits data
-LongerFitsData <- rbind(Longer_OD720_Joined, Longer_deltaOD_Joined) %>%
-  mutate_if(is.numeric, round, digits = 3)
-
-remove(Longer_OD720_Joined, Longer_deltaOD_Joined)
-  
-glimpse(LongerFitsData)
-
-```
 # Remove redundant df
 ```{r remove}
 remove(LogFitsData)
@@ -412,8 +346,6 @@ remove(LogFitsData)
 
 # Save Long DF for GAM and Nested for further analysis 
 ```{r save files}
-
-saveRDS(object = LongerFitsData, file = file.path(DataOut, paste(Project, "LongerGrowthFitsData.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
 saveRDS(object = MCGrowthFits, file = file.path(DataOut, paste(Project, "Processed_MCGrowthFits.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
 
