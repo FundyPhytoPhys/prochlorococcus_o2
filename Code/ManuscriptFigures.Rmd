@@ -95,8 +95,9 @@ glimpse(PURPARFits)
 
 PURPARFits <- PURPARFits %>% 
   mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
-         WL= factor(WL, levels = c("WW", 660, 530, 450)),
-         deltaOD_Lmu_corr_day = deltaOD_Lmu_corr *24)
+         WL = factor(WL, levels = c("WW", 660, 530, 450)),
+         deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
+         deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24)
 #  Par_ue = factor(Par_ue, levels =  c(180, 120, 100,90,60, 30, 15))
 ```
 
@@ -183,7 +184,8 @@ O2Shapes <- c(13, 1, 19)
 ```{r}
 PURPARFits <- PURPARFits %>% 
   select(!contains(c("trunc", "OD720", "OptodeMeasure"))) %>% 
-  filter(Strain %in% c("MED4", "MIT9313", "SS120"))
+  filter(Strain %in% c("MED4", "MIT9313", "SS120"),
+         WL %in% c("WW", 450, 660))
 
 glimpse(PURPARFits)
 ```
@@ -238,7 +240,8 @@ ggsave(file = file.path(PlotsPath, paste("PurParPlot",".png",sep = "")), plot = 
 
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
-MED4NoPhotoPUR <- PURPARFits %>%
+# MED4NoPhotoPUR <- PURPARFits %>%
+PURPARFits %>%
    filter(Strain == "MED4", 
          Par_ue %in% c(30,90,180)) %>%
    mutate(PhotoperiodLabel_title = "Photoperiod (h)",
@@ -275,10 +278,11 @@ scale_x_continuous(label=scientific_10) +
   labs(color = "Growth Waveband (nm)",
        shape = "Photoperiod (h)")
 
-MED4NoPhotoPUR
+# MED4NoPhotoPUR
 
 
-SS120NoPhotoPUR <- PURPARFits %>%
+# SS120NoPhotoPUR <- PURPARFits %>%
+PURPARFits %>%
    filter(Strain == "SS120", 
            Par_ue %in% c(30,90,180)) %>%
    mutate(PhotoperiodLabel_title = "Photoperiod (h)",
@@ -315,11 +319,12 @@ scale_x_continuous(label=scientific_10) +
   labs(color = "Growth Waveband (nm)",
        shape = "Photoperiod (h)")
 
-SS120NoPhotoPUR
+# SS120NoPhotoPUR
 
 
-MIT9313NoPhotoPUR <- PURPARFits %>%
-   filter(Strain == "MIT9313", 
+# MIT9313NoPhotoPUR <- PURPARFits %>%
+   PURPARFits %>%
+     filter(Strain == "MIT9313", 
           Par_ue %in% c(30,90,180)) %>%
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
@@ -357,7 +362,7 @@ scale_x_continuous(label=scientific_10) +
        shape = "Photoperiod (h)")
 
 
-MIT9313NoPhotoPUR
+# MIT9313NoPhotoPUR
 
 ```
 
@@ -385,7 +390,7 @@ MED4PAR <- PURPARFits %>%
          OxygenLabel = "Oxygen~Concentration~(µM)",
          WL_label_title = "Growth~Wavelength",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         Par_ue = factor(Par_ue, levels = c(180, 90, 30))) %>%
+         Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot() +
   geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 0.5) +
  geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5) +
@@ -431,7 +436,7 @@ SS120PAR <- PURPARFits %>%
          OxygenLabel = "Oxygen~Concentration~(µM)",
          WL_label_title = "Growth~Wavelength",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         Par_ue = factor(Par_ue, levels = c(180, 90, 30))) %>%
+         Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot() +
   geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 0.5) +
  geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5) +
@@ -478,7 +483,7 @@ MIT9313PAR <- PURPARFits %>%
          OxygenLabel = "Oxygen~Concentration~(µM)",
          WL_label_title = "Growth~Wavelength",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         Par_ue = factor(Par_ue, levels = c(180, 90, 30))) %>%
+         Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot() +
   geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 0.5) +
  geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5) +
@@ -615,7 +620,8 @@ MED4OverlayPlots
 
 ```{r MIT9313 All Spectral Emission,  fig.height = 10, fig.width = 10}
 
-MIT9313OverlayPlots <- PURPARFits %>%
+# MIT9313OverlayPlots <- PURPARFits %>%
+PURPARFits %>%
    filter(Strain == "MIT9313",
           O2_Category == "High",
           Par_ue == 30,
@@ -674,9 +680,9 @@ ggplot()+
         # strip.text.x = element_text(size = 20),
         axis.text = element_text(size = 15, color = "black"))
 
- MIT9313OverlayPlots <- tag_facet(MIT9313OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
-
- MIT9313OverlayPlots
+ # MIT9313OverlayPlots <- tag_facet(MIT9313OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
+ # 
+ # MIT9313OverlayPlots
 ```
 
 
@@ -688,7 +694,8 @@ ggplot()+
 
 
 ```{r SS120 PUR overlay with legend,  fig.height = 10, fig.width = 10}
-SS120OverlayPlots <- PURPARFits %>%
+# SS120OverlayPlots <- PURPARFits %>%
+PURPARFits %>%
    filter(Strain == "SS120",
           O2_Category == "High",
           Par_ue == 30,
@@ -747,9 +754,9 @@ ggplot()+
         axis.text = element_text(size = 15, color = "black"))
 
 
- SS120OverlayPlots <- tag_facet(SS120OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
-
- SS120OverlayPlots
+ # SS120OverlayPlots <- tag_facet(SS120OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
+ # 
+ # SS120OverlayPlots
 
 ```
 
