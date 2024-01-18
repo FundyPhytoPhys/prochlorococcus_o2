@@ -65,9 +65,6 @@ library(ggh4x)
 library(cowplot)
 library(tidyverse)
 
-
-knitr::write_bib(c("tidyverse", "lubridate","knitr", "stringr", "broom", "zoo", "RColorBrewer", "grid", "glue", "bookdown","egg"), 'RPackages.bib')
-
 ```
 
 
