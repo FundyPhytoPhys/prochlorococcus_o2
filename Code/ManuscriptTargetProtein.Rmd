@@ -1,0 +1,236 @@
+---
+title: "ManuscriptTargetProtein"
+author: "Mireille Savoie"
+date: "`r format(Sys.Date())`"
+output:
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+bibliography: [Manuscript_O2.bib, RPackages.bib]
+csl: plos-one.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Introduction
+
+*Some of the code used to create this R Notebook was refurbished from "PlateAbImport.Rmd" written by Maximilian Berthold, Douglas A. Campbell, Melissa L. Rioux, Sarah J Gore, and Alyson MacCormack.*
+
+Importing and tidying data from a .csv containing already processed target proteins
+
+```{r set project variables}
+
+Project <- "PICO"
+DataIn <- file.path("..","Data", "ProcessedData")
+DataOut <- file.path("..", "Data", "CleanData")
+PlotsOut <- file.path("..","Output", "Figures")
+
+FileEncode <- "UTF-8" 
+Delimiter <- ","
+
+HeaderRows <- 0
+#AbsWL = c(680, 720, 750) #select OD's of interest from plategrowth.Rds
+```
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(broom)
+library(knitr)
+# library(OneR)
+# library(zoo)
+# library(strucchange)
+
+library(dplyr)
+# library(magrittr)
+library(googledrive)
+library(googlesheets4)
+library(readxl)
+```
+
+
+```{r read locally stored metadata from rds}
+
+CultureCatalog <- readRDS(file = file.path("..", "Data","CultureCatalog.Rds"))
+
+```
+
+
+```{r read ProcessFile}
+
+TargetProtein <- read.csv(file = file.path(DataIn,"2020_PICO_Multi_TargetProteins.csv"))
+
+glimpse(TargetProtein)
+
+TargetProtein <- TargetProtein %>%
+  rename(SampleID = "ï..Sample")
+
+glimpse(TargetProtein)
+ 
+```
+
+
+```{r set colours}
+MyWavelengths = c(405, 450, 475, 530, 615, 660, 730, "WW")
+MCMIXColours = c("violet", "darkblue", "dodgerblue", "darkgreen","orange","red","purple", "black")
+
+names(MCMIXColours) <- MyWavelengths
+MCMIXColours
+```
+
+
+```{r join deltaOD with chl DF}
+
+TargetProtein  <- TargetProtein %>% 
+ left_join(., CultureCatalog, by = c("SampleID" = "SampleID"))
+
+glimpse(TargetProtein)
+
+```
+
+```{r explore plots}
+TargetProtein %>%
+   filter(Strain == "MIT9313") %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+TargetProtein %>%
+   filter(Strain == "MED4") %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+
+TargetProtein %>%
+   filter(Strain == "MIT9313",
+          O2 == 21) %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+TargetProtein %>%
+   filter(Strain == "MED4",
+          O2 == 21) %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+TargetProtein %>%
+   filter(Strain == "MIT9313",
+          O2 == 0) %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+TargetProtein %>%
+   filter(Strain == "MED4",
+          O2 == 0) %>%
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+MIT9313ProteinAttonated <- TargetProtein %>%
+  filter( Strain == "MIT9313") %>% 
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+   geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.6, position = "stack", check_overlap = T), color = "Black") +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+MIT9313ProteinAttonated
+
+
+MED4ProteinAttonated <- TargetProtein %>%
+  filter( Strain == "MED4") %>% 
+  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
+  geom_col() +
+   geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.5, position = "stack", check_overlap = T), color = "Black") +
+  # ggplot() +
+  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
+  # scale_fill_viridis_d(fill = "f68060") %>% 
+  # scale_colour_manual(values = MCMIXColours) +
+ ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
+                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
+  theme_bw()
+
+MED4ProteinAttonated
+```
+
+```{r }
+
+ ggsave(file = file.path(PlotsOut, paste("MED4ProteinAttonated",".png",sep = "")), plot = MED4ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+ggsave(file = file.path(PlotsOut, paste("MIT9313ProteinAttonated",".png",sep = "")), plot = MIT9313ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+```
+
+
+
+```{r, save rds}
+
+saveRDS(TargetProtein, file.path(DataOut, paste(Project, "TargetProtein.Rds", sep = "_"), fsep = .Platform$file.sep))
+
+
+# saveRDS(ChlTurnerCytometerAll, file.path(DataOut, paste(Project, "ChlTurnerMiSa.Rds", sep = "_"), fsep = .Platform$file.sep))
+```
+
