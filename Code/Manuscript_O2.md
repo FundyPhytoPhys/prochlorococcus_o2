@@ -48,7 +48,7 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: [Prochlorococcus_O2_NPQ.bib, RPackages.bib]
+bibliography: [Manuscript_O2.bib, RPackages.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
@@ -279,6 +279,20 @@ deep ocean niches.
 
 # Results {.unnumbered}
 
+
+<div class="figure">
+<img src="../Output/Figures/MED4ProteinAttonated.png" alt="**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug" width="2952" />
+<p class="caption">(\#fig:MED4ProteinAttonated)**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug</p>
+</div>
+
+\newpage
+
+
+
+<div class="figure">
+<img src="../Output/Figures/MIT9313ProteinAttonated.png" alt="**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug" width="2952" />
+<p class="caption">(\#fig:MIT9313ProteinAttonated)**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug</p>
+</div>
 
 \newpage
 
