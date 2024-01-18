@@ -46,13 +46,11 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 
 ```{r load libraries, include=FALSE}
-# libraries; Note check actual dependencies
-library(tidyverse)
+
 library(lubridate)
 library(broom)
 library(knitr)
-
-knitr::write_bib(c("tidyverse", "lubridate","knitr", "broom", "zoo", "RColorBrewer", "grid", "glue", "bookdown"), 'RPackages.bib')
+library(tidyverse)
 
 ```
 

@@ -37,13 +37,12 @@ Baltic_Photoperiod_Imported_OlisData.Rds
 # Load Libraries and set Project Variables
 
 ```{r load libraries, warning = FALSE, echo=FALSE} 
-library(tidyverse)
+
 library(lubridate)
 library(broom)
 library(knitr)
-library(OneR)
-library(zoo)
-library(readxl)
+library(tidyverse)
+
 ```
 
 ```{r set project variables, read zipped files, list available files, warning = FALSE, echo=FALSE}
