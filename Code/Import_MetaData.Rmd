@@ -45,12 +45,11 @@ This RMD imports culture meta data from a google sheet.
 # Load Libraries and set Project Variables
 
 ```{r load libraries}
-# libraries; Note check actual dependencies
+
 library(tidyverse)
 library(lubridate)
 library(knitr)
 library(data.table)
-library(googledrive)
 library(googlesheets4)
 
 ```
