@@ -1,5 +1,5 @@
 ---
-title: "MultiDataImportPico"
+title: "Import_MCData"
 author:
 - Laurel Genge
 - Carlie Barnhill
@@ -7,7 +7,7 @@ author:
 - Mireille Savoie
 - Douglas A. Campbell
 date: "`r format(Sys.Date())`"
-bibliography: Prochlorococcus_O2_NPQ.bib
+bibliography: Manuscript_O2.bib
 csl: plos-one.csl
 editor_options: 
   markdown: 

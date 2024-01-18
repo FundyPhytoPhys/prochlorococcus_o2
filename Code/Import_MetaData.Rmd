@@ -1,5 +1,5 @@
 ---
-title: "MetaDataImport"
+title: "Import_MetaData"
 author:
 - Mireille Savoie
 - Douglas A. Campbell
@@ -12,7 +12,7 @@ bookdown::html_document2:
     toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
-bibliography: Prochlorococcus_O2_NPQ.bib
+bibliography: Manuscript_O2.bib
 csl: plos-one.csl
 editor_options: 
   markdown: 

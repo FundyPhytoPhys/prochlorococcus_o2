@@ -15,7 +15,7 @@ bookdown::html_document2:
     toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
-bibliography: [Prochlorococcus_O2_NPQ.bib, RPackages.bib]
+bibliography: [Manuscript_O2, RPackages.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 

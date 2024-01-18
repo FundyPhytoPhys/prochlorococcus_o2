@@ -1,9 +1,21 @@
 ---
-title: "PICOgam"
+title: "ManuscriptGAM"
 author:
 - Max Berthold
 - Mireille Savoie
-output: html_notebook
+output:
+bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+bibliography: [Manuscript_O2, RPackages.bib]
+csl: plos-one.csl
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 # Introduction

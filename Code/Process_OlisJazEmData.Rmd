@@ -13,7 +13,7 @@ bookdown::html_document2:
     toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
-bibliography: BalticPhotoperiod.bib
+bibliography: Manuscript_O2.bib
 csl: plos-one.csl
 editor_options: 
   markdown: 

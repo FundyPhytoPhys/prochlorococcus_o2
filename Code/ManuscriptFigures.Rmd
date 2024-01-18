@@ -24,7 +24,7 @@ output:
     pandoc_args: 
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
-bibliography: [Prochlorococcus_O2_NPQ.bib, RPackages.bib]
+bibliography: [Manuscript_O2.bib, RPackages.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
