@@ -127,7 +127,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20220910_PICO_MCMIX004_RUN88.csv"
+TargetFile <- "20220824_PICO_MC257_RUN86.csv"
 
 
 # This opens a compressed file without decompressing.
@@ -320,10 +320,10 @@ rm(TargetDataWide)
 This will keep record of tubes even if they did not grow or had negative growth. These tubes get filtered out later if you do not run this chunk.
 Remember to comment out after use.
 ```{r, Add positive OD dummy points}
-# 
-# TargetDataMeta <- TargetDataMeta %>%
-# mutate(OD680 = if_else(Tube == 7, 0.005, OD680),
-#        OD720 = if_else(Tube == 7, 0.003, OD720))
+
+TargetDataMeta <- TargetDataMeta %>%
+mutate(OD680 = if_else(Tube == 5, 0.005, OD680),
+       OD720 = if_else(Tube == 5, 0.003, OD720))
 
 ```
 
@@ -393,7 +393,7 @@ TargetDataMetaFilter %>%
   #scale_x_continuous(breaks=seq(0, 800, by = 125)) +
   #coord_cartesian(xlim = c(-10, 800)) +
   scale_colour_manual(values = MCMIXColours) +
-  labs(y = "Optical Density (OD)", x = "Elapsed Time (h)", subtitle = "Growth Light (µE); Strain; ID; Tube") +
+  labs(y = "Optical Density (OD)", x = "Elapsed Time (h)", subtitle = "Growth Light (µE); Strain; SampleID; Tube") +
  facet_grid(rows = vars(as.factor(O2)), cols = vars(as.factor(Tube), as.factor(Par_ue),Strain, SampleID)) +
   theme_bw() +  
   labs(colour = "Actinic PAR (nm)")
