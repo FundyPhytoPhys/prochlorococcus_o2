@@ -136,14 +136,11 @@ PURPARFits <- PURPARFits %>%
 
 ```{r set colours and shapes}
 
-# MyWavelengths = c(450, 530, 660, "WW")
-# MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
 library(photobiology)
 
 
 MyWavelengths = c("WW", 660, 530, 450)
-# MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
-MCMIXColours = c("black", "orange", w_length2rgb(530),  w_length2rgb(450))
+MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -178,7 +175,7 @@ Dummy_PUR_day <- c(0)
 DummyDF_SS120 <- expand_grid(
   Dummy_Strain, Dummy_Photoperiod, Dummy_Par_ue, Dummy_O2_uM, Dummy_WL, Dummy_deltaOD_Lmu_corr, Dummy_Pur_ue, Dummy_deltaOD_Lmu_corr_day,Dummy_PUR_day
   ) %>%
-  mutate(ID = "DummySS120")
+  mutate(SampleID = "DummySS120")
 
 DummyDF_Expand_SS120 <- rbind(DummyDF_SS120, DummyDF_SS120, DummyDF_SS120) %>% 
         rename(Strain = "Dummy_Strain",
@@ -197,7 +194,7 @@ Dummy_Strain <- c("MIT9313")
 DummyDF_MIT9313 <- expand_grid(
   Dummy_Strain, Dummy_Photoperiod, Dummy_Par_ue, Dummy_O2_uM, Dummy_WL, Dummy_deltaOD_Lmu_corr, Dummy_Pur_ue, Dummy_deltaOD_Lmu_corr_day,Dummy_PUR_day
   ) %>%
-  mutate(ID = "DummyMIT9313")
+  mutate(SampleID = "DummyMIT9313")
 
 DummyDF_Expand_MIT9313 <- rbind(DummyDF_MIT9313, DummyDF_MIT9313, DummyDF_MIT9313) %>% 
   rename(Strain = "Dummy_Strain",
@@ -216,7 +213,7 @@ Dummy_Strain <- c("MED4")
 DummyDF_MED4 <- expand_grid(
   Dummy_Strain, Dummy_Photoperiod, Dummy_Par_ue, Dummy_O2_uM, Dummy_WL, Dummy_deltaOD_Lmu_corr, Dummy_Pur_ue, Dummy_deltaOD_Lmu_corr_day,Dummy_PUR_day
   ) %>%
-  mutate(ID = "DummyMED4")
+  mutate(SampleID = "DummyMED4")
 
 DummyDF_Expand_MED4 <- rbind(DummyDF_MED4, DummyDF_MED4, DummyDF_MED4) %>% 
   rename(Strain = "Dummy_Strain",
@@ -243,7 +240,7 @@ remove(DummyDF_Expand_SS120)
 ```
 
 
-
+# Join dummy df to growth df
 ```{r add dummy dark growth to DF}
 
 library(plyr)
@@ -266,97 +263,6 @@ detach("package:plyr")
     scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660","530", "450" )) +
   facet_grid(rows = vars(Par_ue), cols = vars(Strain)) +
   theme_bw()
-```
-
-```{r test MED4 issues}
-# PURPARFits |>
-#   filter(Strain == "MED4",
-#          O2_uM == 250) |>
-#   select(c(ReplicateMean_deltaOD_Lmu_corr_day,  OrgPur_day))
-```
-
-
-
-```{r set colours}
-
-# MyWavelengths = c(450, 530, 660, "WW")
-# MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
-# 
-# MyWavelengths = c("WW", 660, 530, 450)
-# MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
-# 
-# names(MCMIXColours) <- MyWavelengths
-# MCMIXColours
-# 
-# 
-# 
-# 
-# ColoursStrain = c(MIT9313 = "#E69F00", SS120 = "#F0E442", MED4 = "#CC79A7" )
-# 
-# MyOxygen = c(2.5, 25, 250 )
-# # ColourOxygen = c("#99CCFF", "dodgerblue", "blue1")
-# ColourOxygen = c("#FFCC00", "#FF9900", "#663300")
-# names(ColourOxygen) <- MyOxygen
-# ColourOxygen
-# 
-# MyOxygen = c(2.5, 25, 250 )
-# LineTypeOxygen = c("dotted", "longdash", "solid")
-# names(LineTypeOxygen) <- MyOxygen
-# LineTypeOxygen
-# 
-# MyPhotoperiods = as.factor(c(4, 8, 12, 16))
-# ColoursPhotoperiod = c("gray88", "lightcyan3", "gray47", "gray8")
-# names(ColoursPhotoperiod) <- MyPhotoperiods
-# ColoursPhotoperiod
-
-```
-
-
-```{r set shapes}
-
-# MyPhotoperiods = as.factor(c(4, 8, 12, 16))
-# PhotoperiodShapes = c(6, 18, 1, 17)
-# 
-# 
-# names(PhotoperiodShapes) <- MyPhotoperiods
-# PhotoperiodShapes
-# 
-# O2Shapes <- c(13, 1, 19)
-
-```
-
-Set Strip colors for WL x_strip is for WL facetted by columns and y_strip is for WL faceted by rows
-```{r}
-# x_strip <- strip_themed(background_x = elem_list_rect(fill = MCMIXColours, alpha = 0.8),
-#                       background_y = elem_list_rect(fill = "grey27")) 
-# 
-# x_stripWW <- strip_themed(background_x = elem_list_rect(fill = "black"),
-#                       background_y = elem_list_rect(fill = "#grey27"))
-# 
-# x_strip660 <- strip_themed(background_x = elem_list_rect(fill = "#730000"),
-#                       background_y = elem_list_rect(fill = "#grey27"))
-# 
-# x_strip530 <- strip_themed(background_x = elem_list_rect(fill = "#00FF00"),
-#                       background_y = elem_list_rect(fill = "#grey27"))
-# 
-# x_strip450 <- strip_themed(background_x = elem_list_rect(fill = "#0600FF"),
-#                       background_y = elem_list_rect(fill = "#grey27"))
-# 
-# y_strip <- strip_themed(background_y = elem_list_rect(fill = MCMIXColours),
-#                       background_x = elem_list_rect(fill = "#grey27")) 
-# 
-# y_stripWW <- strip_themed(background_y = elem_list_rect(fill = "black"),
-#                       background_x = elem_list_rect(fill = "#grey27"))
-# 
-# y_strip660 <- strip_themed(background_y = elem_list_rect(fill = "#730000"),
-#                       background_x = elem_list_rect(fill = "#grey27"))
-# 
-# y_strip530 <- strip_themed(background_y = elem_list_rect(fill = "#00FF00"),
-#                       background_x = elem_list_rect(fill = "#grey27"))
-# 
-# y_strip450 <- strip_themed(background_y = elem_list_rect(fill = "#0600FF"),
-#                       background_x = elem_list_rect(fill = "#grey27"))
-
 ```
 
 
@@ -398,13 +304,7 @@ grcplatt <- function(I, a, b, Pmax){Pmax * (1-exp(-a*I/Pmax)) * exp(-b*I/Pmax)}
 
 plot(x = TestI, y = grcplatt(I = TestI, a = 0.1, b = 0.1, Pmax = 1))
 
-# mm <- function(I, KM, Pmax){(Pmax* I)/(KM + I)}
-# 
-# plot(x = TestI, y = mm(I = TestI, KM = 10, Pmax = 1))
 
-# mmsubi <- function(I, KM, Pmax, Ki){(Pmax* I)/(KM + (I * (1 + I/Ki)))}
-# 
-# plot(x = TestI, y = mmsubi(I = TestI, KM = 10, Pmax = 1, Ki = 1))
 
 # linear equation to deal with photoperiods and exclusively no growth
 LinEqn <- function(x, M, Intercept){((x*M)+ Intercept)}
@@ -412,8 +312,6 @@ LinEqn <- function(x, M, Intercept){((x*M)+ Intercept)}
 LinEqnStart <- list(M = 0, Intercept = 0)
 
 ```
-
-
 
 
 Issue with MED4 data at 250 uM; lhs of model 42, right hand 40; for some reason lhs prediction missing for two of the rhs diel PUR values
@@ -425,6 +323,7 @@ Issue: OrgPur_day is 'NA' for 3 rows of MED4 x O2_um = 250
 Substitute in PURPhotonDose_day which includes extrapolated estimates of PUR for strain x growth light that lack OLIS spectra
  
 ```{r growthPURfits}
+
 
 
 #constrain with lower 0 and upper 1 limits to avoid excessive Pmax and negative b
@@ -457,7 +356,7 @@ Substitute in PURPhotonDose_day which includes extrapolated estimates of PUR for
 #          )
 
 
-# model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred under an O2 and photoperiod condition so that the model would not be skewed towards zero. As per Amanda and Doug's advice, filtered out PUR d-1 above 1.5e+06 because only photoperiods greater than 4 hrs have PUR d-1 above.
+# model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred for an O2 and photoperiod combination so that the model including all photoperiods would not be skewed towards zero. As per Amanda and Doug's advice, filtered out PUR d-1 above 1.5e+06 because only photoperiods greater than 4 hrs have PUR d-1 above.
 PURPARStrainO2NestDummy_filtered <- PURPARFits_dummy |>
   mutate(remove = case_when(Strain == "MED4" & Photoperiod == 4 ~ 1,
                             Strain == "MED4" & O2_uM == 25 & Photoperiod == 8 & WL == "WW" ~ 1,
@@ -470,24 +369,13 @@ PURPARStrainO2NestDummy_filtered <- PURPARFits_dummy |>
    filter(remove == 0,
           PURPhotonDose_day <= 1.5e+06) |>
   nest(data = -c("Strain","O2_uM")) |>
-  # mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-  #                             data = .x,
-  #                             start = list(a = 1e-6,
-  #                                          Pmax = 1),
-  #                             lower = c(0, 0),
-  #                             upper = c(1,100)
-  #                        ), NULL)
-  #                        )
-  #        ) |>
-  # mutate(GRC_Param = map(GRC_Model, tidy),
-  #        GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-  #        GRC_Glance = map(GRC_Model, possibly(glance))) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
                               start = list(a = 1e-7, b = 1e-8, Pmax = 1), 
                               lower = c(0, 0, 0),
-                              upper = c(1,1,100)
-                         ), 0)
+                              upper = c(1,1,100),
+                              control = list(maxiter = 500)
+                         ), NULL)
                          )
          ) |>
   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
@@ -507,24 +395,13 @@ PURPARStrainO2NestDummy_filtered <- PURPARFits_dummy |>
 
 PURPARStrainO2NestDummy <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM")) |>
-  # mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-  #                             data = .x,
-  #                             start = list(a = 1e-6,
-  #                                          Pmax = 1),
-  #                             lower = c(0, 0),
-  #                             upper = c(1,100)
-  #                        ), NULL)
-  #                        )
-  #        ) |>
-  # mutate(GRC_Param = map(GRC_Model, tidy),
-  #        GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-  #        GRC_Glance = map(GRC_Model, possibly(glance))) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
                               start = list(a = 1e-7, b = 1e-8, Pmax = 1), 
                               lower = c(0, 0, 0),
-                              upper = c(1,1,100)
-                         ), 0)
+                              upper = c(1,1,100),
+                              control = list(maxiter = 500)
+                         ), NULL)
                          )
          ) |>
   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
@@ -543,110 +420,18 @@ PURPARStrainO2NestDummy <- PURPARFits_dummy |>
          )
 
 
-# PURPARStrainO2NestDummy_TEST <- PURPARFits_dummy |>
-#   nest(data = -c("Strain","O2_uM")) |>
-# mutate(GRC_Model_Photoperiod = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day * Photoperiod ~ grc(I = PURPhotonDose_day, a, Pmax),
-#                             data = .x,
-#                             start = list(a = 1e-6,
-#                                          Pmax = 1),
-#                             lower = c(0, 0),
-#                             upper = c(1,100)
-#                        ), NULL)
-#                        )
-#        ) |>
-# mutate(GRC_Param_Photoperiod = map(GRC_Model_Photoperiod, tidy),
-#        GRC_Predict_Photoperiod = map(GRC_Model_Photoperiod, possibly(augment), NULL),
-#        GRC_Glance_Photoperiod = map(GRC_Model_Photoperiod, possibly(glance))) |>
-#   mutate(GRCplatt_Model_Photoperiod = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day * Photoperiod ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param_Photoperiod = map(GRCplatt_Model_Photoperiod, tidy),
-#          GRCplatt_Predict_Photoperiod = map(GRCplatt_Model_Photoperiod, possibly(augment)),
-#          GRCplatt_Glance_Photoperiod = map(GRCplatt_Model_Photoperiod, possibly(glance))
-#          ) %>%
-#     mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-6,
-#                                            Pmax = 1),
-#                               lower = c(0, 0),
-#                               upper = c(1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRC_Param = map(GRC_Model, tidy),
-#          GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-#          GRC_Glance = map(GRC_Model, possibly(glance))) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          )
-# 
-# PURPARStrainO2NestDummy_TEST
-
-# PURPARStrainO2PhotoperiodNest <- PURPARFits |>
-#   nest(data = -c("Strain","O2_uM", "Photoperiod")) |>
-#   mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-6,
-#                                            Pmax = 1),
-#                               lower = c(0, 0),
-#                               upper = c(1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRC_Param = map(GRC_Model, possibly(tidy)),
-#          GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-#          GRC_Glance = map(GRC_Model, possibly(glance))) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, possibly(tidy)),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          )
-
-
 # model with dummy dark, 0 PAR, 0 growth rates
 #Note: fit fails for SS120, 12h photoperiod and O2 = 25uM. Works if I remove outlier(WL = 660 and PAR = 30 or MiSa1456) 
 PURPARStrainO2PhotoperiodNestDummy <- PURPARFits_dummy |>
-   filter(ID != "MiSa1456") %>% 
-   # filter(ID != "JuNa1068") %>% 
+   filter(SampleID != "MiSa1456") %>% 
+   # filter(SampleID != "JuNa1068") %>% 
  nest(data = -c("Strain","O2_uM", "Photoperiod")) |>
-  # mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-  #                             data = .x,
-  #                             start = list(a = 1e-6,
-  #                                          Pmax = 1),
-  #                             lower = c(0, 0),
-  #                             upper = c(1,100)
-  #                        ), NULL)
-  #                        )
-  #        ) |>
-  # mutate(GRC_Param = map(GRC_Model, tidy),
-  #        GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-  #        GRC_Glance = map(GRC_Model, possibly(glance))) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
                               start = list(a = 1e-8, b = 1e-9, Pmax = 1),
                               lower = c(-0, 0, 0),
-                              upper = c(1,1,100)
+                              upper = c(1,1,100),
+                              control = list(maxiter = 500)
                          ), NULL)
                          )
          ) |>
@@ -670,24 +455,13 @@ PURPARStrainO2PhotoperiodNestDummy <- PURPARFits_dummy |>
 # model with dummy dark, 0 PAR,  growth rates
 PURPARStrainO2WLNestDummy <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM", "WL")) |>
-  # mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-  #                             data = .x,
-  #                             start = list(a = 1e-6,
-  #                                          Pmax = 1),
-  #                             lower = c(0, 0),
-  #                             upper = c(1,100)
-  #                        ), 0)
-  #                        )
-  #        ) |>
-  # mutate(GRC_Param = map(GRC_Model, tidy),
-  #        GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-  #        GRC_Glance = map(GRC_Model, possibly(glance))) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
                               lower = c(0, 0, 0),
-                              upper = c(1,1,100)
-                         ), 0)
+                              upper = c(1,1,100),
+                              control = list(maxiter = 500)
+                         ), NULL)
                          )
          ) |>
   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
@@ -709,24 +483,13 @@ PURPARStrainO2WLNestDummy <- PURPARFits_dummy |>
 # model with dummy dark, 0 PAR,  growth rates
 PURPARStrainO2PeriodWLNestDummy <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM", "Photoperiod", "WL")) |>
-  # mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PURPhotonDose_day, a, Pmax),
-  #                             data = .x,
-  #                             start = list(a = 1e-6,
-  #                                          Pmax = 1),
-  #                             lower = c(0, 0),
-  #                             upper = c(1,100)
-  #                        ), 0)
-  #                        )
-  #        ) |>
-  # mutate(GRC_Param = map(GRC_Model, tidy),
-  #        GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-  #        GRC_Glance = map(GRC_Model, possibly(glance), )) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
                               lower = c(0, 0, 0),
-                              upper = c(1,1,100)
-                         ), 0)
+                              upper = c(1,1,100),
+                              control = list(maxiter = 500)
+                         ), NULL)
                          )
          ) |>
   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
@@ -955,7 +718,7 @@ PURPARStrainO2BestModelsDummy <- PURPARStrainO2NestDummy|>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
   pivot_wider(names_from = Output, values_from = value) |>
-   # filter(!map_lgl(Model, is.null)) |>
+  filter(!map_lgl(Model, is.null)) |>
   filter(!map_lgl(Glance, is.null)) |>
   mutate(AIC = map_dbl(Glance, possibly(~ as.numeric(pluck(.x, "AIC"))))) |>
   group_by(Strain, O2_uM) |>
@@ -975,7 +738,7 @@ PURPARStrainO2BestModelsDummy_filtered <- PURPARStrainO2NestDummy_filtered|>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
   pivot_wider(names_from = Output, values_from = value) |>
-   # filter(!map_lgl(Model, is.null)) |>
+    filter(!map_lgl(Model, is.null)) |>
   filter(!map_lgl(Glance, is.null)) |>
   mutate(AIC = map_dbl(Glance, possibly(~ as.numeric(pluck(.x, "AIC"))))) |>
   group_by(Strain, O2_uM) |>
@@ -1103,7 +866,7 @@ filter(!map_lgl(Model, is.null)) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
   pivot_wider(names_from = Output, values_from = value) |>
-   # filter(!map_lgl(Model, is.null)) |>
+  filter(!map_lgl(Model, is.null)) |>
   filter(!map_lgl(Glance, is.null)) |>
   mutate(AIC = map_dbl(Glance, possibly(~ as.numeric(pluck(.x, "AIC"))))) |>
   group_by(Strain, O2_uM) |>
