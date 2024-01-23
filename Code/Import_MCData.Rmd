@@ -321,9 +321,9 @@ This will keep record of tubes even if they did not grow or had negative growth.
 Remember to comment out after use.
 ```{r, Add positive OD dummy points}
 
-TargetDataMeta <- TargetDataMeta %>%
-mutate(OD680 = if_else(Tube == 5, 0.005, OD680),
-       OD720 = if_else(Tube == 5, 0.003, OD720))
+# TargetDataMeta <- TargetDataMeta %>%
+# mutate(OD680 = if_else(Tube == 5, 0.005, OD680),
+#        OD720 = if_else(Tube == 5, 0.003, OD720))
 
 ```
 
