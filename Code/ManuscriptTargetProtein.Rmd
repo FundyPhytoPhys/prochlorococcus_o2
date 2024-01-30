@@ -97,10 +97,19 @@ MCMIXColours
 ```
 
 
-```{r join deltaOD with chl DF}
+```{r join protein data with culture meta data}
 
 TargetProtein  <- TargetProtein %>% 
  left_join(., CultureCatalog, by = c("SampleID" = "SampleID"))
+
+glimpse(TargetProtein)
+
+```
+
+```{r order protein by biological process}
+
+TargetProtein  <- TargetProtein %>% 
+ mutate(Target = factor(Target, levels = c("FtsH", "PsbA", "PetC", "PsaC", "RbcL")))
 
 glimpse(TargetProtein)
 
