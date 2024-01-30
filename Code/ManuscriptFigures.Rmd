@@ -101,9 +101,9 @@ PURPARFits <- PURPARFits %>%
 
 ```{r set colours}
 
-MyWavelengths = c("WW", 660, 530, 450)
+MyWavelengths = c("WW", 660, 450)
 
-MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
+MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(450))
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -187,7 +187,7 @@ PURPARFits <- PURPARFits %>%
 glimpse(PURPARFits)
 ```
 
-```{r PURPARRatioPlots, fig.height= 10, fig.width= 10}
+```{r PURPARRatioPlots, fig.height= 10, fig.width= 15}
 
 PurParPlot <- PURPARFits %>%
   filter(Par_ue %in% c(30, 90, 180)) %>%
@@ -201,20 +201,21 @@ PurParPlot <- PURPARFits %>%
   # coord_cartesian(xlim = c (0, 180)) +
     scale_y_continuous(breaks=seq(0, 180, by = 30)) +
   coord_fixed(ylim = c (0, 180), xlim = c (0, 180), ratio = 1) +
-   scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660","530", "450" )) +
-   geom_text(aes(x = 60, y = 180, label = paste(Strain), show.legend = FALSE, ),    # parse = TRUE,
+   scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450")) +
+   geom_text(aes(x = 60, y = 181, label = paste(Strain), show.legend = FALSE, ),    # parse = TRUE,
     hjust = 0,
     vjust = 1,
     size = 8.0
   )  +
-  facet_wrap(~Strain, ncol = 2) +
+  facet_wrap(~Strain, ncol = 3) +
   theme_bw() +
   labs(colour = "Growth Waveband (nm)") +
   theme(strip.text = element_blank(),
-        legend.text = element_text(size = 20),
-        legend.title = element_text(size = 25),
-        legend.position = c(0.80, 0.25),
-        axis.title = element_text(hjust= 0.60, vjust = -0.2, size = 20),
+        legend.text = element_text(size = 35),
+        legend.title = element_text(size = 35),
+        # legend.position = c(0.80, 0.25),
+         legend.position = "top",
+        axis.title = element_text(hjust= 0.5, vjust = -0.2, size = 20),
         strip.text.x = element_blank(),
         axis.text = element_text(size = 15, color = "black"),)
 
@@ -228,7 +229,7 @@ PurParPlot
 
 ```{r save ParPurPlots}
 
-ggsave(file = file.path(PlotsPath, paste("PurParPlot",".png",sep = "")), plot = PurParPlot, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("PurParPlot",".png",sep = "")), plot = PurParPlot, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -366,11 +367,11 @@ scale_x_continuous(label=scientific_10) +
 
 ```{r, save O2ColorPURPlots}
 
-# ggsave(file = file.path(PlotsPath, paste("MED4NoPhotoPUR",".png",sep = "")), plot = MED4NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MED4NoPhotoPUR",".png",sep = "")), plot = MED4NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 # 
-# ggsave(file = file.path(PlotsPath, paste("MIT9313NoPhotoPUR",".png",sep = "")), plot = MIT9313NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MIT9313NoPhotoPUR",".png",sep = "")), plot = MIT9313NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 # 
-# ggsave(file = file.path(PlotsPath, paste("SS120NoPhotoPUR",".png",sep = "")), plot = SS120NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("SS120NoPhotoPUR",".png",sep = "")), plot = SS120NoPhotoPUR, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -396,7 +397,7 @@ MED4PAR <- PURPARFits %>%
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
-  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm","530 nm", "450 nm" )) +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm", "450 nm" )) +
    scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
   ggh4x::facet_nested(cols = vars(ParLabel, Par_ue), rows = vars(OxygenLabel, O2_uM), 
                     labeller = label_parsed) + 
@@ -442,7 +443,7 @@ SS120PAR <- PURPARFits %>%
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
-  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm","530 nm", "450 nm" )) +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm", "450 nm" )) +
    scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
   ggh4x::facet_nested(cols = vars(ParLabel, Par_ue), rows = vars(OxygenLabel, O2_uM), 
                     labeller = label_parsed) + 
@@ -489,7 +490,7 @@ MIT9313PAR <- PURPARFits %>%
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
-  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm","530 nm", "450 nm" )) +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm", "450 nm" )) +
    scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
   ggh4x::facet_nested(cols = vars(ParLabel, Par_ue), rows = vars(OxygenLabel, O2_uM), 
                     labeller = label_parsed) + 
@@ -522,11 +523,11 @@ MIT9313PAR
 
 ```{r, save PARPlots}
 
-ggsave(file = file.path(PlotsPath, paste("MED4PAR",".png",sep = "")), plot = MED4PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("MED4PAR",".png",sep = "")), plot = MED4PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsPath, paste("SS120PAR",".png",sep = "")), plot = SS120PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("SS120PAR",".png",sep = "")), plot = SS120PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsPath, paste("MIT9313PAR",".png",sep = "")), plot = MIT9313PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("MIT9313PAR",".png",sep = "")), plot = MIT9313PAR, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -534,8 +535,8 @@ ggsave(file = file.path(PlotsPath, paste("MIT9313PAR",".png",sep = "")), plot = 
 # Overlay whole cell absorbance with emission spectra
 ```{r MED4 All Spectral Emission,  fig.height = 10, fig.width = 10}
 
-MyWavelengths = c("WW", 660, 530, 450)
-OverlayColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
+MyWavelengths = c("WW", 660, 450)
+OverlayColours = c("black", w_length2rgb(660),  w_length2rgb(450))
 
 names(OverlayColours) <- MyWavelengths
 OverlayColours
@@ -559,7 +560,7 @@ ggplot()+
   geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = as.factor(WL),  linetype = Abs_Em_Names), size = 1.0, data = . %>% filter(Abs_Em_Names == "PurData_MC_NormEm")) +
   scale_color_manual(values = c(MCMIXColours, "PurData_PURAbsWholeCell_Norm440" = "black", "PurData_AbsNorm440" = "darkorchid3", "PurData_MC_NormEm" = "white")) +
   scale_linetype_manual(values = c("PurData_PURAbsWholeCell_Norm440" = "solid", "PurData_AbsNorm440" = "twodash",  "PurData_MC_NormEm" = "dotted"),
-                        labels = c("LED emission", "Whole cell abs.", "PUR")) +
+                        labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
@@ -608,9 +609,9 @@ MED4OverlayPlots
 
 ```{r save MED4 PUR overlay plots}
 
-# ggsave(file = file.path(PlotsPath, paste("MED4OverlayPlots",".png",sep = "")), plot = MED4OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MED4OverlayPlots",".png",sep = "")), plot = MED4OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 # 
-# ggsave(file = file.path(PlotsPath, paste("MED4WWOverlayPlots",".png",sep = "")), plot = MED4WWOverlayPlots, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MED4WWOverlayPlots",".png",sep = "")), plot = MED4WWOverlayPlots, device = NULL, scale = 1, height=25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -638,7 +639,7 @@ ggplot()+
   geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = as.factor(WL),  linetype = Abs_Em_Names), size = 1.0, data = . %>% filter(Abs_Em_Names == "PurData_MC_NormEm")) +
   scale_color_manual(values = c(MCMIXColours, "PurData_PURAbsWholeCell_Norm440" = "black", "PurData_AbsNorm440" = "darkorchid3", "PurData_MC_NormEm" = "white")) +
   scale_linetype_manual(values = c("PurData_PURAbsWholeCell_Norm440" = "solid", "PurData_AbsNorm440" = "twodash",  "PurData_MC_NormEm" = "dotted"),
-                        labels = c("LED emission", "Whole cell abs.", "PUR")) +
+                        labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
@@ -685,7 +686,7 @@ ggplot()+
 
 ```{r save MIT9313 PUR overlay plots}
 
-# ggsave(file = file.path(PlotsPath, paste("MIT9313OverlayPlots",".png",sep = "")), plot = MIT9313OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MIT9313OverlayPlots",".png",sep = "")), plot = MIT9313OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -710,8 +711,8 @@ ggplot()+
   geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = Abs_Em_Names,  linetype = Abs_Em_Names), size = 0.85) +
   geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = as.factor(WL),  linetype = Abs_Em_Names), size = 1.0, data = . %>% filter(Abs_Em_Names == "PurData_MC_NormEm")) +
   scale_color_manual(values = c(MCMIXColours, "PurData_PURAbsWholeCell_Norm440" = "black", "PurData_AbsNorm440" = "darkorchid3", "PurData_MC_NormEm" = "white")) +
-  scale_linetype_manual(values = c("PurData_PURAbsWholeCell_Norm440" = "solid", "PurData_AbsNorm440" = "twodash",  "PurData_MC_NormEm" = "dotted"),
-                        labels = c("LED emission", "Whole cell abs.", "PUR")) +
+ scale_linetype_manual(values = c("PurData_PURAbsWholeCell_Norm440" = "solid", "PurData_AbsNorm440" = "twodash",  "PurData_MC_NormEm" = "dotted"),
+                        labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
   labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
@@ -759,6 +760,6 @@ ggplot()+
 
 ```{r save SS120 PUR overlay plots}
 
-# ggsave(file = file.path(PlotsPath, paste("SS120OverlayPlots",".png",sep = "")), plot = SS120OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("SS120OverlayPlots",".png",sep = "")), plot = SS120OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
