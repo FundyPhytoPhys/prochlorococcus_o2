@@ -27,21 +27,21 @@ institute:
   - mta: 'Department of Biology, Mount Allison University, 53 York St., Sackville NB, Canada, E4L 1C9.'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -90,7 +90,7 @@ knitr::write_bib(c("tidyverse", "lubridate","knitr",  "broom", "zoo", "photobiol
 Project <- "PICO"
 DataIn <- file.path("..", "Data", "CleanData")
 FiguresIn <- file.path("..","Output", "Figures")
-FiguresInOceanPro <- file.path( "..", "..", "OceanProteinProchlor", "Output")
+FiguresInOceanPro <- file.path( "..", "..", "OceanProteinProchloro", "Output")
 FigureInO2Analy <- file.path(  "..", "..", "O2Analyses", "Output")
 
 ```
@@ -327,6 +327,19 @@ deep ocean niches.
 %%%% Insert OceanDepthO2ProteinPhotosynth figure from OceanPortal repository  %%%
 
 
+```{r ProchloroElectronTrans, fig.cap = ProchloroElectronTrans_cap , fig.height = 20, fig.width = 10, echo = FALSE}
+
+ProchloroElectronTrans_cap <- glue("**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) **",
+                       "Rows are...",
+                       "Columns are...",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroElectronTrans.png"))
+```
+
+
+
 %%%% Insert GAM figures  %%%
 
 %%%% Insert PURFits figures  %%%
@@ -384,6 +397,23 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313PAR.png"))
 \newpage
 
 %%%% Insert OceanFtsHRibosomeProteins figure from OceanPortal repository  %%%
+
+
+```{r ProchloroMetabDepthO2, fig.cap = ProchloroMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
+
+ProchloroMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) **",
+                       "Rows are...",
+                       "Columns are...",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroMetabDepthO2.png"))
+```
+
+
+
+
+
 
 ```{r MED4ProteinAttonated, fig.cap = MED4ProteinAttonated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
