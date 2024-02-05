@@ -51,7 +51,6 @@ GamPara <- "Lmu" # Stabds for growth estimates determined by logistic model
 ```{r load libraries, message=FALSE}
 library(tidyverse)
 library(lubridate)
-library(stringr)
 library(broom)
 library(knitr)
 library(minpack.lm)
@@ -66,15 +65,15 @@ library(cowplot)
 library(glue)
 library(gtable)
 library(car)
-library(MASS)
-library(faraway)
+library(MASS) # estimating linear models through generalized least squares (GLS), fitting negative binomial linear models, the robust fitting of linear models, and Kruskal's non-metric multidimensional scaling.
+library(faraway) # LM package
 library(gridExtra)
 library(ggh4x)
 library(ggspectra) 
 library(photobiologyWavebands) 
-library(photobiology)
+# library(photobiology)
 library(metR)
-library(Rcpp)
+library(Rcpp) #'Rcpp' package provides R functions as well as C++ classes which offer a seamless integration of R and C++. 
 
 ```
 
@@ -228,16 +227,16 @@ plot(PicoLogGamAb, residuals = TRUE, pch = 1, all.terms = TRUE)
 
 #AIC of Gompertz-fitted model comparably low as to only-par and only-light model. 
 #Next step, fitting Strain-specific models. 
-#MED4 model to Par_ue-response falsy fits, due to badly fitted µ-rates -> cultures died, but model tried to fit anywy. Maybe filter everything below a certain R^2 in the fit? 
+#MED4 model to Par_ue-response falsely fits, due to badly fitted µ-rates -> cultures died, but model tried to fit anyway. Maybe filter everything below a certain R^2 in the fit? 
 
 ```
 
-
-```{r GAM separate niches hypervolume}
+# Generate GAM for red light conditions for all strains using chlorophyll proxy logistic growth rate. 
+```{r GAM separate niches hypervolume for red light}
 GamWL = c("deltaOD", "OD720") #deltaOD OD720
 Proxy= "[~Chl]" #~Chl ~Cells 
 GamParaMod = "Lmu"
-GamVar = c("450")# 450 660 WW
+GamVar = c("660")
 ErrorTolGrowth = 30 # defined for the growth estimates
 ErrorTol = 30 # defined for the GAM fit
 # OxyLev = 25
@@ -301,7 +300,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 ```
 
-# Plot red light GAM
+# Plot red light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
 ``` {r GAM Plot Red WL}
 GamStrain = "MIT9313" # MIT9313 MED4 SS120
 GamColor = "Red" 
@@ -519,11 +518,85 @@ p3 <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 
   # ggsave(file = file.path(paste(FP1, "Plots", sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 10, width = 6)
 
 # for presentation
-  ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 7.6, width = 6)
+  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 7.6, width = 6)
 
 ```  
 
-# Plot blue light GAM
+
+# Generate GAM for blue light conditions for all strains using chlorophyll proxy logistic growth rate. 
+```{r GAM separate niches hypervolume for blue light}
+GamWL = c("deltaOD", "OD720") #deltaOD OD720
+Proxy= "[~Chl]" #~Chl ~Cells 
+GamParaMod = "Lmu"
+GamVar = c("450")
+ErrorTolGrowth = 30 # defined for the growth estimates
+ErrorTol = 30 # defined for the GAM fit
+# OxyLev = 25
+
+#https://stackoverflow.com/questions/49570452/is-it-possible-to-specify-lower-bound-in-response-variable-during-smooth-with-ga 
+possibGAM = possibly(.f = mgcv::gam, otherwise = NULL)
+possibPRED = possibly(.f = mgcv::predict.gam, otherwise = NULL)
+
+
+
+PAR_Photoperiod_Model_predi <- expand_grid(
+  Par_ue = seq(from=min(10), 
+              to=max(200), 
+              length.out = 100),
+  Photoperiod = seq(from=min(2), 
+              to=max(18), 
+              length.out = 100)
+)
+
+PicoGAM <- PicoGrowthFits %>%
+  ungroup() %>%
+  dplyr::mutate(Lmu_seFlag = case_when(se/estimate*100 < ErrorTolGrowth ~ 1, #filters faulty data where Standarderror larger +/- Errortolerance
+                         FALSE ~ 0)) %>%
+  dplyr::filter(
+                estimate == 0 |
+                estimate != 0 & Lmu_seFlag == 1,
+                term %in% GamParaMod, 
+                Wavelength %in% GamWL
+                ) %>%
+  mutate(estimate = estimate*24, #to convert growth from per hour to per day
+         se = se*24) %>%
+  group_by(Strain, Wavelength, WL, O2_uM) %>%
+  nest() %>%
+  dplyr::arrange(Strain, Wavelength, WL, O2_uM) %>%
+  mutate(GamModel = map(data, ~possibGAM(estimate ~ s(Par_ue, k = 3) + s(Photoperiod, k = 3) + ti(Photoperiod, Par_ue, k = 3),  data = .x,
+                                    family = "gaussian"(link = "log"), 
+                                    method = "REML")),
+         predicted = map(GamModel, ~possibPRED(.x, newdata = PAR_Photoperiod_Model_predi, type = 'response', se.fit=TRUE)),
+         augmented = map(GamModel, ~augment(.x))
+         )
+
+PicoGAM_Pred <- PicoGAM %>%
+  dplyr::select(Strain, Wavelength, WL, O2_uM, predicted) %>%
+  dplyr::filter(predicted != "NULL") %>%
+  rowwise() %>%
+  mutate(db = list(cbind(predicted, PAR_Photoperiod_Model_predi))) %>%
+  dplyr::select(-predicted) %>%
+  unnest(col = db) %>%
+  group_by(Strain, Wavelength, WL, O2_uM) %>%
+  dplyr::filter(fit < 1.2) %>% #with two exceptions, growth rates were never higher than 1.2; GAM model creates some unrealistic high growth rates due to low data availability
+  mutate(
+    IsFitGood = case_when(se.fit/fit*100 < ErrorTol ~ 1, #flags faulty data where Standarderror larger +/- Errortolerance
+                         se.fit/fit*100 > ErrorTol ~ 0
+                    )
+    #se_erro_per = se.fit/fit*100
+  # ,fit = case_when(fit >= quantile(fit, 0.75, na.rm = TRUE) ~ fit*1, #leaves only top-10%, that means fastest growth rates in the dataframe
+  #                 FALSE ~ fit)
+  ) %>% 
+  dplyr::filter(IsFitGood == 1) 
+
+
+```
+
+
+
+
+
+# Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
 ``` {r GAM Plot Blue WL}
 GamStrain = "MIT9313" # MIT9313 MED4 SS120
 GamColor = "Blue"
