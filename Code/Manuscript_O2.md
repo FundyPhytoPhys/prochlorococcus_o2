@@ -25,23 +25,23 @@ affiliation:
     address: Department of Biology, Mount Allison University
 institute:
   - mta: 'Department of Biology, Mount Allison University, 53 York St., Sackville NB, Canada, E4L 1C9.'
-date: "2024-01-30"
+date: "2024-02-02"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -55,7 +55,11 @@ editor_options:
     wrap: 72
 ---
 
-
+<style type="text/css">
+p.caption {
+  font-size: 12px;
+}
+</style>
 
 
 
@@ -179,7 +183,7 @@ low, intermediate, and high conditions, respectively.
 
 
 Growth experiments under different spectral wavebands were performed
-using a PSI MCMIX-OD Multicultivator (Figure <a href="#fig:LabeledMC">1</a>) or a
+using a PSI MCMIX-OD Multicultivator (Figure \@ref(fig:LabeledMC)) or a
 PSI MC1000-OD Multicultivator for white LED experiments. Each
 Multicultivator has the capacity to individually control 8 tubes with
 specific PAR levels and photoperiods and the MCMIX-OD has options for
@@ -200,12 +204,18 @@ calculations of growth rate estimates and graphical plotting.
 
 \newpage
 
-![Figure 1: **PSI MCMIX-OD Multicultivator.** Spectral wavebands and light levels are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures. The temperature of culture tubes are controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations are bubbled through a humidifier and passed through a 0.2 um filter.](../Output/Figures/LabeledMC.png)
+<div class="figure">
+<img src="../Output/Figures/LabeledMC.png" alt="**PSI MCMIX-OD Multicultivator.** Spectral wavebands and light levels are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures. The temperature of culture tubes are controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations are bubbled through a humidifier and passed through a 0.2 um filter." width="1280" />
+<p class="caption">(\#fig:LabeledMC)**PSI MCMIX-OD Multicultivator.** Spectral wavebands and light levels are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures. The temperature of culture tubes are controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations are bubbled through a humidifier and passed through a 0.2 um filter.</p>
+</div>
 
 \newpage
 
 
-![Figure 2: **The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light. The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus*  MED4. **B.** is *Prochlorococcus marinus*  SS120. **C.** is *Prochlorococcus marinus*  MIT9313.](../Output/Figures/PurParPlot.png)
+<div class="figure">
+<img src="../Output/Figures/PurParPlot.png" alt="**The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light. The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus*  MED4. **B.** is *Prochlorococcus marinus*  SS120. **C.** is *Prochlorococcus marinus*  MIT9313." width="4133" />
+<p class="caption">(\#fig:PurParPlot)**The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light. The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus*  MED4. **B.** is *Prochlorococcus marinus*  SS120. **C.** is *Prochlorococcus marinus*  MIT9313.</p>
+</div>
 
 \newpage
 
@@ -224,7 +234,7 @@ growth rate estimates. A Levenberg-Marquardt algorithm
 [@bellaviaLevenbergMarquardtMethod2018] modification of the non-linear
 least squares fit equation using the R package `minpack.lm`
 [@R-minpack.lm] was used to calculate growth rate (µ) using the logistic
-equation (1):
+equation \@ref(eq:GrowthRate):
 
 ```{=tex}
 \begin{equation}
@@ -260,6 +270,13 @@ deep ocean niches.
 %%%% Insert OceanDepthO2ProteinPhotosynth figure from OceanPortal repository  %%%
 
 
+<div class="figure">
+<img src="../../OceanProteinProchloro/Output/ProchloroElectronTrans.png" alt="**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) ** Rows are... Columns are..." width="2100" />
+<p class="caption">(\#fig:ProchloroElectronTrans)**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) ** Rows are... Columns are...</p>
+</div>
+
+
+
 %%%% Insert GAM figures  %%%
 
 %%%% Insert PURFits figures  %%%
@@ -267,29 +284,55 @@ deep ocean niches.
 \newpage
 
 %%% TO DO Fits and ANOVA %%
-![Figure 3: **Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade) vs. photoperiod (h).  ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles](../Output/Figures/MED4PAR.png)
+<div class="figure">
+<img src="../Output/Figures/MED4PAR.png" alt="**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade) vs. photoperiod (h).  ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles" width="4133" />
+<p class="caption">(\#fig:MED4PAR)**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade) vs. photoperiod (h).  ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles</p>
+</div>
 
 \newpage
 
 %%% TO DO Fits and ANOVA %%
-![Figure 4: **Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low Light (LLIII) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles](../Output/Figures/SS120PAR.png)
+<div class="figure">
+<img src="../Output/Figures/SS120PAR.png" alt="**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low Light (LLIII) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles" width="4133" />
+<p class="caption">(\#fig:SS120PAR)**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low Light (LLIII) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles</p>
+</div>
 
 \newpage
 
 %%% TO DO Fits and ANOVA %%
-![Figure 5: **Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles](../Output/Figures/MIT9313PAR.png)
+<div class="figure">
+<img src="../Output/Figures/MIT9313PAR.png" alt="**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles" width="4133" />
+<p class="caption">(\#fig:MIT9313PAR)**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade) vs. photoperiod (h). ** 3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows. Colors represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles</p>
+</div>
 
 \newpage
 
 %%%% Insert OceanFtsHRibosomeProteins figure from OceanPortal repository  %%%
 
-![Figure 6: **fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug](../Output/Figures/MED4ProteinAttonated.png)
+
+<div class="figure">
+<img src="../../OceanProteinProchloro/Output/ProchloroMetabDepthO2.png" alt="**Protein turnover complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) ** Rows are... Columns are..." width="2187" />
+<p class="caption">(\#fig:ProchloroMetabDepthO2)**Protein turnover complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) ** Rows are... Columns are...</p>
+</div>
+
+
+
+
+
+
+<div class="figure">
+<img src="../Output/Figures/MED4ProteinAttonated.png" alt="**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug" width="2952" />
+<p class="caption">(\#fig:MED4ProteinAttonated)**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug</p>
+</div>
 
 \newpage
 
 
 
-![Figure 7: **fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug](../Output/Figures/MIT9313ProteinAttonated.png)
+<div class="figure">
+<img src="../Output/Figures/MIT9313ProteinAttonated.png" alt="**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug" width="2952" />
+<p class="caption">(\#fig:MIT9313ProteinAttonated)**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole/ug</p>
+</div>
 
 \newpage
 
