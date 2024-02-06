@@ -264,7 +264,7 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 PurParPlot_cap <- glue("**The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
-                       "The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light.",
+                       "The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each growth spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light.",
                        "The grey dashed line represents a hypothetical one to one correlation.",
                        "**A.** is *Prochlorococcus marinus*  MED4.",
                        "**B.** is *Prochlorococcus marinus*  SS120.",
@@ -330,7 +330,7 @@ deep ocean niches.
 
 ```{r ProchloroElectronTrans, fig.cap = ProchloroElectronTrans_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroElectronTrans_cap <- glue("**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) **",
+ProchloroElectronTrans_cap <- glue("**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
                        "Rows are...",
                        "Columns are...",
 
@@ -339,14 +339,14 @@ ProchloroElectronTrans_cap <- glue("**Occurance of electron transport complexes 
 knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroElectronTrans.png"))
 ```
 
+\newpage
 
-
-%%%% Insert GAM figures  %%%
+%%%% Insert GAM figures to show lab results confirming Ocean Protein Portal environment results %%%
 
 
 ```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-MED4GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmole photons m-2 s-1) **",
+MED4GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
                        "Rows are...",
                        "Columns are...",
 
@@ -357,10 +357,41 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MED4_Oxy_.png
 
 ```
 
+\newpage
 
 
+```{r SS120GAM,  fig.cap = SS120GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
+
+SS120GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
+                       "Rows are...",
+                       "Columns are...",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_SS120_Oxy_.png"))
+
+
+```
+
+\newpage
+
+```{r MIT9313GAM,  fig.cap = MIT9313GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
+
+MIT9313GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
+                       "Rows are...",
+                       "Columns are...",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MIT9313_Oxy_.png"))
+
+
+```
+
+\newpage
 
 %%%% Insert PURFits figures  %%%
+
 
 \newpage
 
@@ -414,12 +445,12 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313PAR.png"))
 
 \newpage
 
-%%%% Insert OceanFtsHRibosomeProteins figure from OceanPortal repository  %%%
+%%%% OceanFtsHRibosomeProteins figure from OceanPortal repository  %%%
 
 
 ```{r ProchloroMetabDepthO2, fig.cap = ProchloroMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. X-axis indicates the depth (m) of occurance and the y-axis is the oxygen concentration (µM) **",
+ProchloroMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. The x-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
                        "Rows are...",
                        "Columns are...",
 
