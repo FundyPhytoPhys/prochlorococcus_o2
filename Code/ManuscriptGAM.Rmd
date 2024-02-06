@@ -67,6 +67,7 @@ library(gtable)
 library(car)
 library(MASS) # estimating linear models through generalized least squares (GLS), fitting negative binomial linear models, the robust fitting of linear models, and Kruskal's non-metric multidimensional scaling.
 library(faraway) # LM package
+library(grid)
 library(gridExtra)
 library(ggh4x)
 library(ggspectra) 
@@ -403,7 +404,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  C.   " ~ .(GamStrain) ~ '    2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
     theme_classic() +
     theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -438,7 +439,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  B.   " ~ .(GamStrain) ~ '    25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
   theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -472,7 +473,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  A.   " ~ .(GamStrain) ~ '    250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+    labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
     theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -488,7 +489,8 @@ g_legend<-function(a.gplot){
 
 
 (g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
++ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
+  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
 legend1 <- g_legend(g_dummy1)
 (g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
 + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
@@ -503,22 +505,23 @@ LayoutNiche <- rbind(
                      c(3, 3, 3, 3, 6),
                      c(3, 3, 3, 3, 6),
                      c(2, 2, 2, 2, 5),
-                     c(2, 2, 2, 2, 5),
-                     c(1, 1, 1, 1, 4), 
+                     c(2, 2, 2, 2, 5)
+                     ,
+                     c(1, 1, 1, 1, 4),
                      c(1, 1, 1, 1, 4)
                      )
 
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
-p3 <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)
+p3_Red <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)
                    
                    # ,  left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
 #  for thesis
-  # ggsave(file = file.path(paste(FP1, "Plots", sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 10, width = 6)
+  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 10, width = 6 )
 
 # for presentation
-  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 7.6, width = 6)
+  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 7.6, width = 6)
 
 ```  
 
@@ -596,7 +599,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 
 
-# Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
+# Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot for each strain
 ``` {r GAM Plot Blue WL}
 GamStrain = "MIT9313" # MIT9313 MED4 SS120
 GamColor = "Blue"
@@ -700,12 +703,14 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  C.   " ~ .(GamStrain) ~ '    2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
     theme_classic() +
     theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))# change to 25 and 30 for thesis
-          # axis.title.y = element_blank())) 
+           axis.title.y = element_text(size=35),
+          axis.text.y = element_blank(),
+          axis.line.y = element_blank(),
+          axis.ticks.y = element_blank()))
 
 
 HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
@@ -735,12 +740,14 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  B.   " ~ .(GamStrain) ~ '    25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
   theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=23)))# change to 25 and 30 for thesis
-          # axis.title.y = element_blank())) 
+           axis.title.y = element_text(size=23),
+          axis.text.y = element_blank(),
+          axis.line.y = element_blank(),
+          axis.ticks.y = element_blank()))
 
 HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
   filter(
@@ -769,12 +776,14 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("  A.   " ~ .(GamStrain) ~ '    250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+    labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
     theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))# change to 25 and 30 for thesis
-          # axis.title.y = element_blank())) 
+           axis.title.y = element_text(size=35),
+          axis.text.y = element_blank(),
+          axis.line.y = element_blank(),
+          axis.ticks.y = element_blank()))
 
 g_legend<-function(a.gplot){
   tmp <- ggplot_gtable(ggplot_build(a.gplot))
@@ -801,101 +810,47 @@ LayoutNiche <- rbind(
                      c(3, 3, 3, 3, 6),
                      c(3, 3, 3, 3, 6),
                      c(2, 2, 2, 2, 5),
-                     c(2, 2, 2, 2, 5),
-                     c(1, 1, 1, 1, 4), 
+                     c(2, 2, 2, 2, 5)
+                     ,
+                     c(1, 1, 1, 1, 4),
                      c(1, 1, 1, 1, 4)
                      )
 
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
-p3 <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)  
+p3_Blue <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)  
 
 # , left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
 #  for thesis
-  # ggsave(file = file.path(paste(FP1, "Plots", sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 10, width = 6)
+  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 10, width = 6)
 
 # for presentation
-  ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3,  height = 7.6, width = 6)
+  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 7.6, width = 6)
 
 ```
 
 
-``` {r GAM PUR comparison}
+```{r combine red and blue light GAM plots}
 
-GamWL = c("deltaOD") #deltaOD OD720
-Proxy= "[~Chl]" #~Chl ~Cells 
-GamParaMod = "Lmu"
-#GamVar = c("450")# 450 660 WW
-GamStrain = "MED4" # MIT9313 MED4 SS120
-# ErrorTol = 20
-OxyLev = 250
+CombinedGAM <- plot_grid(p3_Red, p3_Blue)
 
-################ check smooth terms #https://fromthebottomoftheheap.net/2017/12/14/difference-splines-ii/
-#https://stackoverflow.com/questions/70922283/gam-smooths-interaction-differences-calculate-p-value-using-mgcv-and-gratia-0
-PurGAM <- ComGrowthFits %>%
-  mutate(ordPP = ordered(Photoperiod, levels = c('4', '8', '12', '16')),
-         Lmu_seFlag = case_when(se/estimate*100 < ErrorTolGrowth ~ 1, #filters faulty data where Standarderror larger +/- Errortolerance
-                         FALSE ~ 0)) %>%
-  ungroup() %>%
-  dplyr::filter(
-                Photoperiod != 4, 
-                Lmu_seFlag == 1,
-                term %in% GamParaMod,
-                Wavelength %in% GamWL,
-                Strain %in% GamStrain,
-                O2_uM %in% OxyLev) %>%
-  mutate(estimate = estimate*24,
-         se = se*24)
+x.grob <- textGrob("Photoperiod (h)", 
+                   gp = gpar(fontface="bold", fontsize = 20))
 
-m_PUR_gam <- gamm(estimate ~ s(PURPhotonDose_day, k = -1) + s(PURPhotonDose_day, by = ordPP), random=list(WL=~1), data = PurGAM, method = "REML")
-m_PUR_gam <- m_PUR_gam$gam
+y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
+                   gp = gpar(fontface="bold", fontsize = 20), rot = 90)
 
-plot(m_PUR_gam, shade = TRUE, pages = 1, scale = 0, seWithMean = TRUE)
-summary(m_PUR_gam)
+#add to plot
 
-# zoom_Chl_TreatCheck <- zoom_log %>%
-#   filter(Group != "ES") %>%
-#   mutate(ordGroup = ordered(Group, levels = c('ES', 'Fish', 'noFish')))
-# 
-# m_Chl_Treatgam <- gamm(Chla_ugL ~ Group +  s(DayFrFrst) +s(DayFrFrst, by = ordGroup), random=list(SampleYear=~1), data = zoom_Chl_TreatCheck, method = "REML")
-# m_Chl_Treatgam <- m_Chl_Treatgam$gam
-# 
-# plot(m_Chl_Treatgam, shade = TRUE, pages = 1, scale = 0, seWithMean = TRUE)
-# summary(m_Chl_Treatgam)
-
-# PurGAM <- ComGrowthFits %>% 
-#   ungroup() %>%
-#   dplyr::filter(Lmu_seFlag == 1, 
-#                 term %in% GamParaMod, 
-#                 Wavelength %in% GamWL,
-#                 strain %in% GamStrain) %>%
-#   mutate(estimate = estimate*24,
-#          se = se*24) %>%
-#   group_by(Strain, Wavelength, O2_uM, Photoperiod) %>%
-#   nest() %>%
-#   dplyr::arrange(Strain, Wavelength, O2_uM) %>%
-#   mutate(GamModel = map(data, ~possibGAM(estimate ~ s(PUR_day, k = 3) + s(Photoperiod, k = 3) + ti(Photoperiod, Par_ue, k = 3),  data = .x,
-#                                     family = "gaussian"(link = "log"), 
-#                                     method = "REML")),
-#          predicted = map(GamModel, ~possibPRED(.x, newdata = PAR_Photoperiod_Model_predi, type = 'response', se.fit=TRUE)),
-#          augmented = map(GamModel, ~augment(.x))
-#          )
-# 
-# PicoGAM_Pred <- PicoGAM %>%
-#   dplyr::select(Strain, Wavelength, WL, O2_uM, predicted) %>%
-#   dplyr::filter(predicted != "NULL") %>%
-#   rowwise() %>%
-#   mutate(db = list(cbind(predicted, PAR_Photoperiod_Model_predi))) %>%
-#   dplyr::select(-predicted) %>%
-#   unnest(col = db) %>%
-#   group_by(Strain, Wavelength, WL, O2_uM) %>%
-#   dplyr::filter(fit < 1) %>% #with two expections, growth rates were never higher than 0.06; GAM model creates some unrealistic high growth rates due to low data availability
-#   mutate(
-#     fit = case_when(se.fit/fit*100 < ErrorTol ~ fit*1, #filters faulty data where Standarderror larger +/- Errortolerance
-#                          FALSE ~ fit)
-#   # ,fit = case_when(fit >= quantile(fit, 0.75, na.rm = TRUE) ~ fit*1, #leaves only top-10%, that means fastest growth rates in the dataframe
-#   #                 FALSE ~ fit)
-#   )
+LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
 
 ```
+
+```{r save png}
+ ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+```
+
+
+
+

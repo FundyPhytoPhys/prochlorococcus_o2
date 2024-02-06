@@ -25,7 +25,7 @@ affiliation:
     address: Department of Biology, Mount Allison University
 institute:
   - mta: 'Department of Biology, Mount Allison University, 53 York St., Sackville NB, Canada, E4L 1C9.'
-date: "2024-02-02"
+date: "2024-02-05"
 output:
   bookdown::html_document2:
     code_folding: show
@@ -265,9 +265,9 @@ deep ocean niches.
 
 \newpage
 
-# Results {.unnumbered}
+# Results and Discussion {.unnumbered}
 
-%%%% Insert OceanDepthO2ProteinPhotosynth figure from OceanPortal repository  %%%
+%%%% OceanProteinPortal data show complexes in environment  %%%
 
 
 <div class="figure">
@@ -278,6 +278,15 @@ deep ocean niches.
 
 
 %%%% Insert GAM figures  %%%
+
+
+<div class="figure">
+<img src="../Output/Figures/PICO_Hypervolume_GAM_MED4_Oxy_.png" alt="** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmole photons m-2 s-1) ** Rows are... Columns are..." width="3000" />
+<p class="caption">(\#fig:MED4GAM)** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmole photons m-2 s-1) ** Rows are... Columns are...</p>
+</div>
+
+
+
 
 %%%% Insert PURFits figures  %%%
 

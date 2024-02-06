@@ -79,7 +79,8 @@ library(cowplot)
 library(ggpubr)
 # library(RColorBrewer)
 library(tidyverse)
-
+library(png)
+library(cowplot)
 
 knitr::write_bib(c("tidyverse", "lubridate","knitr",  "broom", "zoo", "photobiologyWavebands", "RColorBrewer", "data.table","googlesheets4",  "grid", "glue", "bookdown", "photobiology", "mgcv", "minpack.lm", "ggh4x", "cowplot", "egg"), 'RPackages.bib')
 
@@ -322,9 +323,9 @@ deep ocean niches.
 
 \newpage
 
-# Results {.unnumbered}
+# Results and Discussion {.unnumbered}
 
-%%%% Insert OceanDepthO2ProteinPhotosynth figure from OceanPortal repository  %%%
+%%%% OceanProteinPortal data show complexes in environment  %%%
 
 
 ```{r ProchloroElectronTrans, fig.cap = ProchloroElectronTrans_cap , fig.height = 20, fig.width = 10, echo = FALSE}
@@ -341,6 +342,23 @@ knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroElectronTrans.png
 
 
 %%%% Insert GAM figures  %%%
+
+
+```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
+
+MED4GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmole photons m-2 s-1) **",
+                       "Rows are...",
+                       "Columns are...",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MED4_Oxy_.png"))
+
+
+```
+
+
+
 
 %%%% Insert PURFits figures  %%%
 
