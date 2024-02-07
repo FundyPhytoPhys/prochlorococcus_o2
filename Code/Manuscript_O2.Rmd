@@ -346,9 +346,15 @@ knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroElectronTrans.png
 
 ```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-MED4GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
-                       "Rows are...",
-                       "Columns are...",
+MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "The x-axis is photoperiod (h).",
+                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+                    "**A.** represents the model under 250 µM of O~2~ and red light.",
+                    "**B.** represents the model under 25 µM of O~2~ and red light.",
+                    "**C.** represents the model under 250 µM of O~2~ and blue light.",
+                    "**D.** represents the model under 25 µM of O~2~ and blue light.",
+                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
+                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -362,9 +368,15 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MED4_Oxy_.png
 
 ```{r SS120GAM,  fig.cap = SS120GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-SS120GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
-                       "Rows are...",
-                       "Columns are...",
+SS120GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "The x-axis is photoperiod (h).",
+                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+                    "**A.** represents the model under 250 µM of O~2~ and red light.",
+                    "**B.** represents the model under 25 µM of O~2~ and red light.",
+                    "**C.** represents the model under 250 µM of O~2~ and blue light.",
+                    "**D.** represents the model under 25 µM of O~2~ and blue light.",
+                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
+                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -377,9 +389,17 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_SS120_Oxy_.pn
 
 ```{r MIT9313GAM,  fig.cap = MIT9313GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-MIT9313GAM_cap <- glue("** The Generalized Additive Models (GAM) for red light at 660 nm and blue light at 450 nm.  The x-axis is photoperiod (h) and the y-axis is the Photosynethetic Active Radiation (PAR) (µmol photons m^-2^ s^-1^) **",
-                       "Rows are...",
-                       "Columns are...",
+MIT9313GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "The x-axis is photoperiod (h).",
+                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+                    "**A.** represents the model under 250 µM of O~2~ and red light.",
+                    "**B.** represents the model under 25 µM of O~2~ and red light.",
+                    "**C.** represents the model under 2.5 µM of O~2~ and red light.",
+                    "**D.** represents the model under 250 µM of O~2~ and blue light.",
+                    "**E.** represents the model under 25 µM of O~2~ and blue light.",
+                    "**F.** represents the model under 2.5 µM of O~2~ and blue light.",
+                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
+                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -402,7 +422,7 @@ MED4PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcu
                     
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
-                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles",
+                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
                        .sep = " ")
 
@@ -418,7 +438,7 @@ SS120PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococc
                      
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
-                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles",
+                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
                     
                        .sep = " ")
                        
@@ -435,7 +455,7 @@ MIT9313PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochloroco
                        
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
-                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles",
+                    "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
                        .sep = " ")
                        
