@@ -251,12 +251,13 @@ PURPARFits_dummy<- rbind.fill(PURPARFits, DummyDF_Expand) # Apply the rbind.fill
 detach("package:plyr")
 
 remove(DummyDF_Expand)
+remove(PURPARFits)
 
 ```
 
 
 ```{r testplot}
- PURPARFits %>% 
+ PURPARFits_dummy %>% 
   ggplot() +
   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
     scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450" )) +
@@ -322,38 +323,6 @@ Issue: OrgPur_day is 'NA' for 3 rows of MED4 x O2_um = 250
 Substitute in PURPhotonDose_day which includes extrapolated estimates of PUR for strain x growth light that lack OLIS spectra
  
 ```{r growthPURfits}
-
-
-
-#constrain with lower 0 and upper 1 limits to avoid excessive Pmax and negative b
-
-# PURPARStrainO2Nest <- PURPARFits |>
-#   nest(data = -c("Strain","O2_uM")) |>
-#   mutate(GRC_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grc(I = PUR_day, a, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-6,
-#                                            Pmax = 1),
-#                               lower = c(0, 0),
-#                               upper = c(1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRC_Param = map(GRC_Model, tidy),
-#          GRC_Predict = map(GRC_Model, possibly(augment), NULL),
-#          GRC_Glance = map(GRC_Model, possibly(glance))) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1), 
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          )
-
 
 # model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred for an O2 and photoperiod combination so that the model including all photoperiods would not be skewed towards zero. As per Amanda and Doug's advice, filtered out PUR d-1 above 1.5e+06 because only photoperiods greater than 4 hrs have PUR d-1 above.
 PURPARStrainO2NestModels_filtered <- PURPARFits_dummy |>
@@ -447,7 +416,7 @@ PURPARStrainO2NestModels_filtered <- PURPARFits_dummy |>
 #          GRClm_Glance = map(GRClm_Model, possibly(glance))
 #          )
 
-PURPARStrainO2PhotoNestModels_filtered <- PURPARFits_dummy |>
+PURPARStrainO2PhotoNestModels <- PURPARFits_dummy |>
    filter(PURPhotonDose_day <= 1.5e+06) |>
  nest(data = -c("Strain","O2_uM", "Photoperiod")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
@@ -473,7 +442,6 @@ PURPARStrainO2PhotoNestModels_filtered <- PURPARFits_dummy |>
          GRClm_Predict = map(GRClm_Model, possibly(augment)),
          GRClm_Glance = map(GRClm_Model, possibly(glance))
          )
-
 
 # # model with dummy dark, 0 PAR,  growth rates 
 # PURPARStrainO2WLNestModels <- PURPARFits_dummy |>
@@ -534,64 +502,9 @@ PURPARStrainO2PhotoNestModels_filtered <- PURPARFits_dummy |>
 
 # Plot fits
 ```{r growthPURplots, fig.height= 10, fig.width= 10}
-#ReplicateMean_
-
-# PURPARStrainWLNest |>
-#   #filter(!is.null(GRC_Model)) |>
-#   filter(!map_lgl(GRC_Model, is.null)) |>  
-#   unnest(GRC_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) + 
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) + 
-#   facet_grid(rows = vars(WL), cols = vars(Strain)) + 
-#   theme_bw()
-
-# PURPARStrainO2Nest |>
-#   filter(!map_lgl(GRC_Model, is.null)) |> #https://stackoverflow.com/questions/57336319/how-to-filter-out-null-elements-of-tibbles-list-column 
-#   unnest(GRC_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) + 
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) + 
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) + 
-#     labs(title = "PURPARStrainO2Nest GRC") +
-#   theme_bw()
 
 # PURPARStrainO2NestModels |>
 #   filter(!map_lgl(GRC_Model, is.null)) |> #https://stackoverflow.com/questions/57336319/how-to-filter-out-null-elements-of-tibbles-list-column 
-#   unnest(GRC_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) + 
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) + 
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) + 
-#     labs(title = "PURPARStrainO2NestModels GRC") +
-#   theme_bw()
-
-# PURPARStrainO2Nest |>
-#   filter(!map_lgl(GRCplatt_Model, is.null)) |>
-#   unnest(GRCplatt_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) + 
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) + 
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) + 
-#     labs(title = "PURPARStrainO2Nest Platt") +
-#   theme_bw()
-# 
-
-
-
-# PURPARStrainO2NestModels |>
-#   filter(!map_lgl(GRCplatt_Model, is.null)) |> # only include fits that did not fail
-#   unnest(GRCplatt_Predict, data) |>
-#    mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
-#          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
-#          Photoperiod = factor(Photoperiod, levels = c(16, 12, 8, 4))) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) + 
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) + 
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) + 
-#   labs(title = "PURPARStrainO2NestModels Platt") +
-#   theme_bw()
-
 PURPARStrainO2NestModels_filtered|>
   filter(!map_lgl(GRCplatt_Model, is.null)) |>
   unnest(GRCplatt_Predict, data) |>
@@ -605,38 +518,8 @@ PURPARStrainO2NestModels_filtered|>
   labs(title = "PURPARStrainO2NestModels_filtered Platt") +
   theme_bw()
 
-# PURPARStrainO2PhotoNestModels |>
-#   filter(!map_lgl(GRC_Model, is.null)) |>
-#   unnest(GRC_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
-#   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-#     labs(title = "PURPARStrainO2PhotoNestModels GRC") +
-#   theme_bw()
 
-
-# PURPARStrainO2PhotoNestModels |>
-#    filter(!map_lgl(GRC_Model, is.null)) |>
-#   unnest(GRC_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
-#   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-#     labs(title = "PURPARStrainO2PhotoNestModels GRC") +
-#   theme_bw()
-
-# PURPARStrainO2PhotoNestModels |>
-#   filter(!map_lgl(GRCplatt_Model, is.null)) |>
-#   unnest(GRCplatt_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
-#   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-#     labs(title = "PURPARStrainO2PhotoNestModels Platt") +
-#   theme_bw()
-
-PURPARStrainO2PhotoNestModels_filtered |>
+PURPARStrainO2PhotoNestModels |>
   filter(!map_lgl(GRCplatt_Model, is.null)) |>
   unnest(GRCplatt_Predict, data) |>
    mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -647,10 +530,10 @@ PURPARStrainO2PhotoNestModels_filtered |>
   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +   
   scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-    labs(title = "PURPARStrainO2PhotoNestModels_filtered Platt") +
+    labs(title = "PURPARStrainO2PhotoNestModels Platt") +
   theme_bw()
 
-PURPARStrainO2PhotoNestModels_filtered |>
+PURPARStrainO2PhotoNestModels |>
   filter(!map_lgl(GRClm_Model, is.null)) |>
   unnest(GRClm_Predict, data) |>
    mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -661,7 +544,7 @@ PURPARStrainO2PhotoNestModels_filtered |>
   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
    scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-    labs(title = "PURPARStrainO2PhotoNestModels_filtered Linear Model") +
+    labs(title = "PURPARStrainO2PhotoNestModels Linear Model") +
   theme_bw()
 
 PURPARFits_dummy |>
@@ -678,209 +561,18 @@ PURPARFits_dummy |>
   theme_bw()
 
 
-
-# PURPARStrainO2WLNestModels |>
-#   filter(!map_lgl(GRCplatt_Model, is.null)) |>
-#   unnest(GRCplatt_Predict, data) |>
-#    mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
-#          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
-#          Photoperiod = factor(Photoperiod, levels = c(16, 12, 8, 4))) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = Photoperiod)) +
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
-#   facet_grid(rows = vars(O2_uM, WL), cols = vars(Strain)) +
-#     labs(title = "PURPARStrainO2WLNestModels Platt") +
-#   theme_bw()
-
-
-# PURPARStrainO2PeriodWLNest |>
-#   filter(!map_lgl(GRCplatt_Model, is.null)) |>
-#   unnest(GRCplatt_Predict, data) |>
-#   ggplot() +
-#   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
-#   geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
-#   facet_grid(rows = vars(O2_uM, Photoperiod, WL), cols = vars(Strain)) +
-#     labs(title = "PURPARStrainO2PeriodWLNest Platt") +
-#   theme_bw()
-
 ```
 
-
-
-
-nlsLM generates AIC accessed with broom::glance
-Choose best model between platt and lm based on lowest GIC 
-```{r aic comparisons}
-#https://www.scribbr.com/statistics/akaike-information-criterion/
-
-#need to remove 'null' models to facilitate conversion of AIC from 'list' derived from 'Glance' column, to dbl
-# PURPARStrainO2BestModels <- PURPARStrainO2Nest|>
-#   select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#   filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-#   group_by(Strain, O2_uM) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2BestModels
-
-
-# PURPARStrainO2BestModels <- PURPARStrainO2NestModels|>
-#   # select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, data)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#   filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, possibly(~ as.numeric(pluck(.x, "AIC"))))) |>
-#   group_by(Strain, O2_uM) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2BestModels
-
-
-
-
-
-# PURPARStrainO2BestModels_filtered <- PURPARStrainO2NestModels_filtered|>
-#   # select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, data)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#     filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, possibly(~ as.numeric(pluck(.x, "AIC"))))) |>
-#   group_by(Strain, O2_uM) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2BestModels_filtered
-# 
-# PURPARStrainO2PhotoBestModels_filtered <- PURPARStrainO2PhotoNestModels_filtered|>
-#   # select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, Photoperiod, data)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#   filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-#   group_by(Strain, O2_uM, Photoperiod) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-# 
-# PURPARStrainO2PhotoBestModels_filtered
-
-
-
-
-
-# PURPARStrainO2PhotoBestModels <- PURPARStrainO2PhotoNestModels|>
-#   # select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, Photoperiod, data)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#   filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-#   group_by(Strain, O2_uM, Photoperiod) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2PhotoBestModels
-
-
-# PURPARStrainO2WLBestModels <- PURPARStrainO2WLNestModels|>
-#   # select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, WL, data)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#  filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Glance, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-#   group_by(Strain, O2_uM, WL) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2WLBestModels
-
-
-
-# PURPARStrainO2PhotoWLBestModels <- PURPARStrainO2PhotoNestModels|>
-#   select(-c(data)) |>
-#   pivot_longer(cols = -c(Strain, O2_uM, Photoperiod, WL)) |>
-#   drop_na(value) |>
-#   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-#   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-#   pivot_wider(names_from = Output, values_from = value) |>
-#   filter(!map_lgl(Model, is.null)) |>
-#   filter(!map_lgl(Param, is.null)) |>
-#   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-#   group_by(Strain, O2_uM, Photoperiod) |>
-#   filter(AIC == min(AIC)) |>
-#   ungroup() |>
-#   select(-c(Model, Glance)) |>
-#   unnest(Param) |>
-#   select(-c(statistic)) |>
-#   pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value))
-#  
-# PURPARStrainO2PhotoWLBestModels
-
-# mutate(Pmax_Ye = if_else(ModelType == "GRCbeta", estimate_a * ((sqrt(estimate_b + estimate_g) - sqrt(estimate_b))/estimate_g)^2, NA))
-
-```
-
-
-Want platt model for all fits that did not fail and lm for platt models that returned a NULL
+# Want platt model for all fits that did not fail and lm for platt models that returned a NULL
 ```{r}
-
+# O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
 #filter to keep platt models
-KeepPlattModel <- PURPARStrainO2PhotoNestModels_filtered|>
+KeepPlattModel <- PURPARStrainO2PhotoNestModels|>
   select(-c(GRClm_Glance, GRClm_Model, GRClm_Param, GRClm_Predict)) |>
    filter(!map_lgl(GRCplatt_Model, is.null))
 
 #filter to keep only the models that failed to fit a platt model, fits by lm remains. 
-KeepLmModel <- PURPARStrainO2PhotoNestModels_filtered|>
+KeepLmModel <- PURPARStrainO2PhotoNestModels|>
   filter(map_lgl(GRCplatt_Model, is.null)) |>
  select(-c(GRCplatt_Glance, GRCplatt_Model, GRCplatt_Param, GRCplatt_Predict))
    
@@ -890,8 +582,9 @@ StrainO2Photoperiod_AllModels <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
-  
- StrainO2Photofiltered_PlattLmModel <- StrainO2Photoperiod_AllModels |>
+
+# O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
+ StrainO2Photoperiod_PlattLmModel <- StrainO2Photoperiod_AllModels |>
    pivot_longer(cols = -c(Strain, O2_uM, Photoperiod, data)) |>
   drop_na(value) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param") | str_detect(name, pattern = "Predict")) |>
@@ -910,7 +603,7 @@ filter(!map_lgl(Model, is.null)) |>
  
  
  
- 
+# O2 nested data frame containing the single fit of pooled photoperiods 
  #filter to keep platt models
 KeepPlattModel <- PURPARStrainO2NestModels_filtered|>
   select(-c(GRClm_Glance, GRClm_Model, GRClm_Param, GRClm_Predict)) |>
@@ -925,7 +618,7 @@ KeepLmModel <- PURPARStrainO2NestModels_filtered|>
 StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel) 
  
  
- 
+# O2 nested data frame containing the single fit of pooled photoperiods 
  StrainO2filtered_PlattLmModel <- StrainO2_AllModels|>
   # select(-c(data)) |>
   pivot_longer(cols = -c(Strain, O2_uM, data)) |>
@@ -946,8 +639,8 @@ StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
- # remove(PURPARStrainO2NestModels_filtered)
- # remove(PURPARStrainO2PhotoNestModels_filtered)
+ remove(StrainO2Photoperiod_AllModels)
+ remove(StrainO2_AllModels)
  
 ```
 
@@ -956,6 +649,7 @@ StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel)
 Linear models do not have alpha, beta and pmax so inf and NA are generated. Change them to 0.
 ```{r lm platt parameters set to zero}
 
+# O2 nested data frame containing the single fit of pooled photoperiods for each strain 
 StrainO2filtered_PlattLmModel <- StrainO2filtered_PlattLmModel|>
   mutate(estimate_a = if_else(ModelType == "GRClm", 0, estimate_a),
          estimate_b = if_else(ModelType == "GRClm", 0, estimate_b),
@@ -964,23 +658,14 @@ StrainO2filtered_PlattLmModel <- StrainO2filtered_PlattLmModel|>
  
 StrainO2filtered_PlattLmModel
   
-  
-
-# PURPARStrainO2WLBestModels <- PURPARStrainO2WLBestModels|>
-#   mutate(estimate_a = if_else(ModelType == "GRClm", 0, estimate_a),
-#          estimate_b = if_else(ModelType == "GRClm", 0, estimate_b),
-#          estimate_Pmax = if_else(ModelType == "GRClm", 0, estimate_Pmax),
-#          AIC = if_else(ModelType == "GRClm" & is.infinite(AIC), 0, AIC)) 
-#  
-# PURPARStrainO2WLBestModels
-
-StrainO2Photofiltered_PlattLmModel <- StrainO2Photofiltered_PlattLmModel|>
+# O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
+StrainO2Photoperiod_PlattLmModel <- StrainO2Photoperiod_PlattLmModel|>
   mutate(estimate_a = if_else(ModelType == "GRClm", 0, estimate_a),
          estimate_b = if_else(ModelType == "GRClm", 0, estimate_b),
          estimate_Pmax = if_else(ModelType == "GRClm", 0, estimate_Pmax),
          AIC = if_else(ModelType == "GRClm" & is.infinite(AIC), 0, AIC)) 
  
-StrainO2Photofiltered_PlattLmModel
+StrainO2Photoperiod_PlattLmModel
 
 
 ```
@@ -989,6 +674,7 @@ StrainO2Photofiltered_PlattLmModel
 
 ```{r plot models}
 
+# O2 nested data frame containing the single fit of pooled photoperiods for each strain
 StrainO2filtered_PlattLmModel |>
   unnest(Predict, data) |>
   mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1006,9 +692,9 @@ StrainO2filtered_PlattLmModel |>
     labs(title = "Single fit for each [O2]- all photoperiods included that had growth") +
   theme_bw()
 
-StrainO2Photofiltered_PlattLmModel |>
+# O2 nested data frame containing the single fit of pooled photoperiods for each strain 
+StrainO2Photoperiod_PlattLmModel |>
   unnest(Predict, data) |>
-  
   mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
          Photoperiod = factor(Photoperiod, levels = c(16, 12, 8, 4))) |>
@@ -1019,33 +705,36 @@ StrainO2Photofiltered_PlattLmModel |>
   ) +
      scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-    labs(title = "Fits to be used for ANOVA comparison to single fit in each [O2]") +
+    labs(title = "Fits to be used for ANOVA comparison to single fit across each strain and [O2]") +
   theme_bw()
 
 ```
 
 
-
+# ANOVA comparison of single fit through pooled photoperiods for each strain and [O2] to the fit of each photoperiod in that pool. 
 ```{r compare 1 fit of all photoperiod to each photoperiods using platt or lm}
 
 # make wider to join with DF that contains the 1 fit through all photoperiods
-Wider_Photoperiods <- StrainO2Photofiltered_PlattLmModel %>% 
-  select(Strain, Photoperiod, O2_uM, Model) %>% 
-  pivot_wider(names_from = Photoperiod, values_from = Model)
+Wider_Photoperiods <- StrainO2Photoperiod_PlattLmModel %>% 
+  select(Strain, Photoperiod, O2_uM, Model, Predict) %>% 
+  pivot_wider(names_from = Photoperiod, values_from = c(Model, Predict))
 
 # this contains 1 fit through all photoperiods, the photoperiods with no growth were filtered out.
 AllPhotoperiods <- StrainO2filtered_PlattLmModel %>% 
-  select(Strain, O2_uM, Model) %>% 
- rename(All = 'Model')
+  select(Strain, O2_uM, Model, Predict, data) %>% 
+ rename(All = 'Model',
+        Predict_all = 'Predict',
+        Data_all = 'data')
 
-CombinePhotoperiods <- left_join(Wider_Photoperiods, AllPhotoperiods)
+
+AllFitsCombined <- left_join(Wider_Photoperiods, AllPhotoperiods)
 
 
-ANOVA_AllPhotoperiods <- CombinePhotoperiods %>% 
-  mutate(twelve = `12`,
-         four = `4`,
-         eight = `8`,
-         sixteen = `16`) %>%
+ANOVA_AllPhotoperiods <- AllFitsCombined %>% 
+  mutate(twelve = `Model_12`,
+         four = `Model_4`,
+         eight = `Model_8`,
+         sixteen = `Model_16`) %>%
   mutate(fourvsAll = map(map2(four, All, possibly(anova, otherwise = NULL)), tidy),
          eightvsAll = map(map2(eight, All, possibly(anova, otherwise = NULL)), tidy),
          twelvevsAll = map(map2(twelve, All, possibly(anova, otherwise = NULL)), tidy),
@@ -1056,7 +745,8 @@ ANOVA_AllPhotoperiods <- CombinePhotoperiods %>%
   filter(is.na(term) & is.na(p.value) |
            !is.na(term) & !is.na(p.value)) %>%
   select(Strain, O2_uM, name, p.value) %>% 
-  separate(name, into = c("Photoperiod1", "AllPhotoperiod"), sep = "vs") 
+  separate(name, into = c("Photoperiod1", "AllPhotoperiod"), sep = "vs") %>% 
+  mutate(pvalue = as.numeric(`p.value`))
 
 # %>% 
 #   mutate(p.value = case_when(is.na(p.value) ~ 0,
@@ -1078,10 +768,193 @@ ANOVA_AllPhotoperiods %>%
   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
   labs(title = "ANOVA compare all models",
        caption = "NA = atleast one model did not fit due to lack of data points; 
-       ns = not significantly different from all photoperiod model (same); 
-       dot = significantly different from all photoperiod model")
+       ns = not significantly different from all photoperiod model (p value > 0.05); 
+       dot = significantly different from all photoperiod model (p value < 0.05)")
+
+
+remove(Wider_Photoperiods)
+remove(AllPhotoperiods)
+```
+#Mirelle left off here,
+# Need to use the DF with all data (all the photoperiods that showed complete no growth )
+#next add fits that were sig different, do this dynamically
+```{r Plot fits, fig.height= 20, fig.width= 20 }
+
+scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
+
+
+AllFitsCombined |>
+   filter(Strain == "MED4") |>
+  unnest(cols = c(Data_all, Predict_all), names_sep = "_", keep_empty = TRUE) |>
+  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+         OxygenLabel = "Oxygen Concentration (µM)",
+         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         O2_uM = factor(O2_uM, levels = c(250, 25, 2.5))) %>%
+  ggplot() +
+  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 6, alpha = 1.0) +
+    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 1, alpha = 0.8) +
+  geom_line(aes(x = Predict_all_PURPhotonDose_day, y = Predict_all_.fitted), size = 1) + 
+ # geom_line(aes(x = PURPhotonDose_day, y = ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), linetype = as.factor(WL)), size = 0.5) +
+ labs(title = "MED4", y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
+ #geom_text(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr, label= Run),hjust=0.3, vjust=0) +
+  # geom_ribbon(aes(x = PURPhotonDose_day, ymin = ReplicateMean_deltaOD_Lmu_corr_day - ReplicateSE_deltaOD_Lmu_corr_day, ymax = ReplicateMean_deltaOD_Lmu_corr_day + ReplicateSE_deltaOD_Lmu_corr_day, fill = as.factor(WL)), alpha = 0.2, color = NA) +
+  # geom_errorbar(aes(x = PURPhotonDose_day, ymin = (ReplicateMean_deltaOD_Lmu_corr_day - deltaOD_Lmu_se), ymax = (ReplicateMean_deltaOD_Lmu_corr_day + deltaOD_Lmu_se)), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+    # scale_x_continuous(labels=scales::trans_format('log10', scales::math_format(10^.x)),
+    #                    # limits = c(10^4, 10^7),
+    #                    breaks = c(10^4, 10^5, 10^6)) +
+  scale_x_continuous(label=scientific_10) +
+      # scale_x_continuous(breaks = c(10^5, 10^6.0, 10^7), limits = c(10^5, 10^7)) +
+    # scale_x_continuous(breaks = c(10^4.2, 10^6, 10^6.7), limits = c(10^4.2, 10^6.7)) +
+  # coord_cartesian(xlim = c (0, 16)) +
+   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
+  # coord_cartesian(ylim = c (0, 0.07)) +
+  scale_colour_manual(values = MCMIXColours) +
+   # scale_x_continuous(values = c(min(PURPARFits$PURPhotonDose_day), max(PURPARFits$PURPhotonDose_day)), breaks = seq) +
+   # scale_x_log10(labels=scales::trans_format('log10',scales::math_format(10^.x)), breaks = c(10^4, 10^5, 10^6, 10^7), limits = c(10^4, 10^7)) +
+  # scale_y_continuous(limits = c(-0.05,0.050)) +
+  scale_linetype_manual(values = c("solid", "twodash", "dotted", "aa")) +
+   scale_shape_manual(values = PhotoperiodShapes)  +
+  ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
+                    labeller = labeller(Strain = label_both, WL = label_both, O2_uM = label_value, Photoperiod = label_value, PhotoperiodLabel_title = label_value, OxygenLabel = label_value)) +
+ guides(linetype = guide_legend(nrow = 4),
+        fill = "none",
+        colour = guide_legend(nrow = 4)) +
+ guides(shape = guide_legend(nrow = 4)) +
+  theme_bw() +
+   theme( strip.text = element_text(size = 30),
+        axis.title = element_text(size = 30, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black", angle = 45, hjust = 1.0),
+        axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
+        strip.background=element_rect(color="grey87", fill = "grey82"),
+        # strip.background=element_rect(fill = "white"),
+        legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.key.height = unit(1, 'cm'), #change legend key height
+        legend.key.width = unit(0.5, 'cm'), #change legend key width
+        legend.title =  element_text(size = 30),  #change legend title font size
+        legend.text = element_text(size = 30),   #change legend text font size
+        legend.position = "top") +
+  labs( shape = "Photoperiod (h)",
+        color = "Growth Waveband (nm)",
+       linetype = "Photoperiod (h) "
+      )
+
+AllFitsCombined |>
+   filter(Strain == "SS120") |>
+  unnest(cols = c(Data_all, Predict_all), names_sep = "_", keep_empty = TRUE) |>
+  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+         OxygenLabel = "Oxygen Concentration (µM)",
+         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         O2_uM = factor(O2_uM, levels = c(250, 25, 2.5))) %>%
+  ggplot() +
+  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 6, alpha = 1.0) +
+    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 1, alpha = 0.8) +
+  geom_line(aes(x = Predict_all_PURPhotonDose_day, y = Predict_all_.fitted), size = 1) + 
+ # geom_line(aes(x = PURPhotonDose_day, y = ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), linetype = as.factor(WL)), size = 0.5) +
+ labs(title = "SS120", y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
+ #geom_text(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr, label= Run),hjust=0.3, vjust=0) +
+  # geom_ribbon(aes(x = PURPhotonDose_day, ymin = ReplicateMean_deltaOD_Lmu_corr_day - ReplicateSE_deltaOD_Lmu_corr_day, ymax = ReplicateMean_deltaOD_Lmu_corr_day + ReplicateSE_deltaOD_Lmu_corr_day, fill = as.factor(WL)), alpha = 0.2, color = NA) +
+  # geom_errorbar(aes(x = PURPhotonDose_day, ymin = (ReplicateMean_deltaOD_Lmu_corr_day - deltaOD_Lmu_se), ymax = (ReplicateMean_deltaOD_Lmu_corr_day + deltaOD_Lmu_se)), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+    # scale_x_continuous(labels=scales::trans_format('log10', scales::math_format(10^.x)),
+    #                    # limits = c(10^4, 10^7),
+    #                    breaks = c(10^4, 10^5, 10^6)) +
+  scale_x_continuous(label=scientific_10) +
+      # scale_x_continuous(breaks = c(10^5, 10^6.0, 10^7), limits = c(10^5, 10^7)) +
+    # scale_x_continuous(breaks = c(10^4.2, 10^6, 10^6.7), limits = c(10^4.2, 10^6.7)) +
+  # coord_cartesian(xlim = c (0, 16)) +
+   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
+  # coord_cartesian(ylim = c (0, 0.07)) +
+  scale_colour_manual(values = MCMIXColours) +
+   # scale_x_continuous(values = c(min(PURPARFits$PURPhotonDose_day), max(PURPARFits$PURPhotonDose_day)), breaks = seq) +
+   # scale_x_log10(labels=scales::trans_format('log10',scales::math_format(10^.x)), breaks = c(10^4, 10^5, 10^6, 10^7), limits = c(10^4, 10^7)) +
+  # scale_y_continuous(limits = c(-0.05,0.050)) +
+  scale_linetype_manual(values = c("solid", "twodash", "dotted", "aa")) +
+   scale_shape_manual(values = PhotoperiodShapes)  +
+  ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
+                    labeller = labeller(Strain = label_both, WL = label_both, O2_uM = label_value, Photoperiod = label_value, PhotoperiodLabel_title = label_value, OxygenLabel = label_value)) +
+ guides(linetype = guide_legend(nrow = 4),
+        fill = "none",
+        colour = guide_legend(nrow = 4)) +
+ guides(shape = guide_legend(nrow = 4)) +
+  theme_bw() +
+   theme( strip.text = element_text(size = 30),
+        axis.title = element_text(size = 30, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black", angle = 45, hjust = 1.0),
+        axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
+        strip.background=element_rect(color="grey87", fill = "grey82"),
+        # strip.background=element_rect(fill = "white"),
+        legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.key.height = unit(1, 'cm'), #change legend key height
+        legend.key.width = unit(0.5, 'cm'), #change legend key width
+        legend.title =  element_text(size = 30),  #change legend title font size
+        legend.text = element_text(size = 30),   #change legend text font size
+        legend.position = "top") +
+  labs( shape = "Photoperiod (h)",
+        color = "Growth Waveband (nm)",
+       linetype = "Photoperiod (h) "
+      )
+
+AllFitsCombined |>
+   filter(Strain == "MIT9313") |>
+  unnest(cols = c(Data_all, Predict_all), names_sep = "_", keep_empty = TRUE) |>
+  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+         OxygenLabel = "Oxygen Concentration (µM)",
+         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         O2_uM = factor(O2_uM, levels = c(250, 25, 2.5))) %>%
+  ggplot() +
+  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 6, alpha = 1.0) +
+    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Data_all_Photoperiod), color = as.factor(Data_all_WL), fill = as.factor(Data_all_WL)), size = 1, alpha = 0.8) +
+  geom_line(aes(x = Predict_all_PURPhotonDose_day, y = Predict_all_.fitted), size = 1) + 
+ # geom_line(aes(x = PURPhotonDose_day, y = ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), linetype = as.factor(WL)), size = 0.5) +
+ labs(title = "MIT9313", y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
+ #geom_text(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr, label= Run),hjust=0.3, vjust=0) +
+  # geom_ribbon(aes(x = PURPhotonDose_day, ymin = ReplicateMean_deltaOD_Lmu_corr_day - ReplicateSE_deltaOD_Lmu_corr_day, ymax = ReplicateMean_deltaOD_Lmu_corr_day + ReplicateSE_deltaOD_Lmu_corr_day, fill = as.factor(WL)), alpha = 0.2, color = NA) +
+  # geom_errorbar(aes(x = PURPhotonDose_day, ymin = (ReplicateMean_deltaOD_Lmu_corr_day - deltaOD_Lmu_se), ymax = (ReplicateMean_deltaOD_Lmu_corr_day + deltaOD_Lmu_se)), size = 0.3, color = 'black', data = . %>% filter(GrowthAmpdeltaODFlag_14days  == 1)) +
+    # scale_x_continuous(labels=scales::trans_format('log10', scales::math_format(10^.x)),
+    #                    # limits = c(10^4, 10^7),
+    #                    breaks = c(10^4, 10^5, 10^6)) +
+  scale_x_continuous(label=scientific_10) +
+      # scale_x_continuous(breaks = c(10^5, 10^6.0, 10^7), limits = c(10^5, 10^7)) +
+    # scale_x_continuous(breaks = c(10^4.2, 10^6, 10^6.7), limits = c(10^4.2, 10^6.7)) +
+  # coord_cartesian(xlim = c (0, 16)) +
+   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
+  # coord_cartesian(ylim = c (0, 0.07)) +
+  scale_colour_manual(values = MCMIXColours) +
+   # scale_x_continuous(values = c(min(PURPARFits$PURPhotonDose_day), max(PURPARFits$PURPhotonDose_day)), breaks = seq) +
+   # scale_x_log10(labels=scales::trans_format('log10',scales::math_format(10^.x)), breaks = c(10^4, 10^5, 10^6, 10^7), limits = c(10^4, 10^7)) +
+  # scale_y_continuous(limits = c(-0.05,0.050)) +
+  scale_linetype_manual(values = c("solid", "twodash", "dotted", "aa")) +
+   scale_shape_manual(values = PhotoperiodShapes)  +
+  ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
+                    labeller = labeller(Strain = label_both, WL = label_both, O2_uM = label_value, Photoperiod = label_value, PhotoperiodLabel_title = label_value, OxygenLabel = label_value)) +
+ guides(linetype = guide_legend(nrow = 4),
+        fill = "none",
+        colour = guide_legend(nrow = 4)) +
+ guides(shape = guide_legend(nrow = 4)) +
+  theme_bw() +
+   theme( strip.text = element_text(size = 30),
+        axis.title = element_text(size = 30, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black", angle = 45, hjust = 1.0),
+        axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
+        strip.background=element_rect(color="grey87", fill = "grey82"),
+        # strip.background=element_rect(fill = "white"),
+        legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.key.height = unit(1, 'cm'), #change legend key height
+        legend.key.width = unit(0.5, 'cm'), #change legend key width
+        legend.title =  element_text(size = 30),  #change legend title font size
+        legend.text = element_text(size = 30),   #change legend text font size
+        legend.position = "top") +
+  labs( shape = "Photoperiod (h)",
+        color = "Growth Waveband (nm)",
+       linetype = "Photoperiod (h) "
+      )
 
 ```
+
+
+
+
+
+
 # Remove the photoperiods from the model that are significantly different from the ANOVA run on the single fit against each individual photoperiod.   
 ```{r}
 # model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred for an O2 and photoperiod combination so that the model including all photoperiods would not be skewed towards zero. As per Amanda and Doug's advice, filtered out PUR d-1 above 1.5e+06 because only photoperiods greater than 4 hrs have PUR d-1 above.
@@ -1107,6 +980,8 @@ PURPARStrainO2NestModels_filteredPhotoperiods <- PURPARFits_dummy |>
                                         Strain == "SS120"  & O2_uM == 25 & Photoperiod %in% c(8) ~ 1,
                                         Strain == "SS120"  & O2_uM == 2.5 & Photoperiod %in% c(8) ~ 1,
                                         TRUE ~ 0))  |>
+  filter(removephotoperiod == 0,
+          PURPhotonDose_day <= 1.5e+06) |>
   nest(data = -c("Strain","O2_uM")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
@@ -1174,7 +1049,7 @@ StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel)
  remove(KeepPlattModel)
  remove(KeepLmModel)
  # remove(PURPARStrainO2NestModels_filtered)
- # remove(PURPARStrainO2PhotoNestModels_filtered)
+ # remove(PURPARStrainO2PhotoNestModels)
  
 ```
 
@@ -1198,7 +1073,7 @@ StrainO2filteredPhotoperiod_PlattLmModel |>
     labs(title = "New single fit for each [O2]- photoperiods that were significantly different were removed from single fit") +
   theme_bw()
 
-StrainO2Photofiltered_PlattLmModel |>
+StrainO2filteredPhotoperiod_PlattLmModel |>
   unnest(Predict, data) |>
   
   mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1211,27 +1086,31 @@ StrainO2Photofiltered_PlattLmModel |>
   ) +
      scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-    labs(title = "Fits to be used for ANOVA comparison to single fit in each [O2]") +
+    labs(title = "Photoperiods included in the single fit for each [O2]") +
   theme_bw()
 
 ```
-# ANOVA on new model with signifiacntly different fits removed from the single fit.
+
+
+
+# ANOVA on new model with significantly different fits removed from the single fit.
 ```{r compare 1 fit of all photoperiod to each photoperiods using platt or lm}
 
 # make wider to join with DF that contains the 1 fit through all photoperiods
-Wider_Photoperiods <- StrainO2Photofiltered_PlattLmModel %>% 
-  select(Strain, Photoperiod, O2_uM, Model) %>% 
-  pivot_wider(names_from = Photoperiod, values_from = Model)
+Wider_Photoperiods <- StrainO2Photoperiod_PlattLmModel %>% 
+  select(Strain, Photoperiod, O2_uM, Model, Predict) %>% 
+  pivot_wider(names_from = Photoperiod, values_from = c(Model, Predict))
 
 # this contains 1 fit through all photoperiods, the photoperiods with no growth were filtered out.
 AllPhotoperiods <- StrainO2filteredPhotoperiod_PlattLmModel %>% 
-  select(Strain, O2_uM, Model) %>% 
- rename(All = 'Model')
+  select(Strain, O2_uM, Model, Predict) %>% 
+ rename(All = 'Model',
+        Predict_all = 'Predict')
 
-CombinePhotoperiods <- left_join(Wider_Photoperiods, AllPhotoperiods)
+AllFitsCombined_filtered <- left_join(Wider_Photoperiods, AllPhotoperiods)
 
 
-ANOVA_AllPhotoperiods <- CombinePhotoperiods %>% 
+ANOVA_AllPhotoperiods <- AllFitsCombined_filtered %>% 
   mutate(twelve = `12`,
          four = `4`,
          eight = `8`,
@@ -1277,177 +1156,6 @@ ANOVA_AllPhotoperiods %>%
 ```{r}
 
 ```
-
-
-
-# Doug said not to do this
-```{r ANOVA between photoperiods platt model}
-
-# ANOVA_Photoperiods <- PURPARStrainO2PhotoNestModels %>% 
-#   select(Strain, Photoperiod, O2_uM, GRCplatt_Model) %>% 
-#   pivot_wider(names_from = Photoperiod, values_from = GRCplatt_Model) %>% 
-#   mutate(twelve = `12`,
-#          four = `4`,
-#          eight = `8`,
-#          sixteen = `16`) %>% 
-#   # select(-c(eight, four)) %>% 
-#   # filter(!map_lgl(twelve, is.null),
-#   #        !map_lgl(sixteen, is.null)) %>% 
-#   mutate(fourvseight = map(map2(four, eight, possibly(anova, otherwise = NULL)), tidy),
-#          fourvstwelve = map(map2(four, twelve, possibly(anova, otherwise = NULL)), tidy),
-#          fourvssixteen = map(map2(four, sixteen, possibly(anova, otherwise = NULL)), tidy),
-#          eightvstwelve = map(map2(eight, twelve, possibly(anova, otherwise = NULL)), tidy),
-#          eightvssixteen = map(map2(eight, sixteen, possibly(anova, otherwise = NULL)), tidy),
-#          twelvevssixteen =map(map2(twelve, sixteen, possibly(anova, otherwise = NULL)), tidy)) %>% 
-#   select(Strain, O2_uM, fourvseight, fourvstwelve, fourvssixteen, eightvstwelve, eightvssixteen, twelvevssixteen) %>% 
-#   pivot_longer(cols = c(fourvseight, fourvstwelve, fourvssixteen, eightvstwelve, eightvssixteen, twelvevssixteen)) %>% 
-#   unnest(value, keep_empty = TRUE) %>% 
-#   filter(is.na(term) & is.na(p.value) |
-#            !is.na(term) & !is.na(p.value)) %>%
-#   select(Strain, O2_uM, name, p.value) %>% 
-#   separate(name, into = c("Photoperiod1", "Photoperiod2"), sep = "vs") 
-# 
-# # %>% 
-# #   mutate(p.value = case_when(is.na(p.value) ~ 0,
-# #                              TRUE ~ p.value)) # Changed all failed fits to p.value = 0
-#   # mutate(pval = pluck(value, "p.value", 2))
-#   
-# # ANOVA_Photoperiods %>% 
-# #     mutate(Photoperiod1 = factor(Photoperiod1, levels = c("four", "eight", "twelve", "sixteen")),
-# #            Photoperiod2 = factor(Photoperiod2, levels = c( "four","eight", "twelve", "sixteen"))) %>% 
-# #   ggplot() +
-# #   geom_point(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` < 0.05)) +
-# #   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` > 0.05), label = "ns") +
-# #   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(is.na(`p.value`)), label = "NA") +
-# #   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
-# #   labs(caption = "NA = atleast one model did not fit; 
-# #        ns = not significantly different from each other (same); 
-# #        dot = significantly different from each other")
-# 
-# 
-# 
-# ANOVA_Photoperiods %>% 
-#   mutate(Photoperiod1 = as.numeric(case_when(Photoperiod1 == 'four' ~ 4,
-#                                             Photoperiod1 == 'eight' ~ 8,
-#                                             Photoperiod1 == 'twelve' ~ 12,
-#                                             Photoperiod1 == 'sixteen' ~ 16))) %>% 
-#   mutate(Photoperiod2 = as.numeric(case_when(Photoperiod2 == 'four' ~ 4,
-#                                             Photoperiod2 == 'eight' ~ 8,
-#                                             Photoperiod2 == 'twelve' ~ 12,
-#                                             Photoperiod2 == 'sixteen' ~ 16)),
-#          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
-#          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>% 
-#     # mutate(Photoperiod2 = factor(Photoperiod2, levels = c("four", "eight", "twelve", "sixteen")),
-#     #        Photoperiod1 = factor(Photoperiod1, levels = c( "four","eight", "twelve", "sixteen"))) %>% 
-#   ggplot() +
-#   geom_point(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` < 0.05)) +
-#   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` > 0.05), label = "ns") +
-#   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(is.na(`p.value`)), label = "NA") +
-#   scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
-#   scale_y_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
-#   labs(title = "ANOVA compare GRCplatt_Model",
-#        caption = "NA = atleast one model did not fit; 
-#        ns = not significantly different from each other (same); 
-#        dot = significantly different from each other")
-# 
-# 
-
-```
-4 h photoperiod is almost always different from others. 
-8 h photoperiod is different for MED4 at 25 uM; MIT9313, 8 and 12 are different at 2.5. all others are not significantly different from one another
-
-
-#now do ANOVA on fits that include lm for conditions where no growth occured across photoperiod
-# Doug said this is not what I should do, only ANOVA of 1 fit through all photoperiod against each photoperiod as done chunk above.
-```{r ANOVA using best model platt or lm}
-
-# # PURPARStrainO2PhotoperiodBestModels <- PURPARStrainO2PhotoNestModels |>
-# #   select(-c(data)) |>
-# #   pivot_longer(cols = -c(Strain, O2_uM, Photoperiod)) |>
-# #   drop_na(value) |>
-# #   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param")) |>
-# #   separate(col = name , into = c("ModelType", "Output"), sep = "_") |>
-# #   pivot_wider(names_from = Output, values_from = value) |>
-# #   filter(!map_lgl(Model, is.null)) |>
-# #   mutate(AIC = map_dbl(Glance, ~ as.numeric(pluck(.x, "AIC")))) |>
-# #   group_by(Strain, O2_uM, Photoperiod) |>
-# #   filter(AIC == min(AIC)) |>
-# #   ungroup()
-# 
-# ANOVA_BestModel <- StrainO2Photoperiod_PlattLmModel %>% 
-#   select(Strain, Photoperiod, O2_uM, Model) %>% 
-#   pivot_wider(names_from = Photoperiod, values_from = Model) %>% 
-#   mutate(twelve = `12`,
-#          four = `4`,
-#          eight = `8`,
-#          sixteen = `16`) %>% 
-#   # select(-c(eight, four)) %>% 
-#   # filter(!map_lgl(twelve, is.null),
-#   #        !map_lgl(sixteen, is.null)) %>% 
-#   mutate(fourvseight = map(map2(four, eight, possibly(anova, otherwise = 0)), tidy),
-#          fourvstwelve = map(map2(four, twelve, possibly(anova, otherwise = 0)), tidy),
-#          fourvssixteen = map(map2(four, sixteen, possibly(anova, otherwise = 0)), tidy),
-#          eightvstwelve = map(map2(eight, twelve, possibly(anova, otherwise = 0)), tidy),
-#          eightvssixteen = map(map2(eight, sixteen, possibly(anova, otherwise = 0)), tidy),
-#          twelvevssixteen =map(map2(twelve, sixteen, possibly(anova, otherwise = 0)), tidy)) %>% 
-#   select(Strain, O2_uM, fourvseight, fourvstwelve, fourvssixteen, eightvstwelve, eightvssixteen, twelvevssixteen) %>% 
-#   pivot_longer(cols = c(fourvseight, fourvstwelve, fourvssixteen, eightvstwelve, eightvssixteen, twelvevssixteen)) %>% 
-#   unnest(value, keep_empty = TRUE) %>% 
-#   filter(is.na(term) & is.na(p.value) |
-#            !is.na(term) & !is.na(p.value)) %>%
-#   select(Strain, O2_uM, name, p.value) %>% 
-#   separate(name, into = c("Photoperiod1", "Photoperiod2"), sep = "vs") 
-# 
-# # %>% 
-# #   mutate(p.value = case_when(is.na(p.value) ~ 0,
-# #                              TRUE ~ p.value)) # Changed all failed fits to p.value = 0
-#   # mutate(pval = pluck(value, "p.value", 2))
-#   
-# # ANOVA_Photoperiods %>% 
-# #     mutate(Photoperiod1 = factor(Photoperiod1, levels = c("four", "eight", "twelve", "sixteen")),
-# #            Photoperiod2 = factor(Photoperiod2, levels = c( "four","eight", "twelve", "sixteen"))) %>% 
-# #   ggplot() +
-# #   geom_point(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` < 0.05)) +
-# #   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` > 0.05), label = "ns") +
-# #   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(is.na(`p.value`)), label = "NA") +
-# #   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
-# #   labs(caption = "NA = atleast one model did not fit; 
-# #        ns = not significantly different from each other (same); 
-# #        dot = significantly different from each other")
-# 
-# 
-# 
-# ANOVA_BestModel %>% 
-#   mutate(Photoperiod1 = as.numeric(case_when(Photoperiod1 == 'four' ~ 4,
-#                                             Photoperiod1 == 'eight' ~ 8,
-#                                             Photoperiod1 == 'twelve' ~ 12,
-#                                             Photoperiod1 == 'sixteen' ~ 16))) %>% 
-#   mutate(Photoperiod2 = as.numeric(case_when(Photoperiod2 == 'four' ~ 4,
-#                                             Photoperiod2 == 'eight' ~ 8,
-#                                             Photoperiod2 == 'twelve' ~ 12,
-#                                             Photoperiod2 == 'sixteen' ~ 16)),
-#          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
-#          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>%
-#     # mutate(Photoperiod2 = factor(Photoperiod2, levels = c("four", "eight", "twelve", "sixteen")),
-#     #        Photoperiod1 = factor(Photoperiod1, levels = c( "four","eight", "twelve", "sixteen"))) %>% 
-#   ggplot() +
-#   geom_point(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` < 0.05)) +
-#   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(`p.value` > 0.05), label = "ns") +
-#   geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(is.na(`p.value`)), label = "NA") +
-#     geom_text(aes(x = Photoperiod1, y = Photoperiod2), data = . %>% filter(is.nan(`p.value`)), label = "Not a number") + #tried this did not work
-#   scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
-#   scale_y_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
-#   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
-#   labs(title = "ANOVA compare Best Model",
-#        caption = "NA = atleast one model did not fit; 
-#        ns = not significantly different from each other (same); 
-#        dot = significantly different from each other")
-# 
-
-```
-The no growths, linear fit return NaN in ANOVA 
-
 
 
 
