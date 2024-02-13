@@ -328,15 +328,18 @@ deep ocean niches.
 %%%% OceanProteinPortal data show complexes in environment  %%%
 
 
-```{r ProchloroElectronTrans, fig.cap = ProchloroElectronTrans_cap , fig.height = 20, fig.width = 10, echo = FALSE}
+```{r ProchloroPhotosynthDepthO2, fig.cap = ProchloroPhotosynthDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroElectronTrans_cap <- glue("**Occurance of electron transport complexes data from the Ocean Protein Portal. X-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
-                       "Rows are...",
-                       "Columns are...",
+ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
+                       "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
+                       "Columns show detections of proteins annotated as from Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
+                       "Horizontal lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
+                       "Vertical lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
+ .sep = " ")
 
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroElectronTrans.png"))
+knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroPhotosynthDepthO2.png"))
 ```
 
 \newpage
@@ -391,7 +394,7 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_SS120_Oxy_.pn
 
 MIT9313GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.**",
                     "The x-axis is photoperiod (h).",
-                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+                    "The y-axis is actinic Photosynthetically Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 2.5 µM of O~2~ and red light.",
@@ -468,13 +471,24 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313PAR.png"))
 %%%% OceanFtsHRibosomeProteins figure from OceanPortal repository  %%%
 
 
-```{r ProchloroMetabDepthO2, fig.cap = ProchloroMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
+```{r ProchloroProteinMetabDepthO2, fig.cap = ProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. The x-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
+ProchloroProteinMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. The x-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
                        "Rows are...",
                        "Columns are...",
 
                        .sep = " ")
+
+ProchloroElectronTrans_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein turnover complexes.**", 
+                       "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
+                       "Columns show detections of proteins annotated as from FtsH1, FtsH2, FtsH3 or Ribosome).",
+                       "Horizontal lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
+                       "Vertical lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
+ .sep = " ")
+
+
 
 knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroMetabDepthO2.png"))
 ```
@@ -484,32 +498,32 @@ knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroMetabDepthO2.png"
 
 
 
-```{r MED4ProteinAttonated, fig.cap = MED4ProteinAttonated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MED4ProteinAnotated, fig.cap = MED4ProteinAnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MED4ProteinAttonated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  **",  
+MED4ProteinAnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  **",  
                     
                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole/ug",
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAttonated.png"))
+knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnotated.png"))
 ```
 
 \newpage
 
 
 
-```{r MIT9313ProteinAttonated, fig.cap = MIT9313ProteinAttonated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MIT9313ProteinAnotated, fig.cap = MIT9313ProteinAnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313ProteinAttonated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
+MIT9313ProteinAnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
                     
                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole/ug",
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAttonated.png"))
+knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnotated.png"))
 ```
 
 \newpage

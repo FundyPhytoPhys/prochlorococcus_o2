@@ -193,7 +193,7 @@ TargetProtein %>%
                     labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MIT9313ProteinAttonated <- TargetProtein %>%
+MIT9313ProteinAnotated <- TargetProtein %>%
   filter( Strain == "MIT9313") %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
@@ -206,10 +206,10 @@ MIT9313ProteinAttonated <- TargetProtein %>%
                     labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MIT9313ProteinAttonated
+MIT9313ProteinAnotated
 
 
-MED4ProteinAttonated <- TargetProtein %>%
+MED4ProteinAnotated <- TargetProtein %>%
   filter( Strain == "MED4") %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
@@ -222,14 +222,14 @@ MED4ProteinAttonated <- TargetProtein %>%
                     labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MED4ProteinAttonated
+MED4ProteinAnotated
 ```
 
 ```{r }
 
- ggsave(file = file.path(PlotsOut, paste("MED4ProteinAttonated",".png",sep = "")), plot = MED4ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+ ggsave(file = file.path(PlotsOut, paste("MED4ProteinAnotated",".png",sep = "")), plot = MED4ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("MIT9313ProteinAttonated",".png",sep = "")), plot = MIT9313ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("MIT9313ProteinAnotated",".png",sep = "")), plot = MIT9313ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
