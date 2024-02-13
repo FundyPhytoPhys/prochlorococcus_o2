@@ -334,8 +334,8 @@ ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus ma
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
                        "Columns show detections of proteins annotated as from Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
-                       "Horizontal lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
-                       "Vertical lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Horizontal grey lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
+                       "Vertical grey lines indicate O~2~ (µM) used for  later culture growth.",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
@@ -483,8 +483,8 @@ ProchloroElectronTrans_cap <- glue("**Ocean detection of *Prochlorococcus marinu
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
                        "Columns show detections of proteins annotated as from FtsH1, FtsH2, FtsH3 or Ribosome).",
-                       "Horizontal lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
-                       "Vertical lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Horizontal grey lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
+                       "Vertical grey lines indicate O~2~ (µM) used for  later culture growth.",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
