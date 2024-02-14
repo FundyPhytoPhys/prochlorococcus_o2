@@ -333,9 +333,8 @@ deep ocean niches.
 ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
-                       "Columns show detections of proteins annotated as from Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
-                       "Horizontal grey lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
-                       "Vertical grey lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
+                       "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for O~2~ (µM).",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
@@ -473,18 +472,11 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313PAR.png"))
 
 ```{r ProchloroProteinMetabDepthO2, fig.cap = ProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroProteinMetabDepthO2_cap <- glue("**Protein turnover complexes data from the Ocean Protein Portal. The x-axis is the oxygen concentration (µM) and the y-axis indicates the depth (m) of occurance**",
-                       "Rows are...",
-                       "Columns are...",
-
-                       .sep = " ")
-
-ProchloroElectronTrans_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein turnover complexes.**", 
+ProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein turnover complexes.**", 
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
-                       "Columns show detections of proteins annotated as from FtsH1, FtsH2, FtsH3 or Ribosome).",
-                       "Horizontal grey lines indicate depths equivalent to the Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) used for later culture growth.",
-                       "Vertical grey lines indicate O~2~ (µM) used for  later culture growth.",
+                       "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome).",
+                       "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for O~2~ (µM).",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
