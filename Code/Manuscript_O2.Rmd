@@ -126,124 +126,54 @@ knitr::knit_hooks$set(knitcitations = function(before, options, envir) {
 
 # Materials and methods {.unnumbered}
 
-## Culturing {.unnumbered}
+## Ocean Protein Portal analyses {.unnumbered}
 
-%%%%%% Taken from my thesis word for word, need to reword and shorten %%%%
+## *Prochlorococcus* culturing {.unnumbered}
 
-Three xenic *P. marinus* cultures, obtained from Bigelow Labs, NCMA
-Maine, US: MED4 (CCMP1986) from a High Light-adapted (HLI) clade, SS120
-(CCMP1375) from a Low Light-adapted (LLIII) clade and MIT9313 (CCMP2773)
-also from a Low Light-adapted (LLIV) clade. These cultures were then
-maintained in two separate incubators. The temperature for both
-incubators was set to 22°C and a light/dark cycle of 12 h. The PAR level
-of the incubator was chosen to reflect the light level of the natural
-niche of the ecotype during culturation. The PAR level of the incubator
-containing the HLI clade, MED4, was set at 160 µmol photons m^-2^ s^-1^,
-whereas the incubator containing the LLIII and LLIV clades, SS120 and
-MIT9313 respectively, was set at 30 µmol photons m^-2^ s^-1^. To ensure
-cultures remained in exponential growth phase, all strains were
-transferred weekly in Pro99 media prepared according to
-[@mooreCulturingMarineCyanobacterium2007] in autoclaved artificial
-seawater. Artificial seawater was prepared according to the National
+Three xenic cultures of *P. marinus* were obtained from Bigelow Labs, NCMA
+Maine, US (REFERENCE). MED4 (CCMP1986) is from High Light-adapted (HLI) clade; SS120
+(CCMP1375) is from Low Light-adapted (LLIII) clade; and MIT9313 (CCMP2773)
+is from Low Light-adapted (LLIV) clade. Cultures were
+maintained in incubators set to 22°C with a light/dark cycle of 12 h, with illumination from XXXXX. The PAR level for maintenance cultures reflected  Photosynthetically Active Radiation (PAR) in the source
+niche of the ecotype; MED4, of 160 µmol photons m^-2^ s^-1^; SS120 and
+MIT9313 at 30 µmol photons m^-2^ s^-1^. To maintain active growth all strains were
+transferred weekly with XX to YY dilution with Pro99 media
+[@mooreCulturingMarineCyanobacterium2007] prepared with autoclaved artificial
+seawater (National
 Center for Marine Algae and Microbiota (NCMA) protocol by combining salt
 solution I and salt solution II using the enriched artificial seawater
-(ESAW) recipe.
+(ESAW) recipe.  REPLACe with CITATION OF NCMA protocol)XXXX
 
-## Experimental design {.unnumbered}
+## Experimental design using bioreactor control of light and [O~2~] {.unnumbered}
 
-%%%%%% Taken from my thesis word for word, need to reword and shorten %%%%
+Controlled growth experiments were performed using PSI Multicultivators (Figure \@ref(fig:LabeledMC); MCMIX-OD orMC1000-OD, Brno, Czech Republic ).  Each multicultivator individually controls 8 tubes at a common temperature of 22°C.  Each tube containing 70 mL of Pro99 media was inoculated with 10 mL of growing maintenance culture. In a factorial matrix design, each tube was then subject to an individual combination of sinusoidal photoperiod (4, 8, 12, 16  h);  reaching a peak PAR (30, 90, 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (AA, BB, CC, DD nm).  [O~2~] levels (2.5 µM, 25 µM, 250 µM) were imposed by bubbling tubes with varying ratios of air and
+Nitrogen (N~2~), with consistent 0.05% of Carbon Dioxide (CO~2~)
+gas, delivered through a 0.2 μm sterile microfilter via a G400 gas mixing system XXXXGIVE SOURCEXXXX. [O~2~] in situ was verified using oxygen optodes (PyroScience,
+Germany) inserted into tubes for
+real-time measurements, with a temperature probe in
+the aquarium of the bioreactor to correct [O~2~] measures for temperature
+fluctuations. In addition, the Pyroscience software corrected [O~2~] based on the
+salinity of the media (32 ppt). The flow rate of the gas mixture was controlled, but variations in bubbling speed, PAR and culture density affected the [O~2~] achieved in each tube. A low [O~2~] of 0.5 µM - 5 µM (reported as 2.5 µM hereafter),  was achieved by sparging with a gas mixture containing 99.95% N~2~ and 0.05%
+CO~2~. An intermediate [O~2~] of 10 - 25 µM (reported hereafter as 25 µM) was achieved by sparging with a gas mixture containing 98.95% N~2~, 0.05% CO~2~ and 1% O~2~. A high O~2~ of 200 µM - 280 µM (reported hereafter as 250 µM) was achieved by sparging with lab air (78% N~2~, 21% O~2~, 1% Ar and 0.05% CO~2~).
 
-For each of three ecotypes, we imposed [O~2~] (three levels: 2.5 µM,
-25µM, 250 µM), photoperiod (four levels: 4 h, 8 h, 12 h, 16 h), spectral
-waveband (four bands: full spectrum white LED, 660 nm, 530 nm, 450 nm),
-and light level (three levels: 30, 90, 180 µmol photons m^-2^ s^-1^)
-treatments in a factorial design. Each factor is explained below. The
-full crossing of all factors would yield 3 x 4 x 4 x 3 = 144 treatments
-per ecotype (432 total), but due to time constraints and total absence
-of growth of some ecotypes under some conditions, not all treatments
-were carried out. In total, we completed 291 treatments.
+The full crossing of all factor levels would yield 4 x 3 x 4 x 3 = 144 treatments, x 3 strains for 432 possible combinations. Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O~2~] meant we completed 291 growth factor treatment combinations. 
 
-All growth experiments were conducted at 22°C.
+In situ XXXXItalicsXXX measurements of Optical Density (OD) 680 nm, a proxy for cell suspension density, cell size dependent scatter and cell chlorophyll content;  and OD 720 nm, a proxy for cell suspension density and cell size dependent scatter, were recorded every 5 minutes over least 8 to 14 days,  depending on the
+duration of the lag phase, if any. All data from the Multicultivator were saved
+as comma separated values file  (CITATION of FILES LOCATION).
 
-## Experimental light conditions {.unnumbered}
-
-%%%%%% Taken from my thesis word for word, need to reword and shorten %%%%
-
-Three growth Photosynthetically Active Radiation (PAR) levels (180, 90,
-and 30 µmol photons m^-2^ s^-1^) and four spectral wavebands (white LED
-full spectrum, 660 nm, 530 nm, and 450 nm) were chosen to simulate light
-levels and spectral color spanning the vertical ocean water column, from
-near-surface to the lower euphotic zone depths. For simplicity, actinic light used for growth
-under specific wavebands will be referred by the respective spectral
-color; white LED for LED full spectrum, red for 660 nm, green for 530 nm
-and blue for 450 nm. Four different photoperiods were chosen to simulate
-various diel cycles characteristic of current and hypothetical future
-niches of *P. marinus*. A photoperiod of 16 h was chosen to represent
-temperate (45°N) summer at the ocean surface, 12 h for equatorial (0°N)
+PAR of 180, 90 or 30 µmol photons m^-2^ s^-1^, and spectral wavebands (white LED
+full spectrum, 660 nm, 530 nm, and 450 nm) were chosen to approximate light
+levels and spectral colors spanning the vertical ocean water column, from
+near-surface to the lower euphotic zone depths. Photoperiods were chosen to approximate diel cycles characteristic of current and hypothetical future
+niches of *P. marinus*; 16 h represents
+temperate (45°N) summer at the ocean surface; 12 h for equatorial (0°N)
 ocean surface or temperate (45°N) spring and fall ocean surface or
-temperate (45°N) summer at deep ocean depths, 8 h for temperate (45°N)
+temperate (45°N) summer at deeper ocean depths; 8 h for temperate (45°N)
 winter at the surface or at temperate (45°N) spring and fall at depth
-and equatorial (0°N) deep ocean depths and 4 h for temperate (45°N)
+and equatorial (0°N) deep ocean depths; and 4 h for temperate (45°N)
 winter or deep ocean depths during temperate (45°N) spring and fall.
 
-## Experimental oxygen conditions {.unnumbered}
-
-%%%%%% Taken from my thesis word for word, need to reword and shorten %%%%
-
-Three target dissolved oxygen concentrations [O~2~] were delivered to
-tubes of the Multicultivator by mixing varying ratios of air and
-Nitrogen (N~2~) gases while delivering 0.05% of Carbon Dioxide (CO~2~)
-gas through a 0.2 μm sterile microfilter via a G400 gas mixing system.
-To confirm and monitor the [O~2~], 4 FireSting optodes (PyroScience,
-Germany) were inserted into select tubes of each modified [O~2~] run for
-real-time measurements. A compensation temperature probe was placed in
-the aquarium of the bioreactor to correct [O~2~] for temperature
-fluctuations. In addition, the software corrected [O~2~] based on the
-salinity of the media (32 ppt). For the low O~2~ environment
-experiments, 0.5 to 1.0 µM of O~2~ was delivered to each Multicultivator
-tube by sparging with a gas mixture containing 99.95% N~2~ and 0.05%
-CO~2~ to purge dissolved O~2~ out of the culture. The intermediate O~2~
-environment experiments were sparged to deliver 10 to 25 µM of O~2~
-using a gas mixture containing 98.95% N~2~, 0.05% CO~2~ and 1% O~2~. The
-high O~2~ environment experiments were sparged with lab air (78% N~2~,
-21% O~2~, 1% Ar and 0.05% CO~2~) to deliver 230 µM of O~2~. While the
-flow rate of the gas mixture was controlled, variations in bubbling
-speed affected the [O~2~] delivered to each tube; therefore, a range of
-[O~2~] was defined for each experimental O~2~ level; 0.5 µM - 5 µM for
-low, 5 µM - 50 µM for intermediate and 200 µM - 280 µM for high O~2~
-experiments. To simplify the representation of experimental [O~2~]
-conditions in graphs and discussions, the approximate median [O~2~] of
-each experimental range: 2.5 µM, 25 µM, and 250 µM, will be used for
-low, intermediate, and high conditions, respectively. 
-
-\newpage
-
-## Bioreactors {.unnumbered}
-
-%%%%%% Taken from my thesis word for word, need to reword and shorten %%%%
-
-
-Growth experiments under different spectral wavebands were performed
-using a PSI MCMIX-OD Multicultivator (Figure \@ref(fig:LabeledMC)) or a
-PSI MC1000-OD Multicultivator for white LED experiments. Each
-Multicultivator has the capacity to individually control 8 tubes with
-specific PAR levels and photoperiods and the MCMIX-OD has options for
-individually controlled spectral wavebands. 10 mL of exponential growth
-culture was added to 70 mL of Pro99 media and all 8 tubes were situated
-in a common temperature-controlled water bath to ensure the temperature
-remained constant at 22°C over the duration of the experiment. Real time
-absorbance measurements of Optical Density (OD) 680 nm (a proxy for cell
-suspension density, cell scatter and cell chlorophyll content) and OD
-720 nm (a proxy for cell suspension density and cell scatter) were
-recorded every 5 minutes for at least 8 to 14 days depending on the
-duration of the lag phase, if any. Real time OD
-measurements eliminate intrusive subsampling of sterile cultures and
-provide high resolution chlorophyll and cell scatter proxies over the
-duration of the experiment. All data from the Multicultivator were saved
-as a comma separated values file and processed in R-Studio for
-calculations of growth rate estimates and graphical plotting.
-
-\newpage
 
 ```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
