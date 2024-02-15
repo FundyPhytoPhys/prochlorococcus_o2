@@ -17,7 +17,7 @@ author:
     affil: 1,3
   - name: Naaman Omar
     affil: 1
-- name: Ondřej Prášil
+  - name: Ondřej Prášil
     affil: 1,4
     main: false
   - name: Amanda M. Cockshutt
@@ -36,7 +36,7 @@ institute:
   - num: 2
 institute:
   - ubc: 'Department of Biology, University of British Columbia'
-  - num: 4
+  - num: 3
 institute:
   - alga: 'MAX INSTITUTE'
   - num: 4
@@ -138,6 +138,194 @@ knitr::knit_hooks$set(knitcitations = function(before, options, envir) {
 \newpage
 
 # Introduction {.unnumbered}
+
+## Mireille
+### Chapter 1 General Intro
+
+Marine phytoplankton are ubiquitous and serve as an important base of the aquatic food chain. They contribute to more than 50% of the net global primary food production [@falkowskiOceanSciencePower2012], while comprising only a small fraction of the global primary producer biomass [@fieldPrimaryProductionBiosphere1998]. *Prochlorococcus marinus*, a genus of the phylum Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite a small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of  global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999].  
+
+*Prochlorococcus marinus* comprises many strains, organized into clades,
+which in turn are grouped into ecotypes defined largely as High-Light (HL) or Low-Light (LL) adapted,  and aligned phylogenetically [@moorePhysiologyMolecularPhylogeny1998]. The biomass distribution of *P. marinus* is constrained to between latitudes of 40°N to 40°S in open ocean waters [@partenskyProchlorococcusMarinePhotosynthetic1999] with different ecotypes inhabiting distinct ecological niches. High-Light ecotypes are typically observed as the dominant picophytoplankton in near-surface oligotrophic waters that are, characterized by low nutrient concentrations, and high light levels. The monophyletic high light ecotype is subdivided into clades based on iron adaptation, whereby HLIII/IV are low iron adapted, whereas HLI is a high iron, low temperature adapted clade and HLII is a high iron, high temperature adapted clade [@kentParallelPhylogeographyProchlorococcus2019; @johnsonNichePartitioningProchlorococcus2006; @zinserInfluenceLightTemperature2007].  Low-Light ecotypes thrive in deeper ocean waters, extending beyond 200 m in depth [@partenskyProchlorococcusMarinePhotosynthetic1999]. In these deeper regions, only 1% of the surface irradiance penetrates, primarily in the blue (450 nm) to green (520 nm) spectral waveband ranges, due to light and spectral attenuation [@holtropVibrationalModesWater2021]. Additionally, some *P. marinus* strains in clade LLV and LLVI thrive in  Oxygen Minimum Zones (OMZ) of the subtropical Atlantic and Pacific Oceans, where dissolved oxygen concentrations [O~2~] can be less than 20 µM [@ulloaCyanobacteriumProchlorococcusHas2021]. Currently there are at least 12 clades but only 5 have been cultivated; HLI, HLII, LLI, LLII/III and LIV [@billerProchlorococcusStructureFunction2015].
+
+
+
+
+Our changing climate, characterized by warming ocean waters, is rapidly altering conditions for these highly specialized strains of marine picophytoplankton. Predictions indicate a net global increase of *P. marinus* cell abundances of 29% and poleward latitudinal shifts of at least 10° in marine phytoplankton niches by the end of this century [@flombaumPresentFutureGlobal2013] in response to warming waters, with cell abundance increases of approximately 50% in the more poleward regions. As the solar incidence angles are lower and photoperiod seasonality is more pronounced at higher latitudes, this shift will carry these phytoplankters into new combinations of photoperiod, seasonal regimes and changing spectral regimes [@bartonAnthropogenicClimateChange2016]. A 10° poleward shift of *P. marinus*, coupled with a dramatic increase in cell abundance between 40°N and 50°N,  could have a large impact on ocean ecosystems and global biogeochemical cycles [@flombaumPresentFutureGlobal2013], and thus will undoubtedly impact the ecosystem balance off our Canadian waters.
+
+Global warming is also rapidly changing the chemistry of our oceans.  By the end of this century, surface ocean pH is projected to decline by 0.1 to 0.4  due to  projected increases in carbon dioxide concentrations [@garcia-sotoOverviewOceanClimate2021]. Moreover, substantial changes in the global water cycle, leading to extensive changes in worldwide precipitation patterns, are affecting ocean salinity levels on a global scale, and  ice melts due to rising temperatures are impacting salinity levels in the Arctic and Northwest Atlantic oceans [@leeRecognizingSalinityThreats2022]. There is evidence that increasing sea temperatures are also causing a decrease in [O~2~] across our global oceans [@matearLongtermChangesDissolved2003], with significant declines observed toward the poles in both hemispheres [@helmObservedDecreasesOxygen2011]. Warmer ocean waters decrease oxygen solubility at the surface which in turn reduces the amount of oxygen that can be mixed downwards by ocean currents [@garcia-sotoOverviewOceanClimate2021]. Furthermore, models predict that the OMZ in the Pacific and Indian Oceans are expanding [@garcia-sotoOverviewOceanClimate2021; @buseckeDivergingFatesPacific2022]. In light of these expanding OMZ, a recent study by @buseckeDivergingFatesPacific2022 highlights an intriguing finding; the core of the OMZ, where the oxygen levels are lowest, is projected to contract.  Given the predicted decrease in overall oceanic [O~2~],   projected expansion of OMZs, and possibly decline in the OMZ core volumes, we set forth to examine the influence of [O~2~] on *P. marinus* growth as this area of research has been relatively understudied.
+
+
+
+To determine the viability of *P. marinus* strains in changing ecosystems, we analyzed the growth and physiological responses of representative strains from three clades to varying [O~2~], light levels, spectral waveband ranges, and photoperiods,  to simulate a matrix of eco-physiological conditions representative of current and hypothetical future ocean zones. The following *P. marinus* clades were examined: *P. marinus* MED4, classified as a clade HLI (Figure \@ref(fig:PhylogenyTreeYan2018edit)), was isolated near the ocean surface (5m depth) of the Mediterranean Sea where [O~2~] are near saturation, light levels are high and spectral bias from full solar irradiance is minimal. *P. marinus* SS120, a clade LLIII (Figure \@ref(fig:PhylogenyTreeYan2018edit)), was isolated from the Sargasso Sea at a depth of 120 m, while *P. marinus* MIT9313, a clade LLIV (Figure \@ref(fig:PhylogenyTreeYan2018edit)), was isolated from the North Atlantic Gulf Stream at a depth of 135 m. At these depths, light attenuation and spectral shifts occur, resulting in low blue and green light levels, while [O~2~] varies from near-surface saturation levels to decreased concentrations, but it does not necessarily decrease with depth [@billheimerOxygenSeasonalityUtilization2021]. In chapter 2, we define the interactions between oxygen, light level, light colour and photoperiod that help define their complex niches.  
+
+In chapter 3, to better decipher the physiological processes driving the observed growth responses to a complex matrix of spectral light regimes and [O~2~], we express growth rates in terms of cumulative diel Photosynthetically Usable Radiation (PUR). Photosynthetic organisms rely on absorbing light energy within the visible spectrum, 350 to 700 nm, for photosynthesis. This range of light, known as Photosynthetic Active Radiation (PAR) [@morelAvailableUsableStored1978], is essential for the photosynthetic process. PUR represents the fraction of PAR that is absorbed by the pigments of photosynthetic organisms [@morelAvailableUsableStored1978], thus we can compare light levels across different spectral wavebands that are absorbed differently by cells. Moreover, expressing growth rates in terms of cumulative diel absorbed PUR has the potential to simplify different photoperiods, spectral bands, and PAR levels into a common parameter, making growth response comparisons across different oxygen levels more attainable and may allow us to determine whether growth responses are primarily influenced by cumulative diel absorbed PUR, specific photoperiods or spectral bands.
+
+To the best of our knowledge, no other laboratory study has extensively examined the growth response of *Prochlorococcus* under such a diverse set of conditions. This study specifically focuses on evaluating how *Prochlorococcus* responds to varying [O~2~], different spectral wavebands, light levels and photoperiods. This comprehensive approach distinguishes this study from previous ones conducted on *Prochlorococcus* growth.
+
+
+
+### Chapter 2 PAR Intro
+*Prochlorococcus marinus* ecotypes are characterized by their distinct
+tolerance for High-Light (HL) or Low-Light (LL) levels
+[@moorePhysiologyMolecularPhylogeny1998]. *Prochlorococcus marinus* is
+classified into at least 12 major clades
+[@billerProchlorococcusStructureFunction2015], that respectively inhabit
+a range of ecological niches across vertical ocean water columns
+[@chisholmNovelFreelivingProchlorophyte1988;
+@veldhuisVerticalDistributionPigment1990;
+@partenskyProchlorococcusMarinePhotosynthetic1999].
+
+Previous studies have observed that the diversification of *P. marinus*
+niches extends into regions considered unfavorable for photosynthesis to
+occur. @goerickeNovelNicheProchlorococcus2000 first reported the
+existence of *P. marinus* below the oxyclines of the Oxygen Minimum
+Zones (OMZ) of the Arabian Sea and the Eastern Tropical North Pacific.
+In an OMZ, oxygen concentrations [O~2~] can be less than 20 µM, and in
+some regions [O~2~] is undetectable
+[@garcia-robledoCrypticOxygenCycling2017a]. Subsequent research has
+revealed that *P. marinus* LL ecotypes dominate the OMZ
+[@lavinNovelLineagesProchlorococcus2010;
+@ulloaCyanobacteriumProchlorococcusHas2021] and are believed to
+contribute to approximately 90% of the *P. marinus* diversity in the
+eastern tropical Pacific Ocean OMZ
+[@partenskyProchlorococcusAdvantagesLimits2010].
+
+Although *P. marinus* ecotypes are defined by their ecological niches,
+there is evidence to suggest that ecotypes can exist in environments
+beyond their optimal habitats. HL ecotypes are known to
+inhabit depths where LL ecotypes also inhabit
+[@westNichePartitioningProchlorococcusPopulationsStratified1999;
+@zinserInfluenceLightTemperature2007;
+@delmontLinkingPangenomesMetagenomes2018] but at light levels still
+within the range of confirmed growth irradiance limits
+[@moorePhotophysiologyMarineCyanobacterium1999]. Studies by
+@lavinNovelLineagesProchlorococcus2010 and
+@mattisonPhotosyntheticStrategiesWild2020 show evidence that LL ecotypes
+can occupy regions in the OMZ at depths above 40 m. Since light levels
+were not reported at every depth of these studies, it is presumed that
+at a depth of 40 m, closer to the surface, light levels are higher than
+what LL ecotypes can tolerate. Furthermore,
+@mattisonPhotosyntheticStrategiesWild2020 presented evidence of proteins
+derived from HL ecotypes of *P. marinus* in the OMZ at depths up to 200
+meters with O~2~ of 15 µM. However, the extent to which [O~2~] defines
+the niches occupied by different *P. marinus* ecotypes, as compared to
+potentially covarying environmental variables like photoperiod, light
+spectrum, and light level, is poorly described.
+
+Photosynthetic organisms rely on the absorption of light energy within
+the visible spectral range of 350 to 700 nm to drive the photosynthetic
+process. This spectral range of light, known as Photosynthetic Active
+Radiation (PAR) [@morelAvailableUsableStored1978], is essential for
+photosynthesis. However, as sunlight enters the marine environment, it
+undergoes attenuation, resulting in a decline of specific wavebands of
+light through the water column from the surface. This attenuation
+primarily affects the longer wavelengths in the red region of the
+spectrum (600 to 700 nm), followed by wavelengths in the green region
+(500 to 600 nm) and, finally, wavelengths in the blue region (400 to 500
+nm) [@holtropVibrationalModesWater2021]. Thus, as sunlight penetrates the
+marine environment, the light level diminishes and the residual spectral
+wavebands shift with depth, where only blue spectral wavelengths
+dominate. The region of the water column with enough light to support
+photosynthesis is known as the photic zone, defined as the depth where
+light levels remain above 20 µmol photons m^-2^ s^-1^, 1% of the surface
+solar incident radiation, of 2000 µmol photons m^-2^ s^-1^.
+
+In growth studies of *P. marinus*, it is common to use a broad spectrum
+light source to approximate the solar spectral wavelengths found in the
+uppermost layers of the ocean. The actinic photon flux is adjusted to
+simulate the specific light levels appropriate for the ecotype of
+interest. However, this approach falls short when attempting to
+accurately reproduce the ambient spectral light quality of deep ocean
+habitats, where only blue spectral wavelengths prevail
+[@holtropVibrationalModesWater2021]. *Prochlorococcus marinus* contain a
+unique light-harvesting complex composed primarily of divinyl
+chlorophyll a and b [@chisholmProchlorococcusMarinusNov1992;
+@goerickePigmentsProchlorococcusMarinus1992], the only photosynthetic
+organism to possess these chlorophyll derivatives. The absorption maxima
+of 442 nm for divinyl chlorophyll a and 478 nm for divinyl chlorophyll b
+[@goerickePigmentsProchlorococcusMarinus1992] allow *P. marinus* to
+efficiently harvest the light energy emitted by blue light in the 400 nm
+to 500 nm range [@morelAvailableUsableStored1978].
+
+At most latitudes, the duration of the photoperiod (day length)
+undergoes seasonal variations. However, at the equator, the photoperiod
+remains relatively constant at the ocean surface, approximately 12 hours
+(h) of daylight and 12 h of darkness throughout the entire year. As *P.
+marinus* potentially expands its temperature-permissive niches poleward
+into temperate regions due to climate change
+[@flombaumPresentFutureGlobal2013;
+@bartonAnthropogenicClimateChange2016], it will encounter more
+pronounced seasonal variations in photoperiod regimes. Photoperiods are
+longer at temperate regions during the summer, while in spring, fall and
+winter, photoperiods are shorter. Additionally, when considering the
+influence of light attenuation with depth, temperate regions exhibit
+more combinations of photoperiod compared to equatorial regions. The
+effects of photoperiod on the ecophysiology of phytoplankton is
+underscored by several studies. @liDiatomGrowthResponses2017
+demonstrated complex interactions of photoperiod and growth rate of
+diatoms. Similarly, @prezelinDielPeriodicityPhytoplankton1992 expressed
+the importance of considering photoperiod on *in situ* rates of primary
+production, as the diel light to dark ratio regulates metabolic
+processes throughout the day. Furthermore,
+@vaulotGrowthProchlorococcusPhotosynthetic1995 showed that
+*Prochlorococcus* undergoes DNA replication in the afternoon, while cell
+division occurs at night. Further research is needed to investigate the
+impact of different photoperiods on the growth of *Prochlorococcus*, as
+this aspect remains inadequately studied.
+
+\newpage
+
+(fig:SunDepth) shows light levels and spectral waveband
+attenuation at ocean surface to ocean depths of 1000 m, as well as the
+hours of light above the minimum photic zone of 20 µmol photons m^-2^
+s^-1^, representing the photoperiod. This figure is modeled using the
+solar incident angle at 45°N, a hypothetical future niche, at summer
+solstice and illustrates the light parameters that define the
+photoregimes of the niches of *P. marinus* that we studied. Figure (fig:CardinalSeasons) illustrates light attenuation through ocean waters at 45°N at winter solstice, equinox and summer solstice.
+
+### Chapter 3 Intro (PUR)
+
+*Prochlorococcus marinus* ecotypes are characterized by their distinct
+tolerance for High-Light (HL) or Low-Light (LL) levels. The photosynthetic strategies between *Prochlorococcus marinus* ecotypes must differ in order to exploit the very diverse photo regimes in their respective niches and may be explained by their unique cellular compositions. 
+*Prochlorococcus marinus* MED4 has the smallest genome size of the 3 ecotypes we studied, only 1.66 Mbp, while *P. marinus* MIT9313 has the largest genome size of 2.41 Mbp [@rocapGenomeDivergenceTwo2003]. *Prochlorococcus marinus* SS120 genome size is 1.75 Mbp [@dufresneGenomeSequenceCyanobacterium2003]. Due to the small genome size and small cell diameters, ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992], *Prochlorococcus* are the smallest known photosynthetic prokaryote. The simplistic cellular structure and small size of *P. marinus* minimizes the pigment package effect or intracellular self-shading, due to the high surface area to volume ratio, contributing to very efficient optical absorption capabilities [@morelProchlorococcusSynechococcusComparative1993].
+
+
+Photosynthetic organisms depend on the absorption of light energy in the visible spectrum, 350 to 700 nm, to carry out photosynthesis. This range of light, referred to as Photosynthetic Active Radiation (PAR) [@morelAvailableUsableStored1978], is crucial for the photosynthetic process. The Photosynthetic Usable Radiation (PUR) is defined as the fraction of PAR absorbed by the pigments of a given photosynthetic taxon [@morelAvailableUsableStored1978]. PUR, therefore, takes into account the pigment composition of photosynthetic organisms and the specific spectral wavebands that these pigments absorb. *Prochlorococcus marinus* MED4, a clade HLI ecotype, dominate the near ocean surface where spectral attenuation from full solar irradiance is minimal and light levels are high [@partenskyProchlorococcusMarinePhotosynthetic1999]. *Prochlorococcus marinus* SS120, a clade LLIII ecotype, and *P. marinus* MIT9313, a clade LLIV ecotype, dominate the deep ocean [@partenskyProchlorococcusMarinePhotosynthetic1999] where extreme light attenuation and spectral shifts occur, resulting in the availability of very low light levels in the blue (450 nm) to green (520 nm) spectral range [@holtropVibrationalModesWater2021]. Given the different spectral light regimes of the different ecotype niches, understanding how the quantity of available light levels, PAR, converts to what these ecotypes can use, PUR, can give some insight into how they are able to exploit light energy.
+
+
+The photosynthesis process can be divided into two distinct reactions: the
+light-dependent and the light-independent reactions. *Prochlorococcus marinus* does not contain
+chloroplasts [@chisholmNovelFreelivingProchlorophyte1988], and the
+light-dependent reactions occur in thylakoid membranes arranged concentrically around the periphery of the cell. Light harvesting complexes spanning a thylakoid membrane capture or 'harvest' light
+energy. The light harvesting complexes in *P. marinus* consist of Prochlorophyte Chlorophyll Binding
+proteins (Pcb) [@larocheIndependentEvolutionProchlorophyte1996]. Once photons are absorbed by light harvesting pigments, the energy is transferred to the reaction center of Photosystem II
+(PSII) where water is split, catalyzed by the manganese cluster of the
+oxygen evolving complex. Here, 2 water molecules are oxidized to produce 1 oxygen
+(O~2~) molecule, releasing 4 protons into the thylakoid lumen, which contribute to the transmembrane proton
+potential,  and 4 electrons. These electrons are passed to Photosystem I
+(PSI) through a series of reduction and oxidation reactions in the
+electron transport chain in the thylakoid membrane, and in the process, deliver more protons to the
+proton pool within the lumen side of the thylakoid membrane. Photosystem I
+(PSI) also harvest light energy but does not split water, rather the
+reaction center uses excitation energy to excite electrons received from PSII
+and transfer them by the reduction and oxidation of iron-sulphur
+clusters to reduce NADP^+^ to NADPH. The Adenosine Triphosphate (ATP) synthase complex produces ATP in the stroma, driven by protons passing from the lumen out to the stroma side of the thylakoid
+membrane. The light-independent reaction involves the RuBisCO enzyme
+which uses the NADPH and ATP generated in the light-dependent reaction
+to convert dissolved carbon dioxide (CO~2~) gas into carbohydrates. 
+
+
+*Prochlorococcus marinus* is differentiated from other cyanobacteria as a distinct lineage, primarily due to the absence of phycobilisomes [@chisholmProchlorococcusMarinusNov1992]. Instead, *Prochlorococcus*  utilizes intra-membrane Pcb proteins bound to divinylchlorophyll a (Chl a2), and α-carotene, as the major light harvesting complex [@goerickePigmentsProchlorococcusMarinus1992]; [@larocheIndependentEvolutionProchlorophyte1996].  Not all *Prochlorococcus* encode the same number of Pcb proteins. The representative of HLI clade, *P. marinus* MED4 has 1 gene encoding pcbA protein [@garczarekMultiplicationAntennaGenes2000] and the LLIV clade, *P. marinus* MIT9313, has 2 genes encoding pcbB and pcbG proteins [@rocapGenomeDivergenceTwo2003]. The LLIII clade, *P. marinus* SS120, however, has 7 genes encoding pcbA, pcbB, pcbC, pcbE, pcbF, pcbG and pcbH [@garczarekMultiplicationAntennaGenes2000]. According to @garczarekMultiplicationAntennaGenes2000, the expression of some of the pcb genes might be specifically induced under low light conditions, after noting the thickening of the antenna band of the thylakoid membrane when SS120 was switched to low light after high light exposure. Another difference within the cell structure among *P. marinus* ecotypes is the 2 to 4 thylakoids that run parallel to the cell membrane. For SS120, the thylakoids are closed around the periphery of the cell; however, in MED4 and MIT9313, there is a gap resulting in a horseshoe shape for the thylakoids [@partenskyProchlorococcusMarinePhotosynthetic1999].  Despite the deviation in the light harvesting complex from cyanobacteria, the genes encoding the rest of photosynthetic apparatus is highly conserved in *Prochlorococcus* [@kettlerPatternsImplicationsGene2007], though the photosynthetic efficiency may vary between ecotypes [@hessPhotosyntheticApparatusProchlorococcus2001; @moorePhotophysiologyMarineCyanobacterium1999].
+
+
+The efficient ability of *P. marinus* to harvest light energy allows LL ecotypes to thrive and exploit the low, attenuated light levels present in deep ocean waters. However, this efficiency also makes them vulnerable to photo damage under high light levels [@aroPhotoinhibitionPhotosystemII1993; @soitamoPhotoinhibitionMarinePicocyanobacteria2017]. The proteins in the reaction centers of PSII are vulnerable to photo damage, which can result in the disruption of electron transport and irreversible damage to the reaction center subunit D1 protein [@murphyPhotoinactivationPhotosystemII2017]. Additionally, direct absorption of a photon in the UV or blue range by the Mn~4~Ca cluster within the oxygen-evolving complex of PSII can lead to its inactivation [@hakalaEvidenceRoleOxygenevolving2005]. Without the proper functioning of the oxygen-evolving complex, the P680^+^ radical, which is formed during the light absorption process, cannot be efficiently reduced. This can result in the accumulation of P680^+^ radicals and lead to irreversible oxidative damage to the PsbA protein, within PSII. The damaged PsbA protein must then be removed to reactivate the PSII center. This process relies on the degradation and removal of damaged PsbA by protease isoforms FtsH 2 and 3 and the production of newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. Generation of Reactive Oxygen Species (ROS) can also cause photoinhibition if the electron flow is slowed downstream of the P680^+^ radical [@aroPhotoinhibitionPhotosystemII1993], producing  singlet oxygen (^1^O~2~).
+
+
+There are metabolic processes occurring in both the light-dependent and light-independent reactions of photosynthesis that are greatly influenced by the duration of light exposure [@liDiatomGrowthResponses2017]; [@prezelinDielPeriodicityPhytoplankton1992]. @vaulotGrowthProchlorococcusPhotosynthetic1995 showed that
+*Prochlorococcus* replication of DNA occurs in the afternoon and cell division occurs at night. It is often overlooked that the duration of dark exposure is just as important as light exposure for photosynthetic organisms.
+
+
+Converting the quantity of ambient light levels, PAR, to absorbed PUR, makes it possible to directly compare light levels across different spectral wavebands that are differentially absorbed by the cells.  This conversion enables us to assess and compare the amount of light that can be effectively utilized for photosynthesis by specific ecotypes in different spectral regimes. Furthermore, expressing cumulative diel absorbed PUR can potentially collapse different photoperiods, spectral bands and PAR levels to a common denominator, allowing us to detect whether growth responses are driven simply by cumulative diel absorbed PUR, or whether specific photoperiods, spectral bands or PAR levels have independent effects on growth. We can draw meaningful insights by evaluating the growth responses based on cumulative diel absorbed PUR across different oxygen levels that represent distinct ecological niches. 
 
 ## Aurora
 *Prochlorococcus marinus*, a species of picocyanobacteria, are tiny, photosynthetic, marine prokaryotes. At nder 1 µm in diameter, they are the smallest photosynthetic organisms on the planet, but at 10^4^-10^5^ cells per millilitre of seawater  (ampbell and Vaulot, 1993), they heavily influence global biogeochemical cycles (Partensky et al., 1999) (Flombaum et al., 2013). *Prochlorococcus* are currently restricted to between 40°N and 40°S, from surface to 300 m  depth, spanning 3 orders of magnitudes of light (Partensky et al., 1999) (Chisholm et al., 1992). Some *Prochlorococcus* extend into Oxygen Minimum Zones (OMZ), at less than  20 µM O2 (Johnson et al., 1999). *Prochlorococcus* is divided into numerous strains, categorized into high-light clades HLI, HLII, HLIII or low-light clades LLI, LLII, LLIII, LLIV, LLV & LLVI, based on their 16S-23S intergenic transcribed ribosomal sequence signatures (Rocap et al., 2003). The LLIV clade, including strain MIT9313, falls near the base of the *Prochlorococcus* radiation. First isolated in 1993 from 135 m into the north Atlantic, Clade LLIV are characterized by preference for low light,  and are most populous between 120 m and 200 m depths (Partensky et al., 1999). LLIV members are also the only strains found in OMZ that have been, to date, cultured, although two as yet uncultured clades, LLV and LLVI, have been detected in the OMZ of the eastern Tropical Pacific Ocean (Lavin et al., 2010) ADDITIONAL REFS XXXX. LLII and LLIII clades are often grouped together as the second oldest phylogenetic clades and share an affinity for low light conditions; LLIII strain SS120, the first *Prochlorococcus* strain to be characterized in 1988, was isolated 135 m into the Sargasso Sea. The LLI clade includes NATL1A and NATL2A, which prefer moderate irradiances found between 30 and 100 m. HL clades are the most recently evolved and despite reduced genome size in comparison to LL ecotypes, have adapted to life at higher irradiances. HLII is the most abundant group in the North Atlantic and North Pacific Oceans, often constituting over 90% of the total population (Partensky et al., 1999),  and are most numerous around 50 m depth (Partensky et al., 1999). The HLI clade, including MED4, was found at the very surface of the Mediterranean Sea, just 5 m below the surface (Partensky et al., 1999). 
@@ -429,6 +617,24 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MIT9313_Oxy_.
 
 %%%% Insert PURFits figures  %%%
 
+```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
+
+AllStrainPurFitsPlots_cap <- glue("** The chlorophyll proxy growth rate (d^-1^) vs. the Photosynthetic Usable Radiation (PUR) (µmol photons m^-2^ d^-1^).**",
+                    "The x-axis is the Photosynthetic Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) .",
+                    "The y-axis is the chlorophyll specific growth rate (d^-1^).",
+                    "**A.** The High Light I (HLI) ecotype MED4.  under 250 µM of O~2~ and red light.",
+                    "**B.** The Low Light II/II (LLII/III) ecotype SS120. under 25 µM of O~2~ and red light.",
+                    "**C.** The Low Light IV (LLIV) ecotype MIT9313. under 2.5 µM of O~2~ and red light.",
+                     "Shapes show the imposed photoperiod (h); hollow inverted triangle for 4 h, solid diamond for 8 h, solid circle for 12 h, solid upright triangle for 16 h.",
+                      "Symbol colours show the spectral waveband for growth; black for white LED light (full spectrum), red for red light (660 nm), and blue for blue light (450 nm).",
+                      "Large shapes show mean or single determinations of growth rate from logistic curve fits; small shapes show values for replicate determinations, if any.",
+                    "The 3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
+                       .sep = " ")
+
+
+knitr::include_graphics(file.path(FiguresIn, "AllStrainPurFitsPlots.png"))
+
+```
 
 
 \newpage
