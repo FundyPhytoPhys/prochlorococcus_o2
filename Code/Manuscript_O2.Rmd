@@ -38,7 +38,7 @@ institute:
   - ubc: 'Department of Biology, University of British Columbia'
   - num: 3
 institute:
-  - alga: 'MAX INSTITUTE'
+  - umwelt: 'Umweltbundesamtm, Dessau-Roßlau, Germany'
   - num: 4
 institute:
   - alga: 'Algatech, Czech Academy of Science'
@@ -142,7 +142,7 @@ knitr::knit_hooks$set(knitcitations = function(before, options, envir) {
 ## Mireille
 ### Chapter 1 General Intro
 
-Marine phytoplankton are ubiquitous and serve as an important base of the aquatic food chain. They contribute to more than 50% of the net global primary food production [@falkowskiOceanSciencePower2012], while comprising only a small fraction of the global primary producer biomass [@fieldPrimaryProductionBiosphere1998]. *Prochlorococcus marinus*, a genus of the phylum Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite a small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of  global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999].  
+*Prochlorococcus marinus*, a genus of the phylum Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite a small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of  global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999].  
 
 *Prochlorococcus marinus* comprises many strains, organized into clades,
 which in turn are grouped into ecotypes defined largely as High-Light (HL) or Low-Light (LL) adapted,  and aligned phylogenetically [@moorePhysiologyMolecularPhylogeny1998]. The biomass distribution of *P. marinus* is constrained to between latitudes of 40°N to 40°S in open ocean waters [@partenskyProchlorococcusMarinePhotosynthetic1999] with different ecotypes inhabiting distinct ecological niches. High-Light ecotypes are typically observed as the dominant picophytoplankton in near-surface oligotrophic waters that are, characterized by low nutrient concentrations, and high light levels. The monophyletic high light ecotype is subdivided into clades based on iron adaptation, whereby HLIII/IV are low iron adapted, whereas HLI is a high iron, low temperature adapted clade and HLII is a high iron, high temperature adapted clade [@kentParallelPhylogeographyProchlorococcus2019; @johnsonNichePartitioningProchlorococcus2006; @zinserInfluenceLightTemperature2007].  Low-Light ecotypes thrive in deeper ocean waters, extending beyond 200 m in depth [@partenskyProchlorococcusMarinePhotosynthetic1999]. In these deeper regions, only 1% of the surface irradiance penetrates, primarily in the blue (450 nm) to green (520 nm) spectral waveband ranges, due to light and spectral attenuation [@holtropVibrationalModesWater2021]. Additionally, some *P. marinus* strains in clade LLV and LLVI thrive in  Oxygen Minimum Zones (OMZ) of the subtropical Atlantic and Pacific Oceans, where dissolved oxygen concentrations [O~2~] can be less than 20 µM [@ulloaCyanobacteriumProchlorococcusHas2021]. Currently there are at least 12 clades but only 5 have been cultivated; HLI, HLII, LLI, LLII/III and LIV [@billerProchlorococcusStructureFunction2015].
@@ -160,8 +160,7 @@ To determine the viability of *P. marinus* strains in changing ecosystems, we an
 
 In chapter 3, to better decipher the physiological processes driving the observed growth responses to a complex matrix of spectral light regimes and [O~2~], we express growth rates in terms of cumulative diel Photosynthetically Usable Radiation (PUR). Photosynthetic organisms rely on absorbing light energy within the visible spectrum, 350 to 700 nm, for photosynthesis. This range of light, known as Photosynthetic Active Radiation (PAR) [@morelAvailableUsableStored1978], is essential for the photosynthetic process. PUR represents the fraction of PAR that is absorbed by the pigments of photosynthetic organisms [@morelAvailableUsableStored1978], thus we can compare light levels across different spectral wavebands that are absorbed differently by cells. Moreover, expressing growth rates in terms of cumulative diel absorbed PUR has the potential to simplify different photoperiods, spectral bands, and PAR levels into a common parameter, making growth response comparisons across different oxygen levels more attainable and may allow us to determine whether growth responses are primarily influenced by cumulative diel absorbed PUR, specific photoperiods or spectral bands.
 
-To the best of our knowledge, no other laboratory study has extensively examined the growth response of *Prochlorococcus* under such a diverse set of conditions. This study specifically focuses on evaluating how *Prochlorococcus* responds to varying [O~2~], different spectral wavebands, light levels and photoperiods. This comprehensive approach distinguishes this study from previous ones conducted on *Prochlorococcus* growth.
-
+This study focuses on evaluating how growth of *Prochlorococcus* strains from different clades responds to varying [O~2~], spectral wavebands, light levels and photoperiods. 
 
 
 ### Chapter 2 PAR Intro
@@ -493,6 +492,7 @@ ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus ma
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
                        "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for O~2~ (µM).",
+                       "Point colours identify *Prochlorococcus* clade assignments",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
@@ -644,11 +644,12 @@ knitr::include_graphics(file.path(FiguresIn, "AllStrainPurFitsPlots.png"))
 
 ```{r ProchloroProteinMetabDepthO2, fig.cap = ProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-ProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein turnover complexes.**", 
+ProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome).",
                        "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for O~2~ (µM).",
+                       "Point colours identify *Prochlorococcus* clade assignments",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
@@ -662,32 +663,32 @@ knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroMetabDepthO2.png"
 
 
 
-```{r MED4ProteinAnotated, fig.cap = MED4ProteinAnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MED4ProteinAnnotated, fig.cap = MED4ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MED4ProteinAnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  **",  
+MED4ProteinAnnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade).  **",  
                     
                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole/ug",
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnotated.png"))
+knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnnotated.png"))
 ```
 
 \newpage
 
 
 
-```{r MIT9313ProteinAnotated, fig.cap = MIT9313ProteinAnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MIT9313ProteinAnmotated, fig.cap = MIT9313ProteinAnmotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313ProteinAnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
+MIT9313ProteinAmnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
                     
                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole/ug",
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnotated.png"))
+knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnnotated.png"))
 ```
 
 \newpage
@@ -697,7 +698,8 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnotated.png"))
 
 
 # Acknowledgements
-Jonah Sheinin assisted with growth of some cultures for protein analyses.
+Jonah Sheinin assisted with growth of some cultures for protein analyses, while Carlie Barnhill assisted with code for import of multicultivator growth data files.
+
 
 # Funding
 To Be Entered through PLoSONe system and deleted here
