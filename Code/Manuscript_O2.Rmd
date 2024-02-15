@@ -404,8 +404,8 @@ winter or deep ocean depths during temperate (45°N) spring and fall.
 LabeledMC_cap <- glue("**PSI MCMIX-OD Multicultivator.**",
                       "Spectral wavebands and light levels are individually controlled for each culture tube.",
                       "Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures.",
-                      "The temperature of culture tubes are controlled via heating or cooling of the aquarium water.",
-                      "Gas with specific oxygen concentrations are bubbled through a humidifier and passed through a 0.2 um filter.",
+                      "The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water.",
+                      "Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.",
 
                        .sep = " ")
 
