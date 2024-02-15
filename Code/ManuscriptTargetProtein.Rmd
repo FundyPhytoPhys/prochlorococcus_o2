@@ -81,7 +81,7 @@ TargetProtein <- read.csv(file = file.path(DataIn,"2020_PICO_Multi_TargetProtein
 glimpse(TargetProtein)
 
 TargetProtein <- TargetProtein %>%
-  rename(SampleID = "ï..Sample")
+  rename(SampleID = "Sample")
 
 glimpse(TargetProtein)
  
@@ -193,7 +193,7 @@ TargetProtein %>%
                     labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MIT9313ProteinAnotated <- TargetProtein %>%
+MIT9313ProteinAnnotated <- TargetProtein %>%
   filter( Strain == "MIT9313") %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
@@ -206,10 +206,10 @@ MIT9313ProteinAnotated <- TargetProtein %>%
                     labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MIT9313ProteinAnotated
+MIT9313ProteinAnnotated
 
 
-MED4ProteinAnotated <- TargetProtein %>%
+MED4ProteinAnnotated <- TargetProtein %>%
   filter( Strain == "MED4") %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
@@ -222,14 +222,14 @@ MED4ProteinAnotated <- TargetProtein %>%
                     labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
   theme_bw()
 
-MED4ProteinAnotated
+MED4ProteinAnnotated
 ```
 
 ```{r }
 
- ggsave(file = file.path(PlotsOut, paste("MED4ProteinAnotated",".png",sep = "")), plot = MED4ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+ ggsave(file = file.path(PlotsOut, paste("MED4ProteinAnnotated",".png",sep = "")), plot = MED4ProteinAnnotated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("MIT9313ProteinAnotated",".png",sep = "")), plot = MIT9313ProteinAttonated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("MIT9313ProteinAnnotated",".png",sep = "")), plot = MIT9313ProteinAnnotated, device = NULL, scale = 1, height=15, width= 25, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
