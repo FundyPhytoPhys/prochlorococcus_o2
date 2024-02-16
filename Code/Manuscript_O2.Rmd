@@ -6,7 +6,7 @@ author:
     main: true
     email: msavoie@mta.ca
   - name: Aurora Mattison
-    affil: 1,2
+    affil: 1, 2
   - name: Julie Nadeau
     affil: 1
   - name: Laurel Genge
@@ -14,14 +14,14 @@ author:
   - name: Sylwia Śliwińska-Wilczewska
     affil: 1
   - name: Maximilian Berthold
-    affil: 1,3
+    affil: 1, 3
   - name: Naaman Omar
     affil: 1
   - name: Ondřej Prášil
-    affil: 1,4
+    affil: 1, 4
     main: false
   - name: Amanda M. Cockshutt
-    affil: 1,5
+    affil: 1, 5
     main: false
   - name: Douglas A. Campbell
     affil: 1
@@ -34,16 +34,12 @@ affiliation:
 institute:
   - mta: 'Department of Biology, Mount Allison University, 53 York St., Sackville NB, Canada, E4L 1C9.'
   - num: 2
-institute:
   - ubc: 'Department of Biology, University of British Columbia'
   - num: 3
-institute:
   - umwelt: 'Umweltbundesamtm, Dessau-Roßlau, Germany'
   - num: 4
-institute:
   - alga: 'Algatech, Czech Academy of Science'
   - num: 5
-institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
 date: "`r format(Sys.Date())`"
 output:
@@ -143,9 +139,9 @@ knitr::knit_hooks$set(knitcitations = function(before, options, envir) {
 
 *Prochlorococcus marinus*, a genus of the phylum Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of  global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999].  *P. marinus* growth is currently constrained to between latitudes of 40°N to 40°S in open ocean waters, from surface to 300 m  depth, thus spanning 3 orders of magnitudes of light (Partensky et al., 1999) (Chisholm et al., 1992)  [@partenskyProchlorococcusMarinePhotosynthetic1999]. 
 
-*Prochlorococcus marinus* is functionally differentiated from other cyanobacteria primarily by the absence of phycobilisomes [@chisholmProchlorococcusMarinusNov1992]. Instead, *Prochlorococcus*  utilizes intra-membrane Pcb proteins bound to divinylchlorophyll a (Chl a2), and α-carotene, as the major light harvesting complex [@goerickePigmentsProchlorococcusMarinus1992]; [@larocheIndependentEvolutionProchlorophyte1996], with diversity in the number of genes encoding Pcb, expression of Pcb under changing light [@garczarekMultiplicationAntennaGenes2000]  [@rocapGenomeDivergenceTwo2003] [@garczarekMultiplicationAntennaGenes2000], and in thylakoid organization [@partenskyProchlorococcusMarinePhotosynthetic1999].  the genes encoding most of the rest of the photosynthetic apparatus is highly conserved in *Prochlorococcus* [@kettlerPatternsImplicationsGene2007], though the photosynthetic efficiency may vary among clades [@hessPhotosyntheticApparatusProchlorococcus2001; @moorePhotophysiologyMarineCyanobacterium1999].
+*Prochlorococcus marinus* is functionally differentiated from other cyanobacteria primarily by the absence of phycobilisomes [@chisholmProchlorococcusMarinusNov1992]. Instead, *Prochlorococcus*  utilizes intra-membrane Prochlorophyte Chlorophyll Binding (Pcb) proteins bound to divinylchlorophyll a (Chl a2), and α-carotene, as the major light harvesting complex [@goerickePigmentsProchlorococcusMarinus1992]; [@larocheIndependentEvolutionProchlorophyte1996], with diversity in the number of genes encoding Pcb, expression of Pcb under changing light [@garczarekMultiplicationAntennaGenes2000]  [@rocapGenomeDivergenceTwo2003] [@garczarekMultiplicationAntennaGenes2000], and in thylakoid organization [@partenskyProchlorococcusMarinePhotosynthetic1999].  The genes encoding most of the rest of the photosynthetic apparatus is highly conserved in *Prochlorococcus* [@kettlerPatternsImplicationsGene2007], though the photosynthetic efficiency may vary among clades [@hessPhotosyntheticApparatusProchlorococcus2001; @moorePhotophysiologyMarineCyanobacterium1999].
 
-*Prochlorococcus marinus* comprises many strains, organized into clades, defined by 16S-23S intergenic transcribed ribosomal sequence signatures (Rocap et al., 2003). The clades inhabit distinct ecological niches [@moorePhysiologyMolecularPhylogeny1998], originally defined by Low Light or High Light.  Of at least 12 known *Prochlorococcus* clades only 5 to date have cultured representatives; HLI, HLII, LLI, LLII/III and LIV [@billerProchlorococcusStructureFunction2015].
+*Prochlorococcus marinus* comprises many strains, organized into clades, defined by 16S-23S intergenic transcribed ribosomal sequence signatures (Rocap et al., 2003). The clades inhabit distinct ecological niches [@moorePhysiologyMolecularPhylogeny1998], originally defined by Low Light (LL) or High Light (HL).  Of at least 12 known *Prochlorococcus* clades only 5 to date have cultured representatives; HLI, HLII, LLI, LLII/III and LIV [@billerProchlorococcusStructureFunction2015].
 
 XXXXMIREILLE Check strain descriptions for accuracyXXXX
 Low-Light clades thrive in deeper ocean waters, extending beyond 200 m in depth [@partenskyProchlorococcusMarinePhotosynthetic1999], where only ~1% of the surface irradiance penetrates, primarily in the blue (450 nm) to green (520 nm) spectral ranges [@holtropVibrationalModesWater2021]. Clade LLIV, including cultured strain MIT9313, falls near the base of the *Prochlorococcus* radiation, and is characterized by preference for low light, at depths from 120 m and 200 m (Partensky et al., 1999). LLIV members are, as yet, the only cultured strains found in Oxygen Minimum Zones (OMZ).  Some as yet uncultured *P. marinus* strains in clades LLV and LLVI thrive in OMZ of the subtropical Atlantic and Pacific Oceans, where dissolved oxygen concentrations [O~2~] can be less than 20 µM [@ulloaCyanobacteriumProchlorococcusHas2021] (Lavin et al., 2010) ADDITIONAL REFS XXXX.   (Johnson et al., 1999). @goerickeNovelNicheProchlorococcus2000
@@ -200,7 +196,7 @@ Under full atmospheric [O~2~], LL clades of *Prochlorococcus* are restricted to 
 Repair of inhibited PSII process relies on the removal of damaged PsbA (Mann et al., 2000; Adam et al., 2005), followed by reassembly with newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. 
 Thus, degradation of PsbA is a rate-limiting step in recovery from photoinhibition (Kanervo et al., 1993), mediated largely by a heterohexamer of (FtsH12)3, a membrane-bound (Sacharz et al., 2015)(Zak et al., 2001) metalloprotease  (Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto, 2014).  (Adam et al., 2005; Boehm et al., 2012) (Nixon et al. (2010)) (Komenda et al., 2007). (Pisareva et al., 2007; Sacharz et al., 2015),  (Mann et al., 2000), (AMANDA REF from ALGATECH).
 
-*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologous to the characterized FtsH isoforms of the model cyanobacterium *Synechocystis* FtsH, with presumably parallel functions (Table 1).  Upon a shift to higher light HLIII MED4 upregulated expression of FtsH1 and FtsH2 (Bonisteel et al. (2018)), homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast representative LLIII strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore MIT9313 expressed primarily FtsH3, homologous to Sll1463 involved in PSI biogenesis, and FtsH expression did not increase in response to light stress. Through adaptation to steady low light, LLIII **Prochlorococcus* instead allocates resources processes other than dynamic regulation of PSII repair. 
+*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologous to the characterized FtsH isoforms of the model cyanobacterium *Synechocystis* FtsH, with presumably parallel functions (Table 1).  Upon a shift to higher light HLIII MED4 upregulated expression of FtsH1 and FtsH2 (Bonisteel et al. (2018)), homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore MIT9313 expressed primarily FtsH3, homologous to Sll1463 involved in PSI biogenesis, and FtsH expression did not increase in response to light stress. Through adaptation to steady low light, LLIV *Prochlorococcus* instead allocates resources processes other than dynamic regulation of PSII repair. 
 
 
 ```{r FtsHtable, table.cap = FtsHtable_cap, echo = FALSE}
