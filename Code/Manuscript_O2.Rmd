@@ -199,11 +199,10 @@ Thus, degradation of PsbA is a rate-limiting step in recovery from photoinhibiti
 *Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologous to the characterized FtsH isoforms of the model cyanobacterium *Synechocystis* FtsH, with presumably parallel functions (Table 1).  Upon a shift to higher light HLIII MED4 upregulated expression of FtsH1 and FtsH2 (Bonisteel et al. (2018)), homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore MIT9313 expressed primarily FtsH3, homologous to Sll1463 involved in PSI biogenesis, and FtsH expression did not increase in response to light stress. Through adaptation to steady low light, LLIV *Prochlorococcus* instead allocates resources processes other than dynamic regulation of PSII repair. 
 
 
-```{r FtsHtable, table.cap = FtsHtable_cap, echo = FALSE}
+```{r FtsHtable, echo = FALSE}
 
-FtsHtable_cap <- glue("FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homology determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.",
+FtsHtable_cap <- "FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homology determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX."
 
-                       .sep = " ")
 FtsHTable <- tibble(Organism = c("Prochlorococcus marinus", "Synechocystis sp. PCC6803", "Function"),
                     FtsH1 = c("FtsH1", "SlrO22", "PSII Repair"),
                     FtsH2 = c("FtsH2", "Slr1604", "PSII Repair"),
