@@ -107,7 +107,6 @@ knitr::write_bib(c("tidyverse", "lubridate","knitr",  "broom", "zoo", "photobiol
 Project <- "PICO"
 DataIn <- file.path("..", "Data", "CleanData")
 FiguresIn <- file.path("..","Output", "Figures")
-FiguresInOceanPro <- file.path( "..", "..", "OceanProteinProchloro", "Output")
 FigureInO2Analy <- file.path(  "..", "..", "O2Analyses", "Output")
 
 ```
@@ -373,7 +372,7 @@ ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus ma
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
 
-knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroPhotosynthDepthO2.png"))
+knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 ```
 
 \newpage
@@ -532,7 +531,7 @@ ProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus 
 
 
 
-knitr::include_graphics(file.path(FiguresInOceanPro, "ProchloroProteinMetabDepthO2.png"))
+knitr::include_graphics(file.path(FiguresIn, "ProchloroProteinMetabDepthO2.png"))
 ```
 
 
