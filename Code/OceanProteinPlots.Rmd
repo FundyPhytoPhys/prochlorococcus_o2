@@ -9,7 +9,7 @@ library(grid)
 library(gridExtra)
 ```
 
-Import Aurora .csv large files from DropBox, save as .RDS for future use and smaller files to post to GitHub
+Imported Aurora .csv large files from DropBox, saved as .RDS for future use and smaller files to post to GitHub
 ```{r files paths}
 #/Users/dcampbel/Dropbox/OceanProteinProchloro/KM1128/2020/Filtered Datasets
 #poi <- read_csv(file.path("..", "..", "..","..", "Dropbox", "OceanProteinProchloro", "KM1128", "2020", "Filtered_Datasets", "poi.csv"))
@@ -47,31 +47,12 @@ O2_uM <- c(2, 25, 250)
 ```
 
 
-```{r string function}
-#not used
-#wrapper <- function(x)
-#{paste(strwrap(x), collapse = "\n")}
-```
-
 To analyze for presence/absence of additional proteins like AOX need to extract EC numbers from best_hit_annotation; difficult format delimited by ';' with variable numbers of fields.
 EC 1.10.3.11, ubiquinol oxidase (non-electrogenic) 	cyanide-resistant bd-type ubiquinol oxidase, cyanide-resistant ubiquinol oxidase, cytochrome bo3 ubiquinol oxidase, ubiquinol oxidase (non-electrogenic)
 
 EC 1.10.3.11 not detected by scan
 KEGG EC 1.6.5.9  not detected; issue with search terms?
 ```{r extract hit info}
-# pro_proteins2 <- pro_proteins |>
-#   mutate(EC2 = str_extract(string = best_hit_annotation, pattern = "(?<=EC:)[0-9]*"))
-# 
-# pro_proteins2 <- pro_proteins |>
-#   mutate(EC2 = str_extract(string = best_hit_annotation, pattern = "(?<=EC:)(\\d`.`+)"))
-# 
-# unique(pro_proteins2$EC2)
-# 
-# pro_proteins2 <- pro_proteins |>
-#   separate_wider_delim(cols = best_hit_annotation, delim = ";", names = c("anno1", "anno2", "anno3", "anno4", "anno5", "anno6" ,"anno7", "anno8"), too_few = "align_start", cols_remove = FALSE)
-# 
-# head(pro_proteins2)
-# 
 # #detect EC 1.10.3.11
 # pro_proteins2 <- pro_proteins |>
 #   mutate(AOX = str_detect(string = best_hit_annotation, pattern = "1.10.3.11"))
@@ -79,11 +60,11 @@ KEGG EC 1.6.5.9  not detected; issue with search terms?
 # head(pro_proteins2)
 
 # #detect KEGG EC 1.6.5.9  
-pro_proteins2 <- pro_proteins |>
-   mutate(AOX = str_detect(string = best_hit_annotation, pattern = "1.6.5.9"))
- 
- head(pro_proteins2)
- unique(pro_proteins2$AOX)
+# pro_proteins2 <- pro_proteins |>
+#    mutate(AOX = str_detect(string = best_hit_annotation, pattern = "1.6.5.9"))
+#  
+#  head(pro_proteins2)
+#  unique(pro_proteins2$AOX)
 ```
 
 ```{r pro_proteins plots}
@@ -113,11 +94,6 @@ pro_proteins |>
        caption = "Horizontals approximate experimental growth light levels; Verticals indicate experimental growth oxygen levels") +
   theme_bw()
 
-#ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "MIT9313MED4SS120AllProteinsDepthO2.png")))
-
-
-#data for all strains/clades is nearly identical;  were all strains/clades truly detected at all sampling points where any Prochlorococcus is present
-
 poi |>
   filter(strain %in% c("MIT9313","MED4", "SS120")) |>
   ggplot()+
@@ -130,130 +106,6 @@ poi |>
   theme(panel.grid.minor = element_line(size = 0), panel.grid.major = element_line(size = 2)) +
   theme_bw()
 
-```
-
-Add Supercomplex categories desired for plotting to poi; one column with values or separate 0/1 columns for each category?
-One column better for facetting; separate 0/1 columns better for filter/grid arrange
-Aurora used grid arrange
-```{r}
-# poi <- poi |>
-#   mutate(Supercomplex = 
-#            case_when(complex == "ribosome" ~ complex,
-#                      complex == "psii" ~ complex,
-#                      complex == "psi" ~ complex,
-#                      complex == "carb" ~ complex,
-#                      subunit %in% unique(grep("pcb.",poi$subunit, value = TRUE, ignore.case=TRUE)) ~ "Pcb",
-#                      subunit %in% c("ftsh1", "ftsh2") ~ "FtsH12",
-#                      subunit %in% c("ftsh3", "ftsh4") ~ "FtsH34",
-#                      )
-#          
-#          ) 
-# 
-# 
-# unique(poi$Supercomplex)
-
-         
-#          , 
-#   subunit %in% atp ~ "atp",
-#   subunit %in% psii ~ "psii", 
-#   subunit %in% psi ~ "psi",
-#   subunit %in% rbc ~ "rubisco",
-#   subunit %in% pet ~ "cytb6f",
-#   subunit %in% ndh ~ "ndh",
-#   subunit %in% clp ~ "clp",
-#   subunit %in% cpe ~ "cpe",
-#   subunit %in% ycf ~ "ycf",
-#   subunit %in% carb ~ "carb",
-#   subunit %in% iron ~ "iron stress",
-#   subunit=="ftsZ" ~ subunit,
-#   subunit=="ftsh1" ~ subunit,
-#   subunit=="ftsh2" ~ subunit,
-#   subunit=="ftsh3" ~ subunit,
-#   subunit=="ftsh4" ~ subunit,
-#   subunit=="fdx" ~ subunit,
-#   subunit=="pc" ~ subunit,
-#   subunit=="psb28" ~ subunit,
-#   subunit=="psb27" ~ subunit,
-#   subunit %in% pcb ~ subunit,))
-#   
-#   
-# rp<-unique(grep("rpl.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# rp<-append(rp, unique(grep("rps.",poi$subunit, value = TRUE, ignore.case=TRUE)))
-# rp<-append(rp, unique(grep("rpm.",poi$subunit, value = TRUE, ignore.case=TRUE)))
-# 
-# atp<-unique(grep("atp.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# pcb<-unique(grep("pcb.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# psii<-c("psbA", "psbB", "psbC", "psbD", "psbE", "psbF", "psbJ", "psbO", "psbP", "psbV")
-# 
-# psi<-unique(grep("psa.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# rbc<-unique(grep("rbc.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# pet<-unique(grep("pet.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# ftsh<-unique(grep("ftsh.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# clp<-unique(grep("clp.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# cpe<-unique(grep("cpe.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# ycf<-unique(grep("ycf.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# iron<-unique(grep("isi.",poi$subunit, value = TRUE, ignore.case=TRUE))
-# 
-# carb<-c("pgm", "glk", "pgi", "zwf", "nagB", "gnd", "prk", "rpe", "rpi", "tkt", "tal","tpi", "gapdh", "pgk", "gpmB", "eno", "pykF", "fba", "glpX", "pgi","pdhA", "pdhB", "pdhC", "lpd", "gltA", "acnB", "icd NAD", "icd NADP","ppc", "dld")
-# 
-# ndh<- unique(grep("ndh.", poi$subunit, ignore.case=T, value=T))
-# 
-# ccm<-c("csos2","csos3","cpa","cpb")
-# 
-# poi<-mutate(poi, complex=case_when(
-#   subunit %in% rp ~ "ribosome", 
-#   subunit %in% atp ~ "atp",
-#   subunit %in% psii ~ "psii", 
-#   subunit %in% psi ~ "psi",
-#   subunit %in% rbc ~ "rubisco",
-#   subunit %in% pet ~ "cytb6f",
-#   subunit %in% ndh ~ "ndh",
-#   subunit %in% clp ~ "clp",
-#   subunit %in% cpe ~ "cpe",
-#   subunit %in% ycf ~ "ycf",
-#   subunit %in% carb ~ "carb",
-#   subunit %in% iron ~ "iron stress",
-#   subunit=="ftsZ" ~ subunit,
-#   subunit=="ftsh1" ~ subunit,
-#   subunit=="ftsh2" ~ subunit,
-#   subunit=="ftsh3" ~ subunit,
-#   subunit=="ftsh4" ~ subunit,
-#   subunit=="fdx" ~ subunit,
-#   subunit=="pc" ~ subunit,
-#   subunit=="psb28" ~ subunit,
-#   subunit=="psb27" ~ subunit,
-#   subunit %in% pcb ~ subunit,
-#   
-#   )
-# )
-# ppp<-c("tkt", "gnd","pgl","tal","zwf","rpe","rpi","glpX","pgm","pgi","deoC","prpp","glk")
-# ppp_enz<-filter(poi, subunit %in% ppp)
-# ppp_enz<-mutate(ppp_enz, complex="ppp")
-# 
-# tca<-c("mqo", "mdh","icd NAD","icd NADP","fdx","sdh", "gltA","fum")
-# tca_enz<-filter(poi, subunit %in% tca)
-# tca_enz<-mutate(tca_enz, complex="tca")
-# 
-# calvin<-c("tpi", "fba","tktA", "gapdh", "glpX", "tpiA","prk","pgk","rbcL","rbcS","rpe","rpiA")
-# calvin_enz<-filter(poi, subunit %in% calvin)
-# calvin_enz<-mutate(calvin_enz, complex="calvin")
-# 
-# poi<-rbind(calvin_enz, poi)
-# poi<-rbind(tca_enz, poi)
-# poi<-rbind(ppp_enz, poi)
-# 
-# poi<-filter(poi,!is.na(poi$complex))
-# unique(poi$complex)
-# unique(poi$subunit)  
 ```
 
 
@@ -308,9 +160,6 @@ poi |>
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.tiff")))
-
-  
-
 
 ```
 
