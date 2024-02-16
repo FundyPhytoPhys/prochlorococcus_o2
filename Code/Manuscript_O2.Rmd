@@ -43,21 +43,21 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -492,20 +492,18 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MIT9313_Oxy_.
 
 \newpage
 
-%%%% Insert PURFits figures  %%%
 
 ```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-AllStrainPurFitsPlots_cap <- glue("** The chlorophyll proxy growth rate (d^-1^) vs. the Photosynthetic Usable Radiation (PUR) (µmol photons m^-2^ d^-1^).**",
-                    "The x-axis is the Photosynthetic Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) .",
-                    "The y-axis is the chlorophyll specific growth rate (d^-1^).",
-                    "**A.** The High Light I (HLI) ecotype MED4.  under 250 µM of O~2~ and red light.",
-                    "**B.** The Low Light II/II (LLII/III) ecotype SS120. under 25 µM of O~2~ and red light.",
-                    "**C.** The Low Light IV (LLIV) ecotype MIT9313. under 2.5 µM of O~2~ and red light.",
-                     "Shapes show the imposed photoperiod (h); hollow inverted triangle for 4 h, solid diamond for 8 h, solid circle for 12 h, solid upright triangle for 16 h.",
-                      "Symbol colours show the spectral waveband for growth; black for white LED light (full spectrum), red for red light (660 nm), and blue for blue light (450 nm).",
-                      "Large shapes show mean or single determinations of growth rate from logistic curve fits; small shapes show values for replicate determinations, if any.",
-                    "The 3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
+AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
+                    "**A.** MED4 High Light I ecotype under 250, 25, or 2.5 µM of O~2~.",
+                    "**B.** SS120 Low Light II/III (LLII/III) ecotype under 250, 25, or 2.5 µM of O~2~.",
+                    "**C.** MIT9313 Low Light IV (LLIV) ecotype under 250, 25, or 2.5 µM of O~2~.",
+                    "3 levels of imposed dissolved O~2~ concentrations (µM) are in rows for each strain.",
+                    "Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
+                      "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
+                      "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
+                    "Platt (add Platt citation here) 4 parameter model fits to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Seperate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line). ",
                        .sep = " ")
 
 
@@ -555,9 +553,9 @@ knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnnotated.png"))
 
 
 
-```{r MIT9313ProteinAnmotated, fig.cap = MIT9313ProteinAnmotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MIT9313ProteinAnnotated, fig.cap = MIT9313ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313ProteinAmnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
+MIT9313ProteinAnnotated_cap <- glue("**fmole target protein per ug total protein for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade).  **",  
                     
                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole/ug",
