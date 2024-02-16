@@ -159,7 +159,7 @@ PhotoperiodShapes
 ```{r linetypes}
 
 MyPhotoperiods = c(16, 12, 8, 4)
-MyLineTypes = c("twodash","dashed", "dotted", "aa")
+MyLineTypes = c("dotdash","dashed", "dotted", "aa")
 
 names(MyLineTypes) <- MyPhotoperiods
 MyLineTypes
@@ -891,7 +891,7 @@ SS120PURFITPlot <- AllFitsCombined |>
   scale_x_continuous(label=scientific_10) +
    scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
-  scale_linetype_manual(values = c("twodash","dashed", "dotted", "aa"), labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
+  scale_linetype_manual(values = c("dotdash","dashed", "dotted", "aa"), labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
    scale_shape_manual(values = PhotoperiodShapes)  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
                     labeller = labeller(Strain = label_both, O2_uM = label_value, OxygenLabel = label_value)) +
@@ -931,7 +931,7 @@ MIT9313PURFITPlot <- AllFitsCombined |>
   geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 4, alpha = 1.0) +
     geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2, alpha = 0.8) +
   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) + 
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "twodash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotdash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM != 2.5, Strain == "MIT9313")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
@@ -940,7 +940,7 @@ MIT9313PURFITPlot <- AllFitsCombined |>
   scale_x_continuous(breaks = c(0, 1000000,2000000, 3000000, 4000000),label=scientific_10, limits = c (-100, 5000000)) +
    scale_y_continuous(breaks = c(0, 0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
-  scale_linetype_manual(values = c("solid","twodash","dashed", "dotted", "aa"), labels = c("Pooled","16 hr", "12 hr", "8 hr", "4 hr")) +
+  scale_linetype_manual(values = c("solid","dotdash","dashed", "dotted", "aa"), labels = c("Pooled","16 hr", "12 hr", "8 hr", "4 hr")) +
    scale_shape_manual(values = PhotoperiodShapes)  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
                     labeller = labeller(Strain = label_both, WL = label_both, O2_uM = label_value, OxygenLabel = label_value)) +
