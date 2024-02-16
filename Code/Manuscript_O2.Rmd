@@ -285,16 +285,14 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 
 ## MetaProteomics bioinformatic analyses and limitations  {.unnumbered}
 
-	Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO database (https://www.bco-dmo.org/deployment/59053) accessed via the OPP in June 2019. Datasets contained:
+Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO database (https://www.bco-dmo.org/deployment/59053) accessed via the OPP in June 2019. Datasets contained:
 	i) Peptide sequences and sample identification (ID) number;
 	ii) Sample ID number, station, depth in meters below the surface the sample was collected at, best-hit BLASTP protein and species annotation and the corresponding Uniprot Entry number for the identified proteins;
 	iii) Sample station depth and [O~2].  
 	The depth and [O~2] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using the functions in the Tidyverse package (https://www.tidyverse.org/) in RStudio v1.2.5019 (https://rstudio.com/)  (LOCATION OF CODE ON GITHUBO. The resulting merged dataset was filtered for *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b6f (Cytb6f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Terminal Oxidase (PTOX); plastocyanin (PC); ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
 	Detected peptides were re-annotated for consistency and labelled according to strain, clade, subunit and protein complex (where possible). Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for each protein and/or subunits for each of the thirteen Prochlorococcus strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities were specified by phylogenetic comparison to the characterized FtsH proteases of Synechocystis sp. PCC6803 (CITATONS).  Data for each strain was plotted against depth and  [O~2] and sampling station.
 	
-	Graphs depict the detection of mass-spectrally detected peptides at varying depths and [O~2] in the water column for  *Prochlorococcus* strains and clades identified in the dataset. When assessing the presence of a particular protein complex, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. 
-	Although not a direct measurement, it is assumed that light intensity is inversely correlated with depth. 
-	As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain annotations, particularly as the proteins of interest in this study are highly conserved in sequence across strain. We are confident in clade and ecotypic classification for each protein examined, although exact strain annotation may be ambiguous.
+Graphs depict the detection of mass-spectrally detected peptides at varying depths and [O~2] in the water column for  *Prochlorococcus* strains and clades identified in the dataset. When assessing the presence of a particular protein complex, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. Although not a direct measurement, it is assumed that light intensity is inversely correlated with depth. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain annotations, particularly as the proteins of interest in this study are highly conserved in sequence across strain. We are confident in clade and ecotypic classification for each protein examined, although exact strain annotation may be ambiguous.
 Another caveat to interpretation of this data is the “peptide detection bias” inherent to mass spectrometry: certain peptides are more easily detected and thus dominate the spectra over less easily detected peptides. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence cannot be determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Therefore, the absence of a particular does not necessarily rule out its presence overall.  Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’. Therefore, the ‘absence’ of a particular protein structure is here interpreted as low in quantity, while its presence is interpreted as higher in quantity.
 
 ## Growth data management and analysis {.unnumbered}
@@ -381,7 +379,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 
 ```{r MED4PAR, fig.cap = MED4PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MED4PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade) vs. photoperiod (h).  **",  
+MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High Light (HLI) near surface clade) vs. photoperiod (h).  **",  
                     
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
@@ -396,7 +394,7 @@ knitr::include_graphics(file.path(FiguresIn, "MED4PAR.png"))
 
 ```{r SS120PAR, fig.cap = SS120PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-SS120PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low Light (LLIII) deep ocean clade) vs. photoperiod (h). **",  
+SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low Light (LLIII) deep ocean clade) vs. photoperiod (h). **",  
                      
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
@@ -412,7 +410,7 @@ knitr::include_graphics(file.path(FiguresIn, "SS120PAR.png"))
 
 ```{r MIT9313PAR, fig.cap = MIT9313PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313PAR_cap <- glue("**Chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade) vs. photoperiod (h). **",  
+MIT9313PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low Light (LLIV) deep ocean clade) vs. photoperiod (h). **",  
                        
                     "3 levels of growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) are in columns;  3 levels of imposed growth dissolved O~2~ concentrations (µM) are in rows.",
                     "Colors represent the actinic spectral waveband (nm).",
@@ -427,15 +425,15 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313PAR.png"))
 
 ```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) and 450 nm (blue) light.**",
-                    "The x-axis is photoperiod (h).",
-                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "X-axis is photoperiod (h).",
+                    "Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 250 µM of O~2~ and blue light.",
                     "**D.** represents the model under 25 µM of O~2~ and blue light.",
-                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
-                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
+                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
+                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -449,15 +447,15 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MED4_Oxy_.png
 
 ```{r SS120GAM,  fig.cap = SS120GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-SS120GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) and 450 nm (blue) light.**",
-                    "The x-axis is photoperiod (h).",
-                    "The y-axis is actinic Photosynethetic Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+SS120GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "X-axis is photoperiod (h).",
+                    "Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 250 µM of O~2~ and blue light.",
                     "**D.** represents the model under 25 µM of O~2~ and blue light.",
-                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
-                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
+                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
+                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -470,17 +468,17 @@ knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_SS120_Oxy_.pn
 
 ```{r MIT9313GAM,  fig.cap = MIT9313GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-MIT9313GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll proxy growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.**",
-                    "The x-axis is photoperiod (h).",
-                    "The y-axis is actinic Photosynthetically Active Radiation (PAR) level (µmol photons m^-2^ s^-1^).",
+MIT9313GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.**",
+                    "X-axis is photoperiod (h).",
+                    "Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 2.5 µM of O~2~ and red light.",
                     "**D.** represents the model under 250 µM of O~2~ and blue light.",
                     "**E.** represents the model under 25 µM of O~2~ and blue light.",
                     "**F.** represents the model under 2.5 µM of O~2~ and blue light.",
-                    "The legend represents a colour gradient of growth rate from no growth (white) to 1 d^-1^ (dark blue).",
-                    "The labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
+                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
+                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
@@ -502,7 +500,7 @@ AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs
                     "Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
                       "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
                       "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Platt (add Platt citation here) 4 parameter model fits to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Seperate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line). ",
+                    "Platt (add Platt citation here) 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Seperate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line). ",
                        .sep = " ")
 
 
