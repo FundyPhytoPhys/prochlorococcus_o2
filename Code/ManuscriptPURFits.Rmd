@@ -151,9 +151,18 @@ MCMIXColours
 MyPhotoperiods = as.factor(c(4, 8, 12, 16))
 PhotoperiodShapes = c(6, 18, 16, 17)
 
-
 names(PhotoperiodShapes) <- MyPhotoperiods
 PhotoperiodShapes
+
+```
+# set linetypes
+```{r linetypes}
+
+MyPhotoperiods = c(16, 12, 8, 4)
+MyLineTypes = c("twodash","dashed", "dotted", "aa")
+
+names(MyLineTypes) <- MyPhotoperiods
+MyLineTypes
 
 ```
 
@@ -822,7 +831,7 @@ MED4PURFITPlot <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
-         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(Data_all_WL, levels = c("WW", 660, 450))) %>%
   ggplot() +
@@ -831,24 +840,24 @@ MED4PURFITPlot <- AllFitsCombined |>
   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) + 
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
- geom_text(aes(x = 1000, y = 0.75, label= "A     MED4 HLI"), data = . %>% filter(O2_uM == 250, Strain == "MED4"), size = 3, hjust = 0, vjust = 0) +
+ geom_text(aes(x = 1000, y = 0.75, label= "A     MED4 HLI"), data = . %>% filter(O2_uM == 250, Strain == "MED4"), size = 4, hjust = 0, vjust = 0) +
   scale_x_continuous(label=scientific_10) +
    scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
-  scale_linetype_manual(values = c("twodash","dashed", "dotted", "aa"), labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
+  scale_linetype_manual(values = MyLineTypes, labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
    scale_shape_manual(values = PhotoperiodShapes)  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), 
                     labeller = labeller(Strain = label_both, O2_uM = label_value, OxygenLabel = label_value)) +
  guides(linetype = guide_legend(nrow = 1),
         fill = "none",
-        colour = guide_legend(nrow = 1)) +
+        color = guide_legend(nrow = 1)) +
  guides(shape = guide_legend(nrow = 1)) +
   theme_bw() +
    theme( strip.text = element_text(size = 10),
         axis.title.y = element_blank(),
         axis.title.x.bottom = element_blank(),
         axis.text.x = element_blank(),
-        axis.text.y = element_text(size = 7, color = "black", angle = 0, hjust = 1.0),
+        axis.text.y = element_text(size = 9, color = "black", angle = 0, hjust = 1.0),
         strip.background=element_rect(color="grey87", fill = "grey82"),
         # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
@@ -859,7 +868,7 @@ MED4PURFITPlot <- AllFitsCombined |>
         legend.position = "top") +
   labs( shape = "Photoperiod (h)",
         color = "Growth Waveband (nm)",
-       linetype = "Photoperiod (h) "
+       linetype = "Photoperiod lines"
       )
 MED4PURFITPlot
 
@@ -868,7 +877,7 @@ SS120PURFITPlot <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
-         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(Data_all_WL, levels = c("WW", 660, 450))) %>%
   ggplot() +
@@ -878,10 +887,9 @@ SS120PURFITPlot <- AllFitsCombined |>
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 250, Strain == "SS120")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(Strain == "SS120")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "SS120")) +
- geom_text(aes(x = 1000, y = 0.75, label= "B     SS120 LLII/III"), data = . %>% filter(O2_uM == 250, Strain == "SS120"), size = 3, hjust = 0, vjust = 0) +
+ geom_text(aes(x = 1000, y = 0.75, label= "B     SS120 LLII/III"), data = . %>% filter(O2_uM == 250, Strain == "SS120"), size = 4, hjust = 0, vjust = 0) +
   scale_x_continuous(label=scientific_10) +
    scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
-  # coord_cartesian(ylim = c (0, 0.07)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
   scale_linetype_manual(values = c("twodash","dashed", "dotted", "aa"), labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
    scale_shape_manual(values = PhotoperiodShapes)  +
@@ -896,7 +904,7 @@ SS120PURFITPlot <- AllFitsCombined |>
         axis.title.y = element_blank(),
         axis.title.x.bottom = element_blank(),
         axis.text.x = element_blank(),
-        axis.text.y = element_text(size = 7, color = "black", angle = 0, hjust = 1.0),
+        axis.text.y = element_text(size = 10, color = "black", angle = 0, hjust = 1.0),
         strip.background=element_rect(color="grey87", fill = "grey82"),
         # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
@@ -916,7 +924,7 @@ MIT9313PURFITPlot <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
-         Photoperiod = factor(Data_all_Photoperiod, levels = c("16", "12", "8", "4" )),
+         Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(Data_all_WL, levels = c("WW", 660, 450))) %>%
   ggplot() +
@@ -928,7 +936,7 @@ MIT9313PURFITPlot <- AllFitsCombined |>
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
   labs(x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
- geom_text(aes(x = 1000, y = 0.75, label= "C     MIT9313 LLIV"), data = . %>% filter(O2_uM == 250, Strain == "MIT9313"), size = 3, hjust = 0, vjust = 0) +
+ geom_text(aes(x = 1000, y = 0.75, label= "C     MIT9313 LLIV"), data = . %>% filter(O2_uM == 250, Strain == "MIT9313"), size = 4, hjust = 0, vjust = 0) +
   scale_x_continuous(breaks = c(0, 1000000,2000000, 3000000, 4000000),label=scientific_10, limits = c (-100, 5000000)) +
    scale_y_continuous(breaks = c(0, 0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
@@ -945,7 +953,7 @@ MIT9313PURFITPlot <- AllFitsCombined |>
           axis.title.y = element_blank(),
           axis.title.x = element_text(size = 15, color = "black"),
           axis.text.x = element_text(size = 10, color = "black", angle = 0, hjust = 1.0),
-          axis.text.y = element_text(size = 7, color = "black", angle = 0, hjust = 1.0),
+          axis.text.y = element_text(size = 10, color = "black", angle = 0, hjust = 1.0),
         strip.background=element_rect(color="grey87", fill = "grey82"),
         # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
