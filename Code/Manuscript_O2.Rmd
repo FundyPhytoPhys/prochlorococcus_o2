@@ -383,15 +383,14 @@ XXX Mireille to confirm and summarise XXX
 
 Quantitative protein immunoblots were used to determine the concentrations of 5 target proteins; FtsH, PsbA, PetC, PsaC and RbcL in *P. marinus* MED4 and MIT9313 cultures grown in the PSI Multicultivator under imposed PAR light levels of 30 and 100 µmol photons m^-2^ s^-1^, spectral wavebands of 660 and 450 nm and [O~2~] of 2.5 and 250 µM. 40 mL of culture were transferred into a 50 mL falcon tube and 40 µL of 10 % Pluronic F68 acid was added to the cell suspension. The cell suspension was centrifuged for 30 minutes at 17664 g using a J-26XP centrifuge (Beckman Coulter, Brea, CA, USA) equipped with a J-10 rotor. The supernatant was removed and the resulting pellet was flash frozen in liquid nitrogen and stored at -80 °C for later use.
 
-Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1 TRIS base buffer, 0.0211 mol L^−1 TRIS HCl buffer, 0.0735 mol L^−1 lithium dodecyl sulfate, 1.08 mol L^−1 glycerol, 0.5 mmol L^−1 ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes.  40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1 range.
+Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1^ TRIS base buffer, 0.0211 mol L^−1^ TRIS HCl buffer, 0.0735 mol L^−1^ lithium dodecyl sulfate, 1.08 mol L^−1^ glycerol, 0.5 mmol L^−1^ ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from (citation??) XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g using XXXXXX centrifuge ( reference here    ) for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes. 40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1^ range.
+
+All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Standards were obtained from Agrisera (Vännäs, Sweden; FtsH AS11 1789S; PsbA AS01 016S; PetC AS08 330S; PsaC AS04 042S; RbcL AS01 017S).  Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177). Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, AS08 330; PsaC 1:XXXXXX dilution, AS10 939; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
 
 
-All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177).  Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, ASXXXXX; PsaC 1:XXXXXX dilution, ASXXXXXXX ; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
+# Results and discussion {.unnumbered}
 
-
-# Results and Discussion {.unnumbered}
-
-## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean
+## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean  {.unnumbered}
 
 Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
 the niches occupied by different *P. marinus* ecotypes, as compared to
@@ -415,7 +414,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 
 \newpage
 
-## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~ 
+## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~  {.unnumbered} 
 
 ### MED4 Clade HLI {.unnumbered}
 
@@ -607,7 +606,7 @@ XXX Fig letters do not match as now we have red GAMs. Below is results for Blue 
 
 We employed GAM to summarize and visualize th complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
 
-### MED4 Clade HLI
+### MED4 Clade HLI  {.unnumbered}
 The GAM model in Figure \@ref(fig:MED4GAM) shows MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
 90^th^ percentile of maximum achieved growth rate.  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR waas similar.  We again note the exclusion of MED4 from growth under 4 h photoperiod. Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods.
 
@@ -1132,7 +1131,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroProteinMetabDepthO2.png")
 
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 ```{r MED4ProteinAnnotated, fig.cap = MED4ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 MED4ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).**",  
@@ -1148,12 +1147,11 @@ knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnnotated.png"))
 \newpage
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 ```{r MIT9313ProteinAnnotated, fig.cap = MIT9313ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  **",  
-                    
-                    "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
+MIT9313ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  **",
+                                    "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
                     "Numbers over each bar are fmole target protein per ug total protein.",
 
                        .sep = " ")
@@ -1167,11 +1165,11 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnnotated.png"))
 # Supplemental {.unnumbered}
 
 
-# Acknowledgements
+# Acknowledgements  {.unnumbered}
 Jonah Sheinin assisted with growth of some cultures for protein analyses, while Carlie Barnhill assisted with code for import of multicultivator growth data files.
 
 
-# Funding
+# Funding  {.unnumbered}
 To Be Entered through PLoSONe system and deleted here
 Czech Academy of Science visiting fellowship supporting DAC work at AlgaTech (OP)
 Canada Research Chair in Phytoplankton Ecophysiology (DAC)

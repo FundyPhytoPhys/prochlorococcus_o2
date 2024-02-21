@@ -321,15 +321,14 @@ XXX Mireille to confirm and summarise XXX
 
 Quantitative protein immunoblots were used to determine the concentrations of 5 target proteins; FtsH, PsbA, PetC, PsaC and RbcL in *P. marinus* MED4 and MIT9313 cultures grown in the PSI Multicultivator under imposed PAR light levels of 30 and 100 µmol photons m^-2^ s^-1^, spectral wavebands of 660 and 450 nm and [O~2~] of 2.5 and 250 µM. 40 mL of culture were transferred into a 50 mL falcon tube and 40 µL of 10 % Pluronic F68 acid was added to the cell suspension. The cell suspension was centrifuged for 30 minutes at 17664 g using a J-26XP centrifuge (Beckman Coulter, Brea, CA, USA) equipped with a J-10 rotor. The supernatant was removed and the resulting pellet was flash frozen in liquid nitrogen and stored at -80 °C for later use.
 
-Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1 TRIS base buffer, 0.0211 mol L^−1 TRIS HCl buffer, 0.0735 mol L^−1 lithium dodecyl sulfate, 1.08 mol L^−1 glycerol, 0.5 mmol L^−1 ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes.  40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1 range.
+Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1^ TRIS base buffer, 0.0211 mol L^−1^ TRIS HCl buffer, 0.0735 mol L^−1^ lithium dodecyl sulfate, 1.08 mol L^−1^ glycerol, 0.5 mmol L^−1^ ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from (citation??) XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g using XXXXXX centrifuge ( reference here    ) for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes. 40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1^ range.
+
+All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Standards were obtained from Agrisera (Vännäs, Sweden; FtsH AS11 1789S; PsbA AS01 016S; PetC AS08 330S; PsaC AS04 042S; RbcL AS01 017S).  Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177). Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, AS08 330; PsaC 1:XXXXXX dilution, AS10 939; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
 
 
-All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177).  Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, ASXXXXX; PsaC 1:XXXXXX dilution, ASXXXXXXX ; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
+# Results and discussion {.unnumbered}
 
-
-# Results and Discussion {.unnumbered}
-
-## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean
+## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean  {.unnumbered}
 
 Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
 the niches occupied by different *P. marinus* ecotypes, as compared to
@@ -344,14 +343,14 @@ spectrum, and light level, is poorly described.
 
 \newpage
 
-## *Prochlorococcus marinus* growth responses to photoperiod, PAR and O~2~ 
+## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~  {.unnumbered} 
 
 ### MED4 Clade HLI {.unnumbered}
 
 #### High oxygen environment {.unnumbered}
 
 The growth rates of *P. marinus* MED4, Clade HLI, increased with higher imposed PAR and longer photoperiods
-(Figure \@ref(fig:MED4PAR)), when grown under 250 µM O~2~. No growth was
+(Figure \@ref(fig:MED4PAR)), under 250 µM O~2~. No growth was
 observed under any imposed conditions under a 4 h photoperiod. MED4 was
 able to grow under the lowest PAR treatment of 30 µmol photons m^-2^
 s^-1^ but only when the blue light photoperiod was longer than 4 h; the
@@ -407,15 +406,10 @@ when MED4 was exposed to 8 and 12 h photoperiods.
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* SS120, Clade LLIII, increased with lower imposed PAR and with longer photoperiods, when
-grown under 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). SS120 was able to
-grow under the lowest PAR treatment of 30 µmol photons m^-2^ s^-1^ but
-only when the photoperiod was longer than 4 h under white and red
-light. No growth was observed under any blue light photoperiods when
-exposed to PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
-with increasing photoperiods for white and red light when exposed
-to PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
-when the red light photoperiod was 16 h. Experiments conducted under PAR
+The growth rates of *P. marinus* SS120, Clade LLIII, increased with longer photoperiods, under 30 µmol photons m^-2^ s^-1^ peak PAR and 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). No growth was observed under any blue light photoperiods when
+exposed to peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
+with increasing photoperiods for white and red light under peak PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
+when the red light photoperiod was 16 h. Experiments under peak PAR
 of 180 µmol photons m^-2^ s^-1^ showed no growth under blue nor
 red lights. Growth rate decreased with longer photoperiods and showed
 growth inhibition at 12 and 16 h photoperiods under PAR of 180 µmol
@@ -465,20 +459,9 @@ light 16 h photoperiod experiments were not performed due to time constraints.
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* MIT9313, Clade LLIV, increased with low to moderate imposed PAR and longer
-photoperiods, when grown under 250 µM O~2~ (Figure
-\@ref(fig:MIT9313PAR)). Growth rate increased with increasing
-photoperiods under the lowest PAR treatment of 30 µmol photons m^-2^
-s^-1^ for blue, white LED and red light. The green light treatment
-showed growth only when the photoperiod was longer than 12 h and
-decreased by \~ 50% under a 16 h photoperiod. Under PAR of 90 µmol
-photons m^-2^ s^-1^, growth rate increased with longer photoperiods for
-white LED, red, and green light treatments. Growth rates decreased from
-4 to 8 h blue light photoperiod and exhibited no growth under
-photoperiods of 12 and 16 h. Blue light did not induce growth at 180
-µmol photons m^-2^ s^-1^ under any photoperiod; white LED and red light
-treatments only exhibited growth under the 8 h photoperiod and growth
-rates increased with longer photoperiods under green light. The µ~max~
+The growth rates of *P. marinus* MIT9313, Clade LLIV increased with longer
+photoperiods under low 30 µmol photons m^-2^ s^-1^ peak PAR, under 250 µM O~2~ (Figure
+\@ref(fig:MIT9313PAR)).  Under intermediate 90 µmol photons m^-2^ s^-1^ peak PAR growth rates decreased with increasing blue light photoperiod. Blue light did not induce growth at 180 µmol photons m^-2^ s^-1^ peak PAR, while cells shows only marginal growth under white LED and red light under the 8 h photoperiod . The µ~max~
 was
 0.54
 d^-1^ achieved under 30 µmol photons
@@ -486,53 +469,28 @@ m^-2^ s^-1^ blue light and 16 h photoperiod.
 
 #### Intermediate oxygen environment {.unnumbered}
 
-Similar to the growth trends of the 250 µM O~2~ and PAR of 30 µmol
-photons m^-2^ s^-1^ experiments, MIT9313 maintained at 25 µM O~2~,
-growth rate increased with increasing photoperiods for all spectral
-wavebands tested (Figure \@ref(fig:MIT9313PAR)). The 25 µM O~2~ growth
-experiments showed generally similar growth rate as the 250 µM O~2~ and
-PAR of 30 µmol photons m^-2^ s^-1^, with the interesting exception that
-the growth rate increased by 50% under 25 µM O~2~ and 16 h blue light
-photoperiod. In contrast to the blue light growth responses under 250 µM
-O~2~ and PAR of 90 µmol photons m^-2^ s^-1^, growth rate increased with
-longer photoperiods and even grew under 12 and 16 h photoperiods. In
-fact, the fastest growth rate of all the O~2~ experiments was
-0.99
-d^-1^ achieved under 16 h blue light
-photoperiod and PAR of 90 µmol photons m^-2^ s^-1^ under 25 µM O~2~.
-Growth rate increased by 50% under the 4 h blue light photoperiod; by
-400% under the 8 h blue light photoperiod; by 40% under the 12 h red
-light photoperiod and by 80% under the 16 h white LED photoperiod,
-compared to the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
-growth experiments. In contrast to the 250 µM O~2~ growth experiments,
-MIT9313 was able to grow when exposed to PAR of 180 µmol photons m^-2^
+For MIT9313 maintained at 25 µM O~2~ growth rate increased with increasing photoperiods for all spectral wavebands tested (Figure \@ref(fig:MIT9313PAR)). Under peak PAR of 90 µmol photons m^-2^ s^-1^ growth rate increased with
+longer photoperiods, with the fastest overall growth rate for MIT9313 
+0.99 d^-1^ achieved under 16 h blue light
+photoperiod. In contrast to the 250 µM O~2~ growth experiments,
+MIT9313 grew when exposed to peak PAR of 180 µmol photons m^-2^
 s^-1^ and blue light under all photoperiods except 16 h; additionally,
 white LED and red light treatments induced growth across all tested
-photoperiods under 25 µM O~2~.
-
-The 25 µM O~2~, 4 h photoperiod experiments under white LED light and
-all green light were not performed due to time constraints.
+photoperiods under 25 µM O~2~. The 25 µM O~2~, 4 h photoperiod experiments under white LED light and were not performed due to time constraints.
 
 #### Low oxygen environment {.unnumbered}
 
-The growth experiments under 2.5 µM O~2~ for MIT9313 showed growth
-responses for all spectral wavebands except white LED light, albeit
-slower than under the 25 µM O~2~ experiments (Figure
-\@ref(fig:MIT9313PAR)). MIT9313 was able to grow under PAR of 30 µmol
-photons m^-2^ s^-1^ but only under an 8 h blue and red light
-photoperiod. Growth rate increased with longer photoperiods under blue
-light treatments and PAR of 90 µmol photons m^-2^ s^-1^ however, growth
-was inhibited under a 16 h blue light photoperiod and only grew under an
-8 h photoperiod under red and green light treatments. The growth rate
+Under 2.5 µM O~2~  MIT9313 showed growth, particularly under blue LED light, albeit
+generally slower than under the parallel 25 µM O~2~ experiments (Figure
+\@ref(fig:MIT9313PAR)). Growth estimates did, however, show scatter among replicates, suggesting the 2.5 µM O~2~  was near the tolerance limit for growth of  MIT9313. Growth rates increased with longer photoperiods under blue
+light treatments under peak PAR of 90 µmol photons m^-2^ s^-1^ . Growth 
 for MIT9313 under PAR of 180 µmol photons m^-2^ s^-1^ and blue light
-treatment decreased with increasing photoperiods with growth inhibition
-under a 16 h photoperiod. The red light treatments under PAR of 180 µmol
-photons m^-2^ s^-1^ showed similar growth rate for 8 and 12 h
-photoperiods and no growth were observed for green light treatments. The
-µ~max~ was
-0.33
-d^-1^ achieved under 4 h blue light
-photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.
+treatment decreased with increasing photoperiods with full growth inhibition
+under a 16 h photoperiod. The red light peak PAR of 180 µmol
+photons m^-2^ s^-1^ showed similar growth rates for 8 and 12 h
+photoperiods. The µ~max~ was
+0.33 d^-1^ achieved under 4 h blue light
+photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.  XXXXTHIS DOES NOT LOOK correct; 12 h, 90 uE photons blue light looks higher.
 
 The 2.5 µM O~2~ white LED treatments under 4, 8 and 16 h photoperiods
 and red light under 4 and 16 h photoperiods were not performed due to
@@ -545,109 +503,73 @@ time constraints.
 
 \newpage
 
-#### Generalized Additive Model (GAM) of MED4 growth {.unnumbered}
+## Generalized Additive Models (GAM) of *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectal bands and O~2~   {.unnumbered}
 
 XXX Fig letters do not match as now we have red GAMs. Below is results for Blue GAMsXXXX
 
-Due to the complex interactions of light level and photoperiod, a GAM
-was employed (Figure \@ref(fig:MED4GAM)) to model the growth trends
-of MED4 in response to changing blue and red light PAR and photoperiod, across
-the 3 different imposed oxygen concentrations. Under 250 µM O~2~, Figure
-\@ref(fig:MED4GAM)A showed that the fastest growth rates were
-achieved above 90 µmol photons m^-2^ s^-1^ and photoperiods greater than
-12 h, indicated by the contour line labeled 0.62 d^-1^ (representing the
-90^th^ percentile of achieved growth rate). Figure
-\@ref(fig:MED4GAM)A also illustrated that MED4 exploited all light
-levels as long as the photoperiods were longer than 4 h, albeit at
-slower growth rate at lower PAR and shorter photoperiods. Under 25 µM
-O~2~, MED4 grew, but required longer than 4 h photoperiod (Figure
-\@ref(fig:MED4GAM)B). Interestingly, the GAM illustrated no
-difference in growth rate when MED4 was grown under 25 µM or 250 µM O~2~
-with photoperiods greater than 12 h. Figure \@ref(fig:MED4GAM)C
-showed that MED4 did not grow under the tested conditions at 2.5 µM
-O~2~.
+We employed GAM to summarize and visualize th complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
+
+### MED4 Clade HLI  {.unnumbered}
+The GAM model in Figure \@ref(fig:MED4GAM) shows MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
+90^th^ percentile of maximum achieved growth rate.  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR waas similar.  We again note the exclusion of MED4 from growth under 4 h photoperiod. Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods.
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/PICO_Hypervolume_GAM_MED4_Oxy_.png" alt="**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:MED4GAM)**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
+<img src="../Output/Figures/PICO_Hypervolume_GAM_MED4_Oxy_.png" alt="**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
+<p class="caption">(\#fig:MED4GAM)**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
 </div>
 
 \newpage
 
-#### Generalized Additive Model (GAM) of SS120 growth {.unnumbered}
+
+### SS120 Clade Clade LLIII  {.unnumbered}
 
 XXX Fig letters do not match as now we have red GAMs. Below is results for Blue GAMsXXXX
 
-The GAM model in Figure \@ref(fig:SS120GAM) displays the growth
-trends of SS120 in response to changing blue light PAR and photoperiod,
-across the 3 different imposed oxygen concentrations. Under 250 µM O~2~,
-Figure \@ref(fig:SS120GAM)A illustrated that the fastest growth
-rates were achieved below PAR of 50 µmol photons m^-2^ s^-1^ and
+The GAM model in Figure \@ref(fig:SS120GAM) shows growth
+responses of SS120 red (A) or blue (B) peak PAR and photoperiod,
+across the 2 imposed oxygen concentrations. Under 250 µM O~2~,
+Figure \@ref(fig:SS120GAM)A showed highest growth
+rates achieved below PAR of 50 µmol photons m^-2^ s^-1^ and
 photoperiods between 8 and 12 h, indicated by the contour line labeled
-0.29 d^-1^ (representing the 90^th^ percentile of achieved growth rate).
-Figure \@ref(fig:SS120GAM)A also showed that SS120 does not grow at
-PAR above 90 µmol photons m^-2^ s^-1^ and the growth rate are slower as
-photoperiods go above 12 or below 8 h. Under 25 µM O~2~, SS120 grew
-under a photoperiod of 8 h and exploited all light levels and grew under
-a 12 h photoperiod but at PAR of 50 µmol photons m^-2^ s^-1^. The
-fastest growth rate achieved was at a higher PAR of \~100 µmol photons
+0.29 d^-1^ (representing the 90^th^ percentile of achieved growth rate). Note the disjunct regions of the plots, resulting from variable growth successes of SS120 under 250 µM O~2~.  Growth rate patterns under red light were similar, although somehwat faster.
+In contrast, under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak PAR levels, achieving faster growth ratesat a higher PAR of \~100 µmol photons
 m^-2^ s^-1^, indicated by the contour line labeled 0.5 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
-the 90^th^ percentile fastest growth rates under 250 µM O~2~. Figure
-\@ref(fig:SS120GAM)C showed that SS120 did not grow under the tested
-conditions at 2.5 µM O~2~.
+the 90^th^ percentile fastest growth rates under 250 µM O~2~. Under red light and 25 µM O~2~ light SS120 grew across most conditions of peak PAR and photoperiod, achieving fastest growhth under long photoperiods and peak PAR below 50 \~100 µmol photons
+m^-2^ s^-1^.  Thus, the designation of SS120 as a LL strain is dependent upon the [O~2]. SS120 did not, however,  grow under tested conditions at 2.5 µM O~2~.
 
 \newpage
 
 
 
 <div class="figure">
-<img src="../Output/Figures/PICO_Hypervolume_GAM_SS120_Oxy_.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:SS120GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
+<img src="../Output/Figures/PICO_Hypervolume_GAM_SS120_Oxy_.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
+<p class="caption">(\#fig:SS120GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynethetic Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
 </div>
 
 \newpage
 
-#### Generalized Additive Model (GAM) of MIT9313 growth {.unnumbered}
+### MIT9313 Clade LLIV {.unnumbered}
 
-XXX Fig letters do not match as now we have red GAMs. Below is results for Blue GAMsXXXX
-
-
-The GAM model in Figure \@ref(fig:MIT9313GAM) displays the growth
-trends of MIT9313 in response to changing blue light PAR and
-photoperiod, across the 3 different imposed oxygen concentrations. Under
-250 µM O~2~, Figure \@ref(fig:MIT9313GAM)A illustrated that the
-fastest growth rates were achieved between PAR of 30 µmol photons m^-2^
+The GAM model in Figure \@ref(fig:MIT9313GAM) shows MIT9313 growth responses to red (A) or blue (B) peak PAR and photoperiod. Under 250 µM O~2~,  Figure \@ref(fig:MIT9313GAM)A shows MIT9313 achieves
+fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
 s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 8 h,
-indicated by the contour line labeled 0.51 d^-1^ (representing the
-90^th^ percentile of achieved growth rates). Figure
-\@ref(fig:MIT9313GAM)A also illustrated that growth rate increases
-with longer photoperiods, as long as the PAR levels are below 50 µmol
-photons m^-2^ s^-1^ and that MIT9313 does not grow when exposed to PAR
-levels above 90 µmol photons m^-2^ s^-1^. In contrast to the 250 µM O~2~
-growth experiment, MIT9313 was able to exploit all actinic PAR levels
-(Figure \@ref(fig:MIT9313GAM)B). Interestingly, the growth rate was
-similar across all PAR levels between 4 and 12 h photoperiods, indicated
-by the contour line labeled 0.29 d^-1^ (representing the 10^th^
-percentile of achieved growth rate) and 0.44 d^-1^ (representing the
-50^th^ percentile of achieved growth rate) (Figure
-\@ref(fig:MIT9313GAM)B). However, for photoperiods exceeding 12 h,
-the growth rate showed a decline at higher PAR levels but showed the
-overall fastest growth rate achieved was at PAR levels less than 100
-µmol photons m^-2^ s^-1^, indicated by the contour line labeled 0.69
-d^-1^ (representing the 90^th^ percentile of achieved growth rate)
-(Figure \@ref(fig:MIT9313GAM)B). Figure \@ref(fig:MIT9313GAM)C
-showed that MIT9313 is capable of growing under 2.5 µM O~2~ as long as
-the photoperiod is between 4 and 8 h and between 50 to 150 µmol photons
-m^-2^ s^-1^ PAR levels (Figure \@ref(fig:MIT9313GAM)C).
+indicated by the contour line labeled 0.51 d^-1^ representing the
+90^th^ percentile of achieved growth rates. Figure
+\@ref(fig:MIT9313GAM)A also shows that growth rate increases
+with longer photoperiods, as long as the blue peak PAR levels remain below 50 µmol
+photons m^-2^ s^-1^.  In contrast, under red light and 250 µM O~2~ MIT9313 grows faster while exploiting higher peak PAR and longer photoperiods.  Thus the designation of MIT9313 as a LL clade is dependent upon [O2].
+(Figure \@ref(fig:MIT9313GAM)B).  Figure \@ref(fig:MIT9313GAM)C
+shows that MIT9313 maintains growth even under 2.5 µM O~2~, under photoperiods between 4 and 8 h and peak blue PAR between 50 to 10 µmol photons
+m^-2^ s^-1^ PAR (Figure \@ref(fig:MIT9313GAM)C).
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/PICO_Hypervolume_GAM_MIT9313_Oxy_.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:MIT9313GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) and 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
+<img src="../Output/Figures/PICO_Hypervolume_GAM_MIT9313_Oxy_.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
+<p class="caption">(\#fig:MIT9313GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
 </div>
 
 \newpage
@@ -1063,7 +985,7 @@ We have demonstrated that *P. marinus*  can exploit the photoregimes of the temp
 
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 <div class="figure">
 <img src="../Output/Figures/MED4ProteinAnnotated.png" alt="**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein." width="2952" />
 <p class="caption">(\#fig:MED4ProteinAnnotated)**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein.</p>
@@ -1072,7 +994,7 @@ XXXX Mireille to finish Fig. caption  XXX
 \newpage
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 <div class="figure">
 <img src="../Output/Figures/MIT9313ProteinAnnotated.png" alt="**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein." width="2952" />
 <p class="caption">(\#fig:MIT9313ProteinAnnotated)**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein.</p>
@@ -1084,11 +1006,11 @@ XXXX Mireille to finish Fig. caption  XXX
 # Supplemental {.unnumbered}
 
 
-# Acknowledgements
+# Acknowledgements  {.unnumbered}
 Jonah Sheinin assisted with growth of some cultures for protein analyses, while Carlie Barnhill assisted with code for import of multicultivator growth data files.
 
 
-# Funding
+# Funding  {.unnumbered}
 To Be Entered through PLoSONe system and deleted here
 Czech Academy of Science visiting fellowship supporting DAC work at AlgaTech (OP)
 Canada Research Chair in Phytoplankton Ecophysiology (DAC)
