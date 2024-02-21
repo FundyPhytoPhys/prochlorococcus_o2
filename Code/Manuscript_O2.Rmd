@@ -362,7 +362,7 @@ where PUR is the actinic absorbed light calculated from equation \@ref(eq:PUR) (
 
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-PurParPlot_cap <- glue("**The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
+PurParPlot_cap <- glue("**Absorbed peak Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
                        "The correlation between PAR, plotted on the x-axis and absorbed PUR, plotted on the y-axis, are colored for each growth spectral waveband; blue for 450 nm, red for 660 nm and black for white LED full spectrum light.",
                        "The grey dashed line represents a hypothetical one to one correlation.",
                        "**A.** is *Prochlorococcus marinus*  MED4.",
@@ -391,12 +391,9 @@ All samples and appropriate standards were prepared as described in [@brownFluxC
 
 # Results and Discussion {.unnumbered}
 
-%%%% OceanProteinPortal data show complexes in environment  %%%
+## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean
 
-Furthermore,
-Evidence of proteins
-derived from HL ecotypes of *P. marinus* in OMZ at depths up to 200
-meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
+Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
 the niches occupied by different *P. marinus* ecotypes, as compared to
 potentially covarying environmental variables like photoperiod, light
 spectrum, and light level, is poorly described.
@@ -407,7 +404,7 @@ ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus ma
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
-                       "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for O~2~ (µM).",
+                       "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for O~2~ (µM).",
                        "Point colours identify *Prochlorococcus* clade assignments",
                        "Data from OceanProteinPortal (https://www.oceanproteinportal.org/).",
  .sep = " ")
@@ -416,15 +413,15 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 ```
 
 
-
 \newpage
 
-### MED4 PAR and growth trends {.unnumbered}
+## *Prochlorococcus marinus* growth responses to photoperiod, PAR and O~2~ 
+
+### MED4 Clade HLI {.unnumbered}
 
 #### High oxygen environment {.unnumbered}
 
-The growth rate of MED4, from the High-Light (HLI) clade of *P.
-marinus*, increased with higher imposed PAR and longer photoperiods
+The growth rates of *P. marinus* MED4, Clade HLI, increased with higher imposed PAR and longer photoperiods
 (Figure \@ref(fig:MED4PAR)), when grown under 250 µM O~2~. No growth was
 observed under any imposed conditions under a 4 h photoperiod. MED4 was
 able to grow under the lowest PAR treatment of 30 µmol photons m^-2^
@@ -441,11 +438,11 @@ light and 16 h photoperiod.
 
 #### Intermediate oxygen environment {.unnumbered}
 
-Similar to the growth trends of the 250 µM O~2~ experiments, MED4
-maintained at 25 µM O~2~, showed the fastest growth rate when the
+Similar to the growth trends under 250 µM O~2~, MED4
+maintained at 25 µM O~2~ showed the fastest growth rates when the
 photoperiod was 16 h for each spectral waveband, across PAR levels
 (Figure \@ref(fig:MED4PAR)). The 25 µM O~2~ growth experiments showed
-generally similar growth rate as the 250 µM O~2~ growth experiments,
+generally similar growth rates as the 250 µM O~2~ growth experiments,
 with the interesting exception that growth rates increased by 40% under
 25 µM O~2~ at PAR of 30 µmol photons m^-2^ s^-1^ and 16 h photoperiod,
 and even showed growth under 12 h red light photoperiod, in contrast to
@@ -461,13 +458,11 @@ m^-2^ s^-1^ blue light and 16 h photoperiod. The 4 h photoperiod
 experiments under white LED light were not performed because no growth
 was achieved when grown under an 8 h photoperiod.
 
-
-
 #### Low oxygen environment {.unnumbered}
 
-MED4 did not grow under any tested conditions sparged to the lowest O~2~
+MED4 did not grow under when sparged to the lowest O~2~
 of 2.5 µM (Figure \@ref(fig:MED4PAR)). 2.5 µM O~2~ growth experiments
-were not conducted for 4 and 16 h photoperiods, as no growth occurred
+were not conducted for 4 and 16 h photoperiods, as no reproducible growth occurred
 when MED4 was exposed to 8 and 12 h photoperiods.
 
 \newpage
@@ -487,36 +482,32 @@ knitr::include_graphics(file.path(FiguresIn, "MED4PAR.png"))
 
 \newpage
 
-### SS120 PAR and growth trends {.unnumbered}
+### SS120 Clade LLIII {.unnumbered}
 
 #### High oxygen environment {.unnumbered}
 
-The growth rate of SS120, from the Low-Light (LLIII) clade of *P.
-marinus*, increased with lower imposed PAR and longer photoperiods, when
+The growth rates of *P. marinus* SS120, Clade LLIII, increased with lower imposed PAR and with longer photoperiods, when
 grown under 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). SS120 was able to
 grow under the lowest PAR treatment of 30 µmol photons m^-2^ s^-1^ but
-only when the photoperiod was longer than 4 h under blue, white, and red
-light. SS120 required longer than 8 h photoperiod of imposed green
+only when the photoperiod was longer than 4 h under white and red
 light. No growth was observed under any blue light photoperiods when
-exposed to PAR of 90 µmol photons m^-2^ s^-1^. Growth rate increased
-with increasing photoperiods for white, red and green light when exposed
+exposed to PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
+with increasing photoperiods for white and red light when exposed
 to PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
 when the red light photoperiod was 16 h. Experiments conducted under PAR
-of 180 µmol photons m^-2^ s^-1^ showed no growth under imposed blue and
+of 180 µmol photons m^-2^ s^-1^ showed no growth under blue nor
 red lights. Growth rate decreased with longer photoperiods and showed
 growth inhibition at 12 and 16 h photoperiods under PAR of 180 µmol
-photons m^-2^ s^-1^ and white LED light. The growth rate generally
-increased with longer photoperiods under green light treatments, however
-no growth was observed under the 8 h photoperiod. The µ~max~ was
+photons m^-2^ s^-1^  white LED light.  The µ~max~ was
 `r PURPARFits %>% filter(Strain == "SS120", WL == "WW", O2_uM == "250", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
 d^-1^  achieved under 90 µmol photons
 m^-2^ s^-1^ white LED light and 16 h photoperiod.
 
 #### Intermediate oxygen environment {.unnumbered}
 
-Similar to the growth trends of the 250 µM O~2~ and PAR of 30 µmol
-photons m^-2^ s^-1^ experiments, SS120 maintained at 25 µM O~2~, no
-growth was observed under a 4 h photoperiod for imposed red spectral
+Similar to the growth trends under the 250 µM O~2~ and PAR of 30 µmol
+photons m^-2^ s^-1^ experiments, SS120 maintained at 25 µM O~2~ showed no
+growthunder a 4 h photoperiod for imposed red spectral
 waveband, however under blue light, SS120 was able to grow (Figure
 \@ref(fig:SS120PAR)). In contrast to the growth trends of the 250 µM
 O~2~ and PAR of 90 µmol photons m^-2^ s^-1^ experiments, SS120 grew
@@ -524,29 +515,20 @@ under 4 and 8 h blue light and 16 h red light photoperiods. The growth
 rate decreased with increasing photoperiod under PAR of 90 µmol photons
 m^-2^ s^-1^ white LED light treatments. Blue light treatments under PAR
 of 180 µmol photons m^-2^ s^-1^ showed growth only under an 8 h
-photoperiod. This growth rate decreased by 53% compared to the 8 h blue
-light photoperiod under PAR of 90 µmol photons m^-2^ s^-1^. The µ~max~
-was
+photoperiod. The µ~max~ was
 `r PURPARFits %>% filter(Strain == "SS120", WL == "450", O2_uM == "25", Photoperiod == 8) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
 d^-1^ (Table. \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons
 m^-2^ s^-1^ blue light and 8 h photoperiod.
 
-The 25 µM O~2~, less than 16 h photoperiod and 180 µmol photons m^-2^ s^-1^ experiments under white LED
-light were not performed due to time constraints.
+The 25 µM O~2~, less than 16 h photoperiod and 180 µmol photons m^-2^ s^-1^  under white LED light experiments were not performed due to time constraints.
 
 #### Low oxygen environment {.unnumbered}
 
-SS120 only grew
-(`r PURPARFits %>% filter(Strain == "SS120", WL == "660", O2_uM == "2.5", Photoperiod == 12) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
-d^-1^) under PAR of 30 µmol photons m^-2^ s^-1^ and 12 h red light
-photoperiod when sparged to the lowest O~2~ of 2.5 µM (Figure
-\@ref(fig:SS120PAR)). SS120 did not grow under any other tested
-conditions. 2.5 µM O~2~ growth experiments were not conducted for 4 and
+SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5 µM (Figure
+\@ref(fig:SS120PAR)). 2.5 µM O~2~ growth experiments were not conducted for 4 and
 16 h photoperiods under PAR of 180 µmol photons m^-2^ s^-1^, as no
 growth occurred when SS120 was exposed to 8 and 12 h photoperiods. Red
-light 16 h photoperiod experiments were not performed due to time
-constraints.
-
+light 16 h photoperiod experiments were not performed due to time constraints.
 
 
 \newpage
@@ -566,12 +548,12 @@ knitr::include_graphics(file.path(FiguresIn, "SS120PAR.png"))
 ```
 
 \newpage
-### MIT9313 PAR results {.unnumbered}
+
+### MIT9313 Clade LLIV {.unnumbered}
 
 #### High oxygen environment {.unnumbered}
 
-The growth rate of MIT9313, from the Low-Light (LLIV) clade of *P.
-marinus*, increased with low to moderate imposed PAR and longer
+The growth rates of *P. marinus* MIT9313, Clade LLIV, increased with low to moderate imposed PAR and longer
 photoperiods, when grown under 250 µM O~2~ (Figure
 \@ref(fig:MIT9313PAR)). Growth rate increased with increasing
 photoperiods under the lowest PAR treatment of 30 µmol photons m^-2^
