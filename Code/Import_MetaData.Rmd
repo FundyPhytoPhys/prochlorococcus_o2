@@ -58,7 +58,7 @@ library(googlesheets4)
 #"..", takes up a level in the directory path
 Project <- "PICO"
 DataOut <- file.path("..","Data")
-ProjectRows <- c("MiSa|JuNa|SaAr|MaBe")
+ProjectRows <- c("MiSa|JuNa|SaAr|MaBe|LaGe")
 ProjectCols <- c("PrimaryOperator", "SampleID", "Run", "Strain", "ExpCul", "ExpDate", "ExpStartTime", "Par_ue", "Photoperiod", "Temp_c", "MC", "Tube","O2", "O2_Category", "WL","LightShape", "Optode","OptodeCh","OptodeMeasure", "ExpEndDate")
 
 ```

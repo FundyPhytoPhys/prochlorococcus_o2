@@ -344,7 +344,7 @@ MCGrowthFits <- MCGrowthFits %>%
 remove(LogFitsData)
 ```
 
-# Save Long DF for GAM and Nested for further analysis 
+# Save Nested for further analysis 
 ```{r save files}
 
 saveRDS(object = MCGrowthFits, file = file.path(DataOut, paste(Project, "Processed_MCGrowthFits.Rds",  sep = "_")), ascii = FALSE, version = NULL, compress = "xz", refhook = NULL)
