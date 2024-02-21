@@ -293,7 +293,7 @@ When assessing the presence of a particular protein complex at a sampling locati
 Another caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry CITATION. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
 
 ## Growth data management and analysis {.unnumbered}
-Data files saved from the Multicultivator software were imported into R-Studio [@R-Studio] for data management [@R-tidyverse], growth rate calculations CITATION, comparisons of model fits CITATION, and generation of
+Data files (.csv) saved from the Multicultivator software were imported into R-Studio [@R-Studio] for data management [@R-tidyverse], growth rate calculations CITATION, comparisons of model fits CITATION, and generation of
 figures using `ggplot2` [@R-ggplot2]. The chlorophyll proxy
 optical density (OD680 - OD720;  ΔOD) was used to determine the chlorophyll-specific exponential growth
 rate (µ, d^-1^) for each treatment combination.  We first we used a rolling mean from the RStudio `zoo` package [@R-zoo] to calculate the average ΔOD data over a 1-hour window, to lower influence of outlier points and remove data points collected during post stationary phase, if applicable. We used the Levenberg-Marquardt algorithm
@@ -301,7 +301,9 @@ rate (µ, d^-1^) for each treatment combination.  We first we used a rolling mea
 least squares,  using the R package `minpack.lm`
 [@R-minpack.lm], to fit a logistic
 equation \@ref(eq:GrowthRate) where ΔOD~max~ is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time
-duration over the growth trajectory. 
+duration over the growth trajectory.  Annotated code for data import, transformations and analyses is available at XXXXX 
+CITAtIONS of github locations of code etc. XXXXX
+
 OTHER MOREXXXXXX
 
 ```{=tex}
@@ -311,37 +313,32 @@ OTHER MOREXXXXXX
 \end{equation}
 ```
 
-CITAtIONS of github locations of code etc. XXXXX
-
 ### Generalized additive model of growth responses {.unnumbered}
 
-A Generalized Additive Model (GAM) was applied to examine the
-relationship between chlorophyll-specific µ, d^-1^, for each [O~2~] level, across the blue and red spectral wavebands, photoperiods and PAR levels for each *P.marinus* strain in this study. The gam function from the R package `mgcv`
-[@R-mgcv] was used to model the growth rate with smoothing terms to
-indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Growth rates with a standard error tolerance below 30% of the fitted growth rate was used in the model. Our priority
-was studying the effect of blue light on growth trends, since blue light is the most ecologically relevant spectral waveband for
-deep ocean niches.  We included analyses of responses of red light, which is not ecophysiologically relevant but might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
+A Generalized Additive Model (GAM) CITATION was applied to the
+relation between chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  for each growth [O~2~] level, and for the blue and red wavebands for growth, for each *P.marinus* strain in this study. The gam function from the R package `mgcv`
+[@R-mgcv] was used to model the growth rate with smoothing terms, to
+indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Growth rate estimates with a standard error below 30% of the fitted growth rate were included in the gam modelling. Our priority
+was the effects of ecologically relevant blue light on growth trends.  We included analyses of growth responses to red light, which is not ecophysiologically relevant, but which might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
 
 ### Estimation of photosynthetically usable radiation {.unnumbered}
 
-To calculate the Photosynthetic Usable Radiation (PUR), a proxy of photons absorbed, for each *P. marinus* ecotype, the imposed Photosynthetic Active
-Radiation (PAR) was first determined. An emission profile of each colored LED
+To estimate the Photosynthetic Usable Radiation (PUR), a proxy of incident photons absorbed by the cells, for each *P. marinus* ecotype, the imposed Photosynthetic Active
+Radiation (PAR) was first determined using the reported delivery of sinuisoidal diel PAR regimes by the Multicultivators, point validated using an XXXXXcitation of PAR meterXXX. An emission profile from 400 nm to 700 nm of each colored LED
 light of the MCMIX-OD Multicultivator and the white LED light of the MC1000-OD Multicultivator was obtained using a Jaz spectrometer (Ocean Optics, Inc.,Dunedin, FL, USA) equipped with a fiber
 optic cable, HH2 FiberOpticJmp (Part number A901073, Malvern Panalytical
-Ltd, Malvern, UK) and scanned to measure the emission wavelengths from 200 nm to 1000 nm. Following the determination of PAR, an *in-vivo* whole cell absorbance spectrum for each *P. marinus* was obtained using the Olis 14 UV/VIS Clarity
-Spectrophotometer (Olis Inc, Bogart, GA, USA) by scanning across the visible spectral range of λ = 350 nm to 750 nm at 1 nm intervals. The 20 cm path length of the internally reflective cavity of the Olis spectrophotometer was corrected to a 1 cm path length using the Javorfi correction method [@javorfiQuantitativeSpectrophotometryUsing2006] on PRO 99 media subtracted whole cell absorbance spectra. Whole cell absorbance spectra were measured for each strain under each imposed spectral waveband.
+Ltd, Malvern, UK). Each LED spectrum was then normalized to its emission maximum.
+An *in-vivo* whole cell absorbance spectrum for each *P. marinus* strain under each spectral growth condition was obtained using the Olis 14 UV/VIS Clarity
+Spectrophotometer (Olis Inc, Bogart, GA, USA) to scan across range of λ = 350 nm to 750 nm at 1 nm intervals. The path length of the internally reflective cavity of the Olis spectrophotometer was corrected to a 1 cm path length using the Javorfi correction method [@javorfiQuantitativeSpectrophotometryUsing2006] on PRO 99 media subtracted whole cell absorbance spectra. The blank-corrected whole cell absorbance spectra were normalized to the absorbance maximum of divinylchlorophyll a (Chl a~2~), determined for each spectra, falling between 400 nm and 460 nm. 
 
-A weighted PUR spectrum was determined by applying an integrated weighted function to the blank subtracted, whole cell absorbance spectrum for each *P. marinus* ecotype and the emission spectrum of the imposed LED growth light [@morelAvailableUsableStored1978]. The whole cell absorbance spectrum was normalized to the absorbance maximum of divinylchlorophyll a (Chl a~2~), determined dynamically between 400 nm and 460 nm, and each LED spectrum was normalized to the emission maximum.
-
-Equation \@ref(eq:WeightedPUR) was used to determine the weighted PUR spectrum P(λ) according to [@morelAvailableUsableStored1978],
-
+An integrated weighting Equation \@ref(eq:WeightedPUR) [@morelAvailableUsableStored1978] was used to determine the weighted PUR spectrum P(λ),
 
 \begin{equation}
   P(λ) = A(λ) × E(λ) 
   (\#eq:WeightedPUR)
 \end{equation}
 
-where P(λ) is the weighted PUR absorbance spectrum over 400 nm to 700 nm spectral range, A(λ) is the Chl a~2~ normalized whole cell absorbance spectrum over 400 nm to 700 nm and E(λ) is the imposed growth light emission spectrum over 400 nm to 700 nm.
+where A(λ) is the blank subtracted, Chl a~2~ peak normalized whole cell absorbance spectrum for each *P. marinus* ecotype, over 400 nm to 700 nm, A(λ); and E(λ) is the peak normalized emission spectrum of the imposed LED growth light, over 400 nm to 700 nm.
 
 Actinic absorbed PUR levels (µmol photons m^-2^ s^-1^) were calculated from actinic PAR (µmol photons m^-2^ s^-1^) levels using the equation \@ref(eq:PUR) from [@morelAvailableUsableStored1978],
 
@@ -351,10 +348,9 @@ Actinic absorbed PUR levels (µmol photons m^-2^ s^-1^) were calculated from act
 \end{equation}
 
 
-where P(λ) is the weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR), E(λ) is the imposed growth light emission spectrum from equation \@ref(eq:WeightedPUR) and PAR is the imposed light level (µmol photons m^-2^ s^-1^).  Figure (\@ref(fig:PurParPlot)) shows the calculated absorbed PUR (µmol photons m^-2^ d^-1^) versus imposed actinic PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral waveband (nm).
+where P(λ) is the weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR), E(λ) is the imposed growth light emission spectrum from equation \@ref(eq:WeightedPUR) and PAR is the imposed peak light level (µmol photons m^-2^ s^-1^).  Figure (\@ref(fig:PurParPlot)) shows the calculated absorbed peak PUR (µmol photons m^-2^ d^-1^) versus imposed actinic peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral waveband (nm).
 
-
-The applied photoperiod was administered using the sine circadian light function of the PSI Multicultivator to simulate light exposure approximating sun rise through to sunset. The area under a sine curve is approximately equivalent to the area of a triangle, therefore the equation to determine the cumulative diel absorbed PUR (µmol photons m^-2^ d^-1^) is one half of the base (photoperiod) multiplied by the height (PUR) (equation \@ref(eq:SumPURDay)),
+The applied photoperiods were delivered using the sine circadian light function of the PSI Multicultivator to simulate light exposure approximating sun rise through to sunset. The area under the sinusoidal curves is equivalent to the area of a triangular photoregime of equivalent photoperiod (Campbell, unpub), therefore the equation to determine the cumulative diel absorbed PUR (µmol photons m^-2^ d^-1^) is one half of the base (photoperiod) multiplied by the height (PUR) (equation \@ref(eq:SumPURDay)),
 
 \begin{equation}
   Cumulative diel absorbed PUR = \frac{PUR × 3600 × Photoperiod}{2}
