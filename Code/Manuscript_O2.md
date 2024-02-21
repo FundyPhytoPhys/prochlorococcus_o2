@@ -574,27 +574,21 @@ m^-2^ s^-1^ PAR (Figure \@ref(fig:MIT9313GAM)C).
 
 \newpage
 
-## Discussion PAR and growth trends {.unnumbered}
-
-The purpose of this study was to determine the interactive effects of
-photoperiod, PAR level, spectral bandwidth and dissolved [O~2~] regimes
-on the growth of *P. marinus*, under simulated present day and
-hypothetical future ecological niches.
-
-### Photoperiod {.unnumbered}
+### Growth Responses to Photoperiod {.unnumbered}
 
 The representative of HLI clade, *P. marinus* MED4, was completely
-excluded from growth under the 4 h photoperiod, and then showed
-increasing growth rate with increasing photoperiod. Thus, MED4 can
+excluded from growth under the 4 h photoperiod, andshowed
+increasing growth rates with increasing photoperiod. Thus, MED4 can
 potentially exploit longer summer photoperiods in temperate zones, but
-will remain excluded from growth in winter through its requirement for
-more than 4 h of light per day.
+will likely remain excluded from growth in winter through its requirement for
+more than 4 h of light per day, even if water temperature warms into the Clade HLI tolerance range.
 
 The LLIII clade, *P. marinus* SS120, grew under photoperiods longer than
 4 h and showed increasing growth rate with increasing photoperiods.
 Therefore, SS120 can potentially exploit the longer summer photoperiods
-in temperate zones but cannot sustain growth in winter through its
-requirement for more than 4 h of light per day.
+in temperate zones but again cannot sustain growth in winter through its
+requirement for more than 4 h of light per day, even if water temperature warms into the Clade LLIII tolerance range.
+
 
 The LLIV clade, *P. marinus* MIT9313, exploited all tested photoperiods,
 and showed increasing growth rate with increasing photoperiods. Hence,
@@ -602,16 +596,16 @@ MIT9313 can potentially inhabit temperate zones with shorter winter and
 longer summer photoperiods, and exploit habitats at depth subject to
 photoperiod attenuation.
 
-### PAR Levels {.unnumbered}
+### Growth Responses to Peak PAR Responses {.unnumbered}
 
 The representative of HLI clade, *P. marinus* MED4, was able to grow
 under all PAR levels, so long as the photoperiod was longer than 4 h,
-although growth rate were slower under the lowest PAR level of 30 µmol
+although growth rates were slow under the lowest PAR level of 30 µmol
 photons m^-2^ s^-1^. Considering the range of PAR levels that MED4 can
 utilize, it is reasonable to suggest that MED4 can inhabit not just
 shallow depths, where light levels are high, but also deeper regions
 characterized by lower light levels, subject to the limitation of a
-photoperiod of at least 4 h even after depth attenuation. The photo
+photoperiod of at least 4 h even after depth attenuation of light. The photo
 regimes of winter temperate zones, due to shorter photoperiods, exclude
 MED4 from growth at all depths, however temperate photoperiods and light
 levels for the remainder of the year are adequate to support growth.
@@ -635,7 +629,7 @@ through its partial tolerance of higher PAR levels.
 ### Spectral Waveband {.unnumbered}
 
 The representative of HLI clade, *P. marinus* MED4, grew under all
-spectral wavebands, but grew slower under green light. Growth rates were
+tested spectral wavebands. Growth rates were
 generally comparable under blue, white LED and red lights when exposed
 to PAR levels greater than 30 µmol photons m^-2^ s^-1^ for each
 photoperiod. At the lower PAR of 30 µmol photons m^-2^ s^-1^, MED4 grew
@@ -657,27 +651,22 @@ next section. SS120, grew under all spectral wavebands at a PAR of 30
 light at PAR levels of 90 and 180 µmol photons m^-2^ s^-1^, but growth
 occurred at PAR of 90 µmol photons m^-2^ s^-1^ under all other spectral
 wavebands. Generally, growth was strongly inhibited under PAR of 180
-µmol photons m^-2^ s^-1^ for all spectral wavebands except for green 16
-h photoperiod. The ability of SS120 to grow under low blue light and
-longer photoperiods, makes the deep ocean waters of the temperate zone a
-viable potential habitat. SS120 is constrained to deeper ocean waters
-through its intolerance of higher blue PAR levels.
+µmol photons m^-2^ s^-1^ for all spectral wavebands. The ability of SS120 to grow under low blue light and longer photoperiods, makes the deep ocean waters of the temperate zone a viable potential habitat. Under 250 µM O~2~ SS120 is constrained to deeper ocean waters through its intolerance of higher blue PAR levels.
 
 The LLIV clade, *P. marinus* MIT9313, grew under all spectral wavebands
 when exposed to PAR of 30 µmol photons m^-2^ s^-1^ and 90 µmol photons
 m^-2^ s^-1^ and was even able to grow under PAR of 180 µmol photons
 m^-2^ s^-1^ for all spectral wavebands except blue light. MIT9313 can
-thus exploit blue light in deep waters of temperate zones and can even
+thus exploit blue light in deeper waters of temperate zones and can even
 tolerate moderate depths to exploit higher blue light levels, as long as
 the photoperiod is shorter than 12 h.
 
 ### Oxygen {.unnumbered}
 
-The representative of HLI clade, *P. marinus* MED4, was able to grow
-under both 250 µM and 25 µM O~2~ treatments but was unable to grow under
-the lowest O~2~ level of 2.5 µM. MED4 generally exhibited similar growth
-response trends and growth rate under blue and red light treatments
-under both 25 µM and 250 µM of O~2~. This demonstrated ability to grow
+The representative of HLI clade, *P. marinus* MED4, generally exhibited similar growth
+response trends and growth rates under blue and red light treatments
+under both 25 µM and 250 µM of O~2~,  but was unable to grow under
+the lowest O~2~ level of 2.5 µM. MED4  This demonstrated ability to grow
 under 25 µM O~2~, coupled with its ability to grow under lower PAR
 levels, enables MED4 to potentially inhabit deeper regions where [O~2~]
 may vary and low blue light is present, as long as the photoperiod
@@ -691,16 +680,15 @@ maximum layer, the layer in the water column where the chlorophyll a
 concentration peaks, nor did they report the [O~2~] at those depths but
 we have shown, in this study, that MED4 can potentially grow in these
 regions. Our findings were also consistent with
-@mattisonPhotosyntheticStrategiesWild2020 who analyzed the OceansMap
+FIGURE REFERENCE who analyzed the OceansMap
 Protein Portal (OPP) [@saitoDevelopmentOceanProtein2021] for proteins
 expressed by vertically stratified *P. marinus* strains at varying
 depths and [O~2~], in the ocean minimal zone of the tropical North
 Pacific Ocean, and found PSII proteins annotated as MED4 expressed at
 depths up to 200 meters with O~2~ of 15 µM.
 
-The LLIII clade, *P. marinus* SS120, was able to grow under both 250 µM
-and 25 µM O~2~ treatments but only grew under 2.5 µM O~2~ with a red
-light photoperiod of 12 h. The growth responses under 250 µM and 25 µM
+The LLIII clade, *P. marinus* SS120 grew under both 250 µM
+and 25 µM O~2~ treatments. The growth responses under 250 µM and 25 µM
 O~2~ were very different under the higher PAR level treatments. As
 discussed in the spectral waveband section, SS120 did not grow when
 treated with 250 µM O~2~ under PAR of 90 and 180 µmol photons m^-2^
@@ -726,7 +714,7 @@ tropical North Pacific Ocean.
 
 The LLIV clade, *P. marinus* MIT9313, showed enhanced growth responses
 under the 25 µM O~2~ treatments for all tested spectral wavebands and
-even grew under the highest PAR level of 180 µmol photons m^-2^ s^-1^,
+even grew under the highest peak PAR level of 180 µmol photons m^-2^ s^-1^,
 in contrast to growth inhibition under 250 µM O~2~ and 180 µmol photons
 m^-2^ s^-1^. Most impressively, MIT9313 has the capacity to grow just as
 well, and in some conditions, even better, under high PAR levels of 90
@@ -735,30 +723,25 @@ and 180 µmol photons m^-2^ s^-1^, as compared to the lowest PAR of 30
 all spectral wavebands tested. Interestingly, while generally the growth
 rate were slower under the lowest imposed O~2~ of 2.5 µM compared to
 O~2~ of 25 µM, MIT9313 was able to grow under all blue light with
-photoperiods up to 12 h, along with growth under 2.5 µM O~2~ and some
-combinations of red and green light, across photoperiods. Given that
+photoperiods up to 12 h, along with growth under some
+combinations of red peak PAR, across photoperiods. Given that
 MIT9313 can grow under all photoperiods at the lowest blue light PAR of
 30 µmol photons m^-2^ s^-1^, all seasons in the temperate zones are
-potentially viable niches. Like SS120, MIT9313 has the capability to
-exploit different ocean water layers through its tolerance of higher
-light levels under lower [O~2~]. MIT9313 has a remarkable ability to
-thrive under very low [O~2~], potentially allowing it to expand into
-broader ecological niches. These results support the findings of
-@mattisonPhotosyntheticStrategiesWild2020 where PSI protein subunits
+potentially viable niches, if temperature rises into the Clade LLIV tolerance range. Like SS120, MIT9313 has the capability to exploit different ocean water layers through its tolerance of higher light levels under lower [O~2~]. MIT9313 has a remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into
+broader ecological niches. These results support 
+FIGUREXXXX where PSI protein subunits
 annotated as derived from MIT9313 were detected at depths \> 120 m,
 along with PSII subunits at depths from 50 m to 200 m in regions where
 O~2~ was 15 µM.
 
 Under the 250 µM O~2~ growth experiments and under some photoperiods,
 when subjected to the highest PAR of 180 µmol photons m^-2^ s^-1^,
-MIT9313 grew when treated under white LED, red and green light and SS120
-grew under white LED and green light treatments. However, neither of
-these strains exhibited any growth under blue light conditions. Growth
+MIT9313 grew when treated under white LED and red light and SS120
+grew under white LED light. However, 
+these strains were excluded from growth under high blue peak PAR. Growth
 studies have demonstrated that LL clades experience growth inhibition at
 PAR levels between 150 and 200 µmol photons m^-2^ s^-1^
-[@moorePhotophysiologyMarineCyanobacterium1999]. In the subsequent
-chapter, we explore the physiological factors contributing to these
-divergent growth responses to different spectral wavebands.
+[@moorePhotophysiologyMarineCyanobacterium1999].
 
 Our growth rate maximums under white LED and 250 µM O~2~, for MED4,
 0.59
@@ -787,34 +770,34 @@ near surface.
 
 \newpage
 
-### Results PUR and growth trends {.unnumbered}
+## PUR and growth responses {.unnumbered}
 
-Cumulative diel absorbed PUR can potentially collapse photoperiod, PAR and spectral wavebands to a common metric of absorbed light. We then plot observed growth rate vs. cumulative diel absorbed PUR to determine whether growth is a simple response to absorbed light per day across imposed photoperiods and spectral wavebands, or whether photoperiod or spectral wavebands have specific or interactive influences on growth of each ecotype. Cumulative daily absorbed PUR dose (µmol photons m^-2^ d^-1^) was calculated from the imposed absorbed PUR (µmol photons m^-2^ s^-1^) and photoperiod (h).
+Cumulative diel absorbed PUR can potentially collapse photoperiod, PAR and spectral wavebands to a common metric of absorbed light. We plot observed growth rate vs. cumulative diel absorbed PUR to determine whether growth is a simple response to absorbed light per day across imposed photoperiods and spectral wavebands, or whether photoperiod or spectral wavebands have specific or interactive influences on growth of each ecotype. Cumulative daily absorbed PUR dose (µmol photons m^-2^ d^-1^) was calculated from the imposed absorbed PUR (µmol photons m^-2^ s^-1^) and photoperiod (h).
   
-Due to the highly effective absorption of pigments in the blue spectral waveband range for all ecotypes, the maximum imposed cumulative diel absorbed PUR under blue light treatment is almost 3 times that of white LED light and about 6 times the red light treatment, despite being derived from the same imposed photoperiods and PUR regimes. As such, only growths rates treated under blue light extend beyond absorbed PUR of ~ 2 x 10^6^ µmol photons m^-2^ d^-1^. A full list of cumulative diel absorbed PUR (µmol photons m^-2^ d^-1^) for all imposed spectral wavebands, PAR and photoperiod regimes can be found in Table \@ref(tab:DailyPURTable).
+Due to the highly effective absorption of pigments in the blue spectral waveband range for all ecotypes, the maximum imposed cumulative diel absorbed PUR under blue light treatment is almost 3 times that of white LED light and about 6 times the red light treatment, despite being derived from the same imposed photoperiods and PUR regimes. As such, only growths rates under blue light extend beyond absorbed PUR of ~ 2 x 10^6^ µmol photons m^-2^ d^-1^.
 
-#### MED4 {.unnumbered}
+#### MED4 Clade HLI {.unnumbered}
 
-The representative of HLI clade, *P. marinus* MED4, showed no growth under any 4 h photoperiod treatments, even when a 4 h photoperiod delivered cumulative die
-equivalent to other photoperiod treatments.
-In parallel MED4 showed no growth under 2.5 µM O~2~, under the same level of diel cumulative absorbed PUR. 
-In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 showed a simple saturating response of growth to increasing cumulative diel absorbed PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:AllStrainPurFitsPlots)A). 
+The representative of HLI clade, *P. marinus* MED4, showed no growth under any 4 h photoperiod treatments, even when a 4 h photoperiod delivered cumulative diel PUR
+equivalent to other photoperiod treatments. In parallel MED4 showed no growth under 2.5 µM O~2~, no matter the level of diel cumulative absorbed PUR. 
+In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 growth was well described by a simple saturating response of growth to increasing cumulative diel absorbed PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:AllStrainPurFitsPlots)A).   XXXXDISTINCT PHOTOPERIOD FITSXXXXX
 
-#### SS120 {.unnumbered}
+#### SS120 Clade LLIII {.unnumbered}
 
-The representative of the LLIII clade, *P. marinus* SS120 showed almost no growth under 2.5 µM O~2~ experiments. A majority of the 4 h photoperiod treatments did not grow under 250 µM O~2~ experiments despite having the same absorbed PUR dose as other experimental treatments. SS120 did not grow when exposed to more than about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of absorbed PUR under any spectral waveband or photoperiod combination under 250 µM O~2~ experiments(Figure \@ref(fig:AllStrainPurFitsPlots)B).
+The representative of the LLIII clade, *P. marinus* SS120 showed almost no growth under 2.5 µM O~2~ experiments. A majority of the 4 h photoperiod treatments did not grow under 250 µM O~2~ experiments even when a 4 h photoperiod delivered the cumulative diel PUR equivalent to other as other photoperiod treatments. SS120 did not grow when exposed to more than ~1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative diel PUR under any spectral waveband or photoperiod combination, under 250 µM O~2~ experiments(Figure \@ref(fig:AllStrainPurFitsPlots)B).
 
-Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x 10^5^ µmol photons m^-2^ d^-1^, with some scatter among photoperiod and spectral waveband regimes. The onset of growth inhibition extended to higher cumulative diel absorbed PUR for cultures growing under 25 µM O~2~. 
+Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x 10^5^ µmol photons m^-2^ d^-1^ diel PUR, with some scatter among photoperiod and spectral waveband regimes. The onset of growth inhibition extended to higher cumulative diel absorbed PUR for cultures growing under 25 µM O~2~. XXXXDISTINCT PHOTOPERIOD FITSXXXXX
 
-#### MIT9313  {.unnumbered}
 
-The LLIV clade, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of absorbed PUR, with higher growth rate at over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, flatter response to cumulative diel absorbed PUR under 2.5 µM O~2~. Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of absorbed PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands.  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel absorbed PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ (Figure \@ref(fig:AllStrainPurFitsPlots)C). 
+#### MIT9313 Clade LLIV {.unnumbered}
+
+The LLIV clade, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, flatter response to cumulative diel  PUR under 2.5 µM O~2~. Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands.  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:AllStrainPurFitsPlots)C).  XXXXDISTINCT PHOTOPERIOD FITSXXXXX
 
 ## Discussion PUR and growth trends {.unnumbered}
 
-The absorption maxima of Chl a~2~ and Chl b~2~ are 442 nm and 478 nm, respectively [@goerickePigmentsProchlorococcusMarinus1992]. At these spectral wavelengths, *P. marinus* efficiently harvests the light energy present in the blue and green waveband range, 400 nm to 525 nm [@morelAvailableUsableStored1978] that penetrates the deep ocean waters. The high Chl a~2~/Chl b~2~ ratio we observed for MED4 is characteristic of the HL clades and the lower Chl a~2~/Chl b~2~ ratios we observed for SS120 and MIT9313 are typical of the LL clades [@moorePhotophysiologyMarineCyanobacterium1999]. The lower amounts of  absorbed PUR in the white LED and green waveband regions for MED4, in comparison to SS120 and MIT9313, are the result of higher Chl a~2~/Chl b~2~ content. Subsequently, calculating absorbed PUR allows direct and meaningful comparison of the energy absorbed by cells on a per photon basis across different wavebands.  
+The absorption maxima of Chl a~2~ and Chl b~2~ are 442 nm and 478 nm, respectively [@goerickePigmentsProchlorococcusMarinus1992]. At these spectral wavelengths, *P. marinus* efficiently harvests the light energy present in the blue and green waveband range, 400 nm to 525 nm [@morelAvailableUsableStored1978] that penetrates the deep ocean waters. The high Chl a~2~/Chl b~2~ ratio we observed for MED4 is characteristic of the HL clades and the lower Chl a~2~/Chl b~2~ ratios we observed for SS120 and MIT9313 are typical of the LL clades [@moorePhotophysiologyMarineCyanobacterium1999]. The lower PUR for the white LED waveband for MED4, in comparison to SS120 and MIT9313, are the result of higher Chl a~2~/Chl b~2~ content. Subsequently, estimating  PUR allows direct comparison of the energy absorbed by cells on a per photon basis across different wavebands.  
 
-In the previous chapter, under 250 µM O~2~ treatments and all PAR of 90 and 180 µmol photons m^-2^ s^-1^ blue light treatments, *P. marinus* SS120, exhibited growth inhibition but was able to exploit all other spectral wavebands under some photoperiods at these PAR levels. Similarly, *P. marinus* MIT9313, showed complete growth inhibition under all PAR 180 µmol photons m^-2^ s^-1^ blue light treatments and only grew under a 90 µmol photons m^-2^ s^-1^, 4 and 8 h blue light photoperiods, yet was able to grow under all other spectral wavebands to varying degrees at these PAR levels. This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including blue, white LED, red and green waveband exhibited approximately the same growth saturation.
+Under 250 µM O~2~ treatments and all PAR of 90 and 180 µmol photons m^-2^ s^-1^ blue light treatments, *P. marinus* SS120, exhibited growth inhibition but was able to exploit all other spectral wavebands under some photoperiods at these PAR levels. Similarly, *P. marinus* MIT9313, showed complete growth inhibition under all PAR 180 µmol photons m^-2^ s^-1^ blue light treatments and only grew under a 90 µmol photons m^-2^ s^-1^, 4 and 8 h blue light photoperiods, yet was able to grow under all other spectral wavebands to varying degrees at these PAR levels. This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including blue, white LED, red and green waveband exhibited approximately the same growth saturation.
 
 
 *Prochlorococcus marinus* MED4 has a physiological requirement for more than 4 h of light per day, and thus this strain will not exploit habitats with short photoperiods. MED4 is also excluded from the lowest oxygen habitats, equivalent to our 2.5 µM O~2~ experimental conditions; however, MED4 can inhabit regions with slightly higher O~2~, as was demonstrated by the growth responses observed under our 25 µM O~2~ experiments. 
@@ -841,7 +824,7 @@ Current niches of *P. marinus* span across vertical ocean water columns
 [@partenskyProchlorococcusAdvantagesLimits2010; @goerickeNovelNicheProchlorococcus2000] and even into anoxic oceans [@lavinNovelLineagesProchlorococcus2010], [@ulloaCyanobacteriumProchlorococcusHas2021; @garcia-robledoCrypticOxygenCycling2017a]. Climate change is drastically altering the dissolved oxygen concentrations ([O~2~]) of our ocean waters. Research indicates that the oxygen minimum zones (OMZs) in the Pacific and Indian Oceans are expanding [@garcia-sotoOverviewOceanClimate2021; @buseckeDivergingFatesPacific2022] and that the levels of dissolved oxygen (O~2~) in our global oceans are generally decreasing [@matearLongtermChangesDissolved2003; @garcia-sotoOverviewOceanClimate2021], with significant decreases observed toward the poles [@helmObservedDecreasesOxygen2011]. 
 
 
-In chapter 2, we analyzed  growth rates to determine the viability of *P. marinus* MED4, a clade HLI ecotype found at depths near the ocean surface,
+We analyzed  growth rates to determine the viability of *P. marinus* MED4, a clade HLI ecotype found at depths near the ocean surface,
 *P. marinus* SS120, a clade LLIII ecotype found deep in the water column, and *P. marinus* MIT9313, a clade LLIV ecotype also found in deep oceans, under present day and hypothetical future niche conditions. We designed our study to account for light attenuation through ocean waters, recognizing that low light levels of the blue spectral waveband ultimately prevail in deep ocean waters [@morelAvailableUsableStored1978; @holtropVibrationalModesWater2021] and that the solar incidence angle also attenuates the photoperiod or hours of light exposure beneath the ocean surface. We also tested the growth response of *P. marinus* to varying [O~2~] under the matrix of light parameters to determine if *P. marinus* can cope with  diverse  ecosystem scenarios.
 
 
@@ -858,7 +841,7 @@ We found our experimental growth rates agreed with those from @mooreComparativeP
 The potential expansion of  *P. marinus*  polewards will contribute to the primary food base of an aquatic ecosystem that has already undergone changes in Canadian waters; commercial fish populations are shifting with new species immigrating  [@zellerCheungZellerPauly2011], endangered whales actively searching for food sources are becoming more prevalent [@meyer-gutbrodMarineSpeciesRange2018] and the white shark seasonal presence is increasing  either due to rising ocean temperatures or following marine prey [@bastienInconspicuousRecoveringNorthward2020]. While the exact impact of the presence of *P. marinus*  on the species distribution of marine wildlife in Atlantic Canadian waters is unknown, there is little doubt that *Prochlorococcus* will play a significant role in shaping this distribution. The shifting dynamics of the aquatic ecosystem in the Atlantic Canadian waters may have consequences for our commercial fishing and shipping sectors, as adjustments to shipping routes and regulations are made to safeguard endangered whales.
 
 
-In chapter 3, we determined the Photosynthetic Usable Radiation (PUR), the portion of light radiation absorbed differentially by the pigments of the photosynthetic organism [@morelAvailableUsableStored1978] and expressed growth response in terms of cumulative diel PUR.  
+We determined the Photosynthetic Usable Radiation (PUR), the portion of light radiation absorbed differentially by the pigments of the photosynthetic organism [@morelAvailableUsableStored1978] and expressed growth response in terms of cumulative diel PUR.  
 We found that approximately 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of PUR is the maximum dosage that the representative LL clades, SS120 and MIT9313 can tolerate under 25 µM O~2~, in contrast to the representative HL clade, MED4 which exhibited growth saturation at the same cumulative diel PUR of 1.0 x 10^6^ µmol photons m^-2^ d^-1^.  Growth under lower O~2~ allowed MIT9313 to substantially increase its exploitation of higher diel PUR.
 
 
