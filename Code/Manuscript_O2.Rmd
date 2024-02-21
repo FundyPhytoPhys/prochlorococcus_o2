@@ -360,7 +360,6 @@ The applied photoperiods were delivered using the sine circadian light function 
 where PUR is the actinic absorbed light calculated from equation \@ref(eq:PUR) (µmol photons m^-2^ s^-1^), 3600 is the time conversion from seconds to hour and photoperiod is the imposed photoperiod (h). 
 
 
-
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 PurParPlot_cap <- glue("**The absorbed Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. the Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
