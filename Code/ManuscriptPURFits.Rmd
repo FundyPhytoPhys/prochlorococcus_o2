@@ -989,7 +989,7 @@ remove(AllPhotoperiods)
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
 
-AllPURFITPlot <- AllFitsCombined |>
+AllStrainPurFitsPlots <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
@@ -1043,7 +1043,7 @@ AllPURFITPlot <- AllFitsCombined |>
        linetype = "Photoperiod lines"
       )
 
-AllPURFITPlot
+AllStrainPurFitsPlots
 
 ```
 
@@ -1064,9 +1064,9 @@ GrowthRate function of PUR in interaction term with Photoperiod and/or light col
   
 ```{r, save PURFitPlots}
 
-ggsave(file = file.path(PlotsOut, paste("AllPURFITPlot",".png",sep = "")), plot = AllPURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".png",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("AllPURFITPlot",".tiff",sep = "")), plot = AllPURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".tiff",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 
 # ggsave(file = file.path(PlotsOut, paste("MED4PURFITPlot",".png",sep = "")), plot = MED4PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
