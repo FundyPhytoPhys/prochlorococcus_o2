@@ -390,7 +390,7 @@ All samples and appropriate standards were prepared as described in [@brownFluxC
 
 # Results and discussion {.unnumbered}
 
-## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean
+## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean  {.unnumbered}
 
 Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
 the niches occupied by different *P. marinus* ecotypes, as compared to
@@ -414,7 +414,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 
 \newpage
 
-## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~ 
+## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~  {.unnumbered} 
 
 ### MED4 Clade HLI {.unnumbered}
 
@@ -606,7 +606,7 @@ XXX Fig letters do not match as now we have red GAMs. Below is results for Blue 
 
 We employed GAM to summarize and visualize th complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
 
-### MED4 Clade HLI
+### MED4 Clade HLI  {.unnumbered}
 The GAM model in Figure \@ref(fig:MED4GAM) shows MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
 90^th^ percentile of maximum achieved growth rate.  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR waas similar.  We again note the exclusion of MED4 from growth under 4 h photoperiod. Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods.
 
@@ -1182,11 +1182,11 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnnotated.png"))
 # Supplemental {.unnumbered}
 
 
-# Acknowledgements
+# Acknowledgements  {.unnumbered}
 Jonah Sheinin assisted with growth of some cultures for protein analyses, while Carlie Barnhill assisted with code for import of multicultivator growth data files.
 
 
-# Funding
+# Funding  {.unnumbered}
 To Be Entered through PLoSONe system and deleted here
 Czech Academy of Science visiting fellowship supporting DAC work at AlgaTech (OP)
 Canada Research Chair in Phytoplankton Ecophysiology (DAC)
