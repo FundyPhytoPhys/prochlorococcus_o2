@@ -422,7 +422,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 #### High oxygen environment {.unnumbered}
 
 The growth rates of *P. marinus* MED4, Clade HLI, increased with higher imposed PAR and longer photoperiods
-(Figure \@ref(fig:MED4PAR)), when grown under 250 µM O~2~. No growth was
+(Figure \@ref(fig:MED4PAR)), under 250 µM O~2~. No growth was
 observed under any imposed conditions under a 4 h photoperiod. MED4 was
 able to grow under the lowest PAR treatment of 30 µmol photons m^-2^
 s^-1^ but only when the blue light photoperiod was longer than 4 h; the
@@ -486,15 +486,10 @@ knitr::include_graphics(file.path(FiguresIn, "MED4PAR.png"))
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* SS120, Clade LLIII, increased with lower imposed PAR and with longer photoperiods, when
-grown under 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). SS120 was able to
-grow under the lowest PAR treatment of 30 µmol photons m^-2^ s^-1^ but
-only when the photoperiod was longer than 4 h under white and red
-light. No growth was observed under any blue light photoperiods when
-exposed to PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
-with increasing photoperiods for white and red light when exposed
-to PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
-when the red light photoperiod was 16 h. Experiments conducted under PAR
+The growth rates of *P. marinus* SS120, Clade LLIII, increased with longer photoperiods, under 30 µmol photons m^-2^ s^-1^ peak PAR and 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). No growth was observed under any blue light photoperiods when
+exposed to peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
+with increasing photoperiods for white and red light under peak PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
+when the red light photoperiod was 16 h. Experiments under peak PAR
 of 180 µmol photons m^-2^ s^-1^ showed no growth under blue nor
 red lights. Growth rate decreased with longer photoperiods and showed
 growth inhibition at 12 and 16 h photoperiods under PAR of 180 µmol
@@ -553,20 +548,9 @@ knitr::include_graphics(file.path(FiguresIn, "SS120PAR.png"))
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* MIT9313, Clade LLIV, increased with low to moderate imposed PAR and longer
-photoperiods, when grown under 250 µM O~2~ (Figure
-\@ref(fig:MIT9313PAR)). Growth rate increased with increasing
-photoperiods under the lowest PAR treatment of 30 µmol photons m^-2^
-s^-1^ for blue, white LED and red light. The green light treatment
-showed growth only when the photoperiod was longer than 12 h and
-decreased by \~ 50% under a 16 h photoperiod. Under PAR of 90 µmol
-photons m^-2^ s^-1^, growth rate increased with longer photoperiods for
-white LED, red, and green light treatments. Growth rates decreased from
-4 to 8 h blue light photoperiod and exhibited no growth under
-photoperiods of 12 and 16 h. Blue light did not induce growth at 180
-µmol photons m^-2^ s^-1^ under any photoperiod; white LED and red light
-treatments only exhibited growth under the 8 h photoperiod and growth
-rates increased with longer photoperiods under green light. The µ~max~
+The growth rates of *P. marinus* MIT9313, Clade LLIV increased with longer
+photoperiods under low 30 µmol photons m^-2^ s^-1^ peak PAR, under 250 µM O~2~ (Figure
+\@ref(fig:MIT9313PAR)).  Under intermediate 90 µmol photons m^-2^ s^-1^ peak PAR growth rates decreased with increasing blue light photoperiod. Blue light did not induce growth at 180 µmol photons m^-2^ s^-1^ peak PAR, while cells shows only marginal growth under white LED and red light under the 8 h photoperiod . The µ~max~
 was
 `r PURPARFits %>% filter(Strain == "MIT9313", WL == "450", O2_uM == "250", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
 d^-1^ achieved under 30 µmol photons
@@ -574,53 +558,28 @@ m^-2^ s^-1^ blue light and 16 h photoperiod.
 
 #### Intermediate oxygen environment {.unnumbered}
 
-Similar to the growth trends of the 250 µM O~2~ and PAR of 30 µmol
-photons m^-2^ s^-1^ experiments, MIT9313 maintained at 25 µM O~2~,
-growth rate increased with increasing photoperiods for all spectral
-wavebands tested (Figure \@ref(fig:MIT9313PAR)). The 25 µM O~2~ growth
-experiments showed generally similar growth rate as the 250 µM O~2~ and
-PAR of 30 µmol photons m^-2^ s^-1^, with the interesting exception that
-the growth rate increased by 50% under 25 µM O~2~ and 16 h blue light
-photoperiod. In contrast to the blue light growth responses under 250 µM
-O~2~ and PAR of 90 µmol photons m^-2^ s^-1^, growth rate increased with
-longer photoperiods and even grew under 12 and 16 h photoperiods. In
-fact, the fastest growth rate of all the O~2~ experiments was
-`r PURPARFits %>% filter(Strain == "MIT9313", WL == "450", O2_uM == "25", Photoperiod == 16, Par_ue == 90) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
-d^-1^ achieved under 16 h blue light
-photoperiod and PAR of 90 µmol photons m^-2^ s^-1^ under 25 µM O~2~.
-Growth rate increased by 50% under the 4 h blue light photoperiod; by
-400% under the 8 h blue light photoperiod; by 40% under the 12 h red
-light photoperiod and by 80% under the 16 h white LED photoperiod,
-compared to the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
-growth experiments. In contrast to the 250 µM O~2~ growth experiments,
-MIT9313 was able to grow when exposed to PAR of 180 µmol photons m^-2^
+For MIT9313 maintained at 25 µM O~2~ growth rate increased with increasing photoperiods for all spectral wavebands tested (Figure \@ref(fig:MIT9313PAR)). Under peak PAR of 90 µmol photons m^-2^ s^-1^ growth rate increased with
+longer photoperiods, with the fastest overall growth rate for MIT9313 
+`r PURPARFits %>% filter(Strain == "MIT9313", WL == "450", O2_uM == "25", Photoperiod == 16, Par_ue == 90) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)` d^-1^ achieved under 16 h blue light
+photoperiod. In contrast to the 250 µM O~2~ growth experiments,
+MIT9313 grew when exposed to peak PAR of 180 µmol photons m^-2^
 s^-1^ and blue light under all photoperiods except 16 h; additionally,
 white LED and red light treatments induced growth across all tested
-photoperiods under 25 µM O~2~.
-
-The 25 µM O~2~, 4 h photoperiod experiments under white LED light and
-all green light were not performed due to time constraints.
+photoperiods under 25 µM O~2~. The 25 µM O~2~, 4 h photoperiod experiments under white LED light and were not performed due to time constraints.
 
 #### Low oxygen environment {.unnumbered}
 
-The growth experiments under 2.5 µM O~2~ for MIT9313 showed growth
-responses for all spectral wavebands except white LED light, albeit
-slower than under the 25 µM O~2~ experiments (Figure
-\@ref(fig:MIT9313PAR)). MIT9313 was able to grow under PAR of 30 µmol
-photons m^-2^ s^-1^ but only under an 8 h blue and red light
-photoperiod. Growth rate increased with longer photoperiods under blue
-light treatments and PAR of 90 µmol photons m^-2^ s^-1^ however, growth
-was inhibited under a 16 h blue light photoperiod and only grew under an
-8 h photoperiod under red and green light treatments. The growth rate
+Under 2.5 µM O~2~  MIT9313 showed growth, particularly under blue LED light, albeit
+generally slower than under the parallel 25 µM O~2~ experiments (Figure
+\@ref(fig:MIT9313PAR)). Growth estimates did, however, show scatter among replicates, suggesting the 2.5 µM O~2~  was near the tolerance limit for growth of  MIT9313. Growth rates increased with longer photoperiods under blue
+light treatments under peak PAR of 90 µmol photons m^-2^ s^-1^ . Growth 
 for MIT9313 under PAR of 180 µmol photons m^-2^ s^-1^ and blue light
-treatment decreased with increasing photoperiods with growth inhibition
-under a 16 h photoperiod. The red light treatments under PAR of 180 µmol
-photons m^-2^ s^-1^ showed similar growth rate for 8 and 12 h
-photoperiods and no growth were observed for green light treatments. The
-µ~max~ was
-`r PURPARFits %>% filter(Strain == "MIT9313", WL == "450", O2_uM == "2.5", Photoperiod == 4, Par_ue == 180) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
-d^-1^ achieved under 4 h blue light
-photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.
+treatment decreased with increasing photoperiods with full growth inhibition
+under a 16 h photoperiod. The red light peak PAR of 180 µmol
+photons m^-2^ s^-1^ showed similar growth rates for 8 and 12 h
+photoperiods. The µ~max~ was
+`r PURPARFits %>% filter(Strain == "MIT9313", WL == "450", O2_uM == "2.5", Photoperiod == 4, Par_ue == 180) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)` d^-1^ achieved under 4 h blue light
+photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.  XXXXTHIS DOES NOT LOOK correct; 12 h, 90 uE photons blue light looks higher.
 
 The 2.5 µM O~2~ white LED treatments under 4, 8 and 16 h photoperiods
 and red light under 4 and 16 h photoperiods were not performed due to
