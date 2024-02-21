@@ -321,13 +321,12 @@ XXX Mireille to confirm and summarise XXX
 
 Quantitative protein immunoblots were used to determine the concentrations of 5 target proteins; FtsH, PsbA, PetC, PsaC and RbcL in *P. marinus* MED4 and MIT9313 cultures grown in the PSI Multicultivator under imposed PAR light levels of 30 and 100 µmol photons m^-2^ s^-1^, spectral wavebands of 660 and 450 nm and [O~2~] of 2.5 and 250 µM. 40 mL of culture were transferred into a 50 mL falcon tube and 40 µL of 10 % Pluronic F68 acid was added to the cell suspension. The cell suspension was centrifuged for 30 minutes at 17664 g using a J-26XP centrifuge (Beckman Coulter, Brea, CA, USA) equipped with a J-10 rotor. The supernatant was removed and the resulting pellet was flash frozen in liquid nitrogen and stored at -80 °C for later use.
 
-Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1 TRIS base buffer, 0.0211 mol L^−1 TRIS HCl buffer, 0.0735 mol L^−1 lithium dodecyl sulfate, 1.08 mol L^−1 glycerol, 0.5 mmol L^−1 ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes.  40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1 range.
+Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix D vials (MP Biomedicals, Irvine, CA, USA; SKU 116913050) with 200 uL of 1X protein extraction buffer (0.0281 mol L^−1^ TRIS base buffer, 0.0211 mol L^−1^ TRIS HCl buffer, 0.0735 mol L^−1^ lithium dodecyl sulfate, 1.08 mol L^−1^ glycerol, 0.5 mmol L^−1^ ethylenediaminetetraacetic acid, 0.1 mg·mL−1 PefaBloc SC (AEBSF) protease inhibitor) [@brownFluxCapacitiesAcclimation2008]  XXX note we used a low tris PEB recipe not sure where it came from (citation??) XXX. Cells were lysed for 3 cycles of 60 seconds at 6.5m s-1 with 60 second intervals on ice between cycles.  The lysing vials were centrifuged at 16100g using XXXXXX centrifuge ( reference here    ) for 5 minutes, the supernatant was transferred to a 600 uL microcentrifuge tube and centrifuged again at 16100g for 3 minutes. 40 µL of the supernatant were subsampled into labeled vials and stored at -80 °C until analysis. The bicinchoninic acid (BCA) assay was used for total protein determination using a calibration curve of bovine gamma globulin (BGG; Bio-Rad, Hercules, CA, USA) standard ranging from 0 to 1.0 mg mL^-1^ range.
+
+All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Standards were obtained from Agrisera (Vännäs, Sweden; FtsH AS11 1789S; PsbA AS01 016S; PetC AS08 330S; PsaC AS04 042S; RbcL AS01 017S).  Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177). Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, AS08 330; PsaC 1:XXXXXX dilution, AS10 939; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
 
 
-All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177).  Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5,000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:XXXXX dilution, ASXXXXX; PsaC 1:XXXXXX dilution, ASXXXXXXX ; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
-
-
-# Results and Discussion {.unnumbered}
+# Results and discussion {.unnumbered}
 
 ## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean
 
@@ -351,7 +350,7 @@ spectrum, and light level, is poorly described.
 #### High oxygen environment {.unnumbered}
 
 The growth rates of *P. marinus* MED4, Clade HLI, increased with higher imposed PAR and longer photoperiods
-(Figure \@ref(fig:MED4PAR)), when grown under 250 µM O~2~. No growth was
+(Figure \@ref(fig:MED4PAR)), under 250 µM O~2~. No growth was
 observed under any imposed conditions under a 4 h photoperiod. MED4 was
 able to grow under the lowest PAR treatment of 30 µmol photons m^-2^
 s^-1^ but only when the blue light photoperiod was longer than 4 h; the
@@ -407,15 +406,10 @@ when MED4 was exposed to 8 and 12 h photoperiods.
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* SS120, Clade LLIII, increased with lower imposed PAR and with longer photoperiods, when
-grown under 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). SS120 was able to
-grow under the lowest PAR treatment of 30 µmol photons m^-2^ s^-1^ but
-only when the photoperiod was longer than 4 h under white and red
-light. No growth was observed under any blue light photoperiods when
-exposed to PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
-with increasing photoperiods for white and red light when exposed
-to PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
-when the red light photoperiod was 16 h. Experiments conducted under PAR
+The growth rates of *P. marinus* SS120, Clade LLIII, increased with longer photoperiods, under 30 µmol photons m^-2^ s^-1^ peak PAR and 250 µM O~2~ (Figure \@ref(fig:SS120PAR)). No growth was observed under any blue light photoperiods when
+exposed to peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate increased
+with increasing photoperiods for white and red light under peak PAR of 90 µmol photons m^-2^ s^-1^; however, no growth was observed
+when the red light photoperiod was 16 h. Experiments under peak PAR
 of 180 µmol photons m^-2^ s^-1^ showed no growth under blue nor
 red lights. Growth rate decreased with longer photoperiods and showed
 growth inhibition at 12 and 16 h photoperiods under PAR of 180 µmol
@@ -465,20 +459,9 @@ light 16 h photoperiod experiments were not performed due to time constraints.
 
 #### High oxygen environment {.unnumbered}
 
-The growth rates of *P. marinus* MIT9313, Clade LLIV, increased with low to moderate imposed PAR and longer
-photoperiods, when grown under 250 µM O~2~ (Figure
-\@ref(fig:MIT9313PAR)). Growth rate increased with increasing
-photoperiods under the lowest PAR treatment of 30 µmol photons m^-2^
-s^-1^ for blue, white LED and red light. The green light treatment
-showed growth only when the photoperiod was longer than 12 h and
-decreased by \~ 50% under a 16 h photoperiod. Under PAR of 90 µmol
-photons m^-2^ s^-1^, growth rate increased with longer photoperiods for
-white LED, red, and green light treatments. Growth rates decreased from
-4 to 8 h blue light photoperiod and exhibited no growth under
-photoperiods of 12 and 16 h. Blue light did not induce growth at 180
-µmol photons m^-2^ s^-1^ under any photoperiod; white LED and red light
-treatments only exhibited growth under the 8 h photoperiod and growth
-rates increased with longer photoperiods under green light. The µ~max~
+The growth rates of *P. marinus* MIT9313, Clade LLIV increased with longer
+photoperiods under low 30 µmol photons m^-2^ s^-1^ peak PAR, under 250 µM O~2~ (Figure
+\@ref(fig:MIT9313PAR)).  Under intermediate 90 µmol photons m^-2^ s^-1^ peak PAR growth rates decreased with increasing blue light photoperiod. Blue light did not induce growth at 180 µmol photons m^-2^ s^-1^ peak PAR, while cells shows only marginal growth under white LED and red light under the 8 h photoperiod . The µ~max~
 was
 0.54
 d^-1^ achieved under 30 µmol photons
@@ -486,53 +469,28 @@ m^-2^ s^-1^ blue light and 16 h photoperiod.
 
 #### Intermediate oxygen environment {.unnumbered}
 
-Similar to the growth trends of the 250 µM O~2~ and PAR of 30 µmol
-photons m^-2^ s^-1^ experiments, MIT9313 maintained at 25 µM O~2~,
-growth rate increased with increasing photoperiods for all spectral
-wavebands tested (Figure \@ref(fig:MIT9313PAR)). The 25 µM O~2~ growth
-experiments showed generally similar growth rate as the 250 µM O~2~ and
-PAR of 30 µmol photons m^-2^ s^-1^, with the interesting exception that
-the growth rate increased by 50% under 25 µM O~2~ and 16 h blue light
-photoperiod. In contrast to the blue light growth responses under 250 µM
-O~2~ and PAR of 90 µmol photons m^-2^ s^-1^, growth rate increased with
-longer photoperiods and even grew under 12 and 16 h photoperiods. In
-fact, the fastest growth rate of all the O~2~ experiments was
-0.99
-d^-1^ achieved under 16 h blue light
-photoperiod and PAR of 90 µmol photons m^-2^ s^-1^ under 25 µM O~2~.
-Growth rate increased by 50% under the 4 h blue light photoperiod; by
-400% under the 8 h blue light photoperiod; by 40% under the 12 h red
-light photoperiod and by 80% under the 16 h white LED photoperiod,
-compared to the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
-growth experiments. In contrast to the 250 µM O~2~ growth experiments,
-MIT9313 was able to grow when exposed to PAR of 180 µmol photons m^-2^
+For MIT9313 maintained at 25 µM O~2~ growth rate increased with increasing photoperiods for all spectral wavebands tested (Figure \@ref(fig:MIT9313PAR)). Under peak PAR of 90 µmol photons m^-2^ s^-1^ growth rate increased with
+longer photoperiods, with the fastest overall growth rate for MIT9313 
+0.99 d^-1^ achieved under 16 h blue light
+photoperiod. In contrast to the 250 µM O~2~ growth experiments,
+MIT9313 grew when exposed to peak PAR of 180 µmol photons m^-2^
 s^-1^ and blue light under all photoperiods except 16 h; additionally,
 white LED and red light treatments induced growth across all tested
-photoperiods under 25 µM O~2~.
-
-The 25 µM O~2~, 4 h photoperiod experiments under white LED light and
-all green light were not performed due to time constraints.
+photoperiods under 25 µM O~2~. The 25 µM O~2~, 4 h photoperiod experiments under white LED light and were not performed due to time constraints.
 
 #### Low oxygen environment {.unnumbered}
 
-The growth experiments under 2.5 µM O~2~ for MIT9313 showed growth
-responses for all spectral wavebands except white LED light, albeit
-slower than under the 25 µM O~2~ experiments (Figure
-\@ref(fig:MIT9313PAR)). MIT9313 was able to grow under PAR of 30 µmol
-photons m^-2^ s^-1^ but only under an 8 h blue and red light
-photoperiod. Growth rate increased with longer photoperiods under blue
-light treatments and PAR of 90 µmol photons m^-2^ s^-1^ however, growth
-was inhibited under a 16 h blue light photoperiod and only grew under an
-8 h photoperiod under red and green light treatments. The growth rate
+Under 2.5 µM O~2~  MIT9313 showed growth, particularly under blue LED light, albeit
+generally slower than under the parallel 25 µM O~2~ experiments (Figure
+\@ref(fig:MIT9313PAR)). Growth estimates did, however, show scatter among replicates, suggesting the 2.5 µM O~2~  was near the tolerance limit for growth of  MIT9313. Growth rates increased with longer photoperiods under blue
+light treatments under peak PAR of 90 µmol photons m^-2^ s^-1^ . Growth 
 for MIT9313 under PAR of 180 µmol photons m^-2^ s^-1^ and blue light
-treatment decreased with increasing photoperiods with growth inhibition
-under a 16 h photoperiod. The red light treatments under PAR of 180 µmol
-photons m^-2^ s^-1^ showed similar growth rate for 8 and 12 h
-photoperiods and no growth were observed for green light treatments. The
-µ~max~ was
-0.33
-d^-1^ achieved under 4 h blue light
-photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.
+treatment decreased with increasing photoperiods with full growth inhibition
+under a 16 h photoperiod. The red light peak PAR of 180 µmol
+photons m^-2^ s^-1^ showed similar growth rates for 8 and 12 h
+photoperiods. The µ~max~ was
+0.33 d^-1^ achieved under 4 h blue light
+photoperiod and PAR of 180 µmol photons m^-2^ s^-1^.  XXXXTHIS DOES NOT LOOK correct; 12 h, 90 uE photons blue light looks higher.
 
 The 2.5 µM O~2~ white LED treatments under 4, 8 and 16 h photoperiods
 and red light under 4 and 16 h photoperiods were not performed due to
@@ -1063,7 +1021,7 @@ We have demonstrated that *P. marinus*  can exploit the photoregimes of the temp
 
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 <div class="figure">
 <img src="../Output/Figures/MED4ProteinAnnotated.png" alt="**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein." width="2952" />
 <p class="caption">(\#fig:MED4ProteinAnnotated)**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein.</p>
@@ -1072,7 +1030,7 @@ XXXX Mireille to finish Fig. caption  XXX
 \newpage
 
 
-XXXX Mireille to finish Fig. caption  XXX
+XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
 <div class="figure">
 <img src="../Output/Figures/MIT9313ProteinAnnotated.png" alt="**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein." width="2952" />
 <p class="caption">(\#fig:MIT9313ProteinAnnotated)**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein.</p>
