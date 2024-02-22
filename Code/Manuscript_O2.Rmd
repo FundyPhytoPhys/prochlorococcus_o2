@@ -429,10 +429,10 @@ knitr::include_graphics(file.path(FiguresIn, "MED4PAR.png"))
 
 XXX Fig letters do not match as now we have red GAMs. Below is results for Blue GAMsXXXX
 
-We employed GAM to summarize and visualize th complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
+We employed GAM to summarize and visualize the complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
 
-The GAM model in Figure \@ref(fig:MED4GAM) summarizes MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
-90^th^ percentile of maximum achieved growth rate.  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR was similar.  We again note the exclusion of MED4 from growth under 4 h photoperiod. Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods.
+The GAM model in Figure \@ref(fig:MED4GAM) summarizes MED4 growth in response to red (A,B) or blue (C,D) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.64 d^-1^ contour line representing the
+90^th^ percentile of maximum achieved growth rate (Figure \@ref(fig:MED4GAM)C).  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR was similar (Figure \@ref(fig:MED4GAM)A).  We again note the exclusion of MED4 from growth under 4 h photoperiod under both red and blue light (Figure \@ref(fig:MED4GAM)A,C). Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods XXX GAM changed after removing 1 bad run XXX and does not reflect true pattern at higher photoperiod and light MIrielle to fix.
 
 \newpage
 
