@@ -788,6 +788,52 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnnotated.png"))
 NAAMAN FIGURE
 Zotero BERG citation
 
+
+```{r ProchlorococcusEnzymeKms, fig.cap = ProchlorococcusEnzymeKms_cap, fig.height = 15, fig.width = 15, echo = FALSE}
+
+ProchlorococcusEnzymeKms_cap <- glue("**K~m~ values for oxygen metabolizing enzymes.**" ,
+                                     "The y-axis represents the log10 concentration of oxygen substrate (mM).",
+                                     "The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study.",
+                                     "The *Prochlorococcus marinus* strains are indicated in rows." ,
+                                     "The solid circles represent K~m~ values from literature and the asterisks represent predicted values.",
+                                     "Colors represent the gene counts.",
+                                     "The red shaded area denotes a K~m~ oxygen concentration range from 230 to 280 µM.",
+                                     "The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM . ",
+                                     "The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM.  ",
+                                     "The black bars show the minimum and maximum K~m~ values.",
+                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from @omarAnnotationGenesEncoding2023.",
+                       
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
+
+```
+
+\newpage
+
+Figure \@ref(fig:DNARepairFig) displays the genes encoding DNA repair for the three *P. marinus* strains examined in this study. As expected,  *P. marinus* MED4 possesses the largest and most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4 was the only strain out of the three strains in this study to possess the gene encoding deoxyribodipyrimidine photolyase, which, in the presence of blue light, is responsible for repairing DNA damaged by UV light [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possesses the gene encoding DNA ligase, which uses ATP as a cofactor for DNA repair. The absence of the genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in *P. marinus* MIT9313 and *P. marinus* SS120 explains why these two strains cannot tolerate the high light levels found at the ocean surface where  *P. marinus* MED4 inhabits. 
+
+
+\newpage
+
+```{r DNARepairFig, fig.cap = DNARepairFig_cap, fig.height = 10, fig.width = 10, echo = FALSE}
+
+DNARepairFig_cap <- glue("**Genes encoding DNA repair enzymes.**" ,
+                         "The y-axis represents  *Prochlorococcus marinus* strains.",
+                         "The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study.",
+                         "The red solid circles represent a gene count of 1.",
+                         "The green solid circles represent a gene count of 2.",
+                         "The blue solid circles represent a gene count of 3.",
+                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from @omarAnnotationGenesEncoding2023.",
+                       
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "DNARepairFig.png"))
+
+```
+
+
+\newpage
 \newpage
 
 # Discussion {.unnumbered}
@@ -1088,6 +1134,27 @@ We have demonstrated that *P. marinus*  can exploit the photoregimes of the temp
 
 
 # Supplemental {.unnumbered}
+
+\newpage
+
+```{r deltaODLogGrowthPlot, fig.cap = deltaODLogGrowthPlot_cap , fig.height = 8, fig.width = 6, echo = FALSE}
+
+deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll proxy growth rate for each tube in the Multicultivator.**",
+                      "The left y-axis is $\\Delta$OD (OD680 - OD720).",
+                      "The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^).",
+                      "The x-axis is time in hours (h).",
+                      "The green points are $\\Delta$OD measurements taken every 5 minutes.",
+                      "The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). ",
+                      "The gold points are the residuals of the fit.",
+                      "The blue or orange points represent the actinic spectral waveband under 450 nm or 660 nm, showing the imposed PAR level (µmol photons m^-2^ s^-1^) and photoperiod (h).",
+                      "Meta data associated with each Multicultivator tube are in columns.",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
+```
+
+\newpage
 
 
 ```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
