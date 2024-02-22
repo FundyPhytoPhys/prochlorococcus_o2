@@ -181,6 +181,17 @@ The OceansMap Protein Portal (OPP; https://proteinportal.whoi.edu/) is an open a
 
 Collection and treatment of protein samples were performed following Saito et al., [@saitoMultipleNutrientStresses2014; @saitoNeedlesBlueSea2015]. Briefly, samples of seawater from depths of 20, 40, 50, 60, 70, 80, 90, 120, 150, 200, 250, 300, 380, 400, 500, 550, 600, and 800 m below the ocean surface were pumped through a 0.2 µm filter, preserved in RNAlater and frozen at -80°C until extraction. Proteins were extracted from the filter in an SDS-based detergent, embedded in tube gel, alkylated and reduced prior to in-gel trypsin digestion. Peptide spectra were generated using a Q-Exactive Orbitrap Mass Spectrometer, searched in the SEQUEST CITATIONXXXX and labelled with the most likely protein and species annotation from Uniprot.  Oxygen levels at the location of sampling were recorded. 
 
+## MetaProteomics bioinformatic analyses  {.unnumbered}
+
+Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO database (https://www.bco-dmo.org/deployment/59053) accessed via the OPP in June 2019. Datasets contained:
+	i) Peptide sequences and sample identification (ID) number;
+	ii) Sample ID number, station, depth in meters below the surface the sample was collected at, best-hit BLASTP protein and species annotation and the corresponding Uniprot Entry number for the identified proteins;
+	iii) Sample station depth and [O~2~].  
+	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using the Tidyverse package [@R-tidyverse] in RStudio v1.2.5019 (https://rstudio.com/)  (LOCATION OF CODE ON GITHUBO. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b6f (Cytb6f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Terminal Oxidase (PTOX); plastocyanin (PC); ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
+	Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex. Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen Prochlorococcus strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and functions, were inferred by sequence comparisons to the characterized four isoforms of FtsH protease of *Synechocystis* sp. PCC6803 (CITATONS).  Data for each strain was plotted against depth and  [O~2~] and sampling station.
+	
+When assessing the presence of a particular protein complex at a sampling location, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are highly conserved across strains. We are, however, confident in clade classifications for each protein examined. A caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry CITATION. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
+
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 
 Three xenic cultures of *P. marinus* were obtained from Bigelow Labs, NCMA
@@ -222,20 +233,7 @@ winter at the surface or at temperate (45°N) spring and fall at depth
 and equatorial (0°N) deep ocean depths; and 4 h for temperate (45°N)
 winter or deep ocean depths during temperate (45°N) spring and fall.
 
-
-## MetaProteomics bioinformatic analyses and limitations  {.unnumbered}
-
-Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO database (https://www.bco-dmo.org/deployment/59053) accessed via the OPP in June 2019. Datasets contained:
-	i) Peptide sequences and sample identification (ID) number;
-	ii) Sample ID number, station, depth in meters below the surface the sample was collected at, best-hit BLASTP protein and species annotation and the corresponding Uniprot Entry number for the identified proteins;
-	iii) Sample station depth and [O~2~].  
-	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using the Tidyverse package [@R-tidyverse] in RStudio v1.2.5019 (https://rstudio.com/)  (LOCATION OF CODE ON GITHUBO. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b6f (Cytb6f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Terminal Oxidase (PTOX); plastocyanin (PC); ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
-	Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex . Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen Prochlorococcus strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and inferred functions, were specified by phylogenetic comparison to the characterized FtsH proteases of Synechocystis sp. PCC6803 (CITATONS).  Data for each strain was plotted against depth and  [O~2~] and sampling station.
-	
-When assessing the presence of a particular protein complex at a sampling location, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are highly conserved across strains. We are, however, confident in clade classifications for each protein examined.
-Another caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry CITATION. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
-
-## Growth data management and analysis {.unnumbered}
+## Growth rate analysis {.unnumbered}
 Data files (.csv) saved from the Multicultivator software were imported into R-Studio [@R-Studio] for data management [@R-tidyverse], growth rate calculations CITATION, comparisons of model fits (get Platt CITATION), and generation of
 figures using `ggplot2` [@R-ggplot2]. The chlorophyll proxy
 optical density (OD680 - OD720;  ΔOD) was used to determine the chlorophyll-specific exponential growth
@@ -247,16 +245,7 @@ equation \@ref(eq:GrowthRate) where ΔOD~max~ is maximum ΔOD, ΔOD~min~ is mini
 duration over the growth trajectory.  Annotated code for data import, transformations and analyses is available at XXXXX 
 CITAtIONS of github locations of code etc. XXXXX
 
-OTHER MOREXXXXXX
-
-```{=tex}
-\begin{equation}
-  µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
-  (\#eq:GrowthRate)
-\end{equation}
-```
-
-### Generalized additive model of growth responses {.unnumbered}
+## Generalized additive model of growth responses {.unnumbered}
 
 A Generalized Additive Model (GAM) CITATION was applied to the
 relation between chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  for each growth [O~2~] level, and for the blue and red wavebands for growth, for each *P.marinus* strain in this study. The gam function from the R package `mgcv`
@@ -264,7 +253,7 @@ relation between chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  
 indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Growth rate estimates with a standard error below 30% of the fitted growth rate were included in the gam modelling. Our priority
 was the effects of ecologically relevant blue light on growth trends.  We included analyses of growth responses to red light, which is not ecophysiologically relevant, but which might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
 
-### Estimation of photosynthetically usable radiation {.unnumbered}
+## Estimation of photosynthetically usable radiation {.unnumbered}
 
 To estimate the Photosynthetic Usable Radiation (PUR), a proxy of incident photons absorbed by the cells, for each *P. marinus* ecotype, the imposed Photosynthetic Active
 Radiation (PAR) was first determined using the reported delivery of sinusoidal diel PAR regimes by the Multicultivators, point validated using an XXXXXcitation of PAR meterXXX. An emission profile from 400 nm to 700 nm of each colored LED
@@ -302,6 +291,15 @@ The applied photoperiods were delivered using the sine circadian light function 
 
 where PUR is the actinic absorbed light calculated from equation \@ref(eq:PUR) (µmol photons m^-2^ s^-1^), 3600 is the time conversion from seconds to hour and photoperiod is the imposed photoperiod (h). 
 
+
+```{=tex}
+\begin{equation}
+  µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
+  (\#eq:GrowthRate)
+\end{equation}
+```
+
+
 \newpage
 
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
@@ -321,7 +319,7 @@ knitr::include_graphics(file.path(FiguresIn, "PurParPlot.png"))
 
 \newpage
 
-### Quantitative protein immunoblotting {.unnumbered}
+## Quantitative protein immunoblotting {.unnumbered}
 
 XXX Mireille to confirm and summarise XXX
 
@@ -331,11 +329,16 @@ Protein samples were thawed and placed in 2 mL FastPrep®-24 bead lysing matrix 
 
 All samples and appropriate standards were prepared as described in [@brownFluxCapacitiesAcclimation2008]. Standards were obtained from Agrisera (Vännäs, Sweden; FtsH AS11 1789S; PsbA AS01 016S; PetC AS08 330S; PsaC AS04 042S; RbcL AS01 017S).  Between 0.1 to 4.0 µg of total protein was loaded onto 15 well Invitrogen Bolt 4-12% acrylamide Bis-Tris gels (ThermoFisher Scientific, Waltham, MA, USA). All gels were run for 25 minutes at 200V using Invitrogen Bolt Mini Gel tanks and Invitrogen Bolt MES SDS running buffer (ThermoFisher Scientific, Waltham, MA, USA) and transferred for 60 minutes at 20V onto a PVDF membrane (Bio-Rad, Hercules, CA, USA; SKU 1620177). Blots were blocked overnight in 2% ECL blocking solution as described by @brownFluxCapacitiesAcclimation2008. The following morning, each blot was incubated in their appropriate antibody obtained from Agrisera (Vännäs, Sweden; FtsH  1:5000 dilution, AS11 1789; PsbA  1:10000 dilution, AS05 084; PetC 1:10000 dilution, AS08 330; PsaC 1:5000 dilution, AS10 939; RbcL 1:10000 dilution, AS03 037) and a 1:15000 dilution of the secondary antibody, goat anti-rabbit HRP conjugated (Bio-Rad, Hercules, CA, USA; SKU 1706515, lot 64230791).  Blots were incubated in Amersham ECL Select chemiluminescent substrate (Danaher, Washington, DC, USA) and imaged in a Bio-Rad VersaDoc imager (Bio-Rad, Hercules, CA, USA). Images were quantitated using the ImageJ2 software (version 1.53c).
 
+## Naaman GENOMICS METHODS
+XXX
+
+\newpage
 
 # Results {.unnumbered}
 
 ## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean  {.unnumbered}
 
+XXXMore TextXXX from AuroraXXX
 Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines
 the niches occupied by different *P. marinus* ecotypes, as compared to
 potentially covarying environmental variables like photoperiod, light
@@ -360,7 +363,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroPhotosynthDepthO2.png"))
 
 \newpage
 
-## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral bands,  and O~2~  {.unnumbered} 
+## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral band, and [O~2~]  {.unnumbered} 
 
 ### MED4 Clade HLI {.unnumbered}
 
