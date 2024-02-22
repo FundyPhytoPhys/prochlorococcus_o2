@@ -374,9 +374,7 @@ The growth rates of *P. marinus* MED4, Clade HLI, increased with higher imposed 
 (Figure \@ref(fig:MED4PAR)), under 250 µM O~2~. No growth was
 observed under any imposed conditions under a 4 h photoperiod. MED4 was
 able to grow under the lowest PAR treatment of 30 µmol photons m^-2^
-s^-1^ but only when the blue light photoperiod was longer than 4 h; the
-white LED light photoperiod was longer than 8 h; or when the red light
-photoperiod was longer than 16 h. Growth rate increased
+s^-1^ but only when the blue light photoperiod was longer than 4 h and the white LED and red light photoperiod was longer than 8 h. Growth rate increased
 with increasing photoperiods for all spectral wavebands when exposed to
 PAR of 90 and 180 µmol photons m^-2^ s^-1^. MED4 grew fastest for each
 spectral waveband under 16 h photoperiods. The maximum growth rate
@@ -392,12 +390,10 @@ maintained at 25 µM O~2~ showed the fastest growth rates when the
 photoperiod was 16 h for each spectral waveband, across PAR levels
 (Figure \@ref(fig:MED4PAR)). The 25 µM O~2~ growth experiments showed
 generally similar growth rates as the 250 µM O~2~ growth experiments,
-with the interesting exception that growth rates increased by 40% under
-25 µM O~2~ at PAR of 30 µmol photons m^-2^ s^-1^ and 16 h photoperiod,
-and even showed growth under 12 h red light photoperiod, in contrast to
+with the interesting exception that growth rates increased by 40 % under
+25 µM O~2~ at PAR of 30 µmol photons m^-2^ s^-1^ and 16 h blue photoperiod and increased by 55 % under 16 h red photoperiod, in contrast to
 the 250 µM O~2~ growth experiments. White LED light treatments grew
-slower, if at all, under 25 µM O~2~, only growing under higher PAR of 90
-and 180 µmol photons m^-2^ s^-1^ and longer photoperiods of 12 and 16 h.
+slower, if at all, under 25 µM O~2~, only growing under higher PAR of 90 µmol photons m^-2^ s^-1^ and 16 h photoperiod and 180 µmol photons m^-2^ s^-1^ and 12 and 16 h photoperiods.
 As under 250 µM O~2~, the fastest growth rate observed for each spectral
 waveband at each imposed PAR were greatest under the 16 h photoperiod.
 The µ~max~ was
