@@ -41,7 +41,7 @@ institute:
   - alga: 'Algatech, Czech Academy of Science'
   - num: 5
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
-date: "2024-02-21"
+date: "2024-02-22"
 output:
   bookdown::html_document2:
     code_folding: show
@@ -377,8 +377,7 @@ XXX Fig letters do not match as now we have red GAMs. Below is results for Blue 
 
 We employed GAM to summarize and visualize th complex responses of growth to the interactions of peak PAR, oxygen, photoperiod and blue vs. red spectral bands
 
-### MED4 Clade HLI  {.unnumbered}
-The GAM model in Figure \@ref(fig:MED4GAM) shows MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
+The GAM model in Figure \@ref(fig:MED4GAM) summarizes MED4 growth in response to red (A) or blue (B) peak PAR and photoperiod across 2 imposed oxygen concentrations.  Under 250 µM O~2~ MED4 achieved fastest growth rates above peak blue light of ~180 µmol photons m^-2^ s^-1^, and the longest photoperiod of 16, indicated by the 0.69 d^-1^ contour line representing the
 90^th^ percentile of maximum achieved growth rate.  Growth decreased with decreasing photoperiod and peak PAR.  Under red light growth was generally slower but the pattern of growth responses to photoperiod and PAR was similar.  We again note the exclusion of MED4 from growth under 4 h photoperiod. Under 25 µM O~2~ MED4 showed similar growth responses, but was excluded from both 4 and 8 h photoperiods.
 
 \newpage
@@ -447,7 +446,7 @@ light 16 h photoperiod experiments were not performed due to time constraints.
 
 XXX Fig letters do not match as now we have red GAMs. Below is results for Blue GAMsXXXX
 
-The GAM model in Figure \@ref(fig:SS120GAM) shows growth
+The GAM model in Figure \@ref(fig:SS120GAM) summarizes growth
 responses of SS120 red (A) or blue (B) peak PAR and photoperiod,
 across the 2 imposed oxygen concentrations. Under 250 µM O~2~,
 Figure \@ref(fig:SS120GAM)A showed highest growth
@@ -519,7 +518,7 @@ time constraints.
 
 \newpage
 
-The GAM model in Figure \@ref(fig:MIT9313GAM) shows MIT9313 growth responses to red (A) or blue (B) peak PAR and photoperiod. Under 250 µM O~2~,  Figure \@ref(fig:MIT9313GAM)A shows MIT9313 achieves
+The GAM model in Figure \@ref(fig:MIT9313GAM) summarizes MIT9313 growth responses to red (A) or blue (B) peak PAR and photoperiod. Under 250 µM O~2~,  Figure \@ref(fig:MIT9313GAM)A shows MIT9313 achieves
 fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
 s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 8 h,
 indicated by the contour line labeled 0.51 d^-1^ representing the
@@ -623,6 +622,12 @@ XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove
 <img src="../Output/Figures/MIT9313ProteinAnnotated.png" alt="**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein." width="2952" />
 <p class="caption">(\#fig:MIT9313ProteinAnnotated)**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  ** Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns. Numbers over each bar are fmole target protein per ug total protein.</p>
 </div>
+
+\newpage
+
+## **Prochlorococcus* genomic capacities for electron dissipation and DNA repair
+NAAMAN FIGURE
+Zotero BERG citation
 
 \newpage
 
