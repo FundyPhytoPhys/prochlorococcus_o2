@@ -696,6 +696,13 @@ Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x
 
 The LLIV clade representative, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, flatter response to cumulative diel PUR under 2.5 µM O~2~. Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands.  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:AllStrainPurFitsPlots)C).  XXXXDISTINCT PHOTOPERIOD FITSXXXXX
 
+XXXXXCHECK WHEN MIREILLE ADDS Colour specific fitsXXX This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including blue, white LED, red and green waveband exhibited approximately the same growth saturation. XXXX
+
+Our data support enhanced growth under conditions of low cumulative diel  PUR and 660 nm (red) spectral bandwidth, as supported by [@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue wavebands.
+
+
+
+
 
 \newpage
 
@@ -838,7 +845,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-Figure \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P. marinus* strains. As expected,  *P. marinus* MED4 possesses the largest and most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4 was the only strain to possess the gene encoding deoxyribodipyrimidine photolyase, which, in the presence of blue light, is responsible for repairing DNA damaged by UV light [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possesses the gene encoding DNA ligase, which uses ATP as a cofactor for DNA repair. The absence of the genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in *P. marinus* MIT9313 and *P. marinus* SS120 helps explain why these two strains cannot tolerate growth under full [O~2~] and high light found at the ocean surface where. Furthermore, the protective effect of lower [O~2~], allowing these strains to grow at higher light, may relate in part to suppression of DNA damage when generation of Reactive Oxygen Species is suppressed at lower [O~2~].
+Figure \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P. marinus* strains. As expected,  *P. marinus* MED4 possesses the largest and most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4 was the only strain to possess the gene encoding deoxyribodipyrimidine photolyase, which, in the presence of blue light, is responsible for repairing DNA damaged by UV light [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possesses the gene encoding DNA ligase, which uses ATP as a cofactor for DNA repair. The absence of the genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in *P. marinus* MIT9313 and *P. marinus* SS120 helps explain why these two strains cannot tolerate growth under full [O~2~] and high light found at the ocean surface where. Furthermore, the protective effect of lower [O~2~], allowing these strains to grow at higher light, may relate in part to suppression of DNA damage when generation of Reactive Oxygen Species is suppressed at lower [O~2~].  *Prochlorococcus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *Prochlorococcus* allow the reactive oxygen species (ROS), H~2~O~2~, to cross the cell membrane; however, the accumulation of extracellular H~2~O~2~ can also be toxic to *Prochlorococcus* [@morrisFacilitationRobustGrowth2008,  @morrisDependenceCyanobacteriumProchlorococcus2011].
 
 \newpage
 
@@ -967,33 +974,7 @@ near-surface growth niches by high PAR, unless OMZ zones extend to the
 near surface.
 
 
-### Discussion PUR and growth trends {.unnumbered}
-
-The absorption maxima of Chl a~2~ and Chl b~2~ are 442 nm and 478 nm, respectively [@goerickePigmentsProchlorococcusMarinus1992]. At these spectral wavelengths, *P. marinus* efficiently harvests the light energy present in the blue and green waveband range, 400 nm to 525 nm [@morelAvailableUsableStored1978] that penetrates the deep ocean waters. The high Chl a~2~/Chl b~2~ ratio we observed for MED4 is characteristic of the HL clades and the lower Chl a~2~/Chl b~2~ ratios we observed for SS120 and MIT9313 are typical of the LL clades [@moorePhotophysiologyMarineCyanobacterium1999]. The lower PUR for the white LED waveband for MED4, in comparison to SS120 and MIT9313, are the result of higher Chl a~2~/Chl b~2~ content. Subsequently, estimating  PUR allows direct comparison of the energy absorbed by cells on a per photon basis across different wavebands.  
-
-Under 250 µM O~2~ treatments and all PAR of 90 and 180 µmol photons m^-2^ s^-1^ blue light treatments, *P. marinus* SS120, exhibited growth inhibition but was able to exploit all other spectral wavebands under some photoperiods at these PAR levels. Similarly, *P. marinus* MIT9313, showed complete growth inhibition under all PAR 180 µmol photons m^-2^ s^-1^ blue light treatments and only grew under a 90 µmol photons m^-2^ s^-1^, 4 and 8 h blue light photoperiods, yet was able to grow under all other spectral wavebands to varying degrees at these PAR levels. This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including blue, white LED, red and green waveband exhibited approximately the same growth saturation.
-
-
-*Prochlorococcus marinus* MED4 has a physiological requirement for more than 4 h of light per day, and thus this strain will not exploit habitats with short photoperiods. MED4 is also excluded from the lowest oxygen habitats, equivalent to our 2.5 µM O~2~ experimental conditions; however, MED4 can inhabit regions with slightly higher O~2~, as was demonstrated by the growth responses observed under our 25 µM O~2~ experiments. 
-
-
-*Prochlorococcus marinus* SS120, categorized as a LLIII clade representative, showed an interactive growth inhibition between oxygen and cumulative diel absorbed PUR, with a higher tolerance for higher cumulative diel absorbed PUR under 25 µM O~2~, compared to 250 µM O~2~. Thus, SS120 can exploit habitats with O~2~ levels spanning 25 µM O~2~ to 250 µM O~2~.
-
-*Prochlorococcus marinus* MIT9313 is categorized as a LLIV clade representative, but under 25 or 2.5 µM O~2~, MIT9313 can actually exploit cumulative diel absorbed PUR comparably to *P. marinus* HLI clade MED4. Therefore, lower oxygen habitats extending to near the surface could potentially be exploited by MIT9313. 
-
-
-*Prochlorococcus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *Prochlorococcus* allow the reactive oxygen species (ROS), H~2~O~2~, to cross the cell membrane; however, the accumulation of extracellular H~2~O~2~ can also be toxic to *Prochlorococcus* [@morrisFacilitationRobustGrowth2008]. In the marine environment and in isolated cultures, @morrisDependenceCyanobacteriumProchlorococcus2011 showed that *Prochlorococcus* rely on catalase-positive heterotrophs to scavenge H~2~O~2~. Beyond the scope of our study, the three *Prochlorococcus* strains we examined were likely accompanied by different communities of co-occurring heterotrophs which could confer differential protection against reactive oxygen species [@zinserCrossprotectionHydrogenPeroxide2018a; @zinserMicrobialContributionReactive2018]. 
-
-Furthermore, our data support enhanced growth under conditions of low cumulative diel absorbed PUR and 660 nm (red) spectral bandwidth, as supported by [@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue wavebands.
-
-
-
-
-
-
-
-
-The lack of photoperiod growth studies is not surprising, given that higher cell abundances of *P. marinus* are currently  concentrated between 30°N and 30°S. At 30°N, the photoperiod seasonality ranges from 12 to 14 hours at the ocean surface between the winter and summer solstices, while it remains consistently 12 hours throughout the year at the equator.  Therefore, growth response studies to date have generally been conducted under either a 12 or 14 hour (h) photoperiod. However, the photoperiod at the ocean surface is not fully representative of the photoperiod underwater, as solar radiation is reflected off the surface when the solar incident angle is less than 20°. This discrepancy between the duration of daylight hours above water and the effective duration of light exposure underwater is often overlooked in the experimental design of *P. marinus* growth studies, even when considering photoperiod.  
+The lack of photoperiod growth studies for *P. marinus* is not surprising, given that higher cell abundances of *P. marinus* are currently  concentrated between 30°N and 30°S. At 30°N, the photoperiod seasonality ranges from 12 to 14 hours at the ocean surface between the winter and summer solstices, while it remains consistently 12 hours throughout the year at the equator.  Therefore, growth response studies to date have generally been conducted under either a 12 or 14 hour (h) photoperiod. However, the photoperiod at the ocean surface is not fully representative of the photoperiod underwater, as solar radiation is reflected off the surface when the solar incident angle is less than 20°. This discrepancy between the duration of daylight hours above water and the effective duration of light exposure underwater is often overlooked in the experimental design of *P. marinus* growth studies, even when considering photoperiod.  
 
 Current niches of *P. marinus* span across vertical ocean water columns
 [@chisholmNovelFreelivingProchlorophyte1988; @veldhuisVerticalDistributionPigment1990; @partenskyProchlorococcusMarinePhotosynthetic1999] and extend into regions with varying dissolved oxygen concentrations
@@ -1028,6 +1009,13 @@ attributes the transport of LL ecotypes to the surface and consequent exposure t
 *P. marinus* strains differentially exploit potential photoregimes of the temperate zone, both at the surface and deep in the water column. Some *P. marinus* strains grow under  low oxygen environments, similar to OMZ and that the LL clades we tested can be labeled as 'HL'  in oxygen environments of 25 µM and as low as 2.5 µM in the case of MIT9313. @billerProchlorococcusStructureFunction2015 has described *Prochlorococcus* as a 'federation' of diverse cells whose extensive genomic and phenotypic diversity contributes to their wide distribution, stability, and abundance in oceans.
 
 
+
+*Prochlorococcus marinus* MED4 has a physiological requirement for more than 4 h of light per day, and thus this strain will not exploit habitats with short photoperiods. MED4 is also excluded from the lowest oxygen habitats, equivalent to our 2.5 µM O~2~ experimental conditions; however, MED4 can inhabit regions with slightly higher O~2~, as was demonstrated by the growth responses observed under our 25 µM O~2~ experiments. 
+
+
+*Prochlorococcus marinus* SS120, categorized as a LLIII clade representative, showed an interactive growth inhibition between oxygen and cumulative diel absorbed PUR, with a higher tolerance for higher cumulative diel absorbed PUR under 25 µM O~2~, compared to 250 µM O~2~. Thus, SS120 can exploit habitats with O~2~ levels spanning 25 µM O~2~ to 250 µM O~2~.
+
+*Prochlorococcus marinus* MIT9313 is categorized as a LLIV clade representative, but under 25 or 2.5 µM O~2~, MIT9313 can actually exploit cumulative diel absorbed PUR comparably to *P. marinus* HLI clade MED4. Therefore, lower oxygen habitats extending to near the surface could potentially be exploited by MIT9313. 
 
 
 
