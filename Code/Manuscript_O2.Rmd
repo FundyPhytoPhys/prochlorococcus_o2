@@ -43,21 +43,21 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -705,7 +705,22 @@ Our data support enhanced growth under conditions of low cumulative diel  PUR an
 
 \newpage
 
-XXXXXXX ADD WL PUR FITS HERE XXXXXXXX
+```{r BluevsRedPurFitsPlots, fig.cap = BluevsRedPurFitsPlots_cap , fig.height = 10, fig.width = 10, echo = FALSE}
+
+ BluevsRedPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
+                    "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
+                    "Columns are strains; MED4, SS120 and MIT9313.",
+                    "Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
+                      "Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols).",
+                      "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
+                    "Platt (add Platt citation here) 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, pvalue < 0.05) or dashed lines (not significantly different fits, pvalue > 0.05).",
+                       .sep = " ")
+
+
+knitr::include_graphics(file.path(FiguresIn, "BluevsRedPurFitsPlots.png"))
+
+```
+
 \newpage
 
 ## Photosystem II maintenance, oxygen metabolism, and DNA repair as limitations on *Prochlorococcus* growth {.unnumbered}  
