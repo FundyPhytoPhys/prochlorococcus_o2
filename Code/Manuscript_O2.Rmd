@@ -241,9 +241,20 @@ rate (µ, d^-1^) for each treatment combination.  We first we used a rolling mea
 [@bellaviaLevenbergMarquardtMethod2018] modification of the non-linear
 least squares,  using the R package `minpack.lm`
 [@R-minpack.lm], to fit a logistic
-equation \@ref(eq:GrowthRate) where ΔOD~max~ is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time
+equation \@ref(eq:GrowthRate)
+
+
+```{=tex}
+\begin{equation}
+  µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
+  (\#eq:GrowthRate)
+\end{equation}
+```
+
+where ΔOD~max~ is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time
 duration over the growth trajectory.  Annotated code for data import, transformations and analyses is available at XXXXX 
 CITAtIONS of github locations of code etc. XXXXX
+
 
 ## Generalized additive model of growth responses {.unnumbered}
 
@@ -292,13 +303,10 @@ The applied photoperiods were delivered using the sine circadian light function 
 where PUR is the actinic absorbed light calculated from equation \@ref(eq:PUR) (µmol photons m^-2^ s^-1^), 3600 is the time conversion from seconds to hour and photoperiod is the imposed photoperiod (h). 
 
 
-```{=tex}
-\begin{equation}
-  µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
-  (\#eq:GrowthRate)
-\end{equation}
-```
 
+Figures \@ref(fig:MED4OverlayPlots), \@ref(fig:SS120OverlayPlots) and
+\@ref(fig:MIT9313OverlayPlots) provide visual representations of the Photosynthetic Usable Radiation (PUR), the black solid line and shaded area, in relation to the imposed Photosynthetic Active
+Radiation (PAR), the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated absorbed PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
 
 \newpage
 
