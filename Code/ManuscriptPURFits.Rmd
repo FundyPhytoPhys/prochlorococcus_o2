@@ -1492,18 +1492,17 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
   ggplot() +
   geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2, alpha = 0.7) +
     geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 1.0, alpha = 0.5) +
- #  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) + 
    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MED4",  WL == 450)) +
   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MED4", WL == 660)) +
- #    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MED4", WL == "WW")) +
- #   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 450)) +
  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 660)) +
-   # geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 450)) +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 660)) +
   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 660))+
     geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 450))+
- #  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MIT9313", O2_uM == 2.5, WL == "WW")) +
- labs(title = "Sig diff fits are indicated by the fit drawn. No lines, no diff bt 660 & 450", y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 450)) +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 660)) +
+ labs(y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
