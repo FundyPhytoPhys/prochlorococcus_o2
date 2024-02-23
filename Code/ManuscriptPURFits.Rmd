@@ -1548,3 +1548,28 @@ ggsave(file = file.path(PlotsOut, paste("BluevsRedPurFitsPlots",".png",sep = "")
 
 ```
 
+
+```{r WLAnovaTable, include = FALSE}
+
+WLAnovaTable <- ANOVA_AllWL %>% 
+  filter(WL2 == "Red") %>% 
+  mutate(Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
+         O2_uM = factor(O2_uM, levels = c(250, 25, 2.5))) %>% 
+  select(-c(p.value)) %>% 
+  arrange(Strain, O2_uM) 
+  
+```
+
+
+```{r WLAnovaTable, fig.height = 6, fig.width = 8, echo = FALSE }
+
+knitr::kable(WLAnovaTable,
+             caption = "pvalues for each ANOVA comparison of fit of red and blue light in each O~2~ experiment for each strain.",
+            col.names =  c("Strain",
+                           "[O~2~] (µM)",
+                          "WL1",
+                          "WL2",
+                          "pvalue"),
+              align = "lcccc"
+             )
+```
