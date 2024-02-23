@@ -305,8 +305,7 @@ where PUR is the actinic absorbed light calculated from equation \@ref(eq:PUR) (
 
 
 Figures \@ref(fig:MED4OverlayPlots), \@ref(fig:SS120OverlayPlots) and
-\@ref(fig:MIT9313OverlayPlots) provide visual representations of the Photosynthetic Usable Radiation (PUR), the black solid line and shaded area, in relation to the imposed Photosynthetic Active
-Radiation (PAR), the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated absorbed PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
+\@ref(fig:MIT9313OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated absorbed PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
 
 \newpage
 
