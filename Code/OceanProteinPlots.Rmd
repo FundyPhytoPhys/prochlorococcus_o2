@@ -134,8 +134,7 @@ poi |>
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
   facet_grid(factor(strain, levels = c("MED4", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels)) +
-  labs(title = expression('Ocean detection of' ~italic(Prochlorococcus)~ 'photosynthesis complexes'),
-       y = "Depth (m)",
+  labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
   theme_bw()
@@ -154,8 +153,7 @@ poi |>
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
   facet_grid(factor(strain, levels = c("MED4", "SS120", "MIT9313")) ~ factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels)) +
    labs(y = "Depth (m)",
-        x = expression("O"[2] ~ "(µM)"),
-        title = expression('Ocean detection of' ~italic(Prochlorococcus)~ 'protein metabolism complexes')) +
+        x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
