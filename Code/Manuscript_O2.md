@@ -865,9 +865,24 @@ attributes the transport of LL ecotypes to the surface and consequent exposure t
 </div>
 
 
+
+
+
+Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~2~ experiment for each strain. The corresponding photoperiod, PAR level and spectral waveband are indicated.
+
+|Strain  | Photoperiod (h) | PAR (µmol photons m^-2^ s^-1^) | Spectral waveband (nm) | [O~2~] (µM) | µ~max~ (d^-1^) |
+|:-------|:---------------:|:------------------------------:|:----------------------:|:-----------:|:--------------:|
+|MED4    |       16        |              180               |          450           |     250     |      0.68      |
+|MED4    |       12        |               90               |          450           |     25      |      0.65      |
+|MED4    |   All tested    |           All tested           |       All tested       |     2.5     |      0.00      |
+|SS120   |       16        |               90               |       White LED        |     250     |      0.50      |
+|SS120   |        8        |               90               |          450           |     25      |      0.45      |
+|SS120   |       12        |               30               |          660           |     2.5     |      0.15      |
+|MIT9313 |       16        |               30               |          450           |     250     |      0.54      |
+|MIT9313 |       16        |               90               |       White LED        |     25      |      1.01      |
+|MIT9313 |       12        |               90               |          450           |     2.5     |      0.45      |
+
 \newpage
-
-
 
 <div class="figure">
 <img src="../Output/Figures/AllStrainPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4, SS120 and MIT9313. Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Platt (add Platt citation here) 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line)." width="4724" />

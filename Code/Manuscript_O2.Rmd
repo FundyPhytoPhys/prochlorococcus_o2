@@ -1109,9 +1109,48 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313OverlayPlots.png"))
 ```
 
 
+```{r Generate GrowthTable, include = FALSE }
+
+MaxGrowthTable <- PURPARFits %>%
+  filter(Par_ue %in% c(30,90,180),
+         Strain %in% c("MED4", "SS120" ,"MIT9313")) %>%
+  select(Strain, O2_uM, ReplicateMean_deltaOD_Lmu_corr_day, Photoperiod, Par_ue, WL ) %>%
+  group_by(Strain, O2_uM) %>%
+  summarize(MaxGrowth = round(max(ReplicateMean_deltaOD_Lmu_corr_day), 2), 
+            Photoperiod = Photoperiod[which.max(ReplicateMean_deltaOD_Lmu_corr_day)], 
+            Par_ue = Par_ue[which.max(ReplicateMean_deltaOD_Lmu_corr_day)], 
+            WL= WL[which.max(ReplicateMean_deltaOD_Lmu_corr_day)]) %>%
+  ungroup %>% 
+ mutate(Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
+         O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
+         WL = case_when(WL %in% c(450, 530, 660) ~ WL,
+                              WL %in% c("WW") ~ paste("White LED", sep = " "))) %>% 
+  mutate(Photoperiod = ifelse(MaxGrowth != 0, Photoperiod,  paste("All tested", sep = " ")),
+         Par_ue = ifelse(MaxGrowth != 0, Par_ue, paste("All tested", sep = " ")),
+          WL = ifelse(MaxGrowth != 0, WL, paste("All tested", sep = " "))) %>% 
+   relocate(WL, .after = Par_ue) %>%
+   relocate(MaxGrowth, .after = WL) %>% 
+   relocate(O2_uM, .after = WL) %>% 
+  arrange(Strain, O2_uM)
+
+```
+
+```{r MaxGrowthTable, fig.height = 6, fig.width = 8, echo = FALSE }
+
+
+knitr::kable(MaxGrowthTable,
+             caption = "The maximum growth rate, µ~max~ (d^-1^) in each O~2~ experiment for each strain. The corresponding photoperiod, PAR level and spectral waveband are indicated.",
+            col.names =  c("Strain",
+                          "Photoperiod (h)",
+                          "PAR (µmol photons m^-2^ s^-1^)",
+                          "Spectral waveband (nm)",
+                          "[O~2~] (µM)",
+                          "µ~max~ (d^-1^)"),
+              align = "lccccc"
+             )
+```
+
 \newpage
-
-
 
 ```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
