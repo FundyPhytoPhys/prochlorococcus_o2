@@ -1058,6 +1058,61 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 
 \newpage
 
+```{r MED4OverlayPlots, fig.cap = MED4OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+
+MED4OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 grown under three emission wavebands.**",
+                       "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated absorbed PUR spectra (solid black line and shaded grey).",
+                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded red).", 
+                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded blue).",  
+                       
+                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated absorbed PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "MED4OverlayPlots.png"))
+
+
+```
+
+\newpage
+
+```{r SS120OverlayPlots, fig.cap = SS120OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+
+SS120OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* SS120 grown under three emission wavebands.",
+                       "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated absorbed PUR spectra (solid black line and shaded grey).",
+                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded red).",  
+                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded blue).",  
+                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated absorbed PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "SS120OverlayPlots.png"))
+
+
+```
+
+
+\newpage
+
+```{r MIT9313OverlayPlots, fig.cap = MIT9313OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+
+MIT9313OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MIT9313 grown under three emission wavebands.**",
+                                "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated absorbed PUR spectra (solid black line and shaded grey).",
+                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded red).",  
+                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated absorbed PUR spectra (solid black line and shaded blue).",  
+                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated absorbed PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
+                       
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "MIT9313OverlayPlots.png"))
+
+
+```
+
+
+\newpage
+
+
+
 ```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
 AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
