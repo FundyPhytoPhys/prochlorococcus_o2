@@ -1130,20 +1130,6 @@ ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".png",sep = "")
 
 ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".tiff",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-
-# ggsave(file = file.path(PlotsOut, paste("MED4PURFITPlot",".png",sep = "")), plot = MED4PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOut, paste("SS120PURFITPlot",".png",sep = "")), plot = SS120PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOut, paste("MIT9313PURFITPlot",".png",sep = "")), plot = MIT9313PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOut, paste("MED4PURFITPlot",".tiff",sep = "")), plot = MED4PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOut, paste("SS120PURFITPlot",".tiff",sep = "")), plot = SS120PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOut, paste("MIT9313PURFITPlot",".tiff",sep = "")), plot = MIT9313PURFITPlot, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
-
-
 ```
 
 
@@ -1554,3 +1540,12 @@ BluevsRedPurFitsPlots
 
 
 ```
+  
+```{r, save PURWLFitPlots}
+
+ggsave(file = file.path(PlotsOut, paste("BluevsRedPurFitsPlots",".png",sep = "")), plot = BluevsRedPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+# ggsave(file = file.path(PlotsOut, paste("BluevsRedPurFitsPlots",".tiff",sep = "")), plot = BluevsRedPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+```
+
