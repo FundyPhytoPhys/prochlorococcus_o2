@@ -703,26 +703,9 @@ Our data support enhanced growth under conditions of low cumulative diel  PUR an
 
 
 
-
 \newpage
 
-```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
-
-AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
-                    "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                    "Columns are strains; MED4, SS120 and MIT9313.",
-                    "Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
-                      "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
-                      "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Platt (add Platt citation here) 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
-                       .sep = " ")
-
-
-knitr::include_graphics(file.path(FiguresIn, "AllStrainPurFitsPlots.png"))
-
-```
-
-
+XXXXXXX ADD WL PUR FITS HERE XXXXXXXX
 \newpage
 
 ## Photosystem II maintenance, oxygen metabolism, and DNA repair as limitations on *Prochlorococcus* growth {.unnumbered}  
@@ -1025,6 +1008,22 @@ attributes the transport of LL ecotypes to the surface and consequent exposure t
 
 \newpage
 
+
+```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
+
+LabeledMC_cap <- glue("**PSI MCMIX-OD Multicultivator.**",
+                      "Spectral wavebands and light levels are individually controlled for each culture tube.",
+                      "Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures.",
+                      "The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water.",
+                      "Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
+```
+
+\newpage
+
 ```{r deltaODLogGrowthPlot, fig.cap = deltaODLogGrowthPlot_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
 deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll proxy growth rate for each tube in the Multicultivator.**",
@@ -1044,18 +1043,20 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 
 \newpage
 
+```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
-
-LabeledMC_cap <- glue("**PSI MCMIX-OD Multicultivator.**",
-                      "Spectral wavebands and light levels are individually controlled for each culture tube.",
-                      "Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures.",
-                      "The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water.",
-                      "Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.",
-
+AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
+                    "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
+                    "Columns are strains; MED4, SS120 and MIT9313.",
+                    "Shapes show the imposed photoperiod (h); 4 h (hollow inverted triangle),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
+                      "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
+                      "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
+                    "Platt (add Platt citation here) 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
+
+knitr::include_graphics(file.path(FiguresIn, "AllStrainPurFitsPlots.png"))
+
 ```
 
 \newpage
