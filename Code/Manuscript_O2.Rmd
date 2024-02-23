@@ -43,21 +43,21 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -696,7 +696,7 @@ Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x
 
 The LLIV clade representative, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, flatter response to cumulative diel PUR under 2.5 µM O~2~. Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands.  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:AllStrainPurFitsPlots)C).  XXXXDISTINCT PHOTOPERIOD FITSXXXXX
 
-XXXXXCHECK WHEN MIREILLE ADDS Colour specific fitsXXX This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including blue, white LED, red and green waveband exhibited approximately the same growth saturation. XXXX
+XXXXXCHECK WHEN MIREILLE ADDS Colour specific fitsXXX This inhibition initially suggested that blue wavebands triggered photoinhibition at significantly lower levels of Photosynthetically Active Radiation (PAR) compared to other spectral wavebands. However, considering the equivalent cumulative diel absorbed PUR of the blue waveband, all treatments including white LED, red, and blue waveband exhibited approximately the same growth saturation. XXXX
 
 Our data support enhanced growth under conditions of low cumulative diel  PUR and 660 nm (red) spectral bandwidth, as supported by [@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue wavebands.
 
