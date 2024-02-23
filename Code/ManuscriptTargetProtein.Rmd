@@ -58,7 +58,7 @@ library(knitr)
 # library(OneR)
 # library(zoo)
 # library(strucchange)
-
+library(photobiology)
 library(dplyr)
 # library(magrittr)
 library(googledrive)
@@ -81,7 +81,7 @@ TargetProtein <- read.csv(file = file.path(DataIn,"2020_PICO_Multi_TargetProtein
 glimpse(TargetProtein)
 
 TargetProtein <- TargetProtein %>%
-  rename(SampleID = "Sample")
+  rename(SampleID = "ï..Sample")
 
 glimpse(TargetProtein)
  
@@ -89,11 +89,37 @@ glimpse(TargetProtein)
 
 
 ```{r set colours}
-MyWavelengths = c(405, 450, 475, 530, 615, 660, 730, "WW")
-MCMIXColours = c("violet", "darkblue", "dodgerblue", "darkgreen","orange","red","purple", "black")
+
+# MyWavelengths = c(450, 530, 660, "WW")
+# MCMIXColours = c(w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "black")
+
+MyWavelengths = c("WW", 660, 530, 450)
+MCMIXColours = c("black",  w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
+
+
+
+
+ColoursStrain = c(MIT9313 = "#E69F00", SS120 = "#F0E442", MED4 = "#CC79A7" )
+
+MyOxygen = c(2.5, 25, 250 )
+# ColourOxygen = c("#99CCFF", "dodgerblue", "blue1")
+ColourOxygen = c("#FFCC00", "#FF9900", "#663300")
+names(ColourOxygen) <- MyOxygen
+ColourOxygen
+
+MyOxygen = c(2.5, 25, 250 )
+LineTypeOxygen = c("dotted", "longdash", "solid")
+names(LineTypeOxygen) <- MyOxygen
+LineTypeOxygen
+
+MyPhotoperiods = as.factor(c(4, 8, 12, 16))
+ColoursPhotoperiod = c("gray88", "lightcyan3", "gray47", "gray8")
+names(ColoursPhotoperiod) <- MyPhotoperiods
+ColoursPhotoperiod
+
 ```
 
 
@@ -109,101 +135,35 @@ glimpse(TargetProtein)
 ```{r order protein by biological process}
 
 TargetProtein  <- TargetProtein %>% 
- mutate(Target = factor(Target, levels = c("FtsH", "PsbA", "PetC", "PsaC", "RbcL")))
+ mutate(Target = factor(Target, levels = c("FtsH", "PsbA", "PetC", "PsaC", "RbcL")),
+        O2_uM = case_when(O2 == 0 ~ 2.5,
+                          O2 == 2 ~ 25,
+                          O2 == 21 ~ 250),
+        O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
+         WL= factor(WL, levels = c("WW", 660, 530, 450)))
 
 glimpse(TargetProtein)
 
 ```
 
-```{r explore plots}
-TargetProtein %>%
-   filter(Strain == "MIT9313") %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
-
-TargetProtein %>%
-   filter(Strain == "MED4") %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
-
-
-TargetProtein %>%
-   filter(Strain == "MIT9313",
-          O2 == 21) %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
-
-TargetProtein %>%
-   filter(Strain == "MED4",
-          O2 == 21) %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
-
-TargetProtein %>%
-   filter(Strain == "MIT9313",
-          O2 == 0) %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
-
-TargetProtein %>%
-   filter(Strain == "MED4",
-          O2 == 0) %>%
-  ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
-  geom_col() +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(WL = label_both, O2 = label_both, Strain = label_both)) +
-  theme_bw()
+```{r Protein plots}
 
 MIT9313ProteinAnnotated <- TargetProtein %>%
   filter( Strain == "MIT9313") %>% 
+   mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste(WL, "nm", sep = " "),
+                              WL %in% c("WW") ~ paste("White LED", sep = " ")),
+        WL_label = factor(WL_label, levels= c("White LED", "660 nm", "530 nm", "450 nm")),
+         Oxygen_Label = case_when(O2_uM %in% c(250, 25, 2.5) ~ paste(O2_uM, "µM", sep = " ")),
+         Par_Label = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " "))) %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
-   geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.6, position = "stack", check_overlap = T), color = "Black") +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
+   geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.5, position = "stack", check_overlap = T), color = "Black") +
+ labs(y = "Concentration" ~  " (fmole µg"  ~ protein^-1~")", x = "Protein") +
+  # scale_fill_manual(fill = (O2_uM)) %>% 
+  # scale_colour_manual(values = ColourOxygen) +
+ ggh4x::facet_nested(cols = vars(Strain, Oxygen_Label), rows = vars(WL_label, Par_Label), 
+                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_value)) +
+ # guides(fill = "none") +
   theme_bw()
 
 MIT9313ProteinAnnotated
@@ -211,15 +171,20 @@ MIT9313ProteinAnnotated
 
 MED4ProteinAnnotated <- TargetProtein %>%
   filter( Strain == "MED4") %>% 
+   mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste(WL, "nm", sep = " "),
+                              WL %in% c("WW") ~ paste("White LED", sep = " ")),
+        WL_label = factor(WL_label, levels= c("White LED", "660 nm", "530 nm", "450 nm")),
+         Oxygen_Label = case_when(O2_uM %in% c(250, 25, 2.5) ~ paste(O2_uM, "µM", sep = " ")),
+         Par_Label = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " "))) %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug)) +
   geom_col() +
    geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.5, position = "stack", check_overlap = T), color = "Black") +
-  # ggplot() +
-  # geom_point(aes(x = Par_ue, y = Target_TotalProtein_fmole_ug, colour = as.factor(WL)), size = 3, alpha = 0.4) +
-  # scale_fill_viridis_d(fill = "f68060") %>% 
-  # scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, O2), rows = vars(WL,Par_ue), 
-                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_both)) +
+ labs(y = "Concentration" ~  " (fmole µg"  ~ protein^-1~")", x = "Protein") +
+  # scale_fill_manual(fill = (O2_uM)) %>% 
+  # scale_colour_manual(values = ColourOxygen) +
+ ggh4x::facet_nested(cols = vars(Strain, Oxygen_Label), rows = vars(WL_label, Par_Label), 
+                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_value)) +
+ # guides(fill = "none") +
   theme_bw()
 
 MED4ProteinAnnotated
