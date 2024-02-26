@@ -578,7 +578,7 @@ MIT9313PAR <- PURPARFits %>%
    theme_bw() +
    theme( strip.text = element_text(size = 20),
        axis.title.x.bottom = element_text(size = 30, color = "black", vjust = 1.0),
-      axis.title.y = element_text(size = 30, color = "black", vjust = 1.0),
+       axis.title.y = element_text(size = 30, color = "black", vjust = 1.0),
        axis.title.x.top = element_text(size = 25, color = "black", vjust = 1.0),
        axis.text.x = element_text(size = 20, color = "black", angle = 0, hjust = 0.5, vjust = 1),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
