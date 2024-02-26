@@ -646,14 +646,13 @@ knitr::include_graphics(file.path(FiguresIn, "ProchloroProteinMetabDepthO2.png")
 \newpage
 
 XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
-```{r MED4ProteinAnnotated, fig.cap = MED4ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MED4ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade).**",  
-                    
-                    "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
-                    "Numbers over each bar are fmole target protein per ug total protein.",
+```{r  MED4ProteinAnnotated, fig.cap = MED4ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-                       .sep = " ")
+MED4ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade.  **",
+                                    "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
+                                    "Numbers over each bar are fmole target protein per ug total protein.",
+                                    .sep = " ")
 
 knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnnotated.png"))
 
@@ -663,16 +662,18 @@ knitr::include_graphics(file.path(FiguresIn, "MED4ProteinAnnotated.png"))
 
 
 XXXX Mireille to finish Fig. caption when figure is complete. Add color ? Remove []? XXX
-```{r MIT9313ProteinAnnotated, fig.cap = MIT9313ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+
+```{r  MIT9313ProteinAnnotated, fig.cap = MIT9313ProteinAnnotated_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 MIT9313ProteinAnnotated_cap <- glue("**Bar graph indicating protein concentrations determined from lab grown *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade).  **",
                                     "Growth Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^) and spectral wavelength are in rows;  2 levels of imposed growth dissolved O~2~ concentrations (µM) are in columns.",
-                    "Numbers over each bar are fmole target protein per ug total protein.",
-
-                       .sep = " ")
+                                    "Numbers over each bar are fmole target protein per ug total protein.",
+                                    .sep = " ")
 
 knitr::include_graphics(file.path(FiguresIn, "MIT9313ProteinAnnotated.png"))
+
 ```
+
 
 \newpage
 
