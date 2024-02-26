@@ -526,7 +526,7 @@ from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. S
 
 \newpage
 
-![Figure 16: **Fitting chlorophyll proxy growth rate for each tube in the Multicultivator.** The left y-axis is $\Delta$OD (OD680 - OD720). The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^). The x-axis is time in hours (h). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm).  The gold points are the residuals of the fit. The blue or orange points represent the actinic spectral waveband under 450 nm or 660 nm, showing the imposed PAR level (µmol photons m^-2^ s^-1^) and photoperiod (h). Meta data associated with each Multicultivator tube are in columns.](../Output/Figures/deltaODLogGrowthPlot.png)
+![Figure 16: **Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The left y-axis is $\Delta$OD (OD680 - OD720). The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^). The x-axis is time in hours (h). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm).  The gold points are the residuals of the fit. The blue or orange points represent the actinic spectral waveband under 450 nm or 660 nm, showing the imposed PAR level (µmol photons m^-2^ s^-1^) and photoperiod (h). Meta data associated with each Multicultivator tube are in columns.](../Output/Figures/deltaODLogGrowthPlot.png)
 
 \newpage
 

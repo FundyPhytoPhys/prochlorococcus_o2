@@ -777,7 +777,7 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 
 ```{r deltaODLogGrowthPlot, fig.cap = deltaODLogGrowthPlot_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
-deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll proxy growth rate for each tube in the Multicultivator.**",
+deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.**",
                       "The left y-axis is $\\Delta$OD (OD680 - OD720).",
                       "The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^).",
                       "The x-axis is time in hours (h).",
