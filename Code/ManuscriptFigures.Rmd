@@ -418,7 +418,7 @@ deltaODLogGrowthPlot <- PURPARFits %>%
   # facet_grid(rows = vars(O2), cols = vars(Tube, WL, Par_ue, Strain, Photoperiod)) +
    # ggh4x::facet_nested(cols = vars(Tube, Strain,Photoperiod, Oxygen_label, WL_label, Par_label), 
    #                  labeller = labeller(Tube = label_both, WL_label = label_value, WL = label_value, Strain = label_value, OxygenLabel_title = label_value,Oxygen_label = label_value, OxygenLabel = label_value, Photoperiod = label_both, Par_label = label_value))+
-   ggh4x::facet_nested(cols = vars(PhotoLabel, Oxygen_label, Tube, SampleID,  Strain, WL_label, Par_label), 
+   ggh4x::facet_nested(cols = vars(PhotoLabel, Oxygen_label, Tube,   Strain, WL_label, Par_label), 
                     labeller = labeller(Tube = label_both, WL_label = label_value, WL = label_value, Strain = label_value, OxygenLabel_title = label_value,Oxygen_label = label_value, OxygenLabel = label_value, Photoperiod = label_both, Par_label = label_value, SampleID = label_value))+
   labs(y = "Chlorophyll proxy (ΔOD)" , x = "Elapsed Time (h)") +
    guides(colour = "none") +
@@ -611,6 +611,101 @@ ggsave(file = file.path(PlotsOut, paste("MIT9313PAR",".png",sep = "")), plot = M
 
 ```
 
+# Overlay whole cell absorbance with emission spectra all strain together
+```{r MED4 All Spectral Emission,  fig.height = 10, fig.width = 10}
+
+MyWavelengths = c("WW", 660, 450)
+OverlayColours = c("black", w_length2rgb(660),  w_length2rgb(450))
+
+names(OverlayColours) <- MyWavelengths
+OverlayColours
+
+
+OverlayPlots <- PURPARFits %>%
+  filter(WL %in% c("WW", "660", "450")) %>% 
+  mutate(keep = case_when(Strain == "MED4" &  Par_ue == 30 & O2_Category == "High" & WL == 450  ~ 1,
+          Strain == "MED4" &  Par_ue == 30  & WL == "WW"  ~ 1, 
+          Strain == "MED4" &  Par_ue == 30 & WL == "660"& Run == 109 ~ 1,
+          Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 450  ~ 1,
+          Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 530  ~ 1,
+          Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 660  ~ 1,
+          Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 16 & WL == "WW"  ~ 1,
+          Strain == "SS120" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 8 ~ 1,
+          # Strain == "SS120" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 530 ~ 1,
+          TRUE ~ 0)) %>% 
+  filter(keep == 1, Run != 113,
+         Run != 112) %>% 
+  mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste("Growth", "Waveband",  WL, "nm", sep = " "),
+        WL %in% c("WW") ~ paste("Growth", "Waveband", "White LED", sep = " ")),
+        Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
+        WL_label = factor(WL_label, levels = c("Growth Waveband White LED", "Growth Waveband 660 nm", "Growth Waveband 450 nm"))) %>% 
+   unnest(cols = c(PurData), names_sep = "_", keep_empty = TRUE) %>%
+  pivot_longer(cols = c(PurData_PURAbsWholeCell_Norm440, PurData_AbsNorm440,  PurData_MC_NormEm), values_to = "Abs_Em_Value", names_to = "Abs_Em_Names") %>%
+ggplot()+
+  geom_area(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, fill = as.factor(WL)), color = "black", 
+            size = 0.5, alpha = 0.7, show.legend = FALSE, 
+            data = . %>% filter(Abs_Em_Names == "PurData_PURAbsWholeCell_Norm440")) +
+  geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = Abs_Em_Names,  linetype = Abs_Em_Names), size = 0.85) +
+  geom_line(aes(x = PurData_OlisAbs_nm, y = Abs_Em_Value, color = as.factor(WL),  linetype = Abs_Em_Names), size = 1.0, data = . %>% filter(Abs_Em_Names == "PurData_MC_NormEm")) +
+  scale_color_manual(values = c(MCMIXColours, "PurData_PURAbsWholeCell_Norm440" = "black", "PurData_AbsNorm440" = "darkorchid3", "PurData_MC_NormEm" = "white")) +
+  scale_linetype_manual(values = c("PurData_PURAbsWholeCell_Norm440" = "solid", "PurData_AbsNorm440" = "twodash",  "PurData_MC_NormEm" = "dotted"),
+                        labels = c("Whole cell abs.",  "LED emission", "PUR")) +
+  scale_fill_manual(values = MCMIXColours) +
+ # guides(colour = FALSE) +
+  labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
+  labs(linetype = "Spectra Type")+
+  scale_y_continuous(breaks=seq(0, 1.5, by = 0.25)) +
+ # coord_cartesian(ylim = c (0, 0.2)) +
+   facet_grid(rows = vars(WL_label),
+              cols = vars(Strain),
+              labeller = labeller(Strain = label_value, WL_label = label_value, Photoperiod = label_both, Par_ue = label_both, O2_Category = label_both, Pur_ue = label_both)) +
+   geom_text(aes(x = 500, y = 1, label = paste("PAR", "=", Par_ue, "µE",sep = " "), show.legend = FALSE, ),
+    # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 5.0
+  )  +
+  geom_text(aes(x = 500, y = 0.90, label = paste("PUR", "=", Pur_ue, "µE", sep = " "), show.legend = FALSE, ),
+    # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 5.0
+  )  +
+  guides(color = "none") +
+  theme_bw() +
+ theme(#strip.text = element_blank(),
+       # legend.background = element_rect(color = "transparent", fill = "transparent"),
+      legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 20),
+        # legend.position = c(0.94,0.96),
+        legend.position = "top",
+        axis.title = element_text(vjust = 1.0, size = 20),
+        # strip.text.x = element_text(size = 20),
+        axis.text = element_text(size = 15, color = "black")) 
+
+ 
+# OverlayPlots <- tag_facet(OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
+
+OverlayPlots
+
+
+TEST <- PURPARFits %>% 
+  filter(Strain == "MED4", WL == 660, )
+
+```
+
+```{r save allinone overlay plot}
+
+ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".png",sep = "")), plot = OverlayPlots, device = NULL, scale = 1, height = 25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".tiff",sep = "")), plot = OverlayPlots, device = NULL, scale = 1, height = 25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+
+```
+
+
+
+
 
 # Overlay whole cell absorbance with emission spectra
 ```{r MED4 All Spectral Emission,  fig.height = 10, fig.width = 10}
@@ -689,7 +784,7 @@ MED4OverlayPlots
 
 ```{r save MED4 PUR overlay plots}
 
-ggsave(file = file.path(PlotsOut, paste("MED4OverlayPlots",".png",sep = "")), plot = MED4OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MED4OverlayPlots",".png",sep = "")), plot = MED4OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 
 ```
@@ -764,7 +859,7 @@ ggplot()+
 
 ```{r save MIT9313 PUR overlay plots}
 
-ggsave(file = file.path(PlotsOut, paste("MIT9313OverlayPlots",".png",sep = "")), plot = MIT9313OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("MIT9313OverlayPlots",".png",sep = "")), plot = MIT9313OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -838,6 +933,6 @@ ggplot()+
 
 ```{r save SS120 PUR overlay plots}
 
-ggsave(file = file.path(PlotsOut, paste("SS120OverlayPlots",".png",sep = "")), plot = SS120OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("SS120OverlayPlots",".png",sep = "")), plot = SS120OverlayPlots, device = NULL, scale = 1, height=20, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
