@@ -12,7 +12,7 @@ author:
   - name: Laurel Genge
     institute: mta
   - name: Sylwia Śliwińska-Wilczewska
-    institute: [mta, other]
+    institute: [mta, ug]
   - name: Maximilian Berthold
     institute: mta
   - name: Naaman Omar
@@ -37,6 +37,7 @@ institute:
   - ubc: 'Department of Biology, University of British Columbia'
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
+  - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
   bookdown::word_document2:
