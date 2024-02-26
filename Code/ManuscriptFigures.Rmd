@@ -133,7 +133,7 @@ ColoursPhotoperiod
 ```{r set shapes}
 
 MyPhotoperiods = as.factor(c(4, 8, 12, 16))
-PhotoperiodShapes = c(6, 18, 16, 17)
+PhotoperiodShapes = c(15, 18, 16, 17)
 
 
 names(PhotoperiodShapes) <- MyPhotoperiods
@@ -484,8 +484,8 @@ MED4PAR <- PURPARFits %>%
  guides(linetype = "none") +
    theme_bw() +
    theme( strip.text = element_text(size = 20),
-       axis.title.x.bottom = element_text(size = 30, color = "black", vjust = 1.0),
-      axis.title.y = element_text(size = 30, color = "black", vjust = 1.0),
+       axis.title.x.bottom = element_text(size = 28, color = "black", vjust = 1.0),
+      axis.title.y = element_text(size = 28, color = "black", vjust = 1.0),
        axis.title.x.top = element_text(size = 25, color = "black", vjust = 1.0),
        axis.text.x = element_text(size = 20, color = "black", angle = 0, hjust = 0.5, vjust = 1),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
@@ -530,9 +530,9 @@ SS120PAR <- PURPARFits %>%
  guides(linetype = "none") +
    theme_bw() +
    theme( strip.text = element_text(size = 20),
-       axis.title.x.bottom = element_text(size = 30, color = "black", vjust = 1.0),
-      axis.title.y = element_text(size = 30, color = "black", vjust = 1.0),
-       axis.title.x.top = element_text(size = 25, color = "black", vjust = 1.0),
+       axis.title.x.bottom = element_text(size = 28, color = "black", vjust = 1.0),
+      axis.title.y = element_text(size = 28, color = "black", vjust = 1.0),
+       # axis.title.x.top = element_text(size = 25, color = "black", vjust = 1.0),
        axis.text.x = element_text(size = 20, color = "black", angle = 0, hjust = 0.5, vjust = 1),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
        axis.text.x.top = element_blank(),
@@ -577,8 +577,8 @@ MIT9313PAR <- PURPARFits %>%
  guides(linetype = "none") +
    theme_bw() +
    theme( strip.text = element_text(size = 20),
-       axis.title.x.bottom = element_text(size = 30, color = "black", vjust = 1.0),
-       axis.title.y = element_text(size = 30, color = "black", vjust = 1.0),
+       axis.title.x.bottom = element_text(size = 28, color = "black", vjust = 1.0),
+       axis.title.y = element_text(size = 28, color = "black", vjust = 1.0),
        axis.title.x.top = element_text(size = 25, color = "black", vjust = 1.0),
        axis.text.x = element_text(size = 20, color = "black", angle = 0, hjust = 0.5, vjust = 1),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
@@ -625,7 +625,7 @@ OverlayPlots <- PURPARFits %>%
   filter(WL %in% c("WW", "660", "450")) %>% 
   mutate(keep = case_when(Strain == "MED4" &  Par_ue == 30 & O2_Category == "High" & WL == 450  ~ 1,
           Strain == "MED4" &  Par_ue == 30  & WL == "WW"  ~ 1, 
-          Strain == "MED4" &  Par_ue == 30 & WL == "660"& Run == 109 ~ 1,
+          Strain == "MED4" &  Par_ue == 30 & WL == "660"& Run == 99 ~ 1,
           Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 450  ~ 1,
           Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 530  ~ 1,
           Strain == "MIT9313" & O2_Category == "High" & Par_ue == 30 & Photoperiod == 12 & WL == 660  ~ 1,
