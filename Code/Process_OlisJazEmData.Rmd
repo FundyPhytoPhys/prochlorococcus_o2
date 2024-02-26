@@ -168,6 +168,7 @@ glimpse(OlisJazMetaPUR)
 ```{r Calc mean PUR}
 
 OlisJazMetaPUR <- OlisJazMetaPUR %>%
+  filter(SampleID != "MiSa1364") %>% 
   group_by(Strain, WL, Par_ue) %>% 
   mutate(Pur_ue = round(mean(CalcPur_ue)),
          PurParRatio = (Pur_ue / Par_ue))%>% 
