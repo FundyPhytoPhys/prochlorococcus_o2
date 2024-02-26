@@ -356,7 +356,7 @@ Proteins derived from Clade HLXXX ecotypes of *P. marinus* were detected in OMZ 
 
 ProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
-                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
+                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (Clade HLI), SS120 (Clade LLIII) and MIT9313 (Clade LLIV).",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
                        "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM).",
                        "Point colours identify *Prochlorococcus* clade assignments",
@@ -628,7 +628,7 @@ Ocean detections of proteins mediating protein metabolism support this interpret
 
 ProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
                        "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
-                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4, SS120 and MIT9313.",
+                       "Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (Clade HLI), SS120 (Clade LLIII) and MIT9313 (Clade LLIV).",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome).",
                        "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM).",
                        "Point colours identify *Prochlorococcus* clade assignments",

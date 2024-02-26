@@ -128,7 +128,7 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(strain %in% StrainLabels) |>
   ggplot() +
-  geom_point(aes(color=clade, x = O2, y= depth)) +
+  geom_point(aes(x = O2, y= depth)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -146,7 +146,7 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(strain %in% StrainLabels) |>
   ggplot() +
-  geom_point(aes(color=clade, x = O2, y= depth)) +
+  geom_point(aes(x = O2, y= depth)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
