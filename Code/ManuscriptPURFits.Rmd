@@ -1043,6 +1043,7 @@ knitr::kable(PhotoperiodAnovaTable,
 
 
 ```{r Pur plot strain faceted in columns}
+
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
 
@@ -1055,33 +1056,37 @@ AllStrainPurFitsPlots <- AllFitsCombined |>
          WL = factor(Data_all_WL, levels = c("WW", 660, 450)),
          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>%
   ggplot() +
+  geom_line(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, linetype = as.factor(Photoperiod)), size = 1) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, linetype = PhotoperiodPooled), size = 0.80, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4") %>% mutate(PhotoperiodPooled = "Pooled")) +
+  geom_rect(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, fill = "white") +
   geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 3, alpha = 1.0) +
     geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 1.0, alpha = 0.8) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.75, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) + 
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.75, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) + 
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotdash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 250, Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "SS120")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.75, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) + 
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotdash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.5, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotdash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 250, Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "SS120")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotdash", data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
  labs(y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
-  scale_colour_manual(values = MCMIXColours, labels = c("White LED", 660, 450)) +
-  scale_linetype_manual(values = MyLineTypes, labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
-  scale_shape_manual(values = PhotoperiodShapes)  +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660 nm", "450 nm")) +
+  scale_linetype_manual(values = c("solid", "dotdash", "dashed", "dotted", "aa"),
+                        labels = c("Pooled", "16 h",  "12 h", "8 h", "4 h")) +
+  scale_shape_manual(values = PhotoperiodShapes, labels = c("16 h",  "12 h", "8 h", "4 h") )  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), cols = vars(Strain), 
                     labeller = labeller(Strain = label_value, O2_uM = label_value, OxygenLabel = label_value)) +
- guides(linetype = guide_legend(nrow = 1),
-        fill = "none",
-        color = guide_legend(nrow = 1)) +
- guides(shape = guide_legend(nrow = 1)) +
+ guides(linetype = guide_legend(order = 1),
+        fill = "none",) +
+        #color = guide_legend(nrow = 1)) +
+ # guides(shape = guide_legend(nrow = 1)) +
   theme_bw() +
    theme( strip.text = element_text(size = 25),
         axis.title.y = element_text(color = "black", size = 30,  hjust = 0.40),
@@ -1090,15 +1095,20 @@ AllStrainPurFitsPlots <- AllFitsCombined |>
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
         # strip.background=element_rect(color="grey87", fill = "grey82"),
         # strip.background=element_rect(fill = "white"), 
-        legend.key.size = unit(0.2, 'cm'), #change legend key size
-        legend.key.height = unit(0.1, 'cm'), #change legend key height
-        legend.key.width = unit(0.1, 'cm'), #change legend key width
-        legend.title =  element_text(size = 25),  #change legend title font size
-        legend.text = element_text(size = 25),   #change legend text font size
-        legend.position = "top") +
-  labs( shape = "Photoperiod (h)",
-        color = "Growth Waveband (nm)",
-       linetype = "Photoperiod lines"
+        legend.key.size = unit(2, 'cm'), #change legend key size
+        legend.key.height = unit(0.5, 'cm'), #change legend key height
+        # legend.key.width = unit(2.5, 'cm'), #change legend key width
+        legend.background = element_rect(color = "black"),
+        legend.title =  element_text(size = 28),  #change legend title font size
+        legend.title.align = 0.5,
+        legend.text = element_text(size = 29),   #change legend text font size
+        legend.position = "top",
+        legend.direction = "vertical",
+        legend.spacing.x = unit(0.75, 'cm')) +
+  labs( linetype = "Fits",
+        shape = "Photoperiod",
+        color = "Growth Waveband",
+       
       )
 
 AllStrainPurFitsPlots
@@ -1126,9 +1136,9 @@ GrowthRate function of PUR in interaction term with Photoperiod and/or light col
   
 ```{r, save PURFitPlots}
 
-ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".png",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".png",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".tiff",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=25, width= 40, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".tiff",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
@@ -1418,10 +1428,11 @@ remove(AllWL)
 ```
 
 ```{r Pur plot strain faceted in columns}
+
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
 
-WLvsPooledPurFitsPlots <- AllFitsCombinedWL |>
+AllFitsCombinedWL |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
@@ -1433,15 +1444,15 @@ WLvsPooledPurFitsPlots <- AllFitsCombinedWL |>
   geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2, alpha = 0.7) +
     geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 1.0, alpha = 0.5) +
   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) + 
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_450) %>%  filter(O2_uM == 2.5, Strain == "MED4",  WL == 450)) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MED4", WL == 660))+
-    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MED4", WL == "WW")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_450) %>%  filter(O2_uM == 2.5, Strain == "MED4",  WL == 450)) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MED4", WL == 660))+
+    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MED4", WL == "WW")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 450)) +
- geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_WW) %>%  filter(Strain == "SS120", O2_uM != 250, WL == "WW")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6,  data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 450)) +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6,  data = . %>% unnest(Predict_WW) %>%  filter(Strain == "SS120", O2_uM != 250, WL == "WW")) +
    geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.0, alpha = 0.3, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 660))+
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MIT9313", O2_uM == 2.5, WL == "WW")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 660))+
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6,  data = . %>% unnest(Predict_WW) %>%  filter(Strain == "MIT9313", O2_uM == 2.5, WL == "WW")) +
  labs(title = "Anova fit comparisons of WL to pooled", y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
@@ -1473,7 +1484,7 @@ WLvsPooledPurFitsPlots <- AllFitsCombinedWL |>
        linetype = "Photoperiod lines"
       )
 
-WLvsPooledPurFitsPlots
+
 
 
 # This labels each pane with a letter but turns of the facet labels
@@ -1490,27 +1501,28 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
          WL = factor(Data_all_WL, levels = c(660, 450)),
          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>%
   ggplot() +
-  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2, alpha = 0.7) +
-    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 1.0, alpha = 0.5) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MED4",  WL == 450)) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MED4", WL == 660)) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 450)) +
- geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5,  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 660)) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 450)) +
- geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 660)) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 660))+
-    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 450))+
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 450)) +
- geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.5, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 660)) +
+  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 3, alpha = 1.0) +
+    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 1.0, alpha = 0.8) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MED4",  WL == 450), linetype = "solid", show.legend = T) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MED4", WL == 660) , linetype = "solid") +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6,  data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 450) , linetype = "solid") +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6,  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM == 25, WL == 660) , linetype = "solid") +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 450), show.legend = T) +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "SS120", O2_uM != 25, WL == 660)) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 660) , linetype = "solid")+
+    geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM != 250, WL == 450) , linetype = "solid")+
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, linetype = "dashed", data = . %>% unnest(Predict_450) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 450)) +
+ geom_line(aes(x = PURPhotonDose_day, y = .fitted, color = as.factor(WL)), size = 0.6, linetype = "dashed",  data = . %>% unnest(Predict_660) %>%  filter(Strain == "MIT9313", O2_uM == 250, WL == 660)) +
  labs(y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c(660, 450)) +
-  # scale_linetype_manual(values = MyLineTypes, labels = c("16 hr", "12 hr", "8 hr", "4 hr")) +
+  scale_linetype_manual(values = c("solid", "dashed"), labels = c("Significantly different", "Not significantly different")) +
   scale_shape_manual(values = PhotoperiodShapes)  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), cols = vars(Strain), 
                     labeller = labeller(Strain = label_value, O2_uM = label_value, OxygenLabel = label_value)) +
- guides(linetype = guide_legend(nrow = 1),
+ guides(linetype = "none",
+        # linetype = guide_legend(nrow = 1),
         fill = "none",
         color = guide_legend(nrow = 1)) +
  guides(shape = guide_legend(nrow = 1)) +
@@ -1525,12 +1537,12 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
         legend.key.size = unit(0.2, 'cm'), #change legend key size
         legend.key.height = unit(0.1, 'cm'), #change legend key height
         legend.key.width = unit(0.1, 'cm'), #change legend key width
-        legend.title =  element_text(size = 25),  #change legend title font size
-        legend.text = element_text(size = 25),   #change legend text font size
+        legend.title =  element_text(size = 28),  #change legend title font size
+        legend.text = element_text(size = 29),   #change legend text font size
         legend.position = "top") +
   labs( shape = "Photoperiod (h)",
         color = "Growth Waveband (nm)",
-       linetype = "Photoperiod lines"
+       linetype = "ANOVA"
       )
 
 BluevsRedPurFitsPlots
