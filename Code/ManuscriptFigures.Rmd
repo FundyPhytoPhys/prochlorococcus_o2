@@ -518,7 +518,7 @@ ggplot()+
    facet_grid(rows = vars(WL_label),
               cols = vars(Strain),
               labeller = labeller(Strain = label_value, WL_label = label_value, Photoperiod = label_both, Par_ue = label_both, O2_Category = label_both, Pur_ue = label_both)) +
-   geom_text(aes(x = 500, y = 1, label = paste("PAR", "=", Par_ue, "µE",sep = " "), show.legend = FALSE, ),
+   geom_text(aes(x = 500, y = 1, label = paste("PAR", "=", Par_ue, "µE",sep = " "), show.legend = FALSE ),
     # parse = TRUE,
     hjust = 0,
     vjust = 1,
