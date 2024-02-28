@@ -118,6 +118,7 @@ poi |>
 PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
 ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
 StrainLabels <- c("MED4", "SS120", "MIT9313")
+AltStrainLabels <- c("MED4", "SS120", "MIT9313", "NATL2A")
 
 ElectronTrans <- c("psii", "cytb6f", "psi", "rubisco", "atp")
 
@@ -158,6 +159,41 @@ poi |>
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.tiff")))
+ 
+ poi |>
+  filter(complex %in% ElectronTrans) |>
+  filter(strain %in% AltStrainLabels) |>
+  ggplot() +
+  geom_point(aes(x = O2, y= depth)) +
+  scale_x_continuous(limits = c(0, 260)) +
+  scale_y_reverse(limits = c(260, 0)) +
+  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
+  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  facet_grid(factor(strain, levels = c("MED4", "NATL2A", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels)) +
+  labs(y = "Depth (m)",
+       x = expression("O"[2] ~ "(µM)")) +
+    # ) +
+  theme_bw()
+
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.png")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.tiff")))
+
+poi |>
+  filter(complex %in% ProteinMetab) |>
+  filter(strain %in% AltStrainLabels) |>
+  ggplot() +
+  geom_point(aes(x = O2, y= depth)) +
+  scale_x_continuous(limits = c(0, 260)) +
+  scale_y_reverse(limits = c(260, 0)) +
+  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
+  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  facet_grid(factor(strain, levels = c("MED4", "NATL2A", "SS120", "MIT9313")) ~ factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels)) +
+   labs(y = "Depth (m)",
+        x = expression("O"[2] ~ "(µM)")) +
+  theme_bw()
+
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.png")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.tiff")))
 
 ```
 
