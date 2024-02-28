@@ -1,7 +1,7 @@
 ---
 title: "*Prochlorococcus marinus* responses to light and oxygen" 
 author:
-  - name: '**Mireille Savoie**'
+  - name: 'Mireille Savoie'
     institute: mta
     main: true
     email: msavoie@mta.ca
@@ -15,7 +15,7 @@ author:
     institute: [mta, ug]
   - name: Maximilian Berthold
     institute: mta
-  - name: Naaman Omar
+  - name: Naaman M. Omar
     institute: mta
   - name: Ondřej Prášil
     institute: [mta, algatech]
@@ -122,9 +122,9 @@ FigureInO2Analy <- file.path(  "..", "..", "O2Analyses", "Output")
 # Introduction {.unnumbered}
 
 ## *Prochlorococcus marinus* diversity {.unnumbered}
-*Prochlorococcus marinus*, a genus of Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999]. *Prochlorococcus marinus* growth is currently limited to between latitudes of 40°N to 40°S in open ocean waters, from surface to 300 m depth, thus spanning 3 orders of magnitudes of light [@partenskyProchlorococcusMarinePhotosynthetic1999; @chisholmProchlorococcusMarinusNov1992 ]. 
+*Prochlorococcus*, a genus of Cyanobacteria, is the smallest known photosynthetic prokaryote, with cell diameters ranging from 0.5 to 0.7 µm [@chisholmProchlorococcusMarinusNov1992]. Despite small cell size, *P. marinus* contribute 13 to 48% of net primary production in oligotrophic oceans, corresponding to about 30% of global oxygen production [@partenskyProchlorococcusMarinePhotosynthetic1999]. *Prochlorococcus marinus* growth is currently limited to between latitudes of 40°N to 40°S in open ocean waters, from surface to 300 m depth, thus spanning 3 orders of magnitudes of light [@partenskyProchlorococcusMarinePhotosynthetic1999; @chisholmProchlorococcusMarinusNov1992 ]. 
 
-*Prochlorococcus marinus* is functionally differentiated from other cyanobacteria primarily by the absence of phycobilisomes [@chisholmProchlorococcusMarinusNov1992]. Instead, *Prochlorococcus*  uses intra-membrane Prochlorophyte Chlorophyll Binding (Pcb) proteins binding divinylchlorophyll a and b, and α-carotene, as major light harvesting complexes [@goerickePigmentsProchlorococcusMarinus1992]; [@larocheIndependentEvolutionProchlorophyte1996], with diversity in the number of genes encoding Pcb, expression of Pcb under changing light [@garczarekMultiplicationAntennaGenes2000]  [@rocapGenomeDivergenceTwo2003] [@garczarekMultiplicationAntennaGenes2000], and in thylakoid organization [@partenskyProchlorococcusMarinePhotosynthetic1999].  The genes encoding much of the photosynthetic apparatus are highly conserved in *Prochlorococcus* [@kettlerPatternsImplicationsGene2007], though the photosynthetic efficiency may vary among clades [@hessPhotosyntheticApparatusProchlorococcus2001; @moorePhotophysiologyMarineCyanobacterium1999].
+*Prochlorococcus marinus* is functionally differentiated from other cyanobacteria primarily by the absence of phycobilisomes [@chisholmProchlorococcusMarinusNov1992]. Instead, *Prochlorococcus*  uses intra-membrane Prochlorophyte Chlorophyll Binding (Pcb) proteins binding divinylchlorophyll *a* and *b*, and α-carotene, as major light harvesting complexes [@goerickePigmentsProchlorococcusMarinus1992]; [@larocheIndependentEvolutionProchlorophyte1996], with diversity in the number of genes encoding Pcb, expression of Pcb under changing light [@garczarekMultiplicationAntennaGenes2000; @rocapGenomeDivergenceTwo2003], and in thylakoid organization [@partenskyProchlorococcusMarinePhotosynthetic1999].  The genes encoding much of the photosynthetic apparatus are highly conserved in *Prochlorococcus* [@kettlerPatternsImplicationsGene2007], though the photosynthetic efficiency may vary among clades [@hessPhotosyntheticApparatusProchlorococcus2001; @moorePhotophysiologyMarineCyanobacterium1999].
 
 *Prochlorococcus marinus* comprises many strains, organized into clades, defined by 16S-23S intergenic transcribed ribosomal sequence signatures [@rocapGenomeDivergenceTwo2003]. The clades inhabit distinct ecological niches [@moorePhysiologyMolecularPhylogeny1998], originally defined by Low-Light (LL) or High-Light (HL).  Of at least 12 known *Prochlorococcus* genetic clades only 5 to date have cultured representatives; HLI, HLII, LLI, LLII/III and LIV [@billerProchlorococcusStructureFunction2015].
 
@@ -264,7 +264,7 @@ light of the MCMIX-OD Multicultivator and the white LED light of the MC1000-OD M
 optic cable, HH2 FiberOpticJmp (Part number A901073, Malvern Panalytical
 Ltd, Malvern, UK). Each LED spectrum was then normalized to its emission maximum.
 An *in-vivo* whole cell absorbance spectrum for each *P. marinus* strain under each spectral growth condition was obtained using the Olis 14 UV/VIS Clarity
-Spectrophotometer (Olis Inc, Bogart, GA, USA) to scan across range of λ = 350 nm to 750 nm at 1 nm intervals. The path length of the internally reflective cavity of the Olis spectrophotometer was corrected to a 1 cm path length using the Javorfi correction method [@javorfiQuantitativeSpectrophotometryUsing2006] on PRO 99 media subtracted whole cell absorbance spectra. The blank-corrected whole cell absorbance spectra were normalized to the absorbance maximum of divinylchlorophyll a (Chl a~2~), determined for each spectra, falling between 400 nm and 460 nm. 
+Spectrophotometer (Olis Inc, Bogart, GA, USA) to scan across range of λ = 350 nm to 750 nm at 1 nm intervals. The path length of the internally reflective cavity of the Olis spectrophotometer was corrected to a 1 cm path length using the Javorfi correction method [@javorfiQuantitativeSpectrophotometryUsing2006] on PRO 99 media subtracted whole cell absorbance spectra. The blank-corrected whole cell absorbance spectra were normalized to the absorbance maximum of divinylchlorophyll *a* (Chl a~2~), determined for each spectra, falling between 400 nm and 460 nm. 
 
 An integrated weighting Equation \@ref(eq:WeightedPUR) [@morelAvailableUsableStored1978] was used to determine the weighted PUR spectrum P(λ),
 
