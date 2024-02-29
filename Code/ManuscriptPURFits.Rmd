@@ -886,7 +886,7 @@ knitr::kable(PhotoperiodAnovaTable,
 # MED4PURFITPlot <- AllFitsCombined |>
 #     filter(Strain == "MED4") |>
 #   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
-#   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+#   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
 #          OxygenLabel = "Oxygen Concentration (µM)",
 #          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
 #          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -932,7 +932,7 @@ knitr::kable(PhotoperiodAnovaTable,
 # SS120PURFITPlot <- AllFitsCombined |>
 #     filter(Strain == "SS120") |>
 #   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
-#   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+#   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
 #          OxygenLabel = "Oxygen Concentration (µM)",
 #          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
 #          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -979,7 +979,7 @@ knitr::kable(PhotoperiodAnovaTable,
 # MIT9313PURFITPlot <- AllFitsCombined |>
 #    filter(Strain == "MIT9313") |>
 #   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
-#   mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+#   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
 #          OxygenLabel = "Oxygen Concentration (µM)",
 #          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
 #          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1049,7 +1049,7 @@ scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::sc
 
 AllStrainPurFitsPlots <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
-  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+  mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1435,7 +1435,7 @@ scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::sc
 
 AllFitsCombinedWL |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
-  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+  mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1491,7 +1491,7 @@ AllFitsCombinedWL |>
 BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   filter(Data_all_WL %in% c(450,660)) %>% 
-  mutate(PhotoperiodLabel_title = "Photoperiod (h)",
+  mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
          Photoperiod = factor(Data_all_Photoperiod, levels = c(16, 12, 8, 4)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),

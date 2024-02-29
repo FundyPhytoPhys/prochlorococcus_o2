@@ -149,24 +149,23 @@ glimpse(TargetProtein)
 ```{r Protein plots}
 
 MIT9313ProteinAnnotated <- TargetProtein %>%
-  filter( Strain == "MIT9313") %>% 
-   mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste(WL, "nm", sep = " "),
-                              WL %in% c("WW") ~ paste("White LED", sep = " ")),
-        WL_label = factor(WL_label, levels= c("White LED", "660 nm", "530 nm", "450 nm")),
-         Oxygen_Label = case_when(O2_uM %in% c(250, 25, 2.5) ~ paste(O2_uM, "µM", sep = " ")),
-         Par_Label = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " ")),
-        Oxygen_Label = factor(Oxygen_Label, levels = c("250 µM", "2.5 µM")),
-        Par_Label = factor(Par_Label, levels = c("30 µE", "90 µE", "100 µE", "180 µE"))) %>% 
+  filter(Strain == "MIT9313") %>% 
+   mutate(OxygenLabel = "Oxygen Concentration (µM)",
+         ParLabel = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " ")),
+        O2_uM = factor(O2_uM, levels = c("250", "2.5")),
+        ParLabel = factor(ParLabel, levels = c("30 µE", "90 µE", "100 µE", "180 µE"))) %>% 
    ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug, color = as.factor(WL), fill = as.factor(WL))) +
   geom_col(position="Dodge") +
    # geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)),  hjust = 0.5, vjust = -1.5, position = "stack", check_overlap = T), color = "Black")  +
  labs(y = "Protein subunit content" ~   "(fmole µg"  ~ protein^-1~")", x = "Protein") +
   scale_fill_manual(values = MCMIXColours) +
   scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, Par_Label ), rows = vars(Oxygen_Label), 
-                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_value)) +
+ ggh4x::facet_nested(cols = vars(Strain, ParLabel ), rows = vars(OxygenLabel, O2_uM), 
+                    labeller = labeller(O2_uM = label_value, WL = label_both, O2 = label_both, Strain = label_value)) +
 guides(color = "none") +
-  theme_bw()
+  theme_bw() +
+  theme(legend.position = "top") +
+  labs(fill = "Growth Waveband (nm)")
 
 MIT9313ProteinAnnotated
 
@@ -174,23 +173,22 @@ MIT9313ProteinAnnotated
 MED4ProteinAnnotated <- TargetProtein %>%
   filter( Strain == "MED4",
           O2_uM != 2.5) %>% 
-   mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste(WL, "nm", sep = " "),
-                              WL %in% c("WW") ~ paste("White LED", sep = " ")),
-        WL_label = factor(WL_label, levels= c("White LED", "660 nm", "530 nm", "450 nm")),
-         Oxygen_Label = case_when(O2_uM %in% c(250, 25, 2.5) ~ paste(O2_uM, "µM", sep = " ")),
-         Par_Label = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " ")),
-       Oxygen_Label = factor(Oxygen_Label, levels = c("250 µM", "2.5 µM")),
-        Par_Label = factor(Par_Label, levels = c("30 µE", "90 µE", "100 µE", "180 µE"))) %>% 
+   mutate(OxygenLabel = "Oxygen Concentration (µM)",
+         ParLabel = case_when(Par_ue %in% c(30, 90, 100, 180) ~ paste(Par_ue, "µE", sep = " ")),
+        O2_uM = factor(O2_uM, levels = c("250", "2.5")),
+        ParLabel = factor(ParLabel, levels = c("30 µE", "90 µE", "100 µE", "180 µE"))) %>% 
   ggplot(aes(x=Target, y= Target_TotalProtein_fmole_ug, color = as.factor(WL), fill = as.factor(WL))) +
   geom_col(position="Dodge") +
    # geom_text(aes(y = 0.05, label = paste(round(Target_TotalProtein_fmole_ug, 0)), na.rm=FALSE ,  hjust = 0.5, vjust = -1.5, position = "stack", check_overlap = T), color = "Black") +
  labs(y = "Protein subunit content" ~   "(fmole µg"  ~ protein^-1~")", x = "Protein") +
   scale_fill_manual(values = MCMIXColours) +
   scale_colour_manual(values = MCMIXColours) +
- ggh4x::facet_nested(cols = vars(Strain, Par_Label ), rows = vars(Oxygen_Label), 
-                    labeller = labeller(Par_ue = label_both, WL = label_both, O2 = label_both, Strain = label_value)) +
+  ggh4x::facet_nested(cols = vars(Strain, ParLabel ), rows = vars(OxygenLabel, O2_uM), 
+                    labeller = labeller(O2_uM = label_value, WL = label_both, O2 = label_both, Strain = label_value)) +
 guides(color = "none") +
-  theme_bw()
+  theme_bw() +
+  theme(legend.position = "top") +
+  labs(fill = "Growth Waveband (nm)")
 
 MED4ProteinAnnotated
 ```
