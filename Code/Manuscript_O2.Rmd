@@ -189,7 +189,7 @@ transferred weekly with 1 in 5 dilutions with Pro99 media
 [@mooreCulturingMarineCyanobacterium2007] prepared with autoclaved artificial
 seawater [@bergesEvolutionArtificialSeawater2001].
 
-Controlled growth experiments were performed using PSI Multicultivators (Figure \@ref(fig:LabeledMC); MCMIX-OD or MC1000-OD, Brno, Czech Republic).  Each multicultivator individually controls 8 tubes at a common temperature of 22°C.  Each tube containing 70 mL of Pro99 media was inoculated with 10 mL of growing maintenance culture. In a factorial matrix design, each tube was then subject to an individual combination of sinusoidal photoperiod (4, 8, 12, 16  h);  reaching a peak PAR (30, 90, 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White LED, 660 nm, 450 nm).  [O~2~] levels (2.5 µM, 25 µM, 250 µM) were imposed by bubbling tubes with varying ratios of air and
+Controlled growth experiments were performed using MCMIX-OD or MC1000-OD PSI Multicultivators (Figure \@ref(fig:LabeledMC); PSI, Drásov, Czech Republic).  Each multicultivator individually controls 8 tubes at a common temperature of 22°C.  Each tube containing 70 mL of Pro99 media was inoculated with 10 mL of growing maintenance culture. In a factorial matrix design, each tube was then subject to an individual combination of sinusoidal photoperiod (4, 8, 12, 16  h);  reaching a peak PAR (30, 90, 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White LED, 660 nm, 450 nm).  [O~2~] levels (2.5 µM, 25 µM, 250 µM) were imposed by bubbling tubes with varying ratios of air and
 Nitrogen (N~2~), with consistent 0.05% of Carbon Dioxide (CO~2~)
 gas, delivered through a 0.2 μm sterile microfilter via a G400 gas mixing system (Qubit Systems Inc, Kingston, Ontario, Canada). [O~2~] in situ was verified using oxygen optodes (PyroScience,
 Germany) inserted into tubes for
@@ -218,9 +218,9 @@ and equatorial (0°N) deep ocean depths; and 4 h for temperate (45°N)
 winter or deep ocean depths during temperate (45°N) spring and fall.
 
 ## Growth rate analysis {.unnumbered}
-Data files (.csv) saved from the Multicultivator software were imported into R-Studio [@R-Studio] for data management [@R-tidyverse], growth rate calculations CITATION, comparisons of model fits (get Platt CITATION), and generation of
+Data files (.csv) saved from the Multicultivator software were imported into R-Studio [@R-Studio] for data management [@R-tidyverse], growth rate calculations CITATION, comparisons of model fits [@harrisonPhotosynthesisirradianceRelationshipsPolar1986], and generation of
 figures using `ggplot2` [@R-ggplot2]. The chlorophyll proxy
-optical density (OD680 - OD720;  ΔOD) was used to determine the chlorophyll-specific exponential growth
+optical density (OD680 - OD720;  ΔOD) was used to determine the chlorophyll specific growth
 rate (µ, d^-1^) for each treatment combination.  We first used a rolling mean from the RStudio `zoo` package [@R-zoo] to calculate the average ΔOD data over a 1-hour window to lower influence of outlier points and remove data points collected during post stationary phase, if applicable. We used the Levenberg-Marquardt algorithm
 [@bellaviaLevenbergMarquardtMethod2018] modification of the non-linear
 least squares,  using the R package `minpack.lm`
@@ -281,7 +281,7 @@ where P(λ) is the weighted PUR absorbance spectrum from equation \@ref(eq:Weigh
 The applied photoperiods were delivered using the sine circadian light function of the PSI Multicultivator to simulate light exposure approximating sun rise through to sunset. The area under the sinusoidal curves is equivalent to the area of a triangular photoregime of equivalent photoperiod (Campbell, unpub), therefore the equation to determine the cumulative diel PUR (µmol photons m^-2^ d^-1^) is one half of the base (photoperiod) multiplied by the height (PUR) (Equation \@ref(eq:SumPURDay)),
 
 \begin{equation}
-  Cumulative diel PUR = \frac{PUR × 3600 × Photoperiod}{2}
+  Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
   (\#eq:SumPURDay)
 \end{equation}
 
@@ -382,7 +382,7 @@ were not conducted for 4 and 16 h photoperiods, as no reproducible growth occurr
 
 ```{r MED4PAR, fig.cap = MED4PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).  **",
+MED4PAR_cap <- glue("**chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).  **",
                     "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                        "Columns show 3 levels of growth Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^",
                     "colours represent the actinic spectral waveband (nm).",
@@ -434,7 +434,7 @@ SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5 µM (Figu
 
 ```{r SS120PAR, fig.cap = SS120PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLIII) deep ocean clade) vs. photoperiod (h). **",
+SS120PAR_cap <- glue("**chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLIII) deep ocean clade) vs. photoperiod (h). **",
                      "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                        "Columns show 3 levels of growth Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^",
                     "colours represent the actinic spectral waveband (nm).",
@@ -487,7 +487,7 @@ MIT9313 grew under 2.5 µM O~2~  particularly under blue LED light, albeit gener
 
 ```{r MIT9313PAR, fig.cap = MIT9313PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-MIT9313PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). **",
+MIT9313PAR_cap <- glue("**chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). **",
                        "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                        "Columns show 3 levels of growth Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^",
                     "colours represent the actinic spectral waveband (nm).",
@@ -560,7 +560,7 @@ For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)C.
 
 ```{r BluevsRedPurFitsPlots, fig.cap = BluevsRedPurFitsPlots_cap , fig.height = 10, fig.width = 10, echo = FALSE}
 
- BluevsRedPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
+ BluevsRedPurFitsPlots_cap <- glue("**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
                     "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                     "Columns are strains; MED4, SS120 and MIT9313.",
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
@@ -878,7 +878,7 @@ knitr::kable(MaxGrowthTable,
 
 ```{r AllStrainPurFitsPlots,  fig.cap = AllStrainPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
-AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
+AllStrainPurFitsPlots_cap <- glue("**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
                     "Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                     "Columns are strains; MED4, SS120 and MIT9313.",
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",

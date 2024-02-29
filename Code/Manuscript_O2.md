@@ -250,7 +250,7 @@ where P(λ) is the weighted PUR absorbance spectrum from equation \@ref(eq:Weigh
 The applied photoperiods were delivered using the sine circadian light function of the PSI Multicultivator to simulate light exposure approximating sun rise through to sunset. The area under the sinusoidal curves is equivalent to the area of a triangular photoregime of equivalent photoperiod (Campbell, unpub), therefore the equation to determine the cumulative diel PUR (µmol photons m^-2^ d^-1^) is one half of the base (photoperiod) multiplied by the height (PUR) (Equation \@ref(eq:SumPURDay)),
 
 \begin{equation}
-  Cumulative diel PUR = \frac{PUR × 3600 × Photoperiod}{2}
+  Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
   (\#eq:SumPURDay)
 \end{equation}
 
