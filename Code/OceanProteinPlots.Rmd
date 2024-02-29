@@ -19,8 +19,10 @@ Imported Aurora .csv large files from DropBox, saved as .RDS for future use and 
 #saveRDS(pro_proteins, file = file.path("..", "Data", "ProcessedData", "pro_proteins.RDS"))
 
 #Read in previously imported and saved data converted from large .csv to smaller .RDS
+#pro_proteins <- readRDS(file.path("..", "Data", "ProcessedData", "ProcessedOceanProtein", "pro_proteins.RDS"))
+
 poi <- readRDS(file.path("..", "Data", "ProcessedData", "ProcessedOceanProtein", "poi.RDS"))
-pro_proteins <- readRDS(file.path("..", "Data", "ProcessedData", "ProcessedOceanProtein", "pro_proteins.RDS"))
+
 ```
 
 ```{r strains}
@@ -30,6 +32,20 @@ LL<-c("MIT9313", "MIT9303", "SS120", "MIT9211", "NATL1A", "NATL2A")
 strains_list<-c("MED4","MIT9515","AS9601","MIT9202","MIT9215","MIT9301","MIT9312","NATL1A","NATL2A", "MIT9211","SS120","MIT9303","MIT9313")
 ```
 
+
+```{r clademerge column}
+poi <- poi |>
+  mutate(CladeMerge = case_when(clade ==  "HLI" ~ "HLI",
+                                clade ==  "HLII" ~ "HLII",
+                                clade == "LLI" ~ "LLI",
+                                clade == "LLII" ~ "LII_LLIII",
+                                clade == "LLIII" ~ "LII_LLIII",
+                                 clade == "LLIV" ~ "LLIV")) |>
+  mutate(CladeMergeFactor = factor(CladeMerge, levels = c("HLI", "HLII", "LLI", "LII_LLIII", "LLIV")))
+
+unique(poi$CladeMerge)
+unique(poi$CladeMergeFactor)
+```
 
 
 ```{r set depth light and O2}
@@ -69,42 +85,42 @@ KEGG EC 1.6.5.9  not detected; issue with search terms?
 
 ```{r pro_proteins plots}
 
-pro_proteins |>
-  ggplot()+
-  geom_point(aes(x = O2, y= depth)) +
-  scale_x_continuous(limits = c(0, 260)) +
-  scale_y_reverse(limits = c(260, 0)) +
-  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
-  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
-  labs(title = "All detections of Prochlorococcus proteins from OceanProteinPlots.Rmd, from pro_proteins",
-       caption = "Horizontals approximate experimental growth light levels; Verticals indicate experimental growth oxygen levels") +
-  theme_bw()
+# pro_proteins |>
+#   ggplot()+
+#   geom_point(aes(x = O2, y= depth)) +
+#   scale_x_continuous(limits = c(0, 260)) +
+#   scale_y_reverse(limits = c(260, 0)) +
+#   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
+#   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
+#   labs(title = "All detections of Prochlorococcus proteins from OceanProteinPlots.Rmd, from pro_proteins",
+#        caption = "Horizontals approximate experimental growth light levels; Verticals indicate experimental growth oxygen levels") +
+#   theme_bw()
+# 
+# #ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "ProchloroAllProteinsDepthO2.png")))
+# 
+# pro_proteins |>
+#     filter(strain %in% c("MIT9313","MED4", "SS120")) |>
+#   ggplot()+
+#   geom_point(aes(x = O2, y= depth)) +
+#   scale_x_continuous(limits = c(0, 260)) +
+#   scale_y_reverse(limits = c(260, 0)) +
+#   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
+#   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
+#   labs(title = "All detections of MIT9313,MED4, SS120 proteins from OceanProteinPlots.Rmd, from pro_proteins",
+#        caption = "Horizontals approximate experimental growth light levels; Verticals indicate experimental growth oxygen levels") +
+#   theme_bw()
 
-#ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "ProchloroAllProteinsDepthO2.png")))
-
-pro_proteins |>
-    filter(strain %in% c("MIT9313","MED4", "SS120")) |>
-  ggplot()+
-  geom_point(aes(x = O2, y= depth)) +
-  scale_x_continuous(limits = c(0, 260)) +
-  scale_y_reverse(limits = c(260, 0)) +
-  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
-  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
-  labs(title = "All detections of MIT9313,MED4, SS120 proteins from OceanProteinPlots.Rmd, from pro_proteins",
-       caption = "Horizontals approximate experimental growth light levels; Verticals indicate experimental growth oxygen levels") +
-  theme_bw()
-
-poi |>
-  filter(strain %in% c("MIT9313","MED4", "SS120")) |>
-  ggplot()+
-  geom_point(aes(x = O2, y= depth)) +
-  scale_x_continuous(limits = c(0, 260)) +
-  scale_y_reverse(limits = c(260, 0)) +
-  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
-  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
-  facet_grid(vars(strain)) +
-  theme(panel.grid.minor = element_line(size = 0), panel.grid.major = element_line(size = 2)) +
-  theme_bw()
+# poi |>
+#   filter(strain %in% c("MIT9313","MED4", "SS120")) |>
+#   ggplot()+
+#   geom_point(aes(x = O2, y= depth)) +
+#   scale_x_continuous(limits = c(0, 260)) +
+#   scale_y_reverse(limits = c(260, 0)) +
+#   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.2) +
+#   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.2) +
+#   facet_grid(vars(strain)) +
+#   theme(panel.grid.minor = element_line(size = 0), panel.grid.major = element_line(size = 2)) +
+#   theme_bw()
 
 ```
 
@@ -229,6 +245,46 @@ poi |>
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
   facet_grid(rows = vars(clade), cols = vars(factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels))) +
+   labs(y = "Depth (m)",
+        x = expression("O"[2] ~ "(µM)")) +
+  theme_bw()
+
+  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
+  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
+
+```
+
+
+```{r clademerge_plots}
+PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
+ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
+
+poi |>
+  filter(complex %in% ElectronTrans) |>
+  ggplot() +
+  geom_point(aes(x = O2, y= depth)) +
+  scale_x_continuous(limits = c(0, 260)) +
+  scale_y_reverse(limits = c(260, 0)) +
+  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
+  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  facet_grid(rows = vars(CladeMergeFactor), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels))) +
+  labs(y = "Depth (m)",
+       x = expression("O"[2] ~ "(µM)")) +
+    # ) +
+  theme_bw()
+
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.tiff")))
+
+poi |>
+  filter(complex %in% ProteinMetab) |>
+  ggplot() +
+  geom_point(aes(x = O2, y= depth)) +
+  scale_x_continuous(limits = c(0, 260)) +
+  scale_y_reverse(limits = c(260, 0)) +
+  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
+  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  facet_grid(rows = vars(CladeMerge), cols = vars(factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels))) +
    labs(y = "Depth (m)",
         x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
