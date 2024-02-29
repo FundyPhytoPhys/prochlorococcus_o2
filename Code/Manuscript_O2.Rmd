@@ -246,13 +246,8 @@ illustrates the imposed PAR (µmol photons m^-2^ s^-1^) and photoperiod
 (h). Annotated code for data import, transformations and analyses is available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/tree/main/Data/RawData
 
 
-## Generalized additive model of growth responses {.unnumbered}
-
-A Generalized Additive Model (GAM) CITATION was applied to the
-relation between chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  for each growth [O~2~] level, and for the blue and red wavebands for growth, for each *P.marinus* strain in this study. The gam function from the R package `mgcv`
-[@R-mgcv] was used to model the growth rate with smoothing terms, to
-indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Growth rate estimates with a standard error below 30% of the fitted growth rate were included in the GAM modelling. Our priority
-was the effects of ecologically relevant blue light on growth trends.  We included analyses of growth responses to red light, which is not ecophysiologically relevant, but which might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
+A Generalized Additive Model (GAM) [@woodGeneralizedAdditiveModels2017] was applied to the
+relation between chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  for each growth [O~2~] level, and for the blue and red wavebands for growth, for each *P.marinus* strain in this study. The gam function from the R package `mgcv` [@R-mgcv] was used to model the growth rate with smoothing terms and indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Only growth rate estimates for which the amplitude of standard error was smaller than 30% of the fitted growth rate were included in the GAM modelling. Our priority was the effects of ecologically relevant blue light on growth trends.  We included analyses of growth responses to red light, which is not ecophysiologically relevant, but which might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
 
 ## Estimation of photosynthetically usable radiation {.unnumbered}
 
@@ -315,6 +310,13 @@ knitr::include_graphics(file.path(FiguresIn, "PurParPlot.png"))
 
 
 \newpage
+
+## Statistical analyses {.unnumbered}
+
+We fit the response of chlorophyll specific growth rate to cumulative diel PUR using the equation of Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] across strain and [O~2~] to first compare growth response between 660 nm (red) and 450 nm (blue) growth light and second to compare growth response between specific photoperiods (4 h, 8 h, 12 h, 16 h) and a fit across the pooled photoperiod data. 
+To examine statistical differences between the modeled fits, we performed one-way ANOVA comparing the model output parameters assigning significant differences when p < 0.05. 
+
+
 
 ## Quantitative protein immunoblotting {.unnumbered}
 
@@ -564,7 +566,7 @@ For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)C.
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
                       "Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols).",
                       "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, pvalue < 0.05) or dashed lines (not significantly different fits, pvalue > 0.05).",
+                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, pvalue < 0.05) or dashed lines (not significantly different fits, pvalue > 0.05) using one-way ANOVA.",
                        .sep = " ")
 
 
@@ -680,7 +682,7 @@ ProchlorococcusEnzymeKms_cap <- glue("**K~m~ values for oxygen metabolizing enzy
                                      "The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM . ",
                                      "The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM.  ",
                                      "The black bars show the minimum and maximum K~m~ values.",
-                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from @omarAnnotationGenesEncoding2023.",
+                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].",
                        
                        .sep = " ")
 
@@ -702,7 +704,7 @@ DNARepairFig_cap <- glue("**Genes encoding DNA repair enzymes.**" ,
                          "The red solid circles represent a gene count of 1.",
                          "The green solid circles represent a gene count of 2.",
                          "The blue solid circles represent a gene count of 3.",
-                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from @omarAnnotationGenesEncoding2023.",
+                       "Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].",
                        
                        .sep = " ")
 
@@ -736,7 +738,7 @@ and LLIV ecotypes, using terminal restriction fragment length polymorphism analy
 higher, within OMZ, and by Figure\ref(fig:ProchloroPhotosynthDepthO2) showing PSII protein subunits annotated as derived from SS120 at all depths ranging
 from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120, grew under photoperiods longer than 4 h and showed increasing growth rate with increasing photoperiods. Therefore, SS120 can potentially exploit the longer summer photoperiods in temperate zones but again cannot sustain growth in winter through its requirement for more than 4 h of light per day, even if water temperature warms into the Clade LLIII tolerance range.
 
-*Prochlorococcus marinus* SS120 prefers the deeper ocean where blue spectral waveband dominates at low levels, through its demonstrated ability to exploit only the lowest blue spectral waveband levels PAR of 30 µmol photons m^-2^ s^-1^ under 250 µM O~2~. However, we found *P. marinus* SS120 can exploit more diverse ecological niches within the ocean layers, even in regions with high levels of blue spectral waveband,  but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). @mattisonPhotosyntheticStrategiesWild2020 and @lavinNovelLineagesProchlorococcus2010 show evidence of LLIII ecotypes at varying depths from 20 to 200 m and under all [O~2~] in the oxygen minimum zone (OMZ) of the tropical North Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if O~2~ are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a warmed, deep, temperate region during the winter season.
+*Prochlorococcus marinus* SS120 prefers the deeper ocean where blue spectral waveband dominates at low levels, through its demonstrated ability to exploit only the lowest blue spectral waveband levels PAR of 30 µmol photons m^-2^ s^-1^ under 250 µM O~2~. However, we found *P. marinus* SS120 can exploit more diverse ecological niches within the ocean layers, even in regions with high levels of blue spectral waveband,  but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] show evidence of LLIII ecotypes at varying depths from 20 to 30 m and from 75 to 200 µM O~2~ in the oxygen minimum zone (OMZ) of the tropical South Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if O~2~ are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a warmed, deep, temperate region during the winter season.
 
 *Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows the potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR,  but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)). The ability to utilize higher PAR and higher cumulative diel PUR under 25 µM or 2.5 µM O~2~ enables MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@InformationEC15],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 2 and 3  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:ProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM.
 
@@ -882,7 +884,7 @@ AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
                       "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
                       "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
+                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
                        .sep = " ")
 
 
