@@ -185,7 +185,7 @@ is from Low-Light adapted (LLIV) clade. Cultures were
 maintained in incubators set to 22°C with a light/dark cycle of 12 h. The PAR level for maintenance cultures reflected Photosynthetically Active Radiation (PAR) in the source
 niche of the ecotype; MED4, of 160 µmol photons m^-2^ s^-1^ with illumination from STANDARD Products Inc. Cool White F24T5/41K/8/HO/PS/G5/STD, 24 watts, fluorescent bulbs; SS120 and
 MIT9313 at 30 µmol photons m^-2^ s^-1^ with illumination from Philips Cool White F14T5/841 Alto, 14 watts, fluorescent bulbs. To maintain active growth all strains were
-transferred weekly with 1 in 5 dilution with Pro99 media
+transferred weekly with 1 in 5 dilutions with Pro99 media
 [@mooreCulturingMarineCyanobacterium2007] prepared with autoclaved artificial
 seawater [@bergesEvolutionArtificialSeawater2001].
 
@@ -361,7 +361,7 @@ knitr::include_graphics(file.path(FiguresIn, "NATLProchloroPhotosynthDepthO2.png
 
 ## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral band, and [O~2~]  {.unnumbered} 
 
-Guided by the evidence of ocean distributions of proteins from *Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral bands, and [O~2~] to approximate current, and potential future, latitudinal, depth and seasonal niches for *Prochlorococcus* strains.  We earlier found [@murphyPhotoinactivationPhotosystemII2017] that growth under red light could prove mechanistically informative as to factors limiting *Prochlorococcus* growth, so we included that spectral band even though it is not characteristic of representative *Prochlorococcus* niches.  Although *Prochlorococcus* is currently limited to a narrow range of surface photoperiods, potential poleward latitudinal expansions, in combination with attenuation of light with depth, mean *Prochlorococcus* currently, or potentially, encounters a wide range of photoperiods.  Our growth rate determinations generally agreed with those from @mooreComparativePhysiologySynechococcus1995, for white LED and 250 µM O~2~, but our study is, we believe, the first to analyze the interactive growth responses of *Prochlorococcus* strains to varying [O~2~], spectral wavebands and photoperiods. 
+Guided by the evidence of ocean distributions of proteins from *Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral bands, and [O~2~] to approximate current, and potential future, latitudinal, depth and seasonal niches for *Prochlorococcus* strains.  We earlier found [@murphyPhotoinactivationPhotosystemII2017] that growth under red light could prove mechanistically informative as to factors limiting *Prochlorococcus* growth, so we included that spectral band even though it is not characteristic of representative *Prochlorococcus* niches.  Although *Prochlorococcus* is currently limited to a narrow range of surface photoperiods, potential poleward latitudinal expansions, in combination with attenuation of light with depth, mean *Prochlorococcus* may potentially encounter a wide range of photoperiods.  Our growth rate determinations generally agreed with those from @mooreComparativePhysiologySynechococcus1995, for white LED and 250 µM O~2~, but our study is, we believe, the first to analyze the interactive growth responses of *Prochlorococcus* strains to varying [O~2~], spectral wavebands and photoperiods. 
 
 ### MED4 Clade HLI {.unnumbered}
 
