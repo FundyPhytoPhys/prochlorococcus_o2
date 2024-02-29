@@ -536,7 +536,7 @@ Due to the absorption of *P. marinus* pigments in the blue spectral waveband ran
 ### MED4 Clade HLI {.unnumbered}
 
 The representative of HLI clade, *P. marinus* MED4, showed no growth under any 4 h photoperiod treatments, even when a 4 h photoperiod delivered cumulative diel PUR equivalent to other photoperiod treatments. In parallel MED4 showed no growth under 2.5 µM O~2~, no matter the level of diel cumulative PUR. 
-In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 growth under blue light was well described by a saturating response (REFERENCE for EQUATION) of growth to increasing cumulative diel blue PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:BluevsRedPurFitsPlots)A), and no evidence of inhibition of growth at any achieved cumulative diel PUR.  Under the 'artificial' growth treatment of red light, MED4 achieved more growth per unit diel cumulative PUR  \@ref(fig:BluevsRedPurFitsPlots)A), consistent with [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)A.
+In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 growth under blue light was well described by a saturating response of growth [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing cumulative diel blue PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:BluevsRedPurFitsPlots)A), and no evidence of inhibition of growth at any achieved cumulative diel PUR.  Under the 'artificial' growth treatment of red light, MED4 achieved more growth per unit diel cumulative PUR  \@ref(fig:BluevsRedPurFitsPlots)A), consistent with [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)A.
 
 ### SS120 Clade LLIII {.unnumbered}
 
@@ -550,7 +550,7 @@ For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)B.
 
 The LLIV clade representative, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, lower, flatter response to cumulative diel PUR under 2.5 µM O~2~. Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands.  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:BluevsRedPurFitsPlots)C).  
 
-Our data support enhanced growth under conditions of low cumulative dielPUR and 660 nm (red) spectral bandwidth, as supported by [@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue wavebands.  Interestingly, this protective effect of red light disappears for MIT9313 growing under 2.5 µM O~2~, possibly because photoinactivation is strongly suppressed under this low [O~2~].
+Our data support enhanced growth under conditions of low cumulative diel PUR and 660 nm (red) spectral bandwidth, as supported by Murphy *et al*.[@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue wavebands.  Interestingly, this protective effect of red light disappears for MIT9313 growing under 2.5 µM O~2~, possibly because photoinactivation is strongly suppressed under this low [O~2~].
 For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)C.
 
 
@@ -564,7 +564,7 @@ For distinct photoperiod fits refer to figure \@ref(fig:AllStrainPurFitsPlots)C.
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
                       "Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols).",
                       "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Platt (add Platt citation here) 3 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, pvalue < 0.05) or dashed lines (not significantly different fits, pvalue > 0.05).",
+                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, pvalue < 0.05) or dashed lines (not significantly different fits, pvalue > 0.05).",
                        .sep = " ")
 
 
@@ -882,7 +882,7 @@ AllStrainPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs
                     "Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle).",
                       "Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols).",
                       "Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any.",
-                    "Platt (add Platt citation here) 3 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
+                    "Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).",
                        .sep = " ")
 
 
