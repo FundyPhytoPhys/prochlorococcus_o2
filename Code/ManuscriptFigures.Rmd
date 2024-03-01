@@ -103,7 +103,7 @@ PURPARFits <- PURPARFits %>%
 
 MyWavelengths = c("WW", 660, 450)
 
-MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(450))
+MCMIXColours = c("black", "#f40d30", w_length2rgb(450))
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -473,13 +473,6 @@ ggsave(file = file.path(PlotsOut, paste("MIT9313PAR",".png",sep = "")), plot = M
 # Overlay whole cell absorbance with emission spectra all strain together
 ```{r MED4 All Spectral Emission,  fig.height = 10, fig.width = 10}
 
-MyWavelengths = c("WW", 660, 450)
-OverlayColours = c("black", w_length2rgb(660),  w_length2rgb(450))
-
-names(OverlayColours) <- MyWavelengths
-OverlayColours
-
-
 OverlayPlots <- PURPARFits %>%
   filter(WL %in% c("WW", "660", "450")) %>% 
   mutate(keep = case_when(Strain == "MED4" &  Par_ue == 30 & O2_Category == "High" & WL == 450  ~ 1,
@@ -541,16 +534,16 @@ ggplot()+
         legend.position = "top",
         axis.title = element_text(vjust = 1.0, size = 20),
         # strip.text.x = element_text(size = 20),
-        axis.text = element_text(size = 15, color = "black")) 
+        axis.text = element_text(size = 15, color = "black"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank())
+
 
  
 # OverlayPlots <- tag_facet(OverlayPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
 
 OverlayPlots
 
-
-TEST <- PURPARFits %>% 
-  filter(Strain == "MED4", WL == 660, )
 
 ```
 
@@ -568,12 +561,6 @@ ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".tiff",sep = "")), plot 
 
 # Overlay whole cell absorbance with emission spectra
 ```{r MED4 All Spectral Emission,  fig.height = 10, fig.width = 10}
-
-MyWavelengths = c("WW", 660, 450)
-OverlayColours = c("black", w_length2rgb(660),  w_length2rgb(450))
-
-names(OverlayColours) <- MyWavelengths
-OverlayColours
 
 MED4OverlayPlots <- PURPARFits %>%
   filter(Strain == "MED4",
