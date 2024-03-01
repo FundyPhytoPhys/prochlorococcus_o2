@@ -13,7 +13,7 @@ googlesheets4::gs4_deauth()
 
 ```{r, assign filepaths, include = FALSE}
 DataIn <- file.path("..","Data", "CleanData")
-Figures <- file.path("..", "Figures")
+Figures <- file.path("..", "Output", "Figures")
 # BLAST <- file.path("..", "BLAST")
 ```
 
@@ -33,9 +33,9 @@ combinedHits can be found on https://doi.org/10.5061/dryad.kh1893284. Filtered t
 #   ungroup()  %>%
 #   distinct(genome, EC, .keep_all = TRUE)
 # 
-# MetaData <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1kXm0GvMdTRbF12cG5Bps-2e_4MTjgUX7iUOjqiu-_c0/edit#gid=0") %>%
-#   dplyr::select(c(Genus, species, Strain, FileName, Ome, Taxa, Rad1_um, Rad2_um, Rad3_um, Flagella, GenomeSize_mbp, GeneModels_count, Latitude, Longitude, Marine, PennateCentric, ColonySpecies)) %>% 
-#   mutate(Strain = as.character(Strain))
+MetaData <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1kXm0GvMdTRbF12cG5Bps-2e_4MTjgUX7iUOjqiu-_c0/edit#gid=0") %>%
+  dplyr::select(c(Genus, species, Strain, FileName, Ome, Taxa, Rad1_um, Rad2_um, Rad3_um, Flagella, GenomeSize_mbp, GeneModels_count, Latitude, Longitude, Marine, PennateCentric, ColonySpecies)) %>%
+  mutate(Strain = as.character(Strain))
 # 
 # O2_Enzymes <- read_csv(file.path(Data, "OxygenEnzymes.csv"))
 # 
@@ -130,7 +130,6 @@ MergedData %>%
   ggpubr::rotate_x_text(angle = 70) 
 ```
 
-
 ```{r add flv to MergedData}
 # Values are according to paper https://doi.org/10.3390/life5010716
 MergedData <- MergedData %>% 
@@ -146,12 +145,7 @@ MergedData <- MergedData %>%
   add_row(Strain = "CCMP1986", Ome = "Genome", Taxa = "Prokaryote", EnzymeName = "Flavodiiron (Flv1a/3a)", Gene_count = 1, Estimated = 0, Genus = "Prochlorococcus", Km_mM  = 7/1000) %>% 
   add_row(Strain = "MIT9313", Ome = "Genome", Taxa = "Prokaryote", EnzymeName = "Flavodiiron (Flv1a/3a)", Gene_count = 1, Estimated = 0, Genus = "Prochlorococcus", Km_mM  = 7/1000) %>% 
   add_row(Strain = "NATL2A", Ome = "Genome", Taxa = "Prokaryote", EnzymeName = "Flavodiiron (Flv1a/3a)", Gene_count = 1, Estimated = 0, Genus = "Prochlorococcus", Km_mM  = 7/1000)
-
 ```
-
-
-
-
 
 ```{r, ProchlorococcusEnzymeKms, fig.cap = ProchlorococcusEnzymeKms_cap, fig.width = 20, fig.height = 10}
 ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in mM) vs.genes encoding O~2~ utilizing enzymes in *Prochlorococcus***, faceted by their respective strains.",
@@ -184,14 +178,9 @@ ProchlorococcusEnzymeKms <- MergedData %>%
                            TRUE ~ Km_mM_min),
          Km_mM_max = case_when(Genus == "Prochlorococcus" & EC == "4.1.1.39" ~ 1.4,
                            TRUE ~ Km_mM_max)) %>% 
-  # mutate(Km_mM = case_when(EnzymeName == "Flavodiiron (Flv1a/3a)" ~ 10/1000,
-  #                          TRUE ~ Km_mM)) %>% 
   ungroup() %>% 
   ggplot() +
   geom_errorbar(aes(x = reorder(EnzymeName, Km_mM * 1000), ymin = log10(Km_mM_min* 1000), ymax = log10(Km_mM_max* 1000))) +
-  # geom_ribbon(aes(ymin = log10(5e-4), ymax =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
-  # geom_ribbon(aes(ymax = log10(5e-2), ymin =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
-  # geom_ribbon(aes(ymax = log10(280e-3), ymin =  log10(230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
   annotate(geom = "rect", ymin = log10(5e-4 * 1000), ymax =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
   annotate(geom = "rect", ymax = log10(5e-2 * 1000), ymin =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
   annotate(geom = "rect", ymax = log10(280e-3 * 1000), ymin =  log10(230e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
@@ -200,13 +189,6 @@ ProchlorococcusEnzymeKms <- MergedData %>%
   geom_text(aes(x = 18.5, y = 0.25, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
   geom_text(aes(x = 18.5, y = 1.2, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
   geom_text(aes(x = 18.5, y = 2.5, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
-  # geom_hline(yintercept = log10(5e-4), linetype = "dotted") +
-  # geom_hline(yintercept = log10(5e-3), linetype = "dotted") +
-  # geom_hline(yintercept = log10(5e-3), linetype = "dotted", color = "brown") +
-  # geom_hline(yintercept = log10(5e-2), linetype = "dotted", color = "brown") +
-  # geom_hline(yintercept = log10(230e-3), linetype = "dotted", color = "red") +
-  # geom_hline(yintercept = log10(290e-3), linetype = "dotted", color = "red") +
-  # scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
   ggh4x::facet_nested(rows = vars(StrainLabel)) +
   theme_bw() +
   ggpubr::rotate_x_text(angle = 80) +
@@ -240,103 +222,33 @@ ProchlorococcusEnzymeKms
 ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 20)
 ```
 
-
-```{r, DiatomEnzymeKms, fig.width = 20, fig.height = 20}
-DiatomEnzymeKms <- MergedData %>%
-  filter(!is.na(Gene_count),
-         Taxa == "Diatom",
-         !is.na(Estimated)) %>%
-  # mutate(StrainLabel = case_when(Strain == "CCMP1375" ~ "SS120",
-  #                                Strain == "CCMP1986" ~ "MED4",
-  #                                Strain == "MIT9313" ~ "MIT9313",
-  #                                Strain == "NATL2A" ~ "NATL2A")) %>%
-  # mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313"))) %>%
-  group_by(EC) %>%
-  mutate(Km_mM_min = min(Km_mM, na.rm = TRUE), 
-         Km_mM_max = max(Km_mM, na.rm = TRUE),
-         Gene_count = as.character(Gene_count)) %>%
-  ungroup() %>%
-  mutate(Latitude = case_when(species == "multistrata" & Strain == "B856" ~ 40.485, #https://doi.org/10.1111/nph.14557
-                              species == "inconspicua" & Strain == "GAI-293" ~ 21.57, #https://doi.org/10.1038/s41598-021-95106-3
-                              species == "robusta" & Strain == "D6" ~ 51.01, #https://bccm.belspo.be/catalogues/dcg-strain-details?ACCESSION_NUMBER=DCG%200498&LIST1=&TEXT1=&LIST2=&TEXT2=&LIST3=&TEXT3=&LIST4=&TEXT4=&LIST5=&TEXT5=&CONJ=
-                              TRUE ~ Latitude)) %>% 
-  mutate(Polar = case_when(Latitude > 59 ~ "Polar",
-                           Latitude < -59 ~ "Polar",
-                           is.na(Latitude) ~ "Unknown",
-                           TRUE ~ "Non Polar")) %>% 
-  filter(Polar != "Unknown") %>% 
-  filter(Genus %notin% c("Chaetoceros", "Amphora", "Extubocellulus"),
-         species %notin% c("minuscula")) %>% #select(Genus, species, Strain, Polar, Ome) %>% unique()
-  ggplot() +
-  geom_errorbar(aes(x = reorder(EnzymeName, Km_mM), ymin = log10(Km_mM_min), ymax = log10(Km_mM_max))) +
-  # geom_ribbon(aes(ymin = log10(5e-4), ymax =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
-  # geom_rect(ymin = log10(5e-4), ymax =  log10(5e-3), xmin = -Inf, xmax = Inf, alpha = 0.03, fill = "blue") +
-  annotate(geom = "rect", ymin = log10(5e-4), ymax =  log10(5e-3), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
-  annotate(geom = "rect", ymax = log10(5e-2), ymin =  log10(5e-3), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
-  annotate(geom = "rect", ymax = log10(280e-3), ymin =  log10(230e-3), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
-  # geom_ribbon(aes(ymax = log10(5e-2), ymin =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
-  # geom_ribbon(aes(ymax = log10(280e-3), ymin =  log10(230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM), y = log10(Km_mM), color = Gene_count, shape = as.logical(Estimated)), size = 5, stroke = 2) +
-  geom_text(aes(x = 16.5, y = -2.8, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
-  geom_text(aes(x = 16.5, y = -1.8, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
-  geom_text(aes(x = 16.5, y = -0.35, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
-  geom_vline(aes(xintercept = reorder(EnzymeName, Km_mM), color = Gene_count), size = 5,  data = . %>% filter(is.na(Km_mM)), linetype = "solid") +
-  ggh4x::facet_nested(rows = vars(Polar, interaction(Genus, species))) +
-  theme_bw() +
-  ggpubr::rotate_x_text(angle = 80) +
-  scale_shape_manual(values = c(19,8), labels = c("FALSE" = "Literature", "TRUE" = "Predicted")) +
-  scale_color_brewer(palette="Dark2") +
-  # labs(title = "Affinities for Phytoplankton Enzymes for Oxygen", 
-  #      x = "Enzyme Name",
-  #      y = ~log[10] ~ "("~K[m] ~O[2] ~"(mM))",
-  #      colour = "Gene Count",
-  #      shape = ""~K[m]) +
-   theme(axis.title = element_text(size = 40, color = "black"),
-         title = element_text(size = 30),
-         axis.text.x = element_text(size = 20, color = "black"),
-        axis.text.y = element_text(size = 20, color = "black"),
-        strip.text = element_text(size = 15),
-        # legend.key.size = unit(10, 'cm'), #change legend key size
-        # legend.key.height = unit(2, 'cm'), #change legend key height
-        # legend.key.width = unit(1, 'cm'), #change legend key width
-        legend.title =  element_text(size = 30),  #change legend title font size
-        legend.text = element_text(size = 30))   #change legend text font size
-   
-
-DiatomEnzymeKms
-```
-
-```{r, DiatomEnzymeKms ggsave, include = FALSE} 
-ggsave(filename = file.path(Figures, "DiatomEnzymeKms.png"), plot = DiatomEnzymeKms, height = 37, width = 20)
-```
-
 ```{r, ProchlorococcusEnzyme,  fig.width = 7, fig.height = 5}
-ProchlorococcusEnzyme <- MergedData %>%
-  filter(!is.na(Gene_count)) %>%
-  # filter(PriSec == "Primary") %>%
-  filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-  # group_by(EC) %>%
-  # mutate(ECNumberTotal = sum(Gene_count)) %>%
-  # ungroup() %>% View()
-  # filter(ECNumberTotal != 0) %>%
-  ggplot() +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM), y = interaction(Genus, species, Strain, sep = " "), size = Gene_count, color = log10(AvgKm_mM))) +
-  facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-  scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-  scale_x_discrete(position = "top") +
-  scale_radius(breaks = c(1,2,3,4,5), range = c(2.5,5)) +
-  theme_bw() +
-  ggpubr::rotate_x_text(hjust = 0, angle = 70) +
-  labs(x = "Enzyme Name",
-       y = "Organism",
-       size = "Gene Count", 
-       color = "log10(Km (mM))")
-
-ProchlorococcusEnzyme
+# ProchlorococcusEnzyme <- MergedData %>%
+#   filter(!is.na(Gene_count)) %>%
+#   # filter(PriSec == "Primary") %>%
+#   filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
+#   # group_by(EC) %>%
+#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
+#   # ungroup() %>% View()
+#   # filter(ECNumberTotal != 0) %>%
+#   ggplot() +
+#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = interaction(Genus, species, Strain, sep = " "), size = Gene_count, color = log10(AvgKm_mM))) +
+#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
+#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
+#   scale_x_discrete(position = "top") +
+#   scale_radius(breaks = c(1,2,3,4,5), range = c(2.5,5)) +
+#   theme_bw() +
+#   ggpubr::rotate_x_text(hjust = 0, angle = 70) +
+#   labs(x = "Enzyme Name",
+#        y = "Organism",
+#        size = "Gene Count", 
+#        color = "log10(Km (mM))")
+# 
+# ProchlorococcusEnzyme
 ```
 
 ```{r, ProchlorococcusEnzyme ggsave, include = FALSE}
-ggsave(filename = file.path(Figures, "ProchlorococcusEnzyme.png"), plot = ProchlorococcusEnzyme, height = 10, width = 10)
+# ggsave(filename = file.path(Figures, "ProchlorococcusEnzyme.png"), plot = ProchlorococcusEnzyme, height = 10, width = 10)
 ```
 
 ```{r, DNARepair}
@@ -378,21 +290,11 @@ DNARepairFig <- DNARepair %>%
          axis.title.y = element_blank(),
          axis.title.x = element_text(vjust=10),
         axis.ticks.y = element_blank(),
-  # axis.title = element_text(size = 40, color = "black"),
-  #        title = element_text(size = 30),
-  #     # axis.text.x = element_text(size = 30, color = "black"),
-  #       axis.text.y = element_text(size = 30, color = "black"),
         strip.text = element_text(size = 6),
         legend.box.background = element_rect(colour = "black")
-  #       # legend.key.size = unit(10, 'cm'), #change legend key size
-  #       # legend.key.height = unit(2, 'cm'), #change legend key height
-  #       # legend.key.width = unit(1, 'cm'), #change legend key width
-  #       legend.title =  element_text(size = 30),  #change legend title font size
-  #       legend.text = element_text(size = 30))   #change legend text font size
   )
 
 DNARepairFig
-  # ggpubr::rotate_x_text(hjust = 0) 
 ```
 
 ```{r, DNARepairFig ggsave, include = FALSE} 
@@ -448,6 +350,7 @@ ProchlorococcusLightEnzymesFig_cap <- glue("**Summary of genes encoding enzymes 
                                            "Symbol color and size correspond to counts of genes.",
                                            "Symbol absence means no sequences were detected in the genome."
                                            )
+
 ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>% 
   filter(Strain %in% c("CCMP1986", "CCMP1375", "MIT9313", "NATL2A")) %>% 
   mutate(StrainLabel = case_when(Strain == "CCMP1375" ~ "SS120",
@@ -493,88 +396,6 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
 
 ```{r, save ProchlorococcusLightEnzymesFig, ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "ProchlorococcusLightEnzymesFig.png"), plot = ProchlorococcusLightEnzymesFig, height = 6, width = 8)
-```
-
-```{r DiatomLightEnzymesFig, echo = TRUE, fig.height = 10, fig.width = 15}
-DiatomBothOmes <- MetaData %>%
-  mutate(FullName = interaction(Genus, species, Strain, sep = " ")) %>% 
-  filter(Taxa == "Diatom") %>% 
-  select(Ome, Genus, species, Strain, FileName) %>% 
-  pivot_wider(names_from = Ome, values_from = FileName) %>% 
-  mutate(BothOmesPresent = case_when(#!is.na(Genome) ~ "GenomePresent",
-                                     #!is.na(Transcriptome) ~ "TranscriptomePresent",
-                                     !is.na(Genome) & !is.na(Transcriptome) ~ "BothPresent")) %>% 
-  pivot_longer(cols = c(Genome, Transcriptome), values_to = "FileName", names_to = "Ome")  %>% 
-  filter(!is.na(FileName)) %>% 
-  mutate(BothOmesPresentTranscriptome = case_when(BothOmesPresent == "BothPresent" & Ome == "Transcriptome" ~ 1,
-                                                  TRUE ~ 0))
-
-DiatomLightEnzymesFig <- LightEnzymesMerged %>% 
-  filter(Taxa == "Diatom",
-         ) %>% #Ome == "Genome"
-  mutate(Compound = case_when(Compound == "blue-light regulator 2" ~ "light",
-                              Compound == "UVB light" ~ "UV light",
-                              Compound == "UVB-light" ~ "UV light",
-                              TRUE ~ Compound)) %>% 
-  mutate(Latitude = case_when(species == "multistrata" & Strain == "B856" ~ 40.485, #https://doi.org/10.1111/nph.14557
-                              species == "inconspicua" & Strain == "GAI-293" ~ 21.57, #https://doi.org/10.1038/s41598-021-95106-3
-                              species == "robusta" & Strain == "D6" ~ 51.01, #https://bccm.belspo.be/catalogues/dcg-strain-details?ACCESSION_NUMBER=DCG%200498&LIST1=&TEXT1=&LIST2=&TEXT2=&LIST3=&TEXT3=&LIST4=&TEXT4=&LIST5=&TEXT5=&CONJ=
-                              TRUE ~ Latitude)) %>% 
-  right_join(., DiatomBothOmes, by = c("FileName", "Ome", "Genus", "species", "Strain")) %>% 
-    mutate(Polar = case_when(Latitude > 59 ~ "Polar",
-                           Latitude < -59 ~ "Polar",
-                           is.na(Latitude) ~ "Unknown",
-                           TRUE ~ "Non Polar")) %>% 
-  mutate(Compound = case_when(Compound == "far red light" ~ "Far red",
-                                 Compound == "light" ~ "Visible",
-                                 Compound == "UV light" ~ "UV"),
-         Description = case_when(Description == "Activating Compound" ~ "Activator",
-                                 TRUE ~ Description),
-         Genus = case_when(Genus == "Conticribra_Thalassiosira" ~ "Thalassiosira",
-                           TRUE ~ Genus)) %>% 
-  
-  filter(Polar != "Unknown") %>% 
-  filter(BothOmesPresentTranscriptome != 1) %>% 
-  mutate(TotalEnzyme_count = sum(Gene_count), .by = EnzymeName) %>% 
-  ggplot() +
-  geom_point(aes(x = fct_reorder(EnzymeName, desc(TotalEnzyme_count)), y = interaction(Genus, species, sep = " "), size = (Gene_count), color = Polar, shape = Ome)) +
-  ggh4x::facet_nested(cols = vars(Description, Compound), rows = vars(Polar),  scale = "free", space = "free") + #
-  
-  labs(x = "Enzyme Name",
-       y = "Diatom",
-       size = "Gene Count",
-       color = "Isolation Location") +
-  # scale_size_manual(values = c(1,2,3,4), breaks)
-  theme_bw() +
-  ggpubr::rotate_x_text(hjust = 1, angle = 70) +
-  theme(axis.text = element_text(size = 10, color = "black"),
-        # axis.text.y = element_blank(),
-        # axis.ticks.y = element_blank(),
-  axis.title = element_text(size = 15, color = "black"),
-  #        title = element_text(size = 30),
-  #     # axis.text.x = element_text(size = 30, color = "black"),
-  #       axis.text.y = element_text(size = 30, color = "black"),
-        strip.text = element_text(size = 10),
-  # legend.position = "bottom",
-  legend.position = c(0.23, -0.51),
-  legend.direction = "vertical",
-  legend.box = "horizontal",
-  legend.box.background = element_rect(colour = "black"),
-  legend.title = element_text(size = 13),
-  legend.text = element_text(size = 10),
-  #       # legend.key.size = unit(10, 'cm'), #change legend key size
-  #       # legend.key.height = unit(2, 'cm'), #change legend key height
-  #       # legend.key.width = unit(1, 'cm'), #change legend key width
-  #       legend.title =  element_text(size = 30),  #change legend title font size
-  #       legend.text = element_text(size = 30))   #change legend text font size
-  )
-
-
-DiatomLightEnzymesFig
-```
-
-```{r, save DiatomLightEnzymesFig, ggsave, include = FALSE} 
-ggsave(filename = file.path(Figures, "DiatomLightEnzymesFig.png"), plot = DiatomLightEnzymesFig, height = 10, width = 15)
 ```
 
 ```{r}
@@ -625,38 +446,3 @@ MergedData %>%
   theme_bw() +
   ggpubr::rotate_x_text(hjust = 0) 
 ```
-
-```{r}
-# Flv_BLAST_files <- list.files(path = BLAST, pattern = "*.tsv", full.names = TRUE)
-```
-
-```{r}
-# Flv_BLAST <- Flv_BLAST_files %>% 
-#   set_names(.) %>%
-#   map_dfr(read_tsv, col_names = c("qseqid", "sseqid", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore"), .id = "FileName") %>%
-#   mutate(FileName = str_remove(FileName, "../BLAST/"),
-#          FileName = str_remove(FileName, "_Flv.tsv")) %>% 
-#   left_join(., MetaData, by = c("FileName")) %>% 
-#   group_by(Strain, qseqid, sseqid) %>% 
-#   mutate(Gene_count = n()) %>% 
-#   filter(evalue < 1e-10)
-```
-
-Using an evalue of 0.05 above
-```{r}
-# Flv_BLAST %>% 
-#   mutate(StrainLabel = case_when(Strain == "CCMP1375" ~ "SS120",
-#                                  Strain == "CCMP1986" ~ "MED4",
-#                                  Strain == "MIT9313" ~ "MIT9313",
-#                                  Strain == "NATL2A" ~ "NATL2A")) %>%
-#   mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313"))) %>% 
-#   ggplot() +
-#   geom_point(aes(x = qseqid, y = sseqid, color = log10(evalue))) +
-#   ggh4x::facet_nested(rows = vars(StrainLabel), scales = "free", space = "free") +
-#   theme_bw() +
-#   ggpubr::rotate_x_text(hjust = 1) 
-```
-
-
-
-
