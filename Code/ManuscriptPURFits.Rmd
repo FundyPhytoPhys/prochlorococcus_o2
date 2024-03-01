@@ -142,7 +142,7 @@ library(photobiology)
 
 
 MyWavelengths = c("WW", 660, 530, 450)
-MCMIXColours = c("black", w_length2rgb(660), w_length2rgb(530),  w_length2rgb(450))
+MCMIXColours = c("black", "#f40d30", w_length2rgb(530),  w_length2rgb(450))
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -1030,14 +1030,14 @@ knitr::kable(PhotoperiodAnovaTable,
 # Combine the 3 strains into 1 plot 
 ```{r combine plots}
 
-# AllStrainPurFitsPlots <- plot_grid(MED4PURFITPlot, SS120PURFITPlot, MIT9313PURFITPlot, ncol = 1)
+# PhotoperiodPurFitsPlots <- plot_grid(MED4PURFITPlot, SS120PURFITPlot, MIT9313PURFITPlot, ncol = 1)
 # 
 # #create common x and y labels
 # y.grob <- textGrob("Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")",
 #                    gp = gpar(col="black", fontsize = 15), rot = 90)
 # 
 # #add to plot
-# AllStrainPurFitsPlots <- grid.arrange(arrangeGrob(AllStrainPurFitsPlots, left = y.grob))
+# PhotoperiodPurFitsPlots <- grid.arrange(arrangeGrob(PhotoperiodPurFitsPlots, left = y.grob))
 
 ```
 
@@ -1047,7 +1047,7 @@ knitr::kable(PhotoperiodAnovaTable,
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
 
-AllStrainPurFitsPlots <- AllFitsCombined |>
+PhotoperiodPurFitsPlots <- AllFitsCombined |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
          OxygenLabel = "Oxygen Concentration (µM)",
@@ -1112,11 +1112,11 @@ AllStrainPurFitsPlots <- AllFitsCombined |>
        
       )
 
-AllStrainPurFitsPlots
+PhotoperiodPurFitsPlots
 
 
 # This labels each pane with a letter but turns of the dacet labels
-# AllStrainPurFitsPlots <- tag_facet(AllStrainPurFitsPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
+# PhotoperiodPurFitsPlots <- tag_facet(PhotoperiodPurFitsPlots, open = "", close = "", tag_pool = LETTERS, size = 8)
 
 ```
 
@@ -1137,9 +1137,9 @@ GrowthRate function of PUR in interaction term with Photoperiod and/or light col
   
 ```{r, save PURFitPlots}
 
-ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".png",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("PhotoperiodPurFitsPlots",".png",sep = "")), plot = PhotoperiodPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("AllStrainPurFitsPlots",".tiff",sep = "")), plot = AllStrainPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(PlotsOut, paste("PhotoperiodPurFitsPlots",".tiff",sep = "")), plot = PhotoperiodPurFitsPlots, device = NULL, scale = 1, height=30, width= 44, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
