@@ -4600,6 +4600,27 @@ MetaData.csv contains information on the site and latitude of origin, cell size,
 In MetaData.csv, combinedHits.csv, MetaDataDictionary.csv and CombinedHitsDataDictionary.csv, missing values are left blank to facilitate direct import into a dataframe under 'R'. .csv files are accessible through many software platforms including LibreOffice, but combinedHits.csv is large, so importing directly into 'R' is advisable. Files and Directory Structures: GitHub repository: https://github.com/FundyPhytoPhys/ROS\_bioinfo/tree/master/ROSGenomicPatternsAcrossMarinePhytoplankton contains the code used to generate:Omar NM, Fleury K, Beardsall B, Pr{\'a}{\v s}il O, Campbell DA, 2022, Reactive Oxygen Species Production and Scavenging; Genomic Patterns Across Marine Phytoplankton, in review `R/ROSDataImport.Rmd` imports data from the Snakemake pipeline, to generate CombinedHits.csv. `R/ROSModels.Rmd` imports CombinedHits.csv and MetaData.csv, and generates the Poisson and Quasi-Poisson models used in the manuscript. `R/ROSGenomicPatternsBySubstrate.Rmd` generates the manuscript. The metadata catalog containing information about each organism can additionally be found at: https://docs.google.com/spreadsheets/d/1kXm0GvMdTRbF12cG5Bps-2e\_4MTjgUX7iUOjqiu-\_c0/edit\#gid=0 The Data Dictionary for the metadata catalog can additionally be found at: https://docs.google.com/spreadsheets/d/1Gmg7jbvv8S4MuQ04CrH6Z0Nd2L-1\_m38djRzW3W1k84/edit\#gid=0 The Data dictionary for data used `R/ROSGenomicPatternsBySubstate.Rmd` (`DataProcessed/MergedData.csv`) can additionally be found at: https://docs.google.com/spreadsheets/d/1lECellT86qCIs4bOzpCBZZPsijzV0MQFv7IQS7TS2HY/edit\#gid=0}
 }
 
+@article{omarDiffusionalInteractionsMarine2022,
+  title = {Diffusional {{Interactions}} among {{Marine Phytoplankton}} and {{Bacterioplankton}}: {{Modelling H2O2}} as a {{Case Study}}},
+  shorttitle = {Diffusional {{Interactions}} among {{Marine Phytoplankton}} and {{Bacterioplankton}}},
+  author = {Omar, Naaman M. and Pr{\'a}{\v s}il, Ond{\v r}ej and McCain, J. Scott P. and Campbell, Douglas A.},
+  year = {2022},
+  month = apr,
+  journal = {Microorganisms},
+  volume = {10},
+  number = {4},
+  pages = {821},
+  publisher = {{Multidisciplinary Digital Publishing Institute}},
+  issn = {2076-2607},
+  doi = {10.3390/microorganisms10040821},
+  urldate = {2024-03-01},
+  abstract = {Marine phytoplankton vary widely in size across taxa, and in cell suspension densities across habitats and growth states. Cell suspension density and total biovolume determine the bulk influence of a phytoplankton community upon its environment. Cell suspension density also determines the intercellular spacings separating phytoplankton cells from each other, or from co-occurring bacterioplankton. Intercellular spacing then determines the mean diffusion paths for exchanges of solutes among co-occurring cells. Marine phytoplankton and bacterioplankton both produce and scavenge reactive oxygen species (ROS), to maintain intracellular ROS homeostasis to support their cellular processes, while limiting damaging reactions. Among ROS, hydrogen peroxide (H2O2) has relatively low reactivity, long intracellular and extracellular lifetimes, and readily crosses cell membranes. Our objective was to quantify how cells can influence other cells via diffusional interactions, using H2O2 as a case study. To visualize and constrain potentials for cell-to-cell exchanges of H2O2, we simulated the decrease of [H2O2] outwards from representative phytoplankton taxa maintaining internal [H2O2] above representative seawater [H2O2]. [H2O2] gradients outwards from static cell surfaces were dominated by volumetric dilution, with only a negligible influence from decay. The simulated [H2O2] fell to background [H2O2] within {\textasciitilde}3.1 {\textmu}m from a Prochlorococcus cell surface, but extended outwards 90 {\textmu}m from a diatom cell surface. More rapid decays of other, less stable ROS, would lower these threshold distances. Bacterioplankton lowered simulated local [H2O2] below background only out to 1.2 {\textmu}m from the surface of a static cell, even though bacterioplankton collectively act to influence seawater ROS. These small diffusional spheres around cells mean that direct cell-to-cell exchange of H2O2 is unlikely in oligotrophic habits with widely spaced, small cells; moderate in eutrophic habits with shorter cell-to-cell spacing; but extensive within phytoplankton colonies.},
+  copyright = {http://creativecommons.org/licenses/by/3.0/},
+  langid = {english},
+  keywords = {bacterioplankton,diffusional interactions,hydrogen peroxide,phytoplankton},
+  file = {C:\Users\msavoie\Zotero\storage\LYT9CC87\Omar et al. - 2022 - Diffusional Interactions among Marine Phytoplankto.pdf}
+}
+
 @article{omarGenomicCapacitiesReactive2023,
   title = {Genomic Capacities for {{Reactive Oxygen Species}} Metabolism across Marine Phytoplankton},
   author = {Omar, Naaman M. and Fleury, Katherine and Beardsall, Brian and Pr{\'a}{\v s}il, Ond{\v r}ej and Campbell, Douglas A.},
