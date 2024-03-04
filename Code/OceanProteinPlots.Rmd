@@ -48,6 +48,19 @@ unique(poi$CladeMergeFactor)
 ```
 
 
+```{r labels}
+PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
+ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
+StrainLabels <- c("MED4", "SS120", "MIT9313")
+AltStrainLabels <- c("MED4", "SS120", "MIT9313", "NATL2A")
+
+ElectronTrans <- c("psii", "cytb6f", "psi", "rubisco", "atp")
+
+ProteinMetab <- c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome")
+
+```
+
+
 ```{r set depth light and O2}
 #estimated from LightPhotoperiodColourImaging/WaterAttenuation.Rmd
 
@@ -130,15 +143,6 @@ KEGG EC 1.6.5.9  not detected; issue with search terms?
 #consider including ribosomal target for photoinhibition?
 #consider assembling 'pcb' supercomplex?
 #https://stackoverflow.com/questions/32555531/how-to-italicize-part-one-or-two-words-of-an-axis-title
-
-PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
-ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
-StrainLabels <- c("MED4", "SS120", "MIT9313")
-AltStrainLabels <- c("MED4", "SS120", "MIT9313", "NATL2A")
-
-ElectronTrans <- c("psii", "cytb6f", "psi", "rubisco", "atp")
-
-ProteinMetab <- c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome")
 
 
 poi |>
@@ -256,17 +260,22 @@ poi |>
 
 
 ```{r clademerge_plots}
-PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
-ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
+# PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
+# ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
+
+poi <- poi |>
+  mutate(StrainAlpha = if_else(strain %in% AltStrainLabels, 1, 0.1))
 
 poi |>
   filter(complex %in% ElectronTrans) |>
+  filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  guides(alpha = 'none') +
   facet_grid(rows = vars(CladeMergeFactor), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels))) +
   labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
@@ -278,19 +287,21 @@ poi |>
 
 poi |>
   filter(complex %in% ProteinMetab) |>
+  filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
+  guides(alpha = 'none') +
   facet_grid(rows = vars(CladeMerge), cols = vars(factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels))) +
    labs(y = "Depth (m)",
         x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
 
-  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
 
 ```
 
