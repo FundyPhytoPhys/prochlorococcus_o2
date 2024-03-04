@@ -200,8 +200,7 @@ The applied photoperiods were delivered using the sinusoidal circadian light fun
 \end{equation}
 
 
-Figures \@ref(fig:MED4OverlayPlots), \@ref(fig:SS120OverlayPlots) and
-\@ref(fig:MIT9313OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
+Figures \@ref(fig:OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
 
 We fit the response of chlorophyll specific growth rate to cumulative diel PUR using the equation of Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] across strain and [O~2~] to compare growth response between 660 nm (red) and 450 nm (blue) growth light and additionally, to compare growth response between specific photoperiods (4 h, 8 h, 12 h, 16 h) and a fit across pooled photoperiod data. 
 To examine statistical differences between the modeled fits, we performed one-way ANOVA comparing the model output parameters assigning significant differences when the p value was < 0.05. 
@@ -479,24 +478,21 @@ Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found th
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/MED4OverlayPlots.png" alt="**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 grown under three emission wavebands.** **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated." width="4133" />
-<p class="caption">(\#fig:MED4OverlayPlots)**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 grown under three emission wavebands.** **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.</p>
+<img src="../Output/Figures/OverlayPlots.png" alt="**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 (A,B,C); SS120 (D,E,F); MIT9313 (G,H,I) grown under three emission wavebands.** **(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated." width="4133" />
+<p class="caption">(\#fig:OverlayPlots)**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 (A,B,C); SS120 (D,E,F); MIT9313 (G,H,I) grown under three emission wavebands.** **(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.</p>
 </div>
 
-\newpage
 
-<div class="figure">
-<img src="../Output/Figures/SS120OverlayPlots.png" alt="**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* SS120 grown under three emission wavebands. **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated." width="4133" />
-<p class="caption">(\#fig:SS120OverlayPlots)**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* SS120 grown under three emission wavebands. **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.</p>
-</div>
 
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/MIT9313OverlayPlots.png" alt="**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MIT9313 grown under three emission wavebands.** **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated." width="4133" />
-<p class="caption">(\#fig:MIT9313OverlayPlots)**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MIT9313 grown under three emission wavebands.** **A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.</p>
-</div>
+
+
+
+\newpage
+
+
 
 
 
@@ -534,6 +530,143 @@ Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~
 |MIT9313 |       12        |               90               |          450           |     2.5     |      0.45      |
 
 \newpage
+
+
+
+Table: (\#tab:ProchlorococcusEnzymeTable)Enzyme Commission numbers (EC) and corresponsing enzyme names.
+
+|EC          |Enzyme Name                                                      |
+|:-----------|:----------------------------------------------------------------|
+|1.1.1.24    |quinate dehydrogenase                                            |
+|1.1.3.10    |pyranose oxidase                                                 |
+|1.1.3.11    |L-sorbose oxidase                                                |
+|1.1.3.12    |pyridoxine 4-oxidase                                             |
+|1.1.3.13    |alcohol oxidase                                                  |
+|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |
+|1.1.3.16    |ecdysone oxidase                                                 |
+|1.1.3.17    |choline oxidase                                                  |
+|1.1.3.18    |secondary-alcohol oxidase                                        |
+|1.1.3.19    |4-hydroxymandelate oxidase (decarboxylating)                     |
+|1.1.3.20    |long-chain-alcohol oxidase                                       |
+|1.1.3.20    |long-chain-alcohol oxidase                                       |
+|1.1.3.21    |glycerol-3-phosphate oxidase                                     |
+|1.1.3.23    |thiamine oxidase                                                 |
+|1.1.3.27    |hydroxyphytanate oxidase                                         |
+|1.1.3.28    |nucleoside oxidase                                               |
+|1.1.3.30    |polyvinyl-alcohol oxidase                                        |
+|1.1.3.37    |D-arabinono-1,4-lactone oxidase                                  |
+|1.1.3.38    |vanillyl-alcohol oxidase                                         |
+|1.1.3.39    |nucleoside oxidase (H2O2-forming)                                |
+|1.1.3.4     |glucose oxidase                                                  |
+|1.1.3.40    |D-mannitol oxidase                                               |
+|1.1.3.41    |alditol oxidase                                                  |
+|1.1.3.42    |prosolanapyrone-II oxidase                                       |
+|1.1.3.45    |aclacinomycin-N oxidase                                          |
+|1.1.3.46    |4-hydroxymandelate oxidase                                       |
+|1.1.3.47    |5-(hydroxymethyl)furfural oxidase                                |
+|1.1.3.48    |3-deoxy-alpha-D-manno-octulosonate 8-oxidase                     |
+|1.1.3.5     |hexose oxidase                                                   |
+|1.1.3.6     |cholesterol oxidase                                              |
+|1.1.3.7     |aryl-alcohol oxidase                                             |
+|1.1.3.8     |L-gulonolactone oxidase                                          |
+|1.1.3.9     |galactose oxidase                                                |
+|1.1.3.B4    |glycerol oxidase                                                 |
+|1.1.5.13    |(S)-2-hydroxyglutarate dehydrogenase                             |
+|1.1.98.3    |decaprenylphospho-beta-D-ribofuranose 2-dehydrogenase            |
+|1.1.99.18   |cellobiose dehydrogenase (acceptor)                              |
+|1.1.99.B3   |glucooligosaccharide oxidase                                     |
+|1.10.3.1    |catechol oxidase                                                 |
+|1.10.3.11   |ubiquinol oxidase (non-electrogenic)                             |
+|1.10.3.15   |grixazone synthase                                               |
+|1.10.3.17   |superoxide oxidase                                               |
+|1.10.3.2    |laccase                                                          |
+|1.10.3.3    |L-ascorbate oxidase                                              |
+|1.10.3.3    |L-ascorbate oxidase                                              |
+|1.10.3.4    |o-aminophenol oxidase                                            |
+|1.10.3.5    |3-hydroxyanthranilate oxidase                                    |
+|1.10.3.6    |rifamycin-B oxidase                                              |
+|1.13.11.1   |catechol 1,2-dioxygenase                                         |
+|1.13.11.10  |7,8-dihydroxykynurenate 8,8a-dioxygenase                         |
+|1.13.11.11  |tryptophan 2,3-dioxygenase                                       |
+|1.13.11.12  |linoleate 13S-lipoxygenase                                       |
+|1.13.11.14  |2,3-dihydroxybenzoate 3,4-dioxygenase                            |
+|1.13.11.15  |3,4-dihydroxyphenylacetate 2,3-dioxygenase                       |
+|1.13.11.16  |3-carboxyethylcatechol 2,3-dioxygenase                           |
+|1.13.11.17  |indole 2,3-dioxygenase                                           |
+|1.13.11.18  |persulfide dioxygenase;                                          |
+|1.13.11.19  |cysteamine dioxygenase                                           |
+|1.13.11.2   |catechol 2,3-dioxygenase                                         |
+|1.13.11.27  |4-hydroxyphenylpyruvate dioxygenase                              |
+|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |
+|1.13.11.33  |arachidonate 15-lipoxygenase                                     |
+|1.13.11.34  |arachidonate 5-lipoxygenase                                      |
+|1.13.11.53  |acireductone dioxygenase (Ni2+-requiring)                        |
+|1.13.11.61  |linolenate 9R-lipoxygenase                                       |
+|1.13.11.75  |all-trans-8'-apo-beta-carotenal 15,15'-oxygenase                 |
+|1.13.11.81  |7,8-dihydroneopterin oxygenase                                   |
+|1.14.11.16  |peptide-aspartate beta-dioxygenase                               |
+|1.14.11.17  |taurine dioxygenase                                              |
+|1.14.11.2   |procollagen-proline 4-dioxygenase                                |
+|1.14.12.17  |nitric oxide dioxygenase                                         |
+|1.14.13.1   |salicylate 1-monooxygenase                                       |
+|1.14.13.22  |cyclohexanone monooxygenase                                      |
+|1.14.13.224 |violacein synthase                                               |
+|1.14.13.59  |L-lysine N6-monooxygenase (NADPH)                                |
+|1.14.13.81  |magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase |
+|1.14.13.9   |kynurenine 3-monooxygenase                                       |
+|1.14.14.1   |unspecific monooxygenase                                         |
+|1.14.14.35  |dimethylsulfone monooxygenase                                    |
+|1.14.15.20  |heme oxygenase (biliverdin-producing, ferredoxin)                |
+|1.14.15.7   |choline monooxygenase                                            |
+|1.14.19.1   |stearoyl-CoA 9-desaturase                                        |
+|1.14.19.23  |acyl-lipid (n+3)-(Z)-desaturase (ferredoxin)                     |
+|1.14.19.49  |tetracycline 7-halogenase                                        |
+|1.14.19.9   |tryptophan 7-halogenase                                          |
+|1.16.3.1    |ferroxidase                                                      |
+|1.16.3.2    |bacterial non-heme ferritin                                      |
+|1.17.1.4    |xanthine dehydrogenase                                           |
+|1.3.1.33    |(light-dependent) protochlorophyllide reductase                  |
+|1.3.3.3     |coproporphyrinogen oxidase                                       |
+|1.3.5.6     |9,9'-dicis-zeta-carotene desaturase                              |
+|1.3.8.1     |short-chain acyl-CoA dehydrogenase                               |
+|1.3.98.1    |dihydroorotate dehydrogenase (fumarate)                          |
+|1.4.3.16    |L-aspartate oxidase                                              |
+|1.4.3.19    |glycine oxidase                                                  |
+|1.4.3.3     |D-amino-acid oxidase                                             |
+|1.4.3.4     |monoamine oxidase                                                |
+|1.4.3.5     |pyridoxal 5'-phosphate synthase                                  |
+|1.7.1.1     |nitrate reductase (NADH)                                         |
+|1.7.7.2     |ferredoxin-nitrate reductase                                     |
+|1.9.3.1     |cytochrome-c oxidase                                             |
+|2.1.1.148   |thymidylate synthase (FAD)                                       |
+|2.3.1.37    |5-aminolevulinate synthase                                       |
+|2.3.1.87    |aralkylamine N-acetyltransferase                                 |
+|2.4.1.14    |sucrose-phosphate synthase                                       |
+|2.4.1.255   |protein O-GlcNAc transferase                                     |
+|2.5.1.32    |15-cis-phytoene synthase                                         |
+|2.7.1.148   |4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase         |
+|3.1.22.4    |crossover junction endodeoxyribonuclease                         |
+|3.1.4.35    |3',5'-cyclic-GMP phosphodiesterase                               |
+|3.1.4.4     |phospholipase D                                                  |
+|3.2.2.21    |DNA-3-methyladenine glycosylase II                               |
+|3.4.11.1    |leucyl aminopeptidase                                            |
+|3.4.21.19   |glutamyl endopeptidase                                           |
+|4.1.1.39    |ribulose-bisphosphate carboxylase                                |
+|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |
+|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |
+|4.1.99.5    |aldehyde oxygenase (deformylating)                               |
+|4.2.1.84    |nitrile hydratase                                                |
+|4.2.3.5     |chorismate synthase                                              |
+|4.2.99.18   |DNA-(apurinic or apyrimidinic site) lyase                        |
+|4.4.1.5     |lactoylglutathione lyase                                         |
+|4.6.1.1     |adenylate cyclase                                                |
+|4.6.1.2     |guanylate cyclase                                                |
+|6.2.1.3     |long-chain-fatty-acid---CoA ligase                               |
+|6.5.1.1     |DNA ligase (ATP)                                                 |
+|6.5.1.2     |DNA ligase (NAD+)                                                |
+|7.1.1.9     |cytochrome-c oxidase                                             |
+|NA          |Flavodiiron (Flv1a/3a)                                           |
+
 
 # Data availability  {.unnumbered}
 All data obtained from the Multicultivator were saved as comma separated values files and are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData.
