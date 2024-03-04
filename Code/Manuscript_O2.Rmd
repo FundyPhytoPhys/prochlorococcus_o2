@@ -40,21 +40,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: FALSE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: FALSE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -134,7 +134,7 @@ HL clades are more recently branching lineages, with reduced genome sizes in com
  
 ## *Prochlorococcus* and changing niches {.unnumbered} 
 
-Our changing climate is rapidly altering conditions for these specialized clades of marine picophytoplankton. Predictions indicate a net global increase of *P. marinus* cell abundances of 29% [@flombaumPresentFutureGlobal2013{}, along with  poleward latitudinal shifts of at least 10° in marine phytoplankton niches by the end of this century  [@bartonAnthropogenicClimateChange2016] in response to warming waters, with increases in *P. marinus* of approximately 50% in the more poleward regions of their distributions.
+Our changing climate is rapidly altering conditions for these specialized clades of marine picophytoplankton. Predictions indicate a net global increase of *P. marinus* cell abundances of 29% [@flombaumPresentFutureGlobal2013], along with  poleward latitudinal shifts of at least 10° in marine phytoplankton niches by the end of this century  [@bartonAnthropogenicClimateChange2016] in response to warming waters, with increases in *P. marinus* of approximately 50% in the more poleward regions of their distributions.
 
 Near the equator, photoperiod remains nearly constant at the ocean surface, approximately 12 hours (h) of daylight and 12 h of darkness throughout the year. The effective length of the photoperiod does, however, attenuate with depth as dawn and dusk light at depth drops below levels needed for biological processes. As *P. marinus* potentially expands its temperature-permissive niches poleward into temperate regions  [@flombaumPresentFutureGlobal2013; @bartonAnthropogenicClimateChange2016], it will encounter more
 pronounced seasonal variations in photoperiod regimes both at surface and at depth, with potentially complex effects upon viable growth niches [@liDiatomGrowthResponses2017; @prezelinDielPeriodicityPhytoplankton1992]. For example, Vaulot *et al*. @vaulotGrowthProchlorococcusPhotosynthetic1995 showed that *Prochlorococcus* replication of DNA occurs in the afternoon, while cell division occurs at night.  To our knowledge, no study has as yet addressed *P. marinus* growth responses in relation to a range of photoperiods. 
