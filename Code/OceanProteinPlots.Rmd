@@ -38,10 +38,10 @@ poi <- poi |>
   mutate(CladeMerge = case_when(clade ==  "HLI" ~ "HLI",
                                 clade ==  "HLII" ~ "HLII",
                                 clade == "LLI" ~ "LLI",
-                                clade == "LLII" ~ "LII_LLIII",
-                                clade == "LLIII" ~ "LII_LLIII",
+                                clade == "LLII" ~ "LLII_LLIII",
+                                clade == "LLIII" ~ "LLII_LLIII",
                                  clade == "LLIV" ~ "LLIV")) |>
-  mutate(CladeMergeFactor = factor(CladeMerge, levels = c("HLI", "HLII", "LLI", "LII_LLIII", "LLIV")))
+  mutate(CladeMergeFactor = factor(CladeMerge, levels = c("HLI", "HLII", "LLI", "LLII_LLIII", "LLIV")))
 
 unique(poi$CladeMerge)
 unique(poi$CladeMergeFactor)
