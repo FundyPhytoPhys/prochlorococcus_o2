@@ -538,7 +538,7 @@ ggplot()+
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
         tagger.panel.tag.background = element_blank()) +
-  tagger::tag_facets("panel",position = "tl", tag_levels  = c("A", "I"), tag_suffix = "")
+  tagger::tag_facets("panel",position = "tl", tag_pool  = c("A","D", "G", "B","E","H","C","F","I"), tag_suffix = "")
 
 
  

@@ -97,7 +97,7 @@ p.caption {
 
 Low-Light clades thrive in deeper ocean waters, extending beyond 200 m in depth [@partenskyProchlorococcusMarinePhotosynthetic1999], where only ~1% of the surface irradiance penetrates, primarily in the blue (450 nm) to green (520 nm) spectral range [@holtropVibrationalModesWater2021]. Clade LLI includes cultured strain NATL2A, which prefers moderate irradiances typical of between 30 and 100 m depth. Clades LLII and LLIII, including cultured strain SS120, are grouped together as the second oldest phylogenetic lineage diversifying in the *P. marinus* radiation, with an affinity for low light. Clade LLIV, including cultured strain MIT9313, falls near the base of the *Prochlorococcus* radiation, and is characterized by preference for low light, typical of depths from 120 m to 200 m [@partenskyProchlorococcusMarinePhotosynthetic1999]. LLIV members are, as yet, the only cultured strains to have been found in Oxygen Minimum Zones (OMZ).  Some, as yet, uncultured *P. marinus* strains in clades LLV and LLVI also thrive in OMZ of the subtropical Atlantic and Pacific Oceans, where dissolved oxygen concentrations [O~2~] can be less than 20 µM [@ulloaCyanobacteriumProchlorococcusHas2021; @lavinNovelLineagesProchlorococcus2010; @goerickeNovelNicheProchlorococcus2000; @garcia-robledoCrypticOxygenCycling2017; @johnsonEnergeticsGrowthKinetics1999]. *P. marinus* LL ecotypes may indeed dominate the phytoplankton within OMZ [@lavinNovelLineagesProchlorococcus2010; @ulloaCyanobacteriumProchlorococcusHas2021; @partenskyProchlorococcusAdvantagesLimits2010], where they may be net O~2~ consumers [@partenskyComparisonPhotosyntheticPerformances2018].
 
-HL clades are more recently branching lineages, with reduced genome sizes in comparison to LL clades. High-Light clades are typically dominant picophytoplankters in near-surface, oligotrophic waters, characterized by high light levels. Clade HLI, represented by cultured strain MED4, is adapted to higher iron, and lower temperatures, and originated from 5 m depth in the Mediterranean Sea [@partenskyProchlorococcusMarinePhotosynthetic1999].  Clade HLII, adapted to higher iron, and higher temperatures, is the most abundant *P. marinus* clade in the North Atlantic and North Pacific Oceans, often constituting over 90% of the total population [@partenskyProchlorococcusMarinePhotosynthetic1999],  and are most numerous around 50 m depth [@partenskyProchlorococcusMarinePhotosynthetic1999]. Clade HLIII/IV is adapted to lower iron [@kentParallelPhylogeographyProchlorococcus2019; @johnsonNichePartitioningProchlorococcus2006; @zinserInfluenceLightTemperature2007].
+HL clades are more recently branching lineages, with reduced genome sizes in comparison to LL clades. High-Light clades are typically dominant picophytoplankters in near-surface, oligotrophic waters, characterized by high light levels. Clade HLI, represented by cultured strain MED4, is adapted to higher iron, and lower temperatures, and originated from 5 m depth in the Mediterranean Sea [@partenskyProchlorococcusMarinePhotosynthetic1999]. Clade HLII, adapted to higher iron, and higher temperatures, is the most abundant *P. marinus* clade in the North Atlantic and North Pacific Oceans, often constituting over 90% of the total population [@partenskyProchlorococcusMarinePhotosynthetic1999], and are most numerous around 50 m depth [@partenskyProchlorococcusMarinePhotosynthetic1999]. Clade HLIII/IV is adapted to lower iron [@kentParallelPhylogeographyProchlorococcus2019; @johnsonNichePartitioningProchlorococcus2006; @zinserInfluenceLightTemperature2007].
 
 *Prochlorococcus marinus* clades are nonetheless found in environments beyond their optimal habitats. HL clades inhabit depths overlapping with LL ecotypes [@westNichePartitioningProchlorococcusPopulationsStratified1999; @zinserInfluenceLightTemperature2007; @delmontLinkingPangenomesMetagenomes2018], while LL clades can occupy regions in OMZ at depths shallower than 40 m [@lavinNovelLineagesProchlorococcus2010], exploiting ambient light levels above what LL clades were thought to tolerate. 
  
@@ -135,17 +135,17 @@ Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO databa
 	i) Peptide sequences and sample identification (ID) number;
 	ii) Sample ID number, station, depth in meters below the surface the sample was collected at, best-hit BLASTP protein and species annotation and the corresponding Uniprot Entry number for the identified proteins;
 	iii) Sample station depth and [O~2~].  
-	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using *tidyverse* package [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 XXX Naaman to get location (https://posit.co/)  XXX. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b~6~f (Cytb~6~f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Plastoquinol Terminal Oxidase (PTOX); Plastocyanin (PC); Ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
-	Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex. Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen *Prochlorococcus* strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and functions, were inferred by sequence comparisons to the characterized four isoforms of FtsH protease of *Synechocystis* sp. PCC6803 (CITATONS).  Data for each strain was plotted against depth and  [O~2~] and sampling station.
+	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using *tidyverse* package [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 [@RStudio]. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b~6~f (Cytb~6~f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Plastoquinol Terminal Oxidase (PTOX); Plastocyanin (PC); Ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
+	Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex. Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen *Prochlorococcus* strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and functions, were inferred by sequence comparisons to the characterized four isoforms of FtsH protease of *Synechocystis* sp. PCC6803 [@bonisteelStrainSpecificDifferences2018].  Data for each strain was plotted against depth and  [O~2~] and sampling station.
 	
-When assessing the presence of a particular protein complex at a sampling location, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are highly conserved across strains. We are, however, confident in clade classifications for each protein examined. A caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry CITATION. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
+When assessing the presence of a particular protein complex at a sampling location, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are highly conserved across strains. We are, however, confident in clade classifications for each protein examined. A caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry XXX Aurora CITATION XXX. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
 
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 
 Three xenic cultures of *P. marinus* were obtained from Bigelow Labs, NCMA Maine, USA. MED4 (CCMP1986) is from High-Light adapted (HLI) clade; SS120 (CCMP1375) is from Low-Light adapted (LLII/III) clade; and MIT9313 (CCMP2773) is from Low-Light adapted (LLIV) clade. Cultures were maintained in incubators set to 22°C with a light/dark cycle of 12 h. The PAR level for maintenance cultures reflected PAR in the source niche of the ecotype; MED4, of 160 µmol photons m^-2^ s^-1^ with illumination from STANDARD Products Inc. Cool White F24T5/41K/8/HO/PS/G5/STD, 24 watts, fluorescent bulbs; SS120 and MIT9313 at 30 µmol photons m^-2^ s^-1^ with illumination from Philips Cool White F14T5/841 Alto, 14 watts, fluorescent bulbs. To maintain active growth all strains were transferred weekly with 1 in 5 dilutions with Pro99 media [@mooreCulturingMarineCyanobacterium2007] prepared with autoclaved artificial seawater [@bergesEvolutionArtificialSeawater2001].
 
 Controlled growth experiments were performed using MCMIX-OD or MC1000-OD PSI Multicultivators (Figure \@ref(fig:LabeledMC); PSI, Drásov, Czech Republic).  Each multicultivator individually controls 8 tubes at a common temperature of 22°C.  Each tube containing 70 mL of Pro99 media was inoculated with 10 mL of growing maintenance culture. In a factorial matrix design, each tube was then subject to an individual combination of sinusoidal photoperiod (4, 8, 12, 16  h);  reaching a peak PAR (30, 90, 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White LED, 660 nm, 450 nm).  [O~2~] levels (2.5 µM, 25 µM, 250 µM) were imposed by bubbling tubes with varying ratios of air and
-Nitrogen (N~2~), with consistent 0.05% of Carbon Dioxide (CO~2~) gas, delivered through a 0.2 μm sterile microfilter via a G400 gas mixing system (Qubit Systems Inc., Kingston, Ontario, Canada). [O~2~] in situ was verified using oxygen optodes (PyroScience, Germany) inserted into tubes for real-time measurements, with a temperature probe in
+Nitrogen (N~2~), with consistent 0.05% of Carbon Dioxide (CO~2~) gas, delivered through a 0.2 μm sterile microfilter via a G400 gas mixing system (Qubit Systems Inc., Kingston, Ontario, Canada). [O~2~] *in situ* was verified using oxygen optodes (PyroScience, Germany) inserted into tubes for real-time measurements, with a temperature probe in
 the bath of the bioreactor to correct [O~2~] measures for temperature fluctuations. In addition, the Pyroscience software corrected [O~2~] based on the salinity of the media (32 ppt). The flow rate of the gas mixture was controlled, but variations in bubbling speed, PAR and culture density affected the [O~2~] achieved in each tube. A low [O~2~] of 0.5 µM - 5 µM (reported as 2.5 µM hereafter),  was achieved by sparging with a gas mixture containing 99.95% N~2~ and 0.05% CO~2~. An intermediate [O~2~] of 10 - 25 µM (reported hereafter as 25 µM) was achieved by sparging with a gas mixture containing 98.95% N~2~, 0.05% CO~2~ and 1% O~2~. A high O~2~ of 200 µM - 280 µM (reported hereafter as 250 µM) was achieved by sparging with lab air (78% N~2~, 21% O~2~, 1% Ar and 0.05% CO~2~).
 
 The full crossing of all factor levels would yield 4 x 3 x 3 x 3 = 108 treatments, x 3 strains for 324 possible combinations. Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O~2~] meant we completed 268 growth factor treatment combinations. 
@@ -200,7 +200,7 @@ The applied photoperiods were delivered using the sinusoidal circadian light fun
 \end{equation}
 
 
-Figures \@ref(fig:OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
+Figure \@ref(fig:OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
 
 We fit the response of chlorophyll specific growth rate to cumulative diel PUR using the equation of Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] across strain and [O~2~] to compare growth response between 660 nm (red) and 450 nm (blue) growth light and additionally, to compare growth response between specific photoperiods (4 h, 8 h, 12 h, 16 h) and a fit across pooled photoperiod data. 
 To examine statistical differences between the modeled fits, we performed one-way ANOVA comparing the model output parameters assigning significant differences when the p value was < 0.05. 
@@ -218,8 +218,7 @@ To examine statistical differences between the modeled fits, we performed one-wa
 
 ## *Prochlorococcus* comparative genomics {.unnumbered}
 
- We filtered the dataset of Omar *et al*. [@omarAnnotationGenesEncoding2023], for Enzyme Commission Numbers (EC numbers), or Kegg Orthology Numbers (KO numbers) identified by BRENDA  [@changBRENDAELIXIRCore2021] as 'natural substrates' for O~2~ in *P. marinus* strains (MED4, MIT9313, SS120, and NATL2A). We grouped orthologs together by EC number and their KO number and determined the occurrences of individual orthologs encoding each EC number, or KO number when EC number was not available, in a given strain. We merged the dataset with a list of enzyme Michaelis constant (K~m~) values from other organisms, as K~m~ values from *Prochlorococcus* were only available in the case of Ribulose bisphosphate carboxylase. XXX Possibly add the link to the full list of genes. Remove this once added XXXX
- XXXXADD METHODS for DNA REpair and for light dependent EnzymesXXXX
+We filtered the dataset of Omar *et al*. [@omarAnnotationGenesEncoding2023], for Enzyme Commission Numbers (EC numbers), or Kegg Orthology Numbers (KO numbers) identified by BRENDA  [@changBRENDAELIXIRCore2021] as 'natural substrates' for O~2~; EC numbers identified by BRENDA as being activated, or inhibited by light; and EC numbers annotated by BioCyc [@karpBioCycCollectionMicrobial2019] as corresponding to the Gene Ontology Term (GO:0006281 - DNA repair), in *P. marinus* strains (MED4, MIT9313, SS120, and NATL2A). We grouped orthologs together by EC number and their KO number and determined the occurrences of individual orthologs encoding each EC number, or KO number when EC number was not available, in a given strain. We merged the dataset with a list of enzyme Michaelis constant (K~m~) values from other organisms, as K~m~ values from *Prochlorococcus* were only available in the case of Ribulose bisphosphate carboxylase. Gene counts for Flavodiirons were obtained from Allahverdiyeva *et al*. [@allahverdiyevaCyanobacterialOxygenicPhotosynthesis2015a], as they do not have allocated EC numbers. A full list of enzymes and corresponding EC and KO numbers can be found in Table \@ref(tab:ProchlorococcusEnzymeTable).
 
 
 \newpage
@@ -228,20 +227,17 @@ To examine statistical differences between the modeled fits, we performed one-wa
 
 ## Detection of *Prochlorococcus* proteins across O~2~ and light niches in the ocean  {.unnumbered}
 
-Proteins from 13 annotated strains of *P. marinus* were detected across depths and oxygen concentrations in the ocean proteins data set analyzed. We focused our analysis here on photosynthetic protein complexes, grouped by clade. Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) plots the observation of core photosynthetic complexes (Photosystem II, the Cytochromeb6f complex, Phototsystem I, ATP Synthase and Rubisco) across clades, as a function of depth (a proxy for light intensity) and measured [O~2~]. Photosynthetic complexes from HLI (ex. MED4) were detected throughout the water column, predominantly at high [O~2~]. Complexes from clade LLII/III (ex. SS120) and clade LLIV (ex. MIT9313) were detected throughout the water column in high [O~2~] and at depth in low [O~2~] samples. The exclusive assignment of ATP Synthase peptides to Clade IV (ex. MIT9313) may result from the high conservation of protein sequence for this complex.
-
-XXXXCheck text for figureXXXX
+Proteins from 13 annotated strains of *P. marinus* were detected across depths and oxygen concentrations in the ocean proteins data set analyzed. We focused our analysis here on photosynthetic protein complexes, grouped by clade. Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) plots the observation of core photosynthetic complexes (Photosystem II, the Cytochromeb6f complex, Phototsystem I, ATP Synthase and Rubisco) across clades, as a function of depth (a proxy for light intensity) and measured [O~2~]. Photosynthetic complexes from HLI (ex. MED4) were detected throughout the water column, predominantly at high [O~2~]. Complexes from clade LLII/III (ex. SS120) and clade LLIV (ex. MIT9313) were detected throughout the water column in high [O~2~] and at depth in low [O~2~] samples. The exclusive assignment of ATP Synthase peptides to clade LLIV (ex. MIT9313) may result from the high conservation of protein sequence for this complex.
 
 XXXMore TextXXX from Amanda & AuroraXXX
 Proteins derived from clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines the niches occupied by different *P. marinus* ecotypes, as compared to potentially covarying environmental variables like photoperiod, light spectrum, and light level, is poorly described.
 
 \newpage
 
-XXXRewrite caption if we change figure versionXXX
-XXX Figure changed- need to rewrite caption if keeping this figure XXX
+
 <div class="figure">
-<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (includes *P. marinus* MED4), HLII, LLI, LLII/III (includes P. marinus* SS120) and LLIV (includes *P. marinus* MIT9313). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/)." width="2187" />
-<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (includes *P. marinus* MED4), HLII, LLI, LLII/III (includes P. marinus* SS120) and LLIV (includes *P. marinus* MIT9313). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/).</p>
+<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (represents *P. marinus* MED4 annotated with solid black circles), LLI, LLII/III (represents *P. marinus* SS120 annotated with solid black circles) and LLIV (represents *P. marinus* MIT9313 annotated with solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/)." width="2187" />
+<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (represents *P. marinus* MED4 annotated with solid black circles), LLI, LLII/III (represents *P. marinus* SS120 annotated with solid black circles) and LLIV (represents *P. marinus* MIT9313 annotated with solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/).</p>
 </div>
 
 
@@ -341,32 +337,32 @@ The GAM model in Figure \@ref(fig:MIT9313GAM) summarizes MIT9313 growth response
 
 Cumulative diel PUR can potentially collapse photoperiod, PAR and spectral wavebands to a common metric of photosynthetically active light absorbed per day. Cumulative diel PUR dose (µmol photons m^-2^ d^-1^) was calculated from the imposed PUR (µmol photons m^-2^ s^-1^) and photoperiod (h). We plotted growth rates vs. cumulative diel PUR to determine whether growth is a simple response to diel PUR, across imposed photoperiods and spectral wavebands, or whether spectral wavebands or photoperiods have specific or interactive influences on growth beyond cumulative diel PUR.
   
-Due to the absorption of *P. marinus* pigments in the blue spectral waveband range, the maximum cumulative diel PUR under blue light is almost 3 times that of white LED light, and about 6 times the red light treatment (Figure \@ref(fig:PurParPlot)), despite being derived from the same photoperiods and peak PAR regimes. As such, only blue light experiments extend beyond cumulative diel PUR of ~ 2 x 10^6^ µmol photons m^-2^ d^-1^. This bias in the range of data leads us to caution in comparing model fits of growth in response to cumulative diel PUR under red vs. blue wavebands.
+Due to the absorption of *P. marinus* pigments in the blue spectral waveband range, the maximum cumulative diel PUR under blue light is almost 3 times that of white LED light, and about 5 times the red light treatment (Figure \@ref(fig:PurParPlot)), despite being derived from the same photoperiods and peak PAR regimes. As such, only blue light experiments extend beyond cumulative diel PUR of ~ 2 x 10^6^ µmol photons m^-2^ d^-1^. This bias in the range of data leads us to caution in comparing model fits of growth in response to cumulative diel PUR under red vs. blue wavebands.
 
 ### MED4 clade HLI {.unnumbered}
 
-The representative of HLI clade, *P. marinus* MED4, showed no growth under any 4 h photoperiod treatments, even when a 4 h photoperiod delivered cumulative diel PUR equivalent to other photoperiod treatments (Figure \@ref(fig:PhotoperiodPurFitsPlots)A). In parallel MED4 showed no growth under 2.5 µM O~2~, no matter the level of diel cumulative PUR. 
-In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 growth under blue light was well described by a saturating response of growth [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing cumulative diel PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:BluevsRedPurFitsPlots)A), and no evidence of inhibition of growth at any achieved cumulative diel PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)A).  Under the 'artificial' growth treatment of red light, MED4 achieved more growth per unit diel cumulative PUR (Figure \@ref(fig:BluevsRedPurFitsPlots)A), consistent with Murphy *et al*. [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For distinct fits for different photoperiods refer to figure \@ref(fig:PhotoperiodPurFitsPlots)A.
+The representative of HLI clade, *P. marinus* MED4, showed no growth under any 4 h photoperiod treatments, even when a 4 h photoperiod delivered cumulative diel PUR equivalent to other photoperiod treatments (Figure \@ref(fig:PhotoperiodPurFitsPlots)A,B,C). In parallel MED4 showed no growth under 2.5 µM O~2~, no matter the level of diel cumulative PUR. 
+In contrast, under 250 or 25  µM O~2~, and under any photoperiod greater than 4 h, MED4 growth under blue light was well described by a saturating response of growth [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing cumulative diel PUR, with saturation of growth rate achieved around  1.0 x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:BluevsRedPurFitsPlots)A,B), and no evidence of inhibition of growth at any achieved cumulative diel PUR.  Under the 'artificial' growth treatment of red light, MED4 achieved more growth per unit diel cumulative PUR (Figure \@ref(fig:BluevsRedPurFitsPlots)A,B), consistent with Murphy *et al*. [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For distinct fits for different photoperiods refer to figure \@ref(fig:PhotoperiodPurFitsPlots)A,B and C.
 
 ### SS120 clade LLII/III {.unnumbered}
 
-The representative of the LLII/III clade, *P. marinus* SS120 showed almost no growth under 2.5 µM O~2~ experiments (Figure \@ref(fig:PhotoperiodPurFitsPlots)B). Most 4 h photoperiod treatments of SS120 also did not grow under 250 µM O~2~, even when a 4 h photoperiod delivered cumulative diel PUR equivalent to other photoperiod treatments (Figure \@ref(fig:PhotoperiodPurFitsPlots)B). SS120 did not grow when exposed to more than ~1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative diel PUR under any spectral waveband or photoperiod combination, under 250 µM O~2~ experiments (Figure \@ref(fig:PhotoperiodPurFitsPlots)B).
+The representative of the LLII/III clade, *P. marinus* SS120 showed almost no growth under 2.5 µM O~2~ experiments (Figure \@ref(fig:PhotoperiodPurFitsPlots)F). Most 4 h photoperiod treatments of SS120 also did not grow under 250 µM O~2~, even when a 4 h photoperiod delivered cumulative diel PUR equivalent to other photoperiod treatments (Figure \@ref(fig:PhotoperiodPurFitsPlots)F). SS120 did not grow when exposed to more than ~1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative diel PUR under any spectral waveband or photoperiod combination, under 250 µM O~2~ experiments (Figure \@ref(fig:PhotoperiodPurFitsPlots)F).
 
-Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x 10^5^ µmol photons m^-2^ d^-1^ diel PUR, with some scatter among photoperiod and spectral waveband regimes. The onset of growth inhibition extended to higher cumulative diel PUR for cultures under 25 µM O~2~, showing that SS120 is partially protected from photoinhibition of growth by 25 µM O~2~.  Under 25 µM O~2~, red light again generated more growth of SS120 per unit cumulative diel PUR, than did blue light, again consistent with lower cost of growth through lower photoinactivation under red light (Figure \@ref(fig:BluevsRedPurFitsPlots)B). For distinct fits for different photoperiods refer to figure \@ref(fig:PhotoperiodPurFitsPlots)B.
+Under both 25 or 250 µM O~2~ experiments, SS120 growth plateaued by about 5.0 x 10^5^ µmol photons m^-2^ d^-1^ diel PUR, with some scatter among photoperiod and spectral waveband regimes. The onset of growth inhibition extended to higher cumulative diel PUR for cultures under 25 µM O~2~, showing that SS120 is partially protected from photoinhibition of growth by 25 µM O~2~.  Under 25 µM O~2~, red light again generated more growth of SS120 per unit cumulative diel PUR, than did blue light, again consistent with lower cost of growth through lower photoinactivation under red light (Figure \@ref(fig:BluevsRedPurFitsPlots)E). For distinct fits for different photoperiods refer to figure \@ref(fig:PhotoperiodPurFitsPlots)D,E and F.
 
 
 ### MIT9313 clade LLIV {.unnumbered}
 
-The LLIV clade representative, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, lower, flatter response to cumulative diel PUR under 2.5 µM O~2~ (Figure \@ref(fig:PhotoperiodPurFitsPlots)C). Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands(Figure \@ref(fig:PhotoperiodPurFitsPlots)C).  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^.  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)C).  
+The LLIV clade representative, *P. marinus* MIT9313, showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^ d^-1^ of cumulative diel PUR, with higher growth rates over a narrower plateau under 25 and 250 µM O~2~, compared to a wider, lower, flatter response to cumulative diel PUR under 2.5 µM O~2~ (Figure \@ref(fig:PhotoperiodPurFitsPlots)G,H). Above about 1.0 x 10^6^ µmol photons m^-2^ d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full inhibition of growth, across photoperiods, and spectral wavebands (Figure \@ref(fig:PhotoperiodPurFitsPlots)G).  In contrast, under 25 µM O~2~, MIT9313 showed a greatly extended exploitation of higher cumulative diel PUR, with full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ (Figure \@ref(fig:PhotoperiodPurFitsPlots)H).  Similarly, under 2.5 µM O~2~, MIT9313 grew more slowly, but only showed full growth inhibition above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ cumulative diel PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)I).  
 
-As with MED4 and SS120, our data again support enhanced growth under conditions of low cumulative diel PUR and 660 nm (red) spectral bandwidth, consistent with Murphy *et al*.[@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue, wavebands (Figure \@ref(fig:BluevsRedPurFitsPlots)C).  Interestingly, this protective effect of red light disappears for MIT9313 growing under 2.5 µM O~2~, possibly because photoinactivation is strongly suppressed under this low [O~2~]. For distinct fits for different photoperiod fits refer to figure \@ref(fig:PhotoperiodPurFitsPlots)C.
+As with MED4 and SS120, our data again support enhanced growth under conditions of low cumulative diel PUR and 660 nm (red) spectral bandwidth, consistent with Murphy *et al*.[@murphyPhotoinactivationPhotosystemII2017] who found a lower cost of growth, due to decreased photoinactivation of PSII under red, compared to blue, wavebands (Figure \@ref(fig:BluevsRedPurFitsPlots)G,H).  Interestingly, this protective effect of red light disappears for MIT9313 growing under 2.5 µM O~2~, possibly because photoinactivation is strongly suppressed under this low [O~2~] (Figure \@ref(fig:BluevsRedPurFitsPlots)I). For distinct fits for different photoperiod fits refer to figure \@ref(fig:PhotoperiodPurFitsPlots)G,H and I.
 
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/BluevsRedPurFitsPlots.png" alt="**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4, SS120 and MIT9313. Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, p value &lt; 0.05) or dashed lines (not significantly different fits, p value &gt; 0.05) using one-way ANOVA." width="5196" />
-<p class="caption">(\#fig:BluevsRedPurFitsPlots)**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4, SS120 and MIT9313. Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, p value < 0.05) or dashed lines (not significantly different fits, p value > 0.05) using one-way ANOVA.</p>
+<img src="../Output/Figures/BluevsRedPurFitsPlots.png" alt="**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, p value &lt; 0.05) or dashed lines (not significantly different fits, p value &gt; 0.05) using one-way ANOVA." width="5196" />
+<p class="caption">(\#fig:BluevsRedPurFitsPlots)**chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) and 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (significantly different fits, p value < 0.05) or dashed lines (not significantly different fits, p value > 0.05) using one-way ANOVA.</p>
 </div>
 
 \newpage
@@ -377,7 +373,7 @@ As with MED4 and SS120, our data again support enhanced growth under conditions 
 
 Under full atmospheric [O~2~] and blue light, LL clades of *Prochlorococcus* are restricted to growth under low light, in part because they suffer photoinhibition of Photosystem II (PSII) through several paths, including direct absorbance of UV or blue light, in parallel with generation of Reactive Oxygen Species (ROS) if the electron flow is slowed [@aroPhotoinhibitionPhotosystemII1993], producing damaging singlet oxygen (^1^O~2~) [@aroPhotoinhibitionPhotosystemII1993; @soitamoPhotoinhibitionMarinePicocyanobacteria2017; @murphyPhotoinactivationPhotosystemII2017; @hakalaEvidenceRoleOxygenevolving2005]. Repair of photoinactivated PSII relies on the removal of damaged PsbA [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], followed by reassembly with newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. Degradation of PsbA is a rate-limiting step in recovery from photoinhibition [@kanervoD1ProteinDegradation1993], mediated largely by a heterohexamer of (FtsH12)~3~, a membrane-bound [@sacharzSubCellularLocation2015; @zakInitialStepsBiogenesis2001] metalloprotease  [(Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto, 2014).  [@adamFtsHProteasesChloroplasts2005; @boehmSubunitOrganizationSynechocystis2012a; @nixonRecentAdvancesUnderstanding2010; @komendaExposedNTerminalTail2007] (Pisareva et al., 2007; Sacharz et al., 2015),  @mannInvolvementFtsHHomologue2000, (AMANDA REF from ALGATECH).
 
-*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologs to the characterized FtsH isoforms of the model freshwater cyanobacterium *Synechocystis* FtsH, and with presumably parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher light HLI MED4 upregulated expression of FtsH1 and FtsH2 [@bonisteelStrainSpecificDifferences2018], homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast, representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore, MIT9313 expressed primarily FtsH3, homologous to *Synechocystis* slr1463, possibly involved in PSI biogenesis, and FtsH expression did not increase in response to light stress in MIT9313. Through adaptation to steady low light, clade LLIV *Prochlorococcus* instead allocate resources to processes other than dynamic regulation of PSII repair. 
+*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologs to the characterized FtsH isoforms of the model freshwater cyanobacterium *Synechocystis* FtsH, and with presumably parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher light HLI MED4 upregulated expression of FtsH1 and FtsH2 [@bonisteelStrainSpecificDifferences2018], homologs to the *Synechocystis* *slr*0228 and *slr*1604, implicated in PSII repair. In contrast, representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore, MIT9313 expressed primarily FtsH3, homologous to *Synechocystis* *slr*1463, possibly involved in PSI biogenesis, and FtsH expression did not increase in response to light stress in MIT9313. Through adaptation to steady low light, clade LLIV *Prochlorococcus* instead allocate resources to processes other than dynamic regulation of PSII repair. 
 
 \newpage
 
@@ -389,24 +385,24 @@ Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and 
 |Organism                    |  Homolog 1  |  Homolog 2  |    Homolog 3    |   Homolog 4    |
 |:---------------------------|:-----------:|:-----------:|:---------------:|:--------------:|
 |*Prochlorococcus marinus*   |    FtsH1    |    FtsH2    |      FtsH3      |     FtsH4      |
-|*Synechocystis sp. PCC6803* |   SlrO228   |   Slr1604   |     Slr1463     |    Slr1390     |
+|*Synechocystis sp. PCC6803* |  *Slr*0228  |  *Slr*1604  |    *Sll*1463    |   *Slr*1390    |
 |Function                    | PSII Repair | PSII Repair | PSI biogenesis? | Cell viability |
 
 \newpage
-XXXXEdit text depending upon which ocean protein figures we useXXXXX
-Ocean detections of proteins mediating protein metabolism support this interpretation of distinct FtsH function across clades of *P. marinus*. Ribosome proteins from clade HLI MED4, clade LLII/III SS120 and clade LLIV MIT9313 show generally similar patterns vs. [O~2~] and depth, a proxy for peak PAR  (Figure \@ref(fig:NATLProchloroProteinMetabDepthO2)).  FtsH3, inferred to mediate PSI assembly, likewise shows a similar pattern between MED4 and MIT9313 (Figure \@ref(fig:NATLProchloroProteinMetabDepthO2)).  But only MED4 shows detected presence of the FtsH1 & FtsH2 isoforms inferred to mediate PSII repair, and then only in near-surface samples subject to higher light.  Furthermore, even though MIT9313 grows (Figure \@ref(fig:MIT9313GAM)), and is detected in the ocean at low [O~2~] (Figure \@ref(fig:CladeProchloroPhotosynthDepthO2)), no FtsH from MIT9313 is detected at low [O~2~] (Figure \@ref(fig:NATLProchloroProteinMetabDepthO2)), suggesting limited requirement for protein turnover under low [O~2~].
+
+Ocean detections of proteins mediating protein metabolism support this interpretation of distinct FtsH function across clades of *P. marinus*. Ribosome proteins from clade HLI MED4, clade LLI NATL2A, clade LLII/III SS120 and clade LLIV MIT9313 show generally similar patterns vs. [O~2~] and depth, a proxy for peak PAR  (Figure \@ref(fig:CladeProchloroProteinMetabDepthO2)).  FtsH3, inferred to mediate PSI assembly, likewise shows a similar pattern between MED4 and MIT9313 (Figure \@ref(fig:CladeProchloroProteinMetabDepthO2)).  But only MED4 shows detected presence of the FtsH1 & FtsH2 isoforms inferred to mediate PSII repair, and then only in near-surface samples subject to higher light.  Furthermore, even though MIT9313 grows (Figure \@ref(fig:MIT9313GAM)), and is detected in the ocean at low [O~2~] (Figure \@ref(fig:CladeProchloroPhotosynthDepthO2)), no FtsH from MIT9313 is detected at low [O~2~] (Figure \@ref(fig:CladeProchloroProteinMetabDepthO2)), suggesting limited requirement for protein turnover under low [O~2~].
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/NATLProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (clade HLI), SS120 (clade LLII/III) and MIT9313 (clade LLIV). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome). Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/)." width="2187" />
-<p class="caption">(\#fig:NATLProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (clade HLI), SS120 (clade LLII/III) and MIT9313 (clade LLIV). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome). Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/).</p>
+<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (clade HLI), SS120 (clade LLII/III) and MIT9313 (clade LLIV). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome). Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/)." width="2187" />
+<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* strains MED4 (clade HLI), SS120 (clade LLII/III) and MIT9313 (clade LLIV). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome). Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from OceanProteinPortal (https://www.oceanproteinportal.org/).</p>
 </div>
 
 
 \newpage
 
-Figure \@ref(fig:ProchlorococcusEnzymeKms) shows the measured or inferred K~M~ for [O~2~] for genes encoding enzymes [@omarAnnotationGenesEncoding2023] for  *P. marinus* strains from clades HLI, LLI, LLII/III and LLIV. XXXX CITATION  to Table once added XXXX. MED4 increases expression of alternative oxidase ('ubiquinol oxidase (non electrogenic)')  to cope with changes in light [@bergResponsesPsbAHli2011], by dissipating electrons from the inter-system transport chain. The approximate K~M~ for [O~2~] of ~ 25 µM for ubiquinol oxidase (non electrogenic) (Figure \@ref(fig:ProchlorococcusEnzymeKms)) is comparable to the lower limit for growth of MED4 in our experiments (Figure \@ref(fig:MED4GAM)).  We suggest that dependence upon this enzyme excludes MED4 from low oxygen zones.  The genome scan shows SS120 and MIT9313 lack this gene (Figure \@ref(fig:ProchlorococcusEnzymeKms)), and therefore, lack this oxygen-dependent path to cope with changing excitation.  Conversely, a gene encoding (S)-2-hydroxy-acid oxidase is encoded in the MIT9313 genome (Figure \@ref(fig:ProchlorococcusEnzymeKms)).  (S)-2-hydroxy-acid oxidase catalyzes the reaction of 2-hydroxy acid with O~2~ to produce toxic H~2~O~2~ [@cunaneCrystalStructureAnalysis2005]. (S)-2-hydroxy-acid oxidase has an approximate K~M~ for [O~2~] of ~ 250 µM, and produces H~2~O~2~, so growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffered photoinhibition, resulting from the inactivation of PSII caused by the production of the reactive oxygen species, hydrogen peroxide. This photoinhibition is compounded by the limited inducible repair mechanism for PSII, due to the absence of FtsH 1 and 2 XXXXCHECK TERMINOLOGYXXXX expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  We hypothesize that under the conditions of our high light and 2.5 µM or 25 µM O~2~ experiments, the activity of the (S)-2-hydroxy-acid oxidase enzyme is suppressed. As a result, the catalyzed production of hydrogen peroxide is inhibited, leading to less PSII damage, allowing MIT9313 to avoid photoinhibition and circumvent its limitations on PSII repair to exploit higher light.  Figure \@ref(fig:ProchlorococcusEnzymeKms) also shows that *P. marinus* SS120 is the only tested ecotype to lack the pyridoxal 5'-phosphate synthase enzyme. The pyridoxal 5'-phosphate synthase enzyme is an important cofactor in the biosynthesis of vitamin B~6~ [@sangIdentificationPyridoxinePyridoxamine2007]. Vitamin B~6~ is a potential antioxidant and can effectively quench singlet oxygen [@bilskiVitaminB6Pyridoxine2000]. The absence of the pyridoxal 5'-phosphate synthase enzyme may explain why *P. marinus* SS120 does not grow as well as *P. marinus* MIT9313, when exposed to high light stress under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Figure \@ref(fig:SS120PAR)).
+Figure \@ref(fig:ProchlorococcusEnzymeKms) shows the measured or inferred K~M~ for [O~2~] for genes encoding enzymes [@omarAnnotationGenesEncoding2023] for  *P. marinus* strains from clades HLI, LLI, LLII/III and LLIV. MED4 increases expression of alternative oxidase ('ubiquinol oxidase (non electrogenic)')  to cope with changes in light [@bergResponsesPsbAHli2011], by dissipating electrons from the inter-system transport chain. The approximate K~M~ for [O~2~] of ~ 25 µM for ubiquinol oxidase (non electrogenic) (Figure \@ref(fig:ProchlorococcusEnzymeKms)) is comparable to the lower limit for growth of MED4 in our experiments (Figure \@ref(fig:MED4GAM)).  We suggest that dependence upon this enzyme excludes MED4 from low oxygen zones.  The genome scan shows SS120 and MIT9313 lack this gene (Figure \@ref(fig:ProchlorococcusEnzymeKms)), and therefore, lack this oxygen-dependent path to cope with changing excitation.  Conversely, a gene encoding (S)-2-hydroxy-acid oxidase is encoded in the MIT9313 genome (Figure \@ref(fig:ProchlorococcusEnzymeKms)).  (S)-2-hydroxy-acid oxidase catalyzes the reaction of 2-hydroxy acid with O~2~ to produce toxic H~2~O~2~ [@cunaneCrystalStructureAnalysis2005]. (S)-2-hydroxy-acid oxidase has an approximate K~M~ for [O~2~] of ~ 250 µM, and produces H~2~O~2~, so growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffered photoinhibition, resulting from the inactivation of PSII caused by the production of the reactive oxygen species, hydrogen peroxide. This photoinhibition is compounded by the limited inducible repair mechanism for PSII, due to the absence of FtsH 1 and 2 expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  We hypothesize that under the conditions of our high light and 2.5 µM or 25 µM O~2~ experiments, the activity of the (S)-2-hydroxy-acid oxidase enzyme is suppressed. As a result, the catalyzed production of hydrogen peroxide is inhibited, leading to less PSII damage, allowing MIT9313 to avoid photoinhibition and circumvent its limitations on PSII repair to exploit higher light.  Figure \@ref(fig:ProchlorococcusEnzymeKms) also shows that *P. marinus* SS120 is the only tested ecotype to lack the pyridoxal 5'-phosphate synthase enzyme. The pyridoxal 5'-phosphate synthase enzyme is an important cofactor in the biosynthesis of vitamin B~6~ [@sangIdentificationPyridoxinePyridoxamine2007]. Vitamin B~6~ is a potential antioxidant and can effectively quench singlet oxygen [@bilskiVitaminB6Pyridoxine2000]. The absence of the pyridoxal 5'-phosphate synthase enzyme may explain why *P. marinus* SS120 does not grow as well as *P. marinus* MIT9313, when exposed to high light stress under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Figure \@ref(fig:SS120PAR)).
 
 \newpage
 
@@ -448,7 +444,7 @@ and LLIV ecotypes, using terminal restriction fragment length polymorphism analy
 higher, within OMZ, and by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits annotated as derived from SS120 at all depths ranging
 from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120 grew under photoperiods longer than 4 h and showed increasing growth rate with increasing photoperiods.  However, we found *P. marinus* SS120 can potentially exploit more diverse ecological niches within the ocean layers, even in regions with higher levels of blue spectral waveband, but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] show evidence of LLII/III ecotypes at varying depths from 20 to 30 m and from 75 to 200 µM O~2~ in the oxygen minimum zone (OMZ) of the tropical South Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if O~2~ are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also potentially exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a potential warmed, deep, temperate OMZ, during the winter season.
 
-*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter, or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR, but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM. XXX Check Bagby and Chisholm for discussion on respiration as they limited CO2 and O2. Mirielle has notes, will add if relevant XXXXX  The deep water environments typical for MIT 9313 are relatively nutrient rich, and *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004]. In future work we aim to test whether MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~ environments, or whether PSII generation of O~2~ acts as an electron sink for respiration, to generate using ATP for maintenance and to take up nutrients from the surroundings. Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, thus contributing to maintenance of the low O~2~ environment.
+*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter, or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR, but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM. The deep water environments typical for MIT 9313 are relatively nutrient rich, and *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004]. In future work we aim to test whether MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~ environments, or whether PSII generation of O~2~ acts as an electron sink for respiration, to generate using ATP for maintenance and to take up nutrients from the surroundings. Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, thus contributing to maintenance of the low O~2~ environment.
 
 
 # Supplemental {.unnumbered}
@@ -490,15 +486,15 @@ from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. S
 
 
 <div class="figure">
-<img src="../Output/Figures/PhotoperiodPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4, SS120 and MIT9313. Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line)." width="5196" />
-<p class="caption">(\#fig:PhotoperiodPurFitsPlots)**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4, SS120 and MIT9313. Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).</p>
+<img src="../Output/Figures/PhotoperiodPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (p value &lt; 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line)." width="5196" />
+<p class="caption">(\#fig:PhotoperiodPurFitsPlots)**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (p value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).</p>
 </div>
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/ProchlorococcusLightEnzymes.png" alt="**Genes encoding enzymes activated or inhibited by light.** The y-axis represents  *Prochlorococcus marinus* strains. The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023]." width="2400" />
-<p class="caption">(\#fig:ProchlorococcusLightEnzymes)**Genes encoding enzymes activated or inhibited by light.** The y-axis represents  *Prochlorococcus marinus* strains. The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
+<img src="../Output/Figures/ProchlorococcusLightEnzymes.png" alt="***Prochlorococcus* Genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023]." width="2400" />
+<p class="caption">(\#fig:ProchlorococcusLightEnzymes)***Prochlorococcus* Genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
 </div>
 
 
@@ -526,146 +522,146 @@ Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~
 
 
 
-Table: (\#tab:ProchlorococcusEnzymeTable)Enzyme Commission numbers (EC) and corresponsing enzyme names.
+Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:ProchlorococcusEnzymeKms),  \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).
 
-|EC          |Enzyme Name                                                      |Kegg Orthology |
-|:-----------|:----------------------------------------------------------------|:--------------|
-|1.1.1.24    |quinate dehydrogenase                                            |K09484         |
-|1.1.3.10    |pyranose oxidase                                                 |K23272         |
-|1.1.3.11    |L-sorbose oxidase                                                |NA             |
-|1.1.3.12    |pyridoxine 4-oxidase                                             |K18607         |
-|1.1.3.13    |alcohol oxidase                                                  |K17066         |
-|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |K00104         |
-|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |K11517         |
-|1.1.3.16    |ecdysone oxidase                                                 |K10724         |
-|1.1.3.17    |choline oxidase                                                  |K17755         |
-|1.1.3.18    |secondary-alcohol oxidase                                        |NA             |
-|1.1.3.19    |4-hydroxymandelate oxidase (decarboxylating)                     |NA             |
-|1.1.3.20    |long-chain-alcohol oxidase                                       |K17756         |
-|1.1.3.20    |long-chain-alcohol oxidase                                       |NA             |
-|1.1.3.21    |glycerol-3-phosphate oxidase                                     |K00105         |
-|1.1.3.23    |thiamine oxidase                                                 |NA             |
-|1.1.3.27    |hydroxyphytanate oxidase                                         |NA             |
-|1.1.3.28    |nucleoside oxidase                                               |NA             |
-|1.1.3.30    |polyvinyl-alcohol oxidase                                        |NA             |
-|1.1.3.37    |D-arabinono-1,4-lactone oxidase                                  |K00107         |
-|1.1.3.38    |vanillyl-alcohol oxidase                                         |K20153         |
-|1.1.3.39    |nucleoside oxidase (H2O2-forming)                                |NA             |
-|1.1.3.4     |glucose oxidase                                                  |NA             |
-|1.1.3.40    |D-mannitol oxidase                                               |NA             |
-|1.1.3.41    |alditol oxidase                                                  |K00594         |
-|1.1.3.42    |prosolanapyrone-II oxidase                                       |K20550         |
-|1.1.3.45    |aclacinomycin-N oxidase                                          |K15949         |
-|1.1.3.46    |4-hydroxymandelate oxidase                                       |K16422         |
-|1.1.3.47    |5-(hydroxymethyl)furfural oxidase                                |K16873         |
-|1.1.3.48    |3-deoxy-alpha-D-manno-octulosonate 8-oxidase                     |K19714         |
-|1.1.3.5     |hexose oxidase                                                   |K21840         |
-|1.1.3.6     |cholesterol oxidase                                              |K03333         |
-|1.1.3.7     |aryl-alcohol oxidase                                             |NA             |
-|1.1.3.8     |L-gulonolactone oxidase                                          |K00103         |
-|1.1.3.9     |galactose oxidase                                                |K04618         |
-|1.1.3.B4    |glycerol oxidase                                                 |NA             |
-|1.1.5.13    |(S)-2-hydroxyglutarate dehydrogenase                             |NA             |
-|1.1.98.3    |decaprenylphospho-beta-D-ribofuranose 2-dehydrogenase            |NA             |
-|1.1.99.18   |cellobiose dehydrogenase (acceptor)                              |NA             |
-|1.1.99.B3   |glucooligosaccharide oxidase                                     |NA             |
-|1.10.3.1    |catechol oxidase                                                 |K00422         |
-|1.10.3.11   |ubiquinol oxidase (non-electrogenic)                             |K17893         |
-|1.10.3.15   |grixazone synthase                                               |K20204         |
-|1.10.3.17   |superoxide oxidase                                               |K12262         |
-|1.10.3.2    |laccase                                                          |K00421         |
-|1.10.3.2    |laccase                                                          |K05909         |
-|1.10.3.3    |L-ascorbate oxidase                                              |K00423         |
-|1.10.3.3    |L-ascorbate oxidase                                              |NA             |
-|1.10.3.4    |o-aminophenol oxidase                                            |K20204         |
-|1.10.3.4    |o-aminophenol oxidase                                            |K20219         |
-|1.10.3.5    |3-hydroxyanthranilate oxidase                                    |NA             |
-|1.10.3.6    |rifamycin-B oxidase                                              |NA             |
-|1.13.11.1   |catechol 1,2-dioxygenase                                         |K03381         |
-|1.13.11.10  |7,8-dihydroxykynurenate 8,8a-dioxygenase                         |NA             |
-|1.13.11.11  |tryptophan 2,3-dioxygenase                                       |K00453         |
-|1.13.11.12  |linoleate 13S-lipoxygenase                                       |K00454         |
-|1.13.11.14  |2,3-dihydroxybenzoate 3,4-dioxygenase                            |K10621         |
-|1.13.11.15  |3,4-dihydroxyphenylacetate 2,3-dioxygenase                       |K00455         |
-|1.13.11.16  |3-carboxyethylcatechol 2,3-dioxygenase                           |K05713         |
-|1.13.11.17  |indole 2,3-dioxygenase                                           |NA             |
-|1.13.11.18  |persulfide dioxygenase;                                          |K17725         |
-|1.13.11.19  |cysteamine dioxygenase                                           |K10712         |
-|1.13.11.2   |catechol 2,3-dioxygenase                                         |K00446         |
-|1.13.11.2   |catechol 2,3-dioxygenase                                         |K07104         |
-|1.13.11.27  |4-hydroxyphenylpyruvate dioxygenase                              |K00457         |
-|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |K00448         |
-|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |K00449         |
-|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K00460         |
-|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K08022         |
-|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K19246         |
-|1.13.11.34  |arachidonate 5-lipoxygenase                                      |K00461         |
-|1.13.11.53  |acireductone dioxygenase (Ni2+-requiring)                        |K08967         |
-|1.13.11.61  |linolenate 9R-lipoxygenase                                       |K18031         |
-|1.13.11.75  |all-trans-8'-apo-beta-carotenal 15,15'-oxygenase                 |K00464         |
-|1.13.11.81  |7,8-dihydroneopterin oxygenase                                   |K01633         |
-|1.14.11.16  |peptide-aspartate beta-dioxygenase                               |K00476         |
-|1.14.11.17  |taurine dioxygenase                                              |K03119         |
-|1.14.11.2   |procollagen-proline 4-dioxygenase                                |K00472         |
-|1.14.12.17  |nitric oxide dioxygenase                                         |K05916         |
-|1.14.13.1   |salicylate 1-monooxygenase                                       |K00480         |
-|1.14.13.22  |cyclohexanone monooxygenase                                      |K03379         |
-|1.14.13.224 |violacein synthase                                               |K20090         |
-|1.14.13.59  |L-lysine N6-monooxygenase (NADPH)                                |K03897         |
-|1.14.13.81  |magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase |K04035         |
-|1.14.13.9   |kynurenine 3-monooxygenase                                       |K00486         |
-|1.14.14.1   |unspecific monooxygenase                                         |K00490         |
-|1.14.14.35  |dimethylsulfone monooxygenase                                    |K17228         |
-|1.14.15.20  |heme oxygenase (biliverdin-producing, ferredoxin)                |K21480         |
-|1.14.15.7   |choline monooxygenase                                            |K00499         |
-|1.14.19.1   |stearoyl-CoA 9-desaturase                                        |K00507         |
-|1.14.19.23  |acyl-lipid (n+3)-(Z)-desaturase (ferredoxin)                     |K10255         |
-|1.14.19.49  |tetracycline 7-halogenase                                        |K14257         |
-|1.14.19.9   |tryptophan 7-halogenase                                          |K14266         |
-|1.16.3.1    |ferroxidase                                                      |NA             |
-|1.16.3.2    |bacterial non-heme ferritin                                      |NA             |
-|1.17.1.4    |xanthine dehydrogenase                                           |NA             |
-|1.3.1.33    |(light-dependent) protochlorophyllide reductase                  |NA             |
-|1.3.3.3     |coproporphyrinogen oxidase                                       |NA             |
-|1.3.5.6     |9,9'-dicis-zeta-carotene desaturase                              |NA             |
-|1.3.8.1     |short-chain acyl-CoA dehydrogenase                               |NA             |
-|1.3.98.1    |dihydroorotate dehydrogenase (fumarate)                          |NA             |
-|1.4.3.16    |L-aspartate oxidase                                              |NA             |
-|1.4.3.19    |glycine oxidase                                                  |NA             |
-|1.4.3.3     |D-amino-acid oxidase                                             |NA             |
-|1.4.3.4     |monoamine oxidase                                                |NA             |
-|1.4.3.5     |pyridoxal 5'-phosphate synthase                                  |NA             |
-|1.7.1.1     |nitrate reductase (NADH)                                         |NA             |
-|1.7.7.2     |ferredoxin-nitrate reductase                                     |NA             |
-|1.9.3.1     |cytochrome-c oxidase                                             |NA             |
-|2.1.1.148   |thymidylate synthase (FAD)                                       |NA             |
-|2.3.1.37    |5-aminolevulinate synthase                                       |NA             |
-|2.3.1.87    |aralkylamine N-acetyltransferase                                 |NA             |
-|2.4.1.14    |sucrose-phosphate synthase                                       |NA             |
-|2.4.1.255   |protein O-GlcNAc transferase                                     |NA             |
-|2.5.1.32    |15-cis-phytoene synthase                                         |NA             |
-|2.7.1.148   |4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase         |NA             |
-|3.1.22.4    |crossover junction endodeoxyribonuclease                         |NA             |
-|3.1.4.35    |3',5'-cyclic-GMP phosphodiesterase                               |NA             |
-|3.1.4.4     |phospholipase D                                                  |NA             |
-|3.2.2.21    |DNA-3-methyladenine glycosylase II                               |NA             |
-|3.4.11.1    |leucyl aminopeptidase                                            |NA             |
-|3.4.21.19   |glutamyl endopeptidase                                           |NA             |
-|4.1.1.39    |ribulose-bisphosphate carboxylase                                |NA             |
-|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |NA             |
-|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |NA             |
-|4.1.99.5    |aldehyde oxygenase (deformylating)                               |NA             |
-|4.2.1.84    |nitrile hydratase                                                |NA             |
-|4.2.3.5     |chorismate synthase                                              |NA             |
-|4.2.99.18   |DNA-(apurinic or apyrimidinic site) lyase                        |NA             |
-|4.4.1.5     |lactoylglutathione lyase                                         |NA             |
-|4.6.1.1     |adenylate cyclase                                                |NA             |
-|4.6.1.2     |guanylate cyclase                                                |NA             |
-|6.2.1.3     |long-chain-fatty-acid---CoA ligase                               |NA             |
-|6.5.1.1     |DNA ligase (ATP)                                                 |NA             |
-|6.5.1.2     |DNA ligase (NAD+)                                                |NA             |
-|7.1.1.9     |cytochrome-c oxidase                                             |NA             |
-|NA          |Flavodiiron (Flv1a/3a)                                           |NA             |
+|Enzyme Name                                                      |EC          |Kegg Orthology |
+|:----------------------------------------------------------------|:-----------|:--------------|
+|quinate dehydrogenase                                            |1.1.1.24    |K09484         |
+|pyranose oxidase                                                 |1.1.3.10    |K23272         |
+|L-sorbose oxidase                                                |1.1.3.11    |NA             |
+|pyridoxine 4-oxidase                                             |1.1.3.12    |K18607         |
+|alcohol oxidase                                                  |1.1.3.13    |K17066         |
+|(S)-2-hydroxy-acid oxidase                                       |1.1.3.15    |K00104         |
+|(S)-2-hydroxy-acid oxidase                                       |1.1.3.15    |K11517         |
+|ecdysone oxidase                                                 |1.1.3.16    |K10724         |
+|choline oxidase                                                  |1.1.3.17    |K17755         |
+|secondary-alcohol oxidase                                        |1.1.3.18    |NA             |
+|4-hydroxymandelate oxidase (decarboxylating)                     |1.1.3.19    |NA             |
+|long-chain-alcohol oxidase                                       |1.1.3.20    |K17756         |
+|long-chain-alcohol oxidase                                       |1.1.3.20    |NA             |
+|glycerol-3-phosphate oxidase                                     |1.1.3.21    |K00105         |
+|thiamine oxidase                                                 |1.1.3.23    |NA             |
+|hydroxyphytanate oxidase                                         |1.1.3.27    |NA             |
+|nucleoside oxidase                                               |1.1.3.28    |NA             |
+|polyvinyl-alcohol oxidase                                        |1.1.3.30    |NA             |
+|D-arabinono-1,4-lactone oxidase                                  |1.1.3.37    |K00107         |
+|vanillyl-alcohol oxidase                                         |1.1.3.38    |K20153         |
+|nucleoside oxidase (H2O2-forming)                                |1.1.3.39    |NA             |
+|glucose oxidase                                                  |1.1.3.4     |NA             |
+|D-mannitol oxidase                                               |1.1.3.40    |NA             |
+|alditol oxidase                                                  |1.1.3.41    |K00594         |
+|prosolanapyrone-II oxidase                                       |1.1.3.42    |K20550         |
+|aclacinomycin-N oxidase                                          |1.1.3.45    |K15949         |
+|4-hydroxymandelate oxidase                                       |1.1.3.46    |K16422         |
+|5-(hydroxymethyl)furfural oxidase                                |1.1.3.47    |K16873         |
+|3-deoxy-alpha-D-manno-octulosonate 8-oxidase                     |1.1.3.48    |K19714         |
+|hexose oxidase                                                   |1.1.3.5     |K21840         |
+|cholesterol oxidase                                              |1.1.3.6     |K03333         |
+|aryl-alcohol oxidase                                             |1.1.3.7     |NA             |
+|L-gulonolactone oxidase                                          |1.1.3.8     |K00103         |
+|galactose oxidase                                                |1.1.3.9     |K04618         |
+|glycerol oxidase                                                 |1.1.3.B4    |NA             |
+|(S)-2-hydroxyglutarate dehydrogenase                             |1.1.5.13    |NA             |
+|decaprenylphospho-beta-D-ribofuranose 2-dehydrogenase            |1.1.98.3    |NA             |
+|cellobiose dehydrogenase (acceptor)                              |1.1.99.18   |NA             |
+|glucooligosaccharide oxidase                                     |1.1.99.B3   |NA             |
+|catechol oxidase                                                 |1.10.3.1    |K00422         |
+|ubiquinol oxidase (non-electrogenic)                             |1.10.3.11   |K17893         |
+|grixazone synthase                                               |1.10.3.15   |K20204         |
+|superoxide oxidase                                               |1.10.3.17   |K12262         |
+|laccase                                                          |1.10.3.2    |K00421         |
+|laccase                                                          |1.10.3.2    |K05909         |
+|L-ascorbate oxidase                                              |1.10.3.3    |K00423         |
+|L-ascorbate oxidase                                              |1.10.3.3    |NA             |
+|o-aminophenol oxidase                                            |1.10.3.4    |K20204         |
+|o-aminophenol oxidase                                            |1.10.3.4    |K20219         |
+|3-hydroxyanthranilate oxidase                                    |1.10.3.5    |NA             |
+|rifamycin-B oxidase                                              |1.10.3.6    |NA             |
+|catechol 1,2-dioxygenase                                         |1.13.11.1   |K03381         |
+|7,8-dihydroxykynurenate 8,8a-dioxygenase                         |1.13.11.10  |NA             |
+|tryptophan 2,3-dioxygenase                                       |1.13.11.11  |K00453         |
+|linoleate 13S-lipoxygenase                                       |1.13.11.12  |K00454         |
+|2,3-dihydroxybenzoate 3,4-dioxygenase                            |1.13.11.14  |K10621         |
+|3,4-dihydroxyphenylacetate 2,3-dioxygenase                       |1.13.11.15  |K00455         |
+|3-carboxyethylcatechol 2,3-dioxygenase                           |1.13.11.16  |K05713         |
+|indole 2,3-dioxygenase                                           |1.13.11.17  |NA             |
+|persulfide dioxygenase;                                          |1.13.11.18  |K17725         |
+|cysteamine dioxygenase                                           |1.13.11.19  |K10712         |
+|catechol 2,3-dioxygenase                                         |1.13.11.2   |K00446         |
+|catechol 2,3-dioxygenase                                         |1.13.11.2   |K07104         |
+|4-hydroxyphenylpyruvate dioxygenase                              |1.13.11.27  |K00457         |
+|protocatechuate 3,4-dioxygenase                                  |1.13.11.3   |K00448         |
+|protocatechuate 3,4-dioxygenase                                  |1.13.11.3   |K00449         |
+|arachidonate 15-lipoxygenase                                     |1.13.11.33  |K00460         |
+|arachidonate 15-lipoxygenase                                     |1.13.11.33  |K08022         |
+|arachidonate 15-lipoxygenase                                     |1.13.11.33  |K19246         |
+|arachidonate 5-lipoxygenase                                      |1.13.11.34  |K00461         |
+|acireductone dioxygenase (Ni2+-requiring)                        |1.13.11.53  |K08967         |
+|linolenate 9R-lipoxygenase                                       |1.13.11.61  |K18031         |
+|all-trans-8'-apo-beta-carotenal 15,15'-oxygenase                 |1.13.11.75  |K00464         |
+|7,8-dihydroneopterin oxygenase                                   |1.13.11.81  |K01633         |
+|peptide-aspartate beta-dioxygenase                               |1.14.11.16  |K00476         |
+|taurine dioxygenase                                              |1.14.11.17  |K03119         |
+|procollagen-proline 4-dioxygenase                                |1.14.11.2   |K00472         |
+|nitric oxide dioxygenase                                         |1.14.12.17  |K05916         |
+|salicylate 1-monooxygenase                                       |1.14.13.1   |K00480         |
+|cyclohexanone monooxygenase                                      |1.14.13.22  |K03379         |
+|violacein synthase                                               |1.14.13.224 |K20090         |
+|L-lysine N6-monooxygenase (NADPH)                                |1.14.13.59  |K03897         |
+|magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase |1.14.13.81  |K04035         |
+|kynurenine 3-monooxygenase                                       |1.14.13.9   |K00486         |
+|unspecific monooxygenase                                         |1.14.14.1   |K00490         |
+|dimethylsulfone monooxygenase                                    |1.14.14.35  |K17228         |
+|heme oxygenase (biliverdin-producing, ferredoxin)                |1.14.15.20  |K21480         |
+|choline monooxygenase                                            |1.14.15.7   |K00499         |
+|stearoyl-CoA 9-desaturase                                        |1.14.19.1   |K00507         |
+|acyl-lipid (n+3)-(Z)-desaturase (ferredoxin)                     |1.14.19.23  |K10255         |
+|tetracycline 7-halogenase                                        |1.14.19.49  |K14257         |
+|tryptophan 7-halogenase                                          |1.14.19.9   |K14266         |
+|ferroxidase                                                      |1.16.3.1    |NA             |
+|bacterial non-heme ferritin                                      |1.16.3.2    |NA             |
+|xanthine dehydrogenase                                           |1.17.1.4    |NA             |
+|(light-dependent) protochlorophyllide reductase                  |1.3.1.33    |NA             |
+|coproporphyrinogen oxidase                                       |1.3.3.3     |NA             |
+|9,9'-dicis-zeta-carotene desaturase                              |1.3.5.6     |NA             |
+|short-chain acyl-CoA dehydrogenase                               |1.3.8.1     |NA             |
+|dihydroorotate dehydrogenase (fumarate)                          |1.3.98.1    |NA             |
+|L-aspartate oxidase                                              |1.4.3.16    |NA             |
+|glycine oxidase                                                  |1.4.3.19    |NA             |
+|D-amino-acid oxidase                                             |1.4.3.3     |NA             |
+|monoamine oxidase                                                |1.4.3.4     |NA             |
+|pyridoxal 5'-phosphate synthase                                  |1.4.3.5     |NA             |
+|nitrate reductase (NADH)                                         |1.7.1.1     |NA             |
+|ferredoxin-nitrate reductase                                     |1.7.7.2     |NA             |
+|cytochrome-c oxidase                                             |1.9.3.1     |NA             |
+|thymidylate synthase (FAD)                                       |2.1.1.148   |NA             |
+|5-aminolevulinate synthase                                       |2.3.1.37    |NA             |
+|aralkylamine N-acetyltransferase                                 |2.3.1.87    |NA             |
+|sucrose-phosphate synthase                                       |2.4.1.14    |NA             |
+|protein O-GlcNAc transferase                                     |2.4.1.255   |NA             |
+|15-cis-phytoene synthase                                         |2.5.1.32    |NA             |
+|4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase         |2.7.1.148   |NA             |
+|crossover junction endodeoxyribonuclease                         |3.1.22.4    |NA             |
+|3',5'-cyclic-GMP phosphodiesterase                               |3.1.4.35    |NA             |
+|phospholipase D                                                  |3.1.4.4     |NA             |
+|DNA-3-methyladenine glycosylase II                               |3.2.2.21    |NA             |
+|leucyl aminopeptidase                                            |3.4.11.1    |NA             |
+|glutamyl endopeptidase                                           |3.4.21.19   |NA             |
+|ribulose-bisphosphate carboxylase                                |4.1.1.39    |NA             |
+|deoxyribodipyrimidine photo-lyase                                |4.1.99.3    |NA             |
+|deoxyribodipyrimidine photo-lyase                                |4.1.99.3    |NA             |
+|aldehyde oxygenase (deformylating)                               |4.1.99.5    |NA             |
+|nitrile hydratase                                                |4.2.1.84    |NA             |
+|chorismate synthase                                              |4.2.3.5     |NA             |
+|DNA-(apurinic or apyrimidinic site) lyase                        |4.2.99.18   |NA             |
+|lactoylglutathione lyase                                         |4.4.1.5     |NA             |
+|adenylate cyclase                                                |4.6.1.1     |NA             |
+|guanylate cyclase                                                |4.6.1.2     |NA             |
+|long-chain-fatty-acid---CoA ligase                               |6.2.1.3     |NA             |
+|DNA ligase (ATP)                                                 |6.5.1.1     |NA             |
+|DNA ligase (NAD+)                                                |6.5.1.2     |NA             |
+|cytochrome-c oxidase                                             |7.1.1.9     |NA             |
+|Flavodiiron (Flv1a/3a)                                           |NA          |NA             |
 
 
 # Data availability  {.unnumbered}
@@ -676,7 +672,6 @@ Annotated code for data import, transformations and analyses are available at ht
 Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
 
 
-XXX PLOS requires grant numbers XXX
 
 # Funding  {.unnumbered}
 
@@ -687,5 +682,8 @@ Natural Sciences and Engineering Research Council of Canada, 'Latitude and Light
 Canada Foundation for Innovation (DAC)
 New Brunswick Foundation for Innovation (DAC)
 Rice Graduate Fellowship (MS)
+
+XXX PLOS requires grant numbers XXX
+
 
 # References {.unnumbered}
