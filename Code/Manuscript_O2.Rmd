@@ -61,7 +61,7 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: [Manuscript_O2.bib, RPackages.bib]
+bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
@@ -821,7 +821,8 @@ readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>%
   knitr::kable(.,
              caption = "Enzyme Commission numbers (EC) and corresponsing enzyme names.",
             col.names =  c("EC",
-                          "Enzyme Name")
+                          "Enzyme Name",
+                          "Kegg Orthology")
              )
 
 ```

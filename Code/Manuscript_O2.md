@@ -61,7 +61,7 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: [Manuscript_O2.bib, RPackages.bib]
+bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
@@ -377,7 +377,7 @@ As with MED4 and SS120, our data again support enhanced growth under conditions 
 
 Under full atmospheric [O~2~] and blue light, LL clades of *Prochlorococcus* are restricted to growth under low light, in part because they suffer photoinhibition of Photosystem II (PSII) through several paths, including direct absorbance of UV or blue light, in parallel with generation of Reactive Oxygen Species (ROS) if the electron flow is slowed [@aroPhotoinhibitionPhotosystemII1993], producing damaging singlet oxygen (^1^O~2~) [@aroPhotoinhibitionPhotosystemII1993; @soitamoPhotoinhibitionMarinePicocyanobacteria2017; @murphyPhotoinactivationPhotosystemII2017; @hakalaEvidenceRoleOxygenevolving2005]. Repair of photoinactivated PSII relies on the removal of damaged PsbA [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], followed by reassembly with newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. Degradation of PsbA is a rate-limiting step in recovery from photoinhibition [@kanervoD1ProteinDegradation1993], mediated largely by a heterohexamer of (FtsH12)~3~, a membrane-bound [@sacharzSubCellularLocation2015; @zakInitialStepsBiogenesis2001] metalloprotease  [(Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto, 2014).  [@adamFtsHProteasesChloroplasts2005; @boehmSubunitOrganizationSynechocystis2012a; @nixonRecentAdvancesUnderstanding2010; @komendaExposedNTerminalTail2007] (Pisareva et al., 2007; Sacharz et al., 2015),  @mannInvolvementFtsHHomologue2000, (AMANDA REF from ALGATECH).
 
-*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologs to the characterized FtsH isoforms of the model freshwater cyanobacterium *Synechocystis* FtsH, and with presumably parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher light HLI MED4 upregulated expression of FtsH1 and FtsH2 [@bonisteelStrainSpecificDifferences2018], homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast, representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore, MIT9313 expressed primarily FtsH3, homologous to *Synechocystis* slr1463 involved in PSI biogenesis, andFtsH expression did not increase in response to light stress in MIT9313. Through adaptation to steady low light, clade LLIV *Prochlorococcus* instead allocate resources to processes other than dynamic regulation of PSII repair. 
+*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologs to the characterized FtsH isoforms of the model freshwater cyanobacterium *Synechocystis* FtsH, and with presumably parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher light HLI MED4 upregulated expression of FtsH1 and FtsH2 [@bonisteelStrainSpecificDifferences2018], homologs to the *Synechocystis* slr0228 and slr1604, implicated in PSII repair. In contrast, representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore, MIT9313 expressed primarily FtsH3, homologous to *Synechocystis* slr1463, possibly involved in PSI biogenesis, and FtsH expression did not increase in response to light stress in MIT9313. Through adaptation to steady low light, clade LLIV *Prochlorococcus* instead allocate resources to processes other than dynamic regulation of PSII repair. 
 
 \newpage
 
@@ -386,11 +386,11 @@ Under full atmospheric [O~2~] and blue light, LL clades of *Prochlorococcus* are
 
 Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homology determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.
 
-|Organism                    |  Homolog 1  |  Homolog 2  |   Homolog 3    |   Homolog 4    |
-|:---------------------------|:-----------:|:-----------:|:--------------:|:--------------:|
-|*Prochlorococcus marinus*   |    FtsH1    |    FtsH2    |     FtsH3      |     FtsH4      |
-|*Synechocystis sp. PCC6803* |   SlrO22    |   Slr1604   |    Slr1463     |    Slr1390     |
-|Function                    | PSII Repair | PSII Repair | PSI biogenesis | Cell viability |
+|Organism                    |  Homolog 1  |  Homolog 2  |    Homolog 3    |   Homolog 4    |
+|:---------------------------|:-----------:|:-----------:|:---------------:|:--------------:|
+|*Prochlorococcus marinus*   |    FtsH1    |    FtsH2    |      FtsH3      |     FtsH4      |
+|*Synechocystis sp. PCC6803* |   SlrO228   |   Slr1604   |     Slr1463     |    Slr1390     |
+|Function                    | PSII Repair | PSII Repair | PSI biogenesis? | Cell viability |
 
 \newpage
 XXXXEdit text depending upon which ocean protein figures we useXXXXX
@@ -438,24 +438,17 @@ West *et al*. [@westNichePartitioningProchlorococcusPopulationsStratified1999] a
 
 # Summary and conclusions {.unnumbered}
 
-We analyzed  growth rates to determine the viability of *P. marinus* MED4, a clade HLI ecotype found at depths near the ocean surface,
-*P. marinus* SS120, a clade LLII/III ecotype found deep in the water column, and *P. marinus* MIT9313, a clade LLIV ecotype also found in deep oceans, under present day and hypothetical future niche conditions. We designed our study to account for light attenuation through ocean waters, recognizing that low light levels of the blue spectral waveband ultimately prevail in deep ocean waters [@morelAvailableUsableStored1978; @holtropVibrationalModesWater2021] and that the solar incidence angle also attenuates the photoperiod or hours of light exposure beneath the ocean surface. We also tested the growth response of *P. marinus* to varying [O~2~] under the matrix of light parameters to determine if *P. marinus* strains can cope with  diverse  ecosystem scenarios.
+We analyzed  growth rates to determine the viability of *P. marinus* MED4, a clade HLI ecotype found near the ocean surface,
+*P. marinus* SS120, a clade LLII/III ecotype found deep in the water column, and *P. marinus* MIT9313, a clade LLIV ecotype also found in deep oceans including OMZ, under a matrix of spectral, light level, photoperiod and oxygen conditions approxmating present day and hypothetical future niches. Low light levels in the blue spectral waveband prevail in deep ocean waters [@morelAvailableUsableStored1978; @holtropVibrationalModesWater2021], while solar incidence angle and light attenuation also progressively attenuate the photoperiod with depth beneath the ocean surface. 
 
-*Prochlorococcus marinus* MED4 has a physiological requirement for more than 4 h of light per day, and thus this strain will not exploit habitats with short photoperiods, typical of winter or light attenuated depths. MED4 is also excluded from the lowest oxygen habitats, equivalent to our 2.5 µM O~2~ experimental conditions. MED4 can, however, grow under OMZ regions with slightly higher [O~2~], as demonstrated by the growth under our 25 µM O~2~ experiments. Genomic analyses (Figure \@ref(fig:ProchlorococcusEnzymeKms))  and previous transcriptional analyses [@bergResponsesPsbAHli2011]  suggest MED4 is excluded from growth below ~ 25 µM O~2~ because it relies upon a ubiquinol oxidase, non-electrogenic, to maintain oxidation/reduction balance in the intersystem electron transport chain.  On the other hand, MED4 shows inducible expression of FtsH isoforms [@bonisteelStrainSpecificDifferences2018], to counter photoinactivation of PSII under higher PAR and [O~2~] environments. Photoinactivation, does, however, impose an increased cost of growth upon MED4, since growth under red light, to lower the rate of photoinactivation of PSII [@murphyPhotoinactivationPhotosystemII2017], allows MED4 to achieve faster growth per absorbed photon than growth under blue light. TARA Oceans
-Project data [@delmontLinkingPangenomesMetagenomes2018] indeed reported presence of *P. marinus* MED4-like genomes at depths ranging from 5 m to 90 m, representing high to low blue light levels, in the Pacific South East Ocean. Delmont and Eren [@delmontLinkingPangenomesMetagenomes2018] did not analyze data from depths beyond the subsurface chlorophyll maximum layer, the layer in the water column where the chlorophyll *a* concentration peaks, nor did they report the [O~2~] at those depths. Our growth findings are also consistent with Figure\@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII proteins annotated as MED4, clade HLI, at depths up to 200 meters with O~2~ of 15 µM.
+*Prochlorococcus marinus* MED4 has a physiological requirement for more than 4 h of light per day; thus this strain will not exploit habitats with short photoperiods, typical of temperate winter or light attenuated depths, even if water temperature warms into the clade LLII/III tolerance range. MED4 is also excluded from the lowest oxygen habitats, represented by our 2.5 µM O~2~ experimental conditions. MED4 can, however, grow under OMZ regions with slightly higher [O~2~], as demonstrated by the growth under our 25 µM O~2~ experiments. Genomic analyses (Figure \@ref(fig:ProchlorococcusEnzymeKms))  and previous transcriptional analyses [@bergResponsesPsbAHli2011]  suggest MED4 is excluded from growth below ~ 25 µM O~2~ because it relies upon a ubiquinol oxidase, non-electrogenic, to maintain oxidation/reduction balance in the intersystem electron transport chain.  On the other hand, MED4 shows inducible expression of FtsH isoforms [@bonisteelStrainSpecificDifferences2018], to counter photoinactivation of PSII under higher PAR and [O~2~] environments. Photoinactivation, does, however, impose an increased cost of growth upon MED4, since growth under red light, to lower the rate of photoinactivation of PSII [@murphyPhotoinactivationPhotosystemII2017], allows MED4 to achieve faster growth per absorbed photon than growth under blue light. TARA Oceans Project data [@delmontLinkingPangenomesMetagenomes2018] indeed reported presence of *P. marinus* MED4-like genomes at depths ranging from 5 m to 90 m, representing high to low blue light levels, in the Pacific South East Ocean. Delmont and Eren [@delmontLinkingPangenomesMetagenomes2018] did not analyze data from depths beyond the subsurface chlorophyll maximum layer, the layer in the water column where the chlorophyll *a* concentration peaks, nor did they report the [O~2~] at those depths. Our growth findings are also consistent with Figure\@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII proteins annotated as MED4, clade HLI, at depths up to 200 meters with O~2~ of 15 µM.
 
-*Prochlorococcus marinus* SS120, a LLII/III clade representative, showed an interactive inhibition of growth by oxygen and cumulative diel PUR, with a higher tolerance for higher cumulative diel PUR under 25 µM O~2~, compared to 250 µM O~2~. Thus, SS120 can exploit habitats with O~2~ levels spanning 25 µM O~2~ to 250 µM O~2~, including high PAR environments within OMZ.  SS120 is likely excluded from higher [O~2~] and higher PAR because of genomic limitations on capacity for DNA repair (Figure \@ref(fig:DNARepairFig)), and possibly by limited capacity for synthesis of reactive oxygen quenchers (Figure  \@ref(fig:ProchlorococcusEnzymeKms)).  Our growth results are supported by Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] who found evidence of LLII/III
+*Prochlorococcus marinus* SS120, a LLII/III clade representative, showed an interactive inhibition of growth by oxygen and cumulative diel PUR, with a higher tolerance for higher cumulative diel PUR under 25 µM O~2~, compared to 250 µM O~2~. Thus, SS120 can exploit habitats with O~2~ levels spanning 25 µM O~2~ to 250 µM O~2~, including higher PAR environments within OMZ.  SS120 is likely excluded from the combination of higher [O~2~] and higher PAR by genomic limitations on capacity for DNA repair (Figure \@ref(fig:DNARepairFig)), and possibly by limited capacity for synthesis of reactive oxygen quenchers (Figure  \@ref(fig:ProchlorococcusEnzymeKms)).  Our growth results are supported by Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] who found evidence of LLII/III
 and LLIV ecotypes, using terminal restriction fragment length polymorphism analyses, at depths above 40 m, where light levels are
 higher, within OMZ, and by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits annotated as derived from SS120 at all depths ranging
-from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120, grew under photoperiods longer than 4 h and showed increasing growth rate with increasing photoperiods. Therefore, SS120 can potentially exploit the longer summer photoperiods in temperate zones however, like MED4, cannot sustain growth in winter through its requirement for more than 4 h of light per day, even if water temperature warms into the clade LLII/III tolerance range.
+from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120 grew under photoperiods longer than 4 h and showed increasing growth rate with increasing photoperiods.  However, we found *P. marinus* SS120 can potentially exploit more diverse ecological niches within the ocean layers, even in regions with higher levels of blue spectral waveband, but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] show evidence of LLII/III ecotypes at varying depths from 20 to 30 m and from 75 to 200 µM O~2~ in the oxygen minimum zone (OMZ) of the tropical South Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if O~2~ are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also potentially exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a potential warmed, deep, temperate OMZ, during the winter season.
 
-*Prochlorococcus marinus* SS120 prefers the deeper ocean where blue spectral waveband dominates at low levels, through its demonstrated ability to exploit only the lowest blue spectral waveband levels PAR of 30 µmol photons m^-2^ s^-1^ under 250 µM O~2~. However, we found *P. marinus* SS120 can exploit more diverse ecological niches within the ocean layers, even in regions with high levels of blue spectral waveband,  but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] show evidence of LLII/III ecotypes at varying depths from 20 to 30 m and from 75 to 200 µM O~2~ in the oxygen minimum zone (OMZ) of the tropical South Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if O~2~ are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a warmed, deep, temperate region during the winter season.
-
-*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows the potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR,  but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)). The ability to utilize higher PAR and higher cumulative diel PUR under 25 µM or 2.5 µM O~2~ enables MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM.
-
-XXX Check Bagby and Chisholm for discussion on respiration as they limited CO2 and O2. Mirielle has notes, will add if relevant XXXXX 
-In future work we aim to test whether MIT9313 is not “using” photosynthesis in low O~2~ environments to drive CO~2~ fixation, so much as to generate oxygen locally to support  respiration. The deep water environments typical for MIT 9313 are relatively nutrient rich and  *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004]. They may be using photosynthesis to generate O~2~ to act as an electron sink for respiration, to generate using ATP for maintenance and to take up nutrients from the surroundings.
-Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, and c contributing to maintenance of the low O~2~ environment.
+*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter, or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR, but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM. XXX Check Bagby and Chisholm for discussion on respiration as they limited CO2 and O2. Mirielle has notes, will add if relevant XXXXX  The deep water environments typical for MIT 9313 are relatively nutrient rich, and *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004]. In future work we aim to test whether MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~ environments, or whether PSII generation of O~2~ acts as an electron sink for respiration, to generate using ATP for maintenance and to take up nutrients from the surroundings. Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, thus contributing to maintenance of the low O~2~ environment.
 
 
 # Supplemental {.unnumbered}
@@ -535,137 +528,144 @@ Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~
 
 Table: (\#tab:ProchlorococcusEnzymeTable)Enzyme Commission numbers (EC) and corresponsing enzyme names.
 
-|EC          |Enzyme Name                                                      |
-|:-----------|:----------------------------------------------------------------|
-|1.1.1.24    |quinate dehydrogenase                                            |
-|1.1.3.10    |pyranose oxidase                                                 |
-|1.1.3.11    |L-sorbose oxidase                                                |
-|1.1.3.12    |pyridoxine 4-oxidase                                             |
-|1.1.3.13    |alcohol oxidase                                                  |
-|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |
-|1.1.3.16    |ecdysone oxidase                                                 |
-|1.1.3.17    |choline oxidase                                                  |
-|1.1.3.18    |secondary-alcohol oxidase                                        |
-|1.1.3.19    |4-hydroxymandelate oxidase (decarboxylating)                     |
-|1.1.3.20    |long-chain-alcohol oxidase                                       |
-|1.1.3.20    |long-chain-alcohol oxidase                                       |
-|1.1.3.21    |glycerol-3-phosphate oxidase                                     |
-|1.1.3.23    |thiamine oxidase                                                 |
-|1.1.3.27    |hydroxyphytanate oxidase                                         |
-|1.1.3.28    |nucleoside oxidase                                               |
-|1.1.3.30    |polyvinyl-alcohol oxidase                                        |
-|1.1.3.37    |D-arabinono-1,4-lactone oxidase                                  |
-|1.1.3.38    |vanillyl-alcohol oxidase                                         |
-|1.1.3.39    |nucleoside oxidase (H2O2-forming)                                |
-|1.1.3.4     |glucose oxidase                                                  |
-|1.1.3.40    |D-mannitol oxidase                                               |
-|1.1.3.41    |alditol oxidase                                                  |
-|1.1.3.42    |prosolanapyrone-II oxidase                                       |
-|1.1.3.45    |aclacinomycin-N oxidase                                          |
-|1.1.3.46    |4-hydroxymandelate oxidase                                       |
-|1.1.3.47    |5-(hydroxymethyl)furfural oxidase                                |
-|1.1.3.48    |3-deoxy-alpha-D-manno-octulosonate 8-oxidase                     |
-|1.1.3.5     |hexose oxidase                                                   |
-|1.1.3.6     |cholesterol oxidase                                              |
-|1.1.3.7     |aryl-alcohol oxidase                                             |
-|1.1.3.8     |L-gulonolactone oxidase                                          |
-|1.1.3.9     |galactose oxidase                                                |
-|1.1.3.B4    |glycerol oxidase                                                 |
-|1.1.5.13    |(S)-2-hydroxyglutarate dehydrogenase                             |
-|1.1.98.3    |decaprenylphospho-beta-D-ribofuranose 2-dehydrogenase            |
-|1.1.99.18   |cellobiose dehydrogenase (acceptor)                              |
-|1.1.99.B3   |glucooligosaccharide oxidase                                     |
-|1.10.3.1    |catechol oxidase                                                 |
-|1.10.3.11   |ubiquinol oxidase (non-electrogenic)                             |
-|1.10.3.15   |grixazone synthase                                               |
-|1.10.3.17   |superoxide oxidase                                               |
-|1.10.3.2    |laccase                                                          |
-|1.10.3.3    |L-ascorbate oxidase                                              |
-|1.10.3.3    |L-ascorbate oxidase                                              |
-|1.10.3.4    |o-aminophenol oxidase                                            |
-|1.10.3.5    |3-hydroxyanthranilate oxidase                                    |
-|1.10.3.6    |rifamycin-B oxidase                                              |
-|1.13.11.1   |catechol 1,2-dioxygenase                                         |
-|1.13.11.10  |7,8-dihydroxykynurenate 8,8a-dioxygenase                         |
-|1.13.11.11  |tryptophan 2,3-dioxygenase                                       |
-|1.13.11.12  |linoleate 13S-lipoxygenase                                       |
-|1.13.11.14  |2,3-dihydroxybenzoate 3,4-dioxygenase                            |
-|1.13.11.15  |3,4-dihydroxyphenylacetate 2,3-dioxygenase                       |
-|1.13.11.16  |3-carboxyethylcatechol 2,3-dioxygenase                           |
-|1.13.11.17  |indole 2,3-dioxygenase                                           |
-|1.13.11.18  |persulfide dioxygenase;                                          |
-|1.13.11.19  |cysteamine dioxygenase                                           |
-|1.13.11.2   |catechol 2,3-dioxygenase                                         |
-|1.13.11.27  |4-hydroxyphenylpyruvate dioxygenase                              |
-|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |
-|1.13.11.33  |arachidonate 15-lipoxygenase                                     |
-|1.13.11.34  |arachidonate 5-lipoxygenase                                      |
-|1.13.11.53  |acireductone dioxygenase (Ni2+-requiring)                        |
-|1.13.11.61  |linolenate 9R-lipoxygenase                                       |
-|1.13.11.75  |all-trans-8'-apo-beta-carotenal 15,15'-oxygenase                 |
-|1.13.11.81  |7,8-dihydroneopterin oxygenase                                   |
-|1.14.11.16  |peptide-aspartate beta-dioxygenase                               |
-|1.14.11.17  |taurine dioxygenase                                              |
-|1.14.11.2   |procollagen-proline 4-dioxygenase                                |
-|1.14.12.17  |nitric oxide dioxygenase                                         |
-|1.14.13.1   |salicylate 1-monooxygenase                                       |
-|1.14.13.22  |cyclohexanone monooxygenase                                      |
-|1.14.13.224 |violacein synthase                                               |
-|1.14.13.59  |L-lysine N6-monooxygenase (NADPH)                                |
-|1.14.13.81  |magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase |
-|1.14.13.9   |kynurenine 3-monooxygenase                                       |
-|1.14.14.1   |unspecific monooxygenase                                         |
-|1.14.14.35  |dimethylsulfone monooxygenase                                    |
-|1.14.15.20  |heme oxygenase (biliverdin-producing, ferredoxin)                |
-|1.14.15.7   |choline monooxygenase                                            |
-|1.14.19.1   |stearoyl-CoA 9-desaturase                                        |
-|1.14.19.23  |acyl-lipid (n+3)-(Z)-desaturase (ferredoxin)                     |
-|1.14.19.49  |tetracycline 7-halogenase                                        |
-|1.14.19.9   |tryptophan 7-halogenase                                          |
-|1.16.3.1    |ferroxidase                                                      |
-|1.16.3.2    |bacterial non-heme ferritin                                      |
-|1.17.1.4    |xanthine dehydrogenase                                           |
-|1.3.1.33    |(light-dependent) protochlorophyllide reductase                  |
-|1.3.3.3     |coproporphyrinogen oxidase                                       |
-|1.3.5.6     |9,9'-dicis-zeta-carotene desaturase                              |
-|1.3.8.1     |short-chain acyl-CoA dehydrogenase                               |
-|1.3.98.1    |dihydroorotate dehydrogenase (fumarate)                          |
-|1.4.3.16    |L-aspartate oxidase                                              |
-|1.4.3.19    |glycine oxidase                                                  |
-|1.4.3.3     |D-amino-acid oxidase                                             |
-|1.4.3.4     |monoamine oxidase                                                |
-|1.4.3.5     |pyridoxal 5'-phosphate synthase                                  |
-|1.7.1.1     |nitrate reductase (NADH)                                         |
-|1.7.7.2     |ferredoxin-nitrate reductase                                     |
-|1.9.3.1     |cytochrome-c oxidase                                             |
-|2.1.1.148   |thymidylate synthase (FAD)                                       |
-|2.3.1.37    |5-aminolevulinate synthase                                       |
-|2.3.1.87    |aralkylamine N-acetyltransferase                                 |
-|2.4.1.14    |sucrose-phosphate synthase                                       |
-|2.4.1.255   |protein O-GlcNAc transferase                                     |
-|2.5.1.32    |15-cis-phytoene synthase                                         |
-|2.7.1.148   |4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase         |
-|3.1.22.4    |crossover junction endodeoxyribonuclease                         |
-|3.1.4.35    |3',5'-cyclic-GMP phosphodiesterase                               |
-|3.1.4.4     |phospholipase D                                                  |
-|3.2.2.21    |DNA-3-methyladenine glycosylase II                               |
-|3.4.11.1    |leucyl aminopeptidase                                            |
-|3.4.21.19   |glutamyl endopeptidase                                           |
-|4.1.1.39    |ribulose-bisphosphate carboxylase                                |
-|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |
-|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |
-|4.1.99.5    |aldehyde oxygenase (deformylating)                               |
-|4.2.1.84    |nitrile hydratase                                                |
-|4.2.3.5     |chorismate synthase                                              |
-|4.2.99.18   |DNA-(apurinic or apyrimidinic site) lyase                        |
-|4.4.1.5     |lactoylglutathione lyase                                         |
-|4.6.1.1     |adenylate cyclase                                                |
-|4.6.1.2     |guanylate cyclase                                                |
-|6.2.1.3     |long-chain-fatty-acid---CoA ligase                               |
-|6.5.1.1     |DNA ligase (ATP)                                                 |
-|6.5.1.2     |DNA ligase (NAD+)                                                |
-|7.1.1.9     |cytochrome-c oxidase                                             |
-|NA          |Flavodiiron (Flv1a/3a)                                           |
+|EC          |Enzyme Name                                                      |Kegg Orthology |
+|:-----------|:----------------------------------------------------------------|:--------------|
+|1.1.1.24    |quinate dehydrogenase                                            |K09484         |
+|1.1.3.10    |pyranose oxidase                                                 |K23272         |
+|1.1.3.11    |L-sorbose oxidase                                                |NA             |
+|1.1.3.12    |pyridoxine 4-oxidase                                             |K18607         |
+|1.1.3.13    |alcohol oxidase                                                  |K17066         |
+|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |K00104         |
+|1.1.3.15    |(S)-2-hydroxy-acid oxidase                                       |K11517         |
+|1.1.3.16    |ecdysone oxidase                                                 |K10724         |
+|1.1.3.17    |choline oxidase                                                  |K17755         |
+|1.1.3.18    |secondary-alcohol oxidase                                        |NA             |
+|1.1.3.19    |4-hydroxymandelate oxidase (decarboxylating)                     |NA             |
+|1.1.3.20    |long-chain-alcohol oxidase                                       |K17756         |
+|1.1.3.20    |long-chain-alcohol oxidase                                       |NA             |
+|1.1.3.21    |glycerol-3-phosphate oxidase                                     |K00105         |
+|1.1.3.23    |thiamine oxidase                                                 |NA             |
+|1.1.3.27    |hydroxyphytanate oxidase                                         |NA             |
+|1.1.3.28    |nucleoside oxidase                                               |NA             |
+|1.1.3.30    |polyvinyl-alcohol oxidase                                        |NA             |
+|1.1.3.37    |D-arabinono-1,4-lactone oxidase                                  |K00107         |
+|1.1.3.38    |vanillyl-alcohol oxidase                                         |K20153         |
+|1.1.3.39    |nucleoside oxidase (H2O2-forming)                                |NA             |
+|1.1.3.4     |glucose oxidase                                                  |NA             |
+|1.1.3.40    |D-mannitol oxidase                                               |NA             |
+|1.1.3.41    |alditol oxidase                                                  |K00594         |
+|1.1.3.42    |prosolanapyrone-II oxidase                                       |K20550         |
+|1.1.3.45    |aclacinomycin-N oxidase                                          |K15949         |
+|1.1.3.46    |4-hydroxymandelate oxidase                                       |K16422         |
+|1.1.3.47    |5-(hydroxymethyl)furfural oxidase                                |K16873         |
+|1.1.3.48    |3-deoxy-alpha-D-manno-octulosonate 8-oxidase                     |K19714         |
+|1.1.3.5     |hexose oxidase                                                   |K21840         |
+|1.1.3.6     |cholesterol oxidase                                              |K03333         |
+|1.1.3.7     |aryl-alcohol oxidase                                             |NA             |
+|1.1.3.8     |L-gulonolactone oxidase                                          |K00103         |
+|1.1.3.9     |galactose oxidase                                                |K04618         |
+|1.1.3.B4    |glycerol oxidase                                                 |NA             |
+|1.1.5.13    |(S)-2-hydroxyglutarate dehydrogenase                             |NA             |
+|1.1.98.3    |decaprenylphospho-beta-D-ribofuranose 2-dehydrogenase            |NA             |
+|1.1.99.18   |cellobiose dehydrogenase (acceptor)                              |NA             |
+|1.1.99.B3   |glucooligosaccharide oxidase                                     |NA             |
+|1.10.3.1    |catechol oxidase                                                 |K00422         |
+|1.10.3.11   |ubiquinol oxidase (non-electrogenic)                             |K17893         |
+|1.10.3.15   |grixazone synthase                                               |K20204         |
+|1.10.3.17   |superoxide oxidase                                               |K12262         |
+|1.10.3.2    |laccase                                                          |K00421         |
+|1.10.3.2    |laccase                                                          |K05909         |
+|1.10.3.3    |L-ascorbate oxidase                                              |K00423         |
+|1.10.3.3    |L-ascorbate oxidase                                              |NA             |
+|1.10.3.4    |o-aminophenol oxidase                                            |K20204         |
+|1.10.3.4    |o-aminophenol oxidase                                            |K20219         |
+|1.10.3.5    |3-hydroxyanthranilate oxidase                                    |NA             |
+|1.10.3.6    |rifamycin-B oxidase                                              |NA             |
+|1.13.11.1   |catechol 1,2-dioxygenase                                         |K03381         |
+|1.13.11.10  |7,8-dihydroxykynurenate 8,8a-dioxygenase                         |NA             |
+|1.13.11.11  |tryptophan 2,3-dioxygenase                                       |K00453         |
+|1.13.11.12  |linoleate 13S-lipoxygenase                                       |K00454         |
+|1.13.11.14  |2,3-dihydroxybenzoate 3,4-dioxygenase                            |K10621         |
+|1.13.11.15  |3,4-dihydroxyphenylacetate 2,3-dioxygenase                       |K00455         |
+|1.13.11.16  |3-carboxyethylcatechol 2,3-dioxygenase                           |K05713         |
+|1.13.11.17  |indole 2,3-dioxygenase                                           |NA             |
+|1.13.11.18  |persulfide dioxygenase;                                          |K17725         |
+|1.13.11.19  |cysteamine dioxygenase                                           |K10712         |
+|1.13.11.2   |catechol 2,3-dioxygenase                                         |K00446         |
+|1.13.11.2   |catechol 2,3-dioxygenase                                         |K07104         |
+|1.13.11.27  |4-hydroxyphenylpyruvate dioxygenase                              |K00457         |
+|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |K00448         |
+|1.13.11.3   |protocatechuate 3,4-dioxygenase                                  |K00449         |
+|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K00460         |
+|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K08022         |
+|1.13.11.33  |arachidonate 15-lipoxygenase                                     |K19246         |
+|1.13.11.34  |arachidonate 5-lipoxygenase                                      |K00461         |
+|1.13.11.53  |acireductone dioxygenase (Ni2+-requiring)                        |K08967         |
+|1.13.11.61  |linolenate 9R-lipoxygenase                                       |K18031         |
+|1.13.11.75  |all-trans-8'-apo-beta-carotenal 15,15'-oxygenase                 |K00464         |
+|1.13.11.81  |7,8-dihydroneopterin oxygenase                                   |K01633         |
+|1.14.11.16  |peptide-aspartate beta-dioxygenase                               |K00476         |
+|1.14.11.17  |taurine dioxygenase                                              |K03119         |
+|1.14.11.2   |procollagen-proline 4-dioxygenase                                |K00472         |
+|1.14.12.17  |nitric oxide dioxygenase                                         |K05916         |
+|1.14.13.1   |salicylate 1-monooxygenase                                       |K00480         |
+|1.14.13.22  |cyclohexanone monooxygenase                                      |K03379         |
+|1.14.13.224 |violacein synthase                                               |K20090         |
+|1.14.13.59  |L-lysine N6-monooxygenase (NADPH)                                |K03897         |
+|1.14.13.81  |magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase |K04035         |
+|1.14.13.9   |kynurenine 3-monooxygenase                                       |K00486         |
+|1.14.14.1   |unspecific monooxygenase                                         |K00490         |
+|1.14.14.35  |dimethylsulfone monooxygenase                                    |K17228         |
+|1.14.15.20  |heme oxygenase (biliverdin-producing, ferredoxin)                |K21480         |
+|1.14.15.7   |choline monooxygenase                                            |K00499         |
+|1.14.19.1   |stearoyl-CoA 9-desaturase                                        |K00507         |
+|1.14.19.23  |acyl-lipid (n+3)-(Z)-desaturase (ferredoxin)                     |K10255         |
+|1.14.19.49  |tetracycline 7-halogenase                                        |K14257         |
+|1.14.19.9   |tryptophan 7-halogenase                                          |K14266         |
+|1.16.3.1    |ferroxidase                                                      |NA             |
+|1.16.3.2    |bacterial non-heme ferritin                                      |NA             |
+|1.17.1.4    |xanthine dehydrogenase                                           |NA             |
+|1.3.1.33    |(light-dependent) protochlorophyllide reductase                  |NA             |
+|1.3.3.3     |coproporphyrinogen oxidase                                       |NA             |
+|1.3.5.6     |9,9'-dicis-zeta-carotene desaturase                              |NA             |
+|1.3.8.1     |short-chain acyl-CoA dehydrogenase                               |NA             |
+|1.3.98.1    |dihydroorotate dehydrogenase (fumarate)                          |NA             |
+|1.4.3.16    |L-aspartate oxidase                                              |NA             |
+|1.4.3.19    |glycine oxidase                                                  |NA             |
+|1.4.3.3     |D-amino-acid oxidase                                             |NA             |
+|1.4.3.4     |monoamine oxidase                                                |NA             |
+|1.4.3.5     |pyridoxal 5'-phosphate synthase                                  |NA             |
+|1.7.1.1     |nitrate reductase (NADH)                                         |NA             |
+|1.7.7.2     |ferredoxin-nitrate reductase                                     |NA             |
+|1.9.3.1     |cytochrome-c oxidase                                             |NA             |
+|2.1.1.148   |thymidylate synthase (FAD)                                       |NA             |
+|2.3.1.37    |5-aminolevulinate synthase                                       |NA             |
+|2.3.1.87    |aralkylamine N-acetyltransferase                                 |NA             |
+|2.4.1.14    |sucrose-phosphate synthase                                       |NA             |
+|2.4.1.255   |protein O-GlcNAc transferase                                     |NA             |
+|2.5.1.32    |15-cis-phytoene synthase                                         |NA             |
+|2.7.1.148   |4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase         |NA             |
+|3.1.22.4    |crossover junction endodeoxyribonuclease                         |NA             |
+|3.1.4.35    |3',5'-cyclic-GMP phosphodiesterase                               |NA             |
+|3.1.4.4     |phospholipase D                                                  |NA             |
+|3.2.2.21    |DNA-3-methyladenine glycosylase II                               |NA             |
+|3.4.11.1    |leucyl aminopeptidase                                            |NA             |
+|3.4.21.19   |glutamyl endopeptidase                                           |NA             |
+|4.1.1.39    |ribulose-bisphosphate carboxylase                                |NA             |
+|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |NA             |
+|4.1.99.3    |deoxyribodipyrimidine photo-lyase                                |NA             |
+|4.1.99.5    |aldehyde oxygenase (deformylating)                               |NA             |
+|4.2.1.84    |nitrile hydratase                                                |NA             |
+|4.2.3.5     |chorismate synthase                                              |NA             |
+|4.2.99.18   |DNA-(apurinic or apyrimidinic site) lyase                        |NA             |
+|4.4.1.5     |lactoylglutathione lyase                                         |NA             |
+|4.6.1.1     |adenylate cyclase                                                |NA             |
+|4.6.1.2     |guanylate cyclase                                                |NA             |
+|6.2.1.3     |long-chain-fatty-acid---CoA ligase                               |NA             |
+|6.5.1.1     |DNA ligase (ATP)                                                 |NA             |
+|6.5.1.2     |DNA ligase (NAD+)                                                |NA             |
+|7.1.1.9     |cytochrome-c oxidase                                             |NA             |
+|NA          |Flavodiiron (Flv1a/3a)                                           |NA             |
 
 
 # Data availability  {.unnumbered}
