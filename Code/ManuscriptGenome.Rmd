@@ -1,6 +1,5 @@
 ---
 title: "R Notebook"
-output: html_notebook
 ---
 
 ```{r, import libraries, include = FALSE}
@@ -399,50 +398,50 @@ ggsave(filename = file.path(Figures, "ProchlorococcusLightEnzymesFig.png"), plot
 ```
 
 ```{r}
-LightGOs <- MergedData %>% 
-  separate_rows(GOs, sep = ",") %>% 
-  filter(GOs %in% c("GO:0010018", "GO:0009785", "GO:0009882", "GO:0031516", "GO:0031517", "GO:0009883"))
-
-LightKOs <- MergedData %>% 
-  separate_rows(KEGG_ko, sep = ",") %>% 
-  filter(KEGG_ko %in% c("ko:K02295", "ko:K12120", "ko:K12122", "ko:K12121", "ko:K12123"))
+# LightGOs <- MergedData %>% 
+#   separate_rows(GOs, sep = ",") %>% 
+#   filter(GOs %in% c("GO:0010018", "GO:0009785", "GO:0009882", "GO:0031516", "GO:0031517", "GO:0009883"))
+# 
+# LightKOs <- MergedData %>% 
+#   separate_rows(KEGG_ko, sep = ",") %>% 
+#   filter(KEGG_ko %in% c("ko:K02295", "ko:K12120", "ko:K12122", "ko:K12121", "ko:K12123"))
 ```
 
 ```{r, fig.width = 7, fig.height = 7}
-MergedData %>%
-  filter(!is.na(Gene_count)) %>%
-  filter(PriSec == "Primary") %>%
-  filter(Genus == "Prochlorococcus") %>%
-  # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-  # group_by(EC) %>%
-  # mutate(ECNumberTotal = sum(Gene_count)) %>%
-  # ungroup() %>% View()
-  # filter(ECNumberTotal != 0) %>%
-  ggplot() +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
-  facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-  scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-  scale_x_discrete(position = "top") +
-  scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
-  theme_bw() +
-  ggpubr::rotate_x_text(hjust = 0) 
+# MergedData %>%
+#   filter(!is.na(Gene_count)) %>%
+#   filter(PriSec == "Primary") %>%
+#   filter(Genus == "Prochlorococcus") %>%
+#   # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
+#   # group_by(EC) %>%
+#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
+#   # ungroup() %>% View()
+#   # filter(ECNumberTotal != 0) %>%
+#   ggplot() +
+#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
+#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
+#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
+#   scale_x_discrete(position = "top") +
+#   scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
+#   theme_bw() +
+#   ggpubr::rotate_x_text(hjust = 0) 
 ```
 
 ```{r, fig.width = 7, fig.height = 7}
-MergedData %>%
-  filter(!is.na(Gene_count)) %>%
-  filter(PriSec == "Primary") %>%
-  # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-  # group_by(EC) %>%
-  # mutate(ECNumberTotal = sum(Gene_count)) %>%
-  # ungroup() %>% View()
-  # filter(ECNumberTotal != 0) %>%
-  ggplot() +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
-  facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-  scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-  scale_x_discrete(position = "top") +
-  scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
-  theme_bw() +
-  ggpubr::rotate_x_text(hjust = 0) 
+# MergedData %>%
+#   filter(!is.na(Gene_count)) %>%
+#   filter(PriSec == "Primary") %>%
+#   # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
+#   # group_by(EC) %>%
+#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
+#   # ungroup() %>% View()
+#   # filter(ECNumberTotal != 0) %>%
+#   ggplot() +
+#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
+#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
+#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
+#   scale_x_discrete(position = "top") +
+#   scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
+#   theme_bw() +
+#   ggpubr::rotate_x_text(hjust = 0) 
 ```
