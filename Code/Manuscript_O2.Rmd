@@ -231,8 +231,7 @@ The applied photoperiods were delivered using the sinusoidal circadian light fun
 \end{equation}
 
 
-Figures \@ref(fig:MED4OverlayPlots), \@ref(fig:SS120OverlayPlots) and
-\@ref(fig:MIT9313OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
+Figures \@ref(fig:OverlayPlots) provide visual representations of PUR, the black solid line and shaded area, in relation to the imposed PAR, the dotted line, under each imposed spectral wavebands for *P. marinus* MED4, SS120 and MIT9313, respectively. Figure (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR versus imposed PAR for each *P. marinus* and each spectral waveband.
 
 We fit the response of chlorophyll specific growth rate to cumulative diel PUR using the equation of Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] across strain and [O~2~] to compare growth response between 660 nm (red) and 450 nm (blue) growth light and additionally, to compare growth response between specific photoperiods (4 h, 8 h, 12 h, 16 h) and a fit across pooled photoperiod data. 
 To examine statistical differences between the modeled fits, we performed one-way ANOVA comparing the model output parameters assigning significant differences when the p value was < 0.05. 
@@ -674,7 +673,24 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 
 \newpage
 
-```{r MED4OverlayPlots, fig.cap = MED4OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r OverlayPlots, fig.cap = OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+
+OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 (A,B,C); SS120 (D,E,F); MIT9313 (G,H,I) grown under three emission wavebands.**",
+                       "**(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
+                       "**(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
+                       "**(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
+                       
+                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
+
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "OverlayPlots.png"))
+
+
+```
+
+
+```{r MED4OverlayPlots, fig.cap = MED4OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
 
 MED4OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 grown under three emission wavebands.**",
                        "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
@@ -692,7 +708,7 @@ knitr::include_graphics(file.path(FiguresIn, "MED4OverlayPlots.png"))
 
 \newpage
 
-```{r SS120OverlayPlots, fig.cap = SS120OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r SS120OverlayPlots, fig.cap = SS120OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
 
 SS120OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* SS120 grown under three emission wavebands.",
                        "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
@@ -709,7 +725,7 @@ knitr::include_graphics(file.path(FiguresIn, "SS120OverlayPlots.png"))
 
 \newpage
 
-```{r MIT9313OverlayPlots, fig.cap = MIT9313OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MIT9313OverlayPlots, fig.cap = MIT9313OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
 
 MIT9313OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MIT9313 grown under three emission wavebands.**",
                                 "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
@@ -788,7 +804,7 @@ MaxGrowthTable <- PURPARFits %>%
 
 ```
 
-```{r MaxGrowthTable, fig.height = 6, fig.width = 8, echo = FALSE }
+```{r MaxGrowthTable, echo = FALSE }
 
 
 knitr::kable(MaxGrowthTable,
@@ -804,6 +820,19 @@ knitr::kable(MaxGrowthTable,
 ```
 
 \newpage
+
+
+```{r ProchlorococcusEnzymeTable, echo = FALSE }
+
+readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>% 
+  knitr::kable(.,
+             caption = "Enzyme Commission numbers (EC) and corresponsing enzyme names.",
+            col.names =  c("EC",
+                          "Enzyme Name")
+             )
+
+```
+
 
 # Data availability  {.unnumbered}
 All data obtained from the Multicultivator were saved as comma separated values files and are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData.
