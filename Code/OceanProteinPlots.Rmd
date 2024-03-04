@@ -263,14 +263,19 @@ poi |>
 # PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
 # ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
 
-poi <- poi |>
-  mutate(StrainAlpha = if_else(strain %in% AltStrainLabels, 1, 0.1))
+# poi <- poi |>
+#   mutate(StrainAlpha = if_else(strain %in% AltStrainLabels, 1, 0.1))
+`%notin%` <- negate(`%in%`)
+
 
 poi |>
   filter(complex %in% ElectronTrans) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
+  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels)) +
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
+  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels)) +
+  # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -289,7 +294,10 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
+  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels)) +
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
+  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels)) +
+  # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
