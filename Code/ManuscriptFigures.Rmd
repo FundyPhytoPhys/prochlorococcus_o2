@@ -525,7 +525,7 @@ ggplot()+
   )  +
   guides(color = "none") +
   theme_bw() +
- theme(#strip.text = element_blank(),
+ theme( strip.text = element_text(size = 13),
        # legend.background = element_rect(color = "transparent", fill = "transparent"),
       legend.key.size = unit(1, 'cm'), #change legend key size
         legend.text = element_text(size = 18),
@@ -536,7 +536,9 @@ ggplot()+
         # strip.text.x = element_text(size = 20),
         axis.text = element_text(size = 15, color = "black"),
         panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank())
+        panel.grid.major = element_blank(),
+        tagger.panel.tag.background = element_blank()) +
+  tagger::tag_facets(tag_levels  = c("A", "I"), tag_suffix = "")
 
 
  
@@ -551,7 +553,7 @@ OverlayPlots
 
 ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".png",sep = "")), plot = OverlayPlots, device = NULL, scale = 1, height = 25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
-ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".tiff",sep = "")), plot = OverlayPlots, device = NULL, scale = 1, height = 25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(PlotsOut, paste("OverlayPlots",".tiff",sep = "")), plot = OverlayPlots, device = NULL, scale = 1, height = 25, width= 35, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
