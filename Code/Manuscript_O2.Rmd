@@ -181,7 +181,7 @@ the bath of the bioreactor to correct [O~2~] measures for temperature fluctuatio
 
 The full crossing of all factor levels would yield 4 x 3 x 3 x 3 = 108 treatments, x 3 strains for 324 possible combinations. Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O~2~] meant we completed 268 growth factor treatment combinations. 
 
-*In situ* measurements of Optical Density (OD) 680 nm, a proxy for cell suspension density, cell size dependent scatter and cell chlorophyll content;  and OD 720 nm, a proxy for cell suspension density and cell size dependent scatter, were recorded every 5 minutes over least 8 to 14 days,  depending on the duration of the lag phase, if any. All data obtained from the Multicultivator were saved as comma separated values files  (https://github.com/FundyPhytoPhys/prochlorococcus_o2/).
+*In situ* measurements of Optical Density (OD) 680 nm, a proxy for cell suspension density, cell size dependent scatter and cell chlorophyll content;  and OD 720 nm, a proxy for cell suspension density and cell size dependent scatter, were recorded every 5 minutes over least 8 to 14 days,  depending on the duration of the lag phase, if any. 
 
 PAR of 180, 90 or 30 µmol photons m^-2^ s^-1^, and spectral wavebands (white LED full spectrum, 660 nm, and 450 nm) were chosen to approximate light
 levels and spectral colours spanning the vertical ocean water column, from near-surface to the lower euphotic zone depths. Photoperiods were chosen to approximate diel cycles characteristic of current and hypothetical future niches of *P. marinus*; 16 h represents temperate (45°N) summer at the ocean surface; 12 h for equatorial (0°N)
@@ -200,7 +200,7 @@ duration over the growth trajectory.
 
 
 Figure \@ref(fig:deltaODLogGrowthPlot) is an example of chlorophyll specific growth estimates fitted from the high resolution ΔOD measurements for each tube in a Multicultivator. The residuals of the logistic growth curve fit are shown and the growth spectral waveband is plotted and illustrates the imposed PAR (µmol photons m^-2^ s^-1^) and photoperiod
-(h). Annotated code for data import, transformations and analyses is available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/  MAKE SURE RePOSTIORY IS PUBLICXXXX
+(h). 
 
 A Generalized Additive Model (GAM) [@woodGeneralizedAdditiveModels2017] was applied to the relation of chlorophyll-specific µ, d^-1^  to photoperiod and PAR level,  for each growth [O~2~] level, and for the blue and red wavebands for growth, for each *P.marinus* strain in this study. The R package *`mgcv`* [@R-mgcv] was used to model the growth rate with smoothing terms and indicate the 90, 50 and 10% quantiles for growth rate across the levels of factors. Only growth rate estimates for which the amplitude of standard error was smaller than 30% of the fitted growth rate were included in the GAM. Our priority was the effects of ecologically relevant blue light on growth trends.  We also included GAM analyses of growth responses to red light, which is not ecophysiologically relevant, but which might prove mechanistically informative [@murphyPhotoinactivationPhotosystemII2017].
 
@@ -791,10 +791,15 @@ knitr::include_graphics(file.path(FiguresIn, "PhotoperiodPurFitsPlots.png"))
 
 \newpage
 
+# Data availability  {.unnumbered}
+All data obtained from the Multicultivator were saved as comma separated values files and are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData.
+Annotated code for data import, transformations and analyses are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Code.  
+
 # Acknowledgements  {.unnumbered}
-Jonah Sheinin (Mount Allison Student) assisted with growth of some cultures for protein analyses, while Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
+Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
 
 
+XXX PLOS requires grant numbers XXX
 # Funding  {.unnumbered}
 To Be Entered through PLoSONe system and deleted here
 Czech Academy of Science visiting fellowship supporting DAC work at AlgaTech (OP)
