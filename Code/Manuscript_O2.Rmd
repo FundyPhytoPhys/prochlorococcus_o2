@@ -631,8 +631,8 @@ from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. S
 ```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
 LabeledMC_cap <- glue("**PSI MCMIX-OD Multicultivator.**",
-                      "Spectral wavebands and light levels are individually controlled for each culture tube.",
-                      "Real time Optical Density (OD) measurements eliminate intrusive subsampling of sterile cultures.",
+                      "Spectral waveband, light level and photoperiod are individually controlled for each culture tube.",
+                      "Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures.",
                       "The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water.",
                       "Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.",
 
@@ -760,7 +760,7 @@ MaxGrowthTable <- PURPARFits %>%
 
 
 knitr::kable(MaxGrowthTable,
-             caption = "The maximum growth rate, µ~max~ (d^-1^) in each O~2~ experiment for each strain. The corresponding photoperiod, PAR level and spectral waveband are indicated.",
+             caption = "The maximum growth rate, µ~max~ (d^-1^) achieved for each O~2~ experiment, for each strain, with the corresponding photoperiod, PAR level and spectral waveband.",
             col.names =  c("Strain",
                           "Photoperiod (h)",
                           "PAR (µmol photons m^-2^ s^-1^)",
@@ -789,7 +789,7 @@ Sarah Arthur (Mount Allison Student) assisted with culturing and setting up Mult
 # Funding  {.unnumbered}
 
 To Be Entered through PLoSONe system and deleted here
-Czech Academy of Science visiting fellowship supporting DAC work at AlgaTech (OP)
+Czech Academy of Science (OP) visiting fellowship supporting DAC work at AlgaTech
 Canada Research Chair in Phytoplankton Ecophysiology (DAC)
 Natural Sciences and Engineering Research Council of Canada, 'Latitude and Light' (DAC)
 Canada Foundation for Innovation (DAC)
