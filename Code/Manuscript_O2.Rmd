@@ -40,21 +40,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: FALSE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: FALSE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -269,7 +269,7 @@ We filtered the dataset of Omar *et al*. [@omarAnnotationGenesEncoding2023], for
 
 Proteins from 13 annotated strains of *P. marinus* were detected across depths and oxygen concentrations in the ocean proteins data set analyzed. We focused our analysis here on photosynthetic protein complexes, grouped by clade. Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) plots the observation of core photosynthetic complexes (Photosystem II, the Cytochromeb6f complex, Phototsystem I, ATP Synthase and Rubisco) across clades, as a function of depth (a proxy for light intensity) and measured [O~2~]. Photosynthetic complexes from HLI (ex. MED4) were detected throughout the water column, predominantly at high [O~2~]. Complexes from clade LLII/III (ex. SS120) and clade LLIV (ex. MIT9313) were detected throughout the water column in high [O~2~] and at depth in low [O~2~] samples. The exclusive assignment of ATP Synthase peptides to clade LLIV (ex. MIT9313) may result from the high conservation of protein sequence for this complex.
 
-XXXMore TextXXX from Amanda & AuroraXXX
+XXX More Text XXX from Amanda & Aurora XXX
 Proteins derived from clade HLXXX ecotypes of *P. marinus* were detected in OMZ at depths up to 200 meters,  with O~2~ of 15 µM. The extent to which [O~2~] defines the niches occupied by different *P. marinus* ecotypes, as compared to potentially covarying environmental variables like photoperiod, light spectrum, and light level, is poorly described.
 
 \newpage
@@ -500,7 +500,7 @@ knitr::include_graphics(file.path(FiguresIn, "BluevsRedPurFitsPlots.png"))
 
 *Prochlorococcus* remain challenging to culture, as their reduced genomes – the smallest of any known oxyphototroph – render them partially dependent upon mutualistic heterotrophic bacteria to detoxify reactive oxygen species [@morrisFacilitationRobustGrowth2008; @morrisDependenceCyanobacteriumProchlorococcus2011]. MED4, SS120 and MIT9313 have been successfully cultured in laboratories  [@mooreComparativePhysiologySynechococcus1995; @mooreCulturingMarineCyanobacterium2007], and used to show that ecotypic classifications correspond to biochemical differences among strains [@bonisteelStrainSpecificDifferences2018].
 
-Under full atmospheric [O~2~] and blue light, LL clades of *Prochlorococcus* are restricted to growth under low light, in part because they suffer photoinhibition of Photosystem II (PSII) through several paths, including direct absorbance of UV or blue light, in parallel with generation of Reactive Oxygen Species (ROS) if the electron flow is slowed [@aroPhotoinhibitionPhotosystemII1993], producing damaging singlet oxygen (^1^O~2~) [@aroPhotoinhibitionPhotosystemII1993; @soitamoPhotoinhibitionMarinePicocyanobacteria2017; @murphyPhotoinactivationPhotosystemII2017; @hakalaEvidenceRoleOxygenevolving2005]. Repair of photoinactivated PSII relies on the removal of damaged PsbA [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], followed by reassembly with newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. Degradation of PsbA is a rate-limiting step in recovery from photoinhibition [@kanervoD1ProteinDegradation1993], mediated largely by a heterohexamer of (FtsH1-FtsH2)~3~, a membrane-bound [@sacharzSubCellularLocation2015; @zakInitialStepsBiogenesis2001] metalloprotease  [(Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto, 2014).  [@adamFtsHProteasesChloroplasts2005; @boehmSubunitOrganizationSynechocystis2012a; @nixonRecentAdvancesUnderstanding2010; @komendaExposedNTerminalTail2007] (Pisareva et al., 2007; Sacharz et al., 2015),  @mannInvolvementFtsHHomologue2000, (AMANDA REF from ALGATECH).
+Under full atmospheric [O~2~] and blue light, LL clades of *Prochlorococcus* are restricted to growth under low light, in part because they suffer photoinhibition of Photosystem II (PSII) through several paths, including direct absorbance of UV or blue light, in parallel with generation of Reactive Oxygen Species (ROS) if the electron flow is slowed [@aroPhotoinhibitionPhotosystemII1993], producing damaging singlet oxygen (^1^O~2~) [@aroPhotoinhibitionPhotosystemII1993; @soitamoPhotoinhibitionMarinePicocyanobacteria2017; @murphyPhotoinactivationPhotosystemII2017; @hakalaEvidenceRoleOxygenevolving2005]. Repair of photoinactivated PSII relies on the removal of damaged PsbA [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], followed by reassembly with newly synthesized PsbA [@nixonRecentAdvancesUnderstanding2010]. Degradation of PsbA is a rate-limiting step in recovery from photoinhibition [@kanervoD1ProteinDegradation1993], mediated largely by a heterohexamer of (FtsH1-FtsH2)~3~, a membrane-bound [@sacharzSubCellularLocation2015; @zakInitialStepsBiogenesis2001] metalloprotease  [(Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto, 2014),  @boehmSubunitOrganizationSynechocystis2012a;  @komendaExposedNTerminalTail2007],  XXX (AMANDA REF from ALGATECH) XXX.
 
 *Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to as FtsH1-4, homologs to the characterized FtsH isoforms of the model freshwater cyanobacterium *Synechocystis* FtsH, and with presumably parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher light HLI MED4 upregulated expression of FtsH1 and FtsH2 [@bonisteelStrainSpecificDifferences2018], homologs to the *Synechocystis* *slr*0228 and *slr*1604, implicated in PSII repair. In contrast, representative LLIV strain MIT9313 showed less overall expression of the FtsH proteases, and thus has fewer FtsH serving each photosystem.  Furthermore, MIT9313 expressed primarily FtsH3, homologous to *Synechocystis* *slr*1463, possibly involved in PSI biogenesis, and FtsH expression did not increase in response to light stress in MIT9313 [@bonisteelStrainSpecificDifferences2018]. Through adaptation to steady low light, clade LLIV *Prochlorococcus* instead allocate resources to processes other than dynamic regulation of PSII repair. 
 
