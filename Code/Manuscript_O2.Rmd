@@ -782,6 +782,7 @@ Annotated code for data import, transformations and analyses are available at ht
 
 # Acknowledgements  {.unnumbered}
 Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
+Sarah Arthur (Mount Allison Student) assisted with culturing and setting up Multicultivator runs. 
 
 
 
