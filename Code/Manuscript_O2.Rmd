@@ -40,21 +40,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: FALSE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -678,58 +678,7 @@ knitr::include_graphics(file.path(FiguresIn, "OverlayPlots.png"))
 
 ```
 
-
-```{r MED4OverlayPlots, fig.cap = MED4OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
-
-MED4OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 grown under three emission wavebands.**",
-                       "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
-                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
-                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
-                       
-                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
-
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "MED4OverlayPlots.png"))
-
-
-```
-
 \newpage
-
-```{r SS120OverlayPlots, fig.cap = SS120OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
-
-SS120OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* SS120 grown under three emission wavebands.",
-                       "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
-                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).",  
-                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
-                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "SS120OverlayPlots.png"))
-
-
-```
-
-
-\newpage
-
-```{r MIT9313OverlayPlots, fig.cap = MIT9313OverlayPlots_cap, fig.height = 6, fig.width = 8, include = FALSE}
-
-MIT9313OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MIT9313 grown under three emission wavebands.**",
-                                "**A.** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
-                       "**B.** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).",  
-                       "**C.**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
-                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
-                       
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "MIT9313OverlayPlots.png"))
-
-
-```
-
-
 
 ```{r PhotoperiodPurFitsPlots,  fig.cap = PhotoperiodPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
@@ -763,9 +712,23 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusLightEnzymes.png"))
 
 ```
 
-
 \newpage
 
+```{r ProchlorococcusEnzymeTable, echo = FALSE }
+
+readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>% 
+  select(EnzymeName, EC, KO) %>% 
+  knitr::kable(.,
+             caption = "Enzymes shown in Figures \\@ref(fig:ProchlorococcusEnzymeKms),  \\@ref(fig:DNARepairFig) and \\@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).",
+            col.names =  c(
+                          "Enzyme Name",
+                          "EC",
+                          "Kegg Orthology")
+             )
+
+```
+
+\newpage
 
 ```{r Generate GrowthTable, include = FALSE }
 
@@ -811,19 +774,6 @@ knitr::kable(MaxGrowthTable,
 \newpage
 
 
-```{r ProchlorococcusEnzymeTable, echo = FALSE }
-
-readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>% 
-  select(EnzymeName, EC, KO) %>% 
-  knitr::kable(.,
-             caption = "Enzymes shown in Figures \\@ref(fig:ProchlorococcusEnzymeKms),  \\@ref(fig:DNARepairFig) and \\@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).",
-            col.names =  c(
-                          "Enzyme Name",
-                          "EC",
-                          "Kegg Orthology")
-             )
-
-```
 
 
 # Data availability  {.unnumbered}

@@ -471,19 +471,7 @@ from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. S
 <p class="caption">(\#fig:OverlayPlots)**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.** **(A,B,C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(D,E,F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(G,H,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.</p>
 </div>
 
-
-
-
 \newpage
-
-
-
-
-\newpage
-
-
-
-
 
 <div class="figure">
 <img src="../Output/Figures/PhotoperiodPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows show levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns are strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (p value &lt; 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line)." width="5196" />
@@ -497,29 +485,7 @@ from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. S
 <p class="caption">(\#fig:ProchlorococcusLightEnzymes)***Prochlorococcus* Genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
 </div>
 
-
 \newpage
-
-
-
-
-
-Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~2~ experiment for each strain. The corresponding photoperiod, PAR level and spectral waveband are indicated.
-
-|Strain  | Photoperiod (h) | PAR (µmol photons m^-2^ s^-1^) | Spectral waveband (nm) | [O~2~] (µM) | µ~max~ (d^-1^) |
-|:-------|:---------------:|:------------------------------:|:----------------------:|:-----------:|:--------------:|
-|MED4    |       16        |              180               |          450           |     250     |      0.68      |
-|MED4    |       12        |               90               |          450           |     25      |      0.65      |
-|MED4    |   All tested    |           All tested           |       All tested       |     2.5     |      0.00      |
-|SS120   |       16        |               90               |       White LED        |     250     |      0.50      |
-|SS120   |        8        |               90               |          450           |     25      |      0.45      |
-|SS120   |       12        |               30               |          660           |     2.5     |      0.15      |
-|MIT9313 |       16        |               30               |          450           |     250     |      0.54      |
-|MIT9313 |       16        |               90               |       White LED        |     25      |      1.01      |
-|MIT9313 |       12        |               90               |          450           |     2.5     |      0.45      |
-
-\newpage
-
 
 
 Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:ProchlorococcusEnzymeKms),  \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).
@@ -662,6 +628,29 @@ Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:Proc
 |DNA ligase (NAD+)                                                |6.5.1.2     |NA             |
 |cytochrome-c oxidase                                             |7.1.1.9     |NA             |
 |Flavodiiron (Flv1a/3a)                                           |NA          |NA             |
+
+\newpage
+
+
+
+
+Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) in each O~2~ experiment for each strain. The corresponding photoperiod, PAR level and spectral waveband are indicated.
+
+|Strain  | Photoperiod (h) | PAR (µmol photons m^-2^ s^-1^) | Spectral waveband (nm) | [O~2~] (µM) | µ~max~ (d^-1^) |
+|:-------|:---------------:|:------------------------------:|:----------------------:|:-----------:|:--------------:|
+|MED4    |       16        |              180               |          450           |     250     |      0.68      |
+|MED4    |       12        |               90               |          450           |     25      |      0.65      |
+|MED4    |   All tested    |           All tested           |       All tested       |     2.5     |      0.00      |
+|SS120   |       16        |               90               |       White LED        |     250     |      0.50      |
+|SS120   |        8        |               90               |          450           |     25      |      0.45      |
+|SS120   |       12        |               30               |          660           |     2.5     |      0.15      |
+|MIT9313 |       16        |               30               |          450           |     250     |      0.54      |
+|MIT9313 |       16        |               90               |       White LED        |     25      |      1.01      |
+|MIT9313 |       12        |               90               |          450           |     2.5     |      0.45      |
+
+\newpage
+
+
 
 
 # Data availability  {.unnumbered}
