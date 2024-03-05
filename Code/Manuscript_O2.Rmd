@@ -40,21 +40,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: FALSE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: FALSE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -620,7 +620,7 @@ and LLIV ecotypes, using terminal restriction fragment length polymorphism analy
 higher, within OMZ, and by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits annotated as derived from SS120 at all depths ranging
 from 20 to 200 m and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120 grew under photoperiods longer than 4 h and showed increasing growth rate with increasing photoperiods.  However, we found *P. marinus* SS120 can potentially exploit more diverse ecological niches within the ocean layers, even in regions with higher levels of blue spectral waveband, but only under O~2~ of 25 µM (Figure \@ref(fig:SS120PAR)). Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] show evidence of LLII/III ecotypes at varying depths from 20 to 30 m and from 75 to 200 µM O~2~ in the oxygen minimum zone (OMZ) of the tropical South Pacific Ocean, illustrating its tolerance of high light levels under low O~2~. SS120 has the potential to thrive in deep temperate zones, specifically during the spring, summer, and fall seasons when the duration of daylight exceeds 4 h, if [O~2~] are near surface saturation of about 250 µM. Under lower oxygen levels of 25 µM, SS120 can also potentially exploit a 4 h photoperiod in the blue waveband, and thus has the potential to inhabit a potential warmed, deep, temperate OMZ, during the winter season.
 
-*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter, or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR, but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM. The deep water environments typical for MIT9313 are relatively nutrient rich, and *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004]. In future work we aim to test whether MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~ environments, or whether PSII generation of O~2~ acts as an electron sink for respiration, using ATP for maintenance and to take up nutrients from the surroundings. Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, thus contributing to maintenance of the low O~2~ environment.
+*Prochlorococcus marinus* MIT9313, a LLIV clade representative, shows potential to inhabit future warmer temperate zones year-round, as it grows under a 4 h photoperiod, expected in winter, or at light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to higher light levels and cumulative diel PUR, but only under low oxygen conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313 carries a gene encoding (S)-2-hydroxy-acid oxidase [@cunaneCrystalStructureAnalysis2005],  with a K~M~ for [O~2~] of ~ 250 µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces H~2~O~2~.  Growth at lower [O~2~] may protect MIT9313 from auto-intoxication from production of H~2~O~2~. We hypothesize that under 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers photoinhibition, resulting from the inactivation of PSII caused by the production of H~2~O~2~. This photoinhibition is compounded by the limited inducible repair for PSII, due to the absence of FtsH 1 and 2  expression in *P. marinus* MIT9313 [@bonisteelStrainSpecificDifferences2018].  MIT9313 shows remarkable ability to thrive under very low [O~2~], potentially allowing it to expand into broader ecological niches. These results are supported by Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein subunits annotated as derived from MIT9313 detected at depths \> 120 m, along with PSII subunits at depths from 50 m to 200 m in regions where O~2~ was 15 µM. Bagby and Chisholm [@bagbyResponseProchlorococcusVarying2015] suggest that O~2~ has a protective role in *Prochlorococcus* under lower carbon dioxide environments when carbon fixation is limited. The deep water environments typical for MIT9313 are relatively nutrient rich, and *Prochlorococcus* take up and metabolize various sugars [@gomez-baenaGlucoseUptakeIts2008; @munoz-marinGlucoseUptakeProchlorococcus2017; @munoz-marinProchlorococcusCanUse2013] and amino acids [@zubkovDepthRelatedAmino2004].  In future work we aim to test whether MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~ environments, or whether PSII generation of O~2~ acts as an electron sink for respiration, using ATP for maintenance and to take up nutrients from the surroundings. Partensky *et al*. [@partenskyComparisonPhotosyntheticPerformances2018] found that in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313 all became net O~2~ consumers, suggesting that the low light levels cause the respiratory chain to consume more O~2~ than the photosynthetic electron transport chain generates, thus contributing to maintenance of the low O~2~ environment.
 
 
 # Supplemental {.unnumbered}
