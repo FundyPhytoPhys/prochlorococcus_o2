@@ -39,7 +39,7 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 # Introduction
 
-This RMD imports culture meta data from a google sheet.
+This RMD imports meta data for MultiCultivator experiments from a google sheet.
 
 
 # Load Libraries and set Project Variables

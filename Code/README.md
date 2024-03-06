@@ -4,6 +4,8 @@ Information about documents added to this folder.
 "README.md"
 
 "Import_MetaData.Rmd"
+Imports meta data for Multicultivator experiments. URL location:
+https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
 
 "Import_MCData.Rmd"
 
