@@ -69,7 +69,6 @@ library(tidyverse)
 library(lubridate)
 library(broom)
 library(zoo)
-library(data.table)
 library(photobiologyWavebands)
 
 ```
@@ -127,7 +126,7 @@ print(MCFiles)
 # Set Target File and read in csv
 ```{r set TargetFile and read csv}
 
-TargetFile <- "20220824_PICO_MC257_RUN86.csv"
+TargetFile <- "20220701_PICO_MCMIX006_RUN80.csv"
 
 
 # This opens a compressed file without decompressing.
@@ -507,6 +506,8 @@ TargetDataMetaFilter %>%
 
 TargetDataMetaFilter <- TargetDataMetaFilter %>% 
 select(-c("MovMAD680", "MovMAD720",  "MovMedian680", "MovMedian720", "IsMovMAD680Outlier", "IsMovMAD720Outlier","ActinicMin_parOD680", "ActinicMid_parOD680", "ActinicMin_parOD720", "ActinicMid_intervalOD720", "abs_time" , "TimeFlag"))
+
+TargetDataMetaFilter
 
 ```
 
