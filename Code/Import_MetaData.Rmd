@@ -57,7 +57,7 @@ library(googlesheets4)
 ```{r set project variables}
 #"..", takes up a level in the directory path
 Project <- "PICO"
-DataOut <- file.path("..","Data")
+DataOut <- file.path("..","Data", "RawData")
 ProjectRows <- c("MiSa|JuNa|SaAr|MaBe|LaGe")
 ProjectCols <- c("PrimaryOperator", "SampleID", "Run", "Strain", "ExpCul", "ExpDate", "ExpStartTime", "Par_ue", "Photoperiod", "Temp_c", "MC", "Tube","O2", "O2_Category", "WL","LightShape", "Optode","OptodeCh","OptodeMeasure", "ExpEndDate")
 
@@ -86,6 +86,6 @@ CultureCatalog <- read_sheet("https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto
   filter(str_detect(SampleID,  ProjectRows)) %>% 
   select(all_of(ProjectCols))
 
-saveRDS(object = CultureCatalog, file = file.path("..", "Data", "CultureCatalog.Rds"), compress = "xz")
+saveRDS(object = CultureCatalog, file = file.path(DataOut, "CultureCatalog.Rds"), compress = "xz")
 
 ```
