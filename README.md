@@ -6,15 +6,15 @@ Provide a brief description of the project - 150 words.
 
 ## Highly Qualified Personnel
 
-- Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 
+- Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 0009-0009-9499-6657
 - Aurora Mattison, XXX institute, XXX email, XXX ORCID
-- Julie Nadeau, XXX institute, XXX email, XXX ORCID
+- Julie Nadeau, Mount Allison University, janadeau@mta.ca,  ORCID 0009-0009-8123-6237
 - Laurel Genge, XXX institute, XXX email, XXX ORCID
 - Maximilian Berthold, mberthold@mta.ca, ORCID 0000-0003-1985-6426
 - Sylwia Śliwińska-Wilczewska, Mount Allison University, ssliwinskawilczews@mta.ca, ORCID 0000-0002-3147-6605
 - Naaman M. Omar, Mount Allison University, nomar@mta.ca, ORCID 0000-0001-9583-2886
 - Ondřej Prášil, Center Algatech, Laboratory of Photosynthesis, prasil@alga.cz, ORCID 0000-0002-0012-4359
-- Amanda M. Cockshutt, email XXX, ORCID 0000-0003-3024-2687
+- Amanda M. Cockshutt, St. Francis Xavier University, email XXX, ORCID 0000-0003-3024-2687
 
 ## Principal Investigators
 
@@ -23,10 +23,8 @@ Provide a brief description of the project - 150 words.
 ## Primary Contact  
 
 - Douglas A. Campbell, Mount Allison University, dcampbel@mta.ca, ORCID 0000-0001-8996-5463
+- Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 0009-0009-9499-6657
 
-## Data sources
-
-- Provide links to any data used from external providers .
 
 ## Funding sources
 
@@ -50,7 +48,7 @@ The software (and version) used to create the dataset.
 
 ## Repo content information
 
-Use the space below to summarize the structure of the repository with a decription of each folder, as applicable.
+XXX DOI pending from BOREALIS? or DRYAD? XXX 
 
 ### MetaDataCatalog
 URL for MetaDataCatalog, or MetaDataCatalog filename:
@@ -58,8 +56,8 @@ https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZ
 
 
 ### Data Dictionary
-URL for Data Dictionary, or Data Dictionary filename:
-https://docs.google.com/spreadsheets/d/1YT3R3UwI9F9DxFCJwukHQ-Hs7fIs0E72duzFqr9QuZs/edit?usp=sharing
+Data Dictionary filename:
+Docs/Prochlorococcus_O2_DataDictionary.csv
 
 ### Data/RawData
 
