@@ -127,7 +127,7 @@ TargetSpectraLong <- TargetSpectraLong %>%
 
 # Read MetaData
 ```{r read locally stored metadata from rds}
-CultureCatalog <- readRDS(file = file.path("..", "Data","CultureCatalog.Rds"))
+CultureCatalog <- readRDS(file = file.path("..", "Data","RawData" ,"CultureCatalog.Rds"))
 
 CultureCatalog <- CultureCatalog %>% 
   select(-c(PrimaryOperator, Temp_c, ExpCul, ExpStartTime, Optode, OptodeCh, OptodeMeasure))

@@ -103,7 +103,7 @@ MCMIXColours
 
 ```{r read locally stored metadata from rds}
 
-CultureCatalog <- readRDS(file = file.path("..", "Data","CultureCatalog.Rds"))
+CultureCatalog <- readRDS(file = file.path("..", "Data",  "RawData","CultureCatalog.Rds"))
 
 ```
 
