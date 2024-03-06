@@ -278,7 +278,7 @@ Proteins derived from clade HLXXX ecotypes of *P. marinus* were detected in OMZ 
 ```{r CladeProchloroPhotosynthDepthO2, fig.cap = CladeProchloroPhotosynthDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 CladeProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
-                       "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 annotated with solid black circles), LLI (*P. marinus* NATL2A annotated with solid black circles), LLII/III (*P. marinus* SS120 annotated with solid black circles) and LLIV (*P. marinus* MIT9313 annotated with solid black circles).",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
                        "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM).",
@@ -539,7 +539,7 @@ Ocean detections of proteins mediating protein metabolism support this interpret
 ```{r CladeProchloroProteinMetabDepthO2, fig.cap = CladeProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 CladeProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
-                       "Protein detections are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 annotated with solid black circles), LLI (*P. marinus* NATL2A annotated with solid black circles), LLII/III (*P. marinus* SS120 annotated with solid black circles) and LLIV (*P. marinus* MIT9313 annotated with solid black circles).",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome.",
                        "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM).",
