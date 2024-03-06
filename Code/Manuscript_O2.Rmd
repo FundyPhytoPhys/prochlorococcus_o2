@@ -90,7 +90,6 @@ library(bookdown)
 library(glue)
 library(cowplot)
 library(ggpubr)
-
 library(png)
 library(cowplot)
 
