@@ -58,7 +58,7 @@ represent sequential time steps.
 
 This works because the OD680 & OD720 data are only episodically, but
 widely, aberrant when a bubble interrupts the measurement, and if the
-MultiCultivator is running properly these bubble aberration events are
+Multicultivator is running properly these bubble aberration events are
 rare.
 
 # Load Libraries
