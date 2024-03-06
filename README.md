@@ -75,17 +75,20 @@ Docs/Prochlorococcus_O2_DataDictionary.csv
 ### Data/ProcessedData
 
 -ProcessedMCData folder contains "TargetFileName_ProcessDataNestGrowth.Rds" generated from Code/Process_MCData.Rmd
--ProcessedOceanData
--ProcessedOlisJazData
+-ProcessedOceanData folder contains "poi.RDS" generated from  XXXXX  and "pro_proteins.RDS" generated from  XXXXX 
+-ProcessedOlisJazData folder contains "PICO_Processed_OlisJazMetaPUR.Rds" generated from Code/Process_OlisJazEmData.Rmd
 
 
 ### Data/CleanData
 
+-CleanedMCData folder contains "PICO_Processed_MCGrowthFits.Rds" generated from Code/"Merge_MCGrowthData.Rmd"
+-"PICO_Merged_GrowthFitsPURPAR.Rds" generated from Code/"Merge_GrowthPURData.Rmd"
+-"ProchlorococcusEnzymeTable.Rds" generated from Code/"Plots_Genome.Rmd"   XXX Check thisXXX
+-"ProchlorococcusGenomeData.Rds" generated from Code/"Plots_Genome.Rmd"   XXX Check thisXXX
+
 Clean data in formats for long-term storage. Modified data with the appropriate column/row headers and data structure.
 
-### Data/ProcessedData
 
-Processed data in formats for long-term storage.
 
 ### Code
 
