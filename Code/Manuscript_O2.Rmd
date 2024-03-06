@@ -780,6 +780,8 @@ knitr::kable(MaxGrowthTable,
 All data obtained from the Multicultivator were saved as comma separated values files and are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData.
 Annotated code for data import, transformations and analyses are available at https://github.com/FundyPhytoPhys/prochlorococcus_o2/Code.  
 
+XXX DOI pending from BOREALIS? or DRYAD? XXX 
+
 # Acknowledgements  {.unnumbered}
 Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
 Sarah Arthur (Mount Allison Student) assisted with culturing and setting up Multicultivator runs. 
