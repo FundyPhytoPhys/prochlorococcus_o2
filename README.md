@@ -6,9 +6,17 @@ Provide a brief description of the project - 150 words.
 
 ## Highly Qualified Personnel
 
-- Name, Institution, email, ORCID 0000-0000-0000-0000
+- Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 
+- Aurora Mattison, XXX institute, XXX email, XXX ORCID
+- Julie Nadeau, XXX institute, XXX email, XXX ORCID
+- Laurel Genge, XXX institute, XXX email, XXX ORCID
+- Maximilian Berthold, mberthold@mta.ca, ORCID 0000-0003-1985-6426
+- Sylwia Śliwińska-Wilczewska, Mount Allison University, ssliwinskawilczews@mta.ca, ORCID 0000-0002-3147-6605
+- Naaman M. Omar, Mount Allison University, nomar@mta.ca, ORCID 0000-0001-9583-2886
+- Ondřej Prášil, Center Algatech, Laboratory of Photosynthesis, prasil@alga.cz, ORCID 0000-0002-0012-4359
+- Amanda M. Cockshutt, email XXX, ORCID 0000-0003-3024-2687
 
-## Principle Investigators
+## Principal Investigators
 
 - Douglas A. Campbell, Mount Allison University, dcampbel@mta.ca, ORCID 0000-0001-8996-5463
 
@@ -26,7 +34,7 @@ Provide a brief description of the project - 150 words.
 
 ## Keywords
 
-List keywords separated by commas
+Prochlorococcus, Oxygen, Photoperiod
 
 ## Additional information and support
 
