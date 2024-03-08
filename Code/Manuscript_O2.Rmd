@@ -41,21 +41,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: FALSE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: FALSE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -571,7 +571,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-Figure \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P. marinus* strains. As expected, *P. marinus* MED4 possesses the largest, most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4 and NATL2A were the only strains to possess a gene encoding deoxyribodipyrimidine photolyase, which, in the presence of blue light, is responsible for repairing DNA damaged by UV light [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possesses a gene encoding DNA ligase, which uses ATP as a cofactor for DNA repair. The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in *P. marinus* MIT9313 and *P. marinus* SS120 explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean surface. Furthermore, the protective effect of lower [O~2~], allowing these strains to grow at higher light, may relate in part to suppression of DNA damage when generation of Reactive Oxygen Species is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010]. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] attributes NATL2A tolerance to short exposures of high light to the presence of the genes encoding photolyase, a gene found in HL clades. The presence of deoxyribodipyrimidine photolyase and absence of DNA ligase (ATP) supports why NATL2A tolerates limited exposure to high light and why NATL2A is unable to fully repair damaged DNA.  *Prochlorococcus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *Prochlorococcus* allow the reactive oxygen species (ROS), H~2~O~2~, to cross the cell membrane [@omarDiffusionalInteractionsMarine2022]; however, accumulation of extracellular H~2~O~2~ remains toxic to *Prochlorococcus* [@morrisFacilitationRobustGrowth2008;  @morrisDependenceCyanobacteriumProchlorococcus2011].
+Figure \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P. marinus* strains. As expected, *P. marinus* MED4 possesses the largest, most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4 and NATL2A were the only strains to possess a gene encoding deoxyribodipyrimidine photolyase (Figure \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes)), which, in the presence of blue light, is responsible for repairing DNA damaged by UV light [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possesses a gene encoding DNA ligase, which uses ATP as a cofactor for DNA repair. The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in *P. marinus* MIT9313 and *P. marinus* SS120 explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean surface. Furthermore, the protective effect of lower [O~2~], allowing these strains to grow at higher light, may relate in part to suppression of DNA damage when generation of Reactive Oxygen Species is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010]. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] attributes NATL2A tolerance to short exposures of high light to the presence of the genes encoding photolyase, a gene found in HL clades. The presence of deoxyribodipyrimidine photolyase and absence of DNA ligase (ATP) supports why NATL2A tolerates limited exposure to high light and why NATL2A is unable to fully repair damaged DNA.  *Prochlorococcus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *Prochlorococcus* allow the reactive oxygen species (ROS), H~2~O~2~, to cross the cell membrane [@omarDiffusionalInteractionsMarine2022]; however, accumulation of extracellular H~2~O~2~ remains toxic to *Prochlorococcus* [@morrisFacilitationRobustGrowth2008;  @morrisDependenceCyanobacteriumProchlorococcus2011].
 
 \newpage
 
@@ -768,6 +768,7 @@ Annotated code for data import, transformations and analyses are available at ht
 
 
 # Acknowledgements  {.unnumbered}
+Miranda Corkum maintained cultures and trained personnel in culture handling.
 Carlie Barnhill (Mount Allison Student) assisted with code for import of multicultivator growth data files.
 Sarah Arthur & Daytona McMackin (Mount Allison Students) assisted with culturing and setting up Multicultivator runs. 
 
