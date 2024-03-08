@@ -397,10 +397,10 @@ ContourLines <- ContourLines$quantileValue
     scale_y_continuous(limits = c(10, 200)) +
     #labs(title = paste("Upper 10% Lmu", GamWL, Proxy, PlotStrain)) + 
     #geom_text(x = 4, y = 200, label = "C", size = 5) +
-    xlab(NULL)+
-      # xlab("Photoperiod (h)") +
-    # ylab("                                  ") +
+     xlab(NULL)+
+     # xlab("Photoperiod (h)") +
       ylab(NULL)+
+    # ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")") +
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
@@ -468,8 +468,8 @@ ContourLines <- ContourLines$quantileValue
     #geom_text(x = 4, y = 200, label = "A", size = 5) +
     xlab(NULL)+
      # xlab("Photoperiod (h)") +
-    # ylab("                                  ") +
       ylab(NULL)+
+    # ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")") +
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
@@ -697,21 +697,17 @@ ContourLines <- ContourLines$quantileValue
     #labs(title = paste("Upper 10% Lmu", GamWL, Proxy, PlotStrain)) + 
     #geom_text(x = 4, y = 200, label = "C", size = 5) +
     xlab(NULL)+
-      # xlab("Photoperiod (h)") +
-    # ylab("                                  ") +
+     # xlab("Photoperiod (h)") +
       ylab(NULL)+
+    # ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")") +
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
     labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
-    theme_classic() +
-    theme(axis.text=element_text(size=20),
+   theme_classic() +
+   theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35),
-          axis.text.y = element_blank(),
-          axis.line.y = element_blank(),
-          axis.ticks.y = element_blank()))
-
+           axis.title.y = element_text(size=35)))
 
 HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
   filter(
@@ -741,13 +737,10 @@ ContourLines <- ContourLines$quantileValue
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
     labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
-   theme_classic() +
-  theme(axis.text=element_text(size=20),
+  theme_classic() +
+   theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=23),
-          axis.text.y = element_blank(),
-          axis.line.y = element_blank(),
-          axis.ticks.y = element_blank()))
+           axis.title.y = element_text(size=35)))
 
 HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
   filter(
@@ -771,19 +764,16 @@ ContourLines <- ContourLines$quantileValue
     #geom_text(x = 4, y = 200, label = "A", size = 5) +
     xlab(NULL)+
      # xlab("Photoperiod (h)") +
-    # ylab("                                  ") +
       ylab(NULL)+
+    # ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")") +
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
     labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-    theme_classic() +
+theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35),
-          axis.text.y = element_blank(),
-          axis.line.y = element_blank(),
-          axis.ticks.y = element_blank()))
+           axis.title.y = element_text(size=35)))
 
 g_legend<-function(a.gplot){
   tmp <- ggplot_gtable(ggplot_build(a.gplot))
@@ -833,10 +823,10 @@ p3_Blue <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourI
 
 ```{r combine red and blue light GAM plots}
 
-CombinedGAM <- plot_grid(p3_Red, p3_Blue)
+CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1) 
 
 x.grob <- textGrob("Photoperiod (h)", 
-                   gp = gpar(fontface="bold", fontsize = 20))
+                   gp = gpar(fontsize = 20))
 
 y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
                    gp = gpar(fontface="bold", fontsize = 20), rot = 90)
@@ -844,6 +834,8 @@ y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")",
 #add to plot
 
 LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
+
+
 
 ```
 
