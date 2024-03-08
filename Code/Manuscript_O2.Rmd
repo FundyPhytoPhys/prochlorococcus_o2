@@ -40,21 +40,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: FALSE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -166,8 +166,7 @@ Metaproteomic datasets were obtained from the KM1128 entry in the BCO-DMO databa
 	i) Peptide sequences and sample identification (ID) number;
 	ii) Sample ID number, station, depth in meters below the surface the sample was collected at, best-hit BLASTP protein and species annotation and the corresponding Uniprot Entry number for the identified proteins;
 	iii) Sample station depth and [O~2~].  
-	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using *tidyverse* package [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 [@RStudio]. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b~6~f (Cytb~6~f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Plastoquinol Terminal Oxidase (PTOX); Plastocyanin (PC); Ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. 
-	Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex. Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen *Prochlorococcus* strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and functions, were inferred by sequence comparisons to the characterized four isoforms of FtsH protease of *Synechocystis* sp. PCC6803 [@bonisteelStrainSpecificDifferences2018].  Data for each strain was plotted against depth and  [O~2~] and sampling station.
+	The depth and [O~2~] were joined to peptide sequence and BLASTP annotations by ID number, depth and station using *tidyverse* package [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 [@RStudio]. The resulting merged dataset was filtered for those *Prochlorococcus* peptides, detected from 0 to 300 m below the surface, annotated as a subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb); Photosystem II (PSII); Cytochrome b~6~f (Cytb~6~f);  Photosystem I (PSI); NADPH Dehydrogenase (NDH); Plastoquinol Terminal Oxidase (PTOX); Plastocyanin (PC); Ferredoxin (Fd); Ribulose-1,5-bisphosphate oxygenase (RUBISCO);  ATP Synthase;  FtsH proteases (FtsH) or ribosomes. Detected peptides were re-annotated for consistency and labelled, where feasible, according to strain, clade, subunit and protein complex. Full protein sequences corresponding to detected proteins were obtained from UniProt (https://www.uniprot.org/) and analyzed in Molecular Evolution and Genetic Analyses X (MEGAX) software  (https://www.megasoftware.net/). Sequences for proteins for each of the thirteen *Prochlorococcus* strains identified in the dataset were aligned with MUSCLE using UPGMA cluster method and a lambda of 24 with a -2.9 gap open penalty and 1.20 hydrophobicity multiplier.  Overall mean pairwise distance between protein sequences was determined using bootstrap variance estimation methods. Maximum likelihood phylogenetic trees were assembled using 1000 bootstrap replications with a 95% site coverage cut off. *Prochlorococcus* FtsH isoform identities, and functions, were inferred by sequence comparisons to the characterized four isoforms of FtsH protease of *Synechocystis* sp. PCC6803 [@bonisteelStrainSpecificDifferences2018].  Data for each strain was plotted against depth and  [O~2~] and sampling station.
 	
 When assessing the presence of a particular protein complex at a sampling location, all peptides belonging to all subunits of the complex were included to give the greatest number of data points. As this data was acquired on a discovery mission rather than through targeted peptide approaches, it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are highly conserved across strains. We are, however, confident in clade classifications for each protein examined. A caveat to interpretation of this data is the peptide detection bias inherent to mass spectrometry XXX Aurora CITATION XXX. The data is also limited by the number and nature of protein spectra in the SEQUEST database: a peptide sequence was not determined unless there is already a known spectrum for that peptide in the SEQUEST database, hence some peptides of interest may not be identifiable. Furthermore, a peptide must be detected above a certain threshold abundance in order to be considered an accurate ‘hit’.
 
@@ -243,9 +242,9 @@ We performed one-way ANOVA to examine statistical differences between Harrison a
 PurParPlot_cap <- glue("**Absorbed peak Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
                        "The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each growth spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles).",
                        "The grey dashed line represents a hypothetical one to one correlation.",
-                       "**A.** is *Prochlorococcus marinus*  MED4.",
-                       "**B.** is *Prochlorococcus marinus*  SS120.",
-                       "**C.** is *Prochlorococcus marinus*  MIT9313.",
+                       "**A.** is *Prochlorococcus marinus* MED4.",
+                       "**B.** is *Prochlorococcus marinus* SS120.",
+                       "**C.** is *Prochlorococcus marinus* MIT9313.",
 
                        .sep = " ")
 
