@@ -38,7 +38,7 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
-date: "2024-03-07"
+date: "2024-03-08"
 output:
   bookdown::html_document2:
     code_folding: show
@@ -127,7 +127,7 @@ We discuss our findings in relation to analyses of genomic sequences [@changBREN
 
 ## MetaProteomics {.unnumbered}
 
-The OceansMap Protein Portal is an open access online data repository (Woods Hole Oceanographic Institute, WHOI) of mass spectroscopy data on marine microbial peptides, sampled from various depths and locations worldwide [@saitoDevelopmentOceanProtein2021]. We screened a subset of the OPP for proteins annotated as from *Prochlorococcus* strains, to identify differential strategies employed by strains living at varying depths and oxygen levels within the marine water column.  We focused on proteins mediating photosynthesis and protein metabolism from depths of 20 to 200 m below the ocean surface. The samples for metaproteomic analyses were collected from 7 locations in the tropical North Pacific ocean along 150 W from 18 N of the equator between October 1, 2011 and October 25, 2011 during the voyage of the R/V Kilo Moana MetZyme cruise [@rollingdecktorepositoryCruiseKM1128RV2015]; original datasets in the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]. Oxygen concentration levels at the location of sampling were recorded. The methodology for sample collection and peptide analysis are described by Saito *et al*. [@saitoMultipleNutrientStresses2014; @saitoNeedlesBlueSea2015].
+The OceansMap Protein Portal is an open access online data repository (Woods Hole Oceanographic Institute, WHOI) of mass spectroscopy data on marine microbial peptides, sampled from various depths and locations worldwide [@saitoDevelopmentOceanProtein2021]. We screened a subset of the OPP for proteins annotated as from *Prochlorococcus* strains, to identify differential strategies employed by strains living at varying depths and oxygen levels within the marine water column.  We focused on proteins mediating photosynthesis and protein metabolism from depths of 20 to 200 m below the ocean surface. The samples for metaproteomic analyses were collected from 7 locations in the tropical North Pacific ocean along 150 W from 18 N of the equator between October 1, 2011 and October 25, 2011 during the voyage of the R/V Kilo Moana MetZyme cruise [@rollingdecktorepositoryCruiseKM1128RV2015]; original datasets in the Biological and Chemical Oceanography Data Management Office (BCO-DMO) repository [@saitoPeptidesTheirSpectral2018]. Oxygen concentration levels at the location of sampling were recorded. The methodology for sample collection and peptide analysis are described by Saito *et al*. [@saitoMultipleNutrientStresses2014; @saitoNeedlesBlueSea2015].
 
 
 ## MetaProteomics bioinformatic analyses  {.unnumbered}
