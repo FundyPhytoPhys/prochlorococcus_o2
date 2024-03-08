@@ -7,10 +7,10 @@ Provide a brief description of the project - 150 words.
 ## Highly Qualified Personnel
 
 - Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 0009-0009-9499-6657
-- Aurora Mattison, XXX institute, XXX email, XXX ORCID
+- Aurora Mattison, XXX institute, ajmattis@student.ubc.ca, XXX ORCID
 - Julie Nadeau, Mount Allison University, janadeau@mta.ca,  ORCID 0009-0009-8123-6237
-- Laurel Genge, XXX institute, XXX email, XXX ORCID
-- Maximilian Berthold, mberthold@mta.ca, ORCID 0000-0003-1985-6426
+- Laurel Genge, XXX institute, XXX email, ORCID 0009-0006-7044-3394
+- Maximilian Berthold, Mount Allison University, mberthold@mta.ca, ORCID 0000-0003-1985-6426
 - Sylwia Śliwińska-Wilczewska, Mount Allison University, ssliwinskawilczews@mta.ca, ORCID 0000-0002-3147-6605
 - Naaman M. Omar, Mount Allison University, nomar@mta.ca, ORCID 0000-0001-9583-2886
 - Ondřej Prášil, Center Algatech, Laboratory of Photosynthesis, prasil@alga.cz, ORCID 0000-0002-0012-4359
