@@ -736,24 +736,22 @@ MaxGrowthTable <- PURPARFits %>%
   mutate(Photoperiod = ifelse(MaxGrowth != 0, Photoperiod,  paste("All tested", sep = " ")),
          Par_ue = ifelse(MaxGrowth != 0, Par_ue, paste("All tested", sep = " ")),
           WL = ifelse(MaxGrowth != 0, WL, paste("All tested", sep = " "))) %>% 
-   relocate(WL, .after = Par_ue) %>%
-   relocate(MaxGrowth, .after = WL) %>% 
-   relocate(O2_uM, .after = WL) %>% 
   arrange(Strain, O2_uM)
 
+MaxGrowthTable
 ```
 
 ```{r MaxGrowthTable, echo = FALSE }
 
 
 knitr::kable(MaxGrowthTable,
-             caption = "The maximum growth rate, µ~max~ (d^-1^) achieved for each O~2~ experiment, for each strain, with the corresponding photoperiod, PAR level and spectral waveband.",
+             caption = "The maximum growth rate, µ~max~ (d^-1^) achieved for each strain under each [O~2~], with the corresponding photoperiod, PAR level and spectral waveband.",
             col.names =  c("Strain",
+                           "[O~2~] (µM)",
+                           "µ~max~ (d^-1^)",
                           "Photoperiod (h)",
                           "PAR (µmol photons m^-2^ s^-1^)",
-                          "Spectral waveband (nm)",
-                          "[O~2~] (µM)",
-                          "µ~max~ (d^-1^)"),
+                          "Spectral waveband (nm)"),
               align = "lccccc"
              )
 ```
