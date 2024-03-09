@@ -303,7 +303,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot red light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
 ``` {r GAM Plot Red WL}
-GamStrain = "MIT9313" # MIT9313 MED4 SS120
+GamStrain = "SS120" # MIT9313 MED4 SS120
 GamColor = "Red" 
 WL_nm = 660 
 PlotWL <- "deltaOD"
@@ -404,7 +404,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
     theme_classic() +
     theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -439,7 +439,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    # labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
   theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -473,7 +473,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+    # labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
     theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -501,20 +501,30 @@ legend2 <- g_legend(g_dummy2)
   limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
 legend3 <- g_legend(g_dummy3)
 
+# comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6),
-                     c(3, 3, 3, 3, 6),
-                     c(2, 2, 2, 2, 5),
-                     c(2, 2, 2, 2, 5)
-                     ,
-                     c(1, 1, 1, 1, 4),
-                     c(1, 1, 1, 1, 4)
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(2, 2, 2, 2, 5),   # For 25 uM O2
+                     c(2, 2, 2, 2, 5),   # For 25 uM O2
+                     c(1, 1, 1, 1, 4),   # For 250 uM O2
+                     c(1, 1, 1, 1, 4)    # For 250 uM O2
                      )
 
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
-p3_Red <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)
-                   
+p3_Red <- grid.arrange(
+  # ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                         # theme(legend.position = 'none'), 
+                       ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                         theme(legend.position = 'none'), 
+                       ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
+                         theme(legend.position = 'none'), 
+                        legend1, 
+                       # legend2, 
+                        legend3, 
+                       layout_matrix = LayoutNiche)
+               
                    # ,  left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
 #  for thesis
@@ -601,7 +611,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot for each strain
 ``` {r GAM Plot Blue WL}
-GamStrain = "MIT9313" # MIT9313 MED4 SS120
+GamStrain = "SS120" # MIT9313 MED4 SS120
 GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
@@ -703,7 +713,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    # labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -736,7 +746,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
+    # labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
   theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -769,7 +779,7 @@ ContourLines <- ContourLines$quantileValue
     # ggh4x::facet_nested(cols = vars(OxygenLabel, O2_uM),
     #                     labeller = labeller(O2_uM = label_value, OxygenLabel = label_value)) +
     #facet_grid(cols = vars(O2_uM)) +
-    labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+    # labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
 theme_classic() +
    theme(axis.text=element_text(size=20),
           axis.title.x = element_text(size=20),
@@ -782,7 +792,7 @@ g_legend<-function(a.gplot){
   legend
 }
 
-# remove Photoperiod from aes when plotting 450 (Blue light)
+
 (g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
  + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
@@ -796,19 +806,29 @@ legend2 <- g_legend(g_dummy2)
   limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
 legend3 <- g_legend(g_dummy3)
 
+# comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6),
-                     c(3, 3, 3, 3, 6),
-                     c(2, 2, 2, 2, 5),
-                     c(2, 2, 2, 2, 5)
-                     ,
-                     c(1, 1, 1, 1, 4),
-                     c(1, 1, 1, 1, 4)
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(2, 2, 2, 2, 5),   # For 25 uM O2
+                     c(2, 2, 2, 2, 5),   # For 25 uM O2
+                     c(1, 1, 1, 1, 4),   # For 250 uM O2
+                     c(1, 1, 1, 1, 4)    # For 250 uM O2
                      )
 
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
-p3_Blue <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourIntO2 + theme(legend.position = 'none'), ContourHighO2 + theme(legend.position = 'none'), legend1, legend2, legend3, layout_matrix = LayoutNiche)  
+p3_Blue <- grid.arrange(
+                        # ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                        #   theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
+                        ContourIntO2 +  labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
+                        ContourHighO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
+                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
+                        # legend1, 
+                        legend2, 
+                        legend3, 
+                        layout_matrix = LayoutNiche)  
 
 # , left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
@@ -823,24 +843,24 @@ p3_Blue <- grid.arrange(ContourLowO2 + theme(legend.position = 'none'), ContourI
 
 ```{r combine red and blue light GAM plots}
 
+#combine red and blue GAM plots
 CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1) 
 
+# common x-axis title
 x.grob <- textGrob("Photoperiod (h)", 
                    gp = gpar(fontsize = 20))
-
+# common y-axis title
 y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
                    gp = gpar(fontface="bold", fontsize = 20), rot = 90)
 
-#add to plot
-
+#add titles to plot
 LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
-
 
 
 ```
 
 ```{r save png}
- ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+ ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(GamStrain, "GAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
 ```
 
 
