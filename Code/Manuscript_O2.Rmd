@@ -1193,7 +1193,7 @@ contrast, representative LLIV strain MIT9313 shows no induction of
 expression of these FtsH protease isoforms when shifted to high light,
 and thus has fewer of these FtsH hexamers serving each photosystem.
 Transcript analysis demonstrates that MIT9313 expressed primarily FtsH3,
-homologous to *Synechocystis* *slr*1463, possibly involved in PSI
+homologous to *Synechocystis* *sll*1463, possibly involved in PSI
 biogenesis [@krynickaFtsH4ProteaseControls2022,
 @konikCyanobacterialFtsH4Protease2024]. This FtsH expression did not
 increase in response to light stress in MIT9313
