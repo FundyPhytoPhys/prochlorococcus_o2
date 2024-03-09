@@ -303,7 +303,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot red light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
 ``` {r GAM Plot Red WL}
-GamStrain = "SS120" # MIT9313 MED4 SS120
+GamStrain = "MIT9313" # MIT9313 MED4 SS120
 GamColor = "Red" 
 WL_nm = 660 
 PlotWL <- "deltaOD"
@@ -406,7 +406,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
     theme_classic() +
-    theme(axis.text=element_text(size=20),
+    theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=35)))# change to 25 and 30 for thesis
           # axis.title.y = element_blank())) 
@@ -441,7 +441,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
-  theme(axis.text=element_text(size=20),
+  theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=23)))# change to 25 and 30 for thesis
           # axis.title.y = element_blank())) 
@@ -475,7 +475,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
     theme_classic() +
-   theme(axis.text=element_text(size=20),
+   theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=35)))# change to 25 and 30 for thesis
           # axis.title.y = element_blank())) 
@@ -503,8 +503,8 @@ legend3 <- g_legend(g_dummy3)
 
 # comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(1, 1, 1, 1, 4),   # For 250 uM O2
@@ -514,14 +514,14 @@ LayoutNiche <- rbind(
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
 p3_Red <- grid.arrange(
-  # ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                         # theme(legend.position = 'none'), 
+                       ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                          theme(legend.position = 'none'), 
                        ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
                          theme(legend.position = 'none'), 
                        ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
                          theme(legend.position = 'none'), 
                         legend1, 
-                       # legend2, 
+                        legend2, 
                         legend3, 
                        layout_matrix = LayoutNiche)
                
@@ -611,7 +611,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot for each strain
 ``` {r GAM Plot Blue WL}
-GamStrain = "SS120" # MIT9313 MED4 SS120
+GamStrain = "MIT9313" # MIT9313 MED4 SS120
 GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
@@ -715,7 +715,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
    theme_classic() +
-   theme(axis.text=element_text(size=20),
+   theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=35)))
 
@@ -748,7 +748,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
   theme_classic() +
-   theme(axis.text=element_text(size=20),
+   theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=35)))
 
@@ -781,7 +781,7 @@ ContourLines <- ContourLines$quantileValue
     #facet_grid(cols = vars(O2_uM)) +
     # labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +  #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
 theme_classic() +
-   theme(axis.text=element_text(size=20),
+   theme(axis.text=element_text(size=15),
           axis.title.x = element_text(size=20),
            axis.title.y = element_text(size=35)))
 
@@ -808,8 +808,8 @@ legend3 <- g_legend(g_dummy3)
 
 # comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(1, 1, 1, 1, 4),   # For 250 uM O2
@@ -819,13 +819,13 @@ LayoutNiche <- rbind(
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
 p3_Blue <- grid.arrange(
-                        # ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                        #   theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourIntO2 +  labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                         ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
+                        ContourIntO2 +  labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourHighO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
+                        ContourHighO2 + labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        # legend1, 
+                         legend1, 
                         legend2, 
                         legend3, 
                         layout_matrix = LayoutNiche)  
@@ -844,7 +844,7 @@ p3_Blue <- grid.arrange(
 ```{r combine red and blue light GAM plots}
 
 #combine red and blue GAM plots
-CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1) 
+CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1, align = "v") 
 
 # common x-axis title
 x.grob <- textGrob("Photoperiod (h)", 
