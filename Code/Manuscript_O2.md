@@ -1042,30 +1042,27 @@ producing damaging singlet oxygen (^1^O~2~)
 @murphyPhotoinactivationPhotosystemII2017;
 @hakalaEvidenceRoleOxygenevolving2005]. Repair of photoinactivated PSII
 relies on the removal of damaged PsbA
-[@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005],
+[@mannInvolvementFtsHHomologue2000; @komendaExposedNTerminalTail2007],
 followed by reassembly with newly synthesized PsbA
 [@nixonRecentAdvancesUnderstanding2010]. Degradation of PsbA is a
 rate-limiting step in recovery from photoinhibition
 [@kanervoD1ProteinDegradation1993], mediated largely by a heterohexamer,
-termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound
-[@sacharzSubCellularLocation2015; @zakInitialStepsBiogenesis2001]
-metalloprotease [(Chiba et al., 2002) (Yoshioka-Nishimura and Yamamoto,
-2014), @boehmSubunitOrganizationSynechocystis2012a;
-@komendaExposedNTerminalTail2007].
+termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound metalloprotease [@chibaMembraneProteinDegradation2002; @boehmSubunitOrganizationSynechocystis2012a; @sacharzSubCellularLocation2015].
 
-*Prochlorococcus* genomes encode 4 FtsH proteins, henceforth referred to
+
+*Prochlorococcus* genomes encode 4 FtsH proteins [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], henceforth referred to
 as FtsH1-4, homologs to the characterized FtsH isoforms of the model
 freshwater cyanobacterium *Synechocystis* FtsH, and with presumably
 parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher
 light, HLI MED4 upregulates expression of FtsH1 and FtsH2
 [@bonisteelStrainSpecificDifferences2018], homologs to the
-*Synechocystis* *slr*0228 and *slr*1604, implicated in PSII repair. In
+*Synechocystis* *slr*0228 and *slr*1604, implicated in PSII repair [@adamFtsHProteasesChloroplasts2005; @boehmSubunitOrganizationSynechocystis2012a]. In
 contrast, representative LLIV strain MIT9313 shows no induction of
 expression of these FtsH protease isoforms when shifted to high light,
-and thus has fewer of these FtsH hexamers serving each photosystem.
+and thus has fewer of these FtsH hexamers serving each photosystem [@bonisteelStrainSpecificDifferences2018].
 Transcript analysis demonstrates that MIT9313 expressed primarily FtsH3,
 homologous to *Synechocystis* *sll*1463, possibly involved in PSI
-biogenesis [@krynickaFtsH4ProteaseControls2022,
+biogenesis [@mannInvolvementFtsHHomologue2000; @krynickaFtsH4ProteaseControls2022,
 @konikCyanobacterialFtsH4Protease2024]. This FtsH expression did not
 increase in response to light stress in MIT9313
 [@bonisteelStrainSpecificDifferences2018]. Through adaptation to steady
