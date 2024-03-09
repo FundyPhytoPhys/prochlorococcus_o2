@@ -712,7 +712,7 @@ depth and at low [O~2~], compared to other strains.
 ```{r CladeProchloroPhotosynthDepthO2, fig.cap = CladeProchloroPhotosynthDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 CladeProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
-                       "Protein detections (circles) are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
                        "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM).",
@@ -1251,7 +1251,7 @@ requirement for protein turnover under low [O~2~].
 ```{r CladeProchloroProteinMetabDepthO2, fig.cap = CladeProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 CladeProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
-                       "Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X axis) and depth (m) (Y axis) at sample origin.",
+                       "Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 protein detection annotated as solid black circles), LLI (*P. marinus* NATL2A protein detection annotated as solid black circles), LLII/III (*P. marinus* SS120 protein detection annotated as solid black circles) and LLIV (*P. marinus* MIT9313 protein detection annotated as solid black circles).",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome.",
                        "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM).",
@@ -1559,14 +1559,13 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 ```{r deltaODLogGrowthPlot, fig.cap = deltaODLogGrowthPlot_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
 deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.**",
-                      "The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~;
-$\\Delta$OD)",
-                      "The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the actinic spectral waveband: 450 nm (blue points) or 660 nm (red points).",
-                      "The x-axis is time in hours (h).",
-                      "The green points are $\\Delta$OD measurements taken every 5 minutes.",
-                      "The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). ",
-                      "The gold points are the residuals of the fit.",
-                      "Meta data associated with each Multicultivator tube are in columns.",
+                                 "The x-axis is time in hours (h).",
+                                 "The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\\Delta$OD)",
+                                 "The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the actinic spectral waveband: 450 nm (blue points) or 660 nm (red points).",
+                                 "The green points are $\\Delta$OD measurements taken every 5 minutes.",
+                                 "The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm).",
+                                 "The gold points are the residuals of the fit.",
+                                 "Meta data associated with each Multicultivator tube are in columns.",
 
                        .sep = " ")
 
@@ -1577,7 +1576,7 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 
 ```{r OverlayPlots, fig.cap = OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
-OverlayPlots_cap <- glue("**Normalized absorbance and Photosynthetically Usable Radiation for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.**",
+OverlayPlots_cap <- glue("**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.**",
                        "**(A,B,C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
                        "**(D,E,F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
                        "**(G,H,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
