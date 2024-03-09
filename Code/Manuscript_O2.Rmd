@@ -337,7 +337,7 @@ MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) repr
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MED4_Oxy_.png"))
+knitr::include_graphics(file.path(FiguresIn, "MED4GAM.png"))
 
 
 ```
@@ -386,7 +386,7 @@ SS120GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) repre
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_SS120_Oxy_.png"))
+knitr::include_graphics(file.path(FiguresIn, "SS120GAM.png"))
 
 
 ```
@@ -439,7 +439,7 @@ MIT9313GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) rep
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "PICO_Hypervolume_GAM_MIT9313_Oxy_.png"))
+knitr::include_graphics(file.path(FiguresIn, "MIT9313GAM.png"))
 
 
 ```
