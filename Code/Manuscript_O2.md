@@ -39,7 +39,7 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
-date: "2024-03-09"
+date: "2024-03-10"
 output:
   bookdown::html_document2:
     code_folding: show
@@ -98,7 +98,7 @@ above, and exploits high cumulative diel photon doses, yet shows
 accelerated growth when the cost of photoinactivation is lowered under
 red, vs. blue, actinic light. MED4 relies upon an alternative oxidase to
 balance electron transport, which may exclude it from growth under our
-lowest 2.5 µmol O~2~ L^-1^ condition. SS120 from Clade LLIII is
+lowest 2.5 µmol O~2~ L^-1^ condition. SS120 from Clade LLII/III is
 restricted to low light under full 250 µmol O~2~ L^-1^ , shows expanded
 light exploitation under 25 µmol O~2~ L^-1^, but is excluded from growth
 under 2.5 µmol O~2~ L^-1^. Intermediate oxygen suppresses the cost of
@@ -518,8 +518,8 @@ informative [@murphyPhotoinactivationPhotosystemII2017].
 ## Estimation of photosynthetically usable radiation {.unnumbered}
 
 To estimate the Photosynthetic Usable Radiation (PUR), a proxy of
-incident photons that can be absorbed by the cells, for each *P.
-marinus* ecotype, the imposed Photosynthetic Active Radiation (PAR) was
+incident photons that can be absorbed by the cells, for each *P. marinus* ecotype, 
+the actinic Photosynthetic Active Radiation (PAR) was
 first determined using the reported delivery of sinusoidal diel PAR
 regimes by the Multicultivators, point validated using a LI-250 quantum
 sensor (LI-COR Inc.,Lincoln, NE, USA). An emission profile from 400 nm
@@ -559,9 +559,9 @@ actinic PAR (µmol photons m^-2^ s^-1^) levels using the equation
 \@ref(eq:PUR) from [@morelAvailableUsableStored1978]; where P(λ) is the
 weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR),
 E(λ) is the imposed growth light emission spectrum from equation
-\@ref(eq:WeightedPUR) and PAR is the imposed peak light level (µmol
+\@ref(eq:WeightedPUR) and PAR is the actinic peak light level (µmol
 photons m^-2^ s^-1^). Figure (\@ref(fig:PurParPlot)) shows the
-calculated peak PUR (µmol photons m^-2^ d^-1^) versus imposed actinic
+calculated peak PUR (µmol photons m^-2^ d^-1^) vs. actinic
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
@@ -590,11 +590,11 @@ photoperiod (h).
 \end{equation}
 ```
 Figure \@ref(fig:OverlayPlots) provide visual representations of PUR,
-the black solid line and shaded area, in relation to the imposed PAR,
-the dotted line, under each imposed spectral wavebands for *P. marinus*
+the black solid line and shaded area, in relation to the actinic PAR,
+the dotted line, under each actinic spectral wavebands for *P. marinus*
 MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Figure
 (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR
-versus imposed PAR for each *P. marinus* and each spectral waveband.
+vs. actinic PAR for each *P. marinus* and each spectral waveband.
 
 We performed one-way ANOVA to examine statistical differences between
 Harrison and Platt
@@ -606,7 +606,7 @@ to examine statistical differences between Harrison and Platt
 model fit to each photoperiod (4 h, 8 h, 12 h, 16 h) and pooled
 photoperiod growth data for each combination of strain and [O~2~].
 Photoperiod growth data that showed complete growth inhibition for each
-combination of strain, [O~2~] and imposed spectral waveband were omitted
+combination of strain, [O~2~] and actinic spectral waveband were omitted
 from the pooled photoperiod model. Statistical differences were
 determined at p \< 0.05.
 
@@ -650,7 +650,7 @@ EC and KO numbers can be found in Table
 Proteins from 13 annotated strains of *P. marinus* were detected across
 depths and oxygen concentrations in the ocean proteins data set
 analyzed. We focused our analysis here on core photosynthetic protein
-complexes, for clades HL, LLI, LLIII and LLIV (Figure
+complexes, for clades HL, LLI, LLII/III and LLIV (Figure
 \@ref(fig:CladeProchloroPhotosynthDepthO2) as a function of depth (a
 proxy for light intensity) and measured [O~2~]. Photosynthetic complexes
 from HLI (including strain MED4) were detected throughout the water
@@ -670,8 +670,8 @@ depth and at low [O~2~], compared to other strains.
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
+<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
+<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
 </div>
 
 \newpage
@@ -697,7 +697,7 @@ to analyze the interactive growth responses of *Prochlorococcus* strains
 to varying [O~2~], spectral wavebands and photoperiods.
 
 *Prochlorococcus marinus* MED4, clade HLI, growth under 250 µM O~2~
-increased with higher imposed PAR and longer photoperiods (Figure
+increased with higher actinic PAR and longer photoperiods (Figure
 \@ref(fig:MED4PAR)), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
 maximum growth rate (µ~max~) was
@@ -722,8 +722,8 @@ MED4 was exposed to 8 and 12 h photoperiods.
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/MED4PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:MED4PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
+<img src="../Output/Figures/MED4PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
+<p class="caption">(\#fig:MED4PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
 </div>
 
 \newpage
@@ -800,8 +800,8 @@ photoperiods. Red light 16 h photoperiod experiments were not performed
 due to time constraints. \newpage
 
 <div class="figure">
-<img src="../Output/Figures/SS120PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:SS120PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
+<img src="../Output/Figures/SS120PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
+<p class="caption">(\#fig:SS120PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
 </div>
 
 \newpage
@@ -887,8 +887,8 @@ performed due to time constraints.
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/MIT9313PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:MIT9313PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the actinic spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
+<img src="../Output/Figures/MIT9313PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
+<p class="caption">(\#fig:MIT9313PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^. Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
 </div>
 
 \newpage
@@ -927,8 +927,8 @@ MIT9313 as a LL clade is dependent upon [O~2~] and light spectra.
 Cumulative diel PUR can potentially collapse photoperiod, PAR and
 spectral wavebands to a common metric of usable photosynthetically
 active light per day. Cumulative diel PUR (µmol photons m^-2^ d^-1^) was
-calculated from the imposed PUR (µmol photons m^-2^ s^-1^) and
-photoperiod (h). We plotted growth rates vs. cumulative diel PUR to
+calculated from the actinic PUR (µmol photons m^-2^ s^-1^) and
+photoperiod (h) (Equation \@ref(eq:SumPURDay)). We plotted growth rates vs. cumulative diel PUR to
 determine whether growth is a simple response to diel PUR, across
 imposed spectral wavebands, and photoperiods, or whether spectral
 wavebands or photoperiods have specific or interactive influences on
@@ -1052,7 +1052,7 @@ termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound metalloprotease [
 
 *Prochlorococcus* genomes encode 4 FtsH proteins [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], henceforth referred to
 as FtsH1-4, homologs to the characterized FtsH isoforms of the model
-freshwater cyanobacterium *Synechocystis* FtsH, and with presumably
+freshwater cyanobacterium *Synechocystis sp.* PCC6803, and with presumably
 parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher
 light, HLI MED4 upregulates expression of FtsH1 and FtsH2
 [@bonisteelStrainSpecificDifferences2018], homologs to the
@@ -1063,7 +1063,7 @@ and thus has fewer of these FtsH hexamers serving each photosystem [@bonisteelSt
 Transcript analysis demonstrates that MIT9313 expressed primarily FtsH3,
 homologous to *Synechocystis* *sll*1463, possibly involved in PSI
 biogenesis [@mannInvolvementFtsHHomologue2000; @krynickaFtsH4ProteaseControls2022,
-@konikCyanobacterialFtsH4Protease2024]. This FtsH expression did not
+@konikCyanobacterialFtsH4Protease2024]. FtsH3 expression did not
 increase in response to light stress in MIT9313
 [@bonisteelStrainSpecificDifferences2018]. Through adaptation to steady
 low light, clade LLIV *Prochlorococcus* instead allocate resources to
@@ -1079,8 +1079,8 @@ Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and 
 |Organism                            |  Homolog 1  |  Homolog 2  |   Homolog 3    |   Homolog 4    |
 |:-----------------------------------|:-----------:|:-----------:|:--------------:|:--------------:|
 |*Prochlorococcus marinus*           |    FtsH1    |    FtsH2    |     FtsH3      |     FtsH4      |
-|*Synechocystis sp. PCC6803*         |  *Slr*0228  |  *Slr*1604  |   *Sll*1463    |   *Slr*1390    |
-|*Synechocystis sp. PCC6803* isoform |    FtsH2    |    FtsH3    |     FtsH4      |     FtsH1      |
+|*Synechocystis sp.* PCC6803         |  *Slr*0228  |  *Slr*1604  |   *Sll*1463    |   *Slr*1390    |
+|*Synechocystis sp.* PCC6803 isoform |    FtsH2    |    FtsH3    |     FtsH4      |     FtsH1      |
 |Function                            | PSII Repair | PSII Repair | PSI biogenesis | Cell viability |
 
 \newpage
@@ -1105,8 +1105,8 @@ requirement for protein turnover under low [O~2~].
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 protein detection annotated as solid black circles), LLI (*P. marinus* NATL2A protein detection annotated as solid black circles), LLII/III (*P. marinus* SS120 protein detection annotated as solid black circles) and LLIV (*P. marinus* MIT9313 protein detection annotated as solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 protein detection annotated as solid black circles), LLI (*P. marinus* NATL2A protein detection annotated as solid black circles), LLII/III (*P. marinus* SS120 protein detection annotated as solid black circles) and LLIV (*P. marinus* MIT9313 protein detection annotated as solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
+<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
+<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
 </div>
 
 \newpage
@@ -1371,8 +1371,8 @@ the low O~2~ environment.
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/deltaODLogGrowthPlot.png" alt="**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the actinic spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns." width="3543" />
-<p class="caption">(\#fig:deltaODLogGrowthPlot)**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the actinic spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns.</p>
+<img src="../Output/Figures/deltaODLogGrowthPlot.png" alt="**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns." width="3543" />
+<p class="caption">(\#fig:deltaODLogGrowthPlot)**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns.</p>
 </div>
 
 \newpage

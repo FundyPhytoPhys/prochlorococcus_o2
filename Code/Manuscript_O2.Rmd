@@ -128,7 +128,7 @@ above, and exploits high cumulative diel photon doses, yet shows
 accelerated growth when the cost of photoinactivation is lowered under
 red, vs. blue, actinic light. MED4 relies upon an alternative oxidase to
 balance electron transport, which may exclude it from growth under our
-lowest 2.5 µmol O~2~ L^-1^ condition. SS120 from Clade LLIII is
+lowest 2.5 µmol O~2~ L^-1^ condition. SS120 from Clade LLII/III is
 restricted to low light under full 250 µmol O~2~ L^-1^ , shows expanded
 light exploitation under 25 µmol O~2~ L^-1^, but is excluded from growth
 under 2.5 µmol O~2~ L^-1^. Intermediate oxygen suppresses the cost of
@@ -689,7 +689,7 @@ EC and KO numbers can be found in Table
 Proteins from 13 annotated strains of *P. marinus* were detected across
 depths and oxygen concentrations in the ocean proteins data set
 analyzed. We focused our analysis here on core photosynthetic protein
-complexes, for clades HL, LLI, LLIII and LLIV (Figure
+complexes, for clades HL, LLI, LLII/III and LLIV (Figure
 \@ref(fig:CladeProchloroPhotosynthDepthO2) as a function of depth (a
 proxy for light intensity) and measured [O~2~]. Photosynthetic complexes
 from HLI (including strain MED4) were detected throughout the water
