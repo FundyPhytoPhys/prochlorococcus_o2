@@ -591,7 +591,7 @@ weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR),
 E(λ) is the imposed growth light emission spectrum from equation
 \@ref(eq:WeightedPUR) and PAR is the actinic peak light level (µmol
 photons m^-2^ s^-1^). Figure (\@ref(fig:PurParPlot)) shows the
-calculated peak PUR (µmol photons m^-2^ d^-1^) versus actinic
+calculated peak PUR (µmol photons m^-2^ d^-1^) vs. actinic
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
@@ -624,7 +624,7 @@ the black solid line and shaded area, in relation to the actinic PAR,
 the dotted line, under each actinic spectral wavebands for *P. marinus*
 MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Figure
 (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR
-versus actinic PAR for each *P. marinus* and each spectral waveband.
+vs. actinic PAR for each *P. marinus* and each spectral waveband.
 
 We performed one-way ANOVA to examine statistical differences between
 Harrison and Platt
