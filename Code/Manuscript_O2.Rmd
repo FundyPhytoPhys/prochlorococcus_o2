@@ -1180,7 +1180,7 @@ termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound metalloprotease [
 
 *Prochlorococcus* genomes encode 4 FtsH proteins [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], henceforth referred to
 as FtsH1-4, homologs to the characterized FtsH isoforms of the model
-freshwater cyanobacterium *Synechocystis* FtsH, and with presumably
+freshwater cyanobacterium *Synechocystis sp. PCC6803*, and with presumably
 parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher
 light, HLI MED4 upregulates expression of FtsH1 and FtsH2
 [@bonisteelStrainSpecificDifferences2018], homologs to the
@@ -1191,7 +1191,7 @@ and thus has fewer of these FtsH hexamers serving each photosystem [@bonisteelSt
 Transcript analysis demonstrates that MIT9313 expressed primarily FtsH3,
 homologous to *Synechocystis* *sll*1463, possibly involved in PSI
 biogenesis [@mannInvolvementFtsHHomologue2000; @krynickaFtsH4ProteaseControls2022,
-@konikCyanobacterialFtsH4Protease2024]. This FtsH expression did not
+@konikCyanobacterialFtsH4Protease2024]. FtsH3 expression did not
 increase in response to light stress in MIT9313
 [@bonisteelStrainSpecificDifferences2018]. Through adaptation to steady
 low light, clade LLIV *Prochlorococcus* instead allocate resources to
