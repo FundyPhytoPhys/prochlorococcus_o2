@@ -1180,7 +1180,7 @@ termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound metalloprotease [
 
 *Prochlorococcus* genomes encode 4 FtsH proteins [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], henceforth referred to
 as FtsH1-4, homologs to the characterized FtsH isoforms of the model
-freshwater cyanobacterium *Synechocystis sp. PCC6803*, and with presumably
+freshwater cyanobacterium *Synechocystis sp.* PCC6803, and with presumably
 parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher
 light, HLI MED4 upregulates expression of FtsH1 and FtsH2
 [@bonisteelStrainSpecificDifferences2018], homologs to the
@@ -1201,7 +1201,7 @@ processes other than dynamic regulation of PSII repair.
 
 ```{r BuildFtsHtable, echo = FALSE}
 
-FtsHTable <- tibble(Organism = c("*Prochlorococcus marinus*", "*Synechocystis sp. PCC6803*", "*Synechocystis sp. PCC6803* isoform", "Function"),
+FtsHTable <- tibble(Organism = c("*Prochlorococcus marinus*", "*Synechocystis sp.* PCC6803", "*Synechocystis sp.* PCC6803 isoform", "Function"),
                     FtsH1 = c("FtsH1", "*Slr*0228", "FtsH2", "PSII Repair"),
                     FtsH2 = c("FtsH2", "*Slr*1604", "FtsH3", "PSII Repair"),
                     FtsH3 = c("FtsH3", "*Sll*1463", "FtsH4", "PSI biogenesis"),
