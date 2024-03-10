@@ -772,7 +772,7 @@ MED4 was exposed to 8 and 12 h photoperiods.
 
 MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).**",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                    "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                    "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
                     "Colours represent the actinic spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
@@ -872,7 +872,7 @@ due to time constraints. \newpage
 
 SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). **",
                      "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                       "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                       "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
                     "Colours represent the actinic spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
                     
@@ -982,7 +982,7 @@ performed due to time constraints.
 
 MIT9313PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). **",
                        "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                       "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                       "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
                     "Colours represent the actinic spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
@@ -1247,10 +1247,10 @@ requirement for protein turnover under low [O~2~].
 ```{r CladeProchloroProteinMetabDepthO2, fig.cap = CladeProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
 CladeProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
-                       "Protein detections (annotated as solid grey circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
-                       "Rows separate data annotated as from *Prochlorococcus* clades: HLI (*P. marinus* MED4 protein detection annotated as solid black circles), LLI (*P. marinus* NATL2A protein detection annotated as solid black circles), LLII/III (*P. marinus* SS120 protein detection annotated as solid black circles) and LLIV (*P. marinus* MIT9313 protein detection annotated as solid black circles).",
+                       "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
+                       "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome.",
-                       "Culture growth experimental conditions indicated by horizontal grey lines for depths approximating Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^) and vertical grey lines for [O~2~] (µM).",
+                       "For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating imposed peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM).",
                        "Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].",
  .sep = " ")
 
