@@ -99,7 +99,7 @@ accelerated growth when the cost of photoinactivation is lowered under
 red, vs. blue, actinic light. MED4 relies upon an alternative oxidase to
 balance electron transport, which may exclude it from growth under our
 lowest 2.5 µmol O~2~ L^-1^ condition. SS120 from Clade LLII/III is
-restricted to low light under full 250 µmol O~2~ L^-1^ , shows expanded
+restricted to low light under full 250 µmol O~2~ L^-1^, shows expanded
 light exploitation under 25 µmol O~2~ L^-1^, but is excluded from growth
 under 2.5 µmol O~2~ L^-1^. Intermediate oxygen suppresses the cost of
 PSII photoinactivation, and enzymatic production of H~2~O~2~ in SS120,
@@ -1354,7 +1354,7 @@ sink for respiration, using ATP for maintenance and to take up nutrients
 from the surroundings. Partensky *et al*.
 [@partenskyComparisonPhotosyntheticPerformances2018] indeed found that
 in the low-light conditions found in the OMZ, MED4, SS120 and MIT9313
-all became net O~2~ consumers, suggesting that the low light levels
+all became net O~2~ consumers, suggesting that low light levels
 cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
