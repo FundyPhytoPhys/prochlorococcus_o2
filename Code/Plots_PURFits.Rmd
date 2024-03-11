@@ -1243,7 +1243,8 @@ remove(AllWL)
 
 ```{r Pur plot strain faceted in columns , fig.height=10, fig.width=10}
 
-scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
+scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x)))}
+
 
 BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
@@ -1275,7 +1276,7 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
   scale_colour_manual(values = MCMIXColours, labels = c("660 nm", "450 nm")) +
-  scale_linetype_manual(values = c("solid", "dashed"), labels = c("P value < 0.05", "P value > 0.05")) +
+  scale_linetype_manual(values = c("solid", "dashed"), labels = c(italic("P") ~ "value <0.05", italic("P") ~ "value >0.05")) +
   scale_shape_manual(values = PhotoperiodShapes, labels = c("16 h", "12 h", "8 h", "4 h") )  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), cols = vars(Strain), 
                     labeller = labeller(Strain = label_value, O2_uM = label_value, OxygenLabel = label_value)) +
