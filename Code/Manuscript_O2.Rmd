@@ -1010,8 +1010,7 @@ between 30 to 100 µmol photons m^-2^ s^-1^ PAR. Figure
 \@ref(fig:MIT9313GAM)F shows that MIT9313 maintains growth even under
 2.5 µM O~2~, under photoperiods between 4 and 8 h and peak blue PAR
 between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
-MIT9313 as a LL clade is dependent upon [O~2~] and light spectra.
-(Figure \@ref(fig:MIT9313GAM)E).
+MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Figure \@ref(fig:MIT9313GAM)E).
 
 \newpage
 
