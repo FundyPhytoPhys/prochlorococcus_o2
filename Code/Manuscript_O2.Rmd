@@ -287,7 +287,7 @@ We used the OceansMap Protein Portal (OPP;
 <https://proteinportal.whoi.edu/>) [@saitoDevelopmentOceanProtein2021]
 to analyze the distribution of proteins from clades of *P. marinus* in
 samples taken across a range of [O~2~] and depth, which in turn
-correlates to peak light at the site of sampling. In parallel we
+correlates to depth attenuated peak light at the site of sampling. In parallel we
 analyzed the growth and physiological responses of representative
 strains from three clades of *P. marinus* under a matrix of [O~2~],
 light levels, spectral waveband ranges, and photoperiods, to approximate
@@ -1213,7 +1213,7 @@ FtsHTable <- tibble(Organism = c("*Prochlorococcus marinus*", "*Synechocystis sp
 ```{r FtsHTable, fig.height = 6, fig.width = 10, include = TRUE, echo = FALSE}
 
 knitr::kable(FtsHTable,
-             caption = "FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homology determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.",
+             caption = "FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homologies between *Prochlorococcus* and *Synechocystis* were determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.",
               col.names =  c("Organism",
                           "Homolog 1",
                           "Homolog 2",
