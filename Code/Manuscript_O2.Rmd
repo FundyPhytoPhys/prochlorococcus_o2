@@ -529,7 +529,7 @@ growth trajectory.
 Figure \@ref(fig:deltaODLogGrowthPlot) is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
 measurements for each tube in a Multicultivator. The residuals of the
-logistic growth curve fit are shown. The actinic PAR (µmol photons m^-2^ s^-1^) are plotted for each tube and illustrates the applied photoperiod (h) regimes.
+logistic growth curve fit are shown. The imposed PAR (µmol photons m^-2^ s^-1^) are plotted for each tube and illustrates the applied photoperiod (h) regimes.
 
 A Generalized Additive Model (GAM) [@woodGeneralizedAdditiveModels2017]
 was applied to the relation of chlorophyll-specific µ, d^-1^ to
@@ -549,7 +549,7 @@ informative [@murphyPhotoinactivationPhotosystemII2017].
 
 To estimate the Photosynthetic Usable Radiation (PUR), a proxy of
 incident photons that can be absorbed by the cells, for each *P. marinus* ecotype, 
-the actinic Photosynthetic Active Radiation (PAR) was
+the imposed Photosynthetic Active Radiation (PAR) was
 first determined using the reported delivery of sinusoidal diel PAR
 regimes by the Multicultivators, point validated using a LI-250 quantum
 sensor (LI-COR Inc.,Lincoln, NE, USA). An emission profile from 400 nm
@@ -584,14 +584,14 @@ spectrum of the imposed LED growth light, over 400 nm to 700 nm.
   (\#eq:WeightedPUR)
 \end{equation}
 ```
-Actinic PUR levels (µmol photons m^-2^ s^-1^) were calculated from
-actinic PAR (µmol photons m^-2^ s^-1^) levels using the equation
+PUR levels (µmol photons m^-2^ s^-1^) were calculated from
+imposed PAR (µmol photons m^-2^ s^-1^) levels using the equation
 \@ref(eq:PUR) from [@morelAvailableUsableStored1978]; where P(λ) is the
 weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR),
 E(λ) is the imposed growth light emission spectrum from equation
-\@ref(eq:WeightedPUR) and PAR is the actinic peak light level (µmol
+\@ref(eq:WeightedPUR) and PAR is the imposed peak light level (µmol
 photons m^-2^ s^-1^). Figure (\@ref(fig:PurParPlot)) shows the
-calculated peak PUR (µmol photons m^-2^ d^-1^) vs. actinic
+calculated peak PUR (µmol photons m^-2^ d^-1^) vs. imposed
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
@@ -608,9 +608,8 @@ curves is equivalent to the area of a triangular photoregime of
 equivalent photoperiod (Campbell, unpub), therefore the equation to
 determine the cumulative diel PUR (µmol photons m^-2^ d^-1^) is one half
 of the base (photoperiod) multiplied by the height (PUR) (Equation
-\@ref(eq:SumPURDay)); where PUR is the actinic light calculated from
-equation \@ref(eq:PUR) (µmol photons m^-2^ s^-1^), 3600 is the time
-conversion from seconds to hour and photoperiod is the imposed
+\@ref(eq:SumPURDay)); where PUR is the usable light (µmol photons m^-2^ s^-1^) calculated from
+equation \@ref(eq:PUR), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
 photoperiod (h).
 
 ```{=tex}
@@ -620,11 +619,11 @@ photoperiod (h).
 \end{equation}
 ```
 Figure \@ref(fig:OverlayPlots) provide visual representations of PUR,
-the black solid line and shaded area, in relation to the actinic PAR,
-the dotted line, under each actinic spectral wavebands for *P. marinus*
+the black solid line and shaded area, in relation to the imposed PAR,
+the dotted line, under each imposed spectral wavebands for *P. marinus*
 MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Figure
 (\@ref(fig:PurParPlot)) shows the relationship between calculated PUR
-vs. actinic PAR for each *P. marinus* and each spectral waveband.
+vs. imposed PAR for each *P. marinus* and each spectral waveband.
 
 We performed one-way ANOVA to examine statistical differences between
 Harrison and Platt
@@ -636,7 +635,7 @@ to examine statistical differences between Harrison and Platt
 model fit to each photoperiod (4 h, 8 h, 12 h, 16 h) and pooled
 photoperiod growth data for each combination of strain and [O~2~].
 Photoperiod growth data that showed complete growth inhibition for each
-combination of strain, [O~2~] and actinic spectral waveband were omitted
+combination of strain, [O~2~] and imposed spectral waveband were omitted
 from the pooled photoperiod model. Statistical differences were
 determined at p \< 0.05.
 
@@ -644,8 +643,8 @@ determined at p \< 0.05.
 
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
-PurParPlot_cap <- glue("**Peak Photosynthetically Usable Radiation (PUR) (µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR) (µmol photons m^-2^ s^-1^).**",
-                       "The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each actinic spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles).",
+PurParPlot_cap <- glue("**Peak Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).**",
+                       "The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each imposed spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles).",
                        "The grey dashed line represents a hypothetical one to one correlation.",
                        "**A.** is *Prochlorococcus marinus* MED4.",
                        "**B.** is *Prochlorococcus marinus* SS120.",
@@ -714,7 +713,7 @@ CladeProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococc
                        "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
                        "Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO).",
-                       "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM).",
+                       "For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM).",
                        "Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].",
  .sep = " ")
 
@@ -744,7 +743,7 @@ to analyze the interactive growth responses of *Prochlorococcus* strains
 to varying [O~2~], spectral wavebands and photoperiods.
 
 *Prochlorococcus marinus* MED4, clade HLI, growth under 250 µM O~2~
-increased with higher actinic PAR and longer photoperiods (Figure
+increased with higher imposed PAR and longer photoperiods (Figure
 \@ref(fig:MED4PAR)), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
 maximum growth rate (µ~max~) was
@@ -771,8 +770,8 @@ MED4 was exposed to 8 and 12 h photoperiods.
 ```{r MED4PAR, fig.cap = MED4PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).**",
-                    "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                    "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                    "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
+                    "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
                     "Colours represent the imposed spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
@@ -813,7 +812,7 @@ warm into the clade HLI tolerance range.
 
 MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
-                    "Y-axis is actinic Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
+                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 250 µM of O~2~ and blue light.",
@@ -871,8 +870,8 @@ due to time constraints. \newpage
 ```{r SS120PAR, fig.cap = SS120PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). **",
-                     "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                       "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                    "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
+                    "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
                     "Colours represent the imposed spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
                     
@@ -915,7 +914,7 @@ however, grow reliably under tested conditions at 2.5 µM O~2~.
 
 SS120GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
-                    "Y-axis is actinic Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
+                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 250 µM of O~2~ and blue light.",
@@ -981,8 +980,8 @@ performed due to time constraints.
 ```{r MIT9313PAR, fig.cap = MIT9313PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 MIT9313PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). **",
-                       "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
-                       "Columns separate data from 3 levels of peak actinic Photosynthetically Active Radiation (PAR); 30, 90 and 180 µmol photons m^-2^ s^-1^.",
+                    "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
+                    "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
                     "Colours represent the imposed spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
 
@@ -1020,7 +1019,7 @@ MIT9313 as a LL clade is dependent upon [O~2~] and light spectra.
 
 MIT9313GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
-                    "Y-axis is actinic Photosynthetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
+                    "Y-axis is Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).",
                     "**A.** represents the model under 250 µM of O~2~ and red light.",
                     "**B.** represents the model under 25 µM of O~2~ and red light.",
                     "**C.** represents the model under 2.5 µM of O~2~ and red light.",
@@ -1044,7 +1043,7 @@ knitr::include_graphics(file.path(FiguresIn, "MIT9313GAM.png"))
 Cumulative diel PUR can potentially collapse photoperiod, PAR and
 spectral wavebands to a common metric of usable photosynthetically
 active light per day. Cumulative diel PUR (µmol photons m^-2^ d^-1^) was
-calculated from the actinic PUR (µmol photons m^-2^ s^-1^) and
+calculated from PUR (µmol photons m^-2^ s^-1^) and
 photoperiod (h) (Equation \@ref(eq:SumPURDay)). We plotted growth rates vs. cumulative diel PUR to
 determine whether growth is a simple response to diel PUR, across
 imposed spectral wavebands, and photoperiods, or whether spectral
@@ -1250,7 +1249,7 @@ CladeProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochloroco
                        "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
                        "Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome.",
-                       "For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating actinic peak Photosynthetically Active Radiation (µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM).",
+                       "For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM).",
                        "Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].",
  .sep = " ")
 
@@ -1557,7 +1556,7 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.**",
                                  "The x-axis is time in hours (h).",
                                  "The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\\Delta$OD)",
-                                 "The right y-axis is actinic PAR levels (µmol photons m^-2^ s^-1^); colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points).",
+                                 "The right y-axis is the Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) levels; colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points).",
                                  "The green points are $\\Delta$OD measurements taken every 5 minutes.",
                                  "The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm).",
                                  "The gold points are the residuals of the fit.",
@@ -1577,7 +1576,7 @@ OverlayPlots_cap <- glue("**Normalized absorbance, emission and Photosynthetical
                        "**(D,E,F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
                        "**(G,H,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
                        
-                       "Actinic PAR (µmol photons m^-2^ s^-1^) and calculated PUR (µmol photons m^-2^ s^-1^) levels are indicated.",
+                       "Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.",
 
                        .sep = " ")
 
