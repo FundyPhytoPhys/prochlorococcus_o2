@@ -1262,8 +1262,8 @@ knitr::include_graphics(file.path(FiguresIn, "CladeProchloroProteinMetabDepthO2.
 \newpage
 
 Figure \@ref(fig:ProchlorococcusEnzymeKms) shows the measured or
-inferred K~M~ for [O~2~] for genes encoding enzymes
-[@omarAnnotationGenesEncoding2023] for *P. marinus* strains from clades
+inferred K~M~ for [O~2~] for enzymes encoded by genes 
+[@omarAnnotationGenesEncoding2023] from *P. marinus* strains, from clades
 HLI, LLI, LLII/III and LLIV. MED4 increases expression of alternative
 oxidase ('ubiquinol oxidase (non electrogenic)') to cope with changes in
 light [@bergResponsesPsbAHli2011], by dissipating electrons from the
