@@ -62,7 +62,7 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
+bibliography: ["../Docs/Manuscript_O2.bib", "../Docs/RPackages.bib", "../Docs/FaultyCitations.bib"]
 csl: plos-one.csl
 editor_options: 
   markdown: 

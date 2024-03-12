@@ -59,10 +59,10 @@ output:
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
+      - "--lua-filter=`r file.path('..','Docs', 'scholarly-metadata.lua')`"
+      - "--lua-filter=`r file.path('..','Docs', 'author-info-blocks.lua')`"
 always_allow_html: true
-bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
+bibliography: ["`r file.path('..', 'Docs', 'Manuscript_O2.bib')`", "`r file.path('..', 'Docs', 'RPackages.bib')`", "`r file.path('..', 'Docs', 'FaultyCitations.bib')`"]
 csl: plos-one.csl
 editor_options: 
   markdown: 
@@ -94,7 +94,7 @@ library(ggpubr)
 library(png)
 library(cowplot)
 
-knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), 'RPackages.bib')
+knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), file.path("..", "Docs",'RPackages.bib'))
 
 ```
 
