@@ -67,6 +67,9 @@ csl: "`r file.path('..', 'Docs', 'plos-one.csl')`"
 editor_options: 
   markdown: 
     wrap: 72
+knit: (function(input, encoding) {
+  rmarkdown::render(input,
+                    output_dir = file.path('..', 'Output'))})
 ---
 
 ```{css, echo=FALSE}
