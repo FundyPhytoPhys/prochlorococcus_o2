@@ -59,11 +59,11 @@ output:
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
-      - "--lua-filter=`r file.path('..','Docs', 'scholarly-metadata.lua')`"
-      - "--lua-filter=`r file.path('..','Docs', 'author-info-blocks.lua')`"
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
 bibliography: ["`r file.path('..', 'Docs', 'Manuscript_O2.bib')`", "`r file.path('..', 'Docs', 'RPackages.bib')`", "`r file.path('..', 'Docs', 'FaultyCitations.bib')`"]
-csl: plos-one.csl
+csl: "`r file.path('..', 'Docs', 'plos-one.csl')`"
 editor_options: 
   markdown: 
     wrap: 72

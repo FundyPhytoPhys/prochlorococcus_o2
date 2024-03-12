@@ -63,7 +63,7 @@ output:
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
 bibliography: ["../Docs/Manuscript_O2.bib", "../Docs/RPackages.bib", "../Docs/FaultyCitations.bib"]
-csl: plos-one.csl
+csl: "../Docs/plos-one.csl"
 editor_options: 
   markdown: 
     wrap: 72
