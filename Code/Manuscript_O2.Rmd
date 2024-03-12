@@ -26,9 +26,9 @@ author:
   - name: Douglas A. Campbell
     institute: mta
     affil: 1
-    main: false
     orcid: '0000-0001-8996-5463'
     email: 'dcampbel@mta.ca'
+    correspondence: true
 affiliation:
   - num: 1
     address: Departments of Biology and Chemistry and Biochemistry, Mount Allison University

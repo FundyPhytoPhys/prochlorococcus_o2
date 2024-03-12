@@ -26,9 +26,9 @@ author:
   - name: Douglas A. Campbell
     institute: mta
     affil: 1
-    main: false
     orcid: '0000-0001-8996-5463'
     email: 'dcampbel@mta.ca'
+    correspondence: true
 affiliation:
   - num: 1
     address: Departments of Biology and Chemistry and Biochemistry, Mount Allison University
@@ -39,7 +39,7 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
-date: "2024-03-11"
+date: "2024-03-12"
 output:
   bookdown::html_document2:
     code_folding: show
