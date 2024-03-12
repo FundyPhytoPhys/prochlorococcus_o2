@@ -61,15 +61,16 @@ output:
     pandoc_args: 
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
+knit: (function(input, encoding) {
+  rmarkdown::render(input,
+                    output_dir = file.path('..', 'Output'))})
 always_allow_html: true
 bibliography: ["../Docs/Manuscript_O2.bib", "../Docs/RPackages.bib", "../Docs/FaultyCitations.bib"]
 csl: "../Docs/plos-one.csl"
 editor_options: 
   markdown: 
     wrap: 72
-knit: (function(input, encoding) {
-  rmarkdown::render(input,
-                    output_dir = file.path('..', 'Output'))})
+
 ---
 
 
