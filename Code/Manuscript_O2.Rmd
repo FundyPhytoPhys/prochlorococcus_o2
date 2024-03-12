@@ -78,6 +78,7 @@ p.caption {
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(fig.path='Figs/')
+
 ```
 
 ```{r load libraries, include = FALSE}
