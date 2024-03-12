@@ -103,7 +103,6 @@ knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid"
 Project <- "PICO"
 DataIn <- file.path("..", "Data", "CleanData")
 FiguresIn <- file.path("..","Output", "Figures")
-FigureInO2Analy <- file.path(  "..", "..", "O2Analyses", "Output")
 
 ```
 
