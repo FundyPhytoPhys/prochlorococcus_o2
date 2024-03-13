@@ -1534,7 +1534,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-# Supplemental {.unnumbered}
+# Supporting information {.unnumbered}
 
 \newpage
 
