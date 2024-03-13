@@ -288,7 +288,7 @@ poi |>
   theme_bw()
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig10.tiff")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -309,7 +309,7 @@ poi |>
   theme_bw()
 
    ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "CladeProchloroProteinMetabDepthO2.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig10.tiff")))
 
 ```
 
