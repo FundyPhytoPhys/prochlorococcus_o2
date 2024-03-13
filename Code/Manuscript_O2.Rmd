@@ -123,7 +123,7 @@ multiple clades with distinct niches across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
 warming may open permissive temperatures in new, poleward photic
 regimes, along with expanded Oxygen Minimum Zones. We used ocean protein
-data [@saitoPeptidesTheirSpectral2018] to help guide testing of
+data to help guide testing of
 *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
