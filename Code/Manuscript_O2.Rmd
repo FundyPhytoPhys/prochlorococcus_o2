@@ -1,5 +1,5 @@
 ---
-title: "*Prochlorococcus marinus* responses to light and oxygen"
+title: "*Prochlorococcus marinus* responses to light and oxygen" 
 author:
   - name: 'Mireille Savoie'
     institute: mta
@@ -26,9 +26,9 @@ author:
   - name: Douglas A. Campbell
     institute: mta
     affil: 1
+    main: false
     orcid: '0000-0001-8996-5463'
     email: 'dcampbel@mta.ca'
-    correspondence: true
 affiliation:
   - num: 1
     address: Departments of Biology and Chemistry and Biochemistry, Mount Allison University
@@ -62,11 +62,10 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: ["`r file.path('..', 'Docs', 'Manuscript_O2.bib')`", "`r file.path('..', 'Docs', 'RPackages.bib')`", "`r file.path('..', 'Docs', 'FaultyCitations.bib')`"]
-csl: "`r file.path('..', 'Docs', 'plos-one.csl')`"
+bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
+csl: plos-one.csl
 editor_options: 
   markdown: 
-    
     wrap: 72
 ---
 
@@ -79,7 +78,6 @@ p.caption {
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(fig.path='Figs/')
-
 ```
 
 ```{r load libraries, include = FALSE}
@@ -96,7 +94,7 @@ library(ggpubr)
 library(png)
 library(cowplot)
 
-knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), file.path("..", "Docs",'RPackages.bib'))
+knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), 'RPackages.bib')
 
 ```
 
@@ -105,6 +103,7 @@ knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid"
 Project <- "PICO"
 DataIn <- file.path("..", "Data", "CleanData")
 FiguresIn <- file.path("..","Output", "Figures")
+FigureInO2Analy <- file.path(  "..", "..", "O2Analyses", "Output")
 
 ```
 
@@ -121,7 +120,7 @@ multiple clades with distinct niches across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
 warming may open permissive temperatures in new, poleward photic
 regimes, along with expanded Oxygen Minimum Zones. We used ocean protein
-data to help guide testing of
+data [@saitoPeptidesTheirSpectral2018] to help guide testing of
 *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
@@ -520,14 +519,12 @@ fit a logistic equation (Equation \@ref(eq:GrowthRate)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
-
 ```{=tex}
 \begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
   (\#eq:GrowthRate)
 \end{equation}
 ```
-
 
 Figure \@ref(fig:deltaODLogGrowthPlot) is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
@@ -1534,7 +1531,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-# Supporting information {.unnumbered}
+# Supplemental {.unnumbered}
 
 \newpage
 

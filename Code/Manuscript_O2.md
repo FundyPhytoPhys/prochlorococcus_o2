@@ -39,7 +39,7 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
-date: "2024-03-10"
+date: "2024-03-13"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -66,7 +66,6 @@ bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
 csl: plos-one.csl
 editor_options: 
   markdown: 
-    
     wrap: 72
 ---
 
@@ -87,7 +86,7 @@ multiple clades with distinct niches across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
 warming may open permissive temperatures in new, poleward photic
 regimes, along with expanded Oxygen Minimum Zones. We used ocean protein
-data to help guide testing of
+data [@saitoPeptidesTheirSpectral2018] to help guide testing of
 *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
@@ -482,20 +481,16 @@ points collected during post stationary phase, when applicable. We used
 the Levenberg-Marquardt algorithm
 [@bellaviaLevenbergMarquardtMethod2018] modification of the non-linear
 least squares, using the R package *`minpack.lm`* [@R-minpack.lm], to
-fit a logistic equation (Equation (<strong>??</strong>)); where ΔOD~max~
+fit a logistic equation (Equation (1)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
-
 ```{=tex}
-
 \begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
   (\#eq:GrowthRate)
 \end{equation}
-
 ```
-
 
 Figure <a href="#fig:deltaODLogGrowthPlot">14</a> is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
@@ -542,7 +537,7 @@ absorbance spectra were normalized to the absorbance maximum of divinyl
 chlorophyll *a* (Chl *a*~2~), determined for each spectra, falling
 between 400 nm and 460 nm.
 
-An integrated weighting equation (<strong>??</strong>)
+An integrated weighting equation (2)
 [@morelAvailableUsableStored1978] was used to determine the weighted PUR
 spectrum P(λ); where A(λ) is the blank subtracted, Chl *a*~2~ peak
 normalized whole cell absorbance spectrum for each *P. marinus* ecotype,
@@ -550,31 +545,27 @@ over 400 nm to 700 nm, A(λ); and E(λ) is the peak normalized emission
 spectrum of the imposed LED growth light, over 400 nm to 700 nm.
 
 ```{=tex}
-
 \begin{equation}
   P(λ) = A(λ) × E(λ) 
   (\#eq:WeightedPUR)
 \end{equation}
-
 ```
 PUR levels (µmol photons m^-2^ s^-1^) were calculated from
 imposed PAR (µmol photons m^-2^ s^-1^) levels using the equation
-(<strong>??</strong>) from [@morelAvailableUsableStored1978]; where P(λ) is the
-weighted PUR absorbance spectrum from equation (<strong>??</strong>),
+(3) from [@morelAvailableUsableStored1978]; where P(λ) is the
+weighted PUR absorbance spectrum from equation (2),
 E(λ) is the imposed growth light emission spectrum from equation
-(<strong>??</strong>) and PAR is the imposed peak light level (µmol
+(2) and PAR is the imposed peak light level (µmol
 photons m^-2^ s^-1^). Figure (<a href="#fig:PurParPlot">1</a>) shows the
 calculated peak PUR (µmol photons m^-2^ d^-1^) vs. imposed
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
 ```{=tex}
-
 \begin{equation}
   PUR = \frac{\int_{400}^{700} P(λ)}{\int_{400}^{700} E(λ)} × PAR
   (\#eq:PUR)
 \end{equation}
-
 ```
 The applied photoperiods were delivered using the sinusoidal circadian
 light function of the PSI Multicultivator to simulate light exposure
@@ -583,17 +574,15 @@ curves is equivalent to the area of a triangular photoregime of
 equivalent photoperiod (Campbell, unpub), therefore the equation to
 determine the cumulative diel PUR (µmol photons m^-2^ d^-1^) is one half
 of the base (photoperiod) multiplied by the height (PUR) (Equation
-(<strong>??</strong>)); where PUR is the usable light (µmol photons m^-2^ s^-1^) calculated from
-equation (<strong>??</strong>), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
+(4)); where PUR is the usable light (µmol photons m^-2^ s^-1^) calculated from
+equation (3), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
 photoperiod (h).
 
 ```{=tex}
-
 \begin{equation}
   Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
   (\#eq:SumPURDay)
 \end{equation}
-
 ```
 Figure <a href="#fig:OverlayPlots">15</a> provide visual representations of PUR,
 the black solid line and shaded area, in relation to the imposed PAR,
@@ -909,7 +898,7 @@ Cumulative diel PUR can potentially collapse photoperiod, PAR and
 spectral wavebands to a common metric of usable photosynthetically
 active light per day. Cumulative diel PUR (µmol photons m^-2^ d^-1^) was
 calculated from PUR (µmol photons m^-2^ s^-1^) and
-photoperiod (h) (Equation (<strong>??</strong>)). We plotted growth rates vs. cumulative diel PUR to
+photoperiod (h) (Equation (4)). We plotted growth rates vs. cumulative diel PUR to
 determine whether growth is a simple response to diel PUR, across
 imposed spectral wavebands, and photoperiods, or whether spectral
 wavebands or photoperiods have specific or interactive influences on
@@ -1328,7 +1317,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-# Supporting information {.unnumbered}
+# Supplemental {.unnumbered}
 
 \newpage
 
