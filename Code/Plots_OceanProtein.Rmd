@@ -160,8 +160,8 @@ poi |>
     # ) +
   theme_bw()
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroPhotosynthDepthO2.tiff")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroPhotosynthDepthO2.png")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroPhotosynthDepthO2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -177,8 +177,8 @@ poi |>
         x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.tiff")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.tiff")))
  
  poi |>
   filter(complex %in% ElectronTrans) |>
@@ -195,8 +195,8 @@ poi |>
     # ) +
   theme_bw()
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.tiff")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.png")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroPhotosynthDepthO2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -212,8 +212,8 @@ poi |>
         x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.tiff")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.png")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "NATLProchloroProteinMetabDepthO2.tiff")))
 
 ```
 
@@ -237,8 +237,8 @@ poi |>
     # ) +
   theme_bw()
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.tiff")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
+ # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -253,8 +253,8 @@ poi |>
         x = expression("O"[2] ~ "(µM)")) +
   theme_bw()
 
-  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
+  # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
+  # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
 
 ```
 
@@ -288,7 +288,7 @@ poi |>
   theme_bw()
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.tiff")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig10.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -309,7 +309,7 @@ poi |>
   theme_bw()
 
    ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "CladeProchloroProteinMetabDepthO2.tiff")))
 
 ```
 
