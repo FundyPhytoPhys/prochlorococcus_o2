@@ -485,12 +485,11 @@ fit a logistic equation (Equation (1)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
-```{=tex}
-\begin{equation}
+
+$$\begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
-  (\#eq:GrowthRate)
-\end{equation}
-```
+  \qquad(1)
+\end{equation}$$
 
 Figure <a href="#fig:deltaODLogGrowthPlot">14</a> is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
@@ -544,12 +543,13 @@ normalized whole cell absorbance spectrum for each *P. marinus* ecotype,
 over 400 nm to 700 nm, A(λ); and E(λ) is the peak normalized emission
 spectrum of the imposed LED growth light, over 400 nm to 700 nm.
 
-```{=tex}
-\begin{equation}
+
+$$\begin{equation}
   P(λ) = A(λ) × E(λ) 
-  (\#eq:WeightedPUR)
-\end{equation}
-```
+  \qquad(2)
+\end{equation}$$
+
+
 PUR levels (µmol photons m^-2^ s^-1^) were calculated from
 imposed PAR (µmol photons m^-2^ s^-1^) levels using the equation
 (3) from [@morelAvailableUsableStored1978]; where P(λ) is the
@@ -561,12 +561,13 @@ calculated peak PUR (µmol photons m^-2^ d^-1^) vs. imposed
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
-```{=tex}
-\begin{equation}
+
+$$\begin{equation}
   PUR = \frac{\int_{400}^{700} P(λ)}{\int_{400}^{700} E(λ)} × PAR
-  (\#eq:PUR)
-\end{equation}
-```
+  \qquad(3)
+\end{equation}$$
+
+
 The applied photoperiods were delivered using the sinusoidal circadian
 light function of the PSI Multicultivator to simulate light exposure
 approximating sun rise through to sunset. The area under the sinusoidal
@@ -578,12 +579,13 @@ of the base (photoperiod) multiplied by the height (PUR) (Equation
 equation (3), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
 photoperiod (h).
 
-```{=tex}
-\begin{equation}
+
+$$\begin{equation}
   Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
-  (\#eq:SumPURDay)
-\end{equation}
-```
+  \qquad(4)
+\end{equation}$$
+
+
 Figure <a href="#fig:OverlayPlots">15</a> provide visual representations of PUR,
 the black solid line and shaded area, in relation to the imposed PAR,
 the dotted line, under each imposed spectral wavebands for *P. marinus*
