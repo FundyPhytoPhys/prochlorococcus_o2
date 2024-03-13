@@ -66,10 +66,8 @@ bibliography: ["`r file.path('..', 'Docs', 'Manuscript_O2.bib')`", "`r file.path
 csl: "`r file.path('..', 'Docs', 'plos-one.csl')`"
 editor_options: 
   markdown: 
+    
     wrap: 72
-knit: (function(input, encoding) {
-  rmarkdown::render(input,
-                    output_dir = file.path('..', 'Output'))})
 ---
 
 ```{css, echo=FALSE}
@@ -522,12 +520,14 @@ fit a logistic equation (Equation \@ref(eq:GrowthRate)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
+
 ```{=tex}
 \begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
   (\#eq:GrowthRate)
 \end{equation}
 ```
+
 
 Figure \@ref(fig:deltaODLogGrowthPlot) is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
