@@ -1500,7 +1500,6 @@ Table: Table 3: The maximum growth rate, µ~max~ (d^-1^) achieved for each strai
 |MIT9313 |     2.5     |      0.45      |       12        |               90               |          450           |
 
 
-
 # Data availability {.unnumbered}
 
 All data obtained from the Multicultivator were saved as comma separated

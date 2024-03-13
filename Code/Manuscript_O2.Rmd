@@ -638,6 +638,7 @@ determined at *P* value \< 0.05.
 
 ```{r PurParPlot, fig.cap = PurParPlot_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
+# This is Fig1.tiff
 PurParPlot_cap <- glue("**Peak Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).**",
                        "The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each imposed spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles).",
                        "The grey dashed line represents a hypothetical one to one correlation.",
@@ -704,6 +705,7 @@ depth and at low [O~2~], compared to other strains.
 
 ```{r CladeProchloroPhotosynthDepthO2, fig.cap = CladeProchloroPhotosynthDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
+# This is Fig2.tiff
 CladeProchloroPhotosynthDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.**", 
                        "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
@@ -764,6 +766,7 @@ MED4 was exposed to 8 and 12 h photoperiods.
 
 ```{r MED4PAR, fig.cap = MED4PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
+# This is Fig3.tiff
 MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).**",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
                     "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
@@ -805,6 +808,7 @@ warm into the clade HLI tolerance range.
 
 ```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is Fig4.tiff
 MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
                     "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
@@ -864,6 +868,7 @@ due to time constraints. \newpage
 
 ```{r SS120PAR, fig.cap = SS120PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
+# This is Fig5.tiff
 SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). **",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
                     "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
@@ -907,6 +912,7 @@ however, grow reliably under tested conditions at 2.5 µM O~2~.
 
 ```{r SS120GAM,  fig.cap = SS120GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is Fig6.tiff
 SS120GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
                     "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
@@ -974,6 +980,7 @@ performed due to time constraints.
 
 ```{r MIT9313PAR, fig.cap = MIT9313PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
+# This is Fig7.tiff
 MIT9313PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). **",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
                     "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
@@ -1011,6 +1018,7 @@ MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Figure \@ref(f
 
 ```{r MIT9313GAM,  fig.cap = MIT9313GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is Fig8.tiff
 MIT9313GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.**",
                     "X-axis is photoperiod (h).",
                     "Y-axis is Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).",
@@ -1133,6 +1141,7 @@ different photoperiod fits refer to Figure
 
 ```{r BluevsRedPurFitsPlots, fig.cap = BluevsRedPurFitsPlots_cap , fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is Fig9.tiff
  BluevsRedPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                     "Columns separate data from strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I).",
@@ -1239,6 +1248,7 @@ requirement for protein turnover under low [O~2~].
 
 ```{r CladeProchloroProteinMetabDepthO2, fig.cap = CladeProchloroProteinMetabDepthO2_cap , fig.height = 20, fig.width = 10, echo = FALSE}
 
+# This is Fig10.tiff
 CladeProchloroProteinMetabDepthO2_cap <- glue("**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.**", 
                        "Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin.",
                        "Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles).",
@@ -1302,6 +1312,7 @@ under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Figure
 
 ```{r ProchlorococcusEnzymeKms, fig.cap = ProchlorococcusEnzymeKms_cap, fig.height = 15, fig.width = 15, echo = FALSE}
 
+# This is Fig11.tiff
 ProchlorococcusEnzymeKms_cap <- glue("**K~m~ values for oxygen metabolizing enzymes.**" ,
                                      "The y-axis represents the log10 concentration of oxygen substrate (µM).",
                                      "The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study.",
@@ -1362,6 +1373,7 @@ however, accumulation of extracellular H~2~O~2~ remains toxic to
 
 ```{r DNARepairFig, fig.cap = DNARepairFig_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+#  This is Fig12.tiff
 DNARepairFig_cap <- glue("**Genes encoding DNA repair enzymes.**" ,
                          "The y-axis represents *Prochlorococcus marinus* strains.",
                          "The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study.",
@@ -1534,6 +1546,7 @@ the low O~2~ environment.
 
 ```{r LabeledMC, fig.cap = LabeledMC_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
+# This is S1_Fig.tiff 
 LabeledMC_cap <- glue("**PSI MCMIX-OD Multicultivator.**",
                       "Spectral waveband, light level and photoperiod are individually controlled for each culture tube.",
                       "Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures.",
@@ -1549,6 +1562,7 @@ knitr::include_graphics(file.path(FiguresIn, "LabeledMC.png"))
 
 ```{r deltaODLogGrowthPlot, fig.cap = deltaODLogGrowthPlot_cap , fig.height = 8, fig.width = 6, echo = FALSE}
 
+# This is S2_Fig.tiff 
 deltaODLogGrowthPlot_cap <- glue("**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.**",
                                  "The x-axis is time in hours (h).",
                                  "The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\\Delta$OD)",
@@ -1567,6 +1581,7 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 
 ```{r OverlayPlots, fig.cap = OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
+# This is S3_Fig.tiff 
 OverlayPlots_cap <- glue("**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.**",
                        "**(A,B,C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
                        "**(D,E,F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
@@ -1585,6 +1600,7 @@ knitr::include_graphics(file.path(FiguresIn, "OverlayPlots.png"))
 
 ```{r PhotoperiodPurFitsPlots,  fig.cap = PhotoperiodPurFitsPlots_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is S4_Fig.tiff 
 PhotoperiodPurFitsPlots_cap <- glue("**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).**",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM.",
                     "Columns separate data from strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I).",
@@ -1603,6 +1619,7 @@ knitr::include_graphics(file.path(FiguresIn, "PhotoperiodPurFitsPlots.png"))
 
 ```{r ProchlorococcusLightEnzymes, fig.cap = ProchlorococcusLightEnzymes_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
+# This is S5_Fig.tiff 
 ProchlorococcusLightEnzymes_cap <- glue("***Prochlorococcus* genes encoding enzymes activated or inhibited by light.**",
                          "The y-axis represents *Prochlorococcus marinus* strains.",
                          "The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study.",
@@ -1619,6 +1636,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusLightEnzymes.png"))
 
 ```{r ProchlorococcusEnzymeTable, echo = FALSE }
 
+# This is S1_Table.csv
 readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>% 
   select(EnzymeName, EC, KO) %>% 
   knitr::kable(.,
@@ -1635,6 +1653,7 @@ readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>%
 
 ```{r Generate GrowthTable, include = FALSE }
 
+# This is S2_Table
 MaxGrowthTable <- PURPARFits %>%
   filter(Par_ue %in% c(30,90,180),
          Strain %in% c("MED4", "SS120" ,"MIT9313")) %>%
@@ -1659,7 +1678,7 @@ MaxGrowthTable
 
 ```{r MaxGrowthTable, echo = FALSE }
 
-
+# This is S2_Table
 knitr::kable(MaxGrowthTable,
              caption = "The maximum growth rate, µ~max~ (d^-1^) achieved for each strain under each [O~2~], with the corresponding photoperiod, PAR level and spectral waveband.",
             col.names =  c("Strain",
@@ -1670,8 +1689,8 @@ knitr::kable(MaxGrowthTable,
                           "Spectral waveband (nm)"),
               align = "lccccc"
              )
-```
 
+```
 
 
 # Data availability {.unnumbered}
