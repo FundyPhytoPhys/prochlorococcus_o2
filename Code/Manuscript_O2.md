@@ -86,7 +86,7 @@ multiple clades with distinct niches across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
 warming may open permissive temperatures in new, poleward photic
 regimes, along with expanded Oxygen Minimum Zones. We used ocean protein
-data [@saitoPeptidesTheirSpectral2018] to help guide testing of
+data to help guide testing of
 *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
@@ -485,7 +485,6 @@ fit a logistic equation (Equation (1)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
-
 $$\begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
   \qquad(1)
@@ -543,12 +542,10 @@ normalized whole cell absorbance spectrum for each *P. marinus* ecotype,
 over 400 nm to 700 nm, A(λ); and E(λ) is the peak normalized emission
 spectrum of the imposed LED growth light, over 400 nm to 700 nm.
 
-
 $$\begin{equation}
   P(λ) = A(λ) × E(λ) 
   \qquad(2)
 \end{equation}$$
-
 
 PUR levels (µmol photons m^-2^ s^-1^) were calculated from
 imposed PAR (µmol photons m^-2^ s^-1^) levels using the equation
@@ -561,12 +558,10 @@ calculated peak PUR (µmol photons m^-2^ d^-1^) vs. imposed
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
-
 $$\begin{equation}
   PUR = \frac{\int_{400}^{700} P(λ)}{\int_{400}^{700} E(λ)} × PAR
   \qquad(3)
 \end{equation}$$
-
 
 The applied photoperiods were delivered using the sinusoidal circadian
 light function of the PSI Multicultivator to simulate light exposure
@@ -579,12 +574,10 @@ of the base (photoperiod) multiplied by the height (PUR) (Equation
 equation (3), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
 photoperiod (h).
 
-
 $$\begin{equation}
   Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
   \qquad(4)
 \end{equation}$$
-
 
 Figure <a href="#fig:OverlayPlots">15</a> provide visual representations of PUR,
 the black solid line and shaded area, in relation to the imposed PAR,
@@ -605,7 +598,7 @@ photoperiod growth data for each combination of strain and [O~2~].
 Photoperiod growth data that showed complete growth inhibition for each
 combination of strain, [O~2~] and imposed spectral waveband were omitted
 from the pooled photoperiod model. Statistical differences were
-determined at p \< 0.05.
+determined at *P* value \< 0.05.
 
 \newpage
 
@@ -1038,7 +1031,7 @@ increase in response to light stress in MIT9313
 low light, clade LLIV *Prochlorococcus* instead allocate resources to
 processes other than dynamic regulation of PSII repair.
 
-\newpage
+
 
 
 
@@ -1052,7 +1045,7 @@ Table: Table 1: FtsH protease homologs in *Prochlorococcus marinus* and the mode
 |*Synechocystis sp.* PCC6803 isoform |    FtsH2    |    FtsH3    |     FtsH4      |     FtsH1      |
 |Function                            | PSII Repair | PSII Repair | PSI biogenesis | Cell viability |
 
-\newpage
+
 
 Ocean detections of proteins mediating protein metabolism support this
 interpretation of distinct FtsH function across clades of *P. marinus*.
@@ -1319,9 +1312,11 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-# Supplemental {.unnumbered}
-
 \newpage
+
+# Supporting information {.unnumbered}
+
+
 
 ![Figure 13: **PSI MCMIX-OD Multicultivator.** Spectral waveband, light level and photoperiod are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures. The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.](../Output/Figures/LabeledMC.png)
 
@@ -1485,7 +1480,7 @@ Table: Table 2: Enzymes shown in Figures <a href="#fig:ProchlorococcusEnzymeKms"
 |cytochrome-c oxidase                                             |7.1.1.9     |NA             |
 |Flavodiiron (Flv1a/3a)                                           |NA          |NA             |
 
-\newpage
+
 
 
 
@@ -1504,7 +1499,7 @@ Table: Table 3: The maximum growth rate, µ~max~ (d^-1^) achieved for each strai
 |MIT9313 |     25      |      1.01      |       16        |               90               |       White LED        |
 |MIT9313 |     2.5     |      0.45      |       12        |               90               |          450           |
 
-\newpage
+
 
 # Data availability {.unnumbered}
 
@@ -1533,5 +1528,7 @@ Canada Foundation for Innovation (DAC) New Brunswick Foundation for
 Innovation (DAC) Rice Graduate Fellowship 2021 and 2022 (MS)
 
 XXX PLOS requires grant numbers XXX
+
+\newpage
 
 # References {.unnumbered}
