@@ -33,8 +33,8 @@ GamFit <- "PICO_Merged_GrowthFitsPURPAR.Rds"
 #"..", takes up a level in the directory path
 DataIn <- file.path("..","Data", "CleanData")
 DataOut <- file.path("..","Data", "CleanData")
-PlotsPath <- file.path("..","Output", "Figures")
-
+PlotsOut <- file.path("..","Output", "Figures")
+PlotsOutPLOS <- file.path("..", "OutPut", "PLOSFiguresRound1")
 
 
 is_all_numeric <- function(x) { 
@@ -303,7 +303,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot red light GAM, must change GAMStrain and rerun chunk to generate plot of each strain
 ``` {r GAM Plot Red WL}
-GamStrain = "MIT9313" # MIT9313 MED4 SS120
+GamStrain = "SS120" # MIT9313 MED4 SS120
 GamColor = "Red" 
 WL_nm = 660 
 PlotWL <- "deltaOD"
@@ -503,8 +503,8 @@ legend3 <- g_legend(g_dummy3)
 
 # comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                      # c(3, 3, 3, 3, 6), # For 2.5 uM O2     # remove comment for MIT9313
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2    # remove comment for MIT9313
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(1, 1, 1, 1, 4),   # For 250 uM O2
@@ -514,13 +514,12 @@ LayoutNiche <- rbind(
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
 p3_Red <- grid.arrange(
-                       ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                          theme(legend.position = 'none'), 
+                       # ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none'),   # remove comment for MIT9313
                        ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
                          theme(legend.position = 'none'), 
                        ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
                          theme(legend.position = 'none'), 
-                        legend1, 
+                        # legend1,   # remove comment for MIT9313
                         legend2, 
                         legend3, 
                        layout_matrix = LayoutNiche)
@@ -528,10 +527,10 @@ p3_Red <- grid.arrange(
                    # ,  left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
 #  for thesis
-  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 10, width = 6 )
+  # ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 10, width = 6 )
 
 # for presentation
-  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 7.6, width = 6)
+  # ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Red,  height = 7.6, width = 6)
 
 ```  
 
@@ -611,7 +610,7 @@ PicoGAM_Pred <- PicoGAM %>%
 
 # Plot blue light GAM, must change GAMStrain and rerun chunk to generate plot for each strain
 ``` {r GAM Plot Blue WL}
-GamStrain = "MIT9313" # MIT9313 MED4 SS120
+GamStrain = "SS120" # MIT9313 MED4 SS120
 GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
@@ -808,8 +807,8 @@ legend3 <- g_legend(g_dummy3)
 
 # comment rows that are not included in grid arrange 
 LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment for MIT9313
+                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment for MIT9313
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(2, 2, 2, 2, 5),   # For 25 uM O2
                      c(1, 1, 1, 1, 4),   # For 250 uM O2
@@ -819,13 +818,11 @@ LayoutNiche <- rbind(
 #LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
 
 p3_Blue <- grid.arrange(
-                         ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourIntO2 +  labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
+                         # ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),  
+                        ContourIntO2 +  labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourHighO2 + labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                         legend1, 
+                        ContourHighO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
+                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),                          # legend1,    # remove comment for MIT9313
                         legend2, 
                         legend3, 
                         layout_matrix = LayoutNiche)  
@@ -833,10 +830,10 @@ p3_Blue <- grid.arrange(
 # , left = textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", rot = 90, vjust = 0.5, hjust = 0.45, gp=gpar(fontsize=30)), bottom = textGrob("Photoperiod (h)", gp=gpar(fontsize=20), vjust = 0.2, hjust = 0.6))
 
 #  for thesis
-  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 10, width = 6)
+  # ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 10, width = 6)
 
 # for presentation
-  # ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 7.6, width = 6)
+  # ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(Project, "Hypervolume_GAM", GamColor, GamStrain, "Oxy", ".png", sep = "_"), fsep = .Platform$file.sep), plot = p3_Blue,  height = 7.6, width = 6)
 
 ```
 
@@ -859,8 +856,15 @@ LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bott
 
 ```
 
-```{r save png}
- ggsave(file = file.path(paste(PlotsPath, sep = "/"), paste(GamStrain, "GAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+```{r save plots}
+
+ ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "GAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+
+# MED4 GAM is Fig4.tiff
+# SS120 GAM is Fig6.tiff
+# MIT9313 GAM is Fig8.tiff
+ ggsave(file = file.path(PlotsOutPLOS, "Fig6.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10)
+ 
 ```
 
 
