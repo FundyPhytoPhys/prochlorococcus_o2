@@ -1,7 +1,7 @@
 --[[
-affiliation-blocks â€“ generate title components
+affiliation-blocks – generate title components
 
-Copyright Â© 2017â€“2021 Albert Krewinkel
+Copyright © 2017–2021 Albert Krewinkel
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice
@@ -23,7 +23,7 @@ local default_marks
 local default_marks = {
   corresponding_author = FORMAT == 'latex'
     and {pandoc.RawInline('latex', '*')}
-    or {pandoc.Str 'âœ‰'},
+    or {pandoc.Str '?'},
   equal_contributor = FORMAT == 'latex'
     and {pandoc.RawInline('latex', '$\\dagger{}$')}
     or {pandoc.Str '*'},

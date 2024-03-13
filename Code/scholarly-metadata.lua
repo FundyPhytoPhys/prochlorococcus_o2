@@ -1,5 +1,5 @@
 --[[
-ScholarlyMeta – normalize author/affiliation meta variables
+ScholarlyMeta � normalize author/affiliation meta variables
 
 Copyright (c) 2017-2021 Albert Krewinkel, Robert Winkler
 
@@ -90,7 +90,7 @@ function to_named_object (obj)
     named.name = pandoc.MetaInlines{pandoc.Str(tostring(obj))}
     named.id = tostring(obj)
   elseif obj.name ~= nil then
-    -- object has name attribute → just create a copy of the object
+    -- object has name attribute ? just create a copy of the object
     add_missing_entries(obj, named)
     named.id = pandoc.utils.stringify(named.id or named.name)
   elseif next(obj) and next(obj, next(obj)) == nil then
