@@ -209,7 +209,7 @@ PurParPlot <- PURPARFits %>%
   )  +
   facet_wrap(~Strain, ncol = 3) +
   theme_bw() +
-  labs(colour = "Growth Waveband (nm)") +
+  labs(colour = "Growth waveband (nm)") +
   theme(strip.text = element_blank(),
         legend.text = element_text(size = 35),
         legend.title = element_text(size = 35),
@@ -255,16 +255,16 @@ Predict_y = 0.06
 deltaODLogGrowthPlot <- PURPARFits %>%
   filter(Run == 114) %>% 
   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
-         OxygenLabel_title = "Oxygen Concentration",
-         Oxygen_label = case_when(O2_uM %in% c(2.5, 25, 250) ~ paste("Oxygen Concentration", O2_uM, "µM", sep = " ")),
-         WLlabelTitle = "Growth Wavelength",
+         OxygenLabel_title = "Oxygen concentration",
+         Oxygen_label = case_when(O2_uM %in% c(2.5, 25, 250) ~ paste("Oxygen concentration:", O2_uM, "µM", sep = " ")),
+         WLlabelTitle = "Growth wavelength",
          WL_label = case_when(WL %in% c(450, 530, 660) ~ paste(WL, "nm", sep = " "),
                               WL %in% c("WW") ~ paste("White LED", sep = " ")),
          Par_label = case_when(Par_ue %in% c(30, 90, 180) ~ paste(Par_ue, "µE", sep = " ")),
-         PhotoLabel = case_when(Photoperiod == 16 ~ "16 h Photoperiod", 
-                                 Photoperiod == 12 ~ "12 h Photoperiod",
-                                 Photoperiod == 8 ~ "8 h Photoperiod",
-                                 Photoperiod == 4 ~ "4 h Photoperiod")) %>%
+         PhotoLabel = case_when(Photoperiod == 16 ~ "Photoperiod: 16 h", 
+                                 Photoperiod == 12 ~ "Photoperiod: 12 h",
+                                 Photoperiod == 8 ~ "Photoperiod: 8 h",
+                                 Photoperiod == 4 ~ "Photoperiod: 4 h")) %>%
   # mutate(deltaOD_logistic_predict = map(deltaOD_logistic, possibly(augment, otherwise = NULL))) %>%
   unnest(cols = c(tubedata, deltaOD_logistic_predict),names_sep = "_", keep_empty = TRUE) %>%
   ggplot() +
@@ -281,7 +281,7 @@ deltaODLogGrowthPlot <- PURPARFits %>%
    #                  labeller = labeller(Tube = label_both, WL_label = label_value, WL = label_value, Strain = label_value, OxygenLabel_title = label_value,Oxygen_label = label_value, OxygenLabel = label_value, Photoperiod = label_both, Par_label = label_value))+
    ggh4x::facet_nested(cols = vars(PhotoLabel, Oxygen_label, Tube,   Strain, WL_label, Par_label), 
                     labeller = labeller(Tube = label_both, WL_label = label_value, WL = label_value, Strain = label_value, OxygenLabel_title = label_value,Oxygen_label = label_value, OxygenLabel = label_value, Photoperiod = label_both, Par_label = label_value, SampleID = label_value))+
-  labs(y = "Chlorophyll proxy (ΔOD)" , x = "Elapsed Time (h)") +
+  labs(y = "Chlorophyll proxy (ΔOD)" , x = "Elapsed time (h)") +
    guides(colour = "none") +
   theme_bw() +
   theme( strip.text = element_text(size = 11),
@@ -325,15 +325,15 @@ MED4PAR <- PURPARFits %>%
           deltaOD_Lmu_corr == 0 |
           deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
   mutate(PhotoperiodLabelTitle = "Photoperiod~(h)",
-         OxygenLabel = "Oxygen~Concentration~(µM)",
-         WLlabelTitle = "Growth~Wavelength~(nm)",
+         OxygenLabel = "Oxygen~concentration~(µM)",
+         WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
          Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot()  +
     geom_point(aes(x = Photoperiod, y = (deltaOD_Lmu_corr_day), colour = as.factor(WL)), size = 2.5, alpha = 0.75, show.legend = F) +
    geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5, show.legend = F) +
     geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 1) +
- labs( y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
+ labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
@@ -361,8 +361,8 @@ MED4PAR <- PURPARFits %>%
         legend.title = element_text(size = 25),  #change legend title font size
         legend.text = element_text(size = 25),   #change legend text font size
         legend.position = "top") +
-  labs(color = "Growth Wavelength (nm)",
-       fill = "Growth Wavelength (nm)")
+  labs(color = "Growth wavelength (nm)",
+       fill = "Growth wavelength (nm)")
 MED4PAR
 
 SS120PAR <- PURPARFits %>%
@@ -371,15 +371,15 @@ SS120PAR <- PURPARFits %>%
           deltaOD_Lmu_corr == 0 |
           deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
   mutate(PhotoperiodLabelTitle = "Photoperiod~(h)",
-         OxygenLabel = "Oxygen~Concentration~(µM)",
-         WLlabelTitle = "Growth~Wavelength~(nm)",
+         OxygenLabel = "Oxygen~concentration~(µM)",
+         WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
          Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot() +
     geom_point(aes(x = Photoperiod, y = (deltaOD_Lmu_corr_day), colour = as.factor(WL)), size = 2.5, alpha = 0.75, show.legend = F) +
    geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5, show.legend = F) +
     geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 1) +
- labs( y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
+ labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
@@ -407,8 +407,8 @@ SS120PAR <- PURPARFits %>%
         legend.title = element_text(size = 25),  #change legend title font size
         legend.text = element_text(size = 25),   #change legend text font size
         legend.position = "top") +
-  labs(color = "Growth Wavelength (nm)",
-       fill = "Growth Wavelength (nm)")
+  labs(color = "Growth wavelength (nm)",
+       fill = "Growth wavelength (nm)")
 
 SS120PAR
 
@@ -418,15 +418,15 @@ MIT9313PAR <- PURPARFits %>%
           deltaOD_Lmu_corr == 0 |
           deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
    mutate(PhotoperiodLabelTitle = "Photoperiod~(h)",
-         OxygenLabel = "Oxygen~Concentration~(µM)",
-         WLlabelTitle = "Growth~Wavelength~(nm)",
+         OxygenLabel = "Oxygen~concentration~(µM)",
+         WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
          Par_ue = factor(Par_ue, levels = c(30, 90, 180))) %>%
   ggplot() +
     geom_point(aes(x = Photoperiod, y = (deltaOD_Lmu_corr_day), colour = as.factor(WL)), size = 2.5, alpha = 0.75, show.legend = F) +
    geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5, show.legend = F) +
     geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 1) +
- labs( y = "Chlorophyll Specific Growth Rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
+ labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
   scale_y_continuous(breaks = c(0,0.2, 0.4, 0.6, 0.8, 1.0), limits = c (0, 1.05)) +
   # coord_cartesian(ylim = c (0, 0.07)) +
@@ -454,8 +454,8 @@ MIT9313PAR <- PURPARFits %>%
         legend.title = element_text(size = 25),  #change legend title font size
         legend.text = element_text(size = 25),   #change legend text font size
         legend.position = "top") +
-  labs(color = "Growth Wavelength (nm)",
-       fill = "Growth Wavelength (nm)" )
+  labs(color = "Growth wavelength (nm)",
+       fill = "Growth wavelength (nm)" )
 
 MIT9313PAR
 ```
@@ -494,10 +494,10 @@ OverlayPlots <- PURPARFits %>%
           TRUE ~ 0)) %>% 
   filter(keep == 1, Run != 113,
          Run != 112) %>% 
-  mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste("Growth", "Waveband",  WL, "nm", sep = " "),
-        WL %in% c("WW") ~ paste("Growth", "Waveband", "White LED", sep = " ")),
+  mutate(WL_label = case_when(WL %in% c(450, 530, 660) ~ paste("Growth", "waveband",  WL, "nm", sep = " "),
+        WL %in% c("WW") ~ paste("Growth", "waveband", "White LED", sep = " ")),
         Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313")),
-        WL_label = factor(WL_label, levels = c("Growth Waveband White LED", "Growth Waveband 660 nm", "Growth Waveband 450 nm"))) %>% 
+        WL_label = factor(WL_label, levels = c("Growth waveband White LED", "Growth waveband 660 nm", "Growth waveband 450 nm"))) %>% 
    unnest(cols = c(PurData), names_sep = "_", keep_empty = TRUE) %>%
   pivot_longer(cols = c(PurData_PURAbsWholeCell_Norm440, PurData_AbsNorm440,  PurData_MC_NormEm), values_to = "Abs_Em_Value", names_to = "Abs_Em_Names") %>%
 ggplot()+
@@ -511,8 +511,8 @@ ggplot()+
                         labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
-  labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
-  labs(linetype = "Spectra Type")+
+  labs(y = "Normalized absorbance and emission", x = "Wavelength (nm)") +
+  labs(linetype = "Spectra type")+
   scale_y_continuous(breaks=seq(0, 1.5, by = 0.25)) +
  # coord_cartesian(ylim = c (0, 0.2)) +
    facet_grid(rows = vars(WL_label),
@@ -594,8 +594,8 @@ ggplot()+
                         labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
-  labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
-  labs(linetype = "Spectra Type")+
+  labs(y = "Normalized absorbance and emission", x = "Wavelength (nm)") +
+  labs(linetype = "Spectra type")+
   scale_y_continuous(breaks=seq(0, 1.5, by = 0.25)) +
  # coord_cartesian(ylim = c (0, 0.2)) +
    facet_wrap(vars(WL),
@@ -671,8 +671,8 @@ ggplot()+
                         labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
-  labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
-  labs(linetype = "Spectra Type")+
+  labs(y = "Normalized absorbance and emission", x = "Wavelength (nm)") +
+  labs(linetype = "Spectra type")+
   scale_y_continuous(breaks=seq(0, 1.5, by = 0.25)) +
  # coord_cartesian(ylim = c (0, 0.2)) +
    facet_wrap(vars(WL),
@@ -744,8 +744,8 @@ ggplot()+
                         labels = c("Whole cell abs.",  "LED emission", "PUR")) +
   scale_fill_manual(values = MCMIXColours) +
  # guides(colour = FALSE) +
-  labs(y = "Normalized Absorbance and Emission", x = "Wavelength (nm)") +
-  labs(linetype = "Spectra Type")+
+  labs(y = "Normalized absorbance and emission", x = "Wavelength (nm)") +
+  labs(linetype = "Spectra type")+
   scale_y_continuous(breaks=seq(0, 1.5, by = 0.25)) +
  # coord_cartesian(ylim = c (0, 0.2)) +
    facet_wrap(vars(WL),
