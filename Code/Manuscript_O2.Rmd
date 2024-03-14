@@ -1582,10 +1582,10 @@ knitr::include_graphics(file.path(FiguresIn, "deltaODLogGrowthPlot.png"))
 ```{r OverlayPlots, fig.cap = OverlayPlots_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 # This is S3_Fig.tiff 
-OverlayPlots_cap <- glue("**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.**",
-                       "**(A-C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
-                       "**(D-F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
-                       "**(G-I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
+OverlayPlots_cap <- glue("**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A-C); SS120 (D-F); MIT9313 (G-I) grown under three emission wavebands.**",
+                       "**(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey).",
+                       "**(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red).", 
+                       "**(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue).",  
                        
                        "Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.",
 
