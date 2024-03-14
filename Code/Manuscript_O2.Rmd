@@ -41,21 +41,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::word_document2:
-    code_folding: show
-    reference_docx: KnitTemplate.docx
-    keep_md: yes
-    toc: FALSE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::html_document2:
     code_folding: show
     keep_md: yes
     toc: TRUE
     toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::word_document2:
+    code_folding: show
+    reference_docx: KnitTemplate.docx
+    keep_md: yes
+    toc: FALSE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
