@@ -21,19 +21,16 @@ author:
     institute: [mta, algatech]
     main: false
   - name: Amanda M. Cockshutt
-    institute: [mta, sfx]
+    institute: [mtachem, sfx]
     main: false
   - name: Douglas A. Campbell
     institute: mta
-    affil: 1
     main: false
     orcid: '0000-0001-8996-5463'
     email: 'dcampbel@mta.ca'
-affiliation:
-  - num: 1
-    address: Departments of Biology and Chemistry and Biochemistry, Mount Allison University
 institute:
-  - mta: 'Department of Biology, Mount Allison University, Sackville, New Brunswick, Canada, E4L 1G7'
+  - mta: 'Department of Biology, Mount Allison University, Sackville, New Brunswick, Canada'
+  - mtachem: 'Department of Chemistry and Biochemistry, Mount Allison University, Sackville, New Brunswick, Canada'
   - ubc: 'Department of Biology, University of British Columbia, Vancouver, British Columbia, Canada'
   - dfo: 'Fisheries and Oceans Canada, Ecosystems Management Branch, Dartmouth, Nova Scotia, Canada'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'

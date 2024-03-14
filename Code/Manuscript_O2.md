@@ -21,24 +21,21 @@ author:
     institute: [mta, algatech]
     main: false
   - name: Amanda M. Cockshutt
-    institute: [mta, sfx]
+    institute: [mtachem, sfx]
     main: false
   - name: Douglas A. Campbell
     institute: mta
-    affil: 1
     main: false
     orcid: '0000-0001-8996-5463'
     email: 'dcampbel@mta.ca'
-affiliation:
-  - num: 1
-    address: Departments of Biology and Chemistry and Biochemistry, Mount Allison University
 institute:
-  - mta: 'Department of Biology, Mount Allison University, 63B York St., Sackville NB, Canada, E4L 1G7'
-  - ubc: 'Department of Biology, University of British Columbia'
-  - dfo: 'Fisheries and Oceans Canada, Ecosystems Management Branch, Dartmouth NS'
-  - sfx: 'Department of Chemistry, St. Frances Xavier University'
-  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
-  - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
+  - mta: 'Department of Biology, Mount Allison University, Sackville, New Brunswick, Canada'
+  - mtachem: 'Department of Chemistry and Biochemistry, Mount Allison University, Sackville, New Brunswick, Canada'
+  - ubc: 'Department of Biology, University of British Columbia, Vancouver, British Columbia, Canada'
+  - dfo: 'Fisheries and Oceans Canada, Ecosystems Management Branch, Dartmouth, Nova Scotia, Canada'
+  - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
+  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
+  - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
 date: "2024-03-14"
 output:
   bookdown::html_document2:
@@ -1579,7 +1576,7 @@ Science (OP) visiting fellowship supporting DAC work at AlgaTech Canada
 Research Chair in Phytoplankton Ecophysiology (DAC) Natural Sciences and
 Engineering Research Council of Canada, 'Latitude and Light' (DAC)
 Canada Foundation for Innovation (DAC) New Brunswick Foundation for
-Innovation (DAC) Rice Graduate Fellowship 2021 and 2022 (MS)
+Innovation (DAC and MS) Rice Graduate Fellowship 2021 and 2022 (MS)
 
 XXX PLOS requires grant numbers XXX
 
