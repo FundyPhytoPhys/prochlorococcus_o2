@@ -39,7 +39,7 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Novohradska 237, Trebon, CZ 37981, Czech Republic.'
   - ug: 'Institute of Oceanography, University of Gdansk, 46 Piłsudskiego St, Gdynia, Poland'
-date: "2024-03-13"
+date: "2024-03-14"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -582,7 +582,7 @@ $$\begin{equation}
 Figure <a href="#fig:OverlayPlots">15</a> provide visual representations of PUR,
 the black solid line and shaded area, in relation to the imposed PAR,
 the dotted line, under each imposed spectral wavebands for *P. marinus*
-MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Figure
+MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Figure
 (<a href="#fig:PurParPlot">1</a>) shows the relationship between calculated PUR
 vs. imposed PAR for each *P. marinus* and each spectral waveband.
 
@@ -710,7 +710,7 @@ MED4 was exposed to 8 and 12 h photoperiods.
 \newpage
 
 The GAM model in Figure <a href="#fig:MED4GAM">4</a> summarizes MED4 growth
-responses to red (A,B) or blue (C,D) peak PAR and photoperiod across 2
+responses to red (A and B) or blue (C and D) peak PAR and photoperiod across 2
 imposed oxygen concentrations. Under 250 µM O~2~ MED4 achieved fastest
 growth rates above peak blue light of \~180 µmol photons m^-2^ s^-1^,
 and the longest photoperiod of 16, indicated by the 0.64 d^-1^ contour
@@ -782,7 +782,7 @@ due to time constraints. \newpage
 \newpage
 
 The GAM model in Figure <a href="#fig:SS120GAM">6</a> summarizes growth responses
-of SS120 to red (A,B) or blue (C,D) peak PAR and photoperiod, across the
+of SS120 to red (A and B) or blue (C and D) peak PAR and photoperiod, across the
 2 imposed oxygen concentrations. Under 250 µM O~2~, Figure
 <a href="#fig:SS120GAM">6</a>C showed highest growth rates below blue light PAR of
 50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
@@ -863,7 +863,7 @@ performed due to time constraints.
 \newpage
 
 The GAM model in Figure <a href="#fig:MIT9313GAM">8</a> summarizes MIT9313 growth
-responses to red (A,B,C) or blue (D,E,F) peak PAR and photoperiod. Under
+responses to red (A-C) or blue (D-F) peak PAR and photoperiod. Under
 250 µM O~2~, Figure <a href="#fig:MIT9313GAM">8</a>D shows MIT9313 achieves
 fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
 s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 8 h,
@@ -914,23 +914,23 @@ red vs. blue data sets.
 The representative of HLI clade, *P. marinus* MED4, showed no growth
 under any 4 h photoperiod treatments, even when a 4 h photoperiod
 delivered cumulative diel PUR equivalent to other photoperiod treatments
-(Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A,B,C). In parallel MED4
+(Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A-C). In parallel MED4
 showed no growth under 2.5 µM O~2~, no matter the level of diel
 cumulative PUR. In contrast, under 250 or 25 µM O~2~, and including
 photoperiods greater than 4 h, MED4 growth under blue light was
 described by a saturating response of growth
 [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing
 cumulative diel PUR, with saturation of growth rate achieved around 1.0
-x 10^6^ µmol m^-2^d^-1^ (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>A,B),
+x 10^6^ µmol m^-2^d^-1^ (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>A and B),
 and no evidence of inhibition of growth at any achieved cumulative diel
 PUR. Under the 'artificial' growth treatment of red light, MED4 achieved
 more growth per unit diel cumulative PUR (Figure
-<a href="#fig:BluevsRedPurFitsPlots">9</a>A,B), consistent with Murphy *et al*.
+<a href="#fig:BluevsRedPurFitsPlots">9</a>A and B), consistent with Murphy *et al*.
 [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for
 growth under red light, for MED4, because red light provokes less
 photoinactivation of PSII, than equivalent levels of blue light. For
 distinct fits for different photoperiods refer to Figure
-<a href="#fig:PhotoperiodPurFitsPlots">16</a> A,B and C.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> A-C.
 
 The representative of the LLII/III clade, *P. marinus* SS120 showed
 almost no growth under 2.5 µM O~2~ experiments (Figure
@@ -955,7 +955,7 @@ consistent with lower cost of growth through lower photoinactivation
 under red light (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>E)
 [@murphyPhotoinactivationPhotosystemII2017]. For distinct fits for
 different photoperiods refer to Figure
-<a href="#fig:PhotoperiodPurFitsPlots">16</a> D,E and F.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> D-F.
 
 The LLIV clade representative, *P. marinus* MIT9313, under 250 µM O~2~
 showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^
@@ -977,16 +977,16 @@ bandwidth, consistent with Murphy *et
 al*.[@murphyPhotoinactivationPhotosystemII2017] who found a lower cost
 of growth, due to decreased photoinactivation of PSII under red,
 compared to blue, wavebands (Figure
-<a href="#fig:BluevsRedPurFitsPlots">9</a>G,H). Interestingly, this protective
+<a href="#fig:BluevsRedPurFitsPlots">9</a>G and H). Interestingly, this protective
 effect of red light disappears for MIT9313 growing under 2.5 µM O~2~,
 possibly because photoinactivation is strongly suppressed under this low
 [O~2~] (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>I). For distinct fits for
 different photoperiod fits refer to Figure
-<a href="#fig:PhotoperiodPurFitsPlots">16</a> G,H and I.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> G-I.
 
 \newpage
 
-![Figure 9: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.](../Output/Figures/BluevsRedPurFitsPlots.png)
+![Figure 9: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.](../Output/Figures/BluevsRedPurFitsPlots.png)
 
 \newpage
 
@@ -1202,7 +1202,7 @@ MIT9313, actually tolerate approximately 1.0 x 10^6^ µmol photons m^-2^
 d^-1^ of PUR (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>E,H), comparable
 to the representative HL clade, MED4 which also exhibited growth
 saturation at the same cumulative diel PUR of 1.0 x 10^6^ µmol photons
-m^-2^ d^-1^ (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A,B). Growth under
+m^-2^ d^-1^ (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A and B). Growth under
 lower O~2~ allowed MIT9313 to substantially increase its exploitation of
 higher diel PUR (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>I).
 
@@ -1326,11 +1326,11 @@ the low O~2~ environment.
 
 \newpage
 
-![Figure 15: **Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.** **(A,B,C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(D,E,F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(G,H,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.](../Output/Figures/OverlayPlots.png)
+![Figure 15: **Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A,D,G); SS120 (B,E,H); MIT9313 (C,F,I) grown under three emission wavebands.** **(A-C)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(D-F)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(G-I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.](../Output/Figures/OverlayPlots.png)
 
 \newpage
 
-![Figure 16: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A,B,C), SS120 (D,E,F) and MIT9313 (G,H,I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).](../Output/Figures/PhotoperiodPurFitsPlots.png)
+![Figure 16: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).](../Output/Figures/PhotoperiodPurFitsPlots.png)
 
 \newpage
 
