@@ -1709,14 +1709,15 @@ Multicultivator runs.
 
 # Funding {.unnumbered}
 
-To Be Entered through PLoSONe system and deleted here Czech Academy of
-Science (OP) visiting fellowship supporting DAC work at AlgaTech Canada
-Research Chair in Phytoplankton Ecophysiology (DAC) Natural Sciences and
-Engineering Research Council of Canada, 'Latitude and Light' (DAC)
-Canada Foundation for Innovation (DAC) New Brunswick Foundation for
-Innovation (DAC and MS) Rice Graduate Fellowship 2021 and 2022 (MS)
+To Be Entered through PLoSONe system and deleted here 
+Czech Academy of Science (OP) visiting fellowship supporting DAC work at AlgaTech 
+Canada Research Chair in Phytoplankton Ecophysiology (DAC), Grant number CRC-2017-00075 
+Natural Sciences and Engineering Research Council of Canada, 'Latitude and Light' (DAC)
+Canada Foundation for Innovation (DAC) 
+New Brunswick Foundation for Innovation (DAC and MS) 
+Rice Graduate Fellowship 2021 and 2022 (MS)
 
-XXX PLOS requires grant numbers XXX
+The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
 
 \newpage
 
