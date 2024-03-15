@@ -1694,7 +1694,16 @@ knitr::kable(MaxGrowthTable,
 
 All data obtained from the Multicultivator were saved as comma separated
 values files and are available at
-<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData1.zip>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData2.zip>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData3.zip>.
+All data obtained from the Jaz spectrometer were saved as text files and are available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/JazEmData.zip>.
+All data obtained from the Olis 14 UV/VIS Clarity Spectrophotometer were saved as ascii files and are available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/OlisData.zip>.
+Meta Data for the Multicultivator runs were imported and saved as a .Rds and available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/CultureCatalog.Rds>.
+
 Annotated code for data import, transformations and analyses are
 available at
 <https://github.com/FundyPhytoPhys/prochlorococcus_o2/Code>.
