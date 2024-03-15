@@ -38,21 +38,21 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
 date: "`r format(Sys.Date())`"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: FALSE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -885,7 +885,7 @@ of SS120 to red (A and B) or blue (C and D) peak PAR and photoperiod, across the
 2 imposed oxygen concentrations. Under 250 µM O~2~, Figure
 \@ref(fig:SS120GAM)C showed highest growth rates below blue light PAR of
 50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
-indicated by the contour line labeled 0.19 d^-1^ (representing the
+indicated by the contour line labeled 0.18 d^-1^ (representing the
 90^th^ percentile of achieved growth rate). Under 250 µM O~2~ SS120 is
 constrained to deeper ocean waters through its intolerance of higher
 blue PAR levels. These findings align with Moore *et al*.
@@ -895,13 +895,13 @@ variable growth success of SS120 under 250 µM O~2~. Growth rate patterns
 under red light were similar, although somewhat faster. In contrast,
 under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
-photons m^-2^ s^-1^, indicated by the contour line labeled 0.4 d^-1^
+photons m^-2^ s^-1^, indicated by the contour line labeled 0.41 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
 the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Figure
 \@ref(fig:SS120GAM)D). Under red light and 25 µM O~2~ (Figure
 \@ref(fig:SS120GAM)B) SS120 grew across most conditions of peak PAR and
 photoperiod, achieving fastest growth under long photoperiods and peak
-PAR between 50 \~100 µmol photons m^-2^ s^-1^. Thus, the designation of
+PAR between 30 \~100 µmol photons m^-2^ s^-1^. Thus, the designation of
 SS120 as a LL strain is dependent upon the [O~2~]. SS120 did not,
 however, grow reliably under tested conditions at 2.5 µM O~2~.
 
@@ -996,18 +996,18 @@ The GAM model in Figure \@ref(fig:MIT9313GAM) summarizes MIT9313 growth
 responses to red (A-C) or blue (D-F) peak PAR and photoperiod. Under
 250 µM O~2~, Figure \@ref(fig:MIT9313GAM)D shows MIT9313 achieves
 fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
-s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 8 h,
+s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 12 h,
 indicated by the contour line labeled 0.52 d^-1^ representing the 90^th^
 percentile of achieved growth rates. Figure \@ref(fig:MIT9313GAM)D also
 shows that growth rate increases with longer photoperiods, as long as
 the blue peak PAR levels remain below 50 µmol photons m^-2^ s^-1^. In
 contrast, under red light and 250 µM O~2~ MIT9313 grows faster while
 exploiting higher peak PAR and longer photoperiods. Figure
-\@ref(fig:MIT9313GAM)E shows that MIT9313can exploit all blue PAR levels
+\@ref(fig:MIT9313GAM)E shows that MIT9313 can exploit all blue PAR levels
 and most photoperiods with 90^th^ percentile of fastest growth rate
 between 30 to 100 µmol photons m^-2^ s^-1^ PAR. Figure
 \@ref(fig:MIT9313GAM)F shows that MIT9313 maintains growth even under
-2.5 µM O~2~, under photoperiods between 4 and 8 h and peak blue PAR
+2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR
 between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
 MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Figure \@ref(fig:MIT9313GAM)E).
 

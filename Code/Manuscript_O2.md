@@ -36,23 +36,23 @@ institute:
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
-date: "2024-03-14"
+date: "2024-03-15"
 output:
-  bookdown::html_document2:
-    code_folding: show
-    keep_md: yes
-    toc: TRUE
-    toc_float: TRUE
-    toc_depth: 6
-    fig_caption: yes
-    pandoc_args: 
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
   bookdown::word_document2:
     code_folding: show
     reference_docx: KnitTemplate.docx
     keep_md: yes
     toc: FALSE
+    toc_depth: 6
+    fig_caption: yes
+    pandoc_args: 
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
     toc_depth: 6
     fig_caption: yes
     pandoc_args: 
@@ -66,11 +66,7 @@ editor_options:
     wrap: 72
 ---
 
-<style type="text/css">
-p.caption {
-  font-size: 12px;
-}
-</style>
+
 
 
 
@@ -416,7 +412,7 @@ transferred weekly with 1 in 5 dilutions with Pro99 media
 artificial seawater [@bergesEvolutionArtificialSeawater2001].
 
 Controlled growth experiments were performed using MCMIX-OD or MC1000-OD
-PSI Multicultivators (Figure \@ref(fig:LabeledMC); PSI, Drásov, Czech
+PSI Multicultivators (Figure <a href="#fig:LabeledMC">13</a>; PSI, Drásov, Czech
 Republic). Each multicultivator individually controls 8 tubes at a
 common temperature of 22°C. Each tube containing 70 mL of Pro99 media
 was inoculated with 10 mL of growing maintenance culture. In a factorial
@@ -482,16 +478,16 @@ points collected during post stationary phase, when applicable. We used
 the Levenberg-Marquardt algorithm
 [@bellaviaLevenbergMarquardtMethod2018] modification of the non-linear
 least squares, using the R package *`minpack.lm`* [@R-minpack.lm], to
-fit a logistic equation (Equation \@ref(eq:GrowthRate)); where ΔOD~max~
+fit a logistic equation (Equation (1)); where ΔOD~max~
 is maximum ΔOD, ΔOD~min~ is minimum ΔOD, t is time duration over the
 growth trajectory.
 
-\begin{equation}
+$$\begin{equation}
   µ = \frac{ΔOD_{max} × ΔOD_{min} × exp^{(µ × t)}}{ΔOD_{max} + (ΔOD_{min} × exp^{((µ × t) - 1)})}
-  (\#eq:GrowthRate)
-\end{equation}
+  \qquad(1)
+\end{equation}$$
 
-Figure \@ref(fig:deltaODLogGrowthPlot) is an example of chlorophyll
+Figure <a href="#fig:deltaODLogGrowthPlot">14</a> is an example of chlorophyll
 specific growth estimates fitted from the high resolution ΔOD
 measurements for each tube in a Multicultivator. The residuals of the
 logistic growth curve fit are shown. The imposed PAR (µmol photons m^-2^ s^-1^) are plotted for each tube and illustrates the applied photoperiod (h) regimes.
@@ -536,33 +532,33 @@ absorbance spectra were normalized to the absorbance maximum of divinyl
 chlorophyll *a* (Chl *a*~2~), determined for each spectra, falling
 between 400 nm and 460 nm.
 
-An integrated weighting equation \@ref(eq:WeightedPUR)
+An integrated weighting equation (2)
 [@morelAvailableUsableStored1978] was used to determine the weighted PUR
 spectrum P(λ); where A(λ) is the blank subtracted, Chl *a*~2~ peak
 normalized whole cell absorbance spectrum for each *P. marinus* ecotype,
 over 400 nm to 700 nm, A(λ); and E(λ) is the peak normalized emission
 spectrum of the imposed LED growth light, over 400 nm to 700 nm.
 
-\begin{equation}
+$$\begin{equation}
   P(λ) = A(λ) × E(λ) 
-  (\#eq:WeightedPUR)
-\end{equation}
+  \qquad(2)
+\end{equation}$$
 
 PUR levels (µmol photons m^-2^ s^-1^) were calculated from
 imposed PAR (µmol photons m^-2^ s^-1^) levels using the equation
-\@ref(eq:PUR) from [@morelAvailableUsableStored1978]; where P(λ) is the
-weighted PUR absorbance spectrum from equation \@ref(eq:WeightedPUR),
+(3) from [@morelAvailableUsableStored1978]; where P(λ) is the
+weighted PUR absorbance spectrum from equation (2),
 E(λ) is the imposed growth light emission spectrum from equation
-\@ref(eq:WeightedPUR) and PAR is the imposed peak light level (µmol
-photons m^-2^ s^-1^). Figure (\@ref(fig:PurParPlot)) shows the
+(2) and PAR is the imposed peak light level (µmol
+photons m^-2^ s^-1^). Figure (<a href="#fig:PurParPlot">1</a>) shows the
 calculated peak PUR (µmol photons m^-2^ d^-1^) vs. imposed
 peak PAR (µmol photons m^-2^ s^-1^) for each strain and each spectral
 waveband (nm).
 
-\begin{equation}
+$$\begin{equation}
   PUR = \frac{\int_{400}^{700} P(λ)}{\int_{400}^{700} E(λ)} × PAR
-  (\#eq:PUR)
-\end{equation}
+  \qquad(3)
+\end{equation}$$
 
 The applied photoperiods were delivered using the sinusoidal circadian
 light function of the PSI Multicultivator to simulate light exposure
@@ -571,20 +567,20 @@ curves is equivalent to the area of a triangular photoregime of
 equivalent photoperiod (Campbell, unpub), therefore the equation to
 determine the cumulative diel PUR (µmol photons m^-2^ d^-1^) is one half
 of the base (photoperiod) multiplied by the height (PUR) (Equation
-\@ref(eq:SumPURDay)); where PUR is the usable light (µmol photons m^-2^ s^-1^) calculated from
-equation \@ref(eq:PUR), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
+(4)); where PUR is the usable light (µmol photons m^-2^ s^-1^) calculated from
+equation (3), 3600 is the time conversion from seconds to hour and photoperiod is the imposed
 photoperiod (h).
 
-\begin{equation}
+$$\begin{equation}
   Cumulative~diel~PUR = \frac{PUR × 3600 × Photoperiod}{2}
-  (\#eq:SumPURDay)
-\end{equation}
+  \qquad(4)
+\end{equation}$$
 
-Figure \@ref(fig:OverlayPlots) provide visual representations of PUR,
+Figure <a href="#fig:OverlayPlots">15</a> provide visual representations of PUR,
 the black solid line and shaded area, in relation to the imposed PAR,
 the dotted line, under each imposed spectral wavebands for *P. marinus*
 MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Figure
-(\@ref(fig:PurParPlot)) shows the relationship between calculated PUR
+(<a href="#fig:PurParPlot">1</a>) shows the relationship between calculated PUR
 vs. imposed PAR for each *P. marinus* and each spectral waveband.
 
 We performed one-way ANOVA to examine statistical differences between
@@ -603,10 +599,7 @@ determined at *P* value \< 0.05.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/PurParPlot.png" alt="**Peak Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each imposed spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles). The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus* MED4. **B.** is *Prochlorococcus marinus* SS120. **C.** is *Prochlorococcus marinus* MIT9313." width="4133" />
-<p class="caption">(\#fig:PurParPlot)**Peak Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each imposed spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles). The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus* MED4. **B.** is *Prochlorococcus marinus* SS120. **C.** is *Prochlorococcus marinus* MIT9313.</p>
-</div>
+![Figure 1: **Peak Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) vs. peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^).** The correlation between PAR, plotted on the x-axis and PUR, plotted on the y-axis, are coloured for each imposed spectral waveband; 450 nm (blue circles), 660 nm (red circles) and white LED (black circles). The grey dashed line represents a hypothetical one to one correlation. **A.** is *Prochlorococcus marinus* MED4. **B.** is *Prochlorococcus marinus* SS120. **C.** is *Prochlorococcus marinus* MIT9313.](../Output/Figures/PurParPlot.png)
 
 \newpage
 
@@ -630,7 +623,7 @@ for Flavodiirons were obtained from Allahverdiyeva *et al*.
 [@allahverdiyevaCyanobacterialOxygenicPhotosynthesis2015], as they do
 not have allocated EC numbers. A full list of enzymes and corresponding
 EC and KO numbers can be found in Table
-\@ref(tab:ProchlorococcusEnzymeTable).
+<a href="#tab:ProchlorococcusEnzymeTable">2</a>.
 
 \newpage
 
@@ -642,7 +635,7 @@ Proteins from 13 annotated strains of *P. marinus* were detected across
 depths and oxygen concentrations in the ocean proteins data set
 analyzed. We focused our analysis here on core photosynthetic protein
 complexes, for clades HL, LLI, LLII/III and LLIV (Figure
-\@ref(fig:CladeProchloroPhotosynthDepthO2) as a function of depth (a
+<a href="#fig:CladeProchloroPhotosynthDepthO2">2</a> as a function of depth (a
 proxy for light intensity) and measured [O~2~]. Photosynthetic complexes
 from HLI (including strain MED4) were detected throughout the water
 column, predominantly at high [O~2~]. The absence of proteins annotated
@@ -660,10 +653,7 @@ depth and at low [O~2~], compared to other strains.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
-</div>
+![Figure 2: **Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].](../Output/Figures/CladeProchloroPhotosynthDepthO2.png)
 
 \newpage
 
@@ -689,7 +679,7 @@ to varying [O~2~], spectral wavebands and photoperiods.
 
 *Prochlorococcus marinus* MED4, clade HLI, growth under 250 µM O~2~
 increased with higher imposed PAR and longer photoperiods (Figure
-\@ref(fig:MED4PAR)), across all spectral wavebands. No growth was
+<a href="#fig:MED4PAR">3</a>), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
 maximum growth rate (µ~max~) was
 0.68
@@ -697,40 +687,37 @@ d^-1^ achieved under 180 µE blue light and 16 h photoperiod.
 
 Similar to growth trends under 250 µM O~2~, MED4 maintained at 25 µM
 O~2~ showed fastest growth when the photoperiod was 16 h for each
-spectral waveband, across PAR levels (Figure \@ref(fig:MED4PAR)). The
+spectral waveband, across PAR levels (Figure <a href="#fig:MED4PAR">3</a>). The
 µ~max~ was
 0.65
-d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 180 µmol photons
+d^-1^ (Table <a href="#tab:MaxGrowthTable">3</a>) achieved under 180 µmol photons
 m^-2^ s^-1^ blue light and 16 h photoperiod. The 4 h photoperiod
 experiments under white LED light were not performed as no growth was
 achieved when grown under an 8 h photoperiod of white LED light.
 
 MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Figure
-\@ref(fig:MED4PAR)). 2.5 µM O~2~ growth experiments were not conducted
+<a href="#fig:MED4PAR">3</a>). 2.5 µM O~2~ growth experiments were not conducted
 for 4 and 16 h photoperiods, as no reproducible growth occurred when
 MED4 was exposed to 8 and 12 h photoperiods.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/MED4PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:MED4PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
-</div>
+![Figure 3: **Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.](../Output/Figures/MED4PAR.png)
 
 \newpage
 
-The GAM model in Figure \@ref(fig:MED4GAM) summarizes MED4 growth
+The GAM model in Figure <a href="#fig:MED4GAM">4</a> summarizes MED4 growth
 responses to red (A and B) or blue (C and D) peak PAR and photoperiod across 2
 imposed oxygen concentrations. Under 250 µM O~2~ MED4 achieved fastest
 growth rates above peak blue light of \~180 µmol photons m^-2^ s^-1^,
 and the longest photoperiod of 16, indicated by the 0.64 d^-1^ contour
 line representing the 90^th^ percentile of maximum achieved growth rate
-(Figure \@ref(fig:MED4GAM)C). Growth decreased with decreasing
+(Figure <a href="#fig:MED4GAM">4</a>C). Growth decreased with decreasing
 photoperiod and decreasing peak PAR. Under red light growth was
 generally slower but the pattern of growth responses to photoperiod and
-PAR was similar (Figure \@ref(fig:MED4GAM)A). Note the exclusion of MED4
+PAR was similar (Figure <a href="#fig:MED4GAM">4</a>A). Note the exclusion of MED4
 from growth under 4 h photoperiod under both red and blue light (Figure
-\@ref(fig:MED4GAM)). Under 25 µM O~2~ MED4 showed similar growth
+<a href="#fig:MED4GAM">4</a>). Under 25 µM O~2~ MED4 showed similar growth
 responses, but was excluded from both 4 and 8 h photoperiods. MED4 did
 not grow under 2.5 µM O~2~, so no GAM model was run. Considering the
 range of PAR levels, and spectral bands that MED4 can utilize, MED4 can
@@ -745,16 +732,13 @@ warm into the clade HLI tolerance range.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/MED4GAM.png" alt="**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:MED4GAM)**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
-</div>
+![Figure 4: **A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.](../Output/Figures/MED4GAM.png)
 
 \newpage
 
 *Prochlorococcus marinus* SS120 clade LLII/III, growth under 250 µM O~2~
 increased with longer photoperiods, under 30 µmol photons m^-2^ s^-1^
-peak PAR and across all spectral wavebands (Figure \@ref(fig:SS120PAR)).
+peak PAR and across all spectral wavebands (Figure <a href="#fig:SS120PAR">5</a>).
 No growth was observed under any blue light photoperiods when exposed to
 peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate, however
 increased with increasing photoperiods for white and red light under
@@ -764,13 +748,13 @@ photoperiods and showed growth inhibition at 12 and 16 h photoperiods
 under PAR of 180 µmol photons m^-2^ s^-1^ white LED, red or blue light.
 The µ~max~ was
 0.5
-d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons
+d^-1^ (Table <a href="#tab:MaxGrowthTable">3</a>) achieved under 90 µmol photons
 m^-2^ s^-1^ white LED light and 16 h photoperiod.
 
 Under 25 µM O~2~ and PAR of 30 µmol photons m^-2^ s^-1^ growth trends
 were similar to 250 µM O~2~. SS120 showed no growth under a 4 h
 photoperiod for red spectral waveband, however under blue light, SS120
-was able to grow (Figure \@ref(fig:SS120PAR)). In contrast to the growth
+was able to grow (Figure <a href="#fig:SS120PAR">5</a>). In contrast to the growth
 trends of the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
 experiments, SS120 grew under 4 and 8 h blue light and 16 h red light
 photoperiods, however the growth rate decreased under 12 and 16 h white
@@ -778,31 +762,28 @@ LED light photoperiod treatments. Blue light treatments under PAR of 180
 µmol photons m^-2^ s^-1^ showed growth only under an 8 h photoperiod.
 The µ~max~ was
 0.45
-d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons
+d^-1^ (Table <a href="#tab:MaxGrowthTable">3</a>) achieved under 90 µmol photons
 m^-2^ s^-1^ blue light and 8 h photoperiod. The 25 µM O~2~, less than 16
 h photoperiod and 180 µmol photons m^-2^ s^-1^ under white LED light
 experiments were not performed due to time constraints.
 
 SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5
-µM (Figure \@ref(fig:SS120PAR)). 2.5 µM O~2~ growth experiments were not
+µM (Figure <a href="#fig:SS120PAR">5</a>). 2.5 µM O~2~ growth experiments were not
 conducted for 4 and 16 h photoperiods under PAR of 180 µmol photons
 m^-2^ s^-1^, as no growth occurred when SS120 was exposed to 8 and 12 h
 photoperiods. Red light 16 h photoperiod experiments were not performed
 due to time constraints. \newpage
 
-<div class="figure">
-<img src="../Output/Figures/SS120PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:SS120PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
-</div>
+![Figure 5: **Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.](../Output/Figures/SS120PAR.png)
 
 \newpage
 
-The GAM model in Figure \@ref(fig:SS120GAM) summarizes growth responses
+The GAM model in Figure <a href="#fig:SS120GAM">6</a> summarizes growth responses
 of SS120 to red (A and B) or blue (C and D) peak PAR and photoperiod, across the
 2 imposed oxygen concentrations. Under 250 µM O~2~, Figure
-\@ref(fig:SS120GAM)C showed highest growth rates below blue light PAR of
+<a href="#fig:SS120GAM">6</a>C showed highest growth rates below blue light PAR of
 50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
-indicated by the contour line labeled 0.19 d^-1^ (representing the
+indicated by the contour line labeled 0.18 d^-1^ (representing the
 90^th^ percentile of achieved growth rate). Under 250 µM O~2~ SS120 is
 constrained to deeper ocean waters through its intolerance of higher
 blue PAR levels. These findings align with Moore *et al*.
@@ -812,28 +793,25 @@ variable growth success of SS120 under 250 µM O~2~. Growth rate patterns
 under red light were similar, although somewhat faster. In contrast,
 under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
-photons m^-2^ s^-1^, indicated by the contour line labeled 0.4 d^-1^
+photons m^-2^ s^-1^, indicated by the contour line labeled 0.41 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
 the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Figure
-\@ref(fig:SS120GAM)D). Under red light and 25 µM O~2~ (Figure
-\@ref(fig:SS120GAM)B) SS120 grew across most conditions of peak PAR and
+<a href="#fig:SS120GAM">6</a>D). Under red light and 25 µM O~2~ (Figure
+<a href="#fig:SS120GAM">6</a>B) SS120 grew across most conditions of peak PAR and
 photoperiod, achieving fastest growth under long photoperiods and peak
-PAR between 50 \~100 µmol photons m^-2^ s^-1^. Thus, the designation of
+PAR between 30 \~100 µmol photons m^-2^ s^-1^. Thus, the designation of
 SS120 as a LL strain is dependent upon the [O~2~]. SS120 did not,
 however, grow reliably under tested conditions at 2.5 µM O~2~.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/SS120GAM.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:SS120GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
-</div>
+![Figure 6: **Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 250 µM of O~2~ and blue light. **D.** represents the model under 25 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.](../Output/Figures/SS120GAM.png)
 
 \newpage
 
 *Prochlorococcus marinus* MIT9313, clade LLIV, growth under 250 µM O~2~
 increased with longer photoperiods, under low 30 µmol photons m^-2^
-s^-1^ peak PAR, (Figure \@ref(fig:MIT9313PAR)). Under intermediate 90
+s^-1^ peak PAR, (Figure <a href="#fig:MIT9313PAR">7</a>). Under intermediate 90
 µmol photons m^-2^ s^-1^ peak PAR growth rates decreased with increasing
 blue light photoperiods. Blue light did not induce growth at 180 µmol
 photons m^-2^ s^-1^ peak PAR, while MIT9313 showed only marginal growth
@@ -846,7 +824,7 @@ photoperiod.
 
 For MIT9313 under 25 µM O~2~, growth rate increased with increasing
 photoperiods for all spectral wavebands tested (Figure
-\@ref(fig:MIT9313PAR)), with the fastest overall growth rate for MIT9313
+<a href="#fig:MIT9313PAR">7</a>), with the fastest overall growth rate for MIT9313
 1.01
 d^-1^ achieved under peak PAR of 90 µmol photons m^-2^ s^-1^ and 16 h
 white LED light photoperiod. In marked contrast to the 250 µM O~2~
@@ -859,7 +837,7 @@ to time constraints.
 
 MIT9313 grew under 2.5 µM O~2~ particularly under blue LED light, albeit
 generally slower than under the parallel experiments at 25 µM O~2~
-(Figure \@ref(fig:MIT9313PAR)). Growth estimates showed scatter among
+(Figure <a href="#fig:MIT9313PAR">7</a>). Growth estimates showed scatter among
 replicates, suggesting 2.5 µM O~2~ is near the tolerance limit for
 growth of MIT9313. Growth rates increased with longer photoperiods under
 blue light treatments and peak PAR of 90 µmol photons m^-2^ s^-1^ but
@@ -877,38 +855,32 @@ performed due to time constraints.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/MIT9313PAR.png" alt="**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles." width="4133" />
-<p class="caption">(\#fig:MIT9313PAR)**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.</p>
-</div>
+![Figure 7: **Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 (Low-Light (LLIV) deep ocean clade) vs. photoperiod (h). ** Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM). Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^). Colours represent the imposed spectral waveband (nm). Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.](../Output/Figures/MIT9313PAR.png)
 
 \newpage
 
-The GAM model in Figure \@ref(fig:MIT9313GAM) summarizes MIT9313 growth
+The GAM model in Figure <a href="#fig:MIT9313GAM">8</a> summarizes MIT9313 growth
 responses to red (A-C) or blue (D-F) peak PAR and photoperiod. Under
-250 µM O~2~, Figure \@ref(fig:MIT9313GAM)D shows MIT9313 achieves
+250 µM O~2~, Figure <a href="#fig:MIT9313GAM">8</a>D shows MIT9313 achieves
 fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
-s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 8 h,
+s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 12 h,
 indicated by the contour line labeled 0.52 d^-1^ representing the 90^th^
-percentile of achieved growth rates. Figure \@ref(fig:MIT9313GAM)D also
+percentile of achieved growth rates. Figure <a href="#fig:MIT9313GAM">8</a>D also
 shows that growth rate increases with longer photoperiods, as long as
 the blue peak PAR levels remain below 50 µmol photons m^-2^ s^-1^. In
 contrast, under red light and 250 µM O~2~ MIT9313 grows faster while
 exploiting higher peak PAR and longer photoperiods. Figure
-\@ref(fig:MIT9313GAM)E shows that MIT9313can exploit all blue PAR levels
+<a href="#fig:MIT9313GAM">8</a>E shows that MIT9313 can exploit all blue PAR levels
 and most photoperiods with 90^th^ percentile of fastest growth rate
 between 30 to 100 µmol photons m^-2^ s^-1^ PAR. Figure
-\@ref(fig:MIT9313GAM)F shows that MIT9313 maintains growth even under
-2.5 µM O~2~, under photoperiods between 4 and 8 h and peak blue PAR
+<a href="#fig:MIT9313GAM">8</a>F shows that MIT9313 maintains growth even under
+2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR
 between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
-MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Figure \@ref(fig:MIT9313GAM)E).
+MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Figure <a href="#fig:MIT9313GAM">8</a>E).
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/MIT9313GAM.png" alt="**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate." width="3000" />
-<p class="caption">(\#fig:MIT9313GAM)**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.</p>
-</div>
+![Figure 8: **Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MIT9313 grown under 660 nm (red) or 450 nm (blue) light.** X-axis is photoperiod (h). Y-axis is Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^). **A.** represents the model under 250 µM of O~2~ and red light. **B.** represents the model under 25 µM of O~2~ and red light. **C.** represents the model under 2.5 µM of O~2~ and red light. **D.** represents the model under 250 µM of O~2~ and blue light. **E.** represents the model under 25 µM of O~2~ and blue light. **F.** represents the model under 2.5 µM of O~2~ and blue light. Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue). Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.](../Output/Figures/MIT9313GAM.png)
 
 \newpage
 
@@ -918,7 +890,7 @@ Cumulative diel PUR can potentially collapse photoperiod, PAR and
 spectral wavebands to a common metric of usable photosynthetically
 active light per day. Cumulative diel PUR (µmol photons m^-2^ d^-1^) was
 calculated from PUR (µmol photons m^-2^ s^-1^) and
-photoperiod (h) (Equation \@ref(eq:SumPURDay)). We plotted growth rates vs. cumulative diel PUR to
+photoperiod (h) (Equation (4)). We plotted growth rates vs. cumulative diel PUR to
 determine whether growth is a simple response to diel PUR, across
 imposed spectral wavebands, and photoperiods, or whether spectral
 wavebands or photoperiods have specific or interactive influences on
@@ -927,7 +899,7 @@ growth, beyond cumulative diel PUR.
 Due to the absorption of *P. marinus* pigments in the blue spectral
 waveband range, the maximum cumulative diel PUR under blue light is
 almost 3 times that of white LED light, and about 5 times that of the
-red light (Figure \@ref(fig:PurParPlot)), despite being derived from the
+red light (Figure <a href="#fig:PurParPlot">1</a>), despite being derived from the
 same photoperiods and peak PAR regimes. As such, only blue light
 experiments extend beyond a cumulative diel PUR of \~ 2 x 10^6^ µmol
 photons m^-2^ d^-1^. This spectral bias in the range of PUR leads us to
@@ -939,35 +911,35 @@ red vs. blue data sets.
 The representative of HLI clade, *P. marinus* MED4, showed no growth
 under any 4 h photoperiod treatments, even when a 4 h photoperiod
 delivered cumulative diel PUR equivalent to other photoperiod treatments
-(Figure \@ref(fig:PhotoperiodPurFitsPlots)A-C). In parallel MED4
+(Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A-C). In parallel MED4
 showed no growth under 2.5 µM O~2~, no matter the level of diel
 cumulative PUR. In contrast, under 250 or 25 µM O~2~, and including
 photoperiods greater than 4 h, MED4 growth under blue light was
 described by a saturating response of growth
 [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing
 cumulative diel PUR, with saturation of growth rate achieved around 1.0
-x 10^6^ µmol m^-2^d^-1^ (Figure \@ref(fig:BluevsRedPurFitsPlots)A and B),
+x 10^6^ µmol m^-2^d^-1^ (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>A and B),
 and no evidence of inhibition of growth at any achieved cumulative diel
 PUR. Under the 'artificial' growth treatment of red light, MED4 achieved
 more growth per unit diel cumulative PUR (Figure
-\@ref(fig:BluevsRedPurFitsPlots)A and B), consistent with Murphy *et al*.
+<a href="#fig:BluevsRedPurFitsPlots">9</a>A and B), consistent with Murphy *et al*.
 [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for
 growth under red light, for MED4, because red light provokes less
 photoinactivation of PSII, than equivalent levels of blue light. For
 distinct fits for different photoperiods refer to Figure
-\@ref(fig:PhotoperiodPurFitsPlots) A-C.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> A-C.
 
 The representative of the LLII/III clade, *P. marinus* SS120 showed
 almost no growth under 2.5 µM O~2~ experiments (Figure
-\@ref(fig:PhotoperiodPurFitsPlots)F). Most 4 h photoperiod treatments of
+<a href="#fig:PhotoperiodPurFitsPlots">16</a>F). Most 4 h photoperiod treatments of
 SS120 also did not grow under 250 µM O~2~ , even when a 4 h photoperiod
 delivered cumulative diel PUR equivalent to other photoperiod treatments
-(Figure \@ref(fig:PhotoperiodPurFitsPlots)D). Again using
+(Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>D). Again using
 [@harrisonPhotosynthesisirradianceRelationshipsPolar1986], SS120 did not
 grow when exposed to more than \~1.0 x 10^6^ µmol photons m^-2^ d^-1^ of
 cumulative diel PUR under any spectral waveband or photoperiod
 combination, under 250 µM O~2~ (Figure
-\@ref(fig:PhotoperiodPurFitsPlots)D).
+<a href="#fig:PhotoperiodPurFitsPlots">16</a>D).
 
 Under both 25 and 250 µM O~2~ experiments, SS120 growth plateaued by
 about 5.0 x 10^5^ µmol photons m^-2^ d^-1^ diel PUR, with some scatter
@@ -977,24 +949,24 @@ inhibition extended to higher cumulative diel PUR for cultures under 25
 of growth by 25 µM O~2~. Under 25 µM O~2~, red light again generated
 more growth of SS120 per unit cumulative diel PUR, than did blue light,
 consistent with lower cost of growth through lower photoinactivation
-under red light (Figure \@ref(fig:BluevsRedPurFitsPlots)E)
+under red light (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>E)
 [@murphyPhotoinactivationPhotosystemII2017]. For distinct fits for
 different photoperiods refer to Figure
-\@ref(fig:PhotoperiodPurFitsPlots) D-F.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> D-F.
 
 The LLIV clade representative, *P. marinus* MIT9313, under 250 µM O~2~
 showed growth rising to a plateau by about 5 x 10^5^ µmol photons m^-2^
 d^-1^ of cumulative diel PUR. Above about 1.0 x 10^6^ µmol photons m^-2^
 d^-1^ of cumulative PUR under 250 µM O~2~, MIT9313 showed full
 inhibition of growth, across photoperiods, and spectral wavebands
-(Figure \@ref(fig:PhotoperiodPurFitsPlots)G). Under 25 µM O~2~ MIT9313
+(Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>G). Under 25 µM O~2~ MIT9313
 showed higher growth rates over a wider plateau, with a greatly extended
 exploitation of higher cumulative diel PUR, with full growth inhibition
 only above about 3.5 x 10^6^ µmol photons m^-2^ d^-1^ (Figure
-\@ref(fig:PhotoperiodPurFitsPlots)H). MIT9313 growth under 2.5 µM O~2~
+<a href="#fig:PhotoperiodPurFitsPlots">16</a>H). MIT9313 growth under 2.5 µM O~2~
 showed a wider, lower, flatter response to cumulative diel PUR, with
 full growth inhibition only above about 3.5 x 10^6^ µmol photons m^-2^
-d^-1^ cumulative diel PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)I).
+d^-1^ cumulative diel PUR (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>I).
 
 As with MED4 and SS120, our data again support enhanced growth under
 conditions of low cumulative diel PUR and 660 nm (red) spectral
@@ -1002,19 +974,16 @@ bandwidth, consistent with Murphy *et
 al*.[@murphyPhotoinactivationPhotosystemII2017] who found a lower cost
 of growth, due to decreased photoinactivation of PSII under red,
 compared to blue, wavebands (Figure
-\@ref(fig:BluevsRedPurFitsPlots)G and H). Interestingly, this protective
+<a href="#fig:BluevsRedPurFitsPlots">9</a>G and H). Interestingly, this protective
 effect of red light disappears for MIT9313 growing under 2.5 µM O~2~,
 possibly because photoinactivation is strongly suppressed under this low
-[O~2~] (Figure \@ref(fig:BluevsRedPurFitsPlots)I). For distinct fits for
+[O~2~] (Figure <a href="#fig:BluevsRedPurFitsPlots">9</a>I). For distinct fits for
 different photoperiod fits refer to Figure
-\@ref(fig:PhotoperiodPurFitsPlots) G-I.
+<a href="#fig:PhotoperiodPurFitsPlots">16</a> G-I.
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/BluevsRedPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value &lt; 0.05) or dashed lines (red not significantly different from blue, *P* value &gt; 0.05) tested using one-way ANOVA comparisons of fits." width="6377" />
-<p class="caption">(\#fig:BluevsRedPurFitsPlots)**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.</p>
-</div>
+![Figure 9: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.](../Output/Figures/BluevsRedPurFitsPlots.png)
 
 \newpage
 
@@ -1043,7 +1012,7 @@ termed in *Prochlorococcus* (FtsH1-FtsH2)~3~, a membrane-bound metalloprotease [
 *Prochlorococcus* genomes encode 4 FtsH proteins [@mannInvolvementFtsHHomologue2000; @adamFtsHProteasesChloroplasts2005], henceforth referred to
 as FtsH1-4, homologs to the characterized FtsH isoforms of the model
 freshwater cyanobacterium *Synechocystis sp.* PCC6803, and with presumably
-parallel functions (Table \@ref(tab:FtsHTable)). Upon a shift to higher
+parallel functions (Table <a href="#tab:FtsHTable">1</a>). Upon a shift to higher
 light, HLI MED4 upregulates expression of FtsH1 and FtsH2
 [@bonisteelStrainSpecificDifferences2018], homologs to the
 *Synechocystis* *slr*0228 and *slr*1604, implicated in PSII repair [@adamFtsHProteasesChloroplasts2005; @boehmSubunitOrganizationSynechocystis2012]. In
@@ -1064,7 +1033,7 @@ processes other than dynamic regulation of PSII repair.
 
 
 
-Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homologies between *Prochlorococcus* and *Synechocystis* were determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.
+Table: Table 1: FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homologies between *Prochlorococcus* and *Synechocystis* were determined by multiple sequence alignment with MUSCLE followed by construction of maximum likelihood phylogenetic tree using 1000 bootstrap replicates in MEGAX.
 
 |Organism                            |  Homolog 1  |  Homolog 2  |   Homolog 3    |   Homolog 4    |
 |:-----------------------------------|:-----------:|:-----------:|:--------------:|:--------------:|
@@ -1080,28 +1049,25 @@ interpretation of distinct FtsH function across clades of *P. marinus*.
 Ribosome proteins from clade HLI MED4, clade LLI NATL2A, clade LLII/III
 SS120 and clade LLIV MIT9313 show generally similar patterns vs. [O~2~]
 and depth, a proxy for peak PAR (Figure
-\@ref(fig:CladeProchloroProteinMetabDepthO2)). FtsH3, inferred to
+<a href="#fig:CladeProchloroProteinMetabDepthO2">10</a>). FtsH3, inferred to
 mediate PSI assembly, likewise shows a similar pattern between MED4 and
-MIT9313 (Figure \@ref(fig:CladeProchloroProteinMetabDepthO2)). But only
+MIT9313 (Figure <a href="#fig:CladeProchloroProteinMetabDepthO2">10</a>). But only
 MED4 shows the presence of the FtsH1 & FtsH2 isoforms inferred to
 mediate PSII repair, and then only in near-surface samples subject to
 higher light levels. Furthermore, even though MIT9313 grows (Figure
-\@ref(fig:MIT9313GAM)), and is detected in the ocean at low [O~2~]
-(Figure \@ref(fig:CladeProchloroPhotosynthDepthO2)), no FtsH from
+<a href="#fig:MIT9313GAM">8</a>), and is detected in the ocean at low [O~2~]
+(Figure <a href="#fig:CladeProchloroPhotosynthDepthO2">2</a>), no FtsH from
 MIT9313 is detected at low [O~2~] (Figure
-\@ref(fig:CladeProchloroProteinMetabDepthO2)), suggesting limited
+<a href="#fig:CladeProchloroProteinMetabDepthO2">10</a>), suggesting limited
 requirement for protein turnover under low [O~2~].
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
-</div>
+![Figure 10: **Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].](../Output/Figures/CladeProchloroProteinMetabDepthO2.png)
 
 \newpage
 
-Figure \@ref(fig:ProchlorococcusEnzymeKms) shows the measured or
+Figure <a href="#fig:ProchlorococcusEnzymeKms">11</a> shows the measured or
 inferred K~M~ for [O~2~] for enzymes encoded by genes 
 [@omarAnnotationGenesEncoding2023] from *P. marinus* strains, from clades
 HLI, LLI, LLII/III and LLIV. MED4 increases expression of alternative
@@ -1109,14 +1075,14 @@ oxidase ('ubiquinol oxidase (non electrogenic)') to cope with changes in
 light [@bergResponsesPsbAHli2011], by dissipating electrons from the
 inter-system transport chain. The approximate K~M~ for [O~2~] of \~ 25
 µM for ubiquinol oxidase (non electrogenic) (Figure
-\@ref(fig:ProchlorococcusEnzymeKms)) is comparable to the lower limit
-for growth of MED4 in our experiments (Figure \@ref(fig:MED4GAM)). We
+<a href="#fig:ProchlorococcusEnzymeKms">11</a>) is comparable to the lower limit
+for growth of MED4 in our experiments (Figure <a href="#fig:MED4GAM">4</a>). We
 suggest that dependence upon this enzyme excludes MED4 from low oxygen
 zones. The genome scan shows SS120 and MIT9313 lack this gene (Figure
-\@ref(fig:ProchlorococcusEnzymeKms)), and therefore, lack this
+<a href="#fig:ProchlorococcusEnzymeKms">11</a>), and therefore, lack this
 oxygen-dependent path to cope with changing excitation. Conversely, a
 gene encoding (S)-2-hydroxy-acid oxidase is encoded in the MIT9313
-genome (Figure \@ref(fig:ProchlorococcusEnzymeKms)). (S)-2-hydroxy-acid
+genome (Figure <a href="#fig:ProchlorococcusEnzymeKms">11</a>). (S)-2-hydroxy-acid
 oxidase catalyzes the reaction of 2-hydroxy acid with O~2~ to produce
 toxic H~2~O~2~ [@cunaneCrystalStructureAnalysis2005]. (S)-2-hydroxy-acid
 oxidase has an approximate K~M~ for [O~2~] of \~ 250 µM, and produces
@@ -1133,7 +1099,7 @@ experiments, the activity of the (S)-2-hydroxy-acid oxidase enzyme is
 suppressed. As a result, the catalyzed production of hydrogen peroxide
 is inhibited, leading to less PSII damage, allowing MIT9313 to avoid
 photoinhibition and circumvent its limitations on PSII repair to exploit
-higher light. Figure \@ref(fig:ProchlorococcusEnzymeKms) also shows that
+higher light. Figure <a href="#fig:ProchlorococcusEnzymeKms">11</a> also shows that
 *P. marinus* SS120 is the only tested ecotype to lack the pyridoxal
 5'-phosphate synthase enzyme. The pyridoxal 5'-phosphate synthase enzyme
 is an important cofactor in the biosynthesis of vitamin B~6~
@@ -1143,25 +1109,22 @@ potential antioxidant and can effectively quench singlet oxygen
 5'-phosphate synthase enzyme may explain why *P. marinus* SS120 does not
 grow as well as *P. marinus* MIT9313, when exposed to high light stress
 under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Figure
-\@ref(fig:SS120PAR)).
+<a href="#fig:SS120PAR">5</a>).
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/ProchlorococcusEnzymeKms.png" alt="**K~m~ values for oxygen metabolizing enzymes.** The y-axis represents the log10 concentration of oxygen substrate (µM). The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study. The *Prochlorococcus marinus* strains are indicated in rows. The solid circles represent K~m~ values from literature and the asterisks represent predicted values. colours represent the gene counts. The red shaded area denotes a K~m~ oxygen concentration range from 230 to 280 µM. The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM. The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM. The black bars show the minimum and maximum K~m~ values. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023]." width="5100" />
-<p class="caption">(\#fig:ProchlorococcusEnzymeKms)**K~m~ values for oxygen metabolizing enzymes.** The y-axis represents the log10 concentration of oxygen substrate (µM). The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study. The *Prochlorococcus marinus* strains are indicated in rows. The solid circles represent K~m~ values from literature and the asterisks represent predicted values. colours represent the gene counts. The red shaded area denotes a K~m~ oxygen concentration range from 230 to 280 µM. The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM. The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM. The black bars show the minimum and maximum K~m~ values. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
-</div>
+![Figure 11: **K~m~ values for oxygen metabolizing enzymes.** The y-axis represents the log10 concentration of oxygen substrate (µM). The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study. The *Prochlorococcus marinus* strains are indicated in rows. The solid circles represent K~m~ values from literature and the asterisks represent predicted values. colours represent the gene counts. The red shaded area denotes a K~m~ oxygen concentration range from 230 to 280 µM. The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM. The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM. The black bars show the minimum and maximum K~m~ values. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].](../Output/Figures/ProchlorococcusEnzymeKms.png)
 
 \newpage
 
-Figure \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.
+Figure <a href="#fig:DNARepairFig">12</a> shows genes encoding DNA repair for *P.
 marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
 most complete suite of genes encoding DNA repair enzymes, followed by
 *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the
 smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4
 and NATL2A were the only strains to possess a gene encoding
-deoxyribodipyrimidine photolyase (Figure \@ref(fig:DNARepairFig) and
-\@ref(fig:ProchlorococcusLightEnzymes)), which, in the presence of blue
+deoxyribodipyrimidine photolyase (Figure <a href="#fig:DNARepairFig">12</a> and
+<a href="#fig:ProchlorococcusLightEnzymes">17</a>), which, in the presence of blue
 light, is responsible for repairing DNA damaged by UV light
 [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was
 also the only strain to possesses a gene encoding DNA ligase, which uses
@@ -1192,10 +1155,7 @@ however, accumulation of extracellular H~2~O~2~ remains toxic to
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/DNARepairFig.png" alt="**Genes encoding DNA repair enzymes.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023]." width="1500" />
-<p class="caption">(\#fig:DNARepairFig)**Genes encoding DNA repair enzymes.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
-</div>
+![Figure 12: **Genes encoding DNA repair enzymes.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoded for DNA repair found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].](../Output/Figures/DNARepairFig.png)
 
 \newpage
 
@@ -1236,12 +1196,12 @@ is likely driven in part by increased [O~2~], and it is [O~2~] that
 constrains LL clades to deeper waters, not necessarily the light level.
 We found that under 25 µM O~2~ representatives of 'LL' clades, SS120 and
 MIT9313, actually tolerate approximately 1.0 x 10^6^ µmol photons m^-2^
-d^-1^ of PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)E,H), comparable
+d^-1^ of PUR (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>E,H), comparable
 to the representative HL clade, MED4 which also exhibited growth
 saturation at the same cumulative diel PUR of 1.0 x 10^6^ µmol photons
-m^-2^ d^-1^ (Figure \@ref(fig:PhotoperiodPurFitsPlots)A and B). Growth under
+m^-2^ d^-1^ (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>A and B). Growth under
 lower O~2~ allowed MIT9313 to substantially increase its exploitation of
-higher diel PUR (Figure \@ref(fig:PhotoperiodPurFitsPlots)I).
+higher diel PUR (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>I).
 
 # Summary and conclusions {.unnumbered}
 
@@ -1256,7 +1216,7 @@ thus this strain will not exploit habitats typical of temperate winter
 or light attenuated depths, even if water temperatures warm into the
 clade HLI tolerance range. MED4 is also excluded from the lowest oxygen
 habitats of 2.5 µM O~2~, but can, grow under OMZ regions with 25 µM
-O~2~. Genomic (Figure \@ref(fig:ProchlorococcusEnzymeKms)) and
+O~2~. Genomic (Figure <a href="#fig:ProchlorococcusEnzymeKms">11</a>) and
 transcriptional analyses [@bergResponsesPsbAHli2011] suggest MED4 is
 excluded from growth below \~ 25 µM O~2~ because it relies upon a
 ubiquinol oxidase, non-electrogenic, to maintain oxidation/reduction
@@ -1275,25 +1235,25 @@ representing high to low blue light levels, in the Pacific South East
 Ocean. Delmont and Eren [@delmontLinkingPangenomesMetagenomes2018] did
 not analyze data from depths beyond the subsurface chlorophyll maximum
 layer, nor did they report[O~2~] at depth. Our growth findings are
-consistent with Figure \@ref(fig:CladeProchloroPhotosynthDepthO2)
+consistent with Figure <a href="#fig:CladeProchloroPhotosynthDepthO2">2</a>
 showing PSII proteins annotated as MED4, clade HLI, at depths up to 200
 meters, with O~2~ of \~15 µM.
 
 *Prochlorococcus marinus* SS120, a LLII/III clade representative, showed
 an interactive inhibition of growth by oxygen and cumulative diel PUR,
 with a higher tolerance for higher cumulative diel PUR under 25 µM O~2~,
-compared to 250 µM O~2~ (Figure \@ref(fig:PhotoperiodPurFitsPlots)).
+compared to 250 µM O~2~ (Figure <a href="#fig:PhotoperiodPurFitsPlots">16</a>).
 Thus, SS120 can exploit higher PAR environments, within OMZ. SS120 is
 likely excluded from the combination of higher [O~2~] and higher PAR by
 genomic limitations on capacity for DNA repair (Figure
-\@ref(fig:DNARepairFig)), and possibly by limited capacity for synthesis
+<a href="#fig:DNARepairFig">12</a>), and possibly by limited capacity for synthesis
 of reactive oxygen quenchers (Figure
-\@ref(fig:ProchlorococcusEnzymeKms)). Our growth results are supported
+<a href="#fig:ProchlorococcusEnzymeKms">11</a>). Our growth results are supported
 by Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] who found
 evidence of LLII/III and LLIV ecotypes, using terminal restriction
 fragment length polymorphism analyses, at depths above 40 m, where light
 levels are higher, within OMZ, and by Figure
-\@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits
+<a href="#fig:CladeProchloroPhotosynthDepthO2">2</a> showing PSII protein subunits
 annotated as derived from SS120 at all depths ranging from 20 to 200 m
 and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120 grew
 under photoperiods longer than 4 h and showed increasing growth rate
@@ -1310,11 +1270,11 @@ potential to inhabit future warmer temperate zones year-round, as it
 grows under a 4 h photoperiod, expected in winter, or at
 light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to
 higher light levels and cumulative diel PUR, but only under low oxygen
-conditions of 25 µM and 2.5 µM (Figure \@ref(fig:MIT9313PAR)), enabling
+conditions of 25 µM and 2.5 µM (Figure <a href="#fig:MIT9313PAR">7</a>), enabling
 MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313
 carries a gene encoding (S)-2-hydroxy-acid oxidase
 [@cunaneCrystalStructureAnalysis2005], with a K~M~ for [O~2~] of \~ 250
-µM (Figure \@ref(fig:ProchlorococcusEnzymeKms)), which produces
+µM (Figure <a href="#fig:ProchlorococcusEnzymeKms">11</a>), which produces
 H~2~O~2~. Growth at lower [O~2~] may protect MIT9313 from
 auto-intoxication from production of H~2~O~2~. We hypothesize that under
 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffers
@@ -1325,7 +1285,7 @@ expression in *P. marinus* MIT9313
 [@bonisteelStrainSpecificDifferences2018]. MIT9313 shows remarkable
 ability to thrive under very low [O~2~], potentially allowing it to
 expand into broader ecological niches. These results are supported by
-Figure \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein
+Figure <a href="#fig:CladeProchloroPhotosynthDepthO2">2</a> showing PSI protein
 subunits annotated as derived from MIT9313 detected at depths \> 120 m,
 along with PSII subunits at depths from 50 m to 200 m in regions where
 O~2~ was 15 µM. Bagby and Chisholm
@@ -1355,43 +1315,28 @@ the low O~2~ environment.
 
 
 
-<div class="figure">
-<img src="../Output/Figures/LabeledMC.png" alt="**PSI MCMIX-OD Multicultivator.** Spectral waveband, light level and photoperiod are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures. The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter." width="1280" />
-<p class="caption">(\#fig:LabeledMC)**PSI MCMIX-OD Multicultivator.** Spectral waveband, light level and photoperiod are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures. The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.</p>
-</div>
+![Figure 13: **PSI MCMIX-OD Multicultivator.** Spectral waveband, light level and photoperiod are individually controlled for each culture tube. Real time Optical Density (OD) measurements eliminate intrusive subsampling of cultures. The temperature of culture tubes are collectively controlled via heating or cooling of the aquarium water. Gas with specific oxygen concentrations is bubbled through a humidifier and passed through a 0.2 um filter.](../Output/Figures/LabeledMC.png)
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/deltaODLogGrowthPlot.png" alt="**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is the Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) levels; colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns." width="3543" />
-<p class="caption">(\#fig:deltaODLogGrowthPlot)**Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is the Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) levels; colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns.</p>
-</div>
+![Figure 14: **Fitting chlorophyll specific growth rate for each tube in the Multicultivator.** The x-axis is time in hours (h). The left y-axis is chlorophyll proxy optical density (OD~680~ - OD~720~; $\Delta$OD) The right y-axis is the Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) levels; colours represent the imposed spectral waveband: 450 nm (blue points) or 660 nm (red points). The green points are $\Delta$OD measurements taken every 5 minutes. The black lines are logistic growth curves fit using a nonlinear model regression (R package, minpack.lm). The gold points are the residuals of the fit. Meta data associated with each Multicultivator tube are in columns.](../Output/Figures/deltaODLogGrowthPlot.png)
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/OverlayPlots.png" alt="**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A-C); SS120 (D-F); MIT9313 (G-I) grown under three emission wavebands.** **(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated." width="4133" />
-<p class="caption">(\#fig:OverlayPlots)**Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A-C); SS120 (D-F); MIT9313 (G-I) grown under three emission wavebands.** **(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.</p>
-</div>
+![Figure 15: **Normalized absorbance, emission and Photosynthetically Usable Radiation spectra for *Prochlorococcus marinus* MED4 (A-C); SS120 (D-F); MIT9313 (G-I) grown under three emission wavebands.** **(A,D,G)** Growth light emission spectra from the White LED (normalized to 439 nm; dotted black line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line); and calculated PUR spectra (solid black line and shaded grey). **(B,E,H)** Growth light emission spectra at 660 nm (normalized to 647 nm; dotted red line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded red). **(C,F,I)**  Growth light emission spectra at 450 nm (normalized to 441 nm; dotted blue line); whole cell absorbance spectra (normalized to absorbance maxima between 400 nm and 460 nm; dashed purple line);  and calculated PUR spectra (solid black line and shaded blue). Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^) and calculated Photosynthetically Usable Radiation (PUR; µmol photons m^-2^ s^-1^) levels are indicated.](../Output/Figures/OverlayPlots.png)
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/PhotoperiodPurFitsPlots.png" alt="**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value &lt; 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line)." width="6377" />
-<p class="caption">(\#fig:PhotoperiodPurFitsPlots)**Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).</p>
-</div>
+![Figure 16: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).](../Output/Figures/PhotoperiodPurFitsPlots.png)
 
 \newpage
 
-<div class="figure">
-<img src="../Output/Figures/ProchlorococcusLightEnzymes.png" alt="***Prochlorococcus* genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023]." width="2400" />
-<p class="caption">(\#fig:ProchlorococcusLightEnzymes)***Prochlorococcus* genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].</p>
-</div>
+![Figure 17: ***Prochlorococcus* genes encoding enzymes activated or inhibited by light.** The y-axis represents *Prochlorococcus marinus* strains. The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study. Point size indicate gene counts. Figure was generated using a filtered subset of the annotated phytoplankton gene sequences dataset from Omar *et al*. [@omarAnnotationGenesEncoding2023].](../Output/Figures/ProchlorococcusLightEnzymes.png)
 
 \newpage
 
 
-Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:ProchlorococcusEnzymeKms),  \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).
+Table: Table 2: Enzymes shown in Figures <a href="#fig:ProchlorococcusEnzymeKms">11</a>,  <a href="#fig:DNARepairFig">12</a> and <a href="#fig:ProchlorococcusLightEnzymes">17</a> with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).
 
 |Enzyme Name                                                      |EC          |Kegg Orthology |
 |:----------------------------------------------------------------|:-----------|:--------------|
@@ -1537,7 +1482,7 @@ Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:Proc
 
 
 
-Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) achieved for each strain under each [O~2~], with the corresponding photoperiod, PAR level and spectral waveband.
+Table: Table 3: The maximum growth rate, µ~max~ (d^-1^) achieved for each strain under each [O~2~], with the corresponding photoperiod, PAR level and spectral waveband.
 
 |Strain  | [O~2~] (µM) | µ~max~ (d^-1^) | Photoperiod (h) | PAR (µmol photons m^-2^ s^-1^) | Spectral waveband (nm) |
 |:-------|:-----------:|:--------------:|:---------------:|:------------------------------:|:----------------------:|
