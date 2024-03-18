@@ -7,7 +7,7 @@ Provide a brief description of the project - 150 words.
 ## Highly Qualified Personnel
 
 - Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 0009-0009-9499-6657
-- Aurora Mattison, XXX institute, ajmattis@student.ubc.ca, XXX ORCID
+- Aurora Mattison, University of British Columbia, ajmattis@student.ubc.ca, XXX ORCID
 - Julie Nadeau, Mount Allison University, janadeau@mta.ca,  ORCID 0009-0009-8123-6237
 - Laurel Genge, XXX institute, XXX email, ORCID 0009-0006-7044-3394
 - Maximilian Berthold, Mount Allison University, mberthold@mta.ca, ORCID 0000-0003-1985-6426
@@ -28,11 +28,16 @@ Provide a brief description of the project - 150 words.
 
 ## Funding sources
 
-- List your funding sources, grant names, and grant numbers as applicable.
+- Canada Research Chair in Phytoplankton Ecophysiology (DAC), Grant number CRC-2017-00075
+- Natural Sciences and Engineering Research Council of Canada, 'Latitude and Light' (DAC)
+- Canada Foundation for Innovation (DAC) 
+- New Brunswick Foundation for Innovation (DAC and MS) 
+- Rice Graduate Fellowship 2021 and 2022 (MS)
+- Czech Academy of Science (OP) visiting fellowship supporting DAC work at AlgaTech 
 
 ## Keywords
 
-Prochlorococcus, Oxygen, Photoperiod
+*Prochlorococcus*, Oxygen, Photoperiod
 
 ## Additional information and support
 
@@ -47,8 +52,6 @@ Prochlorococcus, Oxygen, Photoperiod
 The [@R-googlesheets4] package was used to read in the googlesheet 'MultiCultiCatalog' containing meta data. Data files (.csv) saved from the Multicultivator software, ascii (.asc) files from the Olis 14 UV/VIS Clarity Spectrophotometer and text (.txt) files from the Jaz spectrometer were imported into R (v4.1.3) and R-Studio (Posit Team, v2023.06.0) for data tidying and management using the [@R-tidyverse], [@R-data.table] and [@R-zoo] packages. Data analysis and visualization were done using the [@R-tidyverse], [@R-minpack.lm], [@R-mgcv], [@R-ggh4x], [@R-png], [@R-tagger], and [@R-kable] packages.  
 
 ## Repo content information
-
-XXX DOI pending from BOREALIS? or DRYAD? XXX 
 
 ### MetaDataCatalog
 URL for MultiCultiCatalog:
@@ -68,39 +71,51 @@ Docs/Prochlorococcus_O2_DataDictionary.csv
 
 ### Data/ImportedData
 
--ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from Code/Import_JazEmData.Rmd
--ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from Code/Import_MCData.Rmd
--ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from Code/Import_OlisData.Rmd
+- ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from Code/Import_JazEmData.Rmd
+- ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from Code/Import_MCData.Rmd
+- ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from Code/Import_OlisData.Rmd
 
 ### Data/ProcessedData
 
--ProcessedMCData folder contains "TargetFileName_ProcessDataNestGrowth.Rds" generated from Code/Process_MCData.Rmd
--ProcessedOceanData folder contains "poi.RDS" generated from  XXXXX  and "pro_proteins.RDS" generated from  XXXXX 
--ProcessedOlisJazData folder contains "PICO_Processed_OlisJazMetaPUR.Rds" generated from Code/Process_OlisJazEmData.Rmd
+- ProcessedMCData folder contains "TargetFileName_ProcessDataNestGrowth.Rds" generated from Code/Process_MCData.Rmd
+- ProcessedOceanData folder contains "poi.RDS" generated from  XXXXX  and "pro_proteins.RDS" generated from  XXXXX 
+- ProcessedOlisJazData folder contains "PICO_Processed_OlisJazMetaPUR.Rds" generated from Code/Process_OlisJazEmData.Rmd
 
 
 ### Data/CleanData
 
--CleanedMCData folder contains "PICO_Processed_MCGrowthFits.Rds" generated from Code/"Merge_MCGrowthData.Rmd"
--"PICO_Merged_GrowthFitsPURPAR.Rds" generated from Code/"Merge_GrowthPURData.Rmd"
--"ProchlorococcusEnzymeTable.Rds" generated from Code/"Plots_Genome.Rmd"   XXX Check thisXXX
--"ProchlorococcusGenomeData.Rds" generated from Code/"Plots_Genome.Rmd"   XXX Check thisXXX
-
-Clean data in formats for long-term storage. Modified data with the appropriate column/row headers and data structure.
-
+- CleanedMCData folder contains "PICO_Processed_MCGrowthFits.Rds" generated from Code/"Merge_MCGrowthData.Rmd"
+- "PICO_Merged_GrowthFitsPURPAR.Rds" generated from Code/"Merge_GrowthPURData.Rmd"
+- "ProchlorococcusEnzymeTable.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
+- "ProchlorococcusGenomeData.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
 
 
 ### Code
 
-Scripts for processing raw data into cleaned data, outside derived code, and user derived code.
-A folder OldR is used to store outdated code.
-Typically organize .Rmd in modules; Import; Tidy; Process saving .Rds out of each step.
+
+
 
 ### Docs
 
-Project notes, other documentation, etc.
+- "Prochlorococcus_O2_DataDictionary.csv" is the data dictionary 
+
 
 ### Output
 
-Output from knit .Rmd, Figures and tables produced from analysis.
-Do not generate swarms of superfluous data exploration figures.
+Figures generated using Code/"Plots_Growth.Rmd":
+- "MED4PAR.png", "SS120PAR.png", "MIT9313PAR.png", 
+"PurParPlot.png", "deltaODLogGrowthPlot.png"
+
+Figures generated using Code/"Plots_GAM.Rmd":
+- "MED4GAM.png", "SS120GAM.png", "MIT9313GAM.png"
+
+Figures generated using Code/"Plots_PURfits.Rmd":
+- "BluevsRedPurFitsPlots.png", "PhotoperiodPurFitsPlots.png"
+
+Figures generated using Code/"Plots_Genome.Rmd":
+- "DNARepairFig.png", "ProchlorococcusEnzymeKms.png", "ProchlorococcusLightEnzymes.png"
+
+Figures generated using Code/"Plots_OceanProtein.Rmd":
+- "CladeProchloroPhotosynthDepthO2.png", "CladeProchloroProteinMetabDepthO2.png"
+
+The editable Powerpoint file named "LabeledMC.pptx" was used to generated the labeled Multicultivator picture named "LabeledMC.png".
