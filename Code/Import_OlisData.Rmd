@@ -31,8 +31,8 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 # Introduction
 
-Import_OlisData.Rmd imports OLIS CLARiTY spectrophotometer files from Data/RawData/OlisData.zip folder and stored in Data/ImportedData/ImportedOlisData folder as: 
-Baltic_Photoperiod_Imported_OlisData.Rds
+Import_OlisData.Rmd imports OLIS 14 UV/VIS Clarity spectrophotometer files from Data/RawData/OlisData.zip folder and stored in Data/ImportedData/ImportedOlisData folder as: 
+PICO_Imported_OlisData.Rds
 
 # Load Libraries and set Project Variables
 
