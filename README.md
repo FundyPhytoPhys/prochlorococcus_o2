@@ -8,8 +8,8 @@ Provide a brief description of the project - 150 words.
 
 - Mireille Savoie, Mount Allison University, msavoie@mta.ca, ORCID 0009-0009-9499-6657
 - Aurora Mattison, University of British Columbia, ajmattis@student.ubc.ca, XXX ORCID
+- Laurel Genge, Fisheries and Oceans Canada, laurel-maud@hotmail.com, ORCID 0009-0006-7044-3394
 - Julie Nadeau, Mount Allison University, janadeau@mta.ca,  ORCID 0009-0009-8123-6237
-- Laurel Genge, XXX institute, XXX email, ORCID 0009-0006-7044-3394
 - Maximilian Berthold, Mount Allison University, mberthold@mta.ca, ORCID 0000-0003-1985-6426
 - Sylwia Śliwińska-Wilczewska, Mount Allison University, ssliwinskawilczews@mta.ca, ORCID 0000-0002-3147-6605
 - Naaman M. Omar, Mount Allison University, nomar@mta.ca, ORCID 0000-0001-9583-2886
@@ -49,31 +49,31 @@ Provide a brief description of the project - 150 words.
 
 ## Software  
 
-The [@R-googlesheets4] package was used to read in the googlesheet 'MultiCultiCatalog' containing meta data. Data files (.csv) saved from the Multicultivator software, ascii (.asc) files from the Olis 14 UV/VIS Clarity Spectrophotometer and text (.txt) files from the Jaz spectrometer were imported into R (v4.1.3) and R-Studio (Posit Team, v2023.06.0) for data tidying and management using the [@R-tidyverse], [@R-data.table] and [@R-zoo] packages. Data analysis and visualization were done using the [@R-tidyverse], [@R-minpack.lm], [@R-mgcv], [@R-ggh4x], [@R-png], [@R-tagger], and [@R-kable] packages.  
+Data was imported and tidied into R (v4.1.3), running under R-studio (Posit Team, v2023.06.0), using the 'tidyverse' [@R-tidyverse], 'glue' [@R-glue], 'ggh4x' [@R-ggh4x], 'ggtext' [@R-ggtext], 'ggpubr' [@R-ggpubr], 'minpack.lm' [@R-minpack.lm], [@R-data.table], [@R-zoo], [@R-mgcv], [@R-kable] and 'nlstools' [@R-nlstools] packages. Formatted outputs were generated from Rmarkdown files using the 'knitr' [@R-knitr] and 'bookdown' [@R-bookdown] packages. The 'MultiCultiCatalog' googlesheet containing metadata was read using the [@R-googlesheets4] package. 
 
 ## Repo content information
 
 ### MetaDataCatalog
-URL for MultiCultiCatalog:
+
 https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
 
 
 ### Data Dictionary
-Data Dictionary location and filename:
-Docs/Prochlorococcus_O2_DataDictionary.csv
+
+Data Dictionary can be found in "Docs/Prochlorococcus_O2_DataDictionary.csv"
 
 ### Data/RawData
 
-- CultureCatalog.Rds contains the meta data for the Multicultivator runs.
+- CultureCatalog.Rds contains the metadata for Multicultivator runs generated from "Code/Import_MetaData.Rmd".
+- MultiCultiData1.zip, MultiCultiData2.zip and MultiCultiData3.zip folders has all .csv data files from the Multicultivators. 
 - JazEmData.zip folder has all .txt files containing emission spectra data of the Multicultivator LED lights.
-- MultiCultiData1.zip, MultiCultiData2.zip and MultiCultiData3.zip folders has all .csv data files from the  Multicultivator. 
-- OlisData.zip folder has all .asc files containing culture whole cell absorbance spectra data. 
+- OlisData.zip folder has all .asc files containing culture whole cell absorbance spectra data from the Olis Clarity. 
 
 ### Data/ImportedData
 
-- ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from Code/Import_JazEmData.Rmd
-- ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from Code/Import_MCData.Rmd
-- ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from Code/Import_OlisData.Rmd
+- ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from "Code/Import_JazEmData.Rmd"
+- ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from "Code/Import_MCData.Rmd"
+- ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from "Code/Import_OlisData.Rmd"
 
 ### Data/ProcessedData
 
