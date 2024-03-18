@@ -23,12 +23,10 @@ knitr::opts_chunk$set(fig.path='Figs/')
 
 # Introduction
 
-Implement logistic and other growth curve fits to MultiCulti growth trajectories.
+Implement logistic and other growth curve fits to MultiCulti growth trajectories. Individually tidied Muticultivator runs are imported from "Data/ImportedData/ImportedMCData" folder, processed and saved as .Rds in the "Data/ProcessedData/ProcessedMCData" folder. This script calculates deltaOD and filters data after x hours of decline growth from maximum in OD720 or deltaOD prior to implementing growth curve fits. 
 
 # Load Libraries and set project variables
 Run only first time in session
-
-
 ```{r load libraries}
 # libraries; Note check actual dependencies
 
