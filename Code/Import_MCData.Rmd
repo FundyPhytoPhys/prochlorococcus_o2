@@ -46,7 +46,7 @@ set by the user.
 It tidies and organizes the data. It uses a pivot_wider and
 interpolation approach to get the Actinic_par and OD values in line
 rowwise. This requires careful 'arrange' of the rows. It imports a
-metadata Catalog and merges the metadata with the imported data based
+metadata catalog (Data/RawData/"CultureCatalog.Rds") and merges the metadata with the imported data based
 upon shared values for the variables 'MC', 'Tube', and 'Filename' which
 should unambiguously identify a given growth trajectory measured at
 OD680 or OD720.
@@ -79,7 +79,7 @@ library(photobiologyWavebands)
 #"..", takes up a level in the directory path
 Project <- "PICO"
 
-# Multiculti data files are too large to upload in a single .zip so uploaded 3 .zipped folders. Uncomment the 'DataIn' line with the folder name containing the intended files for import.   
+# Multicultivator data files are too large to upload in a single .zip therefore 3 .zipped folders are uploaded. Uncomment the 'DataIn' line with the folder name containing the intended files for import.   
  # DataIn <- file.path("..", "Data", "RawData", "MultiCultiData1.zip")
 DataIn <- file.path("..", "Data", "RawData", "MultiCultiData2.zip")
 # DataIn <- file.path("..", "Data", "RawData", "MultiCultiData3.zip")
