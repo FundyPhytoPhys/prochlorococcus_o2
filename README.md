@@ -98,7 +98,7 @@ Data Dictionary can be found in "Docs/Prochlorococcus_O2_DataDictionary.csv"
 ### Docs
 
 - "Prochlorococcus_O2_DataDictionary.csv" is the data dictionary 
-
+- "PLOSONE_CoverLetter.docx" is the cover letter to PLOS ONE
 
 ### Output
 

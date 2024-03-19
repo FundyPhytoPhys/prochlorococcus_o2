@@ -8,8 +8,7 @@ https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZ
 #### Import_MCData.Rmd
 
 This script imports and tidies Muticultivator data in simple .csv long form (Data/RawData/MultiCultiData.zip/"yyyymmdd_PICO_MCXXXXXX_RUNXXX.csv") based upon project specific values for variables
-set by the user. Multicultivator data files are too large to upload in a single .zip folder therefore 3 .zipped folders ("MultiCultiData1.zip", "MultiCultiData2.zip" and "MultiCultiData3.zip") are uploaded. Uncomment the 'DataIn' line with the folder name containing the intended files for import. Individual multicultivator runs are imported and tidied one at a time. The script uses a pivot_wider and interpolation approach to get the Actinic_par and OD values in line
-rowwise. A metadata catalog (Data/RawData/"CultureCatalog.Rds") is imported and merges with the imported data based
+set by the user. Multicultivator data files are too large to upload in a single .zip folder therefore 3 .zipped folders ("MultiCultiData1.zip", "MultiCultiData2.zip" and "MultiCultiData3.zip") are uploaded. Uncomment the 'DataIn' line with the folder name containing the intended files for import. Individual multicultivator runs are imported and tidied one at a time. A metadata catalog (Data/RawData/"CultureCatalog.Rds") is imported and merges with the imported data based
 upon shared values for the variables 'MC', 'Tube', and 'Filename' which unambiguously identify a given growth trajectory measured at OD680 or OD720. Each individually imported and tidied multicultivator run is saved as a .Rds in the "Data/ImportedData/ImportedMCData" folder as "yyyymmdd_PICO_MCXXXXXX_RUNXXX_TargetDataMetaFilter.Rds" for further processing in "Code/Process_MCData.Rmd". 
 
 #### Process_MCData.Rmd
@@ -24,7 +23,7 @@ This script reads in all individually processed Muticultivator runs containing g
 
 #### Import_JazEmData.Rmd
 
-This script imports and tidies Jaz spectrometer emission files (.txt) from "Data/RawData/JazEmData.zip". The tidied data is saved as a .Rds in "Data/ImportedData/ImportedJazEmData" folder as "PICO_Imported_JazEmData.Rds" for further analysis in "Process_OlisJazEmData.Rmd".
+This script imports and tidies all Jaz spectrometer emission files (.txt) from "Data/RawData/JazEmData.zip". The tidied data of all the emission spectra are saved as one .Rds named "PICO_Imported_JazEmData.Rds".  in "Data/ImportedData/ImportedJazEmData" folder as  for further analysis in "Process_OlisJazEmData.Rmd".
 
 
 #### Import_OlisData.Rmd
