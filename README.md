@@ -14,7 +14,7 @@ Provide a brief description of the project - 150 words.
 - Sylwia Śliwińska-Wilczewska, Mount Allison University, ssliwinskawilczews@mta.ca, ORCID 0000-0002-3147-6605
 - Naaman M. Omar, Mount Allison University, nomar@mta.ca, ORCID 0000-0001-9583-2886
 - Ondřej Prášil, Center Algatech, Laboratory of Photosynthesis, prasil@alga.cz, ORCID 0000-0002-0012-4359
-- Amanda M. Cockshutt, St. Francis Xavier University, email XXX, ORCID 0000-0003-3024-2687
+- Amanda M. Cockshutt, St. Francis Xavier University, acockshu@stfx.ca, ORCID 0000-0003-3024-2687
 
 ## Principal Investigators
 
