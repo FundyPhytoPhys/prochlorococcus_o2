@@ -6,7 +6,7 @@ author:
     main: true
     email: msavoie@mta.ca
   - name: Aurora Mattison
-    institute: [mta, ubc]
+    institute: [mtachem, ubc]
   - name: Laurel Genge
     institute: [mta, dfo]
   - name: Julie Nadeau
@@ -33,9 +33,9 @@ institute:
   - mtachem: 'Department of Chemistry and Biochemistry, Mount Allison University, Sackville, New Brunswick, Canada'
   - ubc: 'Department of Biology, University of British Columbia, Vancouver, British Columbia, Canada'
   - dfo: 'Fisheries and Oceans Canada, Ecosystems Management Branch, Dartmouth, Nova Scotia, Canada'
-  - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
+  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
+  - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
 date: "`r format(Sys.Date())`"
 output:
   bookdown::word_document2:
@@ -370,7 +370,7 @@ sample collection and peptide analysis are described by Saito *et al*.
 
 Metaproteomic datasets were obtained from the KM1128 entry in the
 BCO-DMO repository [@saitoPeptidesTheirSpectral2018] accessed via the OPP
-in June 2019 at https://www.bco-dmo.org/dataset-deployment/730728. This dataset included biomass in the 0.2 to 3.0 micron size fractionated filter size as described in Saito et al., 2014 where *Prochlorococcus* is found. Datasets contained: i) Protein sequences and sample
+in June 2019 at https://www.bco-dmo.org/dataset-deployment/730728. This dataset included biomass in the 0.2 to 3.0 micron size fractionated filter size as described in Saito *et al*. [@saitoMultipleNutrientStresses2014] where *Prochlorococcus* is found. Datasets contained: i) Protein sequences and sample
 identification (ID) number; ii) Sample ID number, station, depth in
 meters below the surface the sample was collected at, best-hit BLASTP
 protein and species annotation and the corresponding Uniprot Entry
@@ -405,18 +405,14 @@ four isoforms of FtsH protease of *Synechocystis* sp. PCC6803
 plotted against depth and [O~2~] and sampling station.
 
 When assessing the presence of a particular protein complex at a
-sampling location, all proteins belonging to all subunits of the complex
-were included to give the greatest number of data points. As this data
+sampling location, the spectral counts were summed between proteins within the protein subunit to give the greatest number of data points. As this data
 was acquired by survey proteomics (data dependent acquisition) rather than through targeted peptide
-approaches (e.g. parallel reaction monitoring), it is difficult to discern accuracies of strain assignment
-annotations, particularly as the proteins of interest in this study are
+approaches (e.g. parallel reaction monitoring), it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are
 highly conserved across strains [@saitoNeedlesBlueSea2015]. We are, however, confident in clade
 classifications for each protein examined. The data is also limited
 because a peptide sequence was not determined unless there was already a
 known spectrum for that peptide in the SEQUEST database, hence some
-peptides of interest may not be identifiable. Furthermore, a peptide
-must be detected above a certain threshold abundance in order to be
-considered an accurate ‘hit’.
+peptides of interest may not be identifiable. This MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable this peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide to spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020].
 
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 

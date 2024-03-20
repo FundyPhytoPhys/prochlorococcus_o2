@@ -6,7 +6,7 @@ author:
     main: true
     email: msavoie@mta.ca
   - name: Aurora Mattison
-    institute: [mta, ubc]
+    institute: [mtachem, ubc]
   - name: Laurel Genge
     institute: [mta, dfo]
   - name: Julie Nadeau
@@ -33,10 +33,10 @@ institute:
   - mtachem: 'Department of Chemistry and Biochemistry, Mount Allison University, Sackville, New Brunswick, Canada'
   - ubc: 'Department of Biology, University of British Columbia, Vancouver, British Columbia, Canada'
   - dfo: 'Fisheries and Oceans Canada, Ecosystems Management Branch, Dartmouth, Nova Scotia, Canada'
-  - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
-date: "2024-03-15"
+  - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
+  - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
+date: "2024-03-20"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -246,8 +246,8 @@ Pacific and Indian Oceans are expanding
 the oxygen levels are lowest, may actually contract
 [@buseckeDivergingFatesPacific2022].
 
-We used the OceansMap Protein Portal (OPP;
-<https://proteinportal.whoi.edu/>) [@saitoDevelopmentOceanProtein2021]
+We used the Ocean Protein Portal (OPP;
+<https://www.oceanproteinportal.org/>) [@saitoDevelopmentOceanProtein2021]
 to analyze the distribution of proteins from clades of *P. marinus* in
 samples taken across a range of [O~2~] and depth, which in turn
 correlates to depth attenuated peak light at the site of sampling. In parallel we
@@ -311,11 +311,11 @@ and [O~2~] conditions of this study.
 
 # Materials and methods {.unnumbered}
 
-## MetaProteomics {.unnumbered}
+## Metaproteomics {.unnumbered}
 
-The OceansMap Protein Portal is an open access online data repository
-(Woods Hole Oceanographic Institute, WHOI) of mass spectroscopy data on
-marine microbial peptides, sampled from various depths and locations
+The Ocean Protein Portal is an open access online data repository
+(Woods Hole Oceanographic Institution, WHOI) of mass spectroscopy data on
+marine microbial proteins, sampled from various depths and locations
 worldwide [@saitoDevelopmentOceanProtein2021]. We screened a subset of
 the OPP for proteins annotated as from *Prochlorococcus* strains, to
 identify differential strategies employed by strains living at varying
@@ -323,30 +323,30 @@ depths and oxygen levels within the marine water column. We focused on
 proteins mediating photosynthesis and protein metabolism from depths of
 20 to 200 m below the ocean surface. The samples for metaproteomic
 analyses were collected from 7 locations in the tropical North Pacific
-ocean along 150 W from 18 N of the equator between October 1, 2011 and
-October 25, 2011 during the voyage of the R/V Kilo Moana MetZyme cruise
+Ocean along 150 W from 18 N of the equator between October 1, 2011 and
+October 25, 2011 during the voyage of the R/V Kilo Moana MetZyme expedition
 [@rollingdecktorepositoryCruiseKM1128RV2015]; original datasets in the
 Biological and Chemical Oceanography Data Management Office (BCO-DMO)
-repository [@saitoPeptidesTheirSpectral2018]. Oxygen concentration
+repository (https://www.bco-dmo.org/project/2236) [@saitoPeptidesTheirSpectral2018]. Oxygen concentration
 levels at the location of sampling were recorded. The methodology for
 sample collection and peptide analysis are described by Saito *et al*.
 [@saitoMultipleNutrientStresses2014; @saitoNeedlesBlueSea2015].
 
-## MetaProteomics bioinformatic analyses {.unnumbered}
+## Metaproteomics bioinformatic analyses {.unnumbered}
 
 Metaproteomic datasets were obtained from the KM1128 entry in the
-BCO-DMO database [@saitoPeptidesTheirSpectral2018] accessed via the OPP
-in June 2019. Datasets contained: i) Peptide sequences and sample
+BCO-DMO repository [@saitoPeptidesTheirSpectral2018] accessed via the OPP
+in June 2019 at https://www.bco-dmo.org/dataset-deployment/730728. This dataset included biomass in the 0.2 to 3.0 micron size fractionated filter size as described in Saito *et al*. [@saitoMultipleNutrientStresses2014] where *Prochlorococcus* is found. Datasets contained: i) Protein sequences and sample
 identification (ID) number; ii) Sample ID number, station, depth in
 meters below the surface the sample was collected at, best-hit BLASTP
 protein and species annotation and the corresponding Uniprot Entry
 number for the identified proteins; iii) Sample station depth and
 [O~2~].\
-The depth and [O~2~] were joined to peptide sequence and BLASTP
+The depth and [O~2~] (also from BCO-DMO at https://www.bco-dmo.org/dataset/646115/) were joined to protein sequence and BLASTP
 annotations by ID number, depth and station using *tidyverse* package
 [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 [@RStudio].
 The resulting merged dataset was filtered for those *Prochlorococcus*
-peptides, detected from 0 to 300 m below the surface, annotated as a
+protein, detected from 0 to 300 m below the surface, annotated as a
 subunit of *Prochlorococcus* chlorophyll binding proteins (Pcb);
 Photosystem II (PSII); Cytochrome b~6~f (Cytb~6~f); Photosystem I (PSI);
 NADPH Dehydrogenase (NDH); Plastoquinol Terminal Oxidase (PTOX);
@@ -371,18 +371,14 @@ four isoforms of FtsH protease of *Synechocystis* sp. PCC6803
 plotted against depth and [O~2~] and sampling station.
 
 When assessing the presence of a particular protein complex at a
-sampling location, all peptides belonging to all subunits of the complex
-were included to give the greatest number of data points. As this data
-was acquired on a discovery mission rather than through targeted peptide
-approaches, it is difficult to discern accuracies of strain assignment
-annotations, particularly as the proteins of interest in this study are
-highly conserved across strains. We are, however, confident in clade
+sampling location, the spectral counts were summed between proteins within the protein subunit to give the greatest number of data points. As this data
+was acquired by survey proteomics (data dependent acquisition) rather than through targeted peptide
+approaches (e.g. parallel reaction monitoring), it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are
+highly conserved across strains [@saitoNeedlesBlueSea2015]. We are, however, confident in clade
 classifications for each protein examined. The data is also limited
 because a peptide sequence was not determined unless there was already a
 known spectrum for that peptide in the SEQUEST database, hence some
-peptides of interest may not be identifiable. Furthermore, a peptide
-must be detected above a certain threshold abundance in order to be
-considered an accurate ‘hit’.
+peptides of interest may not be identifiable. This MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable this peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide to spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020].
 
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 
@@ -508,9 +504,9 @@ informative [@murphyPhotoinactivationPhotosystemII2017].
 
 ## Estimation of photosynthetically usable radiation {.unnumbered}
 
-To estimate the Photosynthetic Usable Radiation (PUR), a proxy of
+To estimate the Photosynthetically Usable Radiation (PUR), a proxy of
 incident photons that can be absorbed by the cells, for each *P. marinus* ecotype, 
-the imposed Photosynthetic Active Radiation (PAR) was
+the imposed Photosynthetically Active Radiation (PAR) was
 first determined using the reported delivery of sinusoidal diel PAR
 regimes by the Multicultivators, point validated using a LI-250 quantum
 sensor (LI-COR Inc.,Lincoln, NE, USA). An emission profile from 400 nm
@@ -983,7 +979,7 @@ different photoperiod fits refer to Figure
 
 \newpage
 
-![Figure 9: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.](../Output/Figures/BluevsRedPurFitsPlots.png)
+![Figure 9: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetically Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values from replicates, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to 660 nm (red lines) or 450 nm (blue lines) growth data for each combination of strain and dissolved oxygen shown with solid lines (red significantly different from blue, *P* value < 0.05) or dashed lines (red not significantly different from blue, *P* value > 0.05) tested using one-way ANOVA comparisons of fits.](../Output/Figures/BluevsRedPurFitsPlots.png)
 
 \newpage
 
@@ -1327,7 +1323,7 @@ the low O~2~ environment.
 
 \newpage
 
-![Figure 16: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetic Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).](../Output/Figures/PhotoperiodPurFitsPlots.png)
+![Figure 16: **Chlorophyll specific growth rate (d^-1^) vs. cumulative diel Photosynthetically Usable Radiation (PUR, µmol photons m^-2^ d^-1^).** Rows separate data from levels of imposed dissolved O~2~ concentrations as 250 µM, 25 µM and 2.5 µM. Columns separate data from strains; MED4 (A-C), SS120 (D-F) and MIT9313 (G-I). Shapes show the imposed photoperiod (h); 4 h (solid square),  8 h (solid diamond), 12 h (solid circle), 16 h (solid upright triangle). Symbol colours show the spectral waveband for growth; white LED (black symbols), 660 nm (red symbols), and 450 nm (blue symbols). Large symbols show mean of growth rate from logistic curve fits; small symbols show values for replicate determinations, if any. Harrison and Platt [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] 4 parameter model fit to data pooled for each combination of strain and dissolved oxygen shown with solid lines. Separate models fit to photoperiod data and shown if significantly different (*P* value < 0.05) from the pooled model using one-way ANOVA; 4 h (long dashed line); 8 h (dotted line); 12 h (dashed line); and 16 h (dot dashed line).](../Output/Figures/PhotoperiodPurFitsPlots.png)
 
 \newpage
 
@@ -1501,7 +1497,16 @@ Table: Table 3: The maximum growth rate, µ~max~ (d^-1^) achieved for each strai
 
 All data obtained from the Multicultivator were saved as comma separated
 values files and are available at
-<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData1.zip>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData2.zip>.
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/MultiCultiData3.zip>.
+All data obtained from the Jaz spectrometer were saved as text files and are available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/JazEmData.zip>.
+All data obtained from the Olis 14 UV/VIS Clarity Spectrophotometer were saved as ascii files and are available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/OlisData.zip>.
+Meta Data for the Multicultivator runs were imported and saved as a .Rds and available at
+<https://github.com/FundyPhytoPhys/prochlorococcus_o2/Data/RawData/CultureCatalog.Rds>.
+
 Annotated code for data import, transformations and analyses are
 available at
 <https://github.com/FundyPhytoPhys/prochlorococcus_o2/Code>.
@@ -1516,14 +1521,15 @@ Multicultivator runs.
 
 # Funding {.unnumbered}
 
-To Be Entered through PLoSONe system and deleted here Czech Academy of
-Science (OP) visiting fellowship supporting DAC work at AlgaTech Canada
-Research Chair in Phytoplankton Ecophysiology (DAC) Natural Sciences and
-Engineering Research Council of Canada, 'Latitude and Light' (DAC)
-Canada Foundation for Innovation (DAC) New Brunswick Foundation for
-Innovation (DAC and MS) Rice Graduate Fellowship 2021 and 2022 (MS)
+To Be Entered through PLoSONe system and deleted here 
+Czech Academy of Science (OP) visiting fellowship supporting DAC work at AlgaTech 
+Canada Research Chair in Phytoplankton Ecophysiology (DAC), Grant number CRC-2017-00075 
+Natural Sciences and Engineering Research Council of Canada, 'Latitude and Light' (DAC)
+Canada Foundation for Innovation (DAC) 
+New Brunswick Foundation for Innovation (DAC and MS) 
+Rice Graduate Fellowship 2021 and 2022 (MS)
 
-XXX PLOS requires grant numbers XXX
+The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
 
 \newpage
 
