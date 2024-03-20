@@ -59,8 +59,8 @@ output:
       - '--lua-filter=scholarly-metadata.lua'
       - '--lua-filter=author-info-blocks.lua'
 always_allow_html: true
-bibliography: [Manuscript_O2.bib, RPackages.bib, FaultyCitations.bib]
-csl: plos-one.csl
+bibliography: ["`r file.path('..', 'Docs', 'Manuscript_O2.bib')`", "`r file.path('..', 'Docs', 'RPackages.bib')`", "`r file.path('..', 'Docs', 'FaultyCitations.bib')`"]
+csl: "`r file.path('..', 'Docs', 'plos-one.csl')`"
 editor_options: 
   markdown: 
     wrap: 72
@@ -91,7 +91,7 @@ library(ggpubr)
 library(png)
 library(cowplot)
 
-knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), 'RPackages.bib')
+knitr::write_bib(c("knitr", "tidyverse", "lubridate", "ggplot2", "broom", "grid", "bookdown", "glue", "cowplot", "ggpubr", "ggh4x", "png", "zoo", "photobiology", "photobiologyWavebands", "data.table", "googlesheets4",  "mgcv", "minpack.lm"), file.path("..", "Docs",'RPackages.bib'))
 
 ```
 
