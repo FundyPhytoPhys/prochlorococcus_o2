@@ -19,7 +19,7 @@ editor_options:
 ---
 
 # Introduction
-This .Rmd produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each P.marinus ecotype in this study. The gam function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. "PICO_Merged_GrowthFitsPURPAR.Rds" is called in from \Data\CleanData folder and generated GAM plots are saved in \Output\Figures folder as .png.
+This .Rmd produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each P.marinus ecotype in this study. The GAM function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. "PICO_Merged_GrowthFitsPURPAR.Rds" is called in from \Data\CleanData folder and generated GAM plots are saved in \Output\Figures folder as .png.
 
 
 # Set variables for project
