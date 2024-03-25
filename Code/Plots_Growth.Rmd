@@ -1,5 +1,5 @@
 ---
-title: "ManuscriptFigures"
+title: "Plots_Growth"
 author: 
 - Mireille Savoie
 - Douglas A. Campbell
@@ -31,6 +31,7 @@ editor_options:
     wrap: 72
 ---
 
+# Introduction
 
 ## Set figure caption font size
 ```{css, echo=FALSE}
