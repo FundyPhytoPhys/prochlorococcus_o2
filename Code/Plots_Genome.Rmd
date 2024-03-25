@@ -147,7 +147,7 @@ MergedData <- MergedData %>%
 ```
 
 ```{r, ProchlorococcusEnzymeKms, fig.cap = ProchlorococcusEnzymeKms_cap, fig.width = 20, fig.height = 10}
-ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in mM) vs.genes encoding O~2~ utilizing enzymes in *Prochlorococcus***, faceted by their respective strains.",
+ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in µM) vs.genes encoding O~2~ utilizing enzymes in *Prochlorococcus***, faceted by their respective strains.",
                                      "Symbol color corresponds to number of genes encoding O~2~ utilizing enzymes.",
                                      "Symbol shape corresponds to whether the K~m~ was measured in the respective enzyme, or inferred from the K~m~ of a similar enzyme.",
                                      "Black vertical line corresponds to the range of K~m~ for O~2~.",
