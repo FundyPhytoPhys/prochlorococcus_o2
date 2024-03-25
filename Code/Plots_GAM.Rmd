@@ -1,5 +1,5 @@
 ---
-title: "ManuscriptGAM"
+title: "Plots_GAM"
 author:
 - Max Berthold
 - Mireille Savoie
