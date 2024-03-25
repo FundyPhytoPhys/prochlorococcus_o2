@@ -33,6 +33,16 @@ editor_options:
 
 # Introduction
 
+This .Rmd generates a one-way ANOVA to examine statistical differences between Harrison and Platt four parameter model fit to 660 nm (red light) and 450 nm (blue light) growth data for each combination of strain and [O~2~]. Additionally, a one-way ANOVA was used to examine statistical differences between Harrison and Platt [53] four parameter model fit to each photoperiod (4 h, 8 h, 12 h, 16 h) and pooled photoperiod growth data for each combination of strain and [O~2~]. Photoperiod growth data that showed complete growth inhibition for each combination of strain, [O~2~] and imposed spectral waveband were omitted from the pooled photoperiod model. Statistical differences were determined at P value < 0.05. It can be safely assumed that *P.marinus* dies at PAR of 0 µE therefore, dummy values of no growth (µ = 0) for dark conditions were assigned for each combination of [O~2~], photoperiod and spectral waveband for each strain to anchor the starting point of the model. 
+
+The four parameters are:
+I: incident light, umol photons m^-2^ s^-1^
+a: alpha, initial slope of light response curve under limiting light; the 'affinity' of the culture for light.
+Pmax: maximum rate of photosynthesis; umol O~2~ chl^-1^ s^-1^; the 'capacity' of the culture for photosynthesis.
+b: beta 'photoinhibition' term for decline in oxygen evolution under increasing incident light.  This decrease can result from multiple mechanisms.
+
+"PICO_Merged_GrowthFitsPURPAR.Rds" is called in from \Data\CleanData folder and generated PUR fit plots are saved as .png in \Output\Figures folder. 
+
 
 ## Set figure caption font size
 ```{css, echo=FALSE}
