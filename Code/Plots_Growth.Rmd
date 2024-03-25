@@ -33,6 +33,8 @@ editor_options:
 
 # Introduction
 
+This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots are saved in the "Output/Figures" folder. 
+
 ## Set figure caption font size
 ```{css, echo=FALSE}
 p.caption {
