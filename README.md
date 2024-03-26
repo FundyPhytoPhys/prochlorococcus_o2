@@ -55,42 +55,14 @@ Data was imported and tidied into R (v4.1.3), running under R-studio (Posit Team
 
 ### MetaDataCatalog
 
-https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
+The metadata for Multicultivator runs is generated from "Code/Import_MetaData.Rmd" which calls in the googlesheet: https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
 
 
 ### Data Dictionary
 
 Data Dictionary can be found in "Docs/Prochlorococcus_O2_DataDictionary.csv"
 
-### Data/RawData
-
-- CultureCatalog.Rds contains the metadata for Multicultivator runs generated from "Code/Import_MetaData.Rmd".
-- MultiCultiData1.zip, MultiCultiData2.zip and MultiCultiData3.zip folders has all .csv data files from the Multicultivators. 
-- JazEmData.zip folder has all .txt files containing emission spectra data of the Multicultivator LED lights.
-- OlisData.zip folder has all .asc files containing culture whole cell absorbance spectra data from the Olis Clarity. 
-
-### Data/ImportedData
-
-- ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from "Code/Import_JazEmData.Rmd"
-- ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from "Code/Import_MCData.Rmd"
-- ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from "Code/Import_OlisData.Rmd"
-
-### Data/ProcessedData
-
-- ProcessedMCData folder contains "TargetFileName_ProcessDataNestGrowth.Rds" generated from Code/Process_MCData.Rmd
-- ProcessedOceanData folder contains "poi.RDS" generated from  XXXXX  and "pro_proteins.RDS" generated from  XXXXX 
-- ProcessedOlisJazData folder contains "PICO_Processed_OlisJazMetaPUR.Rds" generated from Code/Process_OlisJazEmData.Rmd
-
-
-### Data/CleanData
-
-- CleanedMCData folder contains "PICO_Processed_MCGrowthFits.Rds" generated from Code/"Merge_MCGrowthData.Rmd"
-- "PICO_Merged_GrowthFitsPURPAR.Rds" generated from Code/"Merge_GrowthPURData.Rmd"
-- "ProchlorococcusEnzymeTable.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
-- "ProchlorococcusGenomeData.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
-
-
-### Code
+### Code folder
 
 #### Import_MetaData.Rmd
 
@@ -130,7 +102,7 @@ This script imports, merges and calculates the Photosynthetically Usuable Radiat
 
 #### Merge_GrowthPURData.Rmd
 
-This script imports and merges "PICO_Processed_OlisJazMetaPUR.Rds" and "PICO_Processed_MCGrowthFits.Rds" and assigns Photosynthetically Usuable Radiation (PUR) from the calculated PUR results in "PICO_Processed_OlisJazMetaPUR.Rds" to the appropriate matching PAR and WL for each strain in the "PICO_Processed_MCGrowthFits.Rds". The tidied data of all the growth estimates, PUR, PAR and nested data frames containing whole cell absorbance and emission spectra and Multicultivator OD measurements for every combination of the growth matrix experiments is saved as "PICO_Merged_GrowthFitsPURPAR.Rds" in the "Data/CleanData" folder and used to generate statistics and figures using "Plots_GAM.Rmd" and "Plots_PURFits.Rmd" and figures using "Plots_Growth.Rmd".
+This script imports and merges the "PICO_Processed_MCGrowthFits.Rds" and "PICO_Processed_OlisJazMetaPUR.Rds" and assigns Photosynthetically Usuable Radiation (PUR) from the calculated PUR results in "PICO_Processed_OlisJazMetaPUR.Rds" to the appropriate matching PAR and WL for each strain in the "PICO_Processed_MCGrowthFits.Rds". The tidied data of all the growth rate  estimates, PUR, PAR and nested data frames containing whole cell absorbance and emission spectra and Multicultivator OD measurements for every combination of the growth matrix experiments is saved as "PICO_Merged_GrowthFitsPURPAR.Rds" in the "Data/CleanData" folder and used to generate statistics and figures using "Plots_GAM.Rmd" and "Plots_PURFits.Rmd" and figures using "Plots_Growth.Rmd".
 
 #### Plots_GAM.Rmd
 
@@ -155,13 +127,47 @@ The generated plots ("ProchlorococcusEnzymeKms.png", "DNARepairFig.png" and "Pro
 
 This .Rmd reads in "poi.RDS" from the "Data/ProcessedData/ProcessedOceanProtein" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("CladeProchloroPhotosynthDepthO2.png" and "CladeProchloroProteinMetabDepthO2.png") are saved in the "Output/Figures" folder.
 
+#### Manuscript_O2.Rmd
 
-### Docs
+This .Rmd uses R Markdown and knits to .docx and html to produce a manuscript style document formatted for PLOS ONE publication.  The .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates a table of maximum growth rate for each strain grown under each [O~2~] condition. Figures are read in from the "Output/Figures" folder. The Word and html documents are saved as "Manuscript_O2.docx" and "Manuscript_O2.html" in the "Code" folder.
+
+### Data folder
+
+#### RawData subfolder
+
+- CultureCatalog.Rds contains the metadata for Multicultivator runs generated from "Code/Import_MetaData.Rmd".
+- MultiCultiData1.zip, MultiCultiData2.zip and MultiCultiData3.zip folders has all .csv data files from the Multicultivators. 
+- JazEmData.zip folder has all .txt files containing emission spectra data of the Multicultivator LED lights.
+- OlisData.zip folder has all .asc files containing culture whole cell absorbance spectra data from the Olis Clarity. 
+
+#### ImportedData subfolder
+
+- ImportedJazEmData folder contains "PICO_Imported_JazEmData.Rds" generated from "Code/Import_JazEmData.Rmd"
+- ImportedMCData folder contains all "TargetFileName_TargetDataMetaFilter.Rds" files generated from "Code/Import_MCData.Rmd"
+- ImportedOlisData folder contains "PICO_Imported_OlisData.Rds" generated from "Code/Import_OlisData.Rmd"
+
+#### ProcessedData subfolder
+
+- ProcessedMCData folder contains "TargetFileName_ProcessDataNestGrowth.Rds" generated from Code/Process_MCData.Rmd
+- ProcessedOceanData folder contains "poi.RDS" generated from  XXXXX  and "pro_proteins.RDS" generated from  XXXXX 
+- ProcessedOlisJazData folder contains "PICO_Processed_OlisJazMetaPUR.Rds" generated from Code/Process_OlisJazEmData.Rmd
+
+
+#### CleanData subfolder
+
+- CleanedMCData folder contains "PICO_Processed_MCGrowthFits.Rds" generated from Code/"Merge_MCGrowthData.Rmd"
+- "PICO_Merged_GrowthFitsPURPAR.Rds" generated from Code/"Merge_GrowthPURData.Rmd"
+- "ProchlorococcusEnzymeTable.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
+- "ProchlorococcusGenomeData.Rds" generated from Code/"XXXXX.Rmd"   XXX Check thisXXX
+
+### Docs folder
 
 - "Prochlorococcus_O2_DataDictionary.csv" is the data dictionary 
 - "PLOSONE_CoverLetter.docx" is the cover letter to PLOS ONE
 
-### Output
+### Output folder
+
+#### Figures subfolder
 
 Figures generated using Code/"Plots_Growth.Rmd":
 - "MED4PAR.png", "SS120PAR.png", "MIT9313PAR.png", 
@@ -180,3 +186,7 @@ Figures generated using Code/"Plots_OceanProtein.Rmd":
 - "CladeProchloroPhotosynthDepthO2.png", "CladeProchloroProteinMetabDepthO2.png"
 
 The editable Powerpoint file named "LabeledMC.pptx" was used to generated the labeled Multicultivator picture named "LabeledMC.png".
+
+#### PLOSFiguresRound1 subfolder
+
+Contains all .tiff figures renamed to match the order in which they appear in the manuscript and the manuscript that was submitted as a .docx.  

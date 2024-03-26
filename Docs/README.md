@@ -1,3 +1,4 @@
-# Documents
+### Docs folder
 
-Information about documents added to this folder.
+- "Prochlorococcus_O2_DataDictionary.csv" is the data dictionary 
+- "PLOSONE_CoverLetter.docx" is the cover letter to PLOS ONE
