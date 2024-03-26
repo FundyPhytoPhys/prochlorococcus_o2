@@ -4,7 +4,7 @@
 
 Figures generated using Code/"Plots_Growth.Rmd":
 - "MED4PAR.png", "SS120PAR.png", "MIT9313PAR.png", 
-"PurParPlot.png", "deltaODLogGrowthPlot.png"
+"PurParPlot.png", "deltaODLogGrowthPlot.png", "OverlayPlots.png"
 
 Figures generated using Code/"Plots_GAM.Rmd":
 - "MED4GAM.png", "SS120GAM.png", "MIT9313GAM.png"
@@ -22,4 +22,4 @@ The editable Powerpoint file named "LabeledMC.pptx" was used to generated the la
 
 #### PLOSFiguresRound1 subfolder
 
-Contains all .tiff figures renamed to match the order in which they appear in the manuscript and the manuscript that was submitted as a .docx.  
+Contains all .tiff figures renamed to match the order in which they appear in the manuscript (Fig1 to Fig12) and "Manuscript_O2_PLOS1.docx" is the manuscript formatted as per PLOS ONE guideline for submission.  
