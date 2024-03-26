@@ -131,6 +131,18 @@ This .Rmd reads in "poi.RDS" from the "Data/ProcessedData/ProcessedOceanProtein"
 
 This .Rmd uses R Markdown and knits to .docx and html to produce a manuscript style document formatted for PLOS ONE publication.  The .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates a table of maximum growth rate for each strain grown under each [O~2~] condition. Figures are read in from the "Output/Figures" folder. The Word and html documents are saved as "Manuscript_O2.docx" and "Manuscript_O2.html" in the "Code" folder.
 
+#### KnitTemplate.docx
+
+This is the template used to format the knitted WORD document.
+
+#### Manuscript_O2.docx
+
+This is the knitted WORD document generated from "Manuscript_O2.Rmd".
+
+#### scholarly-metadata.lua and author-info-blocks.lua
+
+These are required files to format the authorship and affiliations properly when knitting to html and Word.
+
 ### Data folder
 
 #### CleanData subfolder
