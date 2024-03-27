@@ -22,6 +22,7 @@ Figures <- file.path("..", "Output", "Figures")
 
 
 combinedHits can be found on https://doi.org/10.5061/dryad.kh1893284. Filtered to only include Prochlorococcus genomes.
+
 ```{r}
 # DataIn <- read_csv(file.path(Data, "combinedHits.csv")) %>% 
 #   group_by(EC, genome) %>%
@@ -105,28 +106,28 @@ MetaData <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1k
 # saveRDS(object = ProchlorococcusGenomeData, file = file.path("..", "Data", "ProchlorococcusGenomeData.Rds"))
 ```
 
-```{r}
-MergedData <- readRDS(file.path(DataIn, "ProchlorococcusGenomeData.Rds"))
+```{r read ProchlorococcusGenomeO2Data}
+MergedData <- readRDS(file.path(DataIn, "ProchlorococcusGenomeO2Data.Rds"))
 ```
 
 
 ```{r, , fig.width = 7, fig.height = 5}
-MergedData %>%
-  filter(!is.na(Gene_count),
-         Taxa == "Prokaryote") %>%
-  group_by(EC) %>%
-  mutate(Km_mM_min = min(Km_mM), 
-         Km_mM_max = max(Km_mM)) %>% 
-  ggplot() +
-  geom_errorbar(aes(x = reorder(EnzymeName, Km_mM), ymin = log10(Km_mM_min), ymax = log10(Km_mM_max))) +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM), y = log10(Km_mM), color = log10(Km_mM))) +
-  geom_hline(yintercept = log10(1e-3), linetype = "dotted") +
-  geom_hline(yintercept = log10(5e-3), linetype = "dotted") +
-  geom_hline(yintercept = log10(230e-3), linetype = "dotted", color = "red") +
-  geom_hline(yintercept = log10(290e-3), linetype = "dotted", color = "red") +
-  scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-  theme_bw() +
-  ggpubr::rotate_x_text(angle = 70) 
+# MergedData %>%
+#   filter(!is.na(Gene_count),
+#          Taxa == "Prokaryote") %>%
+#   group_by(EC) %>%
+#   mutate(Km_mM_min = min(Km_mM), 
+#          Km_mM_max = max(Km_mM)) %>% 
+#   ggplot() +
+#   geom_errorbar(aes(x = reorder(EnzymeName, Km_mM), ymin = log10(Km_mM_min), ymax = log10(Km_mM_max))) +
+#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = log10(Km_mM), color = log10(Km_mM))) +
+#   geom_hline(yintercept = log10(1e-3), linetype = "dotted") +
+#   geom_hline(yintercept = log10(5e-3), linetype = "dotted") +
+#   geom_hline(yintercept = log10(230e-3), linetype = "dotted", color = "red") +
+#   geom_hline(yintercept = log10(290e-3), linetype = "dotted", color = "red") +
+#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
+#   theme_bw() +
+#   ggpubr::rotate_x_text(angle = 70) 
 ```
 
 ```{r add flv to MergedData}
@@ -147,7 +148,7 @@ MergedData <- MergedData %>%
 ```
 
 ```{r, ProchlorococcusEnzymeKms, fig.cap = ProchlorococcusEnzymeKms_cap, fig.width = 20, fig.height = 10}
-ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in µM) vs.genes encoding O~2~ utilizing enzymes in *Prochlorococcus***, faceted by their respective strains.",
+ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in mM) vs.genes encoding O~2~ utilizing enzymes in *Prochlorococcus***, faceted by their respective strains.",
                                      "Symbol color corresponds to number of genes encoding O~2~ utilizing enzymes.",
                                      "Symbol shape corresponds to whether the K~m~ was measured in the respective enzyme, or inferred from the K~m~ of a similar enzyme.",
                                      "Black vertical line corresponds to the range of K~m~ for O~2~.",
@@ -177,9 +178,14 @@ ProchlorococcusEnzymeKms <- MergedData %>%
                            TRUE ~ Km_mM_min),
          Km_mM_max = case_when(Genus == "Prochlorococcus" & EC == "4.1.1.39" ~ 1.4,
                            TRUE ~ Km_mM_max)) %>% 
+  # mutate(Km_mM = case_when(EnzymeName == "Flavodiiron (Flv1a/3a)" ~ 10/1000,
+  #                          TRUE ~ Km_mM)) %>% 
   ungroup() %>% 
   ggplot() +
   geom_errorbar(aes(x = reorder(EnzymeName, Km_mM * 1000), ymin = log10(Km_mM_min* 1000), ymax = log10(Km_mM_max* 1000))) +
+  # geom_ribbon(aes(ymin = log10(5e-4), ymax =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
+  # geom_ribbon(aes(ymax = log10(5e-2), ymin =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
+  # geom_ribbon(aes(ymax = log10(280e-3), ymin =  log10(230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
   annotate(geom = "rect", ymin = log10(5e-4 * 1000), ymax =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
   annotate(geom = "rect", ymax = log10(5e-2 * 1000), ymin =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
   annotate(geom = "rect", ymax = log10(280e-3 * 1000), ymin =  log10(230e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
@@ -188,15 +194,22 @@ ProchlorococcusEnzymeKms <- MergedData %>%
   geom_text(aes(x = 18.5, y = 0.25, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
   geom_text(aes(x = 18.5, y = 1.2, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
   geom_text(aes(x = 18.5, y = 2.5, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
+  # geom_hline(yintercept = log10(5e-4), linetype = "dotted") +
+  # geom_hline(yintercept = log10(5e-3), linetype = "dotted") +
+  # geom_hline(yintercept = log10(5e-3), linetype = "dotted", color = "brown") +
+  # geom_hline(yintercept = log10(5e-2), linetype = "dotted", color = "brown") +
+  # geom_hline(yintercept = log10(230e-3), linetype = "dotted", color = "red") +
+  # geom_hline(yintercept = log10(290e-3), linetype = "dotted", color = "red") +
+  # scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
   ggh4x::facet_nested(rows = vars(StrainLabel)) +
   theme_bw() +
   ggpubr::rotate_x_text(angle = 80) +
   scale_shape_manual(values = c(19,8), labels = c("FALSE" = "Measured", "TRUE" = "Inferred")) +
   scale_color_brewer(palette="Dark2") +
   labs(# title = ~K[m] ~O[2] ~  "for *Prochlorococcus* Enzymes using Oxygen", # "Estimates of Affinities of *Prochlorococcus* Enzymes for Oxygen" # "Affinities for Phytoplankton Enzymes for Oxygen", 
-       x = "Enzyme Name",
+       x = "Enzyme name",
        y = ~log[10] ~ "("~K[m] ~O[2] ~"(µM))",
-       size = "Gene Count",
+       size = "Gene count",
        shape = ""~K[m]) +
   guides(shape = guide_legend(override.aes = list(size=5))) +
    theme(axis.title = element_text(size = 45, color = "black"),
@@ -221,126 +234,156 @@ ProchlorococcusEnzymeKms
 ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 20)
 ```
 
-```{r, ProchlorococcusEnzyme,  fig.width = 7, fig.height = 5}
-# ProchlorococcusEnzyme <- MergedData %>%
-#   filter(!is.na(Gene_count)) %>%
-#   # filter(PriSec == "Primary") %>%
-#   filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-#   # group_by(EC) %>%
-#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
-#   # ungroup() %>% View()
-#   # filter(ECNumberTotal != 0) %>%
-#   ggplot() +
-#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = interaction(Genus, species, Strain, sep = " "), size = Gene_count, color = log10(AvgKm_mM))) +
-#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-#   scale_x_discrete(position = "top") +
-#   scale_radius(breaks = c(1,2,3,4,5), range = c(2.5,5)) +
-#   theme_bw() +
-#   ggpubr::rotate_x_text(hjust = 0, angle = 70) +
-#   labs(x = "Enzyme Name",
-#        y = "Organism",
-#        size = "Gene Count", 
-#        color = "log10(Km (mM))")
-# 
-# ProchlorococcusEnzyme
-```
-
-```{r, ProchlorococcusEnzyme ggsave, include = FALSE}
-# ggsave(filename = file.path(Figures, "ProchlorococcusEnzyme.png"), plot = ProchlorococcusEnzyme, height = 10, width = 10)
+```{r read ProchlorococcusGenomeDNARepairData}
+DNARepair <- readRDS(file.path(DataIn, "ProchlorococcusGenomeDNARepairData.Rds"))
 ```
 
 ```{r, DNARepair}
-DNARepair <- MetaData %>% 
-  left_join(., DataIn, by = c("FileName" = "genome")) %>% 
-  filter(Genus == "Prochlorococcus") %>% 
-  separate_rows(GOs, sep = ",") %>% 
-  filter(Strain %in% c("CCMP1986", "CCMP1375", "MIT9313", "NATL2A")) %>% 
-  filter(GOs %in% c("GO:0006281", "GO:0000716", "GO:0000725", "GO:0006284", "GO:0006289", "GO:0006298", "GO:0006302", "GO:0009432", "GO:0006974", "GO:0003904", "GO:0003914") | EC %in% c("4.1.99.3", "4.1.99.13", "1.13.11.33", "3.2.2.17", "5.6.2.3", "6.5.1.1", "6.5.1.2")) 
+# DNARepair <- MetaData %>% 
+#   left_join(., DataIn, by = c("FileName" = "genome")) %>% 
+#   filter(Genus == "Prochlorococcus") %>% 
+#   separate_rows(GOs, sep = ",") %>% 
+#   filter(Strain %in% c("CCMP1986", "CCMP1375", "MIT9313", "NATL2A")) %>% 
+#   filter(GOs %in% c("GO:0006281", "GO:0000716", "GO:0000725", "GO:0006284", "GO:0006289", "GO:0006298", "GO:0006302", "GO:0009432", "GO:0006974", "GO:0003904", "GO:0003914") | 
+#            EC %in% c("3.1.3.18", 
+#     "3.6.1.56", 
+#     "3.1.22.4",
+#     "3.1.21.10", 
+#     "6.5.1.2", 
+#     "6.5.1.1",
+#     "6.5.1.8", 
+#     "2.1.1.63", 
+#     "3.2.2.27", 
+#     "3.1.3.99", 
+#     "4.2.1.130",
+#     "3.1.11.1",
+#     "5.6.2.3",
+#     "4.2.99.18",
+#     "2.7.7.7",
+#     "3.2.2.21",
+#     "3.5.1.124",
+#     "3.2.2.23",
+#     "3.2.2.20",
+#     "3.6.1.58",
+#     "3.1.11.6",
+#     "3.1.21.2",
+#     "3.1.11.2",
+#     "3.2.2.31",
+#     "5.6.2.4",
+#     "3.1.11.5",
+#     "2.7.7.86",
+#     "3.6.1.69",
+#     "2.1.1.319",
+#     "2.1.1.357",
+#     "2.1.1.359",
+#     "2.1.1.360",
+#     "2.7.7.85", 
+#     "3.6.1.55",
+#     "4.1.99.3")) 
 
 
-DNARepairFig <- DNARepair %>% 
+DNARepairTab <- DNARepair %>% 
   mutate(EnzymeName = case_when(EC == "3.2.2.21" ~ "DNA-3-methyladenine glycosylase II",
                                 EC == "3.1.22.4" ~ "crossover junction endodeoxyribonuclease",
+                                EC == "3.1.11.6" ~ "exodeoxyribonuclease VII",
+                                EC == "3.2.2.21" ~ "DNA-3-methyladenine glycosylase II",
+                                EC == "3.1.3.18" ~ "phosphoglycolate phosphatase",
+                                EC == "3.2.2.23" ~ "DNA-formamidopyrimidine glycosylase",
+                                EC == "3.1.11.2" ~ "exodeoxyribonuclease III",
+                                EC == "4.2.99.18" ~ "DNA-(apurinic or apyrimidinic site) lyase",
+                                EC == "3.2.2.27" ~ "uracil-DNA glycosylase",
+                                EC == "3.1.11.5" ~ "exodeoxyribonuclease V",
                                 EC == "6.5.1.2" ~ "DNA ligase (NAD+)",
+                                EC == "4.1.99.3" ~ "deoxyribodipyrimidine photolyase",
                                 EC == "6.5.1.1" ~ "DNA ligase (ATP)",
-                                EC == "4.1.99.3" ~ "deoxyribodipyrimidine photo-lyase")) %>% 
+                                EC == "2.7.7.7" ~ "DNA-directed DNA polymerase")) %>% 
   mutate(StrainLabel = case_when(Strain == "CCMP1375" ~ "SS120",
                                  Strain == "CCMP1986" ~ "MED4",
                                  Strain == "MIT9313" ~ "MIT9313",
                                  Strain == "NATL2A" ~ "NATL2A")) %>%
-  mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313"))) %>%
+  mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313")))
+  
+DNARepairFig <- DNARepairTab %>% 
   ggplot() +
-  geom_point(aes(x = EnzymeName, y = StrainLabel, size = (Gene_count))) + #y = interaction(Genus, species, StrainLabel, sep = " ")
+  geom_point(aes(x = fct_reorder(EnzymeName, desc(Gene_count)), y = StrainLabel, size = (Gene_count))) + #y = interaction(Genus, species, StrainLabel, sep = " ")
   # facet_grid(rows = vars(Genus), scales = "free", space = "free") +
   # scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
   scale_x_discrete(position = "bottom") +
   scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
   theme_bw() +
-  ggpubr::rotate_x_text(hjust = 1, angle = 70)  +
-  labs(x = "Enzyme Name",
+  ggpubr::rotate_x_text(hjust = 1, angle = 80)  +
+  labs(x = "Enzyme name",
        #y = "Organism",
-       color = "Gene Count",
-       size = "Gene Count") +
+       color = "Gene count",
+       size = "Gene count") +
   facet_grid(rows = vars(StrainLabel), scale = "free") +
    theme(axis.text = element_text(size = 7, color = "black"),
          legend.position = "right",
          axis.text.y = element_blank(),
          axis.title.y = element_blank(),
-         axis.title.x = element_text(vjust=10),
+         axis.title.x = element_text(vjust=5),
         axis.ticks.y = element_blank(),
+  # axis.title = element_text(size = 40, color = "black"),
+  #        title = element_text(size = 30),
+  #     # axis.text.x = element_text(size = 30, color = "black"),
+  #       axis.text.y = element_text(size = 30, color = "black"),
         strip.text = element_text(size = 6),
         legend.box.background = element_rect(colour = "black")
+  #       # legend.key.size = unit(10, 'cm'), #change legend key size
+  #       # legend.key.height = unit(2, 'cm'), #change legend key height
+  #       # legend.key.width = unit(1, 'cm'), #change legend key width
+  #       legend.title =  element_text(size = 30),  #change legend title font size
+  #       legend.text = element_text(size = 30))   #change legend text font size
   )
 
 DNARepairFig
+   # ggpubr::rotate_x_text(hjust = 0) 
 ```
 
 ```{r, DNARepairFig ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "DNARepairFig.png"), plot = DNARepairFig, height =5 , width = 5)
-```
-
-```{r import LightEnzymes, include = FALSE}
-LightEnzymes <- read_csv(file.path(Data, "LightEnzymes.csv")) %>% 
-  select(-c(`...4`, `...5`)) %>% 
-  filter(is.na(Remove))
+ggsave(filename = file.path(Figures, "Fig12.tiff"), plot = DNARepairFig, height =5 , width = 5, compression = "lzw")
 ```
 
 ```{r LightEnzymes, include=FALSE}
-LightEnzymesList <- LightEnzymes$EC
-LightEnzymesMerged <- MetaData %>% 
-  filter(Genus == "Prochlorococcus" | Taxa == "Diatom") %>% 
-  left_join(., DataIn, by = c("FileName" = "genome")) %>% 
-  filter(EC %in% LightEnzymesList) %>% 
-  left_join(., LightEnzymes, by = c("EC"), relationship = "many-to-many") %>% 
-  filter(Description != "KM Value") %>% 
-  separate_rows(GOs, sep = ",") %>% 
-  mutate(EnzymeName = case_when(EC == "1.3.1.33" ~ "(light-dependent) protochlorophyllide reductase",
-                                EC == "2.4.1.14" ~ "sucrose-phosphate synthase",
-                                EC == "2.5.1.32" ~ "15-cis-phytoene synthase",
-                                EC == "4.6.1.1" ~ "adenylate cyclase",
-                                EC == "4.4.1.5" ~ "lactoylglutathione lyase",
-                                EC == "4.2.3.5" ~ "chorismate synthase",
-                                EC == "2.7.1.148" ~ "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
-                                EC == "4.2.99.18" ~ "DNA-(apurinic or apyrimidinic site) lyase",
-                                EC == "3.4.11.1" ~ "leucyl aminopeptidase",
-                                EC == "2.4.1.255" ~ "protein O-GlcNAc transferase",
-                                EC == "3.1.4.4" ~ "phospholipase D",
-                                EC == "1.1.3.20" ~ "long-chain-alcohol oxidase",
-                                EC == "1.7.1.1" ~ "nitrate reductase (NADH)",
-                                EC == "2.3.1.87" ~ "aralkylamine N-acetyltransferase",
-                                EC == "1.3.8.1" ~ "short-chain acyl-CoA dehydrogenase",
-                                EC == "3.4.21.19" ~ "glutamyl endopeptidase",
-                                EC == "4.6.1.2" ~ "guanylate cyclase",
-                                EC == "1.7.7.2" ~ "ferredoxin-nitrate reductase",
-                                EC == "4.2.1.84" ~ "nitrile hydratase",
-                                EC == "1.10.3.3" ~ "L-ascorbate oxidase",
-                                EC == "3.2.1.80" ~ "fructan beta-fructosidase",
-                                EC == "2.3.1.37" ~ "5-aminolevulinate synthase",
-                                EC == "3.1.4.35" ~ "3',5'-cyclic-GMP phosphodiesterase",
-                                EC == "4.1.99.3" ~ "deoxyribodipyrimidine photo-lyase")) 
-  
-  
+# LightEnzymesList <- LightEnzymes$EC
+# LightEnzymesMerged <- MetaData %>% 
+#   filter(Genus == "Prochlorococcus" | Taxa == "Diatom") %>% 
+#   left_join(., DataIn, by = c("FileName" = "genome")) %>% 
+#   filter(EC %in% LightEnzymesList) %>% 
+#   left_join(., LightEnzymes, by = c("EC"), relationship = "many-to-many") %>% 
+#   filter(Description != "KM Value") %>% 
+#   separate_rows(GOs, sep = ",") %>% 
+#   mutate(EnzymeName = case_when(EC == "1.3.1.33" ~ "(light-dependent) protochlorophyllide reductase",
+#                                 EC == "2.4.1.14" ~ "sucrose-phosphate synthase",
+#                                 EC == "2.5.1.32" ~ "15-cis-phytoene synthase",
+#                                 EC == "4.6.1.1" ~ "adenylate cyclase",
+#                                 EC == "4.4.1.5" ~ "lactoylglutathione lyase",
+#                                 EC == "4.2.3.5" ~ "chorismate synthase",
+#                                 EC == "2.7.1.148" ~ "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+#                                 EC == "4.2.99.18" ~ "DNA-(apurinic or apyrimidinic site) lyase",
+#                                 EC == "3.4.11.1" ~ "leucyl aminopeptidase",
+#                                 EC == "2.4.1.255" ~ "protein O-GlcNAc transferase",
+#                                 EC == "3.1.4.4" ~ "phospholipase D",
+#                                 EC == "1.1.3.20" ~ "long-chain-alcohol oxidase",
+#                                 EC == "1.7.1.1" ~ "nitrate reductase (NADH)",
+#                                 EC == "2.3.1.87" ~ "aralkylamine N-acetyltransferase",
+#                                 EC == "1.3.8.1" ~ "short-chain acyl-CoA dehydrogenase",
+#                                 EC == "3.4.21.19" ~ "glutamyl endopeptidase",
+#                                 EC == "4.6.1.2" ~ "guanylate cyclase",
+#                                 EC == "1.7.7.2" ~ "ferredoxin-nitrate reductase",
+#                                 EC == "4.2.1.84" ~ "nitrile hydratase",
+#                                 EC == "1.10.3.3" ~ "L-ascorbate oxidase",
+#                                 EC == "3.2.1.80" ~ "fructan beta-fructosidase",
+#                                 EC == "2.3.1.37" ~ "5-aminolevulinate synthase",
+#                                 EC == "3.1.4.35" ~ "3',5'-cyclic-GMP phosphodiesterase",
+#                                 EC == "4.1.99.3" ~ "deoxyribodipyrimidine photolyase")) 
+# saveRDS(object = LightEnzymesMerged, file = file.path("..", "Data", "ProchlorococcusGenomeLightData.Rds"))
+#   
+```
+
+```{r read ProchlorococcusGenomeLightData}
+LightEnzymesMerged <- readRDS(file.path(DataIn, "ProchlorococcusGenomeLightData.Rds"))
 ```
 
 ```{r LightEnzymesFig, fig.cap = ProchlorococcusLightEnzymesFig_cap, echo = TRUE, fig.height = 5, fig.width = 8}
@@ -349,7 +392,6 @@ ProchlorococcusLightEnzymesFig_cap <- glue("**Summary of genes encoding enzymes 
                                            "Symbol color and size correspond to counts of genes.",
                                            "Symbol absence means no sequences were detected in the genome."
                                            )
-
 ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>% 
   filter(Strain %in% c("CCMP1986", "CCMP1375", "MIT9313", "NATL2A")) %>% 
   mutate(StrainLabel = case_when(Strain == "CCMP1375" ~ "SS120",
@@ -358,18 +400,21 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
                                  Strain == "NATL2A" ~ "NATL2A")) %>%
   mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313"))) %>% 
   mutate(Compound = case_when(Compound == "blue-light regulator 2" ~ "light",
-                              TRUE ~ Compound)) %>% 
+                              Compound == "UVB-light" ~ "UV light",
+                              TRUE ~ Compound),
+         Description = case_when(Description == "Activating Compound" ~ "Activator",
+                                 TRUE ~ Description),) %>% 
   ggplot() +
   geom_point(aes(x = fct_reorder(EnzymeName, desc(Gene_count)), y = StrainLabel, size = as.character(Gene_count))) +
   ggh4x::facet_nested(cols = vars(Description, Compound),rows = vars(StrainLabel),  scale = "free", space = "free") + #
   
-  labs(x = "Enzyme Name",
+  labs(x = "Enzyme name",
        # y = "Organism",
-       size = "Gene Count",
-       color = "Gene Count") +
+       size = "Gene count",
+       color = "Gene count") +
   # scale_size_manual(values = c(1,2,3,4), breaks)
   theme_bw() +
-  ggpubr::rotate_x_text(hjust = 1, angle = 70) +
+  ggpubr::rotate_x_text(hjust = 1, angle = 80) +
   theme(axis.text = element_text(size = 7, color = "black"),
         axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -379,7 +424,7 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
   #     # axis.text.x = element_text(size = 30, color = "black"),
   #       axis.text.y = element_text(size = 30, color = "black"),
         strip.text = element_text(size = 6),
-  legend.position = "bottom",
+  legend.position = "right",
   legend.key.size = unit(1, 'cm'),
   legend.box.background = element_rect(colour = "black")
   #       # legend.key.size = unit(10, 'cm'), #change legend key size
@@ -394,54 +439,6 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
 ```
 
 ```{r, save ProchlorococcusLightEnzymesFig, ggsave, include = FALSE} 
-ggsave(filename = file.path(Figures, "ProchlorococcusLightEnzymesFig.png"), plot = ProchlorococcusLightEnzymesFig, height = 6, width = 8)
-```
-
-```{r}
-# LightGOs <- MergedData %>% 
-#   separate_rows(GOs, sep = ",") %>% 
-#   filter(GOs %in% c("GO:0010018", "GO:0009785", "GO:0009882", "GO:0031516", "GO:0031517", "GO:0009883"))
-# 
-# LightKOs <- MergedData %>% 
-#   separate_rows(KEGG_ko, sep = ",") %>% 
-#   filter(KEGG_ko %in% c("ko:K02295", "ko:K12120", "ko:K12122", "ko:K12121", "ko:K12123"))
-```
-
-```{r, fig.width = 7, fig.height = 7}
-# MergedData %>%
-#   filter(!is.na(Gene_count)) %>%
-#   filter(PriSec == "Primary") %>%
-#   filter(Genus == "Prochlorococcus") %>%
-#   # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-#   # group_by(EC) %>%
-#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
-#   # ungroup() %>% View()
-#   # filter(ECNumberTotal != 0) %>%
-#   ggplot() +
-#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
-#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-#   scale_x_discrete(position = "top") +
-#   scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
-#   theme_bw() +
-#   ggpubr::rotate_x_text(hjust = 0) 
-```
-
-```{r, fig.width = 7, fig.height = 7}
-# MergedData %>%
-#   filter(!is.na(Gene_count)) %>%
-#   filter(PriSec == "Primary") %>%
-#   # filter(FileName == "Prochlorococcus_marinus_MIT9313-aa-gen"| FileName == "Prochlorococcus_marinus_pastoris_CCMP1986-aa-gen" | FileName == "Prochlorococcus_marinus_marinus_CCMP1375-aa-gen") %>%
-#   # group_by(EC) %>%
-#   # mutate(ECNumberTotal = sum(Gene_count)) %>%
-#   # ungroup() %>% View()
-#   # filter(ECNumberTotal != 0) %>%
-#   ggplot() +
-#   geom_point(aes(x = reorder(EnzymeName, Km_mM), y = FileName, size = Gene_count, color = log10(AvgKm_mM))) +
-#   facet_grid(rows = vars(Genus), scales = "free", space = "free") +
-#   scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
-#   scale_x_discrete(position = "top") +
-#   scale_radius(breaks = c(1,2,3,4,5), range = c(1,4)) +
-#   theme_bw() +
-#   ggpubr::rotate_x_text(hjust = 0) 
+ggsave(filename = file.path(Figures, "ProchlorococcusLightEnzymes.png"), plot = ProchlorococcusLightEnzymesFig, height = 5, width = 6)
+ggsave(filename = file.path(Figures, "S5_Fig.tiff"), plot = ProchlorococcusLightEnzymesFig, height = 5, width = 6, compression = "lzw")
 ```
