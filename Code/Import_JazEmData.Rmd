@@ -109,13 +109,13 @@ colnames(JazSpec)[2] <- "Counts"
 ```{r filename separation, warning = FALSE, echo=FALSE}
 JazSpec <- JazSpec %>% 
   mutate(Filename = str_remove(Filename, pattern = " "))  %>% 
-  separate(col = Filename, into = c("ObsDate", "MultiCulti", "Par_ue", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
+  separate(col = Filename, into = c("ObsDate", "MultiCulti", "SetPar_uE", "WL"), sep = "([\\/\\/\\_\\_\\_\\_\\_\\_\\.])", remove = FALSE) %>% 
   mutate(FilenameJaz=Filename) %>% 
   select(-c("Filename"))
 
 JazSpec <- JazSpec %>% 
 mutate(ObsDate = ymd(ObsDate),
-       Par_ue = as.numeric(Par_ue),
+       SetPar_uE = as.numeric(SetPar_uE),
        WL = as.factor(WL))
 ```
 
@@ -145,15 +145,14 @@ JazSpecTrim <- JazSpecTrim %>%
 # Get 1 mean emission count for each wavelength after rounding for a resolution of 1 nm   
 ```{r tidy to get one count for each wavelength}
 JazSpecTrim <- JazSpecTrim %>% 
-   group_by(MultiCulti, Par_ue, WL, Wavelength) %>%
+   group_by(MultiCulti, SetPar_uE, WL, Wavelength) %>%
   mutate(MCEm_nm = round(Wavelength)) %>%
   ungroup() %>%
-  group_by(FilenameJaz, MultiCulti, Par_ue, WL, MCEm_nm, EmMax_nm, ObsDate) %>%
+  group_by(FilenameJaz, MultiCulti, SetPar_uE, WL, MCEm_nm, EmMax_nm, ObsDate) %>%
   summarise(MeanEmission = mean(Counts)) %>%
   ungroup() %>%
   mutate(Emission = round(MeanEmission, digits = 1),
          MC = MultiCulti,
-         SetPar_uE = Par_ue,
          MC_SpectralID = paste(MC,WL, sep = "_")) %>% 
   select(-c(MeanEmission))
 
