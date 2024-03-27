@@ -23,3 +23,15 @@ The editable Powerpoint file named "LabeledMC.pptx" was used to generated the la
 #### PLOSFiguresRound1 subfolder
 
 Contains all .tiff figures renamed to match the order in which they appear in the manuscript (Fig1 to Fig12) and "Manuscript_O2_PLOS1.docx" is the manuscript formatted as per PLOS ONE guideline for submission.  
+
+#### Manuscript_O2.docx
+
+This is the knitted WORD document generated from "Manuscript_O2.Rmd".
+
+#### Manuscript_O2.html
+
+This is the knitted html document generated from "Manuscript_O2.Rmd".
+
+#### Manuscript_O2.md
+
+This markdown file is generated when "Manuscript_O2.Rmd" is knitted.

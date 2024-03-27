@@ -135,13 +135,13 @@ This .Rmd uses R Markdown and knits to .docx and html to produce a manuscript st
 
 This is the template used to format the knitted WORD document.
 
-#### Manuscript_O2.docx
-
-This is the knitted WORD document generated from "Manuscript_O2.Rmd".
-
 #### scholarly-metadata.lua and author-info-blocks.lua
 
 These are required files to format the authorship and affiliations properly when knitting to html and Word.
+
+#### _bookdown.yml
+
+This file overwrites the bookdown default settings in the yaml and allows the knitted .docx and html to be saved in the "Output" folder.
 
 ### Data folder
 
