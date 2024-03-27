@@ -1547,17 +1547,17 @@ Table: (\#tab:ProchlorococcusEnzymeTable)Enzymes shown in Figures \@ref(fig:Proc
 
 Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) achieved for each strain under each [O~2~], with the corresponding photoperiod, PAR level and spectral waveband.
 
-|Strain  | [O~2~] (µM) | µ~max~ (d^-1^) | Photoperiod (h) | PAR (µmol photons m^-2^ s^-1^) | Spectral waveband (nm) |
-|:-------|:-----------:|:--------------:|:---------------:|:------------------------------:|:----------------------:|
-|MED4    |     250     |      0.68      |       16        |              180               |          450           |
-|MED4    |     25      |      0.65      |       12        |               90               |          450           |
-|MED4    |     2.5     |      0.00      |   All tested    |           All tested           |       All tested       |
-|SS120   |     250     |      0.50      |       16        |               90               |       White LED        |
-|SS120   |     25      |      0.45      |        8        |               90               |          450           |
-|SS120   |     2.5     |      0.15      |       12        |               30               |          660           |
-|MIT9313 |     250     |      0.54      |       16        |               30               |          450           |
-|MIT9313 |     25      |      1.01      |       16        |               90               |       White LED        |
-|MIT9313 |     2.5     |      0.45      |       12        |               90               |          450           |
+|Strain  |[O~2~] (µM) |µ~max~ (d^-1^) |Photoperiod (h) |PAR (µmol photons m^-2^ s^-1^) |Spectral waveband (nm) |
+|:-------|:-----------|:--------------|:---------------|:------------------------------|:----------------------|
+|MED4    |250         |0.68           |16              |180                            |450                    |
+|MED4    |25          |0.65           |12              |90                             |450                    |
+|MED4    |2.5         |0.00           |All tested      |All tested                     |All tested             |
+|SS120   |250         |0.50           |16              |90                             |White LED              |
+|SS120   |25          |0.45           |8               |90                             |450                    |
+|SS120   |2.5         |0.15           |12              |30                             |660                    |
+|MIT9313 |250         |0.54           |16              |30                             |450                    |
+|MIT9313 |25          |1.01           |16              |90                             |White LED              |
+|MIT9313 |2.5         |0.45           |12              |90                             |450                    |
 
 
 # Data availability {.unnumbered}
