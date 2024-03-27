@@ -1649,7 +1649,8 @@ readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>%
             col.names =  c(
                           "Enzyme Name",
                           "EC",
-                          "Kegg Orthology")
+                          "Kegg Orthology"),
+            align = "lll"
              )
 
 ```
@@ -1692,7 +1693,7 @@ knitr::kable(MaxGrowthTable,
                           "Photoperiod (h)",
                           "PAR (µmol photons m^-2^ s^-1^)",
                           "Spectral waveband (nm)"),
-              align = "lccccc"
+              align = "llllll"
              )
 
 ```
