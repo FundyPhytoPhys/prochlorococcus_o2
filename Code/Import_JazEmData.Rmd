@@ -163,7 +163,7 @@ JazSpecTrim <- JazSpecTrim %>%
 MC_SpectraPAR <- left_join(JazSpecTrim, MultiCultiPAR, by = c("WL" = "Actinic_nm", "SetPar_uE", "MC" = "MultiCulti")) %>%
   rename(MCSetPar_uE = 'SetPar_uE',
          MCMeasuredPar_uE = 'MeasuredPar_uE') %>% 
-  select(-c(Par_ue, MultiCulti, Date))
+  select(-c(MultiCulti, Date))
   
 ```
 
