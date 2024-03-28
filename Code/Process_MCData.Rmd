@@ -49,34 +49,33 @@ DataIn <- file.path("..", "Data", "ImportedData", "ImportedMCData")
 DataOut <- file.path("..", "Data","ProcessedData", "ProcessedMCData")
 
 
-InitialTime <- 24 #hours to filter off start of data set to eliminate initial fluctuations common in SS120
+InitialTime <- 24 # hours to filter off start of data set to eliminate initial fluctuations common in SS120
 
-ReplaceOD <- 0.0001 #replace OD720 and/or deltaOD when log of original OD results in NAN or infinite #
+ReplaceOD <- 0.0001 # replace  OD720 and/or deltaOD when log of original deltaOD results in NAN or infinite #
 
-TruncFactor = 0.5 # fraction of max OD for truncating full growth trajectory to compare mu.
+TruncFactor = 0.5 # fraction of max OD for truncating full growth trajectory; used to compare mu.
 
-GrowthFlagError <- 0.20 # percentage of growth parameter is flagged as growth when std error is less than xx of mu.
 
-RollWindow = 20 #measurements every 5 min; 20 points is 1 h to generate rolling averages
+RollWindow = 20 # used to generate rolling averages: measurements every 5 min; 20 points is 1.67 h 
 
-OD720GrowthFlagValue = 0.010 # OD720 absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
+OD720GrowthFlagValue = 0.010 # OD720 absolute change for setting 'GrowthFlag' = 1 and 'DeclineFlag' = 1; did culture show  growth; 
 
-deltaODGrowthFlagValue = 0.007 #deltaOD absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show  growth; 
+deltaODGrowthFlagValue = 0.007 # deltaOD absolute change for setting 'GrowthFlag' = 1 and 'DeclineFlag' = 1; did culture show  growth; 
 
 GrowthAmpWindow = 14 * 24 # maximum hours to determine if cultures doubled.
 
 MaxAmpHour <- 48  # used to determine if max OD was achieved within xx hours which then is used to calculate growthAmp on decline growth.
 
-DeclineWindow <- 12 #duration in hours overwhich we test for decline from max in OD720 or deltaOD
+DeclineWindow <- 12 # duration in hours overwhich we test for decline from max in OD720 or deltaOD
 
 ```
 
 
 
 ```{r set colours}
-MyWavelengths = c(405, 450, 470, 530, 620, 660, 730, "WW")
-MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(450), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black"))
 
+MyWavelengths = c(405, 450, 470, 530, 620, 660, 730, "WW") # Multicultivator available wavelengths 
+MCMIXColours = c(c(w_length2rgb(405), w_length2rgb(450), w_length2rgb(470), w_length2rgb(530),            w_length2rgb(620), w_length2rgb(660), w_length2rgb(730), "black")) # set colors specific to wavelength using the'photobiologyWavebands' package
 
 names(MCMIXColours) <- MyWavelengths
 MCMIXColours
@@ -87,16 +86,13 @@ MCMIXColours
 # List previously processed files
 
 Run only first time in session
-
 ```{r previously processed files}
 list.files(path = DataOut, pattern = Project, full.names = TRUE)
-
 ```
 
 # List available tidied, organized .Rds files of MultiCulti data.
 
-Exported from runs of MultiDataImport.Rmd Run only first time in session
-
+Exported from runs of Import_MCData.Rmd. Run only first time in session
 ```{r list tidied data files}
 list.files(path = DataIn, pattern = Project, full.names = TRUE)
 
@@ -164,7 +160,7 @@ ProcessData <- ProcessData %>%
   filter(!is.infinite(log(OD680))) %>%
   filter(!is.nan(log(OD720))) %>%
   filter(!is.nan(log(OD680))) %>%
-  mutate(#log of zero results in -infinite #'s. Replace with 0.0001. Replacing with 0 creates very low (10e-20) rollmeans which results in very high log normalized values further on in this chunk.
+  mutate(#log of zero results in -infinite #'s. Replace with 0.0001. Replacing with 0 creates very low (10e-20) rollmeans which results in very high log normalized values further on in this chunk. The following mutuate only replaces deltaOD if needed and not OD720 because deltaOD values may be very small at start of Multicultivator runs and may initially drift < 0 while OD720 remains > 0. Without replacing these negative deltaOD values, both OD720 and deltOD data points will be filtered out. 
        deltaOD = if_else(!is.infinite(log(deltaOD)), deltaOD, ReplaceOD),
        deltaOD = if_else(!is.nan(log(deltaOD)), deltaOD, ReplaceOD)
         )
@@ -176,8 +172,10 @@ ProcessData <- ProcessData %>%
   group_by(Tube) %>%
   mutate(rollmeanOD720 = zoo::rollmean(OD720, k = RollWindow, align = "left", fill = NA),
          rollmeandeltaOD = zoo::rollmean(deltaOD, k = RollWindow, align = "left", fill = NA),
-         lognormOD720 = if_else(OD720 == (min(rollmeanOD720, na.rm = TRUE)), ReplaceOD, log(OD720/min(rollmeanOD720, na.rm = TRUE))),
-         lognormdeltaOD = if_else(deltaOD == (min(rollmeandeltaOD, na.rm = TRUE)), ReplaceOD, log(deltaOD/min(rollmeandeltaOD, na.rm = TRUE)))) %>%
+         lognormOD720 = if_else(OD720 == (min(rollmeanOD720, na.rm = TRUE)), ReplaceOD, 
+                                log(OD720/min(rollmeanOD720, na.rm = TRUE))),
+         lognormdeltaOD = if_else(deltaOD == (min(rollmeandeltaOD, na.rm = TRUE)), ReplaceOD, 
+                                  log(deltaOD/min(rollmeandeltaOD, na.rm = TRUE)))) %>%
   mutate(LagSeedOD720 = time[which.min(rollmeanOD720)],
          LagSeeddeltaOD = time[which.min(rollmeandeltaOD)]
          ) %>%
