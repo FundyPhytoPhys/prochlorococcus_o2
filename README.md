@@ -60,7 +60,7 @@ The metadata for Multicultivator runs is generated from "Code/Import_MetaData.Rm
 
 ### Data Dictionary
 
-Data Dictionary can be found in "Docs/Prochlorococcus_O2_DataDictionary.csv"
+Data Dictionary can be found in "Docs/prochlorococcus_O2_DataDictionary.csv"
 
 ### Code folder
 
@@ -173,7 +173,7 @@ This file overwrites the bookdown default settings in the yaml and allows the kn
 
 ### Docs folder
 
-- "Prochlorococcus_O2_DataDictionary.csv" is the data dictionary. 
+- "prochlorococcus_O2_DataDictionary.csv" is the data dictionary. 
 - "PLOSONE_CoverLetter.docx" is the cover letter to PLOS ONE.
 - "plos-one.csl" is the citation style language for PLOS ONE used in "Manuscript_O2.Rmd".
 - "RPackages.bib" is the bibliography for R packages citations used in "Manuscript_O2.Rmd".
