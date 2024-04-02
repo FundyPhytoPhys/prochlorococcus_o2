@@ -323,7 +323,9 @@ nrow(ProcessDataNestGrowth)
 ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
   mutate(OD720_logistic = map(tubedata, possibly(~nlsLM(OD720 ~ logistic_eqn(x = time, Lmax, Lmu, Lintercept),
                             data = .x,
-                            start = list(Lmax = max(.$rollmeanOD720, na.rm = TRUE),  Lmu = (log(max(.$rollmeanOD720, na.rm = TRUE)) - log(min(.$rollmeanOD720, na.rm = TRUE)))/max(.$time), Lintercept = min(.$rollmeanOD720, na.rm = TRUE)),
+                            start = list(Lmax = max(.$rollmeanOD720, na.rm = TRUE),  
+                                         Lmu = (log(max(.$rollmeanOD720, na.rm = TRUE)) - log(min(.$rollmeanOD720, na.rm = TRUE)))/max(.$time),
+                                         Lintercept = min(.$rollmeanOD720, na.rm = TRUE)),
                             control = list(maxiter = 500)), otherwise = NULL)),
          OD720_logistic_tidied =  map(OD720_logistic, possibly(tidy, otherwise = NULL)),
          OD720_logistic_param = map(OD720_logistic,possibly(glance, otherwise = NULL)),
@@ -336,7 +338,9 @@ ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
   mutate(OD720trunc_logistic = map(tubedata, possibly(~nlsLM(OD720 ~ logistic_eqn(x = time, Lmax, Lmu, Lintercept),
                             data = .x %>%
                             filter(OD720 <= (max(OD720) * TruncFactor)),
-                            start = list(Lmax = max(.$rollmeanOD720, na.rm = TRUE),  Lmu = (log(max(.$rollmeanOD720, na.rm = TRUE)) - log(min(.$rollmeanOD720, na.rm = TRUE)))/max(.$time), Lintercept = min(.$rollmeanOD720, na.rm = TRUE)),
+                            start = list(Lmax = max(.$rollmeanOD720, na.rm = TRUE),
+                                         Lmu = (log(max(.$rollmeanOD720, na.rm = TRUE)) - log(min(.$rollmeanOD720, na.rm = TRUE)))/max(.$time),
+                                         Lintercept = min(.$rollmeanOD720, na.rm = TRUE)),
                             control = list(maxiter = 500)), otherwise = NULL)),
          OD720trunc_logistic_tidied =  map(OD720trunc_logistic, possibly(tidy, otherwise = NULL)),
          OD720trunc_logistic_param = map(OD720trunc_logistic,possibly(glance, otherwise = NULL)),
@@ -348,7 +352,9 @@ ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
          ) %>%
    mutate(deltaOD_logistic = map(tubedata, possibly(~nlsLM(deltaOD ~ logistic_eqn(x = time, Lmax, Lmu, Lintercept),
                             data = .x,
-                            start = list(Lmax = max(.$rollmeandeltaOD, na.rm = TRUE),  Lmu = (log(max(.$rollmeandeltaOD, na.rm = TRUE)) - log(min(.$rollmeandeltaOD, na.rm =  TRUE)))/max(.$time), Lintercept = min(.$rollmeandeltaOD, na.rm = TRUE)),
+                            start = list(Lmax = max(.$rollmeandeltaOD, na.rm = TRUE),
+                                         Lmu = (log(max(.$rollmeandeltaOD, na.rm = TRUE)) - log(min(.$rollmeandeltaOD, na.rm =  TRUE)))/max(.$time),
+                                         Lintercept = min(.$rollmeandeltaOD, na.rm = TRUE)),
                             control = list(maxiter = 500)), otherwise = NULL)),
          deltaOD_logistic_tidied =  map(deltaOD_logistic, possibly(tidy, otherwise = NULL)),
          deltaOD_logistic_param = map(deltaOD_logistic,possibly(glance, otherwise = NULL)),
@@ -361,7 +367,9 @@ ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
    mutate(deltaODtrunc_logistic = map(tubedata, possibly(~nlsLM(deltaOD ~ logistic_eqn(x = time, Lmax, Lmu, Lintercept),
                             data = .x %>%
                             filter(deltaOD <= (max(deltaOD) * TruncFactor)),
-                            start = list(Lmax = max(.$rollmeandeltaOD, na.rm = TRUE),  Lmu = (log(max(.$rollmeandeltaOD, na.rm = TRUE)) - log(min(.$rollmeandeltaOD, na.rm = TRUE)))/max(.$time), Lintercept = min(.$rollmeandeltaOD, na.rm = TRUE)),
+                            start = list(Lmax = max(.$rollmeandeltaOD, na.rm = TRUE),
+                                         Lmu = (log(max(.$rollmeandeltaOD, na.rm = TRUE)) - log(min(.$rollmeandeltaOD, na.rm = TRUE)))/max(.$time),
+                                         Lintercept = min(.$rollmeandeltaOD, na.rm = TRUE)),
                             control = list(maxiter = 500)), otherwise = NULL)),
          deltaODtrunc_logistic_tidied =  map(deltaODtrunc_logistic, possibly(tidy, otherwise = NULL)),
          deltaODtrunc_logistic_param = map(deltaODtrunc_logistic, possibly(glance, otherwise = NULL)),
@@ -371,8 +379,12 @@ ProcessDataNestGrowth <- ProcessDataNestGrowth %>%
          ) %>%  
   mutate(deltaODtrunc_TimetoMax = as.numeric(ifelse(deltaODtrunc_TimetoMax == "NULL" , NA, deltaOD_TimetoMax))
          ) %>%
-   mutate(GrowthAmpdeltaOD = if_else(deltaOD_TimetoMax <= MaxAmpHour | is.na(deltaOD_TimetoMax), map(tubedata, ~growth_amp_decline(y = .$rollmeandeltaOD)), map(tubedata, ~growth_amp(y = .$rollmeandeltaOD))),
-          GrowthAmpOD720 = if_else(OD720_TimetoMax <= MaxAmpHour | is.na(OD720_TimetoMax), map(tubedata, ~growth_amp_decline(y = .$rollmeanOD720)), map(tubedata, ~growth_amp(y = .$rollmeanOD720)))
+   mutate(GrowthAmpdeltaOD = if_else(deltaOD_TimetoMax <= MaxAmpHour | is.na(deltaOD_TimetoMax),
+                                     map(tubedata, ~growth_amp_decline(y = .$rollmeandeltaOD)),
+                                     map(tubedata, ~growth_amp(y = .$rollmeandeltaOD))),
+          GrowthAmpOD720 = if_else(OD720_TimetoMax <= MaxAmpHour | is.na(OD720_TimetoMax),
+                                   map(tubedata, ~growth_amp_decline(y = .$rollmeanOD720)),
+                                   map(tubedata, ~growth_amp(y = .$rollmeanOD720)))
          )
 
 #Growthamp flags to determine if growth occurred before 14 days 
@@ -381,8 +393,12 @@ ProcessDataNestGrowth2 <- ProcessDataNestGrowth %>%
    filter(time <= GrowthAmpWindow) %>%
   nest(tubedata = c(time, ToD, Day, Actinic_par, OD680, OD720, deltaOD, ActinicMid_parOD720,
                   ActinicMid_dayOD720,rollmeanOD720,rollmeandeltaOD,lognormOD720, lognormdeltaOD, LagSeedOD720, LagSeeddeltaOD)) %>%
-   mutate(GrowthAmpdeltaOD_14days = if_else(deltaOD_TimetoMax <= MaxAmpHour | is.na(deltaOD_TimetoMax), map(tubedata, ~growth_amp_decline(y = .$rollmeandeltaOD)), map(tubedata, ~growth_amp(y = .$rollmeandeltaOD))),
-          GrowthAmpOD720_14days = if_else(OD720_TimetoMax <= MaxAmpHour| is.na(OD720_TimetoMax) , map(tubedata, ~growth_amp_decline(y = .$rollmeanOD720)), map(tubedata, ~growth_amp(y = .$rollmeanOD720))),
+   mutate(GrowthAmpdeltaOD_14days = if_else(deltaOD_TimetoMax <= MaxAmpHour | is.na(deltaOD_TimetoMax),
+                                            map(tubedata, ~growth_amp_decline(y = .$rollmeandeltaOD)),
+                                            map(tubedata, ~growth_amp(y = .$rollmeandeltaOD))),
+          GrowthAmpOD720_14days = if_else(OD720_TimetoMax <= MaxAmpHour| is.na(OD720_TimetoMax),
+                                          map(tubedata, ~growth_amp_decline(y = .$rollmeanOD720)),
+                                          map(tubedata, ~growth_amp(y = .$rollmeanOD720))),
           minRollMeanOD720_14days = map(tubedata, ~min(.$rollmeanOD720, na.rm = TRUE)),
           maxRollMeanOD720_14days = map(tubedata, ~max(.$rollmeanOD720, na.rm = TRUE)),
           minRollMeandeltaOD_14days = map(tubedata, ~min(.$rollmeandeltaOD, na.rm = TRUE)),
