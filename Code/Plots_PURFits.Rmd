@@ -120,7 +120,7 @@ glimpse(PURPARFits)
 ```
 
 Make O2_uM and WL as factor levels from highest to lowest and remove all green light (WL= 530) growth data
-```{r O2 levels}
+```{r factor O2 WL and photoperiod}
 
 PURPARFits <- PURPARFits %>%
   filter(WL %in% c("WW", 660, 450)) %>% 
@@ -173,7 +173,6 @@ Dummy_deltaOD_Lmu_corr <- c(0)
 Dummy_Pur_ue<- c(0)
 Dummy_deltaOD_Lmu_corr_day <- c(0)
 Dummy_PUR_day <- c(0)
-
 
 
 DummyDF_SS120 <- expand_grid(
@@ -232,15 +231,12 @@ DummyDF_Expand_MED4 <- rbind(DummyDF_MED4, DummyDF_MED4, DummyDF_MED4) %>%
 
 DummyDF_Expand <- rbind(DummyDF_Expand_SS120, DummyDF_Expand_MIT9313, DummyDF_Expand_MED4)
 
-
-
 remove(DummyDF_MED4)
 remove(DummyDF_MIT9313)
 remove(DummyDF_SS120)
 remove(DummyDF_Expand_MED4)
 remove(DummyDF_Expand_MIT9313)
 remove(DummyDF_Expand_SS120)
-
 
 ```
 
@@ -1185,9 +1181,6 @@ StrainO2WL_PlattLmModel |>
   theme_bw()
 
 ```
-
-
-
 
 # ANOVA comparison of red light to blue light for each strain and [O2]. 
 ```{r compare 1 red and blue light fits}
