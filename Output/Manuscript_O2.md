@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-03-27"
+date: "2024-04-03"
 output:
   bookdown::word_document2:
     code_folding: show
