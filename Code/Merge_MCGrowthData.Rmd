@@ -64,7 +64,7 @@ DataOut <- file.path("..", "Data", "CleanData", "CleanedMCData")
 DataIn <- file.path("..", "Data","ProcessedData", "ProcessedMCData")
 
 
-GrowthFlagError <- 0.2     # percentage of mu that std error must be less than
+GrowthFlagError <- 0.2     # What fraction of mu to determine if the growth fit is accepted relative to the std error.
 
 OD720GrowthAmpFlagValue = 0.010 # OD720 absolute change for setting GrowthFlag = 1 and DeclineFlag = 1; did culture show growth; 
 
