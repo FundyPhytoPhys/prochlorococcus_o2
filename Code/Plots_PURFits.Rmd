@@ -877,7 +877,7 @@ ggsave(file = file.path(PlotsOutPLOS, "S4_Fig.tiff"), plot = PhotoperiodPurFitsP
 # WL models for each strain for each O2 experiment
 ```{r Generate platt and lm for WL}
 
-# model with dummy dark, 0 PAR,  growth rates. Nested by strain and [O2]. 
+# model with dummy dark, 0 PAR,  growth rates. Nested by strain and [O2].
 PURPARStrainO2NestModels <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
