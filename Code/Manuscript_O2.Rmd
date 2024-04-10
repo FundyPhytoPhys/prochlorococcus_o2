@@ -628,8 +628,7 @@ to examine statistical differences between Harrison and Platt
 model fit to each photoperiod (4 h, 8 h, 12 h, 16 h) and pooled
 photoperiod growth data for each combination of strain and [O~2~].
 Photoperiod growth data that showed complete growth inhibition for each
-combination of strain, [O~2~] and imposed spectral waveband were omitted
-from the pooled photoperiod model. Statistical differences were
+combination of strain, [O~2~] and imposed spectral waveband were omitted from the pooled photoperiod model. Statistical differences were
 determined at *P* value \< 0.05.
 
 \newpage

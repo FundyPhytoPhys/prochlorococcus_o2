@@ -323,7 +323,7 @@ Substitute in PURPhotonDose_day which includes extrapolated estimates of PUR for
  
 ```{r growthPURfits}
 
-# model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred for an O2 and photoperiod combination so that the model including all photoperiods would not be skewed towards zero.
+# model with dummy dark, 0 PAR,  growth rates. Nested by strain and [O2]. Filtered out data if no growth occurred for an O2 and photoperiod combination for each strain so that the model including all photoperiods would not be skewed towards zero.
 PURPARStrainO2NestModels_filtered <- PURPARFits_dummy |>
   mutate(remove = case_when(Strain == "MED4" & Photoperiod == 4 ~ 1,
                             Strain == "MED4" & O2_uM == 25 & Photoperiod == 8 & WL == "WW" ~ 1,
@@ -365,59 +365,7 @@ AllData <- PURPARFits_dummy |>
 
 PURPARStrainO2NestModels_filtered <- full_join(PURPARStrainO2NestModels_filtered, AllData)
 
-# PURPARStrainO2NestModels <- PURPARFits_dummy |>
-#   nest(data = -c("Strain","O2_uM")) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1), 
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100),
-#                               control = list(maxiter = 500)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          ) |>
-#   mutate(GRClm_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ LinEqn(x = PURPhotonDose_day,  M, Intercept),
-#                               data = .x,
-#                               start = LinEqnStart
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRClm_Param = map(GRClm_Model, tidy),
-#          GRClm_Predict = map(GRClm_Model, possibly(augment)),
-#          GRClm_Glance = map(GRClm_Model, possibly(glance))
-#          )
-
-# # model with dummy dark, 0 PAR, 0 growth rates
-# PURPARStrainO2PhotoNestModels <- PURPARFits_dummy  |>
-#  nest(data = -c("Strain","O2_uM", "Photoperiod")) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-8, b = 1e-9, Pmax = 1),
-#                               lower = c(-0, 0, 0),
-#                               upper = c(1,1,100),
-#                               control = list(maxiter = 500)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          ) |>
-#   mutate(GRClm_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ LinEqn(x = PURPhotonDose_day,  M, Intercept),
-#                               data = .x,
-#                               start = LinEqnStart
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRClm_Param = map(GRClm_Model, tidy),
-#          GRClm_Predict = map(GRClm_Model, possibly(augment)),
-#          GRClm_Glance = map(GRClm_Model, possibly(glance))
-#          )
-
+# model with dummy dark, 0 PAR,  growth rates. Nested by strain, [O2] and photoperiod.
 PURPARStrainO2PhotoNestModels <- PURPARFits_dummy |>
  nest(data = -c("Strain","O2_uM", "Photoperiod")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
@@ -444,7 +392,7 @@ PURPARStrainO2PhotoNestModels <- PURPARFits_dummy |>
          GRClm_Glance = map(GRClm_Model, possibly(glance))
          )
 
-# model with dummy dark, 0 PAR,  growth rates
+# model with dummy dark, 0 PAR,  growth rates. Nested by strain, [O2] and wavelength.
 PURPARStrainO2WLNestModels <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM", "WL")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
@@ -471,8 +419,8 @@ PURPARStrainO2WLNestModels <- PURPARFits_dummy |>
          GRClm_Glance = map(GRClm_Model, possibly(glance))
          )
 
-# 
-# # model with dummy dark, 0 PAR,  growth rates
+
+# # model with dummy dark, 0 PAR,  growth rates. Nested by strain, [O2], photoperiod and wavelength. NOTE: not enough data to model fits for this combination.
 # PURPARStrainO2PeriodWLNest <- PURPARFits_dummy |>
 #   nest(data = -c("Strain","O2_uM", "Photoperiod", "WL")) |>
 #   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
@@ -593,7 +541,7 @@ PURPARStrainO2WLNestModels|>
 
 ```
 
-# Want platt model for all fits that did not fail and lm for platt models that returned a NULL
+# Want platt model for all fits that did not fail and lm for platt models that returned a NULL. NULLs were returned due to no growth across strain, O2 and photoperiod conditions.
 ```{r}
 # O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
 #filter to keep platt models
@@ -607,14 +555,14 @@ KeepLmModel <- PURPARStrainO2PhotoNestModels|>
  select(-c(GRCplatt_Glance, GRCplatt_Model, GRCplatt_Param, GRCplatt_Predict))
    
 # Join  
-StrainO2Photoperiod_AllModels <- full_join(KeepPlattModel, KeepLmModel) 
+ StrainO2Photoperiod_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel) 
  
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
 
 # O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
- StrainO2Photoperiod_PlattLmModel <- StrainO2Photoperiod_AllModels |>
+ StrainO2Photoperiod_PlattLmModel <-  StrainO2Photoperiod_PlattLmModel |>
    pivot_longer(cols = -c(Strain, O2_uM, Photoperiod, data)) |>
   drop_na(value) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param") | str_detect(name, pattern = "Predict")) |>
@@ -645,11 +593,11 @@ KeepLmModel <- PURPARStrainO2NestModels_filtered|>
  select(-c(GRCplatt_Glance, GRCplatt_Model, GRCplatt_Param, GRCplatt_Predict))
    
 # Join  
-StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel) 
+StrainO2filtered_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel) 
  
  
 # O2 nested data frame containing the single fit of pooled photoperiods 
- StrainO2filtered_PlattLmModel <- StrainO2_AllModels|>
+ StrainO2filtered_PlattLmModel <- StrainO2filtered_PlattLmModel|>
   # select(-c(data)) |>
   pivot_longer(cols = -c(Strain, O2_uM, data, Data_all)) |>
   drop_na(value) |>
@@ -669,8 +617,6 @@ StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
- # remove(StrainO2Photoperiod_AllModels)
- # remove(StrainO2_AllModels)
  
 ```
 
@@ -719,7 +665,7 @@ StrainO2filtered_PlattLmModel |>
      scale_colour_manual(values = MCMIXColours) +
    scale_shape_manual(values = PhotoperiodShapes)  +
   facet_grid(rows = vars(O2_uM), cols = vars(Strain)) +
-    labs(title = "Single fit for each strain in each [O2]- all photoperiods included that had growth") +
+    labs(title = "Single fit and model indicated. Data omitted that showed complete growth \n inhibition for each combination of strain, [O2] and photoperiod except when \n complete inhibition occurred for a combination of strain and [O2].") +
   theme_bw()
 
 # O2 and Photoperiod nested data frame containing the fits for each photoperiod for each strain
@@ -735,7 +681,7 @@ StrainO2Photoperiod_PlattLmModel |>
   ) +
      scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
-    labs(title = "Fits to be used for ANOVA comparison to single fit across each strain and [O2]") +
+    labs(title = "Photoperiod fits to be used for ANOVA comparison to single fit across each \n strain and [O2].") +
   theme_bw()
 
 ```
@@ -749,36 +695,7 @@ Wider_Photoperiods <- StrainO2Photoperiod_PlattLmModel %>%
   select(Strain, Photoperiod, O2_uM, Model, Predict) %>% 
   pivot_wider(names_from = Photoperiod, values_from = c(Model, Predict))
 
-
-# Wider_Photoperiods <- StrainO2Photoperiod_PlattLmModel %>% 
-#   mutate(PhotoperiodLabel = Photoperiod) %>% 
-#   select(Strain, Photoperiod, O2_uM, Model, Predict, data, PhotoperiodLabel) %>% 
-#   pivot_wider(names_from = PhotoperiodLabel, values_from = c(Model, Predict)) %>% 
-#     unnest(data) %>% 
-#   group_by(Strain, O2_uM) %>% 
-#     nest(Data_Photoperiod = -c(Strain, O2_uM, Model_16,Model_12, Model_8, Model_4, Predict_16, Predict_12, Predict_8, Predict_4)) %>% 
-#   filter(!is.null(Model_16) & !is.null(Predict_16) |
-#            !is.null(Model_12) & !is.null(Predict_12)|
-#            !is.null(Model_8) & !is.null(Predict_8) |
-#            !is.null(Model_4) & !is.null(Predict_4))
-
-# Wider_Photoperiods <- StrainO2Photoperiod_PlattLmModel %>% 
-#   select(Strain, Photoperiod, O2_uM, Model, Predict) %>% 
-#   pivot_wider(names_from = Photoperiod, values_from = c(Model, Predict)) %>% 
-#   unnest(Predict_16, keep_empty = TRUE) %>% 
-#     mutate(Photoperiod = 16)%>% 
-#     nest(Predict_16 = -c(Strain, O2_uM, Model_16, Model_12, Model_8, Model_4, Predict_12, Predict_8, Predict_4)) %>% 
-#   unnest(Predict_12, keep_empty = TRUE) %>% 
-#     mutate(Photoperiod = 12)%>% 
-#     nest(Predict_12 = -c(Strain, O2_uM, Model_16, Model_12, Model_8, Model_4, Predict_16, Predict_8, Predict_4))%>% 
-#   unnest(Predict_8, keep_empty = TRUE) %>% 
-#     mutate(Photoperiod = 8)%>% 
-#     nest(Predict_8 = -c(Strain, O2_uM, Model_16, Model_12, Model_8, Model_4, Predict_16, Predict_12, Predict_4))%>% 
-#   unnest(Predict_4, keep_empty = TRUE) %>% 
-#     mutate(Photoperiod = 4)%>% 
-#     nest(Predict_4 = -c(Strain, O2_uM, Model_16, Model_12, Model_8, Model_4, Predict_16, Predict_12, Predict_8))
-
-# this contains 1 fit through all photoperiods, the photoperiods with no growth were filtered out.
+# this contains 1 fit through all photoperiods for each strain and [O2] combination. Data omitted that showed complete growth inhibition for each combination of strain, [O2] and photoperiod except when complete inhibition occurred for a combination of strain and [O2].
 AllPhotoperiods <- StrainO2filtered_PlattLmModel %>% 
   select(Strain, O2_uM, Model, Predict, Data_all, data) %>% 
  rename(All = 'Model',
@@ -865,7 +782,8 @@ knitr::kable(PhotoperiodAnovaTable,
 ```
 
 
-# Fits are added that are not sig different individually,  next add fits that were sig different dynamically
+# Individual fits are added that are sig different from the pooled photoperiod fit. 
+Better way to do this is dynamically using p values from the ANOVA. 
 ```{r Pur plot strain faceted in columns, fig.height=10, fig.width=10}
 
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
@@ -946,16 +864,6 @@ PhotoperiodPurFitsPlots
 Would like to add Compact Letter Displays (cld). Some examples:
 https://stackoverflow.com/questions/70854552/any-other-options-besides-the-traditional-cld-bar-graph/70863531#70863531
 https://stackoverflow.com/questions/72756490/loop-tukey-post-hoc-letters-extraction/73274274#73274274
-
-
-Need test, other than nesting, to determine if Photoperiod has a significant influence (and interaction) on growth rate?
-
-GrowthRate function of PUR, 
-  separate models for Strain & O2_uM, 
-  
-GrowthRate function of PUR in interaction term with Photoperiod and/or light colour
-  separate models for Strain & O2_uM, 
-  
   
 ```{r, save PURFitPlots}
 
@@ -969,8 +877,8 @@ ggsave(file = file.path(PlotsOutPLOS, "S4_Fig.tiff"), plot = PhotoperiodPurFitsP
 # WL models for each strain for each O2 experiment
 ```{r Generate platt and lm for WL}
 
-# model with dummy dark, 0 PAR,  growth rates. Also removed data if no growth occurred for an O2 and photoperiod combination so that the model including all photoperiods would not be skewed towards zero.
-StrainO2NestModels <- PURPARFits_dummy |>
+# model with dummy dark, 0 PAR,  growth rates. Nested by strain and [O2]. 
+PURPARStrainO2NestModels <- PURPARFits_dummy |>
   nest(data = -c("Strain","O2_uM")) |>
   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
                               data = .x,
@@ -1000,36 +908,7 @@ StrainO2NestModels <- PURPARFits_dummy |>
 AllData <- PURPARFits_dummy |>
     nest(Data_all = -c("Strain","O2_uM"))
 
-StrainO2NestModels <- full_join(StrainO2NestModels, AllData)
-
-
-
-# model with dummy dark, 0 PAR,  growth rates
-PURPARStrainO2WLNestModels <- PURPARFits_dummy |>
-  nest(data = -c("Strain","O2_uM", "WL")) |>
-  mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-                              data = .x,
-                              start = list(a = 1e-7, b = 1e-8, Pmax = 1),
-                              lower = c(0, 0, 0),
-                              upper = c(1,1,100),
-                              control = list(maxiter = 500)
-                         ), NULL)
-                         )
-         ) |>
-  mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-         GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-         GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-         )|>
-  mutate(GRClm_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ LinEqn(x = PURPhotonDose_day,  M, Intercept),
-                              data = .x,
-                              start = LinEqnStart
-                         ), NULL)
-                         )
-         ) |>
-  mutate(GRClm_Param = map(GRClm_Model, tidy),
-         GRClm_Predict = map(GRClm_Model, possibly(augment)),
-         GRClm_Glance = map(GRClm_Model, possibly(glance))
-         )
+PURPARStrainO2NestModels <- full_join(PURPARStrainO2NestModels, AllData)
 
 
 remove(AllData)
@@ -1051,14 +930,14 @@ KeepLmModel <- PURPARStrainO2WLNestModels|>
  select(-c(GRCplatt_Glance, GRCplatt_Model, GRCplatt_Param, GRCplatt_Predict))
    
 # Join  
-StrainO2WL_AllModels <- bind_rows(KeepPlattModel, KeepLmModel) 
+ StrainO2WL_PlattLmModel <- bind_rows(KeepPlattModel, KeepLmModel) 
  
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
 
 # O2 and WL nested data frame containing the fits for each WL for each strain
- StrainO2WL_PlattLmModel <- StrainO2WL_AllModels |>
+ StrainO2WL_PlattLmModel <-  StrainO2WL_PlattLmModel |>
    pivot_longer(cols = -c(Strain, O2_uM, WL, data)) |>
   drop_na(value) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param") | str_detect(name, pattern = "Predict")) |>
@@ -1078,21 +957,21 @@ filter(!map_lgl(Model, is.null)) |>
  
 # O2 nested data frame containing the single fit of pooled WL
  #filter to keep platt models
-KeepPlattModel <- StrainO2NestModels|>
+KeepPlattModel <- PURPARStrainO2NestModels|>
   select(-c(GRClm_Glance, GRClm_Model, GRClm_Param, GRClm_Predict)) |>
    filter(!map_lgl(GRCplatt_Model, is.null))
 
 #filter to keep only the models that failed to fit a platt model, fits by lm remains. 
-KeepLmModel <- StrainO2NestModels|>
+KeepLmModel <- PURPARStrainO2NestModels|>
   filter(map_lgl(GRCplatt_Model, is.null)) |>
  select(-c(GRCplatt_Glance, GRCplatt_Model, GRCplatt_Param, GRCplatt_Predict))
    
 # Join  
-StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel) 
+StrainO2_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel) 
  
  
 # O2 nested data frame containing the single fit of pooled WLs 
- StrainO2_PlattLmModel <- StrainO2_AllModels|>
+ StrainO2_PlattLmModel <- StrainO2_PlattLmModel|>
   # select(-c(data)) |>
   pivot_longer(cols = -c(Strain, O2_uM, data, Data_all)) |>
   drop_na(value) |>
@@ -1112,8 +991,6 @@ StrainO2_AllModels <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
- # remove(StrainO2WL_AllModels)
- # remove(StrainO2_AllModels)
  
 ```
 
@@ -1177,12 +1054,12 @@ StrainO2WL_PlattLmModel |>
   ) +
      scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, WL), cols = vars(Strain)) +
-    labs(title = "Fits to be used for ANOVA comparison to single fit across each strain and [O2]") +
+    labs(title = "Fits across wavelengths used for one-way ANOVA comparison to eachother for each strain and [O2] combination") +
   theme_bw()
 
 ```
 
-# ANOVA comparison of red light to blue light for each strain and [O2]. 
+# ANOVA comparison of red light to blue light for each strain and [O2] combination. 
 ```{r compare 1 red and blue light fits}
 
 # make wider to join with DF that contains the 1 fit through all photoperiods
