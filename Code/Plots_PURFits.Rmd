@@ -420,32 +420,6 @@ PURPARStrainO2WLNestModels <- PURPARFits_dummy |>
          )
 
 
-# # model with dummy dark, 0 PAR,  growth rates. Nested by strain, [O2], photoperiod and wavelength. NOTE: not enough data to model fits for this combination.
-# PURPARStrainO2PeriodWLNest <- PURPARFits_dummy |>
-#   nest(data = -c("Strain","O2_uM", "Photoperiod", "WL")) |>
-#   mutate(GRCplatt_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ grcplatt(I = PURPhotonDose_day, a, b, Pmax),
-#                               data = .x,
-#                               start = list(a = 1e-7, b = 1e-8, Pmax = 1),
-#                               lower = c(0, 0, 0),
-#                               upper = c(1,1,100),
-#                               control = list(maxiter = 500)
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRCplatt_Param = map(GRCplatt_Model, tidy),
-#          GRCplatt_Predict = map(GRCplatt_Model, possibly(augment)),
-#          GRCplatt_Glance = map(GRCplatt_Model, possibly(glance))
-#          )|>
-#   mutate(GRClm_Model = map(data, possibly(~nlsLM(deltaOD_Lmu_corr_day ~ LinEqn(x = PURPhotonDose_day,  M, Intercept),
-#                               data = .x,
-#                               start = LinEqnStart
-#                          ), NULL)
-#                          )
-#          ) |>
-#   mutate(GRClm_Param = map(GRClm_Model, tidy),
-#          GRClm_Predict = map(GRClm_Model, possibly(augment)),
-#          GRClm_Glance = map(GRClm_Model, possibly(glance))
-#          )
 remove(AllData)
 
 ```
@@ -504,7 +478,6 @@ PURPARFits_dummy |>
          Photoperiod = factor(Photoperiod, levels = c(16, 12, 8, 4))) |>
   ggplot() +
   geom_point(aes(x = PURPhotonDose_day, y = deltaOD_Lmu_corr_day, colour = WL)) +
-  # geom_line(aes(x = PURPhotonDose_day, y = `.fitted`)) +
      scale_colour_manual(values = MCMIXColours) +
     facet_grid(rows = vars(O2_uM, Photoperiod), cols = vars(Strain)) +
     labs(title = "PURPARStrainO2PhotoNestModels all data no filter") +
@@ -598,7 +571,6 @@ StrainO2filtered_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel)
  
 # O2 nested data frame containing the single fit of pooled photoperiods 
  StrainO2filtered_PlattLmModel <- StrainO2filtered_PlattLmModel|>
-  # select(-c(data)) |>
   pivot_longer(cols = -c(Strain, O2_uM, data, Data_all)) |>
   drop_na(value) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param") | str_detect(name, pattern = "Predict")) |>
@@ -617,6 +589,8 @@ StrainO2filtered_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
+ remove(PURPARStrainO2NestModels_filtered)
+ remove(PURPARStrainO2PhotoNestModels)
  
 ```
 
@@ -703,10 +677,10 @@ AllPhotoperiods <- StrainO2filtered_PlattLmModel %>%
         Data_filtered = 'data')
 
 
-AllFitsCombined <- left_join(Wider_Photoperiods, AllPhotoperiods)
+AllFitsCombinedPhoto <- left_join(Wider_Photoperiods, AllPhotoperiods)
 
 
-ANOVA_AllPhotoperiods <- AllFitsCombined %>% 
+ANOVA_AllPhotoperiods <- AllFitsCombinedPhoto %>% 
   mutate(twelve = `Model_12`,
          four = `Model_4`,
          eight = `Model_8`,
@@ -724,10 +698,6 @@ ANOVA_AllPhotoperiods <- AllFitsCombined %>%
   separate(name, into = c("Photoperiod1", "AllPhotoperiod"), sep = "vs") %>% 
   mutate(pvalue = signif(`p.value`, digits = 2))
 
-# %>% 
-#   mutate(p.value = case_when(is.na(p.value) ~ 0,
-#                              TRUE ~ p.value)) # Changed all failed fits to p.value = 0
-  # mutate(pval = pluck(value, "p.value", 2))
   
 ANOVA_AllPhotoperiods %>% 
   mutate(Photoperiod1 = as.numeric(case_when(Photoperiod1 == 'four' ~ 4,
@@ -736,7 +706,6 @@ ANOVA_AllPhotoperiods %>%
                                   Photoperiod1 == 'sixteen' ~ 16)),
          O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>%
-    # mutate(Photoperiod1 = factor(Photoperiod1, levels = c('four','eight', 'twelve', 'sixteen'))) %>% 
   ggplot() +
   geom_text(aes(x = Photoperiod1, y = AllPhotoperiod, label = pvalue), data = . %>% filter(pvalue < 0.05), size = 2.5) +
   geom_text(aes(x = Photoperiod1, y = AllPhotoperiod), data = . %>% filter(pvalue > 0.05), label = "ns") +
@@ -750,6 +719,9 @@ ANOVA_AllPhotoperiods %>%
 
 remove(Wider_Photoperiods)
 remove(AllPhotoperiods)
+remove(StrainO2filtered_PlattLmModel)
+remove(StrainO2Photoperiod_PlattLmModel)
+
 
 ```
 
@@ -789,7 +761,7 @@ Better way to do this is dynamically using p values from the ANOVA.
 scientific_10 <- function(x) {   parse(text=gsub("e\\+*", " %*% 10^", scales::scientific_format()(x))) }
 
 
-PhotoperiodPurFitsPlots <- AllFitsCombined |>
+PhotoperiodPurFitsPlots <- AllFitsCombinedPhoto |>
   unnest(cols = c(Data_all), names_sep = "_", keep_empty = TRUE) |>
   mutate(PhotoperiodLabelTitle = "Photoperiod (h)",
          OxygenLabel = "Oxygen concentration (µM)",
@@ -828,16 +800,12 @@ PhotoperiodPurFitsPlots <- AllFitsCombined |>
  guides(
    linetype = guide_legend(order = 1),
         fill = "none",) +
-        #color = guide_legend(nrow = 1)) +
- # guides(shape = guide_legend(nrow = 1)) +
   theme_bw() +
    theme( strip.text = element_text(size = 25),
         axis.title.y = element_text(color = "black", size = 30,  hjust = 0.40),
         axis.title.x = element_text(color = "black", size = 30),
         axis.text.x = element_text(size = 20, color = "black", angle = 45, hjust = 1.0),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
-        # strip.background=element_rect(color="grey87", fill = "grey82"),
-        # strip.background=element_rect(fill = "white"), 
         legend.key.size = unit(1.8, 'cm'), #change legend key size
         legend.key.height = unit(0.5, 'cm'), #change legend key height
         # legend.key.width = unit(2.5, 'cm'), #change legend key width
@@ -912,6 +880,7 @@ PURPARStrainO2NestModels <- full_join(PURPARStrainO2NestModels, AllData)
 
 
 remove(AllData)
+remove(PURPARFits_dummy)
 
 ```
 
@@ -972,7 +941,6 @@ StrainO2_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel)
  
 # O2 nested data frame containing the single fit of pooled WLs 
  StrainO2_PlattLmModel <- StrainO2_PlattLmModel|>
-  # select(-c(data)) |>
   pivot_longer(cols = -c(Strain, O2_uM, data, Data_all)) |>
   drop_na(value) |>
   filter(str_detect(name, pattern = "Model") | str_detect(name, pattern = "Glance") | str_detect(name, pattern = "Param") | str_detect(name, pattern = "Predict")) |>
@@ -991,6 +959,8 @@ StrainO2_PlattLmModel <- full_join(KeepPlattModel, KeepLmModel)
  
  remove(KeepPlattModel)
  remove(KeepLmModel)
+ remove(PURPARStrainO2NestModels)
+ remove(PURPARStrainO2WLNestModels)
  
 ```
 
@@ -1054,7 +1024,7 @@ StrainO2WL_PlattLmModel |>
   ) +
      scale_colour_manual(values = MCMIXColours) +
   facet_grid(rows = vars(O2_uM, WL), cols = vars(Strain)) +
-    labs(title = "Fits across wavelengths used for one-way ANOVA comparison to eachother for each strain and [O2] combination") +
+    labs(title = "Fits across wavelengths used for one-way ANOVA comparison \n to eachother for each strain and [O2] combination") +
   theme_bw()
 
 ```
@@ -1097,10 +1067,7 @@ ANOVA_AllWL <- AllFitsCombinedWL %>%
   separate(name, into = c("WL1", "WL2"), sep = "vs") %>% 
   mutate(pvalue = signif(`p.value`, digits = 2))
 
-# %>% 
-#   mutate(p.value = case_when(is.na(p.value) ~ 0,
-#                              TRUE ~ p.value)) # Changed all failed fits to p.value = 0
-  # mutate(pval = pluck(value, "p.value", 2))
+
   
 ANOVA_AllWL %>% 
   mutate(O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
@@ -1119,7 +1086,8 @@ ANOVA_AllWL %>%
 
 remove(Wider_WL)
 remove(AllWL)
-
+remove(StrainO2_PlattLmModel)
+remove(StrainO2WL_PlattLmModel)
 ```
 
 ```{r Pur plot strain faceted in columns , fig.height=10, fig.width=10}
@@ -1138,8 +1106,6 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
          Strain = factor(Strain, levels = c("MED4", "SS120", "MIT9313"))) %>%
   ggplot() +
   geom_line(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, linetype = as.factor(WL)), size = 1, show.legend = T) +
-# geom_line(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, linetype = as.factor(Photoperiod)), size = 1, show.legend = F) +
-# geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, linetype = as.factor(Data_all_WL)), size = 1, show.legend = F) +
   geom_rect(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, fill = "white") +
   geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 3.5, alpha = 1.0) +
     geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2, alpha = 0.6) +
@@ -1156,24 +1122,22 @@ BluevsRedPurFitsPlots <- AllFitsCombinedWL |>
  labs(y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
-  scale_colour_manual(values = MCMIXColours, labels = c("660 nm", "450 nm")) +
   scale_linetype_manual(values = c("solid", "dashed"), labels = c(italic("P") ~ "value <0.05", italic("P") ~ "value >0.05")) +
+  scale_colour_manual(values = MCMIXColours, labels = c("660 nm", "450 nm")) +
   scale_shape_manual(values = PhotoperiodShapes, labels = c("16 h", "12 h", "8 h", "4 h"))  +
   ggh4x::facet_nested(rows = vars(OxygenLabel, O2_uM), cols = vars(Strain), 
                     labeller = labeller(Strain = label_value, O2_uM = label_value, OxygenLabel = label_value)) +
  guides(
    linetype = guide_legend(order = 1),
-        fill = "none") +
- #        color = guide_legend(nrow = 1)) +
- # guides(shape = guide_legend(nrow = 1)) +
+         fill = "none",
+         shape = guide_legend(override.aes = list(linetype = 0)),
+         color = guide_legend(override.aes = list(linetype = 0))) +
   theme_bw()  +
    theme( strip.text = element_text(size = 25),
         axis.title.y = element_text(color = "black", size = 30,  hjust = 0.40),
         axis.title.x = element_text(color = "black", size = 30),
         axis.text.x = element_text(size = 20, color = "black", angle = 45, hjust = 1.0),
         axis.text.y = element_text(size = 20, color = "black", angle = 0, hjust = 1.0),
-        # strip.background=element_rect(color="grey87", fill = "grey82"),
-        # strip.background=element_rect(fill = "white"), 
         legend.key.size = unit(1.8, 'cm'), #change legend key size
         legend.key.height = unit(0.5, 'cm'), #change legend key height
         # legend.key.width = unit(2.5, 'cm'), #change legend key width
@@ -1220,7 +1184,7 @@ WLAnovaTable <- ANOVA_AllWL %>%
 ```{r WLAnovaTable, fig.height = 6, fig.width = 8, echo = FALSE }
 
 knitr::kable(WLAnovaTable,
-             caption = "pvalues for each ANOVA comparison of fit of red and blue light in each O~2~ experiment for each strain.",
+             caption = "p values for each ANOVA comparison of fit of red and blue light in each O~2~ experiment for each strain.",
             col.names =  c("Strain",
                            "[O~2~] (µM)",
                           "WL1",
