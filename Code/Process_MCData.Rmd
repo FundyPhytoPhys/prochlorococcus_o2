@@ -293,12 +293,6 @@ Create R function for logistic equation.
 #x will be taken from 'time' when we run the fit.
 logistic_eqn <- function(x, Lmax, Lmu, Lintercept){(Lmax*Lintercept*exp(Lmu*x))/(Lmax + (Lintercept*(exp(Lmu*x)-1)))}
 
-#Modified Gompertz equation
-ModGompertzEqn <- function(x,GLag,Gmax,Gmu){(Gmax*(exp(-exp((Gmu*exp(1))/Gmax*(GLag-x)+1))))}
-
-# Exponential equation 
-exp_eqn <- function(x, Emu, Eintercept){(Eintercept*exp(x*Emu))}
-
 #Estimate absolute amplitude of growth
 growth_amp <- function(y){(max(as.numeric(y), na.rm = TRUE) - min(as.numeric(y), na.rm = TRUE))}
 
