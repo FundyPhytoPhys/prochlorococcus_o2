@@ -119,7 +119,7 @@ remove(OLISSpectraUnnest)
 ```
 
 
-# Left join Olis whole cell absorbance data with Jaz MC emission data. Emission measurements were performed on the mixed color MCMIX004 and the white light MC257
+# Left join Olis whole cell absorbance data with Jaz MC emission data. Emission measurements were performed on the mixed color MCMIX004 and the white light MC257 Multicultivators
 ```{r join whole cell absorbance with MC emission data}
 
 OlisSpectraMeta <- OlisSpectraMeta %>% 
@@ -139,6 +139,7 @@ remove(OLISSpectraFile)
 ```{r normalization }
 
 OlisJazMetaData <- OlisJazMetaData %>% 
+  filter(E_days != 1) %>%  # remove absorbance spectra data collected during lag phase
   group_by(SampleID, E_days) %>%
  mutate(AbsNorm440 = Absorbance / MaxAbs_Blue,
         AbsNorm675 = Absorbance / MaxAbs_Red) %>% 
@@ -168,7 +169,6 @@ glimpse(OlisJazMetaPUR)
 ```{r Calc mean PUR}
 
 OlisJazMetaPUR <- OlisJazMetaPUR %>%
-  filter(SampleID != "MiSa1364") %>% 
   group_by(Strain, WL, Par_ue) %>% 
   mutate(Pur_ue = round(mean(CalcPur_ue)),
          PurParRatio = (Pur_ue / Par_ue))%>% 
