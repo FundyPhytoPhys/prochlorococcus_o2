@@ -1,6 +1,6 @@
 language:
   label:
-    fig: 'Fig '
+    fig: !expr function(x) sprintf("**Fig %s.** ", x)
     tab: 'Table '
     eq: 'Equation '
     thm: 'Theorem '
