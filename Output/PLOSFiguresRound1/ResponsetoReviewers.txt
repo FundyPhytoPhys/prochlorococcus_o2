@@ -1,0 +1,262 @@
+PONE-D-24-11318
+Prochlorococcus marinus responses to light and oxygen
+PLOS ONE 
+
+José A. Fernández Robledo, Ph.D. 
+Academic Editor 
+PLOS ONE
+
+Dear Dr. Fernández Robledo,
+
+We thank you and the reviewers for constructive feedback, which we have addressed through revisions, as outlined below.
+
+
+•	separate file labeled 'Revised Manuscript with Track Changes'.
+•	An unmarked version of your revised paper without tracked changes. You should upload this as a separate file labeled 'Manuscript'.
+
+
+
+1. Please ensure that your manuscript meets PLOS ONE's style requirements, including those for file 
+naming. The PLOS ONE style templates can be found at  
+https://journals.plos.org/plosone/s/file?id=wjVg/PLOSOne_formatting_sample_main_body.pdf and  
+https://journals.plos.org/plosone/s/file?id=ba62/PLOSOne_formatting_sample_title_authors_affiliation
+s.pdf
+
+2. Please note that PLOS ONE has specific guidelines on code sharing for submissions in which author-
+generated code underpins the findings in the manuscript. In these cases, all author-generated code 
+must be made available without restrictions upon publication of the work. Please review our guidelines 
+at https://journals.plos.org/plosone/s/materials-and-software-sharing#loc-sharing-code and ensure that 
+your code is shared in a way that follows best practice and facilitates reproducibility and reuse.
+3. Thank you for uploading your study's underlying data set. Unfortunately, the repository you have 
+noted in your Data Availability statement does not qualify as an acceptable data repository according to 
+PLOS's standards.
+
+At this time, please upload the minimal data set necessary to replicate your study's findings to a stable, 
+public repository (such as figshare or Dryad) and provide us with the relevant URLs, DOIs, or accession 
+numbers that may be used to access these data. For a list of recommended repositories and additional 
+information on PLOS standards for data deposition, please see 
+https://journals.plos.org/plosone/s/recommended-repositories.
+
+4. We note that you have referenced (Campbell, unpub) on page 17, which has currently not yet been 
+accepted for publication. Please remove this from your References and amend this to state in the body 
+of your manuscript: (ie “Bewick et al. [Unpublished]”) as detailed online in our guide for authors 
+http://journals.plos.org/plosone/s/submission-guidelines#loc-reference-style
+
+We removed this citation.
+ 
+5. We notice that your supplementary [Supplemental Figures 1-5 and S1 Table] are included in the 
+manuscript file. Please remove them and upload them with the file type 'Supporting Information'. Please 
+ensure that each Supporting Information file has a legend listed in the manuscript after the references 
+list.
+
+6. Please review your reference list to ensure that it is complete and correct. If you have cited papers 
+that have been retracted, please include the rationale for doing so in the manuscript text, or remove 
+these references and replace them with relevant current references. Any changes to the reference list 
+should be mentioned in the rebuttal letter that accompanies your revised manuscript. If you need to cite 
+a retracted article, indicate the article’s retracted status in the References list and also include a citation 
+and full reference for the retraction notice.
+ 
+ 
+Reviewers' comments: 
+ 
+Reviewer's Responses to Questions
+Comments to the Author 
+
+ 
+Reviewer #1: This manuscript presents a helpful expansion of our knowledge of the ecological tolerance 
+ranges of several Prochlorococcus ecotypes. It is especially interesting in its implications for range 
+expansion of this genus under potential future conditions, although this angle could be expanded on in 
+my opinion, as I explain below. 
+ 
+Specific Comments: 
+ 
+The abstract seems to omit any discussion of the conclusions/bigger picture of the study. 
+ 
+Line 55: LLII/III and LLIV are not the “oldest” clades, but the most basal or early branching.
+We have edited the text:
+Line XXX 
+ 
+Line 369: The authors invoke “limitations in the annotation process” to explain the lack of evidence for 
+MED4 ATP synthase. What does this mean? The MED4 genome surely contains ATP synthase genes. 
+
+We agree that the MED4 genome includes genes encoding ATP Synthase, but in the Ocean Protein Portal database no ATP Synthase peptides are annotated as coming from MED4. This likely reflects an annotation assignment issue because the ATP Synthase proteins are highly conserved, so assignments to strains or clades of Prochlorococcus may be ambiguous.
+We have edited the text:
+Line XXX:
+
+ 
+Paragraph starting L363: Why is there no discussion of the Rubisco data? Or especially the absence 
+thereof at low O2 for ecotypes HL1 and LL1? Since Rubisco is one of the most abundant proteins in a 
+photosynthesizing cell, does this indicate that these ecotypes are present but not actively fixing carbon 
+under these conditions? Also, is it worth noting that LLIV is the only variety to be detected at all in the 
+deepest low O2 site -- which would appear to be consistent with subsequent findings in this study? 
+
+ 
+Figures 3 through 8: These figures are obviously the crux of the results in this paper, but as they are 
+currently presented it is relatively difficult to think clearly about them. I feel like they could be combined 
+into 2 or 3 full page figures which might make it easier to make the relevant comparisons; either by 
+combining the two types of figure (growth rates and model fits) for each ecotype, or else all the growth 
+rate curves together in one figure and all the model plots together in another. 
+
+Thank you for this suggestion. We have combined the growth rate figure with the GAM model for each strain.
+ 
+I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, 
+it would be easier to compile these data into compound figures? 
+ 
+XXXX Want to keep as is. Will add more justification for red light. Reviewer 2 wants more about differences b/t blue and red (energy input from these 2 WL) XXXXX
+ 
+I also wonder if the data from the model fits could be used to predict which of the three ecotypes would 
+prevail (have the highest growth rate) across the parameter space depicted, resulting in another figure 
+showing something like "zones of exclusion" for each ecotype, which would be interesting in terms of 
+predictive power. One could easily imagine applying those "zones of exclusion" to a map of the actual 
+ocean at various depths, or even comparing current with projected future conditions of spreading 
+OMZs. This is merely a suggestion -- I don't expect the authors to necessarily do this, but I think if they 
+chose to it would make the manuscript of broader interest. 
+
+
+ 
+L482, 536, 548: some experiments were not performed “due to time constraints”. I'm not sure I 
+understand this, although I am interpreting it along the lines of "the person doing the experiments 
+graduated"… In any case, it seems like these particularly treatments were unlikely to grow, so it's not 
+important that they were omitted -- but maybe there is a better way to phrase this that doesn’t sound 
+so fishy? 
+
+
+ 
+Figure S4 — It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
+and solid lines since this is online. 
+ 
+Table 1: The trees described in the legend should be included in the supplemental material. 
+ 
+Fig 11: Despite the fact that it is explained in the legend, the figure should probably indicate that O2 
+values are log Km, or else put actual values on the log-scale Y axis. Also, the axis should indicate the 
+units for Km. Finally, why is the red band so narrow compared to the green and blue? 
+
+We apologize for the omissions and have fixed the y-axis label and units. The red band is narrow because the log .........XXX
+ 
+L757: The authors should specify that this is a DNA repair ligase, not the DNA ligase that seals Okazaki 
+fragments during DNA replication (assuming this is the case). 
+
+Changed DNA ligase to DNA repair ligase. 
+Lines XXX:
+ 
+L 758: Photolyase should not have been relevant in the lab experiments because there is no UV light 
+emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
+genes is sufficient to explain why these strains can’t grow at the ocean’s surface. 
+
+We have edited the text:
+Line XXX:
+
+ 
+Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway — what does 
+it have to do with DNA repair? There is evidence that 2-phosphoglycolate causes oxidative stress, but I 
+don’t think this enzyme is properly a DNA repair enzyme. 
+
+
+ 
+Summary and Conclusion: I feel like the authors really need to expand their discussion of how these 
+findings apply to the future ocean. Where are OMZs likely to expand? Are there specific examples of 
+regions where LLIV might expand to the surface? What would it mean for LLIV to become competitive 
+against HLI and HLII? I think this is likely to be similar to scenarios where Synechococcus may 
+outcompete Prochlorococcus, since LLIV is quite similar to Syn in terms of size and genome repertoire. 
+I'm not sure where exactly such a discussion should end up, but I think it is important that the authors 
+try to "seal the deal" a bit better in this concluding section and relate the findings back to the issues laid 
+out in the introduction.
+
+
+Reviewer #2: Savoie et al describe a beautiful and extensive set of detailed Prochlorococcus growth rate 
+measurements for three strains, representing distinct ecotypes, under varied conditions of light and 
+oxygen concentration. The work adds a lot of interesting and useful information concerning the impact 
+of varied photoperiods, wavelengths/PUR, and oxygen concentrations to the literature. These data are 
+also connected to hypotheses about the potential role of DNA repair and PSII maintenance to explain 
+the results. The methods are appropriately detailed, and the experiments appear to have been done 
+with great care. The data are available in a usable form. 
+ 
+My primary concern with the manuscript comes from the way the results are framed throughout. The 
+authors describe results as informing about the growth of Prochlorococcus across a matrix of different 
+conditions. However, my interpretation of the methods is that the authors took from a maintenance 
+culture kept under standard growth conditions and then immediately transferred them into the 
+Multicultivator to look at responses. This is of course completely valid, but extensive experience by 
+many in the field (e.g. described in Moore et al 2007 Limn. Oceanog. Methods and elsewhere) is that 
+these cells typically require multiple generations to acclimate to new growth conditions. I read these 
+data as more reflecting the immediate response of Prochlorococcus to environmental changes. It is 
+quite conceivable that some of these strains may exhibit a different growth rate than what you report if 
+allowed to gradually acclimate to their new condition rather than directly move them. I would suggest 
+that the framing and interpretation of the paper should reflect this. I also have no idea whether this 
+might have influenced the surprising observations of MIT9313 growth at relatively high PAR. Global 
+change scenarios would presumably give cells many generations to physiologically acclimate to 
+differences (as well as to evolutionarily adapt). 
+
+
+ 
+This reviewer found the manuscript to be quite difficult to read as I kept wanting to understand how 
+different strains were responding to similar types of variables, which made me have to constantly flip 
+through and reread parts of the manuscript to find the information. Establishing a clearer overall 
+summary narrative early on, as opposed to presenting a laundry list of data, might help. For instance, 
+more clearly motivating the questions driving the analyses in each section would help; many paragraphs 
+simply start with “Figure X shows…”. But, the organization of the paper is of course up to the authors. 
+ 
+Minor points: 
+ 
+General note: the manuscript text at some points refers broadly to “growth”, and other places is more 
+specific about drawing conclusions about “growth rate”. I would suggest being clearer in some way that 
+you are focused on growth rate and not growth yield. 
+
+We edited the text to use 'growth rate' throughout.
+ 
+40: Despite _its_ small cell size (?) 
+
+We have edited the text:
+Line XXX:
+ 
+56: “Affinity” for low light? Consider rephrasing 
+
+We have edited the text:
+Line XXX:
+ 
+84: Follett et al 2022 PNAS showed that temp is not the only factor influencing poleward issues - 
+ecological interactions may further impact poleward shift during warming 
+
+We have edited the text:
+Line XXX:
+ 
+199: Could you please state more about why you are confident in this assignment? What validation or 
+metric leads you to this? 
+
+
+ 
+209: It seems overly general to blame the culturing difficulties solely on having reduced genomes – in 
+this context, it is the lack of just one gene (catalase) that matters, and reduced genomes reflect an 
+outcome of the ultimate suite of selective pressures acting on these systems. 
+
+We have edited the text:
+Line XXX:
+ 
+363: Could the authors comment somewhere on why you took this proteomic approach to examine the 
+baseline distribution of Pro across O2 and depth, as opposed to (or at least in concert with) the 
+extensive metagenomic, amplicon, qPCR, etc datasets of ecotype abundances available? 
+
+ 
+407: growth -> grew? 
+
+We have edited the text:
+Line XXX:
+ 
+428: How many replicates were carried out for most experiments? Perhaps I just missed it, but please be 
+sure this information is clear in the methods 
+
+ 
+431, and generally throughout the paper: Would the authors care to comment on any connection 
+between the differences in blue vs red light growth and the underlying amount of energy input from 
+these different wavelengths? 
+
+XXX Energy- blue have shorter WL so high energy, red longer WL so lower energy??? XXXX
+ 
+Fig 4 and related figures: It might be useful to plot the specific measured points within the countour plot 
+
+We have combined the growth rate figure with the GAM model for each strain.
+ 
+685: The lack of detected FtsH could simply be a factor of low overall spectral counts and detection 
+limits in the dataset; please provide more context to help the reader understand whether this could be 
+just a small number problem with respect to MIT9313 in low O2 samples; Fig. 10 seems to just show a 
+binary detected/not detected value.
+ 
