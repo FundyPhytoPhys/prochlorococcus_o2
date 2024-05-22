@@ -287,406 +287,6 @@ PicoGAM_Pred <- PicoGAM %>%
 
 ```
 
-# Plot red light GAM for MED4
-``` {r MED4GAM Plot Red WL}
-GamStrain = "MED4" 
-GamColor = "Red" 
-WL_nm = 660 
-PlotWL <- "deltaOD"
-  
-
-maxMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
-maxMu <- maxMu$fit
-
-minMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
-minMu <- minMu$fit
-
-PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
-  filter(Wavelength %in% PlotWL,
-         Strain %in% GamStrain,
-         WL %in% WL_nm) %>%
-  mutate(
-         Color_name = case_when(WL == "450" ~ 'Blue',
-                                WL == "530" ~ 'Green',
-                                WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White')) 
-
-WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
-
-ColourDF <- data.frame(
-  ColorName = c('Blue', 'Green', 'Red', 'White'),
-  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
-) %>%
-  filter(ColorName %in% GamColor) %>%
-  dplyr::select(WL_O2_Colors)
-
-
-ContourBreaks <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL
-  ) %>%
-  group_by(O2_uM) %>%
-  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
-         median50 = quantile(fit, 0.5, na.rm = TRUE),
-         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
-  ungroup() %>%
-  dplyr::select(O2_uM, upper10, median50, lower10) %>%
-  distinct() %>%
-  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
-  mutate(quantileValue = round(quantileValue, digits = 2))
-
-
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
-
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "2.5"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-     xlab(NULL)+
-      ylab(NULL)+
-    theme_classic() +
-    theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "25"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "25") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-  theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=23)))
-
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "250"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "250") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-    #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-    theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                      # c(3, 3, 3, 3, 6), # For 2.5 uM O2     # remove comment if want 2.5 uM O2 plotted
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2    # remove comment if want 2.5 uM O2 plotted
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Red <- grid.arrange(
-                       # ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none'),   # remove comment if want 2.5 uM O2 plotted
-                       ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                         theme(legend.position = 'none'), 
-                       ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                         theme(legend.position = 'none'),
-                       # legend1,   # remove comment if want 2.5 uM O2 plotted
-                        legend2, 
-                        legend3, 
-                       layout_matrix = LayoutNiche)
-               
-```  
-
-# Plot blue light GAM for MED4
-``` {r MED4GAM Plot Blue WL}
-GamStrain = "MED4" 
-GamColor = "Blue"
-WL_nm = 450 
-PlotWL <- "deltaOD"
-
-maxMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
-maxMu <- maxMu$fit
-
-minMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
-minMu <- minMu$fit
-
-PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
-  filter(Wavelength %in% PlotWL,
-         Strain %in% GamStrain,
-         WL %in% WL_nm) %>%
-  mutate(
-         Color_name = case_when(WL == "450" ~ 'Blue',
-                                WL == "530" ~ 'Green',
-                                WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White'))
-
-WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
-
-ColourDF <- data.frame(
-  ColorName = c('Blue', 'Green', 'Red', 'White'),
-  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
-) %>%
-  filter(ColorName %in% GamColor) %>%
-  dplyr::select(WL_O2_Colors)
-
-
-ContourBreaks <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL
-  ) %>%
-  group_by(O2_uM) %>%
-  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
-         median50 = quantile(fit, 0.5, na.rm = TRUE),
-         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
-  ungroup() %>%
-  dplyr::select(O2_uM, upper10, median50, lower10) %>%
-  distinct() %>%
-  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
-  mutate(quantileValue = round(quantileValue, digits = 2))
-
-
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
-
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "2.5"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "25"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "25") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200))  +
-    labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-    xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL)+
-    #   ylab(NULL)+ 
-  theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "250"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "250") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
-    xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-theme_classic() +
-   theme(axis.text=element_text(size=15),
-         axis.title.x = element_blank(),
-         axis.text.x = element_blank(),
-          # axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
- limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment if want 2.5 uM O2
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment if want 2.5 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Blue <- grid.arrange(
-                         # ContourLowO2 +   labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),  
-                        ContourIntO2 +  labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourHighO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),
-                        # legend1,    # remove comment if want 2.5 uM O2
-                        legend2, 
-                        legend3, 
-                        layout_matrix = LayoutNiche)  
-
-```
-
-
-```{r combine red and blue light MED4GAM plots}
-
-#combine red and blue GAM plots
-CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1, align = "v") 
-
-# common x-axis title
-x.grob <- textGrob("Photoperiod (h)", 
-                   gp = gpar(fontsize = 20))
-# common y-axis title
-y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
-                   gp = gpar(fontface="bold", fontsize = 20), rot = 90)
-
-# add titles to plot
-LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
-
-test <-  plot_grid(MED4PAR, LabelledCombinedGam, labels = "AUTO", ncol = 1) 
-test
-```
 
 ```{r, MED4PAR, fig.height=10, fig.width=10}
 MyWavelengths = c("WW", 660, 450)
@@ -833,8 +433,8 @@ ContourLines <- ContourLines$quantileValue
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    geom_text(data=data_text, aes(x=6, y=180, label=label), size=4) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
      # geom_text(data=data_textB, aes(x=5, y=190, label=label), size=7) +
    # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
@@ -859,7 +459,7 @@ ContourLines <- ContourLines$quantileValue
 ```
 
 
-```{r MED4GAM Plot Blue WL 250, fig.height=5, fig.width=5}
+```{r MED4GAM Plot Blue WL 25, fig.height=5, fig.width=5}
 GamStrain = "MED4" 
 GamColor = "Blue"
 WL_nm = 450 
@@ -935,8 +535,8 @@ ContourLines <- ContourLines$quantileValue
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    geom_text(data=data_text, aes(x=6, y=180, label=label), size=4) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
    # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
       ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
@@ -1036,9 +636,9 @@ ContourLines <- ContourLines$quantileValue
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    geom_text(data=data_textB, aes(x=5, y=195, label=label), size=7) +
-     geom_text(data=data_text, aes(x=6, y=180, label=label), size=4) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_textB, aes(x=5, y=205, label=label), size=7) +
+     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
       ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
@@ -1136,8 +736,8 @@ ContourLines <- ContourLines$quantileValue
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    geom_text(data=data_text, aes(x=6, y=180, label=label), size=4) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
    # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
       ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
@@ -1159,23 +759,16 @@ ContourLines <- ContourLines$quantileValue
 
 ```
 
-
-
-
 ```{r, MED4PARGAM, fig.height = 20, fig.width=10, warning=FALSE}
 
-
-
-
 MED4PARGAM <-  MED4PAR / (ContourMED4RedHigh + ContourMED4BlueHigh)/ (ContourMED4RedInt + ContourMED4BlueInt)
-
 
 MED4PARGAM
 
 ```
 
 
-```{r save MED4GAM plots}
+```{r save MED4PARGAM plots}
 # MED4GAM,png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MED4PARGAM,  height = 15, width = 10)
 
@@ -1185,199 +778,83 @@ MED4PARGAM
 ```
 
 
-# Plot red light GAM for SS120
-``` {r SS120GAM Plot Red WL}
-GamStrain = "SS120" 
-GamColor = "Red" 
-WL_nm = 660 
-PlotWL <- "deltaOD"
+
+```{r, SS120PAR, fig.height=10, fig.width=10}
+MyWavelengths = c("WW", 660, 450)
+
+MCMIXColours = c("black", "brown", "steelblue")
+
+names(MCMIXColours) <- MyWavelengths
+MCMIXColours
+
   
+  data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
 
-maxMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
-maxMu <- maxMu$fit
+SS120PAR <- GrowthFits %>%
+   filter(Strain == "SS120",
+           Par_ue %in% c(30,90,180),
+          WL %in% c("WW", 450, 660),
+          deltaOD_Lmu_corr == 0 |
+          deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
+  mutate(PhotoperiodLabelTitle = "Photoperiod~(h)",
+         OxygenLabel = "Oxygen~concentration~(µM)",
+         WLlabelTitle = "Growth~wavelength~(nm)",
+         ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
+         # Par_ue = factor(Par_ue, levels = c(30, 90, 180)),
+         # O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
+         WL = factor(WL, levels = c("WW", 660, 530, 450)),
+         deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
+         deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24) %>% 
+  ggplot()  +
+    geom_point(aes(x = Photoperiod, y = (deltaOD_Lmu_corr_day), colour = as.factor(WL)), size = 2.5, alpha = 0.75, show.legend = F) +
+   geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5, show.legend = F) +
+    geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 1) +
+    geom_text(data=data_text, aes(x=5.5, y=0.8, label=label), size=7) +
+ labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
+   geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
+  scale_y_continuous(breaks = c(0,0.25,  0.5, 0.75, 1.0), limits = c (0, 1.05)) +
+  # coord_cartesian(ylim = c (0, 0.07)) +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450" )) +
+   scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
+  ggh4x::facet_nested(cols = vars(ParLabel, factor(Par_ue, levels = c("30", "90","180"))), rows = vars(OxygenLabel, factor(O2_uM, levels= c("250", "25","2.5"))), 
+                    labeller = label_parsed) + 
+ guides(linetype = "none") +
+   theme_bw() +
+   theme( panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+     axis.title.x.bottom = element_text(size = 16, color = "black", vjust = 1.0),
+      axis.title.y = element_text(size = 16, color = "black", vjust = 1.0),
+       axis.title.x.top = element_text(size = 16, color = "black", vjust = 1.0),
+       axis.text.x = element_text(size = 12, color = "black", angle = 0, hjust = 0.5, vjust = 1),
+        axis.text.y = element_text(size = 12, color = "black", angle = 0, hjust = 1.0),
+       axis.text.x.top = element_blank(),
+       axis.ticks.x.top = element_blank(),
+       strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=12),
+        # strip.background=element_rect(color="grey87", fill = "grey82"),
+        # strip.background=element_rect(fill = "white"),
+        legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.key.height = unit(1, 'cm'), #change legend key height
+        legend.key.width = unit(0.5, 'cm'), #change legend key width
+        # legend.title = element_text(size = 15),  #change legend title font size for right side legend placement
+        # legend.text = element_text(size = 15),   #change legend text font size for right side legend placement
+        legend.title = element_text(size = 16),  #change legend title font size
+        legend.text = element_text(size = 12),   #change legend text font size
+        legend.position = "top") +
+  labs(color = "Growth wavelength (nm)",
+       fill = "Growth wavelength (nm)")
+SS120PAR
 
-minMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
-minMu <- minMu$fit
-
-PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
-  filter(Wavelength %in% PlotWL,
-         Strain %in% GamStrain,
-         WL %in% WL_nm) %>%
-  mutate(
-         Color_name = case_when(WL == "450" ~ 'Blue',
-                                WL == "530" ~ 'Green',
-                                WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White')) 
-
-WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
-
-ColourDF <- data.frame(
-  ColorName = c('Blue', 'Green', 'Red', 'White'),
-  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
-) %>%
-  filter(ColorName %in% GamColor) %>%
-  dplyr::select(WL_O2_Colors)
-
-
-ContourBreaks <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL
-  ) %>%
-  group_by(O2_uM) %>%
-  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
-         median50 = quantile(fit, 0.5, na.rm = TRUE),
-         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
-  ungroup() %>%
-  dplyr::select(O2_uM, upper10, median50, lower10) %>%
-  distinct() %>%
-  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
-  mutate(quantileValue = round(quantileValue, digits = 2))
-
-
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
-
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "2.5"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-     xlab(NULL)+
-    theme_classic() +
-    theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
+```
 
 
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "25"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "25") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-  theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=23)))
-
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "250"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "250") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-    theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                      # c(3, 3, 3, 3, 6), # For 2.5 uM O2     # remove comment if want 2.5 uM O2
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2    # remove comment if want 2.5 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Red <- grid.arrange(
-                       # ContourLowO2 +   labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none'),   # remove comment for MIT9313
-                       ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                         theme(legend.position = 'none'), 
-                       ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                         theme(legend.position = 'none'),
-                       # legend1,   # remove comment if want 2.5 uM O2
-                        legend2, 
-                        legend3, 
-                       layout_matrix = LayoutNiche)
-               
-```  
-
-# Plot blue light SS120GAM
-``` {r GAM Plot Blue WL}
-GamStrain = "SS120"
+``` {r SS120GAM Plot Blue WL 250, fig.height=5, fig.width=5}
+GamStrain = "SS120" 
 GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
-  
+data_text <- data.frame(label = c('450 nm, 250 µM'))
+# data_textB <- data.frame(label = c('B'))
 
 maxMu <- PicoGAM_Pred %>%
   ungroup() %>%
@@ -1401,7 +878,7 @@ PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
          Color_name = case_when(WL == "450" ~ 'Blue',
                                 WL == "530" ~ 'Green',
                                 WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White')) 
+                                WL == "WW" ~ 'White'))
 
 WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
 
@@ -1429,41 +906,110 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
 
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
          Wavelength %in% PlotWL,
-         O2_uM == "2.5"
+         O2_uM == "250"
   )
 ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
+  filter(O2_uM == "250") 
 ContourLines <- ContourLines$quantileValue 
 
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
+(ContourSS120BlueHigh <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+     # geom_text(data=data_textB, aes(x=5, y=190, label=label), size=7) +
+   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+    # xlab(NULL) +
+    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         axis.title.y = element_blank(),
+         # axis.title.y = element_text(margin=margin(r=10)),
+         axis.title.x = element_blank(),
+        # axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.15,0.30),
+        legend.text = element_text(size=11)))
 
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
+```
+
+
+```{r SS120GAM Plot Blue WL 25, fig.height=5, fig.width=5}
+GamStrain = "SS120" 
+GamColor = "Blue"
+WL_nm = 450 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('450 nm, 25 µM'))
+
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
          Wavelength %in% PlotWL,
@@ -1473,24 +1019,100 @@ ContourLines <- ContourBreaks %>%
   filter(O2_uM == "25") 
 ContourLines <- ContourLines$quantileValue 
 
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
+(ContourSS120BlueInt <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit)) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-  theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+    # xlab(NULL) +
+    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         # axis.title.y = element_text(margin=margin(r=10)),
+         axis.title.y = element_blank(),
+        axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.81),
+        legend.text = element_text(size=11)))
 
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
+
+```
+
+
+``` {r SS120GAM Plot Red WL 250, fig.height=5, fig.width=5}
+GamStrain = "SS120" 
+GamColor = "Red"
+WL_nm = 660 
+PlotWL <- "deltaOD"
+data_textB <- data.frame(label = c('B'))
+data_text <- data.frame(label = c('660 nm, 250 µM'))
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
-         #DM == "Chl",
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
          Wavelength %in% PlotWL,
          O2_uM == "250"
   )
@@ -1498,89 +1120,148 @@ ContourLines <- ContourBreaks %>%
   filter(O2_uM == "250") 
 ContourLines <- ContourLines$quantileValue 
 
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
+(ContourSS120RedHigh <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", w_length2rgb(660)), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
                         breaks = ContourLines,
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
- limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment if want 2.5 uM O2
-                     # c(3, 3, 3, 3, 6), # For 2.5 uM O2   # remove comment if want 2.5 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Blue <- grid.arrange(
-                         # ContourLowO2 + labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) + theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),  # remove comment if want 2.5 uM O2
-                        ContourIntO2 +  labs(title = bquote("D.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourHighO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),
-                        # legend1,    # remove comment if want 2.5 uM O2
-                        legend2, 
-                        legend3, 
-                        layout_matrix = LayoutNiche)  
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_textB, aes(x=5, y=205, label=label), size=7) +
+     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+  # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+    # xlab(NULL) +
+    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         # axis.title.y = element_text(margin=margin(r=10)),
+         axis.title.x = element_blank(),
+        # axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.15,0.30),
+        legend.text = element_text(size=11)))
 
 ```
 
 
-```{r combine red and blue light SS120GAM plots}
+``` {r SS120GAM Plot Red WL 25, fig.height=5, fig.width=5}
+GamStrain = "SS120" 
+GamColor = "Red"
+WL_nm = 660 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('660 nm, 25 µM'))
 
-#combine red and blue GAM plots
-CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1, align = "v") 
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
 
-# common x-axis title
-x.grob <- textGrob("Photoperiod (h)", 
-                   gp = gpar(fontsize = 20))
-# common y-axis title
-y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
-                   gp = gpar(fontface="bold", fontsize = 20), rot = 90)
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
 
-# add titles to plot
-LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "25"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "25") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourSS120RedInt <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit)) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", w_length2rgb(660)), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+    # xlab(NULL) +
+    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         # axis.title.y = element_text(margin=margin(r=10)),
+        # axis.title.y = element_blank(),
+        axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.81),
+        legend.text = element_text(size=11)))
 
 ```
 
+```{r, SS120PARGAM, fig.height = 20, fig.width=10, warning=FALSE}
+
+SS120PARGAM <-  SS120PAR / (ContourSS120RedHigh + ContourSS120BlueHigh)/ (ContourSS120RedInt + ContourSS120BlueInt)
+
+SS120PARGAM
+
+```
 
 ```{r save SS120GAM plots}
 
 # SS120GAM.png for manuscript
- ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "GAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+ ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = SS120PARGAM,  height = 15, width = 10)
 
 # SS120GAM is Fig6.tiff for PLOSONE submission
  ggsave(file = file.path(PlotsOutPLOS, "Fig6.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10, compression = "lzw")
@@ -1588,398 +1269,654 @@ LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bott
 ```
 
 
-# Plot red light MIT9313 GAM
-``` {r MIT9313GAM Plot Red WL}
-GamStrain = "MIT9313"
-GamColor = "Red" 
-WL_nm = 660 
-PlotWL <- "deltaOD"
+```{r, MIT9313PAR, fig.height=10, fig.width=10}
+MyWavelengths = c("WW", 660, 450)
+
+MCMIXColours = c("black", "brown", "steelblue")
+
+names(MCMIXColours) <- MyWavelengths
+MCMIXColours
+
   
+  data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
 
-maxMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
-maxMu <- maxMu$fit
+MIT9313PAR <- GrowthFits %>%
+   filter(Strain == "MIT9313",
+           Par_ue %in% c(30,90,180),
+          WL %in% c("WW", 450, 660),
+          deltaOD_Lmu_corr == 0 |
+          deltaOD_Lmu_corr != 0 & deltaOD_LseGrowthFlag == 1) %>%
+  mutate(PhotoperiodLabelTitle = "Photoperiod~(h)",
+         OxygenLabel = "Oxygen~concentration~(µM)",
+         WLlabelTitle = "Growth~wavelength~(nm)",
+         ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
+         # Par_ue = factor(Par_ue, levels = c(30, 90, 180)),
+         # O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
+         WL = factor(WL, levels = c("WW", 660, 530, 450)),
+         deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
+         deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24) %>% 
+  ggplot()  +
+    geom_point(aes(x = Photoperiod, y = (deltaOD_Lmu_corr_day), colour = as.factor(WL)), size = 2.5, alpha = 0.75, show.legend = F) +
+   geom_line(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL), linetype = as.factor(WL)), size = 0.5, show.legend = F) +
+    geom_point(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), size = 5, alpha = 1) +
+    geom_text(data=data_text, aes(x=5.5, y=0.8, label=label), size=7) +
+ labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
+   geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
+  scale_y_continuous(breaks = c(0,0.25,  0.5, 0.75, 1.0), limits = c (0, 1.05)) +
+  # coord_cartesian(ylim = c (0, 0.07)) +
+  scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450" )) +
+   scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
+  ggh4x::facet_nested(cols = vars(ParLabel, factor(Par_ue, levels = c("30", "90","180"))), rows = vars(OxygenLabel, factor(O2_uM, levels= c("250", "25","2.5"))), 
+                    labeller = label_parsed) + 
+ guides(linetype = "none") +
+   theme_bw() +
+   theme( panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+     axis.title.x.bottom = element_text(size = 16, color = "black", vjust = 1.0),
+      axis.title.y = element_text(size = 16, color = "black", vjust = 1.0),
+       axis.title.x.top = element_text(size = 16, color = "black", vjust = 1.0),
+       axis.text.x = element_text(size = 12, color = "black", angle = 0, hjust = 0.5, vjust = 1),
+        axis.text.y = element_text(size = 12, color = "black", angle = 0, hjust = 1.0),
+       axis.text.x.top = element_blank(),
+       axis.ticks.x.top = element_blank(),
+       strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=12),
+        # strip.background=element_rect(color="grey87", fill = "grey82"),
+        # strip.background=element_rect(fill = "white"),
+        legend.key.size = unit(1, 'cm'), #change legend key size
+        legend.key.height = unit(1, 'cm'), #change legend key height
+        legend.key.width = unit(0.5, 'cm'), #change legend key width
+        # legend.title = element_text(size = 15),  #change legend title font size for right side legend placement
+        # legend.text = element_text(size = 15),   #change legend text font size for right side legend placement
+        legend.title = element_text(size = 16),  #change legend title font size
+        legend.text = element_text(size = 12),   #change legend text font size
+        legend.position = "top") +
+  labs(color = "Growth wavelength (nm)",
+       fill = "Growth wavelength (nm)")
+MIT9313PAR
 
-minMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
-minMu <- minMu$fit
-
-PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
-  filter(Wavelength %in% PlotWL,
-         Strain %in% GamStrain,
-         WL %in% WL_nm) %>%
-  mutate(
-         Color_name = case_when(WL == "450" ~ 'Blue',
-                                WL == "530" ~ 'Green',
-                                WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White'))
-
-WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
-
-ColourDF <- data.frame(
-  ColorName = c('Blue', 'Green', 'Red', 'White'),
-  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
-) %>%
-  filter(ColorName %in% GamColor) %>%
-  dplyr::select(WL_O2_Colors)
-
-
-ContourBreaks <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL
-  ) %>%
-  group_by(O2_uM) %>%
-  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
-         median50 = quantile(fit, 0.5, na.rm = TRUE),
-         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
-  ungroup() %>%
-  dplyr::select(O2_uM, upper10, median50, lower10) %>%
-  distinct() %>%
-  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
-  mutate(quantileValue = round(quantileValue, digits = 2))
-
-
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
-
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "2.5"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-     xlab(NULL)+
-      ylab(NULL)+
-    theme_classic() +
-    theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "25"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "25") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-  scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-  theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=23)))
-
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "250"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "250") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", ColourDF), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-    #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-    theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c("white", w_length2rgb(WL_nm)),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2    
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2  
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Red <- grid.arrange(
-                       ContourLowO2 + labs(title = bquote("C.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                         theme(legend.position = 'none'),  
-                       ContourIntO2 + labs(title = bquote("B.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                         theme(legend.position = 'none'), 
-                       ContourHighO2 + labs(title = bquote("A.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                         theme(legend.position = 'none'), 
-                        legend1, 
-                        legend2, 
-                        legend3, 
-                       layout_matrix = LayoutNiche)
-
-```  
-
-# Plot blue light MIT9313 GAM
-``` {r MIT9313GAM Plot Blue WL}
-GamStrain = "MIT9313"
-GamColor = "Blue"
-WL_nm = 450 
-PlotWL <- "deltaOD"
-  
-
-maxMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
-maxMu <- maxMu$fit
-
-minMu <- PicoGAM_Pred %>%
-  ungroup() %>%
-  filter(Wavelength %in% PlotWL) %>%
-  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
-minMu <- minMu$fit
-
-PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
-  filter(Wavelength %in% PlotWL,
-         Strain %in% GamStrain,
-         WL %in% WL_nm) %>%
-  mutate(
-         Color_name = case_when(WL == "450" ~ 'Blue',
-                                WL == "530" ~ 'Green',
-                                WL == "660" ~ 'Red',
-                                WL == "WW" ~ 'White'))
-
-WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
-
-ColourDF <- data.frame(
-  ColorName = c('Blue', 'Green', 'Red', 'White'),
-  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
-) %>%
-  filter(ColorName %in% GamColor) %>%
-  dplyr::select(WL_O2_Colors)
-
-
-ContourBreaks <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL
-  ) %>%
-  group_by(O2_uM) %>%
-  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
-         median50 = quantile(fit, 0.5, na.rm = TRUE),
-         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
-  ungroup() %>%
-  dplyr::select(O2_uM, upper10, median50, lower10) %>%
-  distinct() %>%
-  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
-  mutate(quantileValue = round(quantileValue, digits = 2))
-
-
-##############
-###plot
-#https://stackoverflow.com/questions/28775036/ggplot-line-graph-with-na-values
-#https://stackoverflow.com/questions/6906661/ggplot2-make-missing-value-in-geom-tile-not-blank
-#https://stackoverflow.com/questions/24822621/multiple-legends-in-a-plot-with-geom-tile
-#https://stackoverflow.com/questions/43395219/plotting-multiple-layers-with-geom-raster-or-geom-tile-or-geom-rect
-#https://stackoverflow.com/questions/59949635/ggplot-align-grid-lines-with-end-of-geom-tile
-#https://stackoverflow.com/questions/22945651/remove-space-between-plotted-data-and-the-axes
-#https://stackoverflow.com/questions/5293715/how-to-use-greek-symbols-in-ggplot2
-
-HyperChlPlotLow <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "2.5"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "2.5") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourLowO2 <- ggplot(na.omit(HyperChlPlotLow), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-   theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-HyperChlPlotInt <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "25"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "25") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourIntO2 <- ggplot(na.omit(HyperChlPlotInt), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-  theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-HyperChlPlotHigh <- PicoGAM_Plot_Prep %>%
-  filter(
-         Strain %in% GamStrain,
-         Wavelength %in% PlotWL,
-         O2_uM == "250"
-  )
-ContourLines <- ContourBreaks %>%
-  filter(O2_uM == "250") 
-ContourLines <- ContourLines$quantileValue 
-
-(ContourHighO2 <- ggplot(na.omit(HyperChlPlotHigh), aes(Photoperiod, Par_ue, z = fit, fill = fit)) + geom_tile() +
-    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, maxMu), na.value = "white") +
-    metR::geom_contour2(aes(label = stat(level)),
-                        breaks = ContourLines,
-                        skip = 0) +
-    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
-    scale_y_continuous(limits = c(10, 200)) +
-    xlab(NULL)+
-      ylab(NULL)+
-    #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
-theme_classic() +
-   theme(axis.text=element_text(size=15),
-          axis.title.x = element_text(size=20),
-           axis.title.y = element_text(size=35)))
-
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  legend
-}
-
-
-(g_dummy1 <- ggplot(subset(HyperChlPlotLow, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
- limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend1 <- g_legend(g_dummy1)
-(g_dummy2 <- ggplot(subset(HyperChlPlotInt, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
- + scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend2 <- g_legend(g_dummy2)
-(g_dummy3 <- ggplot(subset(HyperChlPlotHigh, Color_name == w_length2rgb(WL_nm)), aes(Photoperiod, Par_ue, fill=fit)) + geom_tile()
-+ scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"),
-  limits  = range(minMu, 1.0), na.value = "white") + theme_classic())
-legend3 <- g_legend(g_dummy3)
-
-# comment rows that are not included in grid arrange 
-LayoutNiche <- rbind(
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2   
-                     c(3, 3, 3, 3, 6), # For 2.5 uM O2  
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(2, 2, 2, 2, 5),   # For 25 uM O2
-                     c(1, 1, 1, 1, 4),   # For 250 uM O2
-                     c(1, 1, 1, 1, 4)    # For 250 uM O2
-                     )
-
-#LayoutNiche <- rbind(c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4)) 
-
-p3_Blue <- grid.arrange(
-                         ContourLowO2 + labs(title = bquote("F.   " ~ .(GamStrain) ~ '  2.5 µM' ~ "[" ~ O[2]~ "]"), size = 25) +
-                           theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),
-                        ContourIntO2 +  labs(title = bquote("E.   " ~ .(GamStrain) ~ '  25 µM' ~ "[" ~ O[2]~ "]"), size = 25) + 
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()), 
-                        ContourHighO2 + labs(title = bquote("D.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) + 
-                          theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank()),                          
-                        legend1,    
-                        legend2, 
-                        legend3, 
-                        layout_matrix = LayoutNiche)  
 ```
 
 
-```{r combine red and blue light MIT9313GAM plots}
 
-#combine red and blue GAM plots
-CombinedGAM <- plot_grid(p3_Red, p3_Blue, nrow = 1, align = "v") 
+``` {r MIT9313GAM Plot Blue WL 250, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Blue"
+WL_nm = 450 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('450 nm, 250 µM'))
+# data_textB <- data.frame(label = c('B'))
 
-# common x-axis title
-x.grob <- textGrob("Photoperiod (h)", 
-                   gp = gpar(fontsize = 20))
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
 
-# common y-axis title
-y.grob <- textGrob("PAR (µmol photons"~ m^-2~ ~s^-1~ ")", 
-                   gp = gpar(fontface="bold", fontsize = 20), rot = 90)
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+minMu <- minMu$fit
 
-# add titles to plot
-LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bottom = x.grob))
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "250"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "250") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313BlueHigh <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+#https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         axis.title.y = element_blank(),
+         axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.15,0.30),
+        legend.text = element_text(size=11)))
+
+```
+
+
+```{r MIT9313GAM Plot Blue WL 25, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Blue"
+WL_nm = 450 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('450 nm, 25 µM'))
+
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "25"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "25") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313BlueInt <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         axis.title.y = element_blank(),
+         axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.81),
+        legend.text = element_text(size=11)))
+
+
+```
+
+
+```{r MIT9313GAM Plot Blue WL 2.5, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Blue"
+WL_nm = 450 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('450 nm, 2.5 µM'))
+
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "2.5"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "2.5") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313BlueLow <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = T) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", intermediate = "steelblue1", high = "royalblue4"), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         axis.title.y = element_blank(),
+        axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.76),
+        legend.text = element_text(size=11)))
+
+
+```
+
+
+
+``` {r MIT9313GAM Plot Red WL 250, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Red"
+WL_nm = 660 
+PlotWL <- "deltaOD"
+data_textB <- data.frame(label = c('B'))
+data_text <- data.frame(label = c('660 nm, 250 µM'))
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "250"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "250") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313RedHigh <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", w_length2rgb(660)), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_textB, aes(x=5, y=205, label=label), size=7) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.15,0.30),
+        legend.text = element_text(size=11)))
+
+```
+
+
+``` {r MIT9313GAM Plot Red WL 25, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Red"
+WL_nm = 660 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('660 nm, 25 µM'))
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "25"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "25") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313RedInt <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit), show.legend = F) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", w_length2rgb(660)), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.81),
+        legend.text = element_text(size=11)))
+
+```
+
+
+``` {r MIT9313GAM Plot Red WL 2.5, fig.height=4.5, fig.width=4.5}
+GamStrain = "MIT9313" 
+GamColor = "Red"
+WL_nm = 660 
+PlotWL <- "deltaOD"
+data_text <- data.frame(label = c('660 nm, 2.5 µM'))
+
+maxMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.max(fit)) #base::max does not work with package photobiology loaded simultaneously 
+maxMu <- maxMu$fit
+
+minMu <- PicoGAM_Pred %>%
+  ungroup() %>%
+  filter(Wavelength %in% PlotWL) %>%
+  slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
+  #        fit == min(fit, na.rm = TRUE)) %>%
+  # distinct(fit)
+minMu <- minMu$fit
+
+PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
+  filter(Wavelength %in% PlotWL,
+         Strain %in% GamStrain,
+         WL %in% WL_nm) %>%
+  mutate(
+         Color_name = case_when(WL == "450" ~ 'Blue',
+                                WL == "530" ~ 'Green',
+                                WL == "660" ~ 'Red',
+                                WL == "WW" ~ 'White'))
+
+WL_O2_Colors = c(Blue = w_length2rgb(450), green = w_length2rgb(530), red = w_length2rgb(660), white= "#FFCC00")
+
+ColourDF <- data.frame(
+  ColorName = c('Blue', 'Green', 'Red', 'White'),
+  WL_O2_Colors = c( w_length2rgb(450), w_length2rgb(530), w_length2rgb(660), "#FFCC00")
+) %>%
+  filter(ColorName %in% GamColor) %>%
+  dplyr::select(WL_O2_Colors)
+
+
+ContourBreaks <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL
+  ) %>%
+  group_by(O2_uM) %>%
+  mutate(upper10 = quantile(fit, 0.9, na.rm = TRUE),
+         median50 = quantile(fit, 0.5, na.rm = TRUE),
+         lower10 = quantile(fit, 0.1, na.rm = TRUE)) %>%
+  ungroup() %>%
+  dplyr::select(O2_uM, upper10, median50, lower10) %>%
+  distinct() %>%
+  pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
+  mutate(quantileValue = round(quantileValue, digits = 2))
+
+
+
+HyperChlPlot <- PicoGAM_Plot_Prep %>%
+  filter(
+         Strain %in% GamStrain,
+         Wavelength %in% PlotWL,
+         O2_uM == "2.5"
+  )
+ContourLines <- ContourBreaks %>%
+  filter(O2_uM == "2.5") 
+ContourLines <- ContourLines$quantileValue 
+
+(ContourMIT9313RedLow <- ggplot(na.omit(HyperChlPlot)) + 
+    geom_tile(aes(Photoperiod, Par_ue, z = fit, fill = fit)) +
+    scale_fill_gradientn(name = bquote("µ ("~ d^-1~")"), colours=c(low = "white", w_length2rgb(660)), limits  = range(minMu, 1.0), na.value = "white") +
+    metR::geom_contour2(aes(Photoperiod, Par_ue, z = fit, fill = fit, label = stat(level)),
+                        breaks = ContourLines,
+                        skip = 0) +
+    scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
+    scale_y_continuous(limits = c(10, 205)) +
+    geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
+   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    xlab("Photoperiod (h)") +
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
+    # xlab(NULL) +
+    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=12),
+        axis.title = element_text(size=16),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+         # axis.title.y = element_text(margin=margin(r=10)),
+        # axis.title.y = element_blank(),
+        axis.title.x = element_text(margin=margin(t=10)),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.88,0.76),
+        legend.text = element_text(size=11)))
+
+```
+
+
+```{r, MIT9313PARGAM, fig.height = 13, fig.width=7, warning=FALSE}
+
+MIT9313PARGAM <-  MIT9313PAR / (ContourMIT9313RedHigh + ContourMIT9313BlueHigh)/ (ContourMIT9313RedInt + ContourMIT9313BlueInt)/ (ContourMIT9313RedLow + ContourMIT9313BlueLow)
+
+MIT9313PARGAM
 
 ```
 
@@ -1987,7 +1924,7 @@ LabelledCombinedGam <- grid.arrange(arrangeGrob(CombinedGAM, left = y.grob, bott
 ```{r save MIT9313GAM plots}
 
 # MIT9313GAM.png for manuscript
- ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "GAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = LabelledCombinedGam,  height = 10, width = 10)
+ ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MIT9313PARGAM,  height = 16.5, width = 10)
 
 
 # MIT9313 GAM is Fig8.tiff for PLOSONE submission
