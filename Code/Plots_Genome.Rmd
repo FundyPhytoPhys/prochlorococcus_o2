@@ -158,7 +158,7 @@ ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in m
                                      "Symbol absence means no sequences were detected in the genome."
                                      )
   
-ProchlorococcusEnzymeKms <- MergedData %>%
+(ProchlorococcusEnzymeKms <- MergedData %>%
   filter(!is.na(Gene_count),
          Genus == "Prochlorococcus",
          # Strain %in% c("CCMP1986", "MIT9313"),
@@ -184,24 +184,24 @@ ProchlorococcusEnzymeKms <- MergedData %>%
   #                          TRUE ~ Km_mM)) %>% 
   ungroup() %>% 
   ggplot() +
-  geom_errorbar(aes(x = reorder(EnzymeName, Km_mM * 1000), ymin = log10(Km_mM_min* 1000), ymax = log10(Km_mM_max* 1000))) +
-  # geom_ribbon(aes(ymin = log10(5e-4), ymax =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
-  # geom_ribbon(aes(ymax = log10(5e-2), ymin =  log10(5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
-  # geom_ribbon(aes(ymax = log10(280e-3), ymin =  log10(230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
-  annotate(geom = "rect", ymin = log10(5e-4 * 1000), ymax =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
-  annotate(geom = "rect", ymax = log10(5e-2 * 1000), ymin =  log10(5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
-  annotate(geom = "rect", ymax = log10(280e-3 * 1000), ymin =  log10(230e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM* 1000), y = log10(Km_mM* 1000), shape = as.logical(Estimated), size = Gene_count), stroke = 1) +
+  geom_errorbar(aes(x = reorder(EnzymeName, Km_mM * 1000), ymin = Km_mM_min* 1000, ymax = Km_mM_max* 1000)) +
+  # geom_ribbon(aes(ymin = (5e-4), ymax =  (5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
+  # geom_ribbon(aes(ymax = (5e-2), ymin =  (5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
+  # geom_ribbon(aes(ymax = (280e-3), ymin =  (230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
+  annotate(geom = "rect", ymin = (5e-4 * 1000), ymax =  (5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
+  annotate(geom = "rect", ymax = (5e-2 * 1000), ymin =  (5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
+  annotate(geom = "rect", ymax = (280e-3 * 1000), ymin =  (230e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
+  geom_point(aes(x = reorder(EnzymeName, Km_mM* 1000), y = (Km_mM* 1000), shape = as.logical(Estimated), size = Gene_count), stroke = 1) +
   geom_vline(aes(xintercept = reorder(EnzymeName, Km_mM* 1000)), size = 2,  data = . %>% filter(is.na(Km_mM)), linetype = "solid") +
-  geom_text(aes(x = 18.5, y = 0.25, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
-  geom_text(aes(x = 18.5, y = 1.2, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
-  geom_text(aes(x = 18.5, y = 2.5, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
-  # geom_hline(yintercept = log10(5e-4), linetype = "dotted") +
-  # geom_hline(yintercept = log10(5e-3), linetype = "dotted") +
-  # geom_hline(yintercept = log10(5e-3), linetype = "dotted", color = "brown") +
-  # geom_hline(yintercept = log10(5e-2), linetype = "dotted", color = "brown") +
-  # geom_hline(yintercept = log10(230e-3), linetype = "dotted", color = "red") +
-  # geom_hline(yintercept = log10(290e-3), linetype = "dotted", color = "red") +
+  geom_text(aes(x = 18.5, y = 2.5, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
+  geom_text(aes(x = 18.5, y = 25, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
+  geom_text(aes(x = 18.5, y = 250, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
+  # geom_hline(yintercept = (5e-4), linetype = "dotted") +
+  # geom_hline(yintercept = (5e-3), linetype = "dotted") +
+  # geom_hline(yintercept = (5e-3), linetype = "dotted", color = "brown") +
+  # geom_hline(yintercept = (5e-2), linetype = "dotted", color = "brown") +
+  # geom_hline(yintercept = (230e-3), linetype = "dotted", color = "red") +
+  # geom_hline(yintercept = (290e-3), linetype = "dotted", color = "red") +
   # scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
   ggh4x::facet_nested(rows = vars(StrainLabel)) +
   theme_bw() +
@@ -210,9 +210,11 @@ ProchlorococcusEnzymeKms <- MergedData %>%
   scale_color_brewer(palette="Dark2") +
   labs(# title = ~K[m] ~O[2] ~  "for *Prochlorococcus* Enzymes using Oxygen", # "Estimates of Affinities of *Prochlorococcus* Enzymes for Oxygen" # "Affinities for Phytoplankton Enzymes for Oxygen", 
        x = "Enzyme name",
-       y = ~log[10] ~ "("~K[m] ~O[2] ~"(µM))",
+       y = ~K[m] ~O[2] ~"(µM)",
        size = "Gene count",
        shape = ""~K[m]) +
+  scale_y_continuous(trans=scales::pseudo_log_trans(base = 10),
+                     breaks=c(1, 10, 100, 1000, 10000, 100000)) + #,labels = expression(10^0, 10^1, 10^2, 10^3, 10^4, 10^5)
   guides(shape = guide_legend(override.aes = list(size=5))) +
    theme(axis.title = element_text(size = 45, color = "black"),
          axis.title.x = element_text(vjust=8),
@@ -225,16 +227,15 @@ ProchlorococcusEnzymeKms <- MergedData %>%
         # legend.key.height = unit(2, 'cm'), #change legend key height
         # legend.key.width = unit(1, 'cm'), #change legend key width
         legend.title =  element_text(size = 30),  #change legend title font size
-        legend.text = element_text(size = 30))   #change legend text font size
+        legend.text = element_text(size = 30)))   #change legend text font size
    
 
 
-ProchlorococcusEnzymeKms
 ```
 
 ```{r, ProchlorococcusEnzymeKms ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
-ggsave(filename = file.path(PLOSFiguresRoundX, "Fig11.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
+# ggsave(filename = file.path(PLOSFiguresRoundX, "Fig11.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
 # ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms_julie.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
 ```
 
