@@ -182,7 +182,7 @@ GamWL = c("deltaOD") #deltaOD or OD720
 GamParaMod = "Lmu" # logistic model growth estimates
 GamVar = "660" # growth spectral wavelength
 ErrorTolGrowth = 30 # the amplitude tolerance of the standard error of the fitted growth estimates
-ErrorTol = 30 # the amplitude tolerance of the standard error of the fitted GAM
+ErrorTol = 35 # the amplitude tolerance of the standard error of the fitted GAM
 
 #https://stackoverflow.com/questions/49570452/is-it-possible-to-specify-lower-bound-in-response-variable-during-smooth-with-ga 
 possibGAM = possibly(.f = mgcv::gam, otherwise = NULL)
@@ -243,7 +243,7 @@ GamWL = c("deltaOD") #deltaOD or OD720
 GamParaMod = "Lmu" # logistic model growth estimates
 GamVar = "450" # growth spectral wavelength
 ErrorTolGrowth = 30 # the amplitude tolerance of the standard error of the fitted growth estimates
-ErrorTol = 30 # defined for the GAM fit
+ErrorTol = 35 # defined for the GAM fit
 
 #https://stackoverflow.com/questions/49570452/is-it-possible-to-specify-lower-bound-in-response-variable-during-smooth-with-ga 
 possibGAM = possibly(.f = mgcv::gam, otherwise = NULL)
