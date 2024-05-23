@@ -673,8 +673,7 @@ analyzed. We focused our analysis here on core photosynthetic protein
 complexes, for clades HLI, LLI, LLII/III and LLIV (Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)) as a function of depth (a
 proxy for light intensity) and measured [O~2~]. Photosynthetic complexes
 from HLI (including strain MED4) were detected throughout the water
-column, predominantly at high [O~2~]. The absence of proteins annotated
-for the key ATP Synthase complex for Clade HLI, compared to annotated
+column, predominantly at high [O~2~]. Though present in the genome of MED4, the absence of proteins annotated as ATP Synthase complex for Clade HLI, compared to annotated
 detections of ATP Synthase across the other three clades suggests
 limitations in the annotation process for highly conserved protein
 sequences. Complexes from Clades LLI (including strain NATL2A) were also
@@ -830,10 +829,10 @@ experiments were not performed due to time constraints.
 
 SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5
 µM (Fig \@ref(fig:SS120PARGAM)). 2.5 µM O~2~ growth experiments were not
-conducted for 4 and 16 h photoperiods under PAR of 180 µmol photons
+conducted for 4 and 16 h photoperiods under peak PAR of 180 µmol photons
+m^-2^ s^-1^ and for red light under peak PAR of 90 µmol photons
 m^-2^ s^-1^, as no growth occurred when SS120 was exposed to 8 and 12 h
-photoperiods. Red light 16 h photoperiod experiments were not performed
-due to time constraints. 
+photoperiods. 
 
 \newpage
 
@@ -928,7 +927,7 @@ The µ~max~ was
 d^-1^, achieved under 12 h blue light photoperiod and PAR of 90 µmol
 photons m^-2^ s^-1^. The 2.5 µM O~2~ white LED treatments under 4, 8 and
 16 h photoperiods and red light under 4 and 16 h photoperiods were not
-performed due to time constraints.
+performed as cultures were unlikely to grow.
 
 \newpage
 
