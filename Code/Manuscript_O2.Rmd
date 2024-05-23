@@ -724,7 +724,7 @@ white LED and 250 µM O~2~, but our study is, to our knowledge, the first
 to analyze the interactive growth responses of *Prochlorococcus* strains
 to varying [O~2~], spectral wavebands and photoperiods.
 
-*Prochlorococcus marinus* MED4, clade HLI, grew under 250 µM O~2~ and growth rates increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PAR)), across all spectral wavebands. No growth was
+*Prochlorococcus marinus* MED4, clade HLI, grew under 250 µM O~2~ and growth rates increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
 maximum growth rate (µ~max~) was
 `r PURPARFits %>% filter(Strain == "MED4", WL == "450", O2_uM == "250", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
@@ -732,7 +732,7 @@ d^-1^ achieved under 180 µE blue light and 16 h photoperiod.
 
 Similar to growth trends under 250 µM O~2~, MED4 maintained at 25 µM
 O~2~ showed fastest growth when the photoperiod was 16 h for each
-spectral waveband, across PAR levels (Fig \@ref(fig:MED4PAR)). The
+spectral waveband, across PAR levels (Fig \@ref(fig:MED4PARGAM)). The
 µ~max~ was
 `r PURPARFits %>% filter(Strain == "MED4", WL == "450", O2_uM == "25", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
 d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 180 µmol photons
@@ -740,39 +740,48 @@ m^-2^ s^-1^ blue light and 16 h photoperiod. The 4 h photoperiod
 experiments under white LED light were not performed as no growth was
 achieved when grown under an 8 h photoperiod of white LED light.
 
-MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Fig \@ref(fig:MED4PAR)). 2.5 µM O~2~ growth experiments were not conducted
+MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Fig \@ref(fig:MED4PARGAM)). 2.5 µM O~2~ growth experiments were not conducted
 for 4 and 16 h photoperiods, as no reproducible growth occurred when
 MED4 was exposed to 8 and 12 h photoperiods.
 
 \newpage
 
-```{r MED4PAR, fig.cap = MED4PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r MED4PARGAM, fig.cap = MED4PARGAM_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 # This is Fig3.tiff
-MED4PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).**",
+MED4PARGAM_cap <- glue("**A. Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 (High-Light (HLI) near surface clade) vs. photoperiod (h).**",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
                     "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
                     "Colours represent the imposed spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
+                    "**B. Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.**",
+                    "X-axis is photoperiod (h).",
+                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
+                    "Top left panel represents the model under 250 µM of O~2~ and red light.",
+                    "Bottom left panel represents the model under 25 µM of O~2~ and red light.",
+                    "Top right panel represents the model under 250 µM of O~2~ and blue light.",
+                    "Bottom right panel represents the model under 25 µM of O~2~ and blue light.",
+                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
+                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
 
                        .sep = " ")
 
-knitr::include_graphics(file.path(FiguresIn, "MED4PAR.png"))
+knitr::include_graphics(file.path(FiguresIn, "MED4PARGAM.png"))
 ```
 
 \newpage
 
-The GAM model in Fig \@ref(fig:MED4GAM) summarizes MED4 growth
-responses to red (A and B) or blue (C and D) peak PAR and photoperiod across 2
+The GAM model in Fig \@ref(fig:MED4PARGAM)B summarizes MED4 growth
+responses to red or blue peak PAR and photoperiod across 2
 imposed oxygen concentrations. Under 250 µM O~2~ MED4 achieved fastest
 growth rates above peak blue light of \~180 µmol photons m^-2^ s^-1^,
-and the longest photoperiod of 16, indicated by the 0.64 d^-1^ contour
+and the longest photoperiod of 16 h, indicated by the 0.64 d^-1^ contour
 line representing the 90^th^ percentile of maximum achieved growth rate
-(Fig \@ref(fig:MED4GAM)C). Growth decreased with decreasing
+(Fig \@ref(fig:MED4PARGAM)B). Growth decreased with decreasing
 photoperiod and decreasing peak PAR. Under red light growth was
 generally slower but the pattern of growth responses to photoperiod and
-PAR was similar (Fig \@ref(fig:MED4GAM)A). Note the exclusion of MED4
-from growth under 4 h photoperiod under both red and blue light (Fig \@ref(fig:MED4GAM)). Under 25 µM O~2~ MED4 showed similar growth
+PAR was similar (Fig \@ref(fig:MED4PARGAM)B). Note the exclusion of MED4
+from growth under 4 h photoperiod under both red and blue light (Fig \@ref(fig:MED4PARGAM)B). Under 25 µM O~2~ MED4 showed similar growth
 responses, but was excluded from both 4 and 8 h photoperiods. MED4 did
 not grow under 2.5 µM O~2~, so no GAM model was run. Considering the
 range of PAR levels, and spectral bands that MED4 can utilize, MED4 can
@@ -785,33 +794,12 @@ temperate photoperiods and light levels for the remainder of the year
 are potentially adequate to support MED4 growth, if water temperatures
 warm into the clade HLI tolerance range.
 
-\newpage
-
-```{r MED4GAM,  fig.cap = MED4GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
-
-# This is Fig4.tiff
-MED4GAM_cap <- glue("**A contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* MED4 grown under 660 nm (red) or 450 nm (blue) light.**",
-                    "X-axis is photoperiod (h).",
-                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
-                    "**A.** represents the model under 250 µM of O~2~ and red light.",
-                    "**B.** represents the model under 25 µM of O~2~ and red light.",
-                    "**C.** represents the model under 250 µM of O~2~ and blue light.",
-                    "**D.** represents the model under 25 µM of O~2~ and blue light.",
-                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
-                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
-
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "MED4GAM.png"))
-
-
-```
 
 \newpage
 
 *Prochlorococcus marinus* SS120 clade LLII/III, growth under 250 µM O~2~
 increased with longer photoperiods, under 30 µmol photons m^-2^ s^-1^
-peak PAR and across all spectral wavebands (Fig \@ref(fig:SS120PAR)).
+peak PAR and across all spectral wavebands (Fig \@ref(fig:SS120PARGAM)).
 No growth was observed under any blue light photoperiods when exposed to
 peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate, however
 increased with increasing photoperiods for white and red light under
@@ -827,7 +815,7 @@ m^-2^ s^-1^ white LED light and 16 h photoperiod.
 Under 25 µM O~2~ and PAR of 30 µmol photons m^-2^ s^-1^ growth trends
 were similar to 250 µM O~2~. SS120 showed no growth under a 4 h
 photoperiod for red spectral waveband, however under blue light, SS120
-was able to grow (Fig \@ref(fig:SS120PAR)). In contrast to the growth
+was able to grow (Fig \@ref(fig:SS120PARGAM)). In contrast to the growth
 trends of the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
 experiments, SS120 grew under 4 and 8 h blue light and 16 h red light
 photoperiods, however the growth rate decreased under 12 and 16 h white
@@ -841,7 +829,7 @@ h photoperiod and 180 µmol photons m^-2^ s^-1^ under white LED light
 experiments were not performed due to time constraints.
 
 SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5
-µM (Fig \@ref(fig:SS120PAR)). 2.5 µM O~2~ growth experiments were not
+µM (Fig \@ref(fig:SS120PARGAM)). 2.5 µM O~2~ growth experiments were not
 conducted for 4 and 16 h photoperiods under PAR of 180 µmol photons
 m^-2^ s^-1^, as no growth occurred when SS120 was exposed to 8 and 12 h
 photoperiods. Red light 16 h photoperiod experiments were not performed
@@ -849,26 +837,35 @@ due to time constraints.
 
 \newpage
 
-```{r SS120PAR, fig.cap = SS120PAR_cap, fig.height = 6, fig.width = 8, echo = FALSE}
+```{r SS120PARGAM, fig.cap = SS120PARGAM_cap, fig.height = 6, fig.width = 8, echo = FALSE}
 
 # This is Fig5.tiff
-SS120PAR_cap <- glue("**Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). **",
+SS120PARGAM_cap <- glue("**A. Chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 (Low-Light (LLII/III) deep ocean clade) vs. photoperiod (h). **",
                     "Rows separate data from levels of imposed dissolved O~2~ concentrations (250 µM, 25 µM and 2.5 µM).",
                     "Columns separate data from 3 levels of peak imposed Photosynthetically Active Radiation (PAR; 30, 90 and 180 µmol photons m^-2^ s^-1^).",
                     "Colours represent the imposed spectral waveband (nm).",
                     "Large circles show mean or single determinations of growth rate from logistic curve fits; small circles show values for replicate determinations, if any: replicates often fall with larger circles.",
+                    "**B. Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.**",
+                    "X-axis is photoperiod (h).",
+                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
+                   "Top left panel represents the model under 250 µM of O~2~ and red light.",
+                    "Bottom left panel represents the model under 25 µM of O~2~ and red light.",
+                    "Top right panel represents the model under 250 µM of O~2~ and blue light.",
+                    "Bottom right panel represents the model under 25 µM of O~2~ and blue light.",
+                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
+                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
                     
                        .sep = " ")
                        
-knitr::include_graphics(file.path(FiguresIn, "SS120PAR.png"))
+knitr::include_graphics(file.path(FiguresIn, "SS120PARGAM.png"))
 
 ```
 
 \newpage
 
-The GAM model in Fig \@ref(fig:SS120GAM) summarizes growth responses
-of SS120 to red (A and B) or blue (C and D) peak PAR and photoperiod, across the
-2 imposed oxygen concentrations. Under 250 µM O~2~, Fig \@ref(fig:SS120GAM)C showed highest growth rates below blue light PAR of
+The GAM model in Fig \@ref(fig:SS120PARGAM)B summarizes growth responses
+of SS120 to red or blue peak PAR and photoperiod, across the
+2 imposed oxygen concentrations. Under 250 µM O~2~, Fig \@ref(fig:SS120PARGAM)B showed highest growth rates below blue light PAR of
 50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
 indicated by the contour line labeled 0.18 d^-1^ (representing the
 90^th^ percentile of achieved growth rate). Under 250 µM O~2~ SS120 is
@@ -882,33 +879,11 @@ under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
 photons m^-2^ s^-1^, indicated by the contour line labeled 0.41 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
-the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Fig \@ref(fig:SS120GAM)D). Under red light and 25 µM O~2~ (Fig \@ref(fig:SS120GAM)B) SS120 grew across most conditions of peak PAR and
+the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B). Under red light and 25 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B) SS120 grew across most conditions of peak PAR and
 photoperiod, achieving fastest growth under long photoperiods and peak
 PAR between 30 \~100 µmol photons m^-2^ s^-1^. Thus, the designation of
 SS120 as a LL strain is dependent upon the [O~2~]. SS120 did not,
 however, grow reliably under tested conditions at 2.5 µM O~2~.
-
-\newpage
-
-```{r SS120GAM,  fig.cap = SS120GAM_cap, fig.height = 10, fig.width = 10, echo = FALSE}
-
-# This is Fig6.tiff
-SS120GAM_cap <- glue("**Contour plot of a Generalized Additive Model (GAM) representing the chlorophyll specific growth rate (d^-1^) for *Prochlorococcus marinus* SS120 grown under 660 nm (red) or 450 nm (blue) light.**",
-                    "X-axis is photoperiod (h).",
-                    "Y-axis is Photosynethetically Active Radiation (PAR, µmol photons m^-2^ s^-1^).",
-                    "**A.** represents the model under 250 µM of O~2~ and red light.",
-                    "**B.** represents the model under 25 µM of O~2~ and red light.",
-                    "**C.** represents the model under 250 µM of O~2~ and blue light.",
-                    "**D.** represents the model under 25 µM of O~2~ and blue light.",
-                    "Legends represent a colour gradient of growth rate from no growth (white) to 1.00 d^-1^ (dark red or dark blue).",
-                    "Labeled contour lines indicate the 90%, 50%, and 10% quantiles for achieved growth rate.",
-
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "SS120GAM.png"))
-
-
-```
 
 \newpage
 
@@ -1241,7 +1216,7 @@ oxidase ('ubiquinol oxidase (non electrogenic)') to cope with changes in
 light [@bergResponsesPsbAHli2011], by dissipating electrons from the
 inter-system transport chain. The approximate K~m~ for [O~2~] of \~ 25
 µM for ubiquinol oxidase (non electrogenic) (Fig \@ref(fig:ProchlorococcusEnzymeKms)) is comparable to the lower limit
-for growth of MED4 in our experiments (Fig \@ref(fig:MED4GAM)). We
+for growth of MED4 in our experiments (Fig \@ref(fig:MED4PARGAM)B). We
 suggest that dependence upon this enzyme excludes MED4 from low oxygen
 zones. The genome scan shows SS120 and MIT9313 lack this gene (Fig \@ref(fig:ProchlorococcusEnzymeKms)), and therefore, lack this
 oxygen-dependent path to cope with changing excitation. Conversely, a
@@ -1272,7 +1247,7 @@ potential antioxidant and can effectively quench singlet oxygen
 [@bilskiVitaminB6Pyridoxine2000]. The absence of the pyridoxal
 5'-phosphate synthase enzyme may explain why *P. marinus* SS120 does not
 grow as well as *P. marinus* MIT9313, when exposed to high light stress
-under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Fig \@ref(fig:SS120PAR)).
+under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Fig \@ref(fig:SS120PARGAM)).
 
 \newpage
 
