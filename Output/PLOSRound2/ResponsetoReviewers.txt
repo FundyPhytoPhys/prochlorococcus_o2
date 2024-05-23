@@ -120,30 +120,34 @@ graduated"… In any case, it seems like these particularly treatments were unlike
 important that they were omitted -- but maybe there is a better way to phrase this that doesn’t sound 
 so fishy? 
 
+Thank you for this suggestion. We have edited the text:
+Line XXX: 
 
  
 Figure S4 — It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
 and solid lines since this is online. 
  
 Table 1: The trees described in the legend should be included in the supplemental material. 
+
+
  
 Fig 11: Despite the fact that it is explained in the legend, the figure should probably indicate that O2 
 values are log Km, or else put actual values on the log-scale Y axis. Also, the axis should indicate the 
 units for Km. Finally, why is the red band so narrow compared to the green and blue? 
 
-We apologize for the omissions and have fixed the y-axis label and units. The red band is narrow because the log .........XXX
+We apologize for the omissions. We have revised the axis labels to make the log scaling more noticeable. The narrowness of the red bar (spanning 230 to 280 µM) should also be more apparent with the new scaling. 
  
 L757: The authors should specify that this is a DNA repair ligase, not the DNA ligase that seals Okazaki 
 fragments during DNA replication (assuming this is the case). 
 
-Changed DNA ligase to DNA repair ligase. 
+Thank you for your comment, the revised text now reads "DNA repair ligase".  
 Lines XXX:
  
 L 758: Photolyase should not have been relevant in the lab experiments because there is no UV light 
 emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
 genes is sufficient to explain why these strains can’t grow at the ocean’s surface. 
 
-We have edited the text:
+Thank you. We have edited the text:
 Line XXX:
 
  
