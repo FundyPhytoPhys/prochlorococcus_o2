@@ -74,6 +74,17 @@ library(patchwork)
 
 ```
 
+```{r, set colors for wavelength}
+
+MyWavelengths = c("WW", 660, 450)
+
+MCMIXColours = c("black", "brown", "steelblue")
+
+names(MCMIXColours) <- MyWavelengths
+MCMIXColours
+
+```
+
 
 # Read data and select relevant columns
 ```{r read data and select relevant columns}
@@ -289,15 +300,8 @@ PicoGAM_Pred <- PicoGAM %>%
 
 
 ```{r, MED4PAR, fig.height=10, fig.width=10}
-MyWavelengths = c("WW", 660, 450)
-
-MCMIXColours = c("black", "brown", "steelblue")
-
-names(MCMIXColours) <- MyWavelengths
-MCMIXColours
-
   
-  data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
+data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
 
 MED4PAR <- GrowthFits %>%
    filter(Strain == "MED4",
@@ -309,8 +313,6 @@ MED4PAR <- GrowthFits %>%
          OxygenLabel = "Oxygen~concentration~(µM)",
          WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         # Par_ue = factor(Par_ue, levels = c(30, 90, 180)),
-         # O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(WL, levels = c("WW", 660, 530, 450)),
          deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
          deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24) %>% 
@@ -322,7 +324,6 @@ MED4PAR <- GrowthFits %>%
  labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
   scale_y_continuous(breaks = c(0,0.25,  0.5, 0.75, 1.0), limits = c (0, 1.05)) +
-  # coord_cartesian(ylim = c (0, 0.07)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450" )) +
    scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
   ggh4x::facet_nested(cols = vars(ParLabel, factor(Par_ue, levels = c("30", "90","180"))), rows = vars(OxygenLabel, factor(O2_uM, levels= c("250", "25","2.5"))), 
@@ -340,8 +341,6 @@ MED4PAR <- GrowthFits %>%
        axis.ticks.x.top = element_blank(),
        strip.background = element_rect(fill="white"),
         strip.text = element_text(size=12),
-        # strip.background=element_rect(color="grey87", fill = "grey82"),
-        # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
         legend.key.height = unit(1, 'cm'), #change legend key height
         legend.key.width = unit(0.5, 'cm'), #change legend key width
@@ -363,7 +362,6 @@ GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
 data_text <- data.frame(label = c('450 nm, 250 µM'))
-# data_textB <- data.frame(label = c('B'))
 
 maxMu <- PicoGAM_Pred %>%
   ungroup() %>%
@@ -375,8 +373,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -415,7 +411,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -435,12 +430,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-     # geom_text(data=data_textB, aes(x=5, y=190, label=label), size=7) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -449,13 +440,12 @@ ContourLines <- ContourLines$quantileValue
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
          axis.title.y = element_blank(),
-         # axis.title.y = element_text(margin=margin(r=10)),
          axis.title.x = element_blank(),
-        # axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 ```
 
 
@@ -477,8 +467,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -537,11 +525,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -549,13 +534,13 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
          axis.title.y = element_blank(),
         axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -578,8 +563,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -616,7 +599,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   distinct() %>%
   pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
-
 
 
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
@@ -639,11 +621,8 @@ ContourLines <- ContourLines$quantileValue
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_textB, aes(x=5, y=205, label=label), size=7) +
      geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-  # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -651,12 +630,12 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
          axis.title.x = element_blank(),
-        # axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -678,8 +657,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -718,7 +695,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -738,11 +714,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -750,12 +723,12 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
-        # axis.title.y = element_blank(),
         axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -765,30 +738,23 @@ MED4PARGAM <-  MED4PAR / (ContourMED4RedHigh + ContourMED4BlueHigh)/ (ContourMED
 
 MED4PARGAM
 
+remove(MED4PAR, ContourMED4RedHigh, ContourMED4BlueHigh, ContourMED4RedInt, ContourMED4BlueInt)
+
 ```
 
-
 ```{r save MED4PARGAM plots}
-# MED4GAM,png for manuscript
+# MED4PARGAM.png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MED4PARGAM,  height = 15, width = 10)
 
-# MED4GAM is Fig4.tiff for PLOSONE submission
+# MED4PARGAM is Fig4.tiff for PLOSONE submission
  ggsave(file = file.path(PlotsOutPLOS, "Fig4.tiff", fsep = .Platform$file.sep), plot = MED4PARGAM, device = NULL, scale = 1,  height = 10, width = 10, compression = "lzw")
  
 ```
 
 
-
 ```{r, SS120PAR, fig.height=10, fig.width=10}
-MyWavelengths = c("WW", 660, 450)
-
-MCMIXColours = c("black", "brown", "steelblue")
-
-names(MCMIXColours) <- MyWavelengths
-MCMIXColours
-
   
-  data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
+data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
 
 SS120PAR <- GrowthFits %>%
    filter(Strain == "SS120",
@@ -800,8 +766,6 @@ SS120PAR <- GrowthFits %>%
          OxygenLabel = "Oxygen~concentration~(µM)",
          WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         # Par_ue = factor(Par_ue, levels = c(30, 90, 180)),
-         # O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(WL, levels = c("WW", 660, 530, 450)),
          deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
          deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24) %>% 
@@ -831,13 +795,11 @@ SS120PAR <- GrowthFits %>%
        axis.ticks.x.top = element_blank(),
        strip.background = element_rect(fill="white"),
         strip.text = element_text(size=12),
-        # strip.background=element_rect(color="grey87", fill = "grey82"),
-        # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
         legend.key.height = unit(1, 'cm'), #change legend key height
         legend.key.width = unit(0.5, 'cm'), #change legend key width
-        # legend.title = element_text(size = 15),  #change legend title font size for right side legend placement
-        # legend.text = element_text(size = 15),   #change legend text font size for right side legend placement
+      # legend.title = element_text(size = 15), #change legend title font size for right side legend placement
+      # legend.text = element_text(size = 15),  #change legend text font size for right side legend placement
         legend.title = element_text(size = 16),  #change legend title font size
         legend.text = element_text(size = 12),   #change legend text font size
         legend.position = "top") +
@@ -854,7 +816,6 @@ GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
 data_text <- data.frame(label = c('450 nm, 250 µM'))
-# data_textB <- data.frame(label = c('B'))
 
 maxMu <- PicoGAM_Pred %>%
   ungroup() %>%
@@ -866,8 +827,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -906,7 +865,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -926,12 +884,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-     # geom_text(data=data_textB, aes(x=5, y=190, label=label), size=7) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -940,12 +894,12 @@ ContourLines <- ContourLines$quantileValue
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
          axis.title.y = element_blank(),
-         # axis.title.y = element_text(margin=margin(r=10)),
          axis.title.x = element_blank(),
-        # axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -968,8 +922,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1006,7 +958,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   distinct() %>%
   pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
-
 
 
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
@@ -1028,11 +979,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -1040,16 +988,15 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
          axis.title.y = element_blank(),
         axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.88,0.81),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
-
 
 ``` {r SS120GAM Plot Red WL 250, fig.height=5, fig.width=5}
 GamStrain = "SS120" 
@@ -1069,8 +1016,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1109,7 +1054,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -1128,26 +1072,23 @@ ContourLines <- ContourLines$quantileValue
                         skip = 0) +
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
-    geom_text(data=data_textB, aes(x=5, y=205, label=label), size=7) +
-     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-  # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
+    geom_text(data=data_textB, aes(x = 5, y = 205, label=label), size=7) +
+     geom_text(data=data_text, aes(x = 10, y = 205, label=label), size=4) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=12),
-        axis.title = element_text(size=16),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 16),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size = 14),
          axis.title.x = element_blank(),
-        # axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
-        legend.text = element_text(size=11)))
+        legend.text = element_text(size = 11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -1169,8 +1110,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1209,7 +1148,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -1229,11 +1167,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -1241,12 +1176,12 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
-        # axis.title.y = element_blank(),
         axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.88,0.81),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -1256,29 +1191,24 @@ SS120PARGAM <-  SS120PAR / (ContourSS120RedHigh + ContourSS120BlueHigh)/ (Contou
 
 SS120PARGAM
 
+remove(SS120PAR, ContourSS120RedHigh, ContourSS120BlueHigh, ContourSS120RedInt, ContourSS120BlueInt)
+
 ```
 
 ```{r save SS120GAM plots}
 
-# SS120GAM.png for manuscript
+# SS120PARGAM.png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = SS120PARGAM,  height = 15, width = 10)
 
-# SS120GAM is Fig6.tiff for PLOSONE submission
+# SS120PARGAM is Fig6.tiff for PLOSONE submission
  ggsave(file = file.path(PlotsOutPLOS, "Fig6.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10, compression = "lzw")
  
 ```
 
 
 ```{r, MIT9313PAR, fig.height=10, fig.width=10}
-MyWavelengths = c("WW", 660, 450)
-
-MCMIXColours = c("black", "brown", "steelblue")
-
-names(MCMIXColours) <- MyWavelengths
-MCMIXColours
-
   
-  data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
+data_text <- data.frame( ParLabel=c("PAR~(µmol~photons~m^{-2}~s^{-1})"), OxygenLabel = c("Oxygen~concentration~(µM)"),Par_ue = c("30"), O2_uM = c("250"), label = c('A'))
 
 MIT9313PAR <- GrowthFits %>%
    filter(Strain == "MIT9313",
@@ -1290,8 +1220,6 @@ MIT9313PAR <- GrowthFits %>%
          OxygenLabel = "Oxygen~concentration~(µM)",
          WLlabelTitle = "Growth~wavelength~(nm)",
          ParLabel = "PAR~(µmol~photons~m^{-2}~s^{-1})",
-         # Par_ue = factor(Par_ue, levels = c(30, 90, 180)),
-         # O2_uM = factor(O2_uM, levels = c(250, 25, 2.5)),
          WL = factor(WL, levels = c("WW", 660, 530, 450)),
          deltaOD_Lmu_corr_day = deltaOD_Lmu_corr * 24,
          deltaOD_Lmu_se_day = deltaOD_Lmu_se * 24) %>% 
@@ -1303,7 +1231,6 @@ MIT9313PAR <- GrowthFits %>%
  labs( y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "Photoperiod (h)") +
    geom_jitter(aes(x = Photoperiod, y = ReplicateMean_deltaOD_Lmu_corr_day, colour = as.factor(WL)), width = 0.1, size = 3, show.legend = F) +
   scale_y_continuous(breaks = c(0,0.25,  0.5, 0.75, 1.0), limits = c (0, 1.05)) +
-  # coord_cartesian(ylim = c (0, 0.07)) +
   scale_colour_manual(values = MCMIXColours, labels = c("White LED", "660", "450" )) +
    scale_x_continuous(breaks = c(4,8, 12, 16), limits = c (4, 16)) +
   ggh4x::facet_nested(cols = vars(ParLabel, factor(Par_ue, levels = c("30", "90","180"))), rows = vars(OxygenLabel, factor(O2_uM, levels= c("250", "25","2.5"))), 
@@ -1321,8 +1248,6 @@ MIT9313PAR <- GrowthFits %>%
        axis.ticks.x.top = element_blank(),
        strip.background = element_rect(fill="white"),
         strip.text = element_text(size=12),
-        # strip.background=element_rect(color="grey87", fill = "grey82"),
-        # strip.background=element_rect(fill = "white"),
         legend.key.size = unit(1, 'cm'), #change legend key size
         legend.key.height = unit(1, 'cm'), #change legend key height
         legend.key.width = unit(0.5, 'cm'), #change legend key width
@@ -1338,14 +1263,12 @@ MIT9313PAR
 ```
 
 
-
 ``` {r MIT9313GAM Plot Blue WL 250, fig.height=4.5, fig.width=4.5}
 GamStrain = "MIT9313" 
 GamColor = "Blue"
 WL_nm = 450 
 PlotWL <- "deltaOD"
 data_text <- data.frame(label = c('450 nm, 250 µM'))
-# data_textB <- data.frame(label = c('B'))
 
 maxMu <- PicoGAM_Pred %>%
   ungroup() %>%
@@ -1393,7 +1316,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   distinct() %>%
   pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
-
 
 
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
@@ -1430,6 +1352,8 @@ ContourLines <- ContourLines$quantileValue
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -1490,7 +1414,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -1524,6 +1447,7 @@ ContourLines <- ContourLines$quantileValue
         legend.position = c(0.88,0.81),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -1584,7 +1508,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -1619,10 +1542,9 @@ ContourLines <- ContourLines$quantileValue
         legend.position = c(0.88,0.76),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
-
-
 
 ``` {r MIT9313GAM Plot Red WL 250, fig.height=4.5, fig.width=4.5}
 GamStrain = "MIT9313" 
@@ -1642,8 +1564,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1680,7 +1600,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   distinct() %>%
   pivot_longer(cols = c(upper10, median50, lower10), names_to = 'quantile', values_to = 'quantileValue') %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
-
 
 
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
@@ -1717,6 +1636,8 @@ ContourLines <- ContourLines$quantileValue
         legend.position = c(0.15,0.30),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
+
 ```
 
 
@@ -1737,8 +1658,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1777,7 +1696,6 @@ ContourBreaks <- PicoGAM_Plot_Prep %>%
   mutate(quantileValue = round(quantileValue, digits = 2))
 
 
-
 HyperChlPlot <- PicoGAM_Plot_Prep %>%
   filter(
          Strain %in% GamStrain,
@@ -1810,6 +1728,8 @@ ContourLines <- ContourLines$quantileValue
         legend.position = c(0.88,0.81),
         legend.text = element_text(size=11)))
 
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
+
 ```
 
 
@@ -1830,8 +1750,6 @@ minMu <- PicoGAM_Pred %>%
   ungroup() %>%
   filter(Wavelength %in% PlotWL) %>%
   slice(which.min(fit)) #base::max does not work with package photobiology loaded simultaneously 
-  #        fit == min(fit, na.rm = TRUE)) %>%
-  # distinct(fit)
 minMu <- minMu$fit
 
 PicoGAM_Plot_Prep <- PicoGAM_Pred %>%
@@ -1890,11 +1808,8 @@ ContourLines <- ContourLines$quantileValue
     scale_x_continuous(limits = c(4, 16), breaks = c(4, 8, 12, 16)) +
     scale_y_continuous(limits = c(10, 205)) +
     geom_text(data=data_text, aes(x=10, y=205, label=label), size=4) +
-   # labs(title = bquote("C.   " ~ .(GamStrain) ~ '  250 µM' ~ "[" ~ O[2]~ "]")) +
     xlab("Photoperiod (h)") +
-      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+
-    # xlab(NULL) +
-    #   ylab(NULL)+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
+      ylab("PAR (µmol photons"~ m^-2~ ~s^-1~ ")")+ #https://stackoverflow.com/questions/15074127/use-expression-with-a-variable-r
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -1902,12 +1817,12 @@ ContourLines <- ContourLines$quantileValue
         axis.title = element_text(size=16),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
-         # axis.title.y = element_text(margin=margin(r=10)),
-        # axis.title.y = element_blank(),
         axis.title.x = element_text(margin=margin(t=10)),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.88,0.76),
         legend.text = element_text(size=11)))
+
+remove(ColourDF, ContourLines, HyperChlPlot, ContourBreaks, PicoGAM_Plot_Prep)
 
 ```
 
@@ -1918,16 +1833,17 @@ MIT9313PARGAM <-  MIT9313PAR / (ContourMIT9313RedHigh + ContourMIT9313BlueHigh)/
 
 MIT9313PARGAM
 
-```
+remove(MIT9313PAR, ContourMIT9313RedHigh, ContourMIT9313BlueHigh, ContourMIT9313RedInt, ContourMIT9313BlueInt, ContourMIT9313RedLow, ContourMIT9313BlueLow)
 
+```
 
 ```{r save MIT9313GAM plots}
 
-# MIT9313GAM.png for manuscript
+# MIT9313PARGAM.png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MIT9313PARGAM,  height = 16.5, width = 10)
 
 
-# MIT9313 GAM is Fig8.tiff for PLOSONE submission
+# MIT9313PARGAM is Fig8.tiff for PLOSONE submission
  ggsave(file = file.path(PlotsOutPLOS, "Fig8.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10,  compression = "lzw")
  
 ```
