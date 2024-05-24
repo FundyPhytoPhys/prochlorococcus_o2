@@ -127,7 +127,9 @@ Line: XXX
 
  
 Figure S4 — It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
-and solid lines since this is online. 
+and solid lines since this is online.
+ 
+
  
 Table 1: The trees described in the legend should be included in the supplemental material. 
 
@@ -151,7 +153,7 @@ genes is sufficient to explain why these strains can’t grow at the ocean’s surfa
 
 Thank you. The revised manuscript now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
 Line: XXX
-
+XXXXX Mireille to address the wording pertaining to photolyase. We did not imply that photolyase was responsible for the results we found in lab but I will confirm this. XXXXXXXXXX
  
 Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway — what does 
 it have to do with DNA repair? There is evidence that 2-phosphoglycolate causes oxidative stress, but I 
