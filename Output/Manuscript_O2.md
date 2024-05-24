@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-05-23"
+date: "2024-05-24"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -778,8 +778,8 @@ photoperiods.
 The GAM model in Fig \@ref(fig:SS120PARGAM)B summarizes growth responses
 of SS120 to red or blue peak PAR and photoperiod, across the
 2 imposed oxygen concentrations. Under 250 µM O~2~, Fig \@ref(fig:SS120PARGAM)B showed highest growth rates below blue light PAR of
-50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
-indicated by the contour line labeled 0.18 d^-1^ (representing the
+50 µmol photons m^-2^ s^-1^ and photoperiods between 12 and 16 h,
+indicated by the contour line labeled 0.35 d^-1^ (representing the
 90^th^ percentile of achieved growth rate). Under 250 µM O~2~ SS120 is
 constrained to deeper ocean waters through its intolerance of higher
 blue PAR levels. These findings align with Moore *et al*.
@@ -789,7 +789,7 @@ variable growth success of SS120 under 250 µM O~2~. Growth rate patterns
 under red light were similar, although somewhat faster. In contrast,
 under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
-photons m^-2^ s^-1^, indicated by the contour line labeled 0.41 d^-1^
+photons m^-2^ s^-1^, indicated by the contour line labeled 0.42 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
 the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B). Under red light and 25 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B) SS120 grew across most conditions of peak PAR and
 photoperiod, achieving fastest growth under long photoperiods and peak
@@ -820,17 +820,15 @@ white LED light photoperiod. In marked contrast to the 250 µM O~2~
 growth experiments, MIT9313 grew when exposed to peak PAR of 180 µmol
 photons m^-2^ s^-1^ and blue light under all photoperiods except 16 h;
 additionally, white LED and red light treatments induced growth across
-all tested photoperiods under 25 µM O~2~. The 25 µM O~2~, 4 h
-photoperiod experiments under white LED light and were not performed due
-to time constraints.
+all tested photoperiods under 25 µM O~2~. 
 
 MIT9313 grew under 2.5 µM O~2~ particularly under blue LED light, albeit
 generally slower than under the parallel experiments at 25 µM O~2~
-(Fig \@ref(fig:MIT9313PARGAM)A). Growth estimates showed scatter among
+(Fig \@ref(fig:MIT9313PARGAM)A). Growth rates showed scatter among
 replicates, suggesting 2.5 µM O~2~ is near the tolerance limit for
 growth of MIT9313. Growth rates increased with longer photoperiods under
 blue light treatments and peak PAR of 90 µmol photons m^-2^ s^-1^ but
-did not grow under 16 h photoperiod. Growth for MIT9313 under PAR of 180
+did not grow under 16 h photoperiod. Growth rates for MIT9313 under PAR of 180
 µmol photons m^-2^ s^-1^ and blue light treatment decreased with
 increasing photoperiods with full growth inhibition under a 16 h
 photoperiod. The red light peak PAR of 180 µmol photons m^-2^ s^-1^
@@ -861,9 +859,9 @@ percentile of achieved growth rates. Fig \@ref(fig:MIT9313PARGAM)B also
 shows that growth rate increases with longer photoperiods, as long as
 the blue peak PAR levels remain below 50 µmol photons m^-2^ s^-1^. In
 contrast, under red light and 250 µM O~2~ MIT9313 grows faster while
-exploiting higher peak PAR and longer photoperiods. Fig \@ref(fig:MIT9313PARGAM)B shows that MIT9313 can exploit all blue PAR levels
-and most photoperiods with 90^th^ percentile of fastest growth rate
-between 30 to 100 µmol photons m^-2^ s^-1^ PAR. Fig \@ref(fig:MIT9313PARGAM)B shows that MIT9313 maintains growth even under
+exploiting higher peak PAR and longer photoperiods. MIT9313 can exploit all blue PAR levels
+and most photoperiods under 25 µM O~2~ with 90^th^ percentile of fastest growth rate
+between 30 to 100 µmol photons m^-2^ s^-1^ PAR. MIT9313 maintains growth even under
 2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR
 between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
 MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Fig \@ref(fig:MIT9313PARGAM)B).
@@ -1098,8 +1096,7 @@ under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Fig \@ref(fig:SS120PARGAM))
 
 \newpage
 
-Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.
-marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
+Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
 most complete suite of genes encoding DNA repair enzymes, followed by
 *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the
 smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4
@@ -1154,6 +1151,31 @@ photic threshold, which precludes growth of MED4 and SS120, even if
 winter waters reached permissive temperatures. MIT9313 and SS120 will be
 excluded from near-surface growth niches by high PAR, unless OMZ zones
 extend to the near surface.
+
+\newpage
+
+
+
+
+
+Table: (\#tab:NichesTable)Potential temperate niches for *Prochlorococcus marinus* ecotypes defined by season, depth, and oxygen; Full denotes 250 µM of dissolved oxygen and OMZ denotes 25 µM of dissolved oxygen. Plus symbols (+) indicate a potential niche, minus symbols (-) not a potential niche.
+
+|Season      |Depth        |Oxygen | MED4 | SS120 | MIT9313 |
+|:-----------|:------------|:------|:----:|:-----:|:-------:|
+|Summer      |Near surface |Full   |  +   |   -   |    -    |
+|Summer      |Near surface |OMZ    |  +   |   -   |    +    |
+|Spring/Fall |Near surface |Full   |  +   |   -   |    -    |
+|Spring/Fall |Near surface |OMZ    |  +   |   +   |    +    |
+|Winter      |Near surface |Full   |  -   |   -   |    -    |
+|Winter      |Near surface |OMZ    |  -   |   -   |    +    |
+|Summer      |Deep         |Full   |  +   |   +   |    +    |
+|Summer      |Deep         |OMZ    |  +   |   +   |    +    |
+|Spring/Fall |Deep         |Full   |  +   |   +   |    +    |
+|Spring/Fall |Deep         |OMZ    |  +   |   +   |    +    |
+|Winter      |Deep         |Full   |  -   |   -   |    +    |
+|Winter      |Deep         |OMZ    |  -   |   +   |    +    |
+
+\newpage
 
 Diverse *P. marinus* strains @billerProchlorococcusStructureFunction2015
 differentially exploit potential photoregimes, both at the surface and

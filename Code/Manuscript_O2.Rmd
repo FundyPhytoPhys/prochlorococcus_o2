@@ -1252,8 +1252,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.
-marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
+Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
 most complete suite of genes encoding DNA repair enzymes, followed by
 *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the
 smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4
@@ -1318,6 +1317,32 @@ photic threshold, which precludes growth of MED4 and SS120, even if
 winter waters reached permissive temperatures. MIT9313 and SS120 will be
 excluded from near-surface growth niches by high PAR, unless OMZ zones
 extend to the near surface.
+
+\newpage
+
+```{r read temperate niche sheet, include=FALSE}
+
+ProchloroNiches <- read_csv(file.path(DataIn, "Prochlorococcus_temperate_niches.csv"))
+
+ProchloroNiches <- ProchloroNiches %>% 
+  mutate(MED4 = case_when(MED4 == "Potential" ~ "+",
+                          MED4 == "Excluded" ~ "-"),
+         SS120 = case_when(SS120 == "Potential" ~ "+",
+                          SS120 == "Excluded" ~ "-"),
+         MIT9313 = case_when(MIT9313 == "Potential" ~ "+",
+                          MIT9313 == "Excluded" ~ "-"))
+
+```
+
+
+```{r NichesTable,  fig.height = 8, fig.width = 6, echo = FALSE}
+
+knitr::kable(ProchloroNiches,
+             caption = "Potential temperate niches for *Prochlorococcus marinus* ecotypes defined by season, depth, and oxygen; Full denotes 250 µM of dissolved oxygen and OMZ denotes 25 µM of dissolved oxygen. Plus symbols (+) indicate a potential niche, minus symbols (-) not a potential niche.",
+        align = "lllccc" )
+```
+
+\newpage
 
 Diverse *P. marinus* strains @billerProchlorococcusStructureFunction2015
 differentially exploit potential photoregimes, both at the surface and
