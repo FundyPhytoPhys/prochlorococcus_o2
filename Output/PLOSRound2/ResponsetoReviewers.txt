@@ -73,15 +73,16 @@ Specific Comments:
 The abstract seems to omit any discussion of the conclusions/bigger picture of the study. 
  
 Line 55: LLII/III and LLIV are not the “oldest” clades, but the most basal or early branching.
-We have edited the text:
-Line XXX 
+
+We have edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage diversifying in the P. marinus radiation, with a preference for low light."
+Line: XXX
  
 Line 369: The authors invoke “limitations in the annotation process” to explain the lack of evidence for 
 MED4 ATP synthase. What does this mean? The MED4 genome surely contains ATP synthase genes. 
 
 We agree that the MED4 genome includes genes encoding ATP Synthase, but in the Ocean Protein Portal database no ATP Synthase peptides are annotated as coming from MED4. This likely reflects an annotation assignment issue because the ATP Synthase proteins are highly conserved, so assignments to strains or clades of Prochlorococcus may be ambiguous.
-We have edited the text:
-Line XXX:
+We have edited the text in the revised manuscript: "Though present in the genome of MED4, the absence of proteins annotated as ATP Synthase complex for Clade HLI, compared to annotated detections of ATP Synthase across the other three clades suggests limitations in the annotation process for highly conserved protein sequences."
+Line: XXX
 
  
 Paragraph starting L363: Why is there no discussion of the Rubisco data? Or especially the absence 
@@ -120,8 +121,9 @@ graduated"… In any case, it seems like these particularly treatments were unlike
 important that they were omitted -- but maybe there is a better way to phrase this that doesn’t sound 
 so fishy? 
 
-Thank you for this suggestion. We have edited the text:
-Line XXX: 
+Thank you for this suggestion. 
+We have edited the text:
+Line: XXX 
 
  
 Figure S4 — It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
@@ -129,8 +131,8 @@ and solid lines since this is online.
  
 Table 1: The trees described in the legend should be included in the supplemental material. 
 
+Thank you for bringing this to our attention. We clarified the wording on line XXXX of the revised manuscripted. "Protein homologies between *Prochlorococcus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018."
 
- 
 Fig 11: Despite the fact that it is explained in the legend, the figure should probably indicate that O2 
 values are log Km, or else put actual values on the log-scale Y axis. Also, the axis should indicate the 
 units for Km. Finally, why is the red band so narrow compared to the green and blue? 
@@ -141,14 +143,14 @@ L757: The authors should specify that this is a DNA repair ligase, not the DNA l
 fragments during DNA replication (assuming this is the case). 
 
 Thank you for your comment, the revised text now reads "DNA repair ligase".  
-Lines XXX:
+Line: XXX
  
 L 758: Photolyase should not have been relevant in the lab experiments because there is no UV light 
 emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
 genes is sufficient to explain why these strains can’t grow at the ocean’s surface. 
 
-Thank you. We have edited the text:
-Line XXX:
+Thank you. The revised manuscript now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
+Line: XXX
 
  
 Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway — what does 
@@ -191,6 +193,19 @@ change scenarios would presumably give cells many generations to physiologically
 differences (as well as to evolutionarily adapt). 
 
 
+Thank you for highlighting this oversight. 
+We added the following in the materials and methods section of the revised manuscript:
+"Each tube containing 70 mL of Pro99 media was inoculated with 10 mL of growing maintenance culture approximately 16 to 22 hours
+before the start of each growth experiment. The tubes containing the cultures were placed in the Multicultivator water bath set at 22°C, 
+sparged with the experimental [O2], and kept in the dark for approximately 12 hours until the photoregime of a sinusoidal photoperiod 
+commenced the following morning such that peak PAR occurred at noon each day."
+Line: XXX
+
+We added the following in the results and discussion section of the revised manuscript:
+"While we implemented measures to minimize the shock to cultures from exposure to experimental growth conditions by inoculating them the day
+ before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically
+ need multiple generations to acclimate to new growth conditions (Moore et al. 2007)."
+Line: XXX
  
 This reviewer found the manuscript to be quite difficult to read as I kept wanting to understand how 
 different strains were responding to similar types of variables, which made me have to constantly flip 
@@ -210,44 +225,54 @@ We edited the text to use 'growth rate' throughout.
 40: Despite _its_ small cell size (?) 
 
 We have edited the text:
-Line XXX:
+Line: XXX
  
 56: “Affinity” for low light? Consider rephrasing 
 
-We have edited the text:
-Line XXX:
+We have edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage diversifying in the *P. marinus* radiation, with a preference for low light."
+Line: XXX
  
 84: Follett et al 2022 PNAS showed that temp is not the only factor influencing poleward issues - 
 ecological interactions may further impact poleward shift during warming 
 
-We have edited the text:
+Thank you for  bringing this to our attention. We have added the following text to the revised manuscript: "Follett et al 2022, however, model interactions of heterotrophic bacteria  that may influence latitudinal expansion of *P. marinus*."
 Line XXX:
  
 199: Could you please state more about why you are confident in this assignment? What validation or 
-metric leads you to this? 
+metric leads you to this?  
 
-
+Thank you for noting that this needs further clarification. 
+We have edited the paragraph for clarity in the revised manuscript adding: "While the accuracy of strain specific protein annotation is noted due to highly conserved common proteins, the two step approach of peptide-to-spectrum matching using deep paired metagenomics identify proteins at the clade classifications."
+Lines: XXX 
  
 209: It seems overly general to blame the culturing difficulties solely on having reduced genomes – in 
 this context, it is the lack of just one gene (catalase) that matters, and reduced genomes reflect an 
 outcome of the ultimate suite of selective pressures acting on these systems. 
 
-We have edited the text:
+Thank you for your comment. We have edited the text in the revised manuscript: "Prochlorococcus remain challenging to culture at high densities, partially due to their dependence upon mutualistic heterotrophic bacteria to detoxify
+reactive oxygen species [48,49]." 
 Line XXX:
  
 363: Could the authors comment somewhere on why you took this proteomic approach to examine the 
 baseline distribution of Pro across O2 and depth, as opposed to (or at least in concert with) the 
 extensive metagenomic, amplicon, qPCR, etc datasets of ecotype abundances available? 
 
+Thank you for your comment. We used proteomics as we have experience with cyanobacteria protein and have work flows in place.
+We have edited the text in the revised manuscript: "Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] dataset."
+Line: XXX
+
  
 407: growth -> grew? 
 
-We have edited the text:
+We have edited the text: "The growth rate for Prochlorococcus marinus MED4, clade HLI, under 250 µM O2, increased with higher imposed PAR and longer photoperiods (Fig 3A), across all spectral wavebands."
 Line XXX:
  
 428: How many replicates were carried out for most experiments? Perhaps I just missed it, but please be 
 sure this information is clear in the methods 
 
+Thank you for this comment. In this work we used 1 to 3 replicates depending on the experimental conditions. Specific number of replicates (shown as small dots in Figures (3 - 5)).
+We have edited the text in the revised manuscript:" Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O~2~] meant we completed 268 growth factor treatment combinations with 1 to 3 replicates."
+Line: XXX
  
 431, and generally throughout the paper: Would the authors care to comment on any connection 
 between the differences in blue vs red light growth and the underlying amount of energy input from 
@@ -257,7 +282,7 @@ XXX Energy- blue have shorter WL so high energy, red longer WL so lower energy??
  
 Fig 4 and related figures: It might be useful to plot the specific measured points within the countour plot 
 
-We have combined the growth rate figure with the GAM model for each strain.
+Thank you for your suggestion. We have combined the growth rate figure with the GAM model for each strain. We believe this will aid the reader with interpreting both plots.
  
 685: The lack of detected FtsH could simply be a factor of low overall spectral counts and detection 
 limits in the dataset; please provide more context to help the reader understand whether this could be 

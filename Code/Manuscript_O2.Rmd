@@ -439,7 +439,7 @@ Controlled growth experiments were performed using MCMIX-OD or MC1000-OD
 PSI Multicultivators (Fig \@ref(fig:LabeledMC); PSI, Drásov, Czech
 Republic). Each multicultivator individually controls 8 tubes at a
 common temperature of 22°C. Each tube containing 70 mL of Pro99 media
-was inoculated with 10 mL of growing maintenance culture. In a factorial
+was inoculated with 10 mL of growing maintenance culture approximately 16 to 22 hours before the start of each growth experiment. The tubes containing the cultures were placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept in the dark for approximately 12 hours until the photoregime of a sinusoidal photoperiod commenced the following morning such that peak PAR occurred at noon each day. In a factorial
 matrix design, each tube was then subject to an individual combination
 of sinusoidal photoperiod (4, 8, 12, 16 h); reaching a peak PAR (30, 90,
 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White
@@ -705,7 +705,7 @@ knitr::include_graphics(file.path(FiguresIn, "CladeProchloroPhotosynthDepthO2.pn
 Guided in part by the evidence of ocean distributions of proteins from
 *Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral
 bands, and [O~2~] to approximate current, and potential future,
-latitudinal, depth and seasonal niches for *Prochlorococcus* strains. As
+latitudinal, depth and seasonal niches for *Prochlorococcus* strains. While we implemented measures to minimize the shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically need multiple generations to acclimate to new growth conditions [@mooreCulturingMarineCyanobacterium2007]. As
 mentioned, growth under red light could prove mechanistically
 informative [@murphyPhotoinactivationPhotosystemII2017] to factors
 limiting *Prochlorococcus* growth, we therefore included the red
@@ -862,8 +862,8 @@ knitr::include_graphics(file.path(FiguresIn, "SS120PARGAM.png"))
 The GAM model in Fig \@ref(fig:SS120PARGAM)B summarizes growth responses
 of SS120 to red or blue peak PAR and photoperiod, across the
 2 imposed oxygen concentrations. Under 250 µM O~2~, Fig \@ref(fig:SS120PARGAM)B showed highest growth rates below blue light PAR of
-50 µmol photons m^-2^ s^-1^ and photoperiods between 8 and 12 h,
-indicated by the contour line labeled 0.18 d^-1^ (representing the
+50 µmol photons m^-2^ s^-1^ and photoperiods between 12 and 16 h,
+indicated by the contour line labeled 0.35 d^-1^ (representing the
 90^th^ percentile of achieved growth rate). Under 250 µM O~2~ SS120 is
 constrained to deeper ocean waters through its intolerance of higher
 blue PAR levels. These findings align with Moore *et al*.
@@ -873,7 +873,7 @@ variable growth success of SS120 under 250 µM O~2~. Growth rate patterns
 under red light were similar, although somewhat faster. In contrast,
 under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
-photons m^-2^ s^-1^, indicated by the contour line labeled 0.41 d^-1^
+photons m^-2^ s^-1^, indicated by the contour line labeled 0.42 d^-1^
 (representing the 90^th^ percentile of achieved growth rate), out pacing
 the 90^th^ percentile fastest growth rates under 250 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B). Under red light and 25 µM O~2~ (Fig \@ref(fig:SS120PARGAM)B) SS120 grew across most conditions of peak PAR and
 photoperiod, achieving fastest growth under long photoperiods and peak
@@ -904,17 +904,15 @@ white LED light photoperiod. In marked contrast to the 250 µM O~2~
 growth experiments, MIT9313 grew when exposed to peak PAR of 180 µmol
 photons m^-2^ s^-1^ and blue light under all photoperiods except 16 h;
 additionally, white LED and red light treatments induced growth across
-all tested photoperiods under 25 µM O~2~. The 25 µM O~2~, 4 h
-photoperiod experiments under white LED light and were not performed due
-to time constraints.
+all tested photoperiods under 25 µM O~2~. 
 
 MIT9313 grew under 2.5 µM O~2~ particularly under blue LED light, albeit
 generally slower than under the parallel experiments at 25 µM O~2~
-(Fig \@ref(fig:MIT9313PARGAM)A). Growth estimates showed scatter among
+(Fig \@ref(fig:MIT9313PARGAM)A). Growth rates showed scatter among
 replicates, suggesting 2.5 µM O~2~ is near the tolerance limit for
 growth of MIT9313. Growth rates increased with longer photoperiods under
 blue light treatments and peak PAR of 90 µmol photons m^-2^ s^-1^ but
-did not grow under 16 h photoperiod. Growth for MIT9313 under PAR of 180
+did not grow under 16 h photoperiod. Growth rates for MIT9313 under PAR of 180
 µmol photons m^-2^ s^-1^ and blue light treatment decreased with
 increasing photoperiods with full growth inhibition under a 16 h
 photoperiod. The red light peak PAR of 180 µmol photons m^-2^ s^-1^
@@ -966,9 +964,9 @@ percentile of achieved growth rates. Fig \@ref(fig:MIT9313PARGAM)B also
 shows that growth rate increases with longer photoperiods, as long as
 the blue peak PAR levels remain below 50 µmol photons m^-2^ s^-1^. In
 contrast, under red light and 250 µM O~2~ MIT9313 grows faster while
-exploiting higher peak PAR and longer photoperiods. Fig \@ref(fig:MIT9313PARGAM)B shows that MIT9313 can exploit all blue PAR levels
-and most photoperiods with 90^th^ percentile of fastest growth rate
-between 30 to 100 µmol photons m^-2^ s^-1^ PAR. Fig \@ref(fig:MIT9313PARGAM)B shows that MIT9313 maintains growth even under
+exploiting higher peak PAR and longer photoperiods. MIT9313 can exploit all blue PAR levels
+and most photoperiods under 25 µM O~2~ with 90^th^ percentile of fastest growth rate
+between 30 to 100 µmol photons m^-2^ s^-1^ PAR. MIT9313 maintains growth even under
 2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR
 between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
 MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Fig \@ref(fig:MIT9313PARGAM)B).

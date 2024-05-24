@@ -214,7 +214,7 @@ net global increase of *P. marinus* cell abundances of 29%
 shifts of at least 10° in marine phytoplankton niches by the end of this
 century [@bartonAnthropogenicClimateChange2016] in response to warming
 waters, with increases in *P. marinus* of approximately 50% in the more
-poleward regions of their distributions. @follettTrophicInteractionsHeterotrophic2022 however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansion of *P. marinus*.
+poleward regions of their distributions. @follettTrophicInteractionsHeterotrophic2022, however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansion of *P. marinus*.
 
 Near the equator, photoperiod remains nearly constant at the ocean
 surface, approximately 12 hours (h) of daylight and 12 h of darkness
@@ -302,9 +302,9 @@ vary among clades [@hessPhotosyntheticApparatusProchlorococcus2001;
 Given the different spectral light regimes typical of the niches of
 different ecotypes, expressing growth rates in terms of cumulative diel
 PUR might simplify different photoperiods, spectral bands, and PAR
-levels into a common parameter, making growth response comparisons
+levels into a common parameter, making growth rate comparisons
 across strains and different oxygen levels more accessible. We aimed to
-detect whether growth responses are driven simply by cumulative diel
+detect whether growth rates are driven simply by cumulative diel
 PUR, or whether specific photoperiods, spectral bands or PAR levels have
 independent, albeit interacting, effects on growth. We therefore
 analyzed growth rates in terms of cumulative diel PUR.
@@ -383,11 +383,10 @@ When assessing the presence of a particular protein complex at a
 sampling location, the spectral counts were summed between proteins within the protein subunit to give the greatest number of data points. As this data
 was acquired by survey proteomics (data dependent acquisition) rather than through targeted peptide
 approaches (e.g. parallel reaction monitoring), it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are
-highly conserved across strains [@saitoNeedlesBlueSea2015]. We are, however, confident in clade
-classifications for each protein examined. The data is also limited
+highly conserved across strains [@saitoNeedlesBlueSea2015]. The data is also limited
 because a peptide sequence was not determined unless there was already a
 known spectrum for that peptide in the SEQUEST database, hence some
-peptides of interest may not be identifiable. This MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable this peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide to spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020].
+peptides of interest may not be identifiable. The MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide-to-spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020]. While the accuracy of strain specific protein annotation is noted due to highly conserved common proteins, the two step approach of peptide-to-spectrum matching using deep paired metagenomics identify proteins at the clade classifications.
 
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 
@@ -412,7 +411,7 @@ Controlled growth experiments were performed using MCMIX-OD or MC1000-OD
 PSI Multicultivators (Fig \@ref(fig:LabeledMC); PSI, Drásov, Czech
 Republic). Each multicultivator individually controls 8 tubes at a
 common temperature of 22°C. Each tube containing 70 mL of Pro99 media
-was inoculated with 10 mL of growing maintenance culture. In a factorial
+was inoculated with 10 mL of growing maintenance culture approximately 16 to 22 hours before the start of each growth experiment. The tubes containing the cultures were placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept in the dark for approximately 12 hours until the photoregime of a sinusoidal photoperiod commenced the following morning such that peak PAR occurred at noon each day. In a factorial
 matrix design, each tube was then subject to an individual combination
 of sinusoidal photoperiod (4, 8, 12, 16 h); reaching a peak PAR (30, 90,
 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White
@@ -438,7 +437,7 @@ with lab air (78% N~2~, 21% O~2~, 1% Ar and 0.05% CO~2~).
 The full crossing of all factor levels would yield 4 x 3 x 3 x 3 = 108
 treatments, x 3 strains for 324 possible combinations. Consistent
 absence of growth of some strains under some levels of photoperiod, PAR,
-or [O~2~] meant we completed 268 growth factor treatment combinations.
+or [O~2~] meant we completed 268 growth factor treatment combinations with 1 to 3 replicates.
 
 *In situ* measurements of Optical Density (OD) 680 nm, a proxy for cell
 suspension density, cell size dependent scatter and cell chlorophyll
@@ -451,14 +450,12 @@ Peak PAR of 180, 90 or 30 µmol photons m^-2^ s^-1^, and spectral wavebands
 were chosen to approximate light levels and spectral colours spanning
 the vertical ocean water column, from near-surface to the lower euphotic
 zone depths. Photoperiods were chosen to approximate diel cycles
-characteristic of current and hypothetical future niches of *P.
-marinus*; 16 h represents temperate (45°N) summer at the ocean surface;
+characteristic of current and hypothetical future niches of *P.marinus* and delivered approximating a sinusoidal sun rise and fall; 16 h represents temperate (45°N) summer at the ocean surface;
 12 h for equatorial (0°N) ocean surface or temperate (45°N) spring and
 fall ocean surface or temperate (45°N) summer at deeper ocean depths; 8
 h for temperate (45°N) winter at the surface or at temperate (45°N)
 spring and fall at depth and equatorial (0°N) deep ocean depths; and 4 h
-for temperate (45°N) winter or deep ocean depths during temperate (45°N)
-spring and fall.
+for temperate (45°N) winter at deep ocean depths.
 
 ## Growth rate analysis {.unnumbered}
 
@@ -610,7 +607,7 @@ numbers), or Kegg Orthology Numbers (KO numbers) identified by BRENDA
 numbers identified by BRENDA as being activated, or inhibited by light;
 and EC numbers annotated by BioCyc [@karpBioCycCollectionMicrobial2019]
 as corresponding to the Gene Ontology Term (<GO:0006281> - DNA repair),
-in *P. marinus* strains (MED4, MIT9313, SS120, and NATL2A). We grouped
+in *P. marinus* strains (MED4, NATL2A, SS120, and MIT9313). We grouped
 orthologs together by EC number and their KO number and determined the
 occurrences of individual orthologs encoding each EC number, or KO
 number when EC number was not available, in a given strain. We merged
@@ -645,7 +642,7 @@ present across the depth/light axes, with more representation at lower
 with more detections at deeper, darker depths. Clade LLIV (including strain MIT9313)
 photosynthetic complexes were also detected throughout the
 depth/light and [O~2~], ranges, with the most frequent detections at
-depth and at low [O~2~], compared to other strains. Our analyses used a proteomics dataset, though we note that alternate approaches such as metagenomics or metatranscriptomics using the TARA Oceans [@pesantOpenScienceResources2015] dataset could have been employed.
+depth and at low [O~2~], compared to other strains. Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] dataset.
 
 \newpage
 
@@ -661,7 +658,7 @@ depth and at low [O~2~], compared to other strains. Our analyses used a proteomi
 Guided in part by the evidence of ocean distributions of proteins from
 *Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral
 bands, and [O~2~] to approximate current, and potential future,
-latitudinal, depth and seasonal niches for *Prochlorococcus* strains. As
+latitudinal, depth and seasonal niches for *Prochlorococcus* strains. While we implemented measures to minimize the shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically need multiple generations to acclimate to new growth conditions [@mooreCulturingMarineCyanobacterium2007]. As
 mentioned, growth under red light could prove mechanistically
 informative [@murphyPhotoinactivationPhotosystemII2017] to factors
 limiting *Prochlorococcus* growth, we therefore included the red
@@ -676,7 +673,7 @@ white LED and 250 µM O~2~, but our study is, to our knowledge, the first
 to analyze the interactive growth responses of *Prochlorococcus* strains
 to varying [O~2~], spectral wavebands and photoperiods.
 
-*Prochlorococcus marinus* MED4, clade HLI, grew under 250 µM O~2~ and growth rates increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)), across all spectral wavebands. No growth was
+The growth rate for *Prochlorococcus marinus* MED4, clade HLI, under 250 µM O~2~, increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)A), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
 maximum growth rate (µ~max~) was
 0.68
@@ -855,7 +852,7 @@ performed as cultures were unlikely to grow.
 \newpage
 
 The GAM model in Fig \@ref(fig:MIT9313PARGAM)B summarizes MIT9313 growth
-responses to red (A-C) or blue (D-F) peak PAR and photoperiod. Under
+responses to red or blue peak PAR and photoperiod. Under
 250 µM O~2~, Fig \@ref(fig:MIT9313PARGAM)B shows MIT9313 achieves
 fastest growth rates between blue peak PAR of 30 µmol photons m^-2^
 s^-1^ and 50 µmol photons m^-2^ s^-1^ and photoperiods longer than 12 h,
