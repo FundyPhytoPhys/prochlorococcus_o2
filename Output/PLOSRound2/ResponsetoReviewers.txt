@@ -74,10 +74,14 @@ my opinion, as I explain below.
 Specific Comments: 
  
 The abstract seems to omit any discussion of the conclusions/bigger picture of the study. 
+
+Thank you for comment. We have added text to discuss the main conclusions of this study.
  
 Line 55: LLII/III and LLIV are not the ?oldest? clades, but the most basal or early branching.
 
-We have edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage diversifying in the P. marinus radiation, with a preference for low light."
+We have edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are
+grouped together as early branching phylogenetic lineage in
+the P. marinus radiation, with a preference for low light."
 Line: XXX
  
 Line 369: The authors invoke ?limitations in the annotation process? to explain the lack of evidence for 
@@ -94,9 +98,9 @@ photosynthesizing cell, does this indicate that these ecotypes are present but n
 under these conditions? Also, is it worth noting that LLIV is the only variety to be detected at all in the 
 deepest low O2 site -- which would appear to be consistent with subsequent findings in this study? 
 
- XXX Doug address RUBISCO XXX
  
-We revised the text from lines 668 to XXX to incorporate these helpful observations.
+We revised the text from lines 668 to XXX to incorporate these helpful observations. The following was added: " Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from HLI and LLI were notably absent from samples taken at lower [O~2~], suggesting limited capacity for carbon fixation by HLI and LLI under low [O~2~] habitats."
+
 
 Figures 3 through 8: These figures are obviously the crux of the results in this paper, but as they are 
 currently presented it is relatively difficult to think clearly about them. I feel like they could be combined 
@@ -124,7 +128,7 @@ chose to it would make the manuscript of broader interest.
 Thank you for the comment.
 We added a table YY of potential strain growth in temperate seasonal and depth niches, in future temperate warmed oceans.
 The GAM model panels in figures XYZ show 'zones of exclusion' from light level, photoperiods, and oxygen regimes, as unshaded white areas where no growth is predicted.
-We indeed contemplating attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.
+We indeed contemplated attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.
 
 XXX 
  
@@ -280,7 +284,7 @@ Line XXX:
 baseline distribution of Pro across O2 and depth, as opposed to (or at least in concert with) the 
 extensive metagenomic, amplicon, qPCR, etc datasets of ecotype abundances available? 
 
-Thank you for your comment. Co-authors, Aurora MattisonXXX and Dr. Amanda Cockshutt, used the metaproteomics database as an extension of their earlier studies on the functional implications of differential protein allocations across different Prochlorococcus strains [Zorz, Bonisteel]. Those studies indeed motivated the design of our growth matrix. Extending the study to include metagonomic analyses is valid but is beyond our scope.
+Thank you for your comment. Co-authors, Aurora Mattison and Dr. Amanda Cockshutt, used the metaproteomics database as an extension of their earlier studies on the functional implications of differential protein allocations across different Prochlorococcus strains [Zorz, Bonisteel]. Those studies indeed motivated the design of our growth matrix. Extending the study to include metagonomic analyses is valid but is beyond our scope.
 We have edited the text in the revised manuscript: "Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] dataset."
 Line: XXX
 
