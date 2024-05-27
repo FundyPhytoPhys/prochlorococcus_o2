@@ -204,7 +204,7 @@ commenced the following morning such that peak PAR occurred at noon each day."
 Line: XXX
 
 We added the following in the results and discussion section of the revised manuscript:
-"While we implemented measures to minimize the shock to cultures from exposure to experimental growth conditions by inoculating them the day
+"While we implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day
  before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically
  need multiple generations to acclimate to new growth conditions (Moore et al. 2007)."
 Line: XXX

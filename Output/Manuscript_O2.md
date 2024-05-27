@@ -658,7 +658,7 @@ depth and at low [O~2~], compared to other strains. Our analyses utilized a prot
 Guided in part by the evidence of ocean distributions of proteins from
 *Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral
 bands, and [O~2~] to approximate current, and potential future,
-latitudinal, depth and seasonal niches for *Prochlorococcus* strains. While we implemented measures to minimize the shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically need multiple generations to acclimate to new growth conditions [@mooreCulturingMarineCyanobacterium2007]. As
+latitudinal, depth and seasonal niches for *Prochlorococcus* strains. While we implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically need multiple generations to acclimate to new growth conditions [@mooreCulturingMarineCyanobacterium2007]. As
 mentioned, growth under red light could prove mechanistically
 informative [@murphyPhotoinactivationPhotosystemII2017] to factors
 limiting *Prochlorococcus* growth, we therefore included the red
