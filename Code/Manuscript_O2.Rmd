@@ -515,7 +515,7 @@ measurements for each tube in a Multicultivator. The residuals of the
 logistic growth curve fit are shown. The imposed PAR (µmol photons m^-2^ s^-1^) are plotted for each tube and illustrates the applied photoperiod (h) regimes.
 
 A Generalized Additive Model (GAM) [@woodGeneralizedAdditiveModels2017]
-was applied to the relation of chlorophyll-specific µ, d^-1^ to
+was applied to the relation of chlorophyll-specific µ d^-1^ to
 photoperiod and PAR level, for each growth [O~2~] level, and for the
 blue and red wavebands for growth, for each *P. marinus* strain in this
 study. The R package *`mgcv`* [@R-mgcv] was used to model the growth
@@ -1060,7 +1060,7 @@ compared to blue, wavebands (Fig \@ref(fig:BluevsRedPurFitsPlots)G and H). Inter
 effect of red light disappears for MIT9313 growing under 2.5 µM O~2~,
 possibly because photoinactivation is strongly suppressed under this low
 [O~2~] (Fig \@ref(fig:BluevsRedPurFitsPlots)I). For distinct fits for
-different photoperiod fits refer to Fig \@ref(fig:PhotoperiodPurFitsPlots) G-I.
+different photoperiods refer to Fig \@ref(fig:PhotoperiodPurFitsPlots) G-I.
 
 \newpage
 
@@ -1316,7 +1316,7 @@ delivers only about 2 h of blue waveband light underwater above the
 photic threshold, which precludes growth of MED4 and SS120, even if
 winter waters reached permissive temperatures. MIT9313 and SS120 will be
 excluded from near-surface growth niches by high PAR, unless OMZ zones
-extend to the near surface.
+extend to the near surface (Table \@ref(tab:NichesTable).
 
 \newpage
 
@@ -1476,6 +1476,11 @@ all became net O~2~ consumers, suggesting that low light levels
 cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
+
+XXXX Added this section , if keeping then Mirielle will add the citations to zotero XXXX
+
+The potential expansion of  *P. marinus*  polewards may contribute to the primary food base of an aquatic ecosystem that has already undergone changes in temperate northern waters; commercial fish populations are shifting with new species immigrating  [@zellerCheungZellerPauly2011], endangered whales actively searching for food sources are becoming more prevalent [@meyer-gutbrodMarineSpeciesRange2018] and the white shark seasonal presence is increasing  either due to rising ocean temperatures or following marine prey [@bastienInconspicuousRecoveringNorthward2020]. While the exact impact of the presence of *P. marinus*  on the species distribution of marine wildlife in temperate northern waters is unknown, there is little doubt that *Prochlorococcus* will play a significant role in shaping this distribution.
+
 
 \newpage
 

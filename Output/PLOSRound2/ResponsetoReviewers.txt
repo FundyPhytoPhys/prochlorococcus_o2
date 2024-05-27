@@ -281,6 +281,7 @@ between the differences in blue vs red light growth and the underlying amount of
 these different wavelengths? 
 
 XXX Energy- blue have shorter WL so high energy, red longer WL so lower energy??? XXXX
+XXX Can add something on line 827 to expand XXXXX
  
 Fig 4 and related figures: It might be useful to plot the specific measured points within the countour plot 
 
