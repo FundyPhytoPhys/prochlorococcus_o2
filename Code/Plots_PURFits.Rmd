@@ -773,21 +773,21 @@ PhotoperiodPurFitsPlots <- AllFitsCombinedPhoto |>
   geom_line(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, linetype = as.factor(Photoperiod)), size = 0.01, alpha = 5, show.legend = F) +
   geom_line(aes(x = PURPhotonDose_day, y = .fitted, linetype = PhotoperiodPooled), size = 0.80, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4") %>% mutate(PhotoperiodPooled = "Pooled")) +
   geom_rect(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, fill = "white") +
-  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 3.5, alpha = 1.0) +
-    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2.0, alpha = 0.6) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", show.legend = F, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", show.legend = F, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotdash", show.legend = F, data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dashed", show.legend = F, data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 250, Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(Strain == "SS120")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(Strain == "SS120")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.80, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) +
-  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotdash", show.legend = F, data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MIT9313")) +
-   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.6, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
+  geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_ReplicateMean_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 3.5, alpha = 0.7) +
+    geom_point(aes(x = Data_all_PURPhotonDose_day, y = Data_all_deltaOD_Lmu_corr_day, shape = as.factor(Photoperiod), color = as.factor(WL), fill = as.factor(WL)), size = 2.0, alpha = 0.7) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.1, linetype = "solid", show.legend = F, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MED4")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(O2_uM != 2.5, Strain == "MED4")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.1, linetype = "solid", show.legend = F, data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dotdash", show.legend = F, data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dashed", show.legend = F, data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 250, Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(Strain == "SS120")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(Strain == "SS120")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 1.1, linetype = "solid", data = . %>% unnest(Predict_pooled) %>%  filter(Strain == "MIT9313")) +
+  geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dotdash", show.legend = F, data = . %>% unnest(Predict_16) %>%  filter(O2_uM == 2.5, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dashed", data = . %>% unnest(Predict_12) %>%  filter(O2_uM == 25, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "dotted", show.legend = F, data = . %>% unnest(Predict_8) %>%  filter(O2_uM != 2.5, Strain == "MIT9313")) +
+   geom_line(aes(x = PURPhotonDose_day, y = .fitted), size = 0.9, linetype = "aa", show.legend = F, data = . %>% unnest(Predict_4) %>%  filter(Strain == "MIT9313")) +
  labs(y = "Chlorophyll specific growth rate " ~  " ("  ~ d^-1~")", x = "PUR (µmol photons" ~m^-2 ~d^-1~")") +
   scale_x_continuous(label=scientific_10) +
   scale_y_continuous(breaks = c(0,0.25, 0.5, 0.75, 1.0), limits = c (0, 1.05)) +
