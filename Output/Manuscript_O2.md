@@ -134,7 +134,7 @@ defined by 16S-23S intergenic transcribed ribosomal sequence signatures
 [@rocapGenomeDivergenceTwo2003]. The clades inhabit distinct ecological
 niches [@moorePhysiologyMolecularPhylogeny1998], originally defined as
 High-Light (HL) or Low-Light (LL). Only 5 out of 12 known
-*Prochlorococcus* genetic clades have cultured representatives to date;
+*P. marinus* genetic clades have cultured representatives to date;
 HLI, HLII, LLI, LLII/III and LIV
 [@mooreComparativePhysiologySynechococcus1995; @mooreCulturingMarineCyanobacterium2007; @billerProchlorococcusStructureFunction2015]. Current niches of *P.marinus* strains span ocean water columns
 [@veldhuisVerticalDistributionPigment1990;
@@ -155,13 +155,13 @@ nm) to green (520 nm) spectral range
 [@holtropVibrationalModesWater2021]. Clade LLI includes cultured strain
 NATL2A, which prefers moderate irradiances typical of between 30 and 100
 m depth. Clades LLII and LLIII, including cultured strain SS120, are
-grouped together as early branching phylogenetic lineage diversifying
-in the *P. marinus* radiation, with a preference for low light. Clade
+grouped together as early branching phylogenetic lineage in
+the *P. marinus* radiation, with a preference for low light. Clade
 LLIV, including cultured strain MIT9313, falls near the base of the
-*Prochlorococcus* radiation, and is characterized by preference for low
+*P. marinus* radiation, and has been characterized by preference for low
 light, typical of depths from 120 m to 200 m
 [@partenskyProchlorococcusMarinePhotosynthetic1999]. LLIV members are,
-as yet, the only cultured strains to have been found in Oxygen Minimum
+as yet, the only cultured *P. marinus* strains to have been found in Oxygen Minimum
 Zones (OMZ). Some, as yet, uncultured *P. marinus* strains in clades LLV
 and LLVI also thrive in OMZ of the subtropical Atlantic and Pacific
 Oceans, where dissolved oxygen concentrations [O~2~] can be less than 20
@@ -214,7 +214,7 @@ net global increase of *P. marinus* cell abundances of 29%
 shifts of at least 10° in marine phytoplankton niches by the end of this
 century [@bartonAnthropogenicClimateChange2016] in response to warming
 waters, with increases in *P. marinus* of approximately 50% in the more
-poleward regions of their distributions. @follettTrophicInteractionsHeterotrophic2022, however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansion of *P. marinus*.
+poleward regions of their distributions. @follettTrophicInteractionsHeterotrophic2022, however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansions of *P. marinus*.
 
 Near the equator, photoperiod remains nearly constant at the ocean
 surface, approximately 12 hours (h) of daylight and 12 h of darkness
@@ -380,17 +380,17 @@ four isoforms of FtsH protease of *Synechocystis* sp. PCC6803
 plotted against depth and [O~2~] and sampling station.
 
 When assessing the presence of a particular protein complex at a
-sampling location, the spectral counts were summed between proteins within the protein subunit to give the greatest number of data points. As this data
+sampling location, the spectral counts were summed from all protein subunits from the protein complex, to increase probability of detection. As this data
 was acquired by survey proteomics (data dependent acquisition) rather than through targeted peptide
 approaches (e.g. parallel reaction monitoring), it is difficult to discern accuracies of strain assignment annotations, particularly as the proteins of interest in this study are
 highly conserved across strains [@saitoNeedlesBlueSea2015]. The data is also limited
 because a peptide sequence was not determined unless there was already a
 known spectrum for that peptide in the SEQUEST database, hence some
-peptides of interest may not be identifiable. The MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide-to-spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020]. While the accuracy of strain specific protein annotation is noted due to highly conserved common proteins, the two step approach of peptide-to-spectrum matching using deep paired metagenomics identify proteins at the clade classifications.
+peptides of interest may not be identifiable. The MetZyme dataset used a deep paired metagenomic database (https://www.ebi.ac.uk/pride/archive/projects/PXD030684) to enable peptide-to-spectrum matching [@saitoMultipleNutrientStresses2014; @saundersMicrobialFunctionalDiversity2022]. Furthermore, protein identifications were based on peptide-to-spectrum matching using SEQUESTHT within Proteome Discoverer software (Thermo) and spectral counts were enumerated using Scaffold software (Proteome Software) using a FDR of <0.1% on the peptide level as described in Saunders *et al*. [@saundersMETATRYPMetaproteomicLeast2020]. While the accuracy of strain specific protein annotations are limited due to the high conservation of the target protein complexes, the two step approach of peptide-to-spectrum matching using deep paired metagenomics, does assign proteins at the level of clades.
 
 ## *Prochlorococcus* culturing and experimental design {.unnumbered}
 
-*Prochlorococcus* remain challenging to culture at high densities, partially due to their dependence upon mutualistic heterotrophic bacteria to detoxify
+*Prochlorococcus* remain challenging to culture at high densities or under fluctuating environments, partially due to their dependence upon mutualistic heterotrophic bacteria to detoxify
 reactive oxygen species [@morrisFacilitationRobustGrowth2008;
 @morrisDependenceCyanobacteriumProchlorococcus2011]. MED4, SS120 and MIT9313 have been successfully cultured in laboratories [@mooreComparativePhysiologySynechococcus1995; @mooreCulturingMarineCyanobacterium2007], and used to show that ecotypic classifications correspond to biochemical differences among strains [@bonisteelStrainSpecificDifferences2018]. Three xenic cultures of *P.marinus* were obtained from Bigelow Labs, NCMA Maine, USA. MED4
 (CCMP1986) is from High-Light adapted (HLI) clade; SS120 (CCMP1375) is
@@ -407,12 +407,13 @@ transferred weekly with 1 in 5 dilutions with Pro99 media
 [@mooreCulturingMarineCyanobacterium2007] prepared with autoclaved
 artificial seawater [@bergesEvolutionArtificialSeawater2001].
 
-Controlled growth experiments were performed using MCMIX-OD or MC1000-OD
+Controlled growth experiments were then performed using MCMIX-OD or MC1000-OD
 PSI Multicultivators (Fig \@ref(fig:LabeledMC); PSI, Drásov, Czech
 Republic). Each multicultivator individually controls 8 tubes at a
 common temperature of 22°C. Each tube containing 70 mL of Pro99 media
-was inoculated with 10 mL of growing maintenance culture approximately 16 to 22 hours before the start of each growth experiment. The tubes containing the cultures were placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept in the dark for approximately 12 hours until the photoregime of a sinusoidal photoperiod commenced the following morning such that peak PAR occurred at noon each day. In a factorial
-matrix design, each tube was then subject to an individual combination
+was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for  xx to yy days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth.
+
+In a factorial matrix design, each tube was subject to an individual combination
 of sinusoidal photoperiod (4, 8, 12, 16 h); reaching a peak PAR (30, 90,
 180 µmol photons m^-2^ s^-1^), with defined spectral bandwidth (White
 LED, 660 nm, 450 nm). [O~2~] levels (2.5 µM, 25 µM, 250 µM) were imposed
@@ -656,22 +657,17 @@ depth and at low [O~2~], compared to other strains. Our analyses utilized a prot
 ## *Prochlorococcus marinus* growth responses to photoperiod, PAR, spectral band, and [O~2~] {.unnumbered}
 
 Guided in part by the evidence of ocean distributions of proteins from
-*Prochlorococcus* we set up a matrix of photoperiods, PAR, spectral
-bands, and [O~2~] to approximate current, and potential future,
-latitudinal, depth and seasonal niches for *Prochlorococcus* strains. While we implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began and employing a sinusoidal photoperiod with a gradual increase in PAR exposure, we acknowledge that cells typically need multiple generations to acclimate to new growth conditions [@mooreCulturingMarineCyanobacterium2007]. As
-mentioned, growth under red light could prove mechanistically
-informative [@murphyPhotoinactivationPhotosystemII2017] to factors
-limiting *Prochlorococcus* growth, we therefore included the red
-spectral waveband even though it is not representative of
-*Prochlorococcus* niches. Although *Prochlorococcus* is currently
-limited to a narrow range of surface photoperiods, potential poleward
-latitudinal expansions, in combination with attenuation of light with
-depth, mean *Prochlorococcus* may potentially encounter a wide range of
+*Prochlorococcus* we set up a matrix of photoperiods, PAR, and [O~2~] to approximate current, and potential future,
+latitudinal, depth and seasonal niches for *Prochlorococcus* strains. As
+mentioned, growth under red light, although not representative of *Prochlorococcus* niches, is mechanistically
+informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII. We implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began, employing a sinusoidal photoperiod with a gradual increase in PAR exposure, and extracting growth rates from logistic curves fit over approximately 5 generations of growth, to accommodate multiple generations to acclimate to the imposed growth conditions [@mooreCulturingMarineCyanobacterium2007]. Although the current subtropical distribution of *Prochlorococcus* spans a narrow range of photoperiods at the surface, light attenuation with depth shortens effective photoperiods as well as lowering peak PAR. Potential poleward
+latitudinal range expansions, in combination with attenuation of light with
+depth, mean *Prochlorococcus* clades may potentially encounter a wider range of
 photoperiods. Our growth rate determinations generally agree with those
 from Moore *et al*. [@mooreComparativePhysiologySynechococcus1995], for
 white LED and 250 µM O~2~, but our study is, to our knowledge, the first
 to analyze the interactive growth responses of *Prochlorococcus* strains
-to varying [O~2~], spectral wavebands and photoperiods.
+to varying [O~2~], photoperiods and spectral wavebands.
 
 The growth rate for *Prochlorococcus marinus* MED4, clade HLI, under 250 µM O~2~, increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)A), across all spectral wavebands. No growth was
 observed under any imposed conditions under a 4 h photoperiod. The
@@ -1012,7 +1008,7 @@ processes other than dynamic regulation of PSII repair.
 
 
 
-Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homologies between *Prochlorococcus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018.
+Table: (\#tab:FtsHTable)FtsH protease homologs in *Prochlorococcus marinus* and the model cyanobacterium *Synechocystis* sp. PCC6803. Protein homologies for FtsH isoforms between *Prochlorococcus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018.
 
 |Organism                            |  Homolog 1  |  Homolog 2  |   Homolog 3    |   Homolog 4    |
 |:-----------------------------------|:-----------:|:-----------:|:--------------:|:--------------:|
@@ -1310,9 +1306,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-XXXX Added this section , if keeping then Mirielle will add the citations to zotero XXXX
-
-The potential expansion of  *P. marinus*  polewards may contribute to the primary food base of an aquatic ecosystem that has already undergone changes in temperate northern waters; commercial fish populations are shifting with new species immigrating  [@zellerCheungZellerPauly2011], endangered whales actively searching for food sources are becoming more prevalent [@meyer-gutbrodMarineSpeciesRange2018] and the white shark seasonal presence is increasing  either due to rising ocean temperatures or following marine prey [@bastienInconspicuousRecoveringNorthward2020]. While the exact impact of the presence of *P. marinus*  on the species distribution of marine wildlife in temperate northern waters is unknown, there is little doubt that *Prochlorococcus* will play a significant role in shaping this distribution.
+In warming oceans *P. marinus* clades will differentially expand into new regions depending upon their different, interacting capacities to tolerate and exploit photoperiods, light levels, and [O~2~]. Competition among clades will be driven not simply by light levels. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) might actually exploit higher light niches under OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
 
 
 \newpage
