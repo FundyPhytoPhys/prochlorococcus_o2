@@ -2,17 +2,17 @@ PONE-D-24-11318
 Prochlorococcus marinus responses to light and oxygen
 PLOS ONE 
 
-José A. Fernández Robledo, Ph.D. 
+Jos? A. Fern?ndez Robledo, Ph.D. 
 Academic Editor 
 PLOS ONE
 
-Dear Dr. Fernández Robledo,
+Dear Dr. Fern?ndez Robledo,
 
 We thank you and the reviewers for constructive feedback, which we have addressed through revisions, as outlined below.
 
 
-•	separate file labeled 'Revised Manuscript with Track Changes'.
-•	An unmarked version of your revised paper without tracked changes. You should upload this as a separate file labeled 'Manuscript'.
+?	separate file labeled 'Revised Manuscript with Track Changes'.
+?	An unmarked version of your revised paper without tracked changes. You should upload this as a separate file labeled 'Manuscript'.
 
 
 
@@ -40,7 +40,7 @@ https://journals.plos.org/plosone/s/recommended-repositories.
 
 4. We note that you have referenced (Campbell, unpub) on page 17, which has currently not yet been 
 accepted for publication. Please remove this from your References and amend this to state in the body 
-of your manuscript: (ie “Bewick et al. [Unpublished]”) as detailed online in our guide for authors 
+of your manuscript: (ie ?Bewick et al. [Unpublished]?) as detailed online in our guide for authors 
 http://journals.plos.org/plosone/s/submission-guidelines#loc-reference-style
 
 We removed this citation.
@@ -54,7 +54,7 @@ list.
 that have been retracted, please include the rationale for doing so in the manuscript text, or remove 
 these references and replace them with relevant current references. Any changes to the reference list 
 should be mentioned in the rebuttal letter that accompanies your revised manuscript. If you need to cite 
-a retracted article, indicate the article’s retracted status in the References list and also include a citation 
+a retracted article, indicate the article?s retracted status in the References list and also include a citation 
 and full reference for the retraction notice.
 
 XXX Check XXX
@@ -75,12 +75,12 @@ Specific Comments:
  
 The abstract seems to omit any discussion of the conclusions/bigger picture of the study. 
  
-Line 55: LLII/III and LLIV are not the “oldest” clades, but the most basal or early branching.
+Line 55: LLII/III and LLIV are not the ?oldest? clades, but the most basal or early branching.
 
 We have edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage diversifying in the P. marinus radiation, with a preference for low light."
 Line: XXX
  
-Line 369: The authors invoke “limitations in the annotation process” to explain the lack of evidence for 
+Line 369: The authors invoke ?limitations in the annotation process? to explain the lack of evidence for 
 MED4 ATP synthase. What does this mean? The MED4 genome surely contains ATP synthase genes. 
 
 We agree that the MED4 genome includes genes encoding ATP Synthase, but in the Ocean Protein Portal database no ATP Synthase peptides are annotated as coming from MED4. This likely reflects an annotation assignment issue because the ATP Synthase proteins are highly conserved, so assignments to strains or clades of Prochlorococcus may be ambiguous.
@@ -95,6 +95,8 @@ under these conditions? Also, is it worth noting that LLIV is the only variety t
 deepest low O2 site -- which would appear to be consistent with subsequent findings in this study? 
 
  XXX Doug address RUBISCO XXX
+ 
+We revised the text from lines 668 to XXX to incorporate these helpful observations.
 
 Figures 3 through 8: These figures are obviously the crux of the results in this paper, but as they are 
 currently presented it is relatively difficult to think clearly about them. I feel like they could be combined 
@@ -104,11 +106,13 @@ rate curves together in one figure and all the model plots together in another.
 
 Thank you for this suggestion. We have combined the growth rate figure with the GAM model for each strain to faciliate comparisons.
  
-I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, 
-it would be easier to compile these data into compound figures? 
+I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, it would be easier to compile these data into compound figures? 
 
-XXX MIreille rephrase   We have addressed the jusification of red light to the reveiwer 2. XXX
- 
+We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line 706:
+" As mentioned, growth trials under red light, although not representative of *Prochlorococcus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
+
+Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines 1023-1032 (xXXX).
+
 I also wonder if the data from the model fits could be used to predict which of the three ecotypes would 
 prevail (have the highest growth rate) across the parameter space depicted, resulting in another figure 
 showing something like "zones of exclusion" for each ecotype, which would be interesting in terms of 
@@ -117,14 +121,17 @@ ocean at various depths, or even comparing current with projected future conditi
 OMZs. This is merely a suggestion -- I don't expect the authors to necessarily do this, but I think if they 
 chose to it would make the manuscript of broader interest. 
 
-XXXX Predicting P. marinus is is beyond the scope of this study but we added a table....XXXXX
+Thank you for the comment.
+We added a table YY of potential strain growth in temperate seasonal and depth niches, in future temperate warmed oceans.
+The GAM model panels in figures XYZ show 'zones of exclusion' from light level, photoperiods, and oxygen regimes, as unshaded white areas where no growth is predicted.
+We indeed contemplating attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.
 
-XXX We added a table of potential growth in temperate zones in future temperate warmed oceans.XCXX 
+XXX 
  
-L482, 536, 548: some experiments were not performed “due to time constraints”. I'm not sure I 
+L482, 536, 548: some experiments were not performed ?due to time constraints?. I'm not sure I 
 understand this, although I am interpreting it along the lines of "the person doing the experiments 
-graduated"… In any case, it seems like these particularly treatments were unlikely to grow, so it's not 
-important that they were omitted -- but maybe there is a better way to phrase this that doesn’t sound 
+graduated"? In any case, it seems like these particularly treatments were unlikely to grow, so it's not 
+important that they were omitted -- but maybe there is a better way to phrase this that doesn?t sound 
 so fishy? 
 
 Thank you for this suggestion. 
@@ -132,7 +139,7 @@ We edited the text:
 Line: XXX 
 
  
-Figure S4 — It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
+Figure S4 ? It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
 and solid lines since this is online.
 
 We edited the figure to clarify the fit lines:
@@ -147,7 +154,7 @@ Fig 11: Despite the fact that it is explained in the legend, the figure should p
 values are log Km, or else put actual values on the log-scale Y axis. Also, the axis should indicate the 
 units for Km. Finally, why is the red band so narrow compared to the green and blue? 
 
-We apologize for the omissions. We have revised the axis labels to make the log scaling more noticeable. The narrowness of the red bar (spanning 230 to 280 µM) results from the log scaling of the y axis. 
+We apologize for the omissions. We have revised the axis labels to make the log scaling more noticeable. The narrowness of the red bar (spanning 230 to 280 ?M) results from the log scaling of the y axis. 
  
 L757: The authors should specify that this is a DNA repair ligase, not the DNA ligase that seals Okazaki 
 fragments during DNA replication (assuming this is the case). 
@@ -157,15 +164,15 @@ Line: XXX
  
 L 758: Photolyase should not have been relevant in the lab experiments because there is no UV light 
 emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
-genes is sufficient to explain why these strains can’t grow at the ocean’s surface. 
+genes is sufficient to explain why these strains can?t grow at the ocean?s surface. 
 
 Thank you. The revised manuscript now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
 Line: XXX
 XXXXX Mireille to address the wording pertaining to photolyase. We did not imply that photolyase was responsible for the results we found in lab but I will confirm this. XXXXXXXXXX
  
-Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway — what does 
+Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway ? what does 
 it have to do with DNA repair? There is evidence that 2-phosphoglycolate causes oxidative stress, but I 
-don’t think this enzyme is properly a DNA repair enzyme. 
+don?t think this enzyme is properly a DNA repair enzyme. 
 XXX Naaman to removeXXXXX 
 
  
@@ -210,7 +217,7 @@ differences (as well as to evolutionarily adapt).
 Thank you for highlighting this issue. 
 We added the following in the materials and methods section of the revised manuscript:
 "Each tube containing 70 mL of Pro99 media
-was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for  xx to yy days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth."
+was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22?C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for  xx to yy days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth."
 Line: XXX
 
 We added the following in the results and discussion section of the revised manuscript:
@@ -222,7 +229,7 @@ different strains were responding to similar types of variables, which made me h
 through and reread parts of the manuscript to find the information. Establishing a clearer overall 
 summary narrative early on, as opposed to presenting a laundry list of data, might help. For instance, 
 more clearly motivating the questions driving the analyses in each section would help; many paragraphs 
-simply start with “Figure X shows…”. But, the organization of the paper is of course up to the authors. 
+simply start with ?Figure X shows??. But, the organization of the paper is of course up to the authors. 
  
 XXXX In response to reviewer 1 and reviewer 2 we have combined the growth rate figure with the GAM model for each strain to faciliate comparisons. We have edited the abstract, results and discussion to better convey the motivations and findings of the study. In particular lines  XXX to YYY and XXXXX  
 
@@ -230,8 +237,8 @@ XXXX In response to reviewer 1 and reviewer 2 we have combined the growth rate f
 
 Minor points: 
  
-General note: the manuscript text at some points refers broadly to “growth”, and other places is more 
-specific about drawing conclusions about “growth rate”. I would suggest being clearer in some way that 
+General note: the manuscript text at some points refers broadly to ?growth?, and other places is more 
+specific about drawing conclusions about ?growth rate?. I would suggest being clearer in some way that 
 you are focused on growth rate and not growth yield. 
 
 We edited the text to use 'growth rate' throughout.
@@ -241,7 +248,7 @@ We edited the text to use 'growth rate' throughout.
 We have edited the text:
 Line: XXX
  
-56: “Affinity” for low light? Consider rephrasing 
+56: ?Affinity? for low light? Consider rephrasing 
 
 We have edited the text in the revised manuscript: " Clades LLII and LLIII, including cultured strain SS120, are
 grouped together as early branching phylogenetic lineage in
@@ -261,7 +268,7 @@ Thank you for noting that this needs further clarification.
 We have edited the paragraph for clarity in the revised manuscript adding: "While the accuracy of strain specific protein annotations are limited due to the high conservation of the target protein complexes, the two step approach of peptide-to-spectrum matching using deep paired metagenomics, does assign proteins at the level of clades."
 Lines: XXX 
  
-209: It seems overly general to blame the culturing difficulties solely on having reduced genomes – in 
+209: It seems overly general to blame the culturing difficulties solely on having reduced genomes ? in 
 this context, it is the lack of just one gene (catalase) that matters, and reduced genomes reflect an 
 outcome of the ultimate suite of selective pressures acting on these systems. 
 
@@ -280,7 +287,7 @@ Line: XXX
  
 407: growth -> grew? 
 
-We have edited the text: "The growth rate for Prochlorococcus marinus MED4, clade HLI, under 250 µM O2, increased with higher imposed PAR and longer photoperiods (Fig 3A), across all spectral wavebands."
+We have edited the text: "The growth rate for Prochlorococcus marinus MED4, clade HLI, under 250 ?M O2, increased with higher imposed PAR and longer photoperiods (Fig 3A), across all spectral wavebands."
 Line XXX:
  
 428: How many replicates were carried out for most experiments? Perhaps I just missed it, but please be 
