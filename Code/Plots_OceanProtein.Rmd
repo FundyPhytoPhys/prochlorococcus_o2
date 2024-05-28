@@ -149,13 +149,14 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(strain %in% StrainLabels) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
-  facet_grid(factor(strain, levels = c("MED4", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels)) +
-  labs(y = "Depth (m)",
+  facet_grid(factor(strain, levels = c("MED4", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi","atp",  "rubisco"), labels = PhotosynthLabels)) +
+  labs(title = expression('Ocean detection of' ~italic(Prochlorococcus)~ 'photosynthesis complexes'),
+       y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
   theme_bw()
@@ -167,14 +168,15 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(strain %in% StrainLabels) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
   facet_grid(factor(strain, levels = c("MED4", "SS120", "MIT9313")) ~ factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels)) +
    labs(y = "Depth (m)",
-        x = expression("O"[2] ~ "(µM)")) +
+        x = expression("O"[2] ~ "(µM)"),
+        title = expression('Ocean detection of' ~italic(Prochlorococcus)~ 'protein metabolism complexes')) +
   theme_bw()
 
  # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "ProchloroProteinMetabDepthO2.png")))
@@ -184,12 +186,12 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(strain %in% AltStrainLabels) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+   geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
-  facet_grid(factor(strain, levels = c("MED4", "NATL2A", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels)) +
+  facet_grid(factor(strain, levels = c("MED4", "NATL2A", "SS120", "MIT9313")) ~ factor(complex, levels = c("psii", "cytb6f", "psi",  "atp", "rubisco"), labels = PhotosynthLabels)) +
   labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
@@ -202,7 +204,7 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(strain %in% AltStrainLabels) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -226,12 +228,12 @@ ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
 poi |>
   filter(complex %in% ElectronTrans) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
-  facet_grid(rows = vars(clade), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels))) +
+  facet_grid(rows = vars(clade), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "atp", "rubisco"), labels = PhotosynthLabels))) +
   labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
@@ -243,7 +245,7 @@ poi |>
 poi |>
   filter(complex %in% ProteinMetab) |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth)) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -272,16 +274,16 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels)) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.5, width = 10, height = 10) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels)) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.5, width = 10, height = 10) +
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
   geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
   guides(alpha = 'none') +
-  facet_grid(rows = vars(CladeMergeFactor), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "rubisco", "atp"), labels = PhotosynthLabels))) +
+  facet_grid(rows = vars(CladeMergeFactor), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "atp", "rubisco"), labels = PhotosynthLabels))) +
   labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
@@ -294,9 +296,9 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels)) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.5, width = 10, height = 10) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_point(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels)) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.5, width = 10, height = 10) +
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
