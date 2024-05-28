@@ -46,7 +46,7 @@ library(data.table)
 library(ggspectra)
 library(photobiologyWavebands)
 library(photobiology)
-
+library(ggforce) #ellipse
 library("patchwork") # merging plots
 
 ```
@@ -90,7 +90,7 @@ d5=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-40), y2=c(40))
 
 data_textTropicFull <- data.frame(label = c('Season:~All~year~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~Full'))
 TropicFull<-ggplot() + 
-  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.7) +
+  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.9, size = 1) +
   geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
@@ -224,7 +224,7 @@ d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
 
 data_textTropicOMZ <- data.frame(label = c('Season:~All~year~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~OMZ'))
 TropicOMZ<-ggplot() + 
-  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.7) +
+  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.9, size = 1) +
   geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
@@ -356,17 +356,19 @@ https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 world_coordinatesRainbow <- map_data("world")
 world_coordinatesRainbow$nm <- c(400, 700)
 
-data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
+data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clade~HLI'))
+data_textTropicFullRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textTropicFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textTropicFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textTropicFullRainbowSurface, aes(x=500, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textTropicFullRainbowDeep, aes(x=515, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -381,17 +383,45 @@ TropicFullRainbow<-ggplot() +
 TropicFullRainbow
 
 
-data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
+data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clade~HLI'))
+data_textSpringFullRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SpringFullRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSpringFullRainbowSurface, aes(x=500, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSpringFullRainbowDeep, aes(x=515, y=90, label=label), size=4.5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SpringFullRainbow
+
+data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clade~HLI'))
+data_textSummerFullRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textSummerFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textSummerFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSummerFullRainbowSurface, aes(x=500, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSummerFullRainbowDeep, aes(x=515, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -406,42 +436,19 @@ SummerFullRainbow<-ggplot() +
 SummerFullRainbow
 
 
-data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
-d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
-SpringFullRainbow<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
-  scale_fill_identity() +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
-  coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textSpringFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textSpringFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.text = element_text(size=14))
-SpringFullRainbow
-
-
-data_textWinterFullRainbowSurface <- data.frame(label = c('Near~surface'))
-data_textWinterFullRainbowDeep <- data.frame(label = c('Deep:~Clade~LLIV'))
+data_textWinterFullRainbowSurface <- data.frame(label = c('Near~surface~(180~µE)'))
+data_textWinterFullRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 WinterFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textWinterFullRainbowSurface, aes(x=500, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textWinterFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textWinterFullRainbowSurface, aes(x=470, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textWinterFullRainbowDeep, aes(x=475, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -461,17 +468,19 @@ FullRainbow
 ```
 
 ```{r}
-data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLII/III~~LLIV'))
-data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
+data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clades~HLI~~LLII/III~~LLIV'))
+data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textTropicOMZRainbowSurface, aes(x=530, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textTropicOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textTropicOMZRainbowSurface, aes(x=535, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textTropicOMZRainbowDeep, aes(x=510, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -485,18 +494,45 @@ TropicOMZRainbow<-ggplot() +
         legend.text = element_text(size=14))
 TropicOMZRainbow
 
+data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clades~HLI~~LLII/III~~LLIV'))
+data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SpringOMZRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSpringOMZRainbowSurface, aes(x=535, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSpringOMZRainbowDeep, aes(x=510, y=90, label=label), size=4.5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SpringOMZRainbow
 
-data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLIV'))
-data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
+data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clades~HLI~~LLIV'))
+data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textSummerOMZRainbowSurface, aes(x=500, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textSummerOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSummerOMZRainbowSurface, aes(x=515, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSummerOMZRainbowDeep, aes(x=510, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -511,42 +547,19 @@ SummerOMZRainbow<-ggplot() +
 SummerOMZRainbow
 
 
-data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLII/III~~LLIV'))
-data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
-d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
-SpringOMZRainbow<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
-  scale_fill_identity() +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
-  coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textSpringOMZRainbowSurface, aes(x=530, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textSpringOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.text = element_text(size=14))
-SpringOMZRainbow
-
-
-data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~LLIV'))
-data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~LLII/III~~LLIV'))
+data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface~(180~µE):~Clade~LLIV'))
+data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep~(30~µE):~Clades~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 WinterOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(80, 220)) +
-  geom_text(data=data_textWinterOMZRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textWinterOMZRainbowDeep, aes(x=480, y=90, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textWinterOMZRainbowSurface, aes(x=500, y=215, label=label), size=4.5, parse=TRUE) +
+  geom_text(data=data_textWinterOMZRainbowDeep, aes(x=500, y=90, label=label), size=4.5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -567,8 +580,8 @@ OMZRainbow
 
 
 ```{r, warning = FALSE, fig.height = 16, fig.width = 22}
-MapCombo<-((TropicFull+TropicFullRainbow)+(TropicOMZ+TropicOMZRainbow))/((SpringFull+SpringFullRainbow)+(SpringOMZ+SpringOMZRainbow))/((SummerFull+SummerFullRainbow)+(SummerOMZ+SummerOMZRainbow))/((WinterFull+WinterFullRainbow)+(WinterOMZ+WinterOMZRainbow))
-MapCombo                          
+# MapCombo<-((TropicFull+TropicFullRainbow)+(TropicOMZ+TropicOMZRainbow))/((SpringFull+SpringFullRainbow)+(SpringOMZ+SpringOMZRainbow))/((SummerFull+SummerFullRainbow)+(SummerOMZ+SummerOMZRainbow))/((WinterFull+WinterFullRainbow)+(WinterOMZ+WinterOMZRainbow))
+# MapCombo                          
 ```
 
 ```{r, warning = FALSE, fig.height = 16, fig.width = 22}
@@ -589,7 +602,7 @@ ggarrange(MapCombo1, MapCombo2,
 ```
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("MapComboPro_2",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(FigPath, paste("MapComboPro",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
 ```
 
 
@@ -599,4 +612,31 @@ ggsave(file = file.path(FigPath, paste("MapComboPro_2",".png",sep = "")), height
 # saveRDS(object = CultureCatalog, file = file.path("..", "Data", "ImportedData", "ImportedMetaData", "CultureCatalog.Rds"), compress = "xz")
 ```
 
-# Variable names used in Data Dictionary
+https://ggforce.data-imaginist.com/reference/geom_ellipse.html
+elipse
+
+```{r}
+
+# ggplot() +
+#   geom_ellipse(aes(x0 = 550, y0 = 150, a = 150, b = 50, angle = pi / 4)) +
+#   coord_fixed()
+```
+
+
+```{r}
+# d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+# ggplot() +
+#   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+#   scale_fill_identity() +
+#   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+#   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+#   coord_cartesian(ylim = c(80, 220)) +
+#   theme_bw() +
+#   geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+#   coord_fixed()
+```
+
+
+
+
+
