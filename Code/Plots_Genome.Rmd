@@ -13,7 +13,7 @@ googlesheets4::gs4_deauth()
 ```{r, assign filepaths, include = FALSE}
 DataIn <- file.path("..","Data", "CleanData")
 Figures <- file.path("..", "Output", "Figures")
-PLOSFiguresRoundX <- file.path("..", "Output", "PLOSFiguresRound1")
+PLOSFiguresRoundX <- file.path("..", "Output", "PLOSRound2")
 # BLAST <- file.path("..", "BLAST")
 ```
 
@@ -235,7 +235,7 @@ ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in m
 
 ```{r, ProchlorococcusEnzymeKms ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
-# ggsave(filename = file.path(PLOSFiguresRoundX, "Fig11.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
+ggsave(filename = file.path(PLOSFiguresRoundX, "Fig11.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
 # ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms_julie.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
 ```
 
@@ -292,7 +292,7 @@ DNARepairTab <- DNARepair %>%
                                 EC == "3.1.22.4" ~ "crossover junction endodeoxyribonuclease",
                                 EC == "3.1.11.6" ~ "exodeoxyribonuclease VII",
                                 EC == "3.2.2.21" ~ "DNA-3-methyladenine glycosylase II",
-                                EC == "3.1.3.18" ~ "phosphoglycolate phosphatase",
+                                # EC == "3.1.3.18" ~ "phosphoglycolate phosphatase",
                                 EC == "3.2.2.23" ~ "DNA-formamidopyrimidine glycosylase",
                                 EC == "3.1.11.2" ~ "exodeoxyribonuclease III",
                                 EC == "4.2.99.18" ~ "DNA-(apurinic or apyrimidinic site) lyase",
@@ -309,6 +309,7 @@ DNARepairTab <- DNARepair %>%
   mutate(StrainLabel = factor(StrainLabel, levels = c("MED4", "NATL2A", "SS120", "MIT9313")))
   
 DNARepairFig <- DNARepairTab %>% 
+  filter(EC != "3.1.3.18") %>% #PGP is not truly a DNA repair enzyme. 
   ggplot() +
   geom_point(aes(x = fct_reorder(EnzymeName, desc(Gene_count)), y = StrainLabel, size = (Gene_count))) + #y = interaction(Genus, species, StrainLabel, sep = " ")
   # facet_grid(rows = vars(Genus), scales = "free", space = "free") +
