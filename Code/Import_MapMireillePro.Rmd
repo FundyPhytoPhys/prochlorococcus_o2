@@ -1,5 +1,5 @@
 ---
-title: "Import_MetaData"
+title: "Import_Map"
 author:
 - Sylwia Sliwinska-Wilczewska
 - Douglas A. Campbell
@@ -32,32 +32,31 @@ knitr::opts_chunk$set(fig.path='Figs/')
 # Load Libraries and set Project Variables
 
 ```{r load libraries} 
-library(lubridate)
-library(stringr)
+library(tidyverse)
+#library(lubridate)
+#library(stringr)
 library(broom)
-library(knitr)
+#library(knitr)
 library(OneR)
 library(zoo)
 library(ggpubr)
 library(data.table)
-library(googledrive)
-library(googlesheets4)
+# library(googledrive)
+# library(googlesheets4)
 library(ggspectra)
 library(photobiologyWavebands)
 library(photobiology)
-library(tidyverse)
+
 library("patchwork") # merging plots
 
 ```
 
 ```{r set project variables}
-Project <- "BalticO2"
-#DataOut <- file.path("..", "Data", "ProcessedData", "ProcessedSolisensePigmentsData")
-
+Project <- "prochlorococcus_O2"
 
 FigPath <- file.path("..", "Output", "Figures")
 #FigRdsPath <- file.path("..", "Output", "FiguresRds")
-TableRdsPath <- file.path("..", "Output", "TablesRDS")
+#TableRdsPath <- file.path("..", "Output", "TablesRDS")
 ```
 
 ----------------------------------------Create map ----------------------------------------------
@@ -197,7 +196,7 @@ Full<- (TropicFull/SpringFull/SummerFull/WinterFull)
 Full                         
 ```
 
-```{r create GrowthCurve plot, fig.height = 4, fig.width = 6, warning = FALSE}
+```{r create map omz plot, fig.height = 4, fig.width = 6, warning = FALSE}
 data_textA <- data.frame(label = c('A'))
 
 d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
@@ -313,83 +312,15 @@ TropicOMZ
 OMZ<- (TropicOMZ/SpringOMZ/SummerFull/WinterOMZ)
 OMZ                         
 ```
-```{r}
-# d=data.frame(x1=c(400, 700), x2=c(400, 700), y1=c(1), y2=c(2), t=c('a'), r=c(1))
-# ggplot() + 
-# scale_x_continuous(name="x") + 
-# scale_y_continuous(name="y") +
-# geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2, fill=t), color="black", alpha=0.5, show.legend = F) +
-# geom_text(data=d, aes(x=x1+(x2-x1)/2, y=y1+(y2-y1)/2, label=r), size=4) +
-#   
-#   stat_wl_strip(aes(x = x1), ymin = -Inf, ymax = Inf, alpha = 0.5) +
-#   scale_fill_identity() 
-```
 
-```{r}
-# d=data.frame(x=c(550,700,700, 400, 550, 400), y=c(100,100,200, 100, 100, 200), t=c('a', 'a', 'a', 'b', 'b', 'b'), r=c(1,2,3, 4, 5, 6))
-# ggplot() +
-#   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
-#   scale_fill_identity() +
-# geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-#   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
-#   coord_cartesian(ylim = c(100, 200)) 
-```
-
-```{r}
-# world_coordinatesRainbow <- map_data("world") 
-# world_coordinatesRainbow$nm <- c(400, 700)
-# 
-# ggplot() + 
-#   stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = 100, alpha = 0.5, world_coordinatesRainbow) +
-#   scale_fill_identity() +
-#   theme_bw() +
-#   theme(panel.grid.minor = element_blank(),
-#         panel.grid.major = element_blank(),
-#         axis.text = element_blank(),
-#         axis.title = element_blank(),
-#         axis.ticks = element_blank(),
-#         strip.background = element_rect(fill="white"),
-#         strip.text = element_text(size=14),
-#         legend.background = element_rect(fill="transparent"),
-#         legend.position = c(0.12,0.76),
-#         legend.text = element_text(size=14))
-
-```
-
-```{r}
-
-# 
-# Rainbow<-ggplot() + 
-#   geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
-#   geom_map(data = world_coordinatesRainbow, map = world_coordinatesRainbow, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-#   #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
-#   stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = 100, alpha = 0.5, world_coordinatesRainbow) +
-#   scale_fill_identity() +
-#   theme_bw() +
-#   theme(panel.grid.minor = element_blank(),
-#         panel.grid.major = element_blank(),
-#         axis.text = element_text(size=14),
-#         axis.title = element_text(size=18),
-#         strip.background = element_rect(fill="white"),
-#         strip.text = element_text(size=14),
-#         axis.title.y = element_text(margin=margin(r=10)),
-#         axis.title.x = element_text(margin=margin(t=10)),
-#         #axis.title.x = element_blank(),
-#         legend.background = element_rect(fill="transparent"),
-#         legend.position = c(0.12,0.76),
-#         legend.key.height= unit(0.005, 'cm'),
-#         legend.spacing.x = unit(0.01, 'cm'),
-#         legend.text = element_text(size=14))
-# Rainbow
-```
 
 https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 ```{r}
 world_coordinatesRainbow <- map_data("world")
 world_coordinatesRainbow$nm <- c(400, 700)
 
-data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
-data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
+data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -413,8 +344,8 @@ TropicFullRainbow<-ggplot() +
 TropicFullRainbow
 
 
-data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
-data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
+data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -438,8 +369,8 @@ SummerFullRainbow<-ggplot() +
 SummerFullRainbow
 
 
-data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
-data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
+data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SpringFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -464,7 +395,7 @@ SpringFullRainbow
 
 
 data_textWinterFullRainbowSurface <- data.frame(label = c('Near~surface'))
-data_textWinterFullRainbowDeep <- data.frame(label = c('Deep:~MIT9313'))
+data_textWinterFullRainbowDeep <- data.frame(label = c('Deep:~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 WinterFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -493,8 +424,8 @@ FullRainbow
 ```
 
 ```{r}
-data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~SS120~~MIT9313'))
-data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -518,8 +449,8 @@ TropicOMZRainbow<-ggplot() +
 TropicOMZRainbow
 
 
-data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~MIT9313'))
-data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLIV'))
+data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -543,8 +474,8 @@ SummerOMZRainbow<-ggplot() +
 SummerOMZRainbow
 
 
-data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~SS120~~MIT9313'))
-data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SpringOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -568,8 +499,8 @@ SpringOMZRainbow<-ggplot() +
 SpringOMZRainbow
 
 
-data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface:~MIT9313'))
-data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~SS120~~MIT9313'))
+data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~LLIV'))
+data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~LLII/III~~Clade~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 WinterOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -614,9 +545,6 @@ MapCombo2
 ```
 
 
-
-
-
 ```{r, warning = FALSE, fig.height = 16, fig.width = 22}
 library(ggpubr)
 ggarrange(MapCombo1, MapCombo2, 
@@ -628,15 +556,6 @@ ggsave(file = file.path(FigPath, paste("Fig_MapComboMireillePro_2",".png",sep = 
 ```
 
 
-
-
-
-
-
-
-
-
-
 # Save rds for further analysis
 
 ```{r save rds}
@@ -644,41 +563,3 @@ ggsave(file = file.path(FigPath, paste("Fig_MapComboMireillePro_2",".png",sep = 
 ```
 
 # Variable names used in Data Dictionary
-
-```{r}
-#colnames(CultureCatalog)
-```
-
-
-```{r}
-# # create data for world coordinates using map_data() function 
-# world_coordinates <- map_data("world") 
-#   
-# # read volcano_eruption data from volcano.csv 
-# volcano_eruption <- readr::read_csv("volcano.csv") 
-#   
-# # create world map using ggplot() function 
-# ggplot() + 
-# # geom_map() funct 
-# ion takes world coordinates as input 
-# # to plot world map color parameter determines the 
-# # color of borders in map fill parameter determines the 
-# # color of fill in map size determines the thickness of 
-# # border in map 
-#   geom_map( 
-#     data = world, map = world, 
-#     aes(long, lat, map_id = region), 
-#     color = "green", fill= "lightyellow"
-#   )+ 
-# # geom_point function is used to plot scatter plot on top  
-# # of world map 
-# geom_point( 
-#     data = volcano_eruption, 
-#     aes(longitude, latitude, color = primary_volcano_type, 
-#         size=population_within_10_km), 
-#     alpha = 1 
-#   ) + 
-#   
-# # legend.position as none removes the legend 
-# theme(legend.position="none") 
-```
