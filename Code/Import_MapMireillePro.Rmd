@@ -66,16 +66,16 @@ https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
 
 ```{r}
 world_coordinates <- map_data("world") 
-world_coordinates$facetsSummerFull <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~Full'
+world_coordinates$facetsTropicFull <- 'Season:~All~year~~Hours~of~daylight:~12~~Oxygen:~Full'
 world_coordinates$facetsSpringFull <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~Full'
+world_coordinates$facetsSummerFull <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~Full'
 world_coordinates$facetsWinterFull <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~Full'
-world_coordinates$facetsTropicFull <- 'Season:~All~year~~~~~~~~~~~~~~Oxygen:~Full'
 
-
-world_coordinates$facetsSummerOMZ <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~OMZ'
-world_coordinates$facetsSpringOMZ <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~OMZ'
-world_coordinates$facetsWinterOMZ <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~OMZ'
 world_coordinates$facetsTropicOMZ <- 'Season:~All~year~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsSpringOMZ <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsSummerOMZ <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsWinterOMZ <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~OMZ'
+
 ```
 
 
@@ -86,15 +86,19 @@ d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
 d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
 d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
 d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
+d5=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-40), y2=c(40))
 
-SummerFull<-ggplot() + 
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+data_textTropicFull <- data.frame(label = c('Season:~All~year~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~Full'))
+TropicFull<-ggplot() + 
+  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.7) +
+  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textTropicFull, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsSummerFull), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsTropicFull), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -103,24 +107,28 @@ SummerFull<-ggplot() +
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
         axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.key.height= unit(0.005, 'cm'),
         legend.spacing.x = unit(0.01, 'cm'),
         legend.text = element_text(size=14))
-SummerFull
+TropicFull
 
-
+data_textSpringFull <- data.frame(label = c('Season:~Spring/Fall~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~Full'))
 SpringFull<-ggplot() + 
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textSpringFull, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsSpringFull), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsSpringFull), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -129,8 +137,10 @@ SpringFull<-ggplot() +
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
         axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.key.height= unit(0.005, 'cm'),
@@ -138,15 +148,47 @@ SpringFull<-ggplot() +
         legend.text = element_text(size=14))
 SpringFull
 
+data_textSummerFull <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~16~h~~~~~~~~Oxygen:~Full'))
+SummerFull<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  geom_text(data=data_textSummerFull, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
+  labs(y = "Latitude", x = "Longitude") +
+  #ggh4x::facet_nested(cols = vars(facetsSummerFull), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SummerFull
 
+data_textWinterFull <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~Full'))
 WinterFull<-ggplot() + 
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textWinterFull, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsWinterFull), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsWinterFull), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -164,30 +206,6 @@ WinterFull<-ggplot() +
         legend.text = element_text(size=14))
 WinterFull
 
-
-TropicFull<-ggplot() + 
-  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
-  labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsTropicFull), labeller = label_parsed) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-TropicFull
 ```
 
 
@@ -204,14 +222,17 @@ d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
 d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
 d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
 
-SummerOMZ<-ggplot() + 
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+data_textTropicOMZ <- data.frame(label = c('Season:~All~year~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~OMZ'))
+TropicOMZ<-ggplot() + 
+  geom_rect(data=d5, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "transparent", color="darkblue", linetype = "dashed", alpha=0.7) +
+  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textTropicOMZ, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsSummerOMZ), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsTropicOMZ), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -220,24 +241,29 @@ SummerOMZ<-ggplot() +
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
         axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.key.height= unit(0.005, 'cm'),
         legend.spacing.x = unit(0.01, 'cm'),
         legend.text = element_text(size=14))
-SummerOMZ
+TropicOMZ
 
 
+data_textSpringOMZ <- data.frame(label = c('Season:~Spring/Fall~~~~~~~~Daylight:~12~h~~~~~~~~Oxygen:~OMZ'))
 SpringOMZ<-ggplot() + 
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textSpringOMZ, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsSpringOMZ), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsSpringOMZ), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -246,8 +272,10 @@ SpringOMZ<-ggplot() +
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=14),
         axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.key.height= unit(0.005, 'cm'),
@@ -256,14 +284,47 @@ SpringOMZ<-ggplot() +
 SpringOMZ
 
 
+data_textSummerOMZ <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~16~h~~~~~~~~Oxygen:~OMZ'))
+SummerOMZ<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  geom_text(data=data_textSummerOMZ, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
+  labs(y = "Latitude", x = "Longitude") +
+  #ggh4x::facet_nested(cols = vars(facetsSummerOMZ), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SummerOMZ
+
+data_textWinterOMZ <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~OMZ'))
 WinterOMZ<-ggplot() + 
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  geom_text(data=data_textWinterOMZ, aes(x=0, y=110, label=label), size=4.5, parse=TRUE) +
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsWinterOMZ), labeller = label_parsed) +
+  #ggh4x::facet_nested(cols = vars(facetsWinterOMZ), labeller = label_parsed) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -281,35 +342,11 @@ WinterOMZ<-ggplot() +
         legend.text = element_text(size=14))
 WinterOMZ
 
-
-TropicOMZ<-ggplot() + 
-  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
-  labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(cols = vars(facetsTropicOMZ), labeller = label_parsed) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
-        axis.title.x = element_text(margin=margin(t=10)),
-        #axis.title.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-TropicOMZ
 ```
 
 
 ```{r, warning = FALSE, fig.height = 12, fig.width = 6}
-OMZ<- (TropicOMZ/SpringOMZ/SummerFull/WinterOMZ)
+OMZ<- (TropicOMZ/SpringOMZ/SummerOMZ/WinterOMZ)
 OMZ                         
 ```
 
@@ -320,7 +357,7 @@ world_coordinatesRainbow <- map_data("world")
 world_coordinatesRainbow$nm <- c(400, 700)
 
 data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -345,7 +382,7 @@ TropicFullRainbow
 
 
 data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -370,7 +407,7 @@ SummerFullRainbow
 
 
 data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI'))
-data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SpringFullRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -424,8 +461,8 @@ FullRainbow
 ```
 
 ```{r}
-data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
-data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLII/III~~LLIV'))
+data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 TropicOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -449,8 +486,8 @@ TropicOMZRainbow<-ggplot() +
 TropicOMZRainbow
 
 
-data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLIV'))
-data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLIV'))
+data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SummerOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -474,8 +511,8 @@ SummerOMZRainbow<-ggplot() +
 SummerOMZRainbow
 
 
-data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
-data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~HLI~~Clade~LLII/III~~Clade~LLIV'))
+data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clades~HLI~~LLII/III~~LLIV'))
+data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~HLI~~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 SpringOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -500,7 +537,7 @@ SpringOMZRainbow
 
 
 data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface:~Clade~LLIV'))
-data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~Clade~LLII/III~~Clade~LLIV'))
+data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~Clades~LLII/III~~LLIV'))
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 WinterOMZRainbow<-ggplot() +
   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
@@ -552,7 +589,7 @@ ggarrange(MapCombo1, MapCombo2,
 ```
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("MapComboPro",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(FigPath, paste("MapComboPro_2",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
 ```
 
 
