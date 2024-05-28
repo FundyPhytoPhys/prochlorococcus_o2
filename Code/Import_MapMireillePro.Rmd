@@ -552,7 +552,7 @@ ggarrange(MapCombo1, MapCombo2,
 ```
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("Fig_MapComboMireillePro_2",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(FigPath, paste("MapComboPro",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
 ```
 
 
