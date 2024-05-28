@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-05-27"
+date: "2024-05-28"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -1118,25 +1118,10 @@ extend to the near surface (Table \@ref(tab:NichesTable).
 \newpage
 
 
-
-
-
-Table: (\#tab:NichesTable)Potential temperate niches for *Prochlorococcus marinus* ecotypes defined by season, depth, and oxygen; Full denotes 250 µM of dissolved oxygen and OMZ denotes 25 µM of dissolved oxygen. Plus symbols (+) indicate a potential niche, minus symbols (-) not a potential niche.
-
-|Season      |Depth        |Oxygen | MED4 | SS120 | MIT9313 |
-|:-----------|:------------|:------|:----:|:-----:|:-------:|
-|Summer      |Near surface |Full   |  +   |   -   |    -    |
-|Summer      |Near surface |OMZ    |  +   |   -   |    +    |
-|Spring/Fall |Near surface |Full   |  +   |   -   |    -    |
-|Spring/Fall |Near surface |OMZ    |  +   |   +   |    +    |
-|Winter      |Near surface |Full   |  -   |   -   |    -    |
-|Winter      |Near surface |OMZ    |  -   |   -   |    +    |
-|Summer      |Deep         |Full   |  +   |   +   |    +    |
-|Summer      |Deep         |OMZ    |  +   |   +   |    +    |
-|Spring/Fall |Deep         |Full   |  +   |   +   |    +    |
-|Spring/Fall |Deep         |OMZ    |  +   |   +   |    +    |
-|Winter      |Deep         |Full   |  -   |   -   |    +    |
-|Winter      |Deep         |OMZ    |  -   |   +   |    +    |
+<div class="figure">
+<img src="../Output/Figures/MapComboPro.png" alt=" Figure caption for Potential Temperate Future Niche map goes here." width="6600" />
+<p class="caption">(\#fig:NichesMap) Figure caption for Potential Temperate Future Niche map goes here.</p>
+</div>
 
 \newpage
 
