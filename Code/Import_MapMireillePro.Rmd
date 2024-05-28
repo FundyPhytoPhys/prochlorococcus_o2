@@ -1,0 +1,684 @@
+---
+title: "Import_MetaData"
+author:
+- Sylwia Sliwinska-Wilczewska
+- Douglas A. Campbell
+date: "`r format(Sys.Date())`"
+output:
+bookdown::html_document2:
+    code_folding: show
+    keep_md: yes
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 6
+    fig_caption: yes
+bibliography: BalticPhotoperiod.bib
+csl: plos-one.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Set Chunk Options
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
+# Introduction
+
+
+# Load Libraries and set Project Variables
+
+```{r load libraries} 
+library(lubridate)
+library(stringr)
+library(broom)
+library(knitr)
+library(OneR)
+library(zoo)
+library(ggpubr)
+library(data.table)
+library(googledrive)
+library(googlesheets4)
+library(ggspectra)
+library(photobiologyWavebands)
+library(photobiology)
+library(tidyverse)
+library("patchwork") # merging plots
+
+```
+
+```{r set project variables}
+Project <- "BalticO2"
+#DataOut <- file.path("..", "Data", "ProcessedData", "ProcessedSolisensePigmentsData")
+
+
+FigPath <- file.path("..", "Output", "Figures")
+#FigRdsPath <- file.path("..", "Output", "FiguresRds")
+TableRdsPath <- file.path("..", "Output", "TablesRDS")
+```
+
+----------------------------------------Create map ----------------------------------------------
+
+# Create map
+https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
+
+```{r}
+world_coordinates <- map_data("world") 
+world_coordinates$facetsSummerFull <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~Full'
+world_coordinates$facetsSpringFull <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~Full'
+world_coordinates$facetsWinterFull <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~Full'
+world_coordinates$facetsTropicFull <- 'Season:~All~year~~~~~~~~~~~~~~Oxygen:~Full'
+
+
+world_coordinates$facetsSummerOMZ <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsSpringOMZ <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsWinterOMZ <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~OMZ'
+world_coordinates$facetsTropicOMZ <- 'Season:~All~year~~~~~~~~~~~~~~Oxygen:~OMZ'
+```
+
+
+```{r create GrowthCurve plot, fig.height = 4, fig.width = 6, warning = FALSE}
+data_textA <- data.frame(label = c('A'))
+
+d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
+d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
+d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
+d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
+
+SummerFull<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsSummerFull), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SummerFull
+
+
+SpringFull<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsSpringFull), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SpringFull
+
+
+WinterFull<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsWinterFull), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+WinterFull
+
+
+TropicFull<-ggplot() + 
+  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsTropicFull), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+TropicFull
+```
+
+
+```{r, warning = FALSE, fig.height = 12, fig.width = 6}
+Full<- (TropicFull/SpringFull/SummerFull/WinterFull)
+Full                         
+```
+
+```{r create GrowthCurve plot, fig.height = 4, fig.width = 6, warning = FALSE}
+data_textA <- data.frame(label = c('A'))
+
+d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
+d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
+d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
+d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
+
+SummerOMZ<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsSummerOMZ), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SummerOMZ
+
+
+SpringOMZ<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsSpringOMZ), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+SpringOMZ
+
+
+WinterOMZ<-ggplot() + 
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsWinterOMZ), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+WinterOMZ
+
+
+TropicOMZ<-ggplot() + 
+  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+  #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+  labs(y = "Latitude", x = "Longitude") +
+  ggh4x::facet_nested(cols = vars(facetsTropicOMZ), labeller = label_parsed) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        axis.title.y = element_text(margin=margin(r=10)),
+        axis.title.x = element_text(margin=margin(t=10)),
+        #axis.title.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+TropicOMZ
+```
+
+
+```{r, warning = FALSE, fig.height = 12, fig.width = 6}
+OMZ<- (TropicOMZ/SpringOMZ/SummerFull/WinterOMZ)
+OMZ                         
+```
+```{r}
+# d=data.frame(x1=c(400, 700), x2=c(400, 700), y1=c(1), y2=c(2), t=c('a'), r=c(1))
+# ggplot() + 
+# scale_x_continuous(name="x") + 
+# scale_y_continuous(name="y") +
+# geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2, fill=t), color="black", alpha=0.5, show.legend = F) +
+# geom_text(data=d, aes(x=x1+(x2-x1)/2, y=y1+(y2-y1)/2, label=r), size=4) +
+#   
+#   stat_wl_strip(aes(x = x1), ymin = -Inf, ymax = Inf, alpha = 0.5) +
+#   scale_fill_identity() 
+```
+
+```{r}
+# d=data.frame(x=c(550,700,700, 400, 550, 400), y=c(100,100,200, 100, 100, 200), t=c('a', 'a', 'a', 'b', 'b', 'b'), r=c(1,2,3, 4, 5, 6))
+# ggplot() +
+#   stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+#   scale_fill_identity() +
+# geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+#   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+#   coord_cartesian(ylim = c(100, 200)) 
+```
+
+```{r}
+# world_coordinatesRainbow <- map_data("world") 
+# world_coordinatesRainbow$nm <- c(400, 700)
+# 
+# ggplot() + 
+#   stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = 100, alpha = 0.5, world_coordinatesRainbow) +
+#   scale_fill_identity() +
+#   theme_bw() +
+#   theme(panel.grid.minor = element_blank(),
+#         panel.grid.major = element_blank(),
+#         axis.text = element_blank(),
+#         axis.title = element_blank(),
+#         axis.ticks = element_blank(),
+#         strip.background = element_rect(fill="white"),
+#         strip.text = element_text(size=14),
+#         legend.background = element_rect(fill="transparent"),
+#         legend.position = c(0.12,0.76),
+#         legend.text = element_text(size=14))
+
+```
+
+```{r}
+
+# 
+# Rainbow<-ggplot() + 
+#   geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "green", color="green", alpha=0.4) +
+#   geom_map(data = world_coordinatesRainbow, map = world_coordinatesRainbow, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+#   #geom_text(data=data_textA, aes(x=-190, y=80, label=label), size=8, parse=TRUE) +
+#   stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = 100, alpha = 0.5, world_coordinatesRainbow) +
+#   scale_fill_identity() +
+#   theme_bw() +
+#   theme(panel.grid.minor = element_blank(),
+#         panel.grid.major = element_blank(),
+#         axis.text = element_text(size=14),
+#         axis.title = element_text(size=18),
+#         strip.background = element_rect(fill="white"),
+#         strip.text = element_text(size=14),
+#         axis.title.y = element_text(margin=margin(r=10)),
+#         axis.title.x = element_text(margin=margin(t=10)),
+#         #axis.title.x = element_blank(),
+#         legend.background = element_rect(fill="transparent"),
+#         legend.position = c(0.12,0.76),
+#         legend.key.height= unit(0.005, 'cm'),
+#         legend.spacing.x = unit(0.01, 'cm'),
+#         legend.text = element_text(size=14))
+# Rainbow
+```
+
+https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
+```{r}
+world_coordinatesRainbow <- map_data("world")
+world_coordinatesRainbow$nm <- c(400, 700)
+
+data_textTropicFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
+data_textTropicFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+TropicFullRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textTropicFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textTropicFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+TropicFullRainbow
+
+
+data_textSummerFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
+data_textSummerFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SummerFullRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSummerFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSummerFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SummerFullRainbow
+
+
+data_textSpringFullRainbowSurface <- data.frame(label = c('Near~surface:~MED4'))
+data_textSpringFullRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SpringFullRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSpringFullRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSpringFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SpringFullRainbow
+
+
+data_textWinterFullRainbowSurface <- data.frame(label = c('Near~surface'))
+data_textWinterFullRainbowDeep <- data.frame(label = c('Deep:~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+WinterFullRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textWinterFullRainbowSurface, aes(x=500, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textWinterFullRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+WinterFullRainbow
+```
+```{r, warning = FALSE, fig.height = 12, fig.width = 6}
+FullRainbow<- (TropicFullRainbow/SpringFullRainbow/SummerFullRainbow/WinterFullRainbow)
+FullRainbow                         
+```
+
+```{r}
+data_textTropicOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~SS120~~MIT9313'))
+data_textTropicOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+TropicOMZRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textTropicOMZRainbowSurface, aes(x=530, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textTropicOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+TropicOMZRainbow
+
+
+data_textSummerOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~MIT9313'))
+data_textSummerOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SummerOMZRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSummerOMZRainbowSurface, aes(x=500, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSummerOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SummerOMZRainbow
+
+
+data_textSpringOMZRainbowSurface <- data.frame(label = c('Near~surface:~MED4~~SS120~~MIT9313'))
+data_textSpringOMZRainbowDeep <- data.frame(label = c('Deep:~MED4~~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+SpringOMZRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textSpringOMZRainbowSurface, aes(x=530, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textSpringOMZRainbowDeep, aes(x=500, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+SpringOMZRainbow
+
+
+data_textWinterOMZRainbowSurface <- data.frame(label = c('Near~surface:~MIT9313'))
+data_textWinterOMZRainbowDeep <- data.frame(label = c('Deep:~SS120~~MIT9313'))
+d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
+WinterOMZRainbow<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  scale_fill_identity() +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
+  coord_cartesian(ylim = c(80, 220)) +
+  geom_text(data=data_textWinterOMZRainbowSurface, aes(x=480, y=210, label=label), size=5, parse=TRUE) +
+  geom_text(data=data_textWinterOMZRainbowDeep, aes(x=480, y=90, label=label), size=5, parse=TRUE) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=14),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.text = element_text(size=14))
+WinterOMZRainbow
+```
+```{r, warning = FALSE, fig.height = 12, fig.width = 6}
+OMZRainbow<- (TropicOMZRainbow/SpringOMZRainbow/SummerOMZRainbow/WinterOMZRainbow)
+OMZRainbow                         
+```
+
+
+```{r, warning = FALSE, fig.height = 16, fig.width = 22}
+MapCombo<-((TropicFull+TropicFullRainbow)+(TropicOMZ+TropicOMZRainbow))/((SpringFull+SpringFullRainbow)+(SpringOMZ+SpringOMZRainbow))/((SummerFull+SummerFullRainbow)+(SummerOMZ+SummerOMZRainbow))/((WinterFull+WinterFullRainbow)+(WinterOMZ+WinterOMZRainbow))
+MapCombo                          
+```
+
+```{r, warning = FALSE, fig.height = 16, fig.width = 22}
+MapCombo1<-((TropicFull+TropicFullRainbow))/((SpringFull+SpringFullRainbow))/((SummerFull+SummerFullRainbow))/((WinterFull+WinterFullRainbow))
+MapCombo1                         
+```
+
+```{r, warning = FALSE, fig.height = 16, fig.width = 22}
+MapCombo2<-((TropicOMZ+TropicOMZRainbow))/((SpringOMZ+SpringOMZRainbow))/((SummerOMZ+SummerOMZRainbow))/((WinterOMZ+WinterOMZRainbow))
+MapCombo2                          
+```
+
+
+
+
+
+```{r, warning = FALSE, fig.height = 16, fig.width = 22}
+library(ggpubr)
+ggarrange(MapCombo1, MapCombo2, 
+          ncol = 2, nrow = 1)
+```
+
+```{r save plot}
+ggsave(file = file.path(FigPath, paste("Fig_MapComboMireillePro_2",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+# Save rds for further analysis
+
+```{r save rds}
+# saveRDS(object = CultureCatalog, file = file.path("..", "Data", "ImportedData", "ImportedMetaData", "CultureCatalog.Rds"), compress = "xz")
+```
+
+# Variable names used in Data Dictionary
+
+```{r}
+#colnames(CultureCatalog)
+```
+
+
+```{r}
+# # create data for world coordinates using map_data() function 
+# world_coordinates <- map_data("world") 
+#   
+# # read volcano_eruption data from volcano.csv 
+# volcano_eruption <- readr::read_csv("volcano.csv") 
+#   
+# # create world map using ggplot() function 
+# ggplot() + 
+# # geom_map() funct 
+# ion takes world coordinates as input 
+# # to plot world map color parameter determines the 
+# # color of borders in map fill parameter determines the 
+# # color of fill in map size determines the thickness of 
+# # border in map 
+#   geom_map( 
+#     data = world, map = world, 
+#     aes(long, lat, map_id = region), 
+#     color = "green", fill= "lightyellow"
+#   )+ 
+# # geom_point function is used to plot scatter plot on top  
+# # of world map 
+# geom_point( 
+#     data = volcano_eruption, 
+#     aes(longitude, latitude, color = primary_volcano_type, 
+#         size=population_within_10_km), 
+#     alpha = 1 
+#   ) + 
+#   
+# # legend.position as none removes the legend 
+# theme(legend.position="none") 
+```
