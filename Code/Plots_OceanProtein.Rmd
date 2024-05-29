@@ -54,7 +54,7 @@ ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
 StrainLabels <- c("MED4", "SS120", "MIT9313")
 AltStrainLabels <- c("MED4", "SS120", "MIT9313", "NATL2A")
 
-ElectronTrans <- c("psii", "cytb6f", "psi", "rubisco", "atp")
+ElectronTrans <- c("psii", "cytb6f", "psi", "atp", "rubisco")
 
 ProteinMetab <- c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome")
 
@@ -186,7 +186,7 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(strain %in% AltStrainLabels) |>
   ggplot() +
-   geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
+   geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 20, height = 20) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -204,7 +204,7 @@ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(strain %in% AltStrainLabels) |>
   ggplot() +
-  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
+  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 20, height = 20) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
   geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
@@ -219,47 +219,6 @@ poi |>
 
 ```
 
-```{r clade_plots}
-CladeLabels <- c("HLI", "HLII", "LLI", "LLII",  "LLIII", "LLIV")
-
-PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
-ProteinMetabLabels <- c("FtsH1", "FtsH2", "FtsH3", "FtsH4", "Ribosome")
-
-poi |>
-  filter(complex %in% ElectronTrans) |>
-  ggplot() +
-  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
-  scale_x_continuous(limits = c(0, 260)) +
-  scale_y_reverse(limits = c(260, 0)) +
-  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
-  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
-  facet_grid(rows = vars(clade), cols = vars(factor(complex, levels = c("psii", "cytb6f", "psi", "atp", "rubisco"), labels = PhotosynthLabels))) +
-  labs(y = "Depth (m)",
-       x = expression("O"[2] ~ "(µM)")) +
-    # ) +
-  theme_bw()
-
- # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.tiff")))
-
-poi |>
-  filter(complex %in% ProteinMetab) |>
-  ggplot() +
-  geom_jitter(aes(x = O2, y= depth), size = 0.5, width = 10, height = 10) +
-  scale_x_continuous(limits = c(0, 260)) +
-  scale_y_reverse(limits = c(260, 0)) +
-  geom_vline(xintercept = O2_uM,   linewidth = 2, alpha = 0.1) +
-  geom_hline(yintercept = DepthPAR, linewidth = 2, alpha = 0.1) +
-  facet_grid(rows = vars(clade), cols = vars(factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels))) +
-   labs(y = "Depth (m)",
-        x = expression("O"[2] ~ "(µM)")) +
-  theme_bw()
-
-  # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-  # ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.tiff")))
-
-```
-
 
 ```{r clademerge_plots}
 # PhotosynthLabels <- c("PSII", "Cytb6f", "PSI", "ATP Synthase", "RUBISCO")
@@ -269,14 +228,15 @@ poi |>
 #   mutate(StrainAlpha = if_else(strain %in% AltStrainLabels, 1, 0.1))
 `%notin%` <- negate(`%in%`)
 
-
+#order of geom_ and annotate calls matters; 'annotate' overlays a semi transparent box over the first layer of geom_
 poi |>
   filter(complex %in% ElectronTrans) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.5, width = 10, height = 10) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 20, height = 20) + #grey points not in AltStrainLabels
+ # geom_count(aes(x = O2, y= depth)) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.5, width = 10, height = 10) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 20, height = 20) + #black points in AltStrainLabels
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
@@ -287,18 +247,19 @@ poi |>
   labs(y = "Depth (m)",
        x = expression("O"[2] ~ "(µM)")) +
     # ) +
-  theme_bw()
+  theme_bw() +
+  theme(strip.text = element_text(size = 8))
 
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig2.tiff")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.5, width = 10, height = 10) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 20, height = 20) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.5, width = 10, height = 10) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 20, height = 20) +
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
@@ -308,10 +269,11 @@ poi |>
   facet_grid(rows = vars(CladeMerge), cols = vars(factor(complex, levels = c("ftsh1", "ftsh2", "ftsh3", "ftsh4", "ribosome"), labels = ProteinMetabLabels))) +
    labs(y = "Depth (m)",
         x = expression("O"[2] ~ "(µM)")) +
-  theme_bw()
+  theme_bw() +
+  theme(strip.text = element_text(size = 8))
 
    ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSFiguresRound1", "Fig10.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")))
 
 ```
 
