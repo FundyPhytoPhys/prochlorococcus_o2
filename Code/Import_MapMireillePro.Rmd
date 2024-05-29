@@ -188,7 +188,7 @@ SummerFull<-ggplot() +
         legend.text = element_text(size=14))
 SummerFull
 
-data_textWinterFull <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~Full'))
+data_textWinterFull <- data.frame(label = c('Season:~Winter~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~Full'))
 WinterFull<-ggplot() + 
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
@@ -333,7 +333,7 @@ SummerOMZ<-ggplot() +
         legend.text = element_text(size=14))
 SummerOMZ
 
-data_textWinterOMZ <- data.frame(label = c('Season:~Summer~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~OMZ'))
+data_textWinterOMZ <- data.frame(label = c('Season:~Winter~~~~~~~~Daylight:~8~h~~~~~~~~Oxygen:~OMZ'))
 WinterOMZ<-ggplot() + 
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
