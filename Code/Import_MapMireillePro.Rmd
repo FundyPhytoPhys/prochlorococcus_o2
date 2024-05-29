@@ -638,9 +638,9 @@ elipse
 
 ```{r}
 
-# ggplot() +
-#   geom_ellipse(aes(x0 = 550, y0 = 150, a = 150, b = 50, angle = pi / 4)) +
-#   coord_fixed()
+ggplot() +
+  geom_ellipse(aes(x0 = 550, y0 = 150, a = 150, b = 50, angle = pi / 4)) +
+  coord_fixed()
 ```
 
 
