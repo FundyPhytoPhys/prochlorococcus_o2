@@ -76,6 +76,9 @@ world_coordinates$facetsSpringOMZ <- 'Season:~Spring/Fall~~~~~~~~~~~~~~Oxygen:~O
 world_coordinates$facetsSummerOMZ <- 'Season:~Summer~~~~~~~~~~~~~~Oxygen:~OMZ'
 world_coordinates$facetsWinterOMZ <- 'Season:~Winter~~~~~~~~~~~~~~Oxygen:~OMZ'
 
+
+world_coordinates$facetsPresent <- 'Present'
+world_coordinates$facetsFuture <- 'Future~temperate'
 ```
 
 
@@ -99,15 +102,17 @@ TropicFull<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsTropicFull), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsPresent), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -129,15 +134,17 @@ SpringFull<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsSpringFull), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -159,15 +166,17 @@ SummerFull<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsSummerFull), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -189,15 +198,17 @@ WinterFull<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsWinterFull), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         axis.title.x = element_text(margin=margin(t=10)),
         #axis.title.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
@@ -234,15 +245,17 @@ TropicOMZ<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsTropicOMZ), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsPresent), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -265,15 +278,17 @@ SpringOMZ<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsSpringOMZ), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -296,15 +311,17 @@ SummerOMZ<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsSummerOMZ), labeller = label_parsed) +
+  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -326,15 +343,17 @@ WinterOMZ<-ggplot() +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(cols = vars(facetsWinterOMZ), labeller = label_parsed) +
+  ggh4x::facet_nested(rows =  vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
         axis.text = element_text(size=14),
-        axis.title = element_text(size=18),
+        axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        axis.title.y = element_text(margin=margin(r=10)),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = -15),
         axis.title.x = element_text(margin=margin(t=10)),
         #axis.title.x = element_blank(),
         legend.background = element_rect(fill="transparent"),
@@ -597,14 +616,14 @@ MapCombo2
 ```
 
 
-```{r, warning = FALSE, fig.height = 16, fig.width = 22}
+```{r, warning = FALSE, fig.height = 16, fig.width = 24}
 library(ggpubr)
 ggarrange(MapCombo1, MapCombo2, 
           ncol = 2, nrow = 1)
 ```
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("MapComboPro_2",".png",sep = "")), height=16, width= 22,  dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(FigPath, paste("MapComboPro",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
 ```
 
 
