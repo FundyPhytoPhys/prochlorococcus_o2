@@ -113,7 +113,7 @@ Thank you for this suggestion. We have combined the growth rate figure with the 
 I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, it would be easier to compile these data into compound figures? 
 
 We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line 706:
-" As mentioned, growth trials under red light, although not representative of *Prochlorococcus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
+"As mentioned, growth trials under red light, although not representative of *Prochlorococcus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
 
 Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines 1023-1032 (xXXX).
 
@@ -126,9 +126,10 @@ OMZs. This is merely a suggestion -- I don't expect the authors to necessarily d
 chose to it would make the manuscript of broader interest. 
 
 Thank you for the comment.
-We added a table YY of potential strain growth in temperate seasonal and depth niches, in future temperate warmed oceans.
+
+XXXX  We added a new figure of potential strain growth in temperate seasonal and depth niches, in future temperate warmed oceans.
 The GAM model panels in figures XYZ show 'zones of exclusion' from light level, photoperiods, and oxygen regimes, as unshaded white areas where no growth is predicted.
-We indeed contemplated attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.
+We indeed contemplated attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.XXXX
 
 XXX 
  
@@ -170,15 +171,21 @@ L 758: Photolyase should not have been relevant in the lab experiments because t
 emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
 genes is sufficient to explain why these strains can?t grow at the ocean?s surface. 
 
-Thank you. The revised manuscript now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
+
+We agree. The added the following in the revised manuscript: "In this study we show that *P. marinus* SS120 and MIT9313 can tolerate light levels representative of the near ocean surface when the [O~2~] is 25 µM, however our growth rate experiments did not include wavebands in the UV range, we therefore do not know how the absence of deoxyribodipyrimidine photolyase under low [O~2] will impact the growth rates of *P. marinus* SS120 and MIT9313 when exposed to UV light."
+Lines: XXX
+To address the second part of your comment, the revised sentence now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
 Line: XXX
-XXXXX Mireille to address the wording pertaining to photolyase. We did not imply that photolyase was responsible for the results we found in lab but I will confirm this. XXXXXXXXXX
+
  
 Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway ? what does 
 it have to do with DNA repair? There is evidence that 2-phosphoglycolate causes oxidative stress, but I 
 don?t think this enzyme is properly a DNA repair enzyme. 
-XXX Naaman to removeXXXXX 
 
+Thank you for brining this to our attention, we have removed phosphoglycolate phosphatase from the figure as it is indeed not directly involved in DNA repair but in clearing DNA damage repair products.
+Upon revisiting the interpretation of this figure, we have edited the text: "As expected, *P. marinus* NATL2A possesses the largest,
+most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313."
+Lines: XXX
  
 Summary and Conclusion: I feel like the authors really need to expand their discussion of how these 
 findings apply to the future ocean. Where are OMZs likely to expand? Are there specific examples of 
@@ -235,7 +242,9 @@ summary narrative early on, as opposed to presenting a laundry list of data, mig
 more clearly motivating the questions driving the analyses in each section would help; many paragraphs 
 simply start with ?Figure X shows??. But, the organization of the paper is of course up to the authors. 
  
-XXXX In response to reviewer 1 and reviewer 2 we have combined the growth rate figure with the GAM model for each strain to faciliate comparisons. We have edited the abstract, results and discussion to better convey the motivations and findings of the study. In particular lines  XXX to YYY and XXXXX  
+In response to reviewer 1 and reviewer 2 we have combined the growth rate figure with the GAM model for each strain to faciliate comparisons. 
+We have edited the abstract, results and discussion to better convey the motivations and findings of the study. 
+In particular lines  XXX to YYY and XXXXX  
 
 
 
