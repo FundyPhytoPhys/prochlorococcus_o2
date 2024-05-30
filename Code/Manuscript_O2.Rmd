@@ -1215,7 +1215,9 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
+XXXXX To gain insights into the growth rate responses across strains, particularly the responses to different oxygen levels [O~2~], we used a subset of the dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We extracted the genes encoding enzymes involved in DNA repair found in at least one *P.marinus* strain in this study *P.marinus* strain (Fig \@ref(fig:DNARepairFig). XXXX
+
+As expected, *P. marinus* NATL2A possesses the largest,
 most complete suite of genes encoding DNA repair enzymes, followed by
 *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the
 smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4
@@ -1227,8 +1229,8 @@ light, is responsible for repairing DNA damaged by UV light
 also the only strain to possess a gene encoding DNA repair ligase, which uses
 ATP as a cofactor for DNA repair. The absence of genes encoding
 deoxyribodipyrimidine photolyase and DNA repair ligase (ATP) in *P. marinus*
-MIT9313 and *P. marinus* SS120 may, in part, explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean
-surface. Furthermore, the protective effect of lower [O~2~], allowing
+SS120 and MIT9313 may, in part, explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean
+surface.  XXX In this study we show that *P. marinus* SS120 and MIT9313 can tolerate light levels representative of the near ocean surface when the [O~2~] is 25 µM, however our growth rate experiments did not include wavebands in the UV range, we therefore do not know how the absence of deoxyribodipyrimidine photolyase under low [O~2] will impact the growth rates of *P. marinus* SS120 and MIT9313 when exposed to UV light. XXXXX However, the protective effect of lower [O~2~], allowing
 these strains to grow at higher light, may relate in part to suppression
 of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed
 at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean
