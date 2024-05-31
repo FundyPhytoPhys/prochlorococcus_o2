@@ -250,8 +250,8 @@ poi |>
   theme_bw() +
   theme(strip.text = element_text(size = 8))
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")))
 
 poi |>
   filter(complex %in% ProteinMetab) |>
@@ -272,8 +272,8 @@ poi |>
   theme_bw() +
   theme(strip.text = element_text(size = 8))
 
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")))
 
 ```
 
