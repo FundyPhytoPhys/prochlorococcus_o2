@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-05-28"
+date: "2024-05-31"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -623,27 +623,23 @@ EC and KO numbers can be found in Table
 
 ## Detection of *Prochlorococcus marinus* proteins across O~2~ and light niches in the ocean {.unnumbered}
 
-Proteins from 13 annotated strains of *P. marinus* were detected across
+Proteins from 8 annotated strains of *P. marinus* were detected across
 depths and oxygen concentrations in the OPP data set
 analyzed. We focused our analysis here on core photosynthetic protein
-complexes, for clades HLI, LLI, LLII/III and LLIV (Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)) as a function of depth (a
+complexes, for clades HLI (2 strains), LLI (2 strains), LLII/III (2 strains) and LLIV (2 strains) (Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)) as a function of depth (a
 proxy for light intensity) and measured [O~2~] at the sampling locations. Photosynthetic complexes
-from HLI (including strain MED4) were detected throughout the water
-column, but, with one exception, only under high [O~2~]. Though present in the genome of MED4, the absence of proteins annotated as ATP Synthase complex for Clade HLI, compared to annotated
-detections of ATP Synthase across the other three clades, suggests
+from HLI (including strain MED4) and LLI (including strain NATL2A) were detected throughout the water
+column, predominately under high [O~2~]. Though present in the genome of MED4, the absence of proteins annotated as RUBISCO complex for clade HLI, compared to annotated
+detections of RUBISCO across the other three clades, suggests
 limitations in the annotation process for highly conserved protein
-sequences. Complexes from Clade LLI (including strain NATL2A) were also
-present across the depth/light axes, although with more protein detections at lower
-[O~2~], and fewer near surface detections of proteins from Clade LLI. Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from HLI and LLI were notably absent from samples taken at lower [O~2~], suggesting limited capacity for carbon fixation by HLI and LLI under low [O~2~] habitats. Complexes from clade LLII/III
-(including strain SS120) were also detected across the depth/light and [O~2~] ranges,
-with more detections at deeper, darker depths. Clade LLIV (including strain MIT9313)
-photosynthetic complexes were also detected throughout the depth/light and [O~2~], ranges, notably with the most frequent detections of proteins at both depth and at low [O~2~], compared to other strains. Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] or other datasets.
+sequences. Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from HLI, LLI and LLII/III were notably absent from samples taken at lower [O~2~], suggesting limited capacity for carbon fixation by HLI,  LLI and LLII/III under low [O~2~] habitats. Clade LLII/III (including strain SS120)
+photosynthetic complexes were also detected throughout the depth/light and [O~2~] ranges, notably with the most frequent detections of proteins at both high and low [O~2~], compared to other strains. Complexes from LLIV (including strain MIT9313) were also detected across the depth/light and [O~2~] ranges, with more detections at deeper, darker depths and at low [O~2~].Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] or other datasets.
 
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as  Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
+<img src="../Output/Figures/CladeProchloroPhotosynthDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (x-axis) and depth (m) (y-axis) at sample origin with a 15% offset to seperate protein detections occupying the same origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
+<p class="caption">(\#fig:CladeProchloroPhotosynthDepthO2)**Ocean detection of *Prochlorococcus marinus* photosynthesis complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (x-axis) and depth (m) (y-axis) at sample origin with a 15% offset to seperate protein detections occupying the same origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as Photosystem II (PSII), Cytochromeb6f complex (Cytb6f), Photosystem I (PSI), ATP Synthase or Ribulose-1,5-bisphosphate oxygenase carboxylase (RUBISCO). For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for imposed [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
 </div>
 
 \newpage
@@ -1003,8 +999,8 @@ requirement for protein turnover under low [O~2~].
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
-<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (X-axis) and depth (m) (Y-axis) at sample origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
+<img src="../Output/Figures/CladeProchloroProteinMetabDepthO2.png" alt="**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (x-axis) and depth (m) (y-axis) at sample origin with a 15% offset to seperate protein detections occupying the same origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018]." width="2187" />
+<p class="caption">(\#fig:CladeProchloroProteinMetabDepthO2)**Ocean detection of *Prochlorococcus marinus* protein metabolism complexes.** Protein detections (circles) are plotted vs. O~2~ (µM) (x-axis) and depth (m) (y-axis) at sample origin with a 15% offset to seperate protein detections occupying the same origin. Rows separate data annotated as from *Prochlorococcus marinus* clades: HLI (including *P. marinus* MED4, solid black circles), LLI (including *P. marinus* NATL2A, solid black circles), LLII/III (including *P. marinus* SS120, solid black circles) and LLIV (including *P. marinus* MIT9313, solid black circles). Columns show detections of proteins annotated as FtsH Protease Complexes (FtsH1, FtsH2, FtsH3) or the Ribosome. For comparison, culture growth rate experimental conditions are indicated by horizontal grey lines for depths approximating peak Photosynthetically Active Radiation (PAR; µmol photons m^-2^ s^-1^); and vertical grey lines for [O~2~] (µM). Data obtained from the Biological and Chemical Oceanography Data Management Office repository [@saitoPeptidesTheirSpectral2018].</p>
 </div>
 
 \newpage
@@ -1059,7 +1055,9 @@ under 25 µM O~2~ and not at all under 2.5 µM O~2~ (Fig \@ref(fig:SS120PARGAM))
 
 \newpage
 
-Fig \@ref(fig:DNARepairFig) shows genes encoding DNA repair for *P.marinus* strains. As expected, *P. marinus* MED4 possesses the largest,
+XXXXX To gain insights into the growth rate responses across strains, particularly the responses to different oxygen levels [O~2~], we used a subset of the dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We extracted the genes encoding enzymes involved in DNA repair found in at least one *P.marinus* strain in this study *P.marinus* strain (Fig \@ref(fig:DNARepairFig). XXXX
+
+As expected, *P. marinus* NATL2A possesses the largest,
 most complete suite of genes encoding DNA repair enzymes, followed by
 *P. marinus* MIT9313. Conversely, *P. marinus* SS120 demonstrates the
 smallest genomic capacity for DNA repair. *Prochlorococcus marinus* MED4
@@ -1071,8 +1069,8 @@ light, is responsible for repairing DNA damaged by UV light
 also the only strain to possess a gene encoding DNA repair ligase, which uses
 ATP as a cofactor for DNA repair. The absence of genes encoding
 deoxyribodipyrimidine photolyase and DNA repair ligase (ATP) in *P. marinus*
-MIT9313 and *P. marinus* SS120 may, in part, explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean
-surface. Furthermore, the protective effect of lower [O~2~], allowing
+SS120 and MIT9313 may, in part, explain why these two strains cannot tolerate growth under full [O~2~] and high light, found at the ocean
+surface.  XXX In this study we show that *P. marinus* SS120 and MIT9313 can tolerate light levels representative of the near ocean surface when the [O~2~] is 25 µM, however our growth rate experiments did not include wavebands in the UV range, we therefore do not know how the absence of deoxyribodipyrimidine photolyase under low [O~2] will impact the growth rates of *P. marinus* SS120 and MIT9313 when exposed to UV light. XXXXX However, the protective effect of lower [O~2~], allowing
 these strains to grow at higher light, may relate in part to suppression
 of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed
 at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean
@@ -1119,7 +1117,7 @@ extend to the near surface (Table \@ref(tab:NichesTable).
 
 
 <div class="figure">
-<img src="../Output/Figures/MapComboPro.png" alt=" Figure caption for Potential Temperate Future Niche map goes here." width="6600" />
+<img src="../Output/Figures/NichesMap.png" alt=" Figure caption for Potential Temperate Future Niche map goes here." width="7200" />
 <p class="caption">(\#fig:NichesMap) Figure caption for Potential Temperate Future Niche map goes here.</p>
 </div>
 
