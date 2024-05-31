@@ -658,7 +658,7 @@ OMZRainbow<- (TropicFull+RainbowTropicFull+RainbowTropicOMZ)/(WinterFull+Rainbow
 OMZRainbow
 ```
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("MapComboPro_yeah",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
+#ggsave(file = file.path(FigPath, paste("MapComboPro_yeah",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
 ```
 
 
@@ -711,7 +711,7 @@ TropicFull<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   #geom_hline(yintercept = 60, fill = "white", color="white", linetype = "solid", alpha=1, size = 1) +
-  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "white", fill = "white", size = 0.2) +
+  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
   # geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
   # geom_text(data=data_textTropicFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
   geom_text(data=data_textTropicFull2, aes(x=-170, y=0, label=label), size=4.5, parse=TRUE) +
@@ -757,7 +757,7 @@ WinterFull<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   #geom_hline(yintercept = 60, fill = "white", color="white", linetype = "solid", alpha=1, size = 1) +
-  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "white", fill = "white", size = 0.2) +
+  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
     # geom_text(data=data_textB, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
     # geom_text(data=data_textWinterFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
     geom_text(data=data_textWinterFull2, aes(x=-160, y=45, label=label), size=4.5, parse=TRUE) +
@@ -808,7 +808,7 @@ SpringFull<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   #geom_hline(yintercept = 60, fill = "white", color="white", linetype = "solid", alpha=1, size = 1) +
-  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "white", fill = "white", size = 0.2) +
+  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
     # geom_text(data=data_textC, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
     # geom_text(data=data_textSpringFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
     geom_text(data=data_textSpringFull2, aes(x=-160, y=45, label=label), size=4.5, parse=TRUE) +
@@ -857,7 +857,7 @@ SummerFull<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
   #geom_hline(yintercept = 60, fill = "white", color="white", linetype = "solid", alpha=1, size = 1) +
-  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "white", fill = "white", size = 0.2) +
+  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
     # geom_text(data=data_textD, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
     # geom_text(data=data_textSummerFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
     geom_text(data=data_textSummerFull2, aes(x=-160, y=45, label=label), size=4.5, parse=TRUE) +
@@ -906,14 +906,24 @@ world_coordinatesRainbow$nm <- c(400, 700)
 world_coordinatesRainbow$facetsFull <- '~~~~Oxygen:~Full'
 world_coordinatesRainbow$facetsOMZ <- '~~~~Oxygen:~OMZ'
 
-data_text1 <- data.frame(label = c('Near~surface~(180~µE~","~8~h):~Clade~HLI'))
-data_text2 <- data.frame(label = c('Near~surface~(180~µE~","~11~h):~Clade~HLI'))
-data_text3 <- data.frame(label = c('Near~surface~(180~µE~","~15~h):~Clade~HLI'))
+data_text1 <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~8~h):~Clade~HLI'))
+data_text2 <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~11~h):~Clade~HLI'))
+data_text3 <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~15~h):~Clade~HLI'))
 
-data_text4 <- data.frame(label = c('Deep~(30~µE~","~4~h):~Clade~LLIV'))
-data_text5 <- data.frame(label = c('Deep~(30~µE~","~6~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-data_text6 <- data.frame(label = c('Deep~(30~µE~","~7~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-data_text7 <- data.frame(label = c('Deep~(30~µE~","~10~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+data_text4 <- data.frame(label = c('Deep~"~100m"~(30~µE~","~4~h):~Clade~LLIV'))
+data_text5 <- data.frame(label = c('Deep~"~100m"~(30~µE~","~6~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+data_text6 <- data.frame(label = c('Deep~"~100m"~(30~µE~","~7~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+data_text7 <- data.frame(label = c('Deep~"~100m"~(30~µE~","~10~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+
+data_text1d <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~8~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+data_text2d <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~11~h):~Clades~HLI~","~LLIV'))
+data_text3d <- data.frame(label = c('Near~surface~"~10m"~(180~µE~","~15~h):~Clades~HLI~","~LLIV'))
+
+data_text4d <- data.frame(label = c('Deep~"~100m"~(30~µE~","~4~h):~Clades~LLII/III~","~LLIV'))
+data_text5d <- data.frame(label = c('Deep~"~100m"~(30~µE~","~6~h):~Clades~LLII/III~","~LLIV'))
+data_text6d <- data.frame(label = c('Deep~"~100m"~(30~µE~","~7~h):~Clades~LLII/III~","~LLIV'))
+data_text7d <- data.frame(label = c('Deep~"~100m"~(30~µE~","~10~h):~Clades~HLI~","~LLII/III~","~LLIV'))
+
 
 data_textFull <- data.frame(label = c('Oxygen:~Full'))
 data_textOMZ <- data.frame(label = c('Oxygen:~OMZ'))
@@ -1066,21 +1076,6 @@ RainbowSummerFull
 
 ```
 
-
-```{r}
-#OMZ
-# world_coordinatesRainbow <- map_data("world")
-# world_coordinatesRainbow$nm <- c(400, 700)
-
-data_text1d <- data.frame(label = c('Near~surface~(180~µE~","~8~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-data_text2d <- data.frame(label = c('Near~surface~(180~µE~","~11~h):~Clades~HLI~","~LLIV'))
-data_text3d <- data.frame(label = c('Near~surface~(180~µE~","~15~h):~Clades~HLI~","~LLIV'))
-
-data_text4d <- data.frame(label = c('Deep~(30~µE~","~4~h):~Clades~LLII/III~","~LLIV'))
-data_text5d <- data.frame(label = c('Deep~(30~µE~","~6~h):~Clades~LLII/III~","~LLIV'))
-data_text6d <- data.frame(label = c('Deep~(30~µE~","~7~h):~Clades~LLII/III~","~LLIV'))
-data_text7d <- data.frame(label = c('Deep~(30~µE~","~10~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-```
 
 
 ```{r}
