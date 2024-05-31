@@ -233,10 +233,10 @@ poi |>
   filter(complex %in% ElectronTrans) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 20, height = 20) + #grey points not in AltStrainLabels
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 15, height = 15) + #grey points not in AltStrainLabels
  # geom_count(aes(x = O2, y= depth)) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 20, height = 20) + #black points in AltStrainLabels
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 15, height = 15) + #black points in AltStrainLabels
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
@@ -250,16 +250,16 @@ poi |>
   theme_bw() +
   theme(strip.text = element_text(size = 8))
 
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
- ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")))
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
+ ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 poi |>
   filter(complex %in% ProteinMetab) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 20, height = 20) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %notin% AltStrainLabels), size = 0.1, width = 15, height = 15) +
   annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = 0.75, fill = "white") +
-  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 20, height = 20) +
+  geom_jitter(aes(x = O2, y= depth), data = . %>% filter(strain %in% AltStrainLabels), size = 0.1, width = 15, height = 15) +
   # geom_point(aes(x = O2, y= depth, alpha = StrainAlpha)) +
   scale_x_continuous(limits = c(0, 260)) +
   scale_y_reverse(limits = c(260, 0)) +
@@ -272,8 +272,8 @@ poi |>
   theme_bw() +
   theme(strip.text = element_text(size = 8))
 
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")), device = NULL, scale = 1, height=15, width= 20, units = c("cm"),dpi = 300, limitsize = TRUE)
 
 ```
 
