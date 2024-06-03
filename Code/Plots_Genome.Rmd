@@ -313,8 +313,10 @@ DNARepairTab <- DNARepair %>%
   
 DNARepairFig <- DNARepairTab %>% 
   filter(EC != "3.1.3.18") %>% #PGP is not truly a DNA repair enzyme. 
+  mutate(EnzymeName_bold = case_when(EnzymeName %in% c("DNA ligase (ATP)", "deoxyribodipyrimidine photolyase", "pyridoxal 5'-phosphate synthase") ~ glue("<b>{EnzymeName}</b>"),
+                                     TRUE ~ EnzymeName)) %>% 
   ggplot() +
-  geom_point(aes(x = fct_reorder(EnzymeName, desc(Gene_count)), y = StrainLabel, size = (Gene_count))) + #y = interaction(Genus, species, StrainLabel, sep = " ")
+  geom_point(aes(x = fct_reorder(EnzymeName_bold, desc(Gene_count)), y = StrainLabel, size = (Gene_count))) + #y = interaction(Genus, species, StrainLabel, sep = " ")
   # facet_grid(rows = vars(Genus), scales = "free", space = "free") +
   # scale_color_gradient(low = "#0980F6", high = "#F67F09", na.value = "black") +
   scale_x_discrete(position = "bottom") +
@@ -331,7 +333,7 @@ DNARepairFig <- DNARepairTab %>%
          axis.text.y = element_blank(),
          axis.title.y = element_blank(),
          axis.text.x = ggtext::element_markdown(),
-         axis.title.x = element_text(vjust=5),
+         axis.title.x = element_text(vjust=0),
         axis.ticks.y = element_blank(),
   # axis.title = element_text(size = 40, color = "black"),
   #        title = element_text(size = 30),
