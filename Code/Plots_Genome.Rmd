@@ -183,16 +183,18 @@ ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in m
   # mutate(Km_mM = case_when(EnzymeName == "Flavodiiron (Flv1a/3a)" ~ 10/1000,
   #                          TRUE ~ Km_mM)) %>% 
   ungroup() %>% 
+    mutate(EnzymeName_bold = case_when(EnzymeName %in% c("(S)-2-hydroxy-acid oxidase", "ubiquinol oxidase (non-electrogenic)", "pyridoxal 5'-phosphate synthase") ~ glue("<b>{EnzymeName}</b>"),
+                                     TRUE ~ EnzymeName)) %>% 
   ggplot() +
-  geom_errorbar(aes(x = reorder(EnzymeName, Km_mM * 1000), ymin = Km_mM_min* 1000, ymax = Km_mM_max* 1000)) +
+  geom_errorbar(aes(x = reorder(EnzymeName_bold, Km_mM * 1000), ymin = Km_mM_min* 1000, ymax = Km_mM_max* 1000)) +
   # geom_ribbon(aes(ymin = (5e-4), ymax =  (5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "blue") +
   # geom_ribbon(aes(ymax = (5e-2), ymin =  (5e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "green") +
   # geom_ribbon(aes(ymax = (280e-3), ymin =  (230e-3), x = as.numeric(reorder(EnzymeName, Km_mM))), alpha = 0.3, fill = "#FF0000") +
   annotate(geom = "rect", ymin = (5e-4 * 1000), ymax =  (5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "blue") +
   annotate(geom = "rect", ymax = (5e-2 * 1000), ymin =  (5e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "green") +
   annotate(geom = "rect", ymax = (280e-3 * 1000), ymin =  (230e-3 * 1000), xmin = -Inf, xmax = Inf, alpha = 0.3, fill = "#FF0000") +
-  geom_point(aes(x = reorder(EnzymeName, Km_mM* 1000), y = (Km_mM* 1000), shape = as.logical(Estimated), size = Gene_count), stroke = 1) +
-  geom_vline(aes(xintercept = reorder(EnzymeName, Km_mM* 1000)), size = 2,  data = . %>% filter(is.na(Km_mM)), linetype = "solid") +
+  geom_point(aes(x = reorder(EnzymeName_bold, Km_mM* 1000), y = (Km_mM* 1000), shape = as.logical(Estimated), size = Gene_count), stroke = 1) +
+  geom_vline(aes(xintercept = reorder(EnzymeName_bold, Km_mM* 1000)), size = 2,  data = . %>% filter(is.na(Km_mM)), linetype = "solid") +
   geom_text(aes(x = 18.5, y = 2.5, label = "[O2] ≈ 2.5 µM"), color = "blue", size = 6) +
   geom_text(aes(x = 18.5, y = 25, label = "[O2] ≈ 25 µM"), color = "darkgreen", size = 6) +
   geom_text(aes(x = 18.5, y = 250, label = "[O2] ≈ 250 µM"), color = "#FF0000", size = 6) +
@@ -220,8 +222,9 @@ ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in m
          axis.title.x = element_text(vjust=8),
          # axis.title.y = element_blank(),
          title = element_text(size = 30),
-         axis.text.x = element_text(size = 30, color = "black"),
+         # axis.text.x = element_text(size = 30, color = "black"),
         axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = ggtext::element_markdown(size = 30, color = "black"),
         strip.text = element_text(size = 30),
         legend.key.size = unit(2, 'cm'), #change legend key size
         # legend.key.height = unit(2, 'cm'), #change legend key height
@@ -327,6 +330,7 @@ DNARepairFig <- DNARepairTab %>%
          legend.position = "right",
          axis.text.y = element_blank(),
          axis.title.y = element_blank(),
+         axis.text.x = ggtext::element_markdown(),
          axis.title.x = element_text(vjust=5),
         axis.ticks.y = element_blank(),
   # axis.title = element_text(size = 40, color = "black"),
@@ -410,8 +414,10 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
                               TRUE ~ Compound),
          Description = case_when(Description == "Activating Compound" ~ "Activator",
                                  TRUE ~ Description),) %>% 
+  mutate(EnzymeName_bold = case_when(EnzymeName %in% c("deoxyribodipyrimidine photolyase") ~ glue("<b>{EnzymeName}</b>"),
+                                     TRUE ~ EnzymeName)) %>% 
   ggplot() +
-  geom_point(aes(x = fct_reorder(EnzymeName, desc(Gene_count)), y = StrainLabel, size = as.character(Gene_count))) +
+  geom_point(aes(x = fct_reorder(EnzymeName_bold, desc(Gene_count)), y = StrainLabel, size = as.character(Gene_count))) +
   ggh4x::facet_nested(cols = vars(Description, Compound),rows = vars(StrainLabel),  scale = "free", space = "free") + #
   
   labs(x = "Enzyme name",
@@ -422,6 +428,7 @@ ProchlorococcusLightEnzymesFig <- LightEnzymesMerged %>%
   theme_bw() +
   ggpubr::rotate_x_text(hjust = 1, angle = 80) +
   theme(axis.text = element_text(size = 7, color = "black"),
+        axis.text.x = ggtext::element_markdown(),
         axis.text.y = element_blank(),
         axis.title.y = element_blank(),
         axis.ticks.y = element_blank(),
