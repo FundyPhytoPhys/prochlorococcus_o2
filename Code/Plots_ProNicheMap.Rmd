@@ -57,7 +57,7 @@ FigPath <- file.path("..", "Output", "Figures")
 # Create map
 https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
 
-```{r}
+```{r world map}
 world_coordinates <- map_data("world") 
 
 world_coordinates$facetsPresent <- 'Present'
