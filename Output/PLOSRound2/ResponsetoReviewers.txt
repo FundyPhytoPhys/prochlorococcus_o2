@@ -50,7 +50,7 @@ manuscript file. Please remove them and upload them with the file type 'Supporti
 ensure that each Supporting Information file has a legend listed in the manuscript after the references 
 list.
 
-We have removed these from the manuscript file.
+We removed these from the manuscript file.
 
 6. Please review your reference list to ensure that it is complete and correct. If you have cited papers 
 that have been retracted, please include the rationale for doing so in the manuscript text, or remove 
@@ -126,10 +126,10 @@ rate curves together in one figure and all the model plots together in another.
 
 I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, it would be easier to compile these data into compound figures? 
 
-We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line 706:
+We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line XXX:
 " As mentioned, growth rate trials under red light, although not representative of *P. marinus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
 
--Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines 1023-1032 (xXXX).
+-Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines XXXX-1032 (xXXX).
 
 
 
@@ -173,7 +173,7 @@ Line: XXX
 
 Table 1: The trees described in the legend should be included in the supplemental material. 
 
--Thank you for bringing this to our attention. We clarified the wording on line XXXX of the revised manuscripted. "Protein homologies for FtsH isoforms between *Prochlorococcus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018."
+-Thank you for bringing this to our attention. We clarified the wording on line XXXX of the revised manuscripted. "Protein homologies for FtsH isoforms between *Prochlorococcus marinus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018."
 
 
 
