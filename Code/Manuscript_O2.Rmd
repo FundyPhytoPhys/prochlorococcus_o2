@@ -1223,9 +1223,10 @@ knitr::include_graphics(file.path(FiguresIn, "DNARepairFig.png"))
 
 \newpage
 
+XXXX
 The potential for niche expansion into temperate regions by *P. marinus*
 varies depending on the season, which influences achieved underwater
-photoperiods and light levels. Temperate summer delivers 11 hours of
+photoperiods and light levels. Temperate summer delivers ~11 hours of
 blue waveband light underwater, above the photic threshold of 20 µmol
 photons m^-2^ s^-1^, while temperate spring/fall delivers 8 hours of
 blue waveband light underwater, photoperiod ranges which are permissive
