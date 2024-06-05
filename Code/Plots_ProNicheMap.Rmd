@@ -59,9 +59,19 @@ PhotoperiodDepthOMZ <- PhotoperiodDepth |>
   select(-c(ToD, DepthPARabs, DepthPARSine, DepthPARabsNA, Photicperiod:PhoticperiodSineSatPAR_h)) |>
   filter(DepthNames %in% c("50 m", "100 m")) |>
   relocate(DepthNames, .after = lat) |>
-  mutate(CladeHLI = 1,
-         CladeLLII_LLIII = 1,
-         CladeLLIV = 1)
+  mutate(CladeHLI = case_when(DayofYear == "Winter Solstice" & lat == 45 ~ 0,
+                              DayofYear == "Equinox" & DepthNames == "100 m" & lat == 45 ~ 0,
+                              DayofYear == "Summer Solstice" & DepthNames == "100 m" & lat == 0  ~ 0,
+                              TRUE ~ 1)) |>
+  mutate(CladeLLII_LLIII = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
+                                     DayofYear == "Winter Solstice" & lat == 0 ~ 0,
+                                     DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
+                                     DayofYear == "Equinox" & lat == 0 ~ 0,
+                                     DayofYear == "Summer Solstice" & lat == 45  ~ 0,
+                                     DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
+                              TRUE ~ 1 ))  |>
+  mutate(CladeLLIV = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
+                              TRUE ~ 1))
 
 PhotoperiodDepthOMZ
 
@@ -69,9 +79,21 @@ PhotoperiodDepthFullO2 <- PhotoperiodDepth |>
   select(-c(ToD, DepthPARabs, DepthPARSine, DepthPARabsNA, Photicperiod:PhoticperiodSineSatPAR_h)) |>
   filter(DepthNames %in% c("50 m", "100 m")) |>
   relocate(DepthNames, .after = lat) |>
-   mutate(CladeHLI = 1,
-         CladeLLII_LLIII = 1,
-         CladeLLIV = 1)
+  mutate(CladeHLI = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
+                              TRUE ~ 1)) |>
+  mutate(CladeLLII_LLIII = case_when(DayofYear == "Winter Solstice" ~ 0,
+                                     DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
+                                     DayofYear == "Equinox" & lat == 0 ~ 0,
+                                     DayofYear == "Summer Solstice" & lat == 45  ~ 0,
+                                     DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
+                              TRUE ~ 1 ))  |>
+  mutate(CladeLLIV = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
+                               DayofYear == "Winter Solstice" & DepthNames == "50 m" & lat == 0 ~ 0,
+                               DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
+                               DayofYear == "Equinox" & lat == 0 ~ 0,
+                               DayofYear == "Summer Solstice" & lat == 45  ~ 0,
+                               DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
+                              TRUE ~ 1))
   
 PhotoperiodDepthFullO2
 
