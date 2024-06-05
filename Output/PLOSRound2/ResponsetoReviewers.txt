@@ -329,7 +329,7 @@ Line XXX:
 baseline distribution of Pro across O2 and depth, as opposed to (or at least in concert with) the 
 extensive metagenomic, amplicon, qPCR, etc datasets of ecotype abundances available? 
 
-Thank you for your comment. Co-authors, Aurora Mattison and Dr. Amanda Cockshutt, used the metaproteomics database as an extension of their earlier studies on the functional implications of differential protein allocations across different Prochlorococcus strains [Zorz, Bonisteel]. Those studies indeed motivated the design of our growth matrix. Extending the study to include metagonomic analyses is valid but is beyond our scope.
+Thank you for your comment. Co-authors, Aurora Mattison and Dr. Amanda Cockshutt, used the metaproteomics database as an extension of their earlier studies on the functional implications of differential protein allocations across different Prochlorococcus strains [Zorz et al. 2015, Bonisteel et al. 2018]. Those studies indeed motivated the design of our growth matrix. Extending the study to include metagonomic analyses is valid but is beyond our scope.
 We edited the text in the revised manuscript: "Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] dataset."
 Line: XXX
 
