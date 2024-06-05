@@ -663,8 +663,7 @@ EC and KO numbers can be found in Table
 
 Proteins from *P. marinus* were detected across depths and oxygen concentrations in the OPP data set [@saitoPeptidesTheirSpectral2018]. We focused our analyses on core photosynthetic protein complexes, annotated as coming from clades HLI (2 strains, including strain MED4 ); LLI (2 strains, including strain NATL2A); LLII/III (2 strains, including strain SS120) and LLIV (2 strains, including MIT9313) (Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)), as a function of depth (a
 proxy for light level) and measured [O~2~] at the sampling locations. Photosynthetic complexes
-from clades HLI and LLI were detected throughout the water column, although predominately at stations with high [O~2~]. Though present in the genome of MED4, the absence of proteins annotated as RUBISCO complex for clade HLI, compared to annotated
-detections of RUBISCO across the other three clades, suggests
+from clades HLI and LLI were detected throughout the water column, although predominately at stations with high [O~2~]. Though present and expressed in the genome of MED4 [@zorzRUBISCOPhotosystemII2015], the absence of proteins annotated as RUBISCO complex for clade HLI, compared to annotated detections of RUBISCO across the other three clades, suggests
 limitations in the annotation process assigning highly conserved protein
 sequences to clades. Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from clades HLI, LLI and LLII/III were notably absent from stations at low [O~2~], suggesting limited capacity for carbon fixation by clades HLI,  LLI and LLII/LLIII under low [O~2~] habitats. Clade LLII/LLIII
 photosynthetic complexes were detected throughout the sampled ranges of depth/light and [O~2~], with  detections of proteins at both high and low [O~2~], compared to other strains. Complexes from LLIV (including strain MIT9313) were detected across the depth/light and [O~2~] ranges, with more detections at deeper, darker depths and at low [O~2~], compared to other clades.  We note that detections of photosynthetic proteins from strain MIT9313 (dark symbols) show a particular bias towards low [O~2~] sampling stations, compared to the wider detections of clade LLIV. Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] or other datasets.
@@ -1223,7 +1222,7 @@ knitr::include_graphics(file.path(FiguresIn, "DNARepairFig.png"))
 
 \newpage
 
-XXXX
+XXXXDoug
 The potential for niche expansion into temperate regions by *P. marinus*
 varies depending on the season, which influences achieved underwater
 photoperiods and light levels. Temperate summer delivers ~11 hours of
