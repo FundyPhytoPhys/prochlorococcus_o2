@@ -54,11 +54,34 @@ FigPath <- file.path("..", "Output", "Figures")
 
 ```{r read photoperiod depth data}
 PhotoperiodDepth <- readRDS(file = file.path("..", "Data", "ProcessedData", "DepthPhotoperiodTableFilter.Rds"))
+
+PhotoperiodDepthOMZ <- PhotoperiodDepth |>
+  select(-c(ToD, DepthPARabs, DepthPARSine, DepthPARabsNA, Photicperiod:PhoticperiodSineSatPAR_h)) |>
+  filter(DepthNames %in% c("50 m", "100 m")) |>
+  relocate(DepthNames, .after = lat) |>
+  mutate(CladeHLI = 1,
+         CladeLLII_LLIII = 1,
+         CladeLLIV = 1)
+
+PhotoperiodDepthOMZ
+
+PhotoperiodDepthFullO2 <- PhotoperiodDepth |>
+  select(-c(ToD, DepthPARabs, DepthPARSine, DepthPARabsNA, Photicperiod:PhoticperiodSineSatPAR_h)) |>
+  filter(DepthNames %in% c("50 m", "100 m")) |>
+  relocate(DepthNames, .after = lat) |>
+   mutate(CladeHLI = 1,
+         CladeLLII_LLIII = 1,
+         CladeLLIV = 1)
+  
+PhotoperiodDepthFullO2
+
 ```
 
 
-```{r}
+```{r read spectral depth backdrop}
+DepthBackdrop <- readRDS(file = file.path("..", "Data", "ProcessedData", "DepthBackdrop.Rds"))
 
+DepthBackdrop 
 ```
 
 # Create map
@@ -67,13 +90,11 @@ https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
 ```{r world map}
 world_coordinates <- map_data("world") 
 
-world_coordinates$facetsPresent <- 'Present'
 world_coordinates$facetsFuture <- 'Future~scenario'
 
 data_textA <- data.frame(label = c('A'))
 data_textB <- data.frame(label = c('B'))
 data_textC <- data.frame(label = c('C'))
-data_textD <- data.frame(label = c('D'))
 ```
 
 
