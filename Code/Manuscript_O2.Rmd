@@ -1222,7 +1222,7 @@ knitr::include_graphics(file.path(FiguresIn, "DNARepairFig.png"))
 
 \newpage
 
-XXXX
+XXXXDoug
 The potential for niche expansion into temperate regions by *P. marinus*
 varies depending on the season, which influences achieved underwater
 photoperiods and light levels. Temperate summer delivers ~11 hours of
