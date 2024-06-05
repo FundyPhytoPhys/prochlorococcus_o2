@@ -52,7 +52,14 @@ Project <- "prochlorococcus_O2"
 FigPath <- file.path("..", "Output", "Figures")
 ```
 
-----------------------------------------Create map ----------------------------------------------
+```{r read photoperiod depth data}
+PhotoperiodDepth <- readRDS(file = file.path("..", "Data", "ProcessedData", "DepthPhotoperiodTableFilter.Rds"))
+```
+
+
+```{r}
+
+```
 
 # Create map
 https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
