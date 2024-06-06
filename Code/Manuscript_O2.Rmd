@@ -116,15 +116,14 @@ FiguresIn <- file.path("..","Output", "Figures")
 # Abstract {.unnumbered}
 
 *Prochlorococcus marinus*, the smallest picocyanobacterium, comprises
-multiple clades with distinct niches, currently across tropical and sub-tropical
+multiple clades occupying distinct niches, currently across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
-warming may open permissive temperatures in new, poleward photic
+warming may open growth-permissive temperatures in new, poleward photic
 regimes, along with expanded Oxygen Minimum Zones. We used ocean metaproteomic
-data to guide testing of *Prochlorococcus marinus* growth across a matrix of peak irradiances,
+data on current *Prochlorococcus marinus* niches, to guide testing of *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
-above, and exploits high cumulative diel photon doses. MED4, however, relies upon an alternative oxidase to
-balance electron transport, which may exclude it from growth under our
+above, and exploits high cumulative diel photon doses. MED4, however, relies upon an alternative oxidase to balance electron transport, which may exclude it from growth under our
 lowest, 2.5 µmol O~2~ L^-1^, condition. SS120 from clade LLII/III is
 restricted to low light under full 250 µmol O~2~ L^-1^, shows expanded
 light exploitation under 25 µmol O~2~ L^-1^, but is excluded from growth
@@ -134,7 +133,7 @@ which has limitations on genomic capacity for PSII and DNA repair. MIT9313 from
 Clade LLIV is restricted to low blue irradiance under 250 µmol O~2~
 L^-1^, but exploits much higher irradiance under red light, or under
 lower O~2~ concentrations, conditions which slow photoinactivation of
-PSII and production of reactive oxygen species. In warming oceans, range expansions and competition among clades will be governed not simply by light levels. Short photoperiods governed by latitude, temperate winter, and depth attenuation of light, will exclude clade HLI (including MED4). In contrast, clade LLII/III (including SS120), and especially clade LLIV (including MIT9313), may actually exploit higher light niches under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
+PSII and production of reactive oxygen species. In warming oceans, range expansions and competition among clades will be governed not only by light levels. Short photoperiods governed by latitude, temperate winter, and depth attenuation of light, will exclude clade HLI (including MED4) from some habitats. In contrast, clade LLII/III (including SS120), and particularly clade LLIV (including MIT9313), may exploit higher light niches nearer the surface, under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
 
 \newpage
 
@@ -1199,9 +1198,8 @@ To gain insights into the distinct growth rate responses across strains, particu
 most complete suites of genes encoding DNA repair enzymes. *Prochlorococcus marinus* MED4 and NATL2A both possess a gene encoding deoxyribodipyrimidine photolyase (Fig \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes)), which, when activated by blue light, repairs DNA damaged by UV light
 [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possess a gene encoding DNA repair ligase, which uses ATP as a cofactor for DNA repair. 
 
-Conversely, *P. marinus* SS120 and MIT9313 lack genes encoding deoxyribodipyrimidine photolyase and DNA repair ligase (ATP), which may explain, in part, why these two strains cannot tolerate growth under full  250 µM [O~2~] and high light, as found at the ocean surface.  We show that *P. marinus* SS120 and MIT9313 do, in contrast, tolerate light levels representative of the near surface ocean at 25 µM [O~2~]. Our growth rate experiments did not include wavebands in the UV range, so we do not know whether the absence of deoxyribodipyrimidine photolyase would inhibit the growth rates of *P. marinus* SS120 and MIT9313  under low [O~2~] if exposed to full spectrum, ocean surface light. The protective effects of lower [O~2~], allowing these strains to grow at higher light, likely relates in part to suppression of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010] events. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] indeed attribute NATL2A tolerance to short exposures of high light to the presence of the genes encoding photolyase, also found in HL clades. The presence of deoxyribodipyrimidine photolyase but absence of DNA repair ligase (ATP)
-supports why NATL2A tolerates limited exposure to high light and why NATL2A is unable to fully repair damaged DNA. *Prochlorococcus marinus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules
-[@morrisFacilitationRobustGrowth2008]. The small cell size of *P. marinus* allow the ROS, H~2~O~2~, to cross the cell membrane [@omarDiffusionalInteractionsMarine2022]; however, accumulation of extracellular H~2~O~2~ remains toxic to *P. marinus* [@morrisFacilitationRobustGrowth2008; @morrisDependenceCyanobacteriumProchlorococcus2011].
+Conversely, *P. marinus* SS120 and MIT9313 lack genes encoding deoxyribodipyrimidine photolyase and DNA repair ligase (ATP), which may explain, in part, why these two strains cannot tolerate growth under full  250 µM [O~2~] and high light, as found at the ocean surface.  *P. marinus* SS120 and MIT9313 do, in contrast, tolerate light levels representative of the near surface ocean at 25 µM [O~2~]. Our growth rate experiments did not include wavebands in the UV range, so we do not know whether the absence of deoxyribodipyrimidine photolyase would inhibit the growth rates of *P. marinus* SS120 and MIT9313  under low [O~2~] if exposed to full spectrum, ocean surface light. The protective effects of lower [O~2~], allowing these strains to grow at higher light, likely relates in part to suppression of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010] events. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] indeed attribute NATL2A tolerance of short exposures of high light to presence of genes encoding photolyase, also found in HL clades. The presence of deoxyribodipyrimidine photolyase but absence of DNA repair ligase (ATP)
+supports why NATL2A tolerates limited exposure to high light, but is unable to fully repair damaged DNA. *Prochlorococcus marinus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *P. marinus* allow the ROS, H~2~O~2~, to cross the cell membrane [@omarDiffusionalInteractionsMarine2022]; however, accumulation of extracellular H~2~O~2~ remains toxic to *P. marinus* [@morrisFacilitationRobustGrowth2008; @morrisDependenceCyanobacteriumProchlorococcus2011].
 
 \newpage
 
@@ -1220,41 +1218,13 @@ knitr::include_graphics(file.path(FiguresIn, "DNARepairFig.png"))
 
 ```
 
-\newpage
-
-XXXXDoug
-The potential for niche expansion into temperate regions by *P. marinus*
-varies depending on the season, which influences achieved underwater
-photoperiods and light levels. Temperate summer delivers ~11 hours of
-blue waveband light underwater, above the photic threshold of 20 µmol
-photons m^-2^ s^-1^, while temperate spring/fall delivers 8 hours of
-blue waveband light underwater, photoperiod ranges which are permissive
-for growth of all three *P. marinus*. In contrast temperate winter
-delivers only about 2 h of blue waveband light underwater above the
-photic threshold, which precludes growth of MED4 and SS120, even if
-winter waters reached permissive temperatures. MIT9313 and SS120 will be
-excluded from near-surface growth niches by high PAR, unless OMZ zones
-extend to the near surface (Table \@ref(tab:NichesTable).
-
-\newpage
-
-
-```{r NichesMap, fig.cap = NichesMap_cap, fig.height = 20, fig.width = 20, echo = FALSE}
-
-NichesMap_cap <- glue(" Figure caption for Potential Temperate Future Niche map goes here.",
-                       
-                       .sep = " ")
-
-knitr::include_graphics(file.path(FiguresIn, "NichesMap.png")) 
-
-```
 
 \newpage
 
 Diverse *P. marinus* strains @billerProchlorococcusStructureFunction2015
 differentially exploit potential photoregimes, both at the surface and
-deep in the water column. Some *P. marinus* strains grow under low
-oxygen environments, similar to OMZ. The LL clades we tested can
+deeper in the water column. Some *P. marinus* strains grow under low
+oxygen environments, similar to OMZ. The LLII and LLIV clade representatives we tested can
 function as 'HL' in oxygen environments of 25 µM, and as low as 2.5 µM,
 in the case of MIT9313.
 
@@ -1282,11 +1252,33 @@ m^-2^ d^-1^ (Fig \@ref(fig:PhotoperiodPurFitsPlots)A and B). Growth under
 lower O~2~ allowed MIT9313 to substantially increase its exploitation of
 higher diel PUR (Fig \@ref(fig:PhotoperiodPurFitsPlots)I).
 
+Potential niche expansions of clades of *P. marinus* into temperate regions
+vary depending on the season and the depth, which interact to govern both peak PAR levels and underwater photoperiods (Figure \@ref(fig:NichesMap). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI.  In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures. Expansion of OMZ drastically alters these patterns, by allowing clade LLIV to exploit a much wider range of lights, extending towards near-surface niches in both tropical and temperate zones, under permissive temperatures.
+
+\newpage
+
+
+```{r NichesMap, fig.cap = NichesMap_cap, fig.height = 20, fig.width = 20, echo = FALSE}
+
+NichesMap_cap <- glue(" Potential Future Niches for *Prochlorococcus* clades in a warming ocean. 
+The map shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), tropical and temperate  latitudinal regions (yellow bands). 
+Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light.
+Potential clade occupancies under Full Oxygen (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III are excluded from shallow depths by excessive light.
+Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light by Clade LLIV.
+Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.",
+                       .sep = " ")
+
+knitr::include_graphics(file.path(FiguresIn, "NichesMap.png")) 
+
+```
+
+\newpage
+
 # Summary and conclusions {.unnumbered}
 
-We analyzed growth rates for *P. marinus* clade HLI found near the ocean
-surface; clade LLII/III found deep in the water column; and clade LLIV
-also found in deep oceans, including OMZ, under a matrix of spectral
+We analyzed growth rates for *P. marinus* clade HLI usually found near the ocean
+surface; clade LLII/III found deeper in the water column; and clade LLIV
+also found in deep oceans, including current OMZ, under a matrix of spectral
 wavebands, irradiances, photoperiods and oxygen concentrations
 approximating present day and hypothetical future niches.
 
@@ -1311,10 +1303,7 @@ under blue light. TARA Oceans Project data
 [@delmontLinkingPangenomesMetagenomes2018] indeed reported presence of
 *P. marinus* MED4-like genomes at depths ranging from 5 m to 90 m,
 representing high to low blue light levels, in the Pacific South East
-Ocean. Delmont and Eren [@delmontLinkingPangenomesMetagenomes2018] did
-not analyze data from depths beyond the subsurface chlorophyll maximum
-layer, nor did they report[O~2~] at depth. Our growth findings are
-consistent with Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)
+Ocean. Our growth findings are consistent with Fig \@ref(fig:CladeProchloroPhotosynthDepthO2)
 showing PSII proteins annotated as MED4, clade HLI, at depths up to 200
 meters, with O~2~ of \~15 µM.
 
@@ -1324,12 +1313,10 @@ with a higher tolerance for higher cumulative diel PUR under 25 µM O~2~,
 compared to 250 µM O~2~ (Fig \@ref(fig:PhotoperiodPurFitsPlots)).
 Thus, SS120 can exploit higher PAR environments, within OMZ. SS120 is
 likely excluded from the combination of higher [O~2~] and higher PAR by
-genomic limitations on capacity for DNA repair (Fig \@ref(fig:DNARepairFig)), and possibly by limited capacity for synthesis of reactive oxygen quenchers (Fig \@ref(fig:ProchlorococcusEnzymeKms)). Our growth results are supported
-by Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] who found
+genomic limitations on capacity for DNA repair (Fig \@ref(fig:DNARepairFig)), and possibly by limited capacity for synthesis of reactive oxygen quenchers (Fig \@ref(fig:ProchlorococcusEnzymeKms)). Our growth results are supported by Lavin *et al*. [@lavinNovelLineagesProchlorococcus2010] who found
 evidence of clades LLII/III and LLIV, using terminal restriction
 fragment length polymorphism analyses, at depths above 40 m, where light
-levels are higher, within OMZ, and by Fig \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits
-annotated as derived from SS120 at all depths ranging from 20 to 200 m
+levels are higher, within OMZ, and by Fig \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSII protein subunits annotated as derived from SS120 at all depths ranging from 20 to 200 m
 and all [O~2~] in an OMZ of the tropical North Pacific Ocean. SS120 grew
 under photoperiods longer than 4 h and showed increasing growth rate
 with increasing photoperiods, and so has the potential to thrive in deep
@@ -1342,7 +1329,7 @@ deep, temperate OMZ, during the winter season.
 
 *Prochlorococcus marinus* MIT9313, a clade LLIV representative, shows
 potential to inhabit future warmer temperate zones year-round, as it
-grows under a 4 h photoperiod, expected in winter, or at
+grows even under a 4 h photoperiod, expected in winter, or at
 light-attenuated depths. MIT9313 demonstrates an unexpected tolerance to
 higher light levels and cumulative diel PUR, but only under low oxygen
 conditions of 25 µM and 2.5 µM (Fig \@ref(fig:MIT9313PARGAM)A), enabling
@@ -1360,9 +1347,8 @@ expression in *P. marinus* MIT9313
 [@bonisteelStrainSpecificDifferences2018]. MIT9313 shows remarkable
 ability to thrive under very low [O~2~], potentially allowing it to
 expand into broader ecological niches. Our results are supported by
-Fig \@ref(fig:CladeProchloroPhotosynthDepthO2) showing PSI protein
-subunits annotated as derived from MIT9313 detected at depths \> 120 m,
-along with PSII subunits at depths from 50 m to 200 m in regions where
+Fig \@ref(fig:CladeProchloroPhotosynthDepthO2) showing protein
+subunits derived from MIT9313 detected frequently at depths \> 120 m in regions where
 O~2~ was 15 µM. Bagby and Chisholm
 [@bagbyResponseProchlorococcusVarying2015] suggest that O~2~ has a
 protective role in *P. marinus* under lower carbon dioxide
@@ -1372,7 +1358,7 @@ environments typical for MIT9313 are relatively nutrient rich, and
 [@gomez-baenaGlucoseUptakeIts2008;
 @munoz-marinGlucoseUptakeProchlorococcus2017;
 @munoz-marinProchlorococcusCanUse2013] and amino acids
-[@zubkovDepthRelatedAmino2004]. In future work we aim to test whether
+[@zubkovDepthRelatedAmino2004]. In future work could test whether
 MIT9313 is using photosynthesis to drive CO~2~ fixation in low O~2~
 environments, or whether PSII generation of O~2~ acts as an electron
 sink for respiration, using ATP for maintenance and to take up nutrients
@@ -1384,7 +1370,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-In warming oceans *P. marinus* clades will differentially expand into new regions depending upon their different, interacting capacities to tolerate and exploit photoperiods, light levels, and [O~2~]. Competition among clades will be driven not simply by light levels. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) might actually exploit higher light niches under OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
+In warming oceans *P. marinus* clades will differentially expand into new regions depending upon their different, interacting capacities to tolerate and exploit photoperiods, light levels, and [O~2~]. Competition among clades will be driven not simply by light levels. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
 
 
 \newpage
