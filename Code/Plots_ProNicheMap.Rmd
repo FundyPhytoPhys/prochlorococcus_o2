@@ -578,8 +578,8 @@ map<-ggplot() +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=18),
-        axis.title = element_text(size=20),
+        axis.text = element_text(size=20),
+        axis.title = element_text(size=22),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=20),
         #axis.title.x = element_text(margin=margin(t=10)),
@@ -619,17 +619,17 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 0) %>% 
 ggplot()+
   geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   labs(title = "Full Oxygen") +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both, DayofYear = label_value)) +
   guides(color = "none") +
   theme_bw()+
-  theme(plot.title = element_text(size = 20),
+  theme(plot.title = element_text(size = 22),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=18),
+        axis.text = element_text(size=20),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -659,7 +659,7 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 0) %>% 
 ggplot()+
   geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
@@ -668,7 +668,7 @@ ggplot()+
   theme(plot.title = element_text(vjust = 10),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=18),
+        axis.text = element_text(size=20),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -702,17 +702,17 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 0) %>% 
 ggplot()+
   geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   labs(title = "Oxygen Minimum Zone") +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
-  theme(plot.title = element_text(size = 20),
+  theme(plot.title = element_text(size = 22),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=18),
+        axis.text = element_text(size=20),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -761,7 +761,7 @@ ggplot()+
   # stat_wl_strip(aes(x = nm), ymin = "50 m", ymax = "100 m", alpha = 0.5, PhotoperiodDepthOMZss) +
   # scale_fill_identity() +
   geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
@@ -770,7 +770,7 @@ ggplot()+
   theme(plot.title = element_text(vjust = 10),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=18),
+        axis.text = element_text(size=20),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
