@@ -64,9 +64,8 @@ PhotoperiodDepthOMZ <- PhotoperiodDepth |>
                               DayofYear == "Summer Solstice" & DepthNames == "100 m" & lat == 0  ~ 0,
                               TRUE ~ 1)) |>
   mutate(CladeLLII_LLIII = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
-                                     DayofYear == "Winter Solstice" & lat == 0 ~ 0,
-                                     DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
-                                     DayofYear == "Equinox" & lat == 0 ~ 0,
+                                     DayofYear == "Winter Solstice" & DepthNames == "50 m" & lat == 0 ~ 0,
+                                     DayofYear == "Equinox" & DepthNames == "50 m" ~ 0,
                                      DayofYear == "Summer Solstice" & lat == 45  ~ 0,
                                      DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
                               TRUE ~ 1 ))  |>
@@ -101,10 +100,200 @@ PhotoperiodDepthFullO2
 
 
 ```{r read spectral depth backdrop}
-DepthBackdrop <- readRDS(file = file.path("..", "Data", "ProcessedData", "DepthBackdrop.Rds"))
+DepthBackdrop <- readPNG("DepthBackdrop.png")
+# Get dimensions of the image
+width <- dim(DepthBackdrop)[2]
+height <- dim(DepthBackdrop)[1]
 
-DepthBackdrop 
+# Plot the image
+plot(1:width, type = "n", xlim = c(0, width), ylim = c(0, height),
+     xlab = "", ylab = "", axes =FALSE)
+rasterImage(DepthBackdrop, 0, 0, width, height) 
+points(PhotoperiodDepthFullO2$PhoticperiodPeakSatPAR_h, PhotoperiodDepthFullO2$DepthNames, col = "red", pch = 16) 
+ 
+
+
 ```
+
+```{r, Niches figures, fig.height = 10, fig.width = 8, warning = FALSE}
+NichesFullO2North <- PhotoperiodDepthFullO2 %>%
+  filter(lat == 45) %>% 
+mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV == 0 ~ "Clade HLI",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 0 ~ "Clades HLI, LLII/III",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 1 ~ "Clades HLI, LLII/III, LLIV",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 0 ~ "Clade LLII/III",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 1 ~ "Clades LLII/III, LLIV",
+                                CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "Clade LLIV",
+                                CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "Clades HLI, LLIV",
+                                CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
+        TextLocation = 5) %>% 
+mutate(DepthNames = factor(DepthNames, levels = c("50 m", "100 m")),
+         lat = factor(lat, levels = c("45", "0"))) %>%
+ggplot()+
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
+            size = 0.5, alpha = 0, show.legend = TRUE)+
+  labs(title = "Full Oxygen") +
+  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+    facet_grid(rows = vars(lat),
+              cols = vars(DayofYear),
+              labeller = labeller(lat = label_both, DayofYear = label_both)) +
+   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
+   # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 3
+  )  +
+  guides(color = "none") +
+  theme_bw()+
+ theme(strip.text = element_text(size = 10),
+        axis.title = element_blank(),
+        # strip.text.x = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.ticks.y.left = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.margin = unit(c(0,30,0,0), "pt"))
+
+NichesFullO2North
+
+NichesFullO2Equat <- PhotoperiodDepthFullO2 %>%
+  filter(lat == 0) %>% 
+mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV == 0 ~ "Clade HLI",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 0 ~ "Clades HLI, LLII/III",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 1 ~ "Clades HLI, LLII/III, LLIV",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 0 ~ "Clade LLII/III",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 1 ~ "Clades LLII/III, LLIV",
+                                CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "Clade LLIV",
+                                CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "Clades HLI, LLIV",
+                                CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
+        TextLocation = 5) %>% 
+mutate(DepthNames = factor(DepthNames, levels = c("50 m", "100 m")),
+         lat = factor(lat, levels = c("45", "0"))) %>%
+ggplot()+
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
+            size = 0.5, alpha = 0, show.legend = TRUE)+
+  # labs(title = "Full Oxygen") +
+  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+    facet_grid(rows = vars(lat),
+              cols = vars(DayofYear),
+              labeller = labeller(lat = label_both)) +
+   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
+   # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 3
+  )  +
+  guides(color = "none") +
+  theme_bw() +
+ theme(strip.text.x = element_blank(),
+       strip.text.y = element_text(size = 10),
+        axis.title = element_blank(),
+        # strip.text.x = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.ticks.y.left = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank())
+
+NichesFullO2Equat
+
+
+
+
+
+NichesOMZNorth <- PhotoperiodDepthOMZ %>%
+  filter(lat == 45) %>% 
+mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV == 0 ~ "Clade HLI",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 0 ~ "Clades HLI, LLII/III",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 1 ~ "Clades HLI, LLII/III, LLIV",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 0 ~ "Clade LLII/III",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 1 ~ "Clades LLII/III, LLIV",
+                                CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "Clade LLIV",
+                                CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "Clades HLI, LLIV",
+                                CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
+        TextLocation = 5) %>% 
+mutate(DepthNames = factor(DepthNames, levels = c("50 m", "100 m")),
+         lat = factor(lat, levels = c("45", "0"))) %>%
+ggplot()+
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
+            size = 0.5, alpha = 0, show.legend = TRUE)+
+   labs(title = "OMZ") +
+  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+    facet_grid(rows = vars(lat),
+              cols = vars(DayofYear),
+              labeller = labeller(lat = label_both)) +
+   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
+   # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 3
+  )  +
+  guides(color = "none") +
+  theme_bw() +
+ theme(strip.text.x = element_blank(),
+       strip.text.y = element_text(size = 10),
+        axis.title = element_blank(),
+        # strip.text.x = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.ticks.y.left = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank())
+
+NichesOMZNorth
+
+
+
+
+NichesOMZEquat <- PhotoperiodDepthOMZ %>%
+  filter(lat == 0) %>% 
+mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV == 0 ~ "Clade HLI",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 0 ~ "Clades HLI, LLII/III",
+                                CladeHLI == 1 & CladeLLII_LLIII == 1 & CladeLLIV == 1 ~ "Clades HLI, LLII/III, LLIV",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 0 ~ "Clade LLII/III",
+                                CladeLLII_LLIII == 1 & CladeHLI == 0 & CladeLLIV == 1 ~ "Clades LLII/III, LLIV",
+                                CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "Clade LLIV",
+                                CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "Clades HLI, LLIV",
+                                CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
+        TextLocation = 5) %>% 
+mutate(DepthNames = factor(DepthNames, levels = c("50 m", "100 m")),
+         lat = factor(lat, levels = c("45", "0"))) %>%
+ggplot()+
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
+            size = 0.5, alpha = 0, show.legend = TRUE)+
+  # labs(title = "Full Oxygen") +
+  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+    facet_grid(rows = vars(lat),
+              cols = vars(DayofYear),
+              labeller = labeller(lat = label_both)) +
+   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
+   # parse = TRUE,
+    hjust = 0,
+    vjust = 1,
+    size = 3
+  )  +
+  guides(color = "none") +
+  theme_bw() +
+ theme(strip.text.x = element_blank(),
+       strip.text.y = element_text(size = 10),
+        axis.title = element_blank(),
+        # strip.text.x = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.ticks.y.left = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank())
+
+NichesOMZEquat
+
+```
+
+
 
 # Create map
 https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
@@ -112,164 +301,68 @@ https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
 ```{r world map}
 world_coordinates <- map_data("world") 
 
-world_coordinates$facetsFuture <- 'Future~scenario'
+# world_coordinates$facetsFuture <- 'Future~scenario'
 
 data_textA <- data.frame(label = c('A'))
 data_textB <- data.frame(label = c('B'))
-data_textC <- data.frame(label = c('C'))
+# data_textC <- data.frame(label = c('C'))
 ```
 
 
-```{r create GrowthCurve plot, fig.height = 4, fig.width = 6, warning = FALSE}
+```{r create maps, fig.height = 10, fig.width = 6, warning = FALSE}
 
 d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
 d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
 d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
 d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
 d5=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-40), y2=c(40))
+# 
+# data_textTropicFull <- data.frame(label = c('All~year'))
+# data_textTropicFull2 <- data.frame(label = c('12~h'))
+# data_textTropicFull3 <- data.frame(label = c('11/7~h'))
+# 
+# TropicFull<-ggplot() + 
+#   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+#   geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+#   geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+#   geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+#   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+#   geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
+#   geom_text(data=data_textTropicFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
+#   geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
+#   geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
+#   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+#   coord_cartesian(ylim = c(-90, 120)) +
+#   labs(y = "Latitude", x = "Longitude") +
+#   ggh4x::facet_nested(rows = vars(facetsPresent), labeller = label_parsed, switch = "y") +
+#   theme_bw() +
+#   theme(panel.grid.minor = element_blank(),
+#         panel.grid.major = element_blank(),
+#         strip.placement = "outside",
+#         strip.switch.pad.grid = unit(1, "cm"),
+#         axis.text = element_text(size=14),
+#         axis.title = element_text(size=14),
+#         strip.background = element_rect(fill="white"),
+#         strip.text = element_text(size=18),
+#         axis.title.y = element_text(vjust = -15),
+#         #axis.title.x = element_text(margin=margin(t=10)),
+#         axis.title.x = element_blank(),
+#         axis.text.x = element_blank(),
+#         axis.ticks.x = element_blank(),
+#         legend.background = element_rect(fill="transparent"),
+#         legend.position = c(0.12,0.76),
+#         legend.key.height= unit(0.005, 'cm'),
+#         legend.spacing.x = unit(0.01, 'cm'),
+#         legend.text = element_text(size=14))
+# TropicFull
 
-data_textTropicFull <- data.frame(label = c('All~year'))
-data_textTropicFull2 <- data.frame(label = c('12~h'))
-data_textTropicFull3 <- data.frame(label = c('11/7~h'))
+# data_textWinterFull <- data.frame(label = c('Winter~or~summer~solstice'))
+# data_textWinterFull2 <- data.frame(label = c('9~h'))
+# data_textWinterFull3 <- data.frame(label = c('16~h'))
+# data_textWinterFull4 <- data.frame(label = c('8/4~h'))
+# data_textWinterFull5 <- data.frame(label = c('15/10~h'))
 
-TropicFull<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-  geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-  geom_text(data=data_textTropicFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
-  geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(rows = vars(facetsPresent), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = -15),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-TropicFull
-
-data_textWinterFull <- data.frame(label = c('Winter~or~summer~solstice'))
-data_textWinterFull2 <- data.frame(label = c('9~h'))
-data_textWinterFull3 <- data.frame(label = c('16~h'))
-data_textWinterFull4 <- data.frame(label = c('8/4~h'))
-data_textWinterFull5 <- data.frame(label = c('15/10~h'))
-
-WinterFull<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-    geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-    geom_text(data=data_textB, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-    geom_text(data=data_textWinterFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
-    geom_text(data=data_textWinterFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textWinterFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textWinterFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textWinterFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = -15),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-WinterFull
-
-
-data_textSpringFull <- data.frame(label = c('Vernal~equinox'))
-data_textSpringFull2 <- data.frame(label = c('12~h'))
-data_textSpringFull3 <- data.frame(label = c('12~h'))
-
-data_textSpringFull4 <- data.frame(label = c('11/6~h'))
-data_textSpringFull5 <- data.frame(label = c('11/6~h'))
-
-SpringFull<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-    geom_text(data=data_textC, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-    geom_text(data=data_textSpringFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
-    geom_text(data=data_textSpringFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSpringFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSpringFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSpringFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
-  
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = -15),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-SpringFull
-
-data_textSummerFull <- data.frame(label = c('Summer~or~winter~solstice'))
-data_textSummerFull2 <- data.frame(label = c('16~h'))
-data_textSummerFull3 <- data.frame(label = c('9~h'))
-data_textSummerFull4 <- data.frame(label = c('15/10~h'))
-data_textSummerFull5 <- data.frame(label = c('8/4~h'))
-SummerFull<-ggplot() + 
+FullO2map<-ggplot() + 
   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
@@ -277,18 +370,18 @@ SummerFull<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
   geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-    geom_text(data=data_textD, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-    geom_text(data=data_textSummerFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
-    geom_text(data=data_textSummerFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSummerFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSummerFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
-    geom_text(data=data_textSummerFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
-      geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
-      geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
+    geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
+    # geom_text(data=data_textWinterFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
+    # geom_text(data=data_textWinterFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textWinterFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textWinterFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textWinterFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
   labs(y = "Latitude", x = "Longitude") +
-  ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
+  # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -298,7 +391,7 @@ SummerFull<-ggplot() +
         axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = -15),
+        axis.title.y = element_text(vjust = 1),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -308,17 +401,137 @@ SummerFull<-ggplot() +
         legend.key.height= unit(0.005, 'cm'),
         legend.spacing.x = unit(0.01, 'cm'),
         legend.text = element_text(size=14))
-SummerFull
+FullO2map
+
+
+# data_textSpringFull <- data.frame(label = c('Vernal~equinox'))
+# data_textSpringFull2 <- data.frame(label = c('12~h'))
+# data_textSpringFull3 <- data.frame(label = c('12~h'))
+# 
+# data_textSpringFull4 <- data.frame(label = c('11/6~h'))
+# data_textSpringFull5 <- data.frame(label = c('11/6~h'))
+
+OMZmap<-ggplot() + 
+  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+     geom_text(data=data_textB, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
+    # geom_text(data=data_textSpringFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
+    # geom_text(data=data_textSpringFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textSpringFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textSpringFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textSpringFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
+    # geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
+    # 
+  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+  coord_cartesian(ylim = c(-90, 120)) +
+  labs(y = "Latitude", x = "Longitude") +
+  # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        strip.placement = "outside",
+        strip.switch.pad.grid = unit(1, "cm"),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=14),
+        strip.background = element_rect(fill="white"),
+        strip.text = element_text(size=18),
+        axis.title.y = element_text(vjust = 1),
+        #axis.title.x = element_text(margin=margin(t=10)),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.background = element_rect(fill="transparent"),
+        legend.position = c(0.12,0.76),
+        legend.key.height= unit(0.005, 'cm'),
+        legend.spacing.x = unit(0.01, 'cm'),
+        legend.text = element_text(size=14))
+OMZmap
+
+# data_textSummerFull <- data.frame(label = c('Summer~or~winter~solstice'))
+# data_textSummerFull2 <- data.frame(label = c('16~h'))
+# data_textSummerFull3 <- data.frame(label = c('9~h'))
+# data_textSummerFull4 <- data.frame(label = c('15/10~h'))
+# data_textSummerFull5 <- data.frame(label = c('8/4~h'))
+# SummerFull<-ggplot() + 
+#   geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
+#   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+#   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+#     geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
+#   geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+#   geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
+#   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
+#     geom_text(data=data_textD, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
+#     geom_text(data=data_textSummerFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
+#     geom_text(data=data_textSummerFull2, aes(x=-180, y=50, label=label), size=3.5, parse=TRUE) +
+#     geom_text(data=data_textSummerFull3, aes(x=-180, y=-50, label=label), size=3.5, parse=TRUE) +
+#     geom_text(data=data_textSummerFull4, aes(x=180, y=50, label=label), size=3.5, parse=TRUE) +
+#     geom_text(data=data_textSummerFull5, aes(x=180, y=-50, label=label), size=3.5, parse=TRUE) +
+#       geom_text(data=data_textTropicFull2, aes(x=-180, y=0, label=label), size=3.5, parse=TRUE) +
+#       geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
+#   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
+#   coord_cartesian(ylim = c(-90, 120)) +
+#   labs(y = "Latitude", x = "Longitude") +
+#   ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
+#   theme_bw() +
+#   theme(panel.grid.minor = element_blank(),
+#         panel.grid.major = element_blank(),
+#         strip.placement = "outside",
+#         strip.switch.pad.grid = unit(1, "cm"),
+#         axis.text = element_text(size=14),
+#         axis.title = element_text(size=14),
+#         strip.background = element_rect(fill="white"),
+#         strip.text = element_text(size=18),
+#         axis.title.y = element_text(vjust = -15),
+#         #axis.title.x = element_text(margin=margin(t=10)),
+#         axis.title.x = element_blank(),
+#         axis.text.x = element_blank(),
+#         axis.ticks.x = element_blank(),
+#         legend.background = element_rect(fill="transparent"),
+#         legend.position = c(0.12,0.76),
+#         legend.key.height= unit(0.005, 'cm'),
+#         legend.spacing.x = unit(0.01, 'cm'),
+#         legend.text = element_text(size=14))
+# SummerFull
 
 
 
 ```
 
+```{r}
 
-```{r, warning = FALSE, fig.height = 12, fig.width = 6}
-Full<- (TropicFull/WinterFull/SpringFull/SummerFull)
-Full                         
 ```
+
+
+
+
+```{r, warning = FALSE, fig.height = 15, fig.width = 20}
+
+FullO2<- (FullO2map + (plot_spacer()/NichesFullO2North/NichesFullO2Equat/plot_spacer())) +
+  plot_layout(widths = c(3,2), heights = c(4,0.5))
+FullO2  
+
+OMZ<- (OMZmap + (plot_spacer()/NichesOMZNorth/NichesOMZEquat/plot_spacer())) +
+  plot_layout(widths = c(3,2), heights = c(4,0.5))
+OMZ 
+
+NichesMap <- (FullO2map + (plot_spacer()/NichesFullO2North/NichesFullO2Equat/plot_spacer())) / (OMZmap + (plot_spacer()/NichesOMZNorth/NichesOMZEquat/plot_spacer()))
+
+NichesMap
+
+```
+
+```{r save plot}
+ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
+```
+
+
+
 
 https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 
@@ -338,12 +551,12 @@ https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 
 ```{r}
 #FUll
-world_coordinatesRainbow <- map_data("world")
+# world_coordinatesRainbow <- map_data("world")
 world_coordinatesRainbow$nm <- c(400, 700)
 
-data_text1 <- data.frame(label = c('Near~surface~(180~µE~","~8~h):~Clade~HLI'))
-data_text2 <- data.frame(label = c('Near~surface~(180~µE~","~11~h):~Clade~HLI'))
-data_text3 <- data.frame(label = c('Near~surface~(180~µE~","~15~h):~Clade~HLI'))
+data_text1 <- data.frame(label = c('~Clade~HLI'))
+data_text2 <- data.frame(label = c('~Clade~HLI'))
+data_text3 <- data.frame(label = c('~Clade~HLI'))
 
 data_text4 <- data.frame(label = c('Deep~(30~µE~","~4~h):~Clade~LLIV'))
 data_text5 <- data.frame(label = c('Deep~(30~µE~","~6~h):~Clades~HLI~","~LLII/III~","~LLIV'))
@@ -359,10 +572,10 @@ data_textOMZ <- data.frame(label = c('Oxygen:~OMZ'))
 #Full
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
 RainbowTropicFull<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+  stat_wl_strip(aes(x = nm), ymin = 180, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 170, b = 40, angle = pi / 20), fill = "white", colour = "white") +
   coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(70, 230)) +
@@ -1275,11 +1488,6 @@ RainbowSummerOMZ
 OMZRainbow2<- (TropicFull+RainbowTropicFull+RainbowTropicOMZ)/(WinterFull+RainbowWinterFull+RainbowWinterOMZ)/(SpringFull+RainbowSpringFull+RainbowSpringOMZ)/(SummerFull+RainbowSummerFull+RainbowSummerOMZ)
 OMZRainbow2
 ```
-
-```{r save plot}
-ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
-```
-
 
 
 

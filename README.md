@@ -89,7 +89,7 @@ Data Dictionary can be found in "Docs/prochlorococcus_O2_DataDictionary.csv"
 #### Import_MetaData.Rmd
 
 Imports metadata for Multicultivator experiments. Metadata URL location:
-https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0
+https://docs.google.com/spreadsheets/d/1ZXpwR7Gfto-uRzVdXzMpQF4frbrvMLH_IyLqonFZRSw/edit#gid=0 and outputs "CultureCatalog.Rds"
 
 #### Import_MCData.Rmd
 
