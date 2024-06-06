@@ -42,7 +42,9 @@ library(ggspectra)
 library(photobiologyWavebands)
 library(photobiology)
 library(ggforce) #ellipse
+library("cowplot")
 library("patchwork") # merging plots
+library(grid) # for making one strip bigger - grid.draw
 
 ```
 
@@ -543,7 +545,7 @@ ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=16,
 
 
 fig.height = 10, fig.width = 6, warning = FALSE
-```{r create maps}
+```{r create maps, fig.height = 8, fig.width = 10, warning = FALS}
 
 d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
 d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
@@ -570,18 +572,16 @@ map<-ggplot() +
     # geom_text(data=data_textTropicFull3, aes(x=180, y=0, label=label), size=3.5, parse=TRUE) +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
+  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   labs(y = "Latitude", x = "Longitude") +
   # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
+        axis.text = element_text(size=18),
+        axis.title = element_text(size=20),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = 1),
+        strip.text = element_text(size=20),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -595,52 +595,6 @@ map
 
 
 
-
-
-
-
-map2<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=1) +
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-    geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
-  #geom_hline(yintercept = 60, fill = "white", color="white", linetype = "solid", alpha=1, size = 1) +
-  geom_map(data = world_coordinates2, map = world_coordinates2, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
-    # geom_text(data=data_textD, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-    # geom_text(data=data_textSummerFull, aes(x=0, y=110, label=label), size=5, parse=TRUE) +
-    # geom_text(data=data_textSummerFull2, aes(x=-160, y=45, label=label), size=4.5, parse=TRUE) +
-    # geom_text(data=data_textSummerFull3, aes(x=-160, y=-45, label=label), size=4.5, parse=TRUE) +
-    # geom_text(data=data_textSummerFull4, aes(x=160, y=45, label=label), size=4.5, parse=TRUE) +
-    # geom_text(data=data_textSummerFull5, aes(x=160, y=-45, label=label), size=4.5, parse=TRUE) +
-    #   geom_text(data=data_textTropicFull2, aes(x=-170, y=0, label=label), size=4.5, parse=TRUE) +
-    #   geom_text(data=data_textTropicFull3, aes(x=170, y=0, label=label), size=4.5, parse=TRUE) +
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  #ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text.x = element_text(size=18, hjust = 0),
-        strip.text.y = element_text(size=18),
-        axis.title.y = element_text(vjust = -15),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14)) +
-  coord_map("moll") 
-map2
-
 ```
 
 #fig.height = 10, fig.width = 8, warning = FALSE
@@ -649,12 +603,8 @@ map2
     vjust = 1,
 ```{r, Niches figures, fig.height = 4, fig.width = 8, warning = FALSE}
 
-
-
-# PhotoperiodDepthFullO2<-PhotoperiodDepthFullO2 %>% 
-# PhotoperiodDepthOMZ<-PhotoperiodDepthOMZ %>% 
-  
-
+# PhotoperiodDepthFullO2$facetsFull <- 'Full Oxygen'
+# PhotoperiodDepthOMZ$facetsOMZ <- 'Oxygen Minimum Zone'
 
 NichesFullO2North <- PhotoperiodDepthFullO2 %>%
   filter(lat == 45) %>% 
@@ -666,24 +616,20 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 5) %>% 
+        TextLocation = 0) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
-            size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
   labs(title = "Full Oxygen") +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-      coord_fixed(ratio = 1.7, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
-    facet_grid(cols = vars(DayofYear),
-              labeller = labeller(lat = label_both, DayofYear = label_value)) +
-   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
-    size = 6
-  )  +
+  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both, DayofYear = label_value)) +
   guides(color = "none") +
   theme_bw()+
-  theme(plot.title = element_text(vjust = 10),
+  theme(plot.title = element_text(size = 20),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
+        axis.text = element_text(size=18),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -697,8 +643,8 @@ ggplot()+
         legend.key.height= unit(0.005, 'cm'),
         legend.spacing.x = unit(0.01, 'cm'),
         legend.text = element_text(size=14)) 
-
 NichesFullO2North
+
 
 NichesFullO2Equat <- PhotoperiodDepthFullO2 %>%
   filter(lat == 0) %>% 
@@ -710,24 +656,19 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 5) %>% 
+        TextLocation = 0) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
-            size = 0.5, alpha = 0, show.legend = TRUE)+
-  # labs(title = "Full Oxygen") +
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-      coord_fixed(ratio = 1.7, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
-    facet_grid(cols = vars(DayofYear),
-              labeller = labeller(lat = label_both)) +
-   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
-    size = 6
-  )  +
+  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
   theme(plot.title = element_text(vjust = 10),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
+        axis.text = element_text(size=18),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -758,24 +699,20 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 5) %>% 
+        TextLocation = 0) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
-            size = 0.5, alpha = 0, show.legend = TRUE)+
-   labs(title = "Oxygen Minimum Zone") +
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
+  labs(title = "Oxygen Minimum Zone") +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-      coord_fixed(ratio = 1.7, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
-    facet_grid(cols = vars(DayofYear),
-              labeller = labeller(lat = label_both)) +
-   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
-    size = 6
-  )  +
+  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
-  theme(plot.title = element_text(vjust = 10),
+  theme(plot.title = element_text(size = 20),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
+        axis.text = element_text(size=18),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -805,26 +742,20 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 5) %>% 
+        TextLocation = 0) %>% 
 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames),
-            size = 0.5, alpha = 0, show.legend = TRUE)+
-  # labs(title = "Full Oxygen") +
+  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-    coord_fixed(ratio = 1.7, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
-    facet_grid(cols = vars(DayofYear),
-              labeller = labeller(lat = label_both)) +
-   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE ),
-    hjust = 0.5,
-    #vjust = 1,
-   size = 6)  +
+  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
   theme(plot.title = element_text(vjust = 10),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=14),
+        axis.text = element_text(size=18),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
         strip.text = element_text(size=18),
@@ -846,25 +777,33 @@ NichesOMZEquat
 
 
 ```{r}
-P1<-(NichesFullO2North/NichesFullO2Equat)
-P1
+# P1<-(NichesFullO2North/NichesFullO2Equat)
+# P1
+# 
+# P2<- (NichesOMZNorth/NichesOMZEquat)
+# P2 
+# 
+# ggarrange(P1, map, P2, ncol = 3, nrow = 1)
 
-P2<- (NichesOMZNorth/NichesOMZEquat)
-P2 
+```
 
+#Cool web about merging plots
+http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/
 
-# P3<-P1+FullO2map+P2
-# P3
+```{r, fig.height = 4, fig.width = 8, warning = FALSE}
 
-ggarrange(P1, map, P2, ncol = 3, nrow = 1)
-
-# ggarrange(P1, map2, P2, ncol = 3, nrow = 1)
+ggdraw() +
+  draw_plot(NichesFullO2North, x = 0, y = 0.65, width = .3, height = .3) +
+  draw_plot(NichesFullO2Equat, x = 0, y = 0.455, width = .3, height = .3) +
+  draw_plot(map, x = .1, y = .2, width = 0.8, height = 0.8) +
+  draw_plot(NichesOMZNorth, x = 0.7, y = 0.65, width = .3, height = 0.3) +
+  draw_plot(NichesOMZEquat, x = 0.7, y = 0.455, width = .3, height = 0.3) 
 
 ```
 
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("NichesMap_UglySS2",".png",sep = "")), height=12, width= 28,  dpi = 300, limitsize = TRUE)
+ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=12, width= 28,  dpi = 300, limitsize = TRUE)
 ```
 
 
