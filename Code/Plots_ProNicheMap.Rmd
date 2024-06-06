@@ -100,6 +100,8 @@ PhotoperiodDepthFullO2
 
 
 ```{r read spectral depth backdrop}
+
+library("png")
 DepthBackdrop <- readPNG("DepthBackdrop.png")
 # Get dimensions of the image
 width <- dim(DepthBackdrop)[2]
@@ -148,7 +150,7 @@ ggplot()+
  theme(strip.text = element_text(size = 10),
         axis.title = element_blank(),
         # strip.text.x = element_text(size = 20),
-        axis.text.y = element_blank(),
+        axis.text.y = element_text(size = 10),
         axis.text.x = element_blank(),
         axis.ticks.x.bottom = element_blank(),
         axis.ticks.y.left = element_blank(),
@@ -191,8 +193,10 @@ ggplot()+
        strip.text.y = element_text(size = 10),
         axis.title = element_blank(),
         # strip.text.x = element_text(size = 20),
-        axis.text.y = element_blank(),
-        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 10),
+        # axis.text.y = element_blank(),
+        # axis.text.y = element_text(size = 5),
+         axis.text.x = element_blank(),
         axis.ticks.x.bottom = element_blank(),
         axis.ticks.y.left = element_blank(),
         panel.grid.minor = element_blank(),
@@ -233,11 +237,12 @@ ggplot()+
   )  +
   guides(color = "none") +
   theme_bw() +
- theme(strip.text.x = element_blank(),
+ theme(strip.text.x = element_text(size = 10),
        strip.text.y = element_text(size = 10),
         axis.title = element_blank(),
         # strip.text.x = element_text(size = 20),
-        axis.text.y = element_blank(),
+        axis.text.y = element_text(size = 10),
+        # axis.text.y = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x.bottom = element_blank(),
         axis.ticks.y.left = element_blank(),
@@ -282,8 +287,9 @@ ggplot()+
        strip.text.y = element_text(size = 10),
         axis.title = element_blank(),
         # strip.text.x = element_text(size = 20),
-        axis.text.y = element_blank(),
-        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 10),
+        # axis.text.y = element_blank(),
+         axis.text.x = element_blank(),
         axis.ticks.x.bottom = element_blank(),
         axis.ticks.y.left = element_blank(),
         panel.grid.minor = element_blank(),
@@ -502,12 +508,6 @@ OMZmap
 
 
 ```
-
-```{r}
-
-```
-
-
 
 
 ```{r, warning = FALSE, fig.height = 15, fig.width = 20}
