@@ -534,7 +534,7 @@ NichesMap
 ```
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
+#ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=16, width= 24,  dpi = 300, limitsize = TRUE)
 ```
 
 
@@ -730,7 +730,20 @@ ggplot()+
 NichesOMZNorth
 
 
-
+# PhotoperiodDepthOMZ1<-PhotoperiodDepthOMZ %>% 
+# filter(DayofYear == "Summer Solstice")
+# PhotoperiodDepthOMZ1$nm <- c(400, 400, 700, 700)
+# PhotoperiodDepthOMZ1$de <- c(400, 400, 700, 700)
+# 
+# PhotoperiodDepthOMZ2<-PhotoperiodDepthOMZ %>% 
+# filter(DayofYear == "Winter Solstice")
+# PhotoperiodDepthOMZ2$nm <- c(400, 400, 700, 700)
+# 
+# PhotoperiodDepthOMZ3<-PhotoperiodDepthOMZ %>% 
+# filter(DayofYear == "Equinox")
+# PhotoperiodDepthOMZ3$nm <- c(400, 400, 700, 700)
+# 
+# PhotoperiodDepthOMZss<-rbind(PhotoperiodDepthOMZ1, PhotoperiodDepthOMZ2, PhotoperiodDepthOMZ3)
 
 NichesOMZEquat <- PhotoperiodDepthOMZ %>%
   filter(lat == 0) %>% 
@@ -745,6 +758,8 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 0) %>% 
 
 ggplot()+
+  # stat_wl_strip(aes(x = nm), ymin = "50 m", ymax = "100 m", alpha = 0.5, PhotoperiodDepthOMZss) +
+  # scale_fill_identity() +
   geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6)  +
   scale_x_continuous(breaks=seq(0, 25, by = 5)) +
