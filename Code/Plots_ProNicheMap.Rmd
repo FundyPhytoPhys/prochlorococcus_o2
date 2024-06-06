@@ -313,7 +313,6 @@ https://www.geeksforgeeks.org/how-to-make-world-map-with-ggplot2-in-r/
 
 ```{r world map}
 world_coordinates <- map_data("world") 
-
 # world_coordinates$facetsFuture <- 'Future~scenario'
 
 data_textA <- data.frame(label = c('A'))
@@ -603,8 +602,15 @@ map
     vjust = 1,
 ```{r, Niches figures, fig.height = 4, fig.width = 8, warning = FALSE}
 
-# PhotoperiodDepthFullO2$facetsFull <- 'Full Oxygen'
-# PhotoperiodDepthOMZ$facetsOMZ <- 'Oxygen Minimum Zone'
+d=data.frame(x=c(-Inf,700,700), y=c(-Inf,-Inf,3), t=c('a', 'a', 'a'), r=c(1,2,3))
+
+PhotoperiodDepthFullO2<-PhotoperiodDepthFullO2
+PhotoperiodDepthFullO2$nm <- c(400, 400, 400, 400, 400, 400, 700, 700, 700, 700, 700, 700)
+
+PhotoperiodDepthOMZ<-PhotoperiodDepthOMZ
+PhotoperiodDepthOMZ$nm <- c(400, 400, 400, 400, 400, 400, 700, 700, 700, 700, 700, 700)
+
+
 
 NichesFullO2North <- PhotoperiodDepthFullO2 %>%
   filter(lat == 45) %>% 
@@ -616,16 +622,21 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 0) %>% 
+        TextLocation = 400) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
+  scale_fill_identity() +
+  # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+  # coord_cartesian(xlim = c(0, 20)) +
+  coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
-  labs(title = "Full Oxygen") +
-  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
-  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both, DayofYear = label_value)) +
+  ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
-  theme_bw()+
+  labs(title = "Full Oxygen") +
+  theme_bw() +
   theme(plot.title = element_text(size = 22),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -656,12 +667,17 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 0) %>% 
+        TextLocation = 400) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
+  scale_fill_identity() +
+  # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+  # coord_cartesian(xlim = c(0, 20)) +
+  coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
-  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
@@ -699,15 +715,20 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 0) %>% 
+        TextLocation = 400) %>% 
 ggplot()+
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
+  scale_fill_identity() +
+  # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+  # coord_cartesian(xlim = c(0, 20)) +
+  coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
-  labs(title = "Oxygen Minimum Zone") +
-  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
+  labs(title = "Oxygen Minimum Zone") +
   theme_bw() +
   theme(plot.title = element_text(size = 22),
         panel.grid.minor = element_blank(),
@@ -730,20 +751,6 @@ ggplot()+
 NichesOMZNorth
 
 
-# PhotoperiodDepthOMZ1<-PhotoperiodDepthOMZ %>% 
-# filter(DayofYear == "Summer Solstice")
-# PhotoperiodDepthOMZ1$nm <- c(400, 400, 700, 700)
-# PhotoperiodDepthOMZ1$de <- c(400, 400, 700, 700)
-# 
-# PhotoperiodDepthOMZ2<-PhotoperiodDepthOMZ %>% 
-# filter(DayofYear == "Winter Solstice")
-# PhotoperiodDepthOMZ2$nm <- c(400, 400, 700, 700)
-# 
-# PhotoperiodDepthOMZ3<-PhotoperiodDepthOMZ %>% 
-# filter(DayofYear == "Equinox")
-# PhotoperiodDepthOMZ3$nm <- c(400, 400, 700, 700)
-# 
-# PhotoperiodDepthOMZss<-rbind(PhotoperiodDepthOMZ1, PhotoperiodDepthOMZ2, PhotoperiodDepthOMZ3)
 
 NichesOMZEquat <- PhotoperiodDepthOMZ %>%
   filter(lat == 0) %>% 
@@ -755,15 +762,18 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
                                 CladeLLIV == 1 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "LLIV",
                                 CladeLLIV == 1 & CladeHLI == 1 & CladeLLII_LLIII == 0 ~ "HLI, LLIV",
                                 CladeLLIV == 0 & CladeHLI == 0 & CladeLLII_LLIII == 0 ~ "")),
-        TextLocation = 0) %>% 
+        TextLocation = 400) %>% 
 
 ggplot()+
-  # stat_wl_strip(aes(x = nm), ymin = "50 m", ymax = "100 m", alpha = 0.5, PhotoperiodDepthOMZss) +
-  # scale_fill_identity() +
-  geom_point(aes(x = PhoticperiodPeakSatPAR_h, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
+  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
+  scale_fill_identity() +
+  # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
+  # coord_cartesian(xlim = c(0, 20)) +
+  coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
-  scale_x_continuous(breaks=seq(0, 25, by = 5)) +
-  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
@@ -822,8 +832,57 @@ ggsave(file = file.path(FigPath, paste("NichesMap",".png",sep = "")), height=12,
 ```
 
 
+```{r, fig.height = 8, fig.width = 16, warning = FALSE}
+
+P1<-ggdraw() +
+  draw_plot(NichesFullO2North, x = 0.001, y = 0.695, width = .36, height = .22) +
+  draw_plot(NichesFullO2Equat, x = 0.001, y = 0.485, width = .36, height = .22) +
+  draw_plot(map, x = .179, y = .2, width = 0.8, height = 0.8) 
+P1
+
+P2<-ggdraw() +
+  draw_plot(NichesOMZNorth, x = 0.001, y = 0.695, width = .36, height = .22) +
+  draw_plot(NichesOMZEquat, x = 0.001, y = 0.485, width = .36, height = .22) +
+  draw_plot(map, x = .179, y = .2, width = 0.8, height = 0.8) 
+P2
 
 
+ggarrange(P1, P2, ncol = 1, nrow = 2)
+
+ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=18, width= 20,  dpi = 300, limitsize = TRUE)
+```
+
+
+```{r save plot}
+ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=8, width= 22,  dpi = 300, limitsize = TRUE)
+```
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+```{r read spectral depth backdrop}
+
+library("png")
+DepthBackdrop <- readPNG("DepthBackdrop.png")
+# Get dimensions of the image
+width <- dim(DepthBackdrop)[2]
+height <- dim(DepthBackdrop)[1]
+
+# Plot the image
+plot(1:width, type = "n", xlim = c(0, width), ylim = c(0, height),
+     xlab = "", ylab = "", axes =FALSE)
+rasterImage(DepthBackdrop, 0, 0, width, height)
+
+#points(PhotoperiodDepthFullO2$PhoticperiodPeakSatPAR_h, PhotoperiodDepthFullO2$DepthNames) 
+ 
+```
 
 
 https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
@@ -843,38 +902,32 @@ https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 https://sape.inf.usi.ch/quick-reference/ggplot2/geom_polygon
 
 ```{r}
-#FUll
-# world_coordinatesRainbow <- map_data("world")
-world_coordinatesRainbow$nm <- c(400, 700)
+world_coordinatesRainbowSurface <- map_data("world") 
+world_coordinatesRainbowDepth <- map_data("world") 
 
-data_text1 <- data.frame(label = c('~Clade~HLI'))
-data_text2 <- data.frame(label = c('~Clade~HLI'))
-data_text3 <- data.frame(label = c('~Clade~HLI'))
+world_coordinatesRainbowSurface$nm <- c(400, 700)
+world_coordinatesRainbowDepth$nm <- c(400, 550)
 
-data_text4 <- data.frame(label = c('Deep~(30~µE~","~4~h):~Clade~LLIV'))
-data_text5 <- data.frame(label = c('Deep~(30~µE~","~6~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-data_text6 <- data.frame(label = c('Deep~(30~µE~","~7~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-data_text7 <- data.frame(label = c('Deep~(30~µE~","~10~h):~Clades~HLI~","~LLII/III~","~LLIV'))
-
-data_textFull <- data.frame(label = c('Oxygen:~Full'))
-data_textOMZ <- data.frame(label = c('Oxygen:~OMZ'))
+data_textSurface <- data.frame(label = c('Near~Surface~(180~µE)'))
+data_textDepth <- data.frame(label = c('Deep~(30~µE)'))
 ```
 
 
 ```{r}
 #Full
 d=data.frame(x=c(400,700,700), y=c(100,100,200), t=c('a', 'a', 'a'), r=c(1,2,3))
-RainbowTropicFull<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 180, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+ddepth=data.frame(x=c(400,700,700), y=c(160,160,260), t=c('a', 'a', 'a'), r=c(1,2,3))
+
+RainbowSurface<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 150, ymax = 200, alpha = 0.5, world_coordinatesRainbowSurface) +
   scale_fill_identity() +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_ellipse(aes(x0 = 555, y0 = 143, a = 170, b = 40, angle = pi / 20), fill = "white", colour = "white") +
+  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "red", show.legend = F) +
+  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 40, angle = pi / 10), fill = "red", colour = "red") +
+  #geom_ellipse(aes(x0 = 555, y0 = 143, a = 170, b = 40, angle = pi / 20), fill = "white", colour = "white") +
   coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(70, 230)) +
-  geom_text(data=data_textFull, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_text2, aes(x=400, y=210, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text6, aes(x=400, y=90, label=label, hjust=0), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSurface, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -886,24 +939,18 @@ RainbowTropicFull<-ggplot() +
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.text = element_text(size=14))
-RainbowTropicFull
+RainbowSurface
 
 
-RainbowWinterFull<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+RainbowSurface1<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbowSurface) +
   scale_fill_identity() +
   geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  #geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
   coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(70, 230)) +
-    geom_text(data=data_textFull, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_text1, aes(x=400, y=230, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text2, aes(x=400, y=220, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text3, aes(x=400, y=210, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text4, aes(x=400, y=90, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text6, aes(x=400, y=80, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text7, aes(x=400, y=70, label=label, hjust=0), size=4.5, parse=TRUE) +
+  geom_text(data=data_textDepth, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -915,21 +962,20 @@ RainbowWinterFull<-ggplot() +
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.text = element_text(size=14))
-RainbowWinterFull
+RainbowSurface1
 
 
-RainbowSpringFull<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
+
+RainbowDepth1<-ggplot() +
+  stat_wl_strip(aes(x = nm), ymin = 180, ymax = 200, alpha = 0.5, world_coordinatesRainbowDepth) +
   scale_fill_identity() +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  geom_polygon(data=ddepth, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  #geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
+  #geom_ellipse(aes(x0 = 555, y0 = 143, a = 170, b = 40, angle = pi / 20), fill = "white", colour = "white") +
   coord_fixed() +
   scale_y_continuous(breaks=seq(100, 200, by = 50)) +
   coord_cartesian(ylim = c(70, 230)) +
-    geom_text(data=data_textFull, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_text2, aes(x=400, y=210, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text5, aes(x=400, y=90, label=label, hjust=0), size=4.5, parse=TRUE) + 
-  geom_text(data=data_text6, aes(x=400, y=80, label=label, hjust=0), size=4.5, parse=TRUE) +
+  geom_text(data=data_textSurface, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -941,37 +987,7 @@ RainbowSpringFull<-ggplot() +
         legend.background = element_rect(fill="transparent"),
         legend.position = c(0.12,0.76),
         legend.text = element_text(size=14))
-RainbowSpringFull
-
-
-RainbowSummerFull<-ggplot() +
-  stat_wl_strip(aes(x = nm), ymin = 100, ymax = 200, alpha = 0.5, world_coordinatesRainbow) +
-  scale_fill_identity() +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_ellipse(aes(x0 = 555, y0 = 143, a = 164, b = 28, angle = pi / 10), fill = "white", colour = "white") +
-  coord_fixed() +
-  scale_y_continuous(breaks=seq(100, 200, by = 50)) +
-  coord_cartesian(ylim = c(70, 230)) +
-    geom_text(data=data_textFull, aes(x=650, y=230, label=label), size=5, parse=TRUE) +
-  geom_text(data=data_text1, aes(x=400, y=210, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text2, aes(x=400, y=220, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text3, aes(x=400, y=230, label=label, hjust=0), size=4.5, parse=TRUE) +
-  
-  geom_text(data=data_text4, aes(x=400, y=70, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text6, aes(x=400, y=80, label=label, hjust=0), size=4.5, parse=TRUE) +
-  geom_text(data=data_text7, aes(x=400, y=90, label=label, hjust=0), size=4.5, parse=TRUE) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=14),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.text = element_text(size=14))
-RainbowSummerFull
+RainbowDepth1
 
 ```
 
