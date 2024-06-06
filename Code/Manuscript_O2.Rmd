@@ -1253,7 +1253,9 @@ lower O~2~ allowed MIT9313 to substantially increase its exploitation of
 higher diel PUR (Fig \@ref(fig:PhotoperiodPurFitsPlots)I).
 
 Potential niche expansions of clades of *P. marinus* into temperate regions
-vary depending on the season and the depth, which interact to govern both peak PAR levels and underwater photoperiods (Figure \@ref(fig:NichesMap). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI.  In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures. Expansion of OMZ drastically alters these patterns, by allowing clade LLIV to exploit a much wider range of lights, extending towards near-surface niches in both tropical and temperate zones, under permissive temperatures.
+will vary depending on the season, and the depth, which interact to govern the growth limiting factors of peak PAR levels and underwater photoperiods (Figure \@ref(fig:NichesMap). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI. In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures.  
+
+Expansion of OMZ would drastically alter these patterns of potential niche extensions, by allowing clade LLIV to exploit a much wider range of lights, extending towards near-surface niches in both tropical and temperate zones, under permissive temperatures.
 
 \newpage
 
