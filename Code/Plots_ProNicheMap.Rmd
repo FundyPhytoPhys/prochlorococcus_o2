@@ -654,13 +654,13 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 400) %>% 
 ggplot()+
   geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
-  scale_fill_identity() +
+  # stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
+  # scale_fill_identity() +
   # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   # coord_cartesian(xlim = c(0, 20)) +
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
@@ -699,13 +699,13 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 400) %>% 
 ggplot()+
   geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
-  scale_fill_identity() +
+  # stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthFullO2) +
+  # scale_fill_identity() +
   # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   # coord_cartesian(xlim = c(0, 20)) +
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
@@ -747,13 +747,13 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
         TextLocation = 400) %>% 
 ggplot()+
   geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
-  scale_fill_identity() +
+  # stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
+  # scale_fill_identity() +
   # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   # coord_cartesian(xlim = c(0, 20)) +
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
@@ -795,13 +795,13 @@ mutate(TextLabel = (case_when(CladeHLI == 1 & CladeLLII_LLIII == 0 & CladeLLIV =
 
 ggplot()+
   geom_point(aes(x = nm, y = DepthNames), size = 0.5, alpha = 0, show.legend = TRUE)+
-  stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
-  scale_fill_identity() +
+  # stat_wl_strip(aes(x = nm), ymin = -Inf, ymax = Inf, alpha = 0.3, PhotoperiodDepthOMZ) +
+  # scale_fill_identity() +
   # scale_x_continuous(breaks=seq(0, 25, by = 5)) +
   # coord_cartesian(xlim = c(0, 20)) +
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
-  geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
+  #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 6.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
