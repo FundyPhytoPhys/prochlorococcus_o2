@@ -1261,6 +1261,7 @@ Expansion of OMZ would drastically alter these patterns of potential niche exten
 
 ```{r NichesMap,  fig.cap = NichesMap_cap, fig.height = 20, fig.width = 20, echo = FALSE}
 
+#  This is Fig10.tiff
 NichesMap_cap <- glue("**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.**",
                       "The map shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). ",
 "Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light.",
