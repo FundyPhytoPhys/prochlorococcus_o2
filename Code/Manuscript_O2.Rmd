@@ -1192,7 +1192,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-To gain insights into the distinct growth rate responses across strains, particularly the responses to different [O~2~], we used a dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We tabulated those genes encoding enzymes involved in DNA repair, present in at least one of the *P.marinus* study strains (Fig \@ref(fig:DNARepairFig).
+To gain insights into the distinct growth rate responses across strains, particularly the responses to different [O~2~], we used a dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We tabulated those genes encoding enzymes involved in DNA repair, present in at least one of the *P.marinus* study strains (Fig \@ref(fig:DNARepairFig)).
 
 *P. marinus* NATL2A and MED4 possess the largest,
 most complete suites of genes encoding DNA repair enzymes. *Prochlorococcus marinus* MED4 and NATL2A both possess a gene encoding deoxyribodipyrimidine photolyase (Fig \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes)), which, when activated by blue light, repairs DNA damaged by UV light
@@ -1253,22 +1253,22 @@ lower O~2~ allowed MIT9313 to substantially increase its exploitation of
 higher diel PUR (Fig \@ref(fig:PhotoperiodPurFitsPlots)I).
 
 Potential niche expansions of clades of *P. marinus* into temperate regions
-will vary depending on the season, and the depth, which interact to govern the growth limiting factors of peak PAR levels and underwater photoperiods (Figure \@ref(fig:NichesMap). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI. In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures.  
+will vary depending on the season, and the depth, which interact to govern the growth limiting factors of peak PAR levels and underwater photoperiods (Fig \@ref(fig:NichesMap)). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI. In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures.  
 
 Expansion of OMZ would drastically alter these patterns of potential niche extensions, by further restricting occurrences of clade HLI, but allowing clade LLIV to exploit a much wider range of lights, extending towards near-surface niches in both tropical and temperate zones, under permissive temperatures.
 
 \newpage
 
+```{r NichesMap,  fig.cap = NichesMap_cap, fig.height = 20, fig.width = 20, echo = FALSE}
 
-```{r NichesMap, fig.cap = NichesMap_cap, fig.height = 20, fig.width = 20, echo = FALSE}
+NichesMap_cap <- glue("**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.**",
+                      "The map shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). ",
+"Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light.",
+"Potential clade occupancies under Full Oxygen (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light.",
+"Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV.",
+"Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.",
 
-NichesMap_cap <- glue(" Potential Future Niches for *Prochlorococcus* clades in a warming ocean. 
-The map shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). 
-Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light.
-Potential clade occupancies under Full Oxygen (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light.
-Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV.  
-Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.",
-                       .sep = " ")
+ .sep = " ")
 
 knitr::include_graphics(file.path(FiguresIn, "NichesMap.png")) 
 

@@ -88,15 +88,13 @@ PhotoperiodDepthFullO2 <- PhotoperiodDepth |>
   mutate(CladeHLI = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
                               TRUE ~ 1)) |>
   mutate(CladeLLII_LLIII = case_when(DayofYear == "Winter Solstice" ~ 0,
-                                     DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
-                                     DayofYear == "Equinox" & lat == 0 ~ 0,
+                                     DayofYear == "Equinox" & DepthNames == "50 m" ~ 0,
                                      DayofYear == "Summer Solstice" & lat == 45  ~ 0,
                                      DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
                               TRUE ~ 1 ))  |>
   mutate(CladeLLIV = case_when(DayofYear == "Winter Solstice" & DepthNames == "100 m" & lat == 45 ~ 0,
                                DayofYear == "Winter Solstice" & DepthNames == "50 m" & lat == 0 ~ 0,
-                               DayofYear == "Equinox" & DepthNames == "50 m" & lat == 45 ~ 0,
-                               DayofYear == "Equinox" & lat == 0 ~ 0,
+                               DayofYear == "Equinox" & DepthNames == "50 m"  ~ 0,
                                DayofYear == "Summer Solstice" & lat == 45  ~ 0,
                                DayofYear == "Summer Solstice" & DepthNames == "50 m" & lat == 0  ~ 0,
                               TRUE ~ 1))
@@ -854,7 +852,7 @@ ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=1
 
 
 ```{r save plot}
-ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=8, width= 22,  dpi = 300, limitsize = TRUE)
+# ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=8, width= 22,  dpi = 300, limitsize = TRUE)
 ```
 
 
