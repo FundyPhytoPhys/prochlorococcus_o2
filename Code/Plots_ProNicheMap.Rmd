@@ -536,7 +536,7 @@ NichesMap
 
 
 -------------------------------------------------------------------------------------------------------------------
----------------------------------------------- # SySl changes-----------------------------------------------------------
+---------------------------------------------- # SySl changes -----------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
 
 
@@ -897,7 +897,7 @@ ggsave(file = file.path(FigPath, paste("NichesMap_3",".png",sep = "")), height=1
 
 ```{r, fig.height = 8, fig.width = 16, warning = FALSE}
 
-<<<<<<< HEAD
+
 P1<-ggdraw() +
   draw_plot(NichesFullO2North, x = 0.001, y = 0.750, width = .350, height = .22) +
   draw_plot(NichesFullO2Equat, x = 0.001, y = 0.510, width = .350, height = .22) +
@@ -914,10 +914,7 @@ P2
 ggarrange(P1, P2, ncol = 1, nrow = 2)
 
 ggsave(file = file.path(FigPath, paste("NichesMap_4",".png",sep = "")), height=18, width= 21,  dpi = 300, limitsize = TRUE)
-=======
-```{r save plot}
-# ggsave(file = file.path(FigPath, paste("NichesMap_2",".png",sep = "")), height=8, width= 22,  dpi = 300, limitsize = TRUE)
->>>>>>> 4322eab256534f5f054da5a2bc1c05d34f3f5ffa
+
 ```
 
 
