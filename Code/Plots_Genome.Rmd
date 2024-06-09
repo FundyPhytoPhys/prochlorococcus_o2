@@ -238,7 +238,7 @@ ProchlorococcusEnzymeKms_cap <- glue("**Comparison of log~10~(K~m~ for O~2~ in m
 
 ```{r, ProchlorococcusEnzymeKms ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
-ggsave(filename = file.path(PLOSFiguresRoundX, "Fig11.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
+ggsave(filename = file.path(PLOSFiguresRoundX, "Fig8.tiff"), plot = ProchlorococcusEnzymeKms, height = 20, width = 17, compression = "lzw")
 # ggsave(filename = file.path(Figures, "ProchlorococcusEnzymeKms_julie.png"), plot = ProchlorococcusEnzymeKms, height = 23, width = 17)
 ```
 
@@ -354,7 +354,7 @@ DNARepairFig
 
 ```{r, DNARepairFig ggsave, include = FALSE} 
 ggsave(filename = file.path(Figures, "DNARepairFig.png"), plot = DNARepairFig, height =5 , width = 5)
-ggsave(filename = file.path(PLOSFiguresRoundX, "Fig12.tiff"), plot = DNARepairFig, height =5 , width = 5, compression = "lzw")
+ggsave(filename = file.path(PLOSFiguresRoundX, "Fig9.tiff"), plot = DNARepairFig, height =5 , width = 5, compression = "lzw")
 ```
 
 ```{r LightEnzymes, include=FALSE}
