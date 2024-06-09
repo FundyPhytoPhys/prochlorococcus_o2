@@ -228,7 +228,7 @@ Figures generated using "Code/Plots_OceanProtein.Rmd":
 - "CladeProchloroPhotosynthDepthO2.png", "CladeProchloroProteinMetabDepthO2.png"
 
 Figure generated using "Code/Plots_ProNicheMap.Rmd":
-- "NicheMap.png"
+- "NichesMap.png"
 
 The editable Powerpoint file named "LabeledMC.pptx" was used to generated the labeled Multicultivator picture named "LabeledMC.png".
 

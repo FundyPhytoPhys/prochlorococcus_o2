@@ -65,7 +65,7 @@ This .Rmd reads in "poi.RDS" from the "Data/ProcessedData/ProcessedOceanProtein"
 
 #### Plots_ProNicheMap.Rmd
 
-This .Rmd reads in "DepthPhotoperiodTableFilter.Rds" from the "Data/ProcessedData" folder and generates figure "Output/Figures/NicheMap.png"" that is later called into "Manuscript_O2.Rmd".
+This .Rmd reads in "DepthPhotoperiodTableFilter.Rds" from the "Data/ProcessedData" folder and generates figure "Output/Figures/NichesMap.png"" that is later called into "Manuscript_O2.Rmd".
 
 
 #### Manuscript_O2.Rmd
