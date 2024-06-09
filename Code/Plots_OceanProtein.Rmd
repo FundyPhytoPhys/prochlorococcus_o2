@@ -253,7 +253,9 @@ poi |>
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroPhotosynthDepthO2.png")))
  ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig2.tiff")))
 
-poi |>
+
+ 
+ poi |>
   filter(complex %in% ProteinMetab) |>
   filter(CladeMerge != "HLII") |>
   ggplot() +
@@ -273,7 +275,7 @@ poi |>
   theme(strip.text = element_text(size = 8))
 
    ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "Figures", "CladeProchloroProteinMetabDepthO2.png")))
-   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig10.tiff")))
+   ggsave(plot = last_plot(), filename = (file.path("..", "OutPut", "PLOSRound2", "Fig7.tiff")))
 
 ```
 
