@@ -132,7 +132,7 @@ This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" 
 
 #### Plots_Growth.Rmd
 
-This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("PurParPlot.png", "MED4PAR", "SS120PAR", "MIT9313PAR", "OverlayPlots.png" and "deltaODLogGrowthPlot.png") are saved in the "Output/Figures" folder. 
+This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("PurParPlot.png","OverlayPlots.png" and "deltaODLogGrowthPlot.png") are saved in the "Output/Figures" folder. 
 
 
 #### Plots_PURFits.Rmd
