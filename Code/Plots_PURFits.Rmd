@@ -83,7 +83,7 @@ library(minpack.lm)
 Project <- "PICO"
 DataIn <- file.path("..","Data", "CleanData")
 PlotsOut <- file.path("..","Output", "Figures")
-PlotsOutPLOS <- file.path("..", "OutPut", "PLOSFiguresRound1")
+PlotsOutPLOS <- file.path("..", "OutPut", "PLOSRound2")
 
 ```
 
@@ -1164,7 +1164,7 @@ BluevsRedPurFitsPlots
 
 ggsave(file = file.path(PlotsOut, paste("BluevsRedPurFitsPlots",".png",sep = "")), plot = BluevsRedPurFitsPlots, device = NULL, scale = 1, height=40, width= 54, units = c("cm"),dpi = 300, limitsize = TRUE)
 
- ggsave(file = file.path(PlotsOutPLOS, paste("Fig9.tiff",sep = "")), plot = BluevsRedPurFitsPlots, device = NULL, scale = 1, height=40, width= 54, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE)
+ ggsave(file = file.path(PlotsOutPLOS, paste("Fig6.tiff",sep = "")), plot = BluevsRedPurFitsPlots, device = NULL, scale = 1, height=40, width= 54, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE)
 
 ```
 
