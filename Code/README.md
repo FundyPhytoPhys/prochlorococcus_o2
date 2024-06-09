@@ -42,11 +42,11 @@ This script imports and merges the "PICO_Processed_MCGrowthFits.Rds" and "PICO_P
 
 #### Plots_GAM.Rmd
 
-This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each *P.marinus* ecotype in this study. The GAM function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. The generated GAM plots ("MED4GAM", "SS120GAM" and "MIT9313GAM") are saved in the "Output/Figures" folder and later read into "Manuscript_O2.Rmd".
+This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each *P.marinus* ecotype in this study. The GAM function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. The generated GAM plots ("MED4PARGAM.png", "SS120PARGAM.png" and "MIT9313PARGAM.png") are saved in the "Output/Figures" folder and later read into "Manuscript_O2.Rmd".
 
 #### Plots_Growth.Rmd
 
-This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("PurParPlot.png", "MED4PAR", "SS120PAR", "MIT9313PAR", "OverlayPlots.png" and "deltaODLogGrowthPlot.png") are saved in the "Output/Figures" folder. 
+This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("PurParPlot.png","OverlayPlots.png" and "deltaODLogGrowthPlot.png") are saved in the "Output/Figures" folder. 
 
 
 #### Plots_PURFits.Rmd
@@ -62,6 +62,11 @@ The generated plots ("ProchlorococcusEnzymeKms.png", "DNARepairFig.png" and "Pro
 #### Plots_OceanProtein.Rmd
 
 This .Rmd reads in "poi.RDS" from the "Data/ProcessedData/ProcessedOceanProtein" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("CladeProchloroPhotosynthDepthO2.png" and "CladeProchloroProteinMetabDepthO2.png") are saved in the "Output/Figures" folder.
+
+#### Plots_ProNicheMap.Rmd
+
+This .Rmd reads in "DepthPhotoperiodTableFilter.Rds" from the "Data/ProcessedData" folder and generates figure "Output/Figures/NicheMap.png"" that is later called into "Manuscript_O2.Rmd".
+
 
 #### Manuscript_O2.Rmd
 

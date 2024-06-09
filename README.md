@@ -128,7 +128,7 @@ This script imports and merges the "PICO_Processed_MCGrowthFits.Rds" and "PICO_P
 
 #### Plots_GAM.Rmd
 
-This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each *P.marinus* ecotype in this study. The GAM function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. The generated GAM plots ("MED4GAM", "SS120GAM" and "MIT9313GAM") are saved in the "Output/Figures" folder and later read into "Manuscript_O2.Rmd".
+This .Rmd reads in "PICO_Merged_GrowthFitsPURPAR.Rds" from the "Data/CleanData" folder and produces a Generalized Additive Model (GAM) to examine the relationship between the chlorophyll proxy (ΔOD) growth rate across the blue and red spectral wavebands, photoperiod and PAR levels for each *P.marinus* ecotype in this study. The GAM function from the R package mgcv (Wood, 2022) was used to model the growth rate with smoothing terms to indicate the 90, 50 and 10% quantiles. The generated GAM plots ("MED4PARGAM.png", "SS120PARGAM.png" and "MIT9313PARGAM.png") are saved in the "Output/Figures" folder and later read into "Manuscript_O2.Rmd".
 
 #### Plots_Growth.Rmd
 
@@ -148,6 +148,12 @@ The generated plots ("ProchlorococcusEnzymeKms.png", "DNARepairFig.png" and "Pro
 #### Plots_OceanProtein.Rmd
 
 This .Rmd reads in "poi.RDS" from the "Data/ProcessedData/ProcessedOceanProtein" folder and generates figures that are later called into "Manuscript_O2.Rmd". The generated plots ("CladeProchloroPhotosynthDepthO2.png" and "CladeProchloroProteinMetabDepthO2.png") are saved in the "Output/Figures" folder.
+
+#### Plots_ProNicheMap.Rmd
+
+This .Rmd reads in "DepthPhotoperiodTableFilter.Rds" from the "Data/ProcessedData" folder and generates figure 'Output/Figures/NicheMap.png' that is later called into "Manuscript_O2.Rmd".
+
+
 
 #### Manuscript_O2.Rmd
 
@@ -207,11 +213,10 @@ This file overwrites the bookdown default settings in the yaml and allows the kn
 #### Figures subfolder
 
 Figures generated using "Code/Plots_Growth.Rmd":
-- "MED4PAR.png", "SS120PAR.png", "MIT9313PAR.png", 
-"PurParPlot.png", "deltaODLogGrowthPlot.png", "OverlayPlots.png"
+- "PurParPlot.png", "deltaODLogGrowthPlot.png", "OverlayPlots.png"
 
 Figures generated using "Code/Plots_GAM.Rmd":
-- "MED4GAM.png", "SS120GAM.png", "MIT9313GAM.png"
+- "MED4PARGAM.png", "SS120PARGAM.png", "MIT9313PARGAM.png"
 
 Figures generated using "Code/Plots_PURfits.Rmd":
 - "BluevsRedPurFitsPlots.png", "PhotoperiodPurFitsPlots.png"
@@ -222,8 +227,15 @@ Figures generated using "Code/Plots_Genome.Rmd":
 Figures generated using "Code/Plots_OceanProtein.Rmd":
 - "CladeProchloroPhotosynthDepthO2.png", "CladeProchloroProteinMetabDepthO2.png"
 
+Figure generated using "Code/Plots_ProNicheMap.Rmd":
+- "NicheMap.png"
+
 The editable Powerpoint file named "LabeledMC.pptx" was used to generated the labeled Multicultivator picture named "LabeledMC.png".
 
-#### PLOSFiguresRound1 subfolder
+#### PLOSRound1 subfolder
 
 Contains all .tiff figures renamed to match the order in which they appear in the manuscript (Fig1 to Fig12) and "Manuscript_O2_PLOS1.docx" is the manuscript formatted as per PLOS ONE guideline for submission.  
+
+#### PLOSRound2 subfolder
+
+Contains all .tiff figures renamed to match the order in which they appear in the manuscript and "Manuscript_O2_PLOS2.docx" is the manuscript formatted as per PLOS ONE guideline for submission.  
