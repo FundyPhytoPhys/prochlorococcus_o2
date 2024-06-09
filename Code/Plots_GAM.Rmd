@@ -32,7 +32,7 @@ DataIn <- file.path("..","Data", "CleanData")
 DataOut <- file.path("..","Data", "CleanData")
 PlotsIn <- file.path("..","Output", "Figures")
 PlotsOut <- file.path("..","Output", "Figures")
-PlotsOutPLOS <- file.path("..", "OutPut", "PLOSFiguresRound1")
+PlotsOutPLOS <- file.path("..", "OutPut", "PLOSRound2")
 
 
 is_all_numeric <- function(x) { 
@@ -741,8 +741,8 @@ remove(MED4PAR, ContourMED4RedHigh, ContourMED4BlueHigh, ContourMED4RedInt, Cont
 # MED4PARGAM.png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MED4PARGAM,  height = 15, width = 10)
 
-# MED4PARGAM is Fig4.tiff for PLOSONE submission
- ggsave(file = file.path(PlotsOutPLOS, "Fig4.tiff", fsep = .Platform$file.sep), plot = MED4PARGAM, device = NULL, scale = 1,  height = 10, width = 10, compression = "lzw")
+# MED4PARGAM is Fig3.tiff for PLOSONE submission
+ ggsave(file = file.path(PlotsOutPLOS, "Fig3.tiff", fsep = .Platform$file.sep), plot = MED4PARGAM, device = NULL, scale = 1,  height = 16, width = 12, compression = "lzw")
  
 ```
 
@@ -1195,8 +1195,8 @@ remove(SS120PAR, ContourSS120RedHigh, ContourSS120BlueHigh, ContourSS120RedInt, 
 # SS120PARGAM.png for manuscript
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = SS120PARGAM,  height = 15, width = 10)
 
-# SS120PARGAM is Fig6.tiff for PLOSONE submission
- ggsave(file = file.path(PlotsOutPLOS, "Fig6.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10, compression = "lzw")
+# SS120PARGAM is Fig4.tiff for PLOSONE submission
+ ggsave(file = file.path(PlotsOutPLOS, "Fig4.tiff", fsep = .Platform$file.sep), plot = SS120PARGAM, device = NULL, scale = 1,  height = 16, width = 12, compression = "lzw")
  
 ```
 
@@ -1838,8 +1838,8 @@ remove(MIT9313PAR, ContourMIT9313RedHigh, ContourMIT9313BlueHigh, ContourMIT9313
  ggsave(file = file.path(paste(PlotsOut, sep = "/"), paste(GamStrain, "PARGAM", ".png", sep = ""), fsep = .Platform$file.sep), plot = MIT9313PARGAM,  height = 16.5, width = 10)
 
 
-# MIT9313PARGAM is Fig8.tiff for PLOSONE submission
- ggsave(file = file.path(PlotsOutPLOS, "Fig8.tiff", fsep = .Platform$file.sep), plot = LabelledCombinedGam, device = NULL, scale = 1,  height = 10, width = 10,  compression = "lzw")
+# MIT9313PARGAM is Fig5.tiff for PLOSONE submission
+ ggsave(file = file.path(PlotsOutPLOS, "Fig5.tiff", fsep = .Platform$file.sep), plot = MIT9313PARGAM, device = NULL, scale = 1,  height = 18, width = 12,  compression = "lzw")
  
 ```
 
