@@ -169,11 +169,6 @@ gam.check(PicoLogGamAb)
 concurvity(PicoLogGamAb)
 plot(PicoLogGamAb, residuals = TRUE, pch = 1, all.terms = TRUE)
 
-
-#AIC of Gompertz-fitted model comparably low as to only-par and only-light model. 
-#Next step, fitting Strain-specific models. 
-#MED4 model to Par_ue-response falsely fits, due to badly fitted µ-rates -> cultures died, but model tried to fit anyway. Maybe filter everything below a certain R^2 in the fit? 
-
 ```
 
 # Generate GAM for red light conditions for all strains using chlorophyll proxy logistic growth rate. 
