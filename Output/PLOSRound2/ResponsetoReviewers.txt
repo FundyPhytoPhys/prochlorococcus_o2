@@ -221,7 +221,8 @@ out in the introduction.
 
 
 We added the following to the Summary and Conclusion section:
-"In warming oceans *P. marinus* clades will differentially expand into new regions depending upon their different, interacting capacities to tolerate and exploit photoperiods, light levels, and [O~2~]. Competition among clades will be driven not simply by light levels. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) might actually exploit higher light niches under OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition."
+"In warming oceans *P. marinus* clades will differentially expand into new regions. Competition among clades will be driven not simply by light levels, but by their differing capacities to tolerate and exploit combinations of photoperiods, light levels, and [O~2~]. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition."
+
 Line:XXX
 
 Reviewer #2: Savoie et al describe a beautiful and extensive set of detailed Prochlorococcus growth rate 
