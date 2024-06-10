@@ -238,7 +238,7 @@ net global increase of *P. marinus* cell abundances of 29%
 shifts of at least 10° in marine phytoplankton niches by the end of this
 century [@bartonAnthropogenicClimateChange2016] in response to warming
 waters, with increases in *P. marinus* of approximately 50% in the more
-poleward regions of their distributions. @follettTrophicInteractionsHeterotrophic2022, however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansions of *P. marinus*.
+poleward regions of their distributions. Follett *et al*. @follettTrophicInteractionsHeterotrophic2022, however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansions of *P. marinus*.
 
 Near the equator, photoperiod remains nearly constant at the ocean
 surface, approximately 12 hours (h) of daylight and 12 h of darkness
@@ -434,7 +434,7 @@ Controlled growth rate experiments were then performed using MCMIX-OD or MC1000-
 PSI Multicultivators (Fig \@ref(fig:LabeledMC); PSI, Drásov, Czech
 Republic). Each multicultivator individually controls 8 tubes at a
 common temperature of 22°C. Each tube containing 70 mL of Pro99 media
-was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for  xx to yy days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth.
+was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for 7 to 14 days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth.
 
 In a factorial matrix design, each tube was subject to an individual combination
 of sinusoidal photoperiod (4, 8, 12, 16 h); reaching a peak PAR (30, 90,
@@ -1191,13 +1191,13 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusEnzymeKms.png"))
 
 \newpage
 
-To gain insights into the distinct growth rate responses across strains, particularly the responses to different [O~2~], we used a dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We tabulated those genes encoding enzymes involved in DNA repair, present in at least one of the *P.marinus* study strains (Fig \@ref(fig:DNARepairFig)).
+To gain insights into the distinct growth rate responses across strains, particularly the responses to different [O~2~], we used a dataset of annotated phytoplankton genomes from Omar *et al*. [@omarAnnotationGenesEncoding2023]. We tabulated those genes encoding enzymes involved in DNA repair, present in at least one of the *P. marinus* study strains (Fig \@ref(fig:DNARepairFig)).
 
-*P. marinus* NATL2A and MED4 possess the largest,
+*Prochlorococcus marinus* NATL2A and MED4 possess the largest,
 most complete suites of genes encoding DNA repair enzymes. *Prochlorococcus marinus* MED4 and NATL2A both possess a gene encoding deoxyribodipyrimidine photolyase (Fig \@ref(fig:DNARepairFig) and \@ref(fig:ProchlorococcusLightEnzymes)), which, when activated by blue light, repairs DNA damaged by UV light
 [@sancarStructureFunctionDNA2003]. *Prochlorococcus marinus* MED4 was also the only strain to possess a gene encoding DNA repair ligase, which uses ATP as a cofactor for DNA repair. 
 
-Conversely, *P. marinus* SS120 and MIT9313 lack genes encoding deoxyribodipyrimidine photolyase and DNA repair ligase (ATP), which may explain, in part, why these two strains cannot tolerate growth under full  250 µM [O~2~] and high light, as found at the ocean surface.  *P. marinus* SS120 and MIT9313 do, in contrast, tolerate light levels representative of the near surface ocean at 25 µM [O~2~]. Our growth rate experiments did not include wavebands in the UV range, so we do not know whether the absence of deoxyribodipyrimidine photolyase would inhibit the growth rates of *P. marinus* SS120 and MIT9313  under low [O~2~] if exposed to full spectrum, ocean surface light. The protective effects of lower [O~2~], allowing these strains to grow at higher light, likely relates in part to suppression of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010] events. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] indeed attribute NATL2A tolerance of short exposures of high light to presence of genes encoding photolyase, also found in HL clades. The presence of deoxyribodipyrimidine photolyase but absence of DNA repair ligase (ATP)
+Conversely, *P. marinus* SS120 and MIT9313 lack genes encoding deoxyribodipyrimidine photolyase and DNA repair ligase (ATP), which may explain, in part, why these two strains cannot tolerate growth under full  250 µM [O~2~] and high light, as found at the ocean surface.  *Prochlorococcus marinus* SS120 and MIT9313 do, in contrast, tolerate light levels representative of the near surface ocean at 25 µM [O~2~]. Our growth rate experiments did not include wavebands in the UV range, so we do not know whether the absence of deoxyribodipyrimidine photolyase would inhibit the growth rates of *P. marinus* SS120 and MIT9313  under low [O~2~] if exposed to full spectrum, ocean surface light. The protective effects of lower [O~2~], allowing these strains to grow at higher light, likely relates in part to suppression of DNA damage when generation of Reactive Oxygen Species (ROS) is suppressed at lower [O~2~]. NATL2A, a clade LLI, has been found near the ocean surface during deep ocean mixing [@malmstromTemporalDynamicsProchlorococcus2010] events. Malmstrom *et al*. [@malmstromTemporalDynamicsProchlorococcus2010] indeed attribute NATL2A tolerance of short exposures of high light to presence of genes encoding photolyase, also found in HL clades. The presence of deoxyribodipyrimidine photolyase but absence of DNA repair ligase (ATP)
 supports why NATL2A tolerates limited exposure to high light, but is unable to fully repair damaged DNA. *Prochlorococcus marinus* are highly susceptible to hydrogen peroxide (H~2~O~2~) toxicity as they lack genes which scavenge H~2~O~2~ molecules [@morrisFacilitationRobustGrowth2008]. The small cell size of *P. marinus* allow the ROS, H~2~O~2~, to cross the cell membrane [@omarDiffusionalInteractionsMarine2022]; however, accumulation of extracellular H~2~O~2~ remains toxic to *P. marinus* [@morrisFacilitationRobustGrowth2008; @morrisDependenceCyanobacteriumProchlorococcus2011].
 
 \newpage
@@ -1486,7 +1486,7 @@ knitr::include_graphics(file.path(FiguresIn, "ProchlorococcusLightEnzymes.png"))
 readRDS(file.path(DataIn,"ProchlorococcusEnzymeTable.Rds")) %>% 
   select(EnzymeName, EC, KO) %>% 
   knitr::kable(.,
-             caption = "Enzymes shown in Figures \\@ref(fig:ProchlorococcusEnzymeKms),  \\@ref(fig:DNARepairFig) and \\@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).",
+             caption = "Enzymes shown in Fig \\@ref(fig:ProchlorococcusEnzymeKms),  \\@ref(fig:DNARepairFig) and \\@ref(fig:ProchlorococcusLightEnzymes) with their Enzyme Commission numbers (EC) and Kegg Orthology (KO).",
             col.names =  c(
                           "Enzyme Name",
                           "EC",
@@ -1521,6 +1521,8 @@ MaxGrowthTable <- PURPARFits %>%
   arrange(Strain, O2_uM)
 
 MaxGrowthTable
+
+
 ```
 
 ```{r MaxGrowthTable, echo = FALSE }
@@ -1555,7 +1557,7 @@ Miranda Corkum maintained cultures and trained personnel in culture
 handling. Carlie Barnhill (Mount Allison Student) assisted with code for
 import of multicultivator growth data files. Sarah Arthur & Daytona
 McMackin (Mount Allison Students) assisted with culturing and setting up
-Multicultivator runs.
+multicultivator runs.
 
 # Funding {.unnumbered}
 
