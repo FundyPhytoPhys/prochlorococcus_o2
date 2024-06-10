@@ -533,7 +533,7 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
-  labs(title = "Full Oxygen") +
+  labs(title = "Full Oxygen Zones") +
   theme_bw() +
   theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
@@ -626,7 +626,7 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
-  labs(title = "Oxygen Minimum Zone") +
+  labs(title = "Low Oxygen Zones") +
   theme_bw() +
   theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
@@ -814,13 +814,13 @@ ggdraw() +
 
 ```{r NichesMap, fig.height = 8, fig.width = 16, warning = FALSE}
 
-LeftSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(1, 2,2,3))
-FullO2 <- ggarrange(LeftSide, map, ncol = 2, nrow = 1)
+RightSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(1, 2,2,3))
+FullO2 <- ggarrange(map, RightSide, ncol = 2, nrow = 1)
 FullO2
 
 
-LeftSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(1, 2,2,3))
-FullOMZ <- ggarrange(LeftSide, map, ncol = 2, nrow = 1)
+RightSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(1, 2,2,3))
+FullOMZ <- ggarrange(map, RightSide,  ncol = 2, nrow = 1)
 FullOMZ
 
 NichesMap<- ggarrange(FullO2, FullOMZ, ncol = 1, nrow = 2,
