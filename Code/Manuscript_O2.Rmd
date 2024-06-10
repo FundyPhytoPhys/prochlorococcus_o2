@@ -133,7 +133,7 @@ which has limitations on genomic capacity for PSII and DNA repair. MIT9313 from
 Clade LLIV is restricted to low blue irradiance under 250 µmol O~2~
 L^-1^, but exploits much higher irradiance under red light, or under
 lower O~2~ concentrations, conditions which slow photoinactivation of
-PSII and production of reactive oxygen species. In warming oceans, range expansions and competition among clades will be governed not only by light levels. Short photoperiods governed by latitude, temperate winter, and depth attenuation of light, will exclude clade HLI (including MED4) from some habitats. In contrast, clade LLII/III (including SS120), and particularly clade LLIV (including MIT9313), may exploit higher light niches nearer the surface, under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
+PSII and production of reactive oxygen species. In warming oceans, range expansions and competition among clades will be governed not only by light levels. Short photoperiods governed by latitude, temperate winters, and depth attenuation of light, will exclude clade HLI (including MED4) from some habitats. In contrast, clade LLII/III (including SS120), and particularly clade LLIV (including MIT9313), may exploit higher light niches nearer the surface, under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
 
 \newpage
 
@@ -375,7 +375,7 @@ protein and species annotation and the corresponding Uniprot Entry
 number for the identified proteins; iii) Sample station depth and
 [O~2~].\
 The depth and [O~2~] (also from BCO-DMO at https://www.bco-dmo.org/dataset/646115/) were joined to protein sequence and BLASTP
-annotations by ID number, depth and station using *tidyverse* package
+annotations by ID number, depth and station using *tidyverse* packages
 [@R-tidyverse] running under R v4.1.3 and RStudio v2023.06.0 [@RStudio].
 The resulting merged dataset was filtered for those *P. marinus*
 protein, detected from 0 to 300 m below the surface, annotated as a
@@ -695,10 +695,10 @@ to varying [O~2~], photoperiods and spectral wavebands.
 
 The growth rate for *P. marinus* MED4, clade HLI, under 250 µM O~2~, increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)A), across all spectral wavebands. No growth was observed under any imposed conditions under a 4 h photoperiod. The maximum growth rate (µ~max~) was `r PURPARFits %>% filter(Strain == "MED4", WL == "450", O2_uM == "250", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)` d^-1^ achieved under 180 µE blue light and 16 h photoperiod.
 
-Similar to growth rate trends under 250 µM O~2~, MED4 maintained at 25 µM O~2~ showed fastest growth rate when the photoperiod was 16 h for each spectral waveband, across PAR levels (Fig \@ref(fig:MED4PARGAM)). The
+Similar to growth rate trends under 250 µM O~2~, MED4 maintained at 25 µM O~2~ showed no growth under any imposed conditions under a 4 h photoperiod and the growth rate increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)A). The
 µ~max~ was `r PURPARFits %>% filter(Strain == "MED4", WL == "450", O2_uM == "25", Photoperiod == 12) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)` d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons m^-2^ s^-1^ blue light and 12 h photoperiod. The 4 h photoperiod experiments under white LED light were not performed as no growth was achieved when grown under an 8 h photoperiod of white LED light.
 
-MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Fig \@ref(fig:MED4PARGAM)). 2.5 µM O~2~ growth rate experiments were not conducted for 4 and 16 h photoperiods, as no reproducible growth occurred when MED4 was exposed to 8 and 12 h photoperiods under [O~2~] of 2.5 µM .
+MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Fig \@ref(fig:MED4PARGAM)A). 2.5 µM O~2~ growth rate experiments were not conducted for 4 and 16 h photoperiods, as no reproducible growth occurred when MED4 was exposed to 8 and 12 h photoperiods under [O~2~] of 2.5 µM .
 
 \newpage
 
@@ -745,7 +745,7 @@ inhabit not just shallow depths, where light levels are high, but also
 deeper regions, characterized by a lower level of blue light, subject to
 the limitation of a photoperiod of more than 4 h, even after depth
 attenuation of light. The photoregimes of winter temperate zones, due to
-shorter photoperiods, exclude MED4 from growth at any depth, however
+shorter photoperiods, exclude MED4 from growth at deeper regions, however
 temperate photoperiods and light levels for the remainder of the year
 are potentially adequate to support MED4 growth, if water temperatures
 warm into the clade HLI tolerance range.
@@ -761,7 +761,7 @@ increased with increasing photoperiods for white and red light under
 peak PAR of 90 µmol photons m^-2^ s^-1^ but showed growth inhibition at
 16 h red light photoperiod. Growth rate decreased with longer
 photoperiods and showed growth inhibition at 12 and 16 h photoperiods
-under PAR of 180 µmol photons m^-2^ s^-1^ white LED, red or blue light.
+under PAR of 180 µmol photons m^-2^ s^-1^ white LED and growth inhibition across all photoperiods under red or blue light.
 The µ~max~ was
 `r PURPARFits %>% filter(Strain == "SS120", WL == "WW", O2_uM == "250", Photoperiod == 16) %>% select(ReplicateMean_deltaOD_Lmu_corr_day) %>% max() %>% round(digits = 2)`
 d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons
@@ -826,9 +826,8 @@ indicated by the contour line labeled 0.35 d^-1^ (representing the
 constrained to deeper ocean waters through its intolerance of higher
 blue PAR levels. These findings align with Moore *et al*.
 [@mooreComparativePhysiologySynechococcus1995] and are expected for a
-low light clade. The disjunct regions of the GAM plot results from
-variable growth success of SS120 under 250 µM O~2~. Growth rate patterns
-under red light and 250 µM O~2~were similar, although somewhat faster. In contrast,
+low light clade. Growth rate patterns
+under red light and 250 µM O~2~were similar, although somewhat faster. The disjunct regions of the GAM plot results from variable growth success of SS120 under 250 µM O~2~. In contrast,
 under 25 µM O~2~ and a photoperiod of 8 h SS120 exploited all blue peak
 PAR levels, achieving faster growth rates at a higher PAR of \~100 µmol
 photons m^-2^ s^-1^, indicated by the contour line labeled 0.42 d^-1^
@@ -922,7 +921,7 @@ percentile of achieved growth rates. Fig \@ref(fig:MIT9313PARGAM)B also
 shows that growth rate increases with longer photoperiods, as long as
 the blue peak PAR levels remain below 50 µmol photons m^-2^ s^-1^. In
 contrast, under red light and 250 µM O~2~ MIT9313 is able to
-exploit higher peak PAR, across the range of photoperiods. MIT9313 can exploit all blue or red PAR levels and most photoperiods under 25 µM O~2~ with 90^th^ percentile of fastest growth rate between 30 to 100 µmol photons m^-2^ s^-1^ blue PAR. MIT9313 maintains growth even under 2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR between 50 to 100 µmol photons m^-2^ s^-1^ PAR. Thus the designation of
+exploit higher peak PAR, across the range of photoperiods. MIT9313 can exploit all blue or red PAR levels and most photoperiods under 25 µM O~2~ with 90^th^ percentile of fastest growth rate between 30 to 100 µmol photons m^-2^ s^-1^ blue PAR. MIT9313 maintains growth even under 2.5 µM O~2~, under photoperiods between 8 and 12 h and peak blue PAR of \~100 µmol photons m^-2^ s^-1^. Thus the designation of
 MIT9313 as a LL clade is dependent upon [O~2~] and light spectra (Fig \@ref(fig:MIT9313PARGAM)B).
 
 \newpage
@@ -944,7 +943,7 @@ waveband range, the maximum cumulative diel PUR under blue light is
 almost 3 times that of white LED light, and about 5 times that of the
 red light (Fig \@ref(fig:PurParPlot)), despite being derived from the
 same photoperiods and peak PAR regimes. As such, only blue light
-experiments extend beyond a cumulative diel PUR of \~ 2 x 10^6^ µmol
+experiments extend beyond a cumulative diel PUR of \~2 x 10^6^ µmol
 photons m^-2^ d^-1^. This spectral bias in the range of PUR leads us to
 caution in comparing model fits of growth rate in response to cumulative diel
 PUR under red vs. blue wavebands. Furthermore, we found some distinct
@@ -960,7 +959,7 @@ cumulative PUR. In contrast, under 250 or 25 µM O~2~, and including
 photoperiods greater than 4 h, MED4 growth under blue light was
 described by a saturating response of growth rate
 [@harrisonPhotosynthesisirradianceRelationshipsPolar1986] to increasing
-cumulative diel PUR, with saturation of growth rate achieved around 1.0
+cumulative diel PUR, with saturation of growth rate achieved around 3.0
 x 10^6^ µmol m^-2^d^-1^ (Fig \@ref(fig:BluevsRedPurFitsPlots)A and B),
 and no evidence of inhibition of growth at any achieved cumulative diel
 PUR. Under the 'artificial' growth treatment of red light, MED4 achieved
@@ -1137,7 +1136,7 @@ inferred K~m~ for [O~2~] for enzymes encoded by genes
 [@omarAnnotationGenesEncoding2023] from studied *P. marinus* strains, from clades HLI, LLI, LLII/III and LLIV. MED4 increases expression of alternative
 oxidase ('ubiquinol oxidase (non electrogenic)') to cope with changes in
 light [@bergResponsesPsbAHli2011], by dissipating electrons from the
-inter-system transport chain. The approximate K~m~ for [O~2~] of \~ 25
+inter-system transport chain. The approximate K~m~ for [O~2~] of \~25
 µM for ubiquinol oxidase (non electrogenic) (Fig \@ref(fig:ProchlorococcusEnzymeKms)) is comparable to the lower limit
 for growth of MED4 in our experiments (Fig \@ref(fig:MED4PARGAM)B). We
 suggest that dependence upon ubiquinol oxidase excludes MED4 from low oxygen
@@ -1146,7 +1145,7 @@ oxygen-dependent path to cope with changing excitation. Conversely, a
 gene encoding (S)-2-hydroxy-acid oxidase is encoded in the MIT9313
 genome (Fig \@ref(fig:ProchlorococcusEnzymeKms)). (S)-2-hydroxy-acid
 oxidase catalyzes the reaction of 2-hydroxy acid with O~2~ to produce
-toxic H~2~O~2~ [@cunaneCrystalStructureAnalysis2005], with an approximate K~m~ for [O~2~] of \~ 250 µM. Growth at lower [O~2~] may thus protect MIT9313 from auto-intoxication from production of H~2~O~2~ by (S)-2-hydroxy-acid oxidase. We hypothesize that under
+toxic H~2~O~2~ [@cunaneCrystalStructureAnalysis2005], with an approximate K~m~ for [O~2~] of \~250 µM. Growth at lower [O~2~] may thus protect MIT9313 from auto-intoxication from production of H~2~O~2~ by (S)-2-hydroxy-acid oxidase. We hypothesize that under
 250 µM O~2~ and higher blue light, *P. marinus* MIT9313 suffered
 photoinhibition, resulting from the inactivation of PSII caused by the
 production of the reactive oxygen species, hydrogen peroxide. This
@@ -1177,7 +1176,7 @@ ProchlorococcusEnzymeKms_cap <- glue("**K~m~ values for oxygen metabolizing enzy
                                      "The x-axis represents the oxygen metabolizing enzymes encoded in at least one of the *Prochlorococcus marinus* strains in this study.",
                                      "The *Prochlorococcus marinus* strains are indicated in rows." ,
                                      "The solid circles represent K~m~ values from literature and the asterisks represent predicted values.",
-                                     "colours represent the gene counts.",
+                                     "Colours represent the gene counts.",
                                      "The red shaded area denotes a K~m~ oxygen concentration range from 230 to 280 µM.",
                                      "The green shaded area denotes a K~m~ oxygen concentration range from 5 to 50 µM.",
                                      "The blue shaded area denotes a K~m~ oxygen concentration range from 0.5 to 5 µM.",
@@ -1253,7 +1252,7 @@ lower O~2~ allowed MIT9313 to substantially increase its exploitation of
 higher diel PUR (Fig \@ref(fig:PhotoperiodPurFitsPlots)I).
 
 Potential niche expansions of clades of *P. marinus* into temperate regions
-will vary depending on the season, and the depth, which interact to govern the growth limiting factors of peak PAR levels and underwater photoperiods (Fig \@ref(fig:NichesMap)). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI. In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures.  
+will vary depending on the season, and the depth, which interact to govern the growth limiting factors of peak PAR levels and underwater photoperiods (Fig \@ref(fig:NichesMap)). Temperate summer delivers ~12-14 hours of light, depending upon depth, above a photic threshold of 20 µmol photons m^-2^ s^-1^, while temperate spring/fall delivers ~9-11 hours; photoperiod ranges permissive for growth of all three *P. marinus*. In contrast temperate winter delivers shorter photoperiods which may exclude clade HLI in deeper regions. In parallel, excess peak PAR will exclude clades LLII/III and LLIV from most shallow niches, even under permissive temperatures.  
 
 Expansion of OMZ would drastically alter these patterns of potential niche extensions, by further restricting occurrences of clade HLI, but allowing clade LLIV to exploit a much wider range of lights, extending towards near-surface niches in both tropical and temperate zones, under permissive temperatures.
 
@@ -1288,13 +1287,13 @@ wavebands, irradiances, photoperiods and oxygen concentrations
 approximating present day and hypothetical future niches.
 
 *Prochlorococcus marinus* MED4 requires more than 4 h of light per day;
-thus this strain will not exploit habitats typical of temperate winter
-or light attenuated depths, even if water temperatures warm into the
+thus this strain will not exploit habitats typical of temperate winters
+at light attenuated depths, even if water temperatures warm into the
 clade HLI tolerance range. MED4 is also excluded from the lowest oxygen
 habitats of 2.5 µM O~2~, but can, grow under OMZ regions with 25 µM
 O~2~. Genomic (Fig \@ref(fig:ProchlorococcusEnzymeKms)) and
 transcriptional analyses [@bergResponsesPsbAHli2011] suggest MED4 is
-excluded from growth below \~ 25 µM O~2~ because it relies upon a
+excluded from growth below \~25 µM O~2~ because it relies upon a
 ubiquinol oxidase, non-electrogenic, to maintain oxidation/reduction
 balance in the intersystem electron transport chain, with a K~m~ for
 [O~2~] of \~25 µM O~2~. On the other hand, MED4 shows inducible
@@ -1340,7 +1339,7 @@ higher light levels and cumulative diel PUR, but only under low oxygen
 conditions of 25 µM and 2.5 µM (Fig \@ref(fig:MIT9313PARGAM)A), enabling
 MIT9313 to grow in OMZ, even at depths closer to the surface. MIT9313
 carries a gene encoding (S)-2-hydroxy-acid oxidase
-[@cunaneCrystalStructureAnalysis2005], with a K~m~ for [O~2~] of \~ 250
+[@cunaneCrystalStructureAnalysis2005], with a K~m~ for [O~2~] of \~250
 µM (Fig \@ref(fig:ProchlorococcusEnzymeKms)), which produces
 H~2~O~2~. Growth at lower [O~2~] may protect MIT9313 from
 auto-intoxication from production of H~2~O~2~. We hypothesize that under
@@ -1375,7 +1374,7 @@ cause the respiratory chain to consume more O~2~ than the photosynthetic
 electron transport chain generates, thus contributing to maintenance of
 the low O~2~ environment.
 
-In warming oceans *P. marinus* clades will differentially expand into new regions. Competition among clades will be driven not simply by light levels, but by their differing capacities to tolerate and exploit combinations of photoperiods, light levels, and [O~2~]. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
+In warming oceans, *P. marinus* clades will differentially expand into new regions. Competition among clades will be driven not simply by light levels, but by their differing capacities to tolerate and exploit combinations of photoperiods, light levels, and [O~2~]. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winters at light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidative stress and PSII photoinhibition.
 
 
 \newpage
@@ -1545,6 +1544,8 @@ knitr::kable(MaxGrowthTable,
 
 All data and annotated code for data import, transformations and analyses are
 available at are available on the figshare data repository (DOI: 10.6084/m9.figshare.25959061).
+
+All data and annotated code are also available at https://github.com/FundyPhytoPhys/prochlorococcus_o2
 
 
 # Acknowledgements {.unnumbered}
