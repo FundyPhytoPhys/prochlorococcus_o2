@@ -22,6 +22,7 @@ https://journals.plos.org/plosone/s/file?id=wjVg/PLOSOne_formatting_sample_main_
 https://journals.plos.org/plosone/s/file?id=ba62/PLOSOne_formatting_sample_title_authors_affiliation
 s.pdf
 
+
 2. Please note that PLOS ONE has specific guidelines on code sharing for submissions in which author-
 generated code underpins the findings in the manuscript. In these cases, all author-generated code 
 must be made available without restrictions upon publication of the work. Please review our guidelines 
@@ -37,6 +38,9 @@ public repository (such as figshare or Dryad) and provide us with the relevant U
 numbers that may be used to access these data. For a list of recommended repositories and additional 
 information on PLOS standards for data deposition, please see 
 https://journals.plos.org/plosone/s/recommended-repositories.
+
+All data and annotated code for data import, transformations and analyses are
+available at are available on the figshare data repository (DOI: 10.6084/m9.figshare.25959061).
 
 4. We note that you have referenced (Campbell, unpub) on page 17, which has currently not yet been 
 accepted for publication. Please remove this from your References and amend this to state in the body 
@@ -77,7 +81,7 @@ Specific Comments:
  
 The abstract seems to omit any discussion of the conclusions/bigger picture of the study. 
 
--Thank you for comment. We added text to discuss the main conclusions of this study.
+-Thank you for your comment. We added text to discuss the main conclusions of this study.
  
 
 
@@ -95,9 +99,9 @@ MED4 ATP synthase. What does this mean? The MED4 genome surely contains ATP synt
 
 -We agree that the MED4 genome includes genes encoding ATP Synthase. Upon verifying our annotation assignments we discovered the problem with the absence of ATP Synthase from Clade HLI was not due to the limitations of the process but rather a mislabel of the column in figure 2. 'ATP Synthase' should have been labelled 'RUBISCO'
 and 'RUBISCO' should have been labelled 'ATP Synthase'. However, in the Ocean Protein Portal database no RUBISCO peptides are annotated as coming from MED4. This likely reflects an annotation assignment issue because the RUBISCO proteins are highly conserved, so assignments to strains or clades of Prochlorococcus may be ambiguous.
-We edited the figure #2 to add 'jitter' offsets up to 15% of full axes scales, to visualize over-laid data points. 
+We edited figure #2 to add 'jitter' offsets up to 15% of full axes scales, to visualize over-laid data points. 
 We edited the text in the revised manuscript to reflect the limitation of the annotation process as it pertains to the highly conserved RUBISCO complex: "Though present and expressed in the genome of MED4 [65], the absence of proteins annotated as RUBISCO complex for clade HLI, compared to annotated detections of RUBISCO across the other three clades, suggests limitations in the annotation process assigning highly conserved protein sequences to clades."
-Line: 394 to 398
+Lines: 394 to 398
 
  
 
@@ -119,7 +123,7 @@ into 2 or 3 full page figures which might make it easier to make the relevant co
 combining the two types of figure (growth rates and model fits) for each ecotype, or else all the growth 
 rate curves together in one figure and all the model plots together in another. 
 
-- Thank you for this suggestion. We combined the growth rate figure with the GAM model for each strain to faciliate comparisons.
+- Thank you for this suggestion. We combined the growth rate figure with the GAM model for each strain to facilitate comparisons.
  
 
 
@@ -141,7 +145,7 @@ ocean at various depths, or even comparing current with projected future conditi
 OMZs. This is merely a suggestion -- I don't expect the authors to necessarily do this, but I think if they 
 chose to it would make the manuscript of broader interest. 
 
--Thank you for the comment. We added a new figure (Fig 10) of potential clade occupancy in temperate and equatoral seasonal and depth niches, in future warmed oceans under full oxygen or oxygen minimum zones.
+-Thank you for the comment. We added a new figure (Fig 10) of potential clade occupancy in temperate and equatorial seasonal and depth niches, in future warmed oceans under full oxygen or oxygen minimum zones.
 
 
 
@@ -152,14 +156,13 @@ important that they were omitted -- but maybe there is a better way to phrase th
 so fishy? 
 
 -Thank you for this suggestion. 
-We edited the text:
-Lines: 454, 518, 586
+We edited the text at lines: 454, 518, 586
 
  
 Figure S4 ? It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
 and solid lines since this is online.
 
--We edited the figure to clarify the fit lines:
+-We edited the figure to clarify the fit.
  
 
 
@@ -297,7 +300,7 @@ Line: 93
 metric leads you to this?  
 
 Thank you for noting that this needs further clarification. 
-We edited the paragraph for clarity in the revised manuscript adding: "While the accuracy of strain specific protein annotations are limited due to the high conservation of the target protein complexes, the two step approach of peptide-to-spectrum matching using deep paired metagenomics, does assign proteins at the level of clades."
+We edited the paragraph for clarity in the revised manuscript adding: "While the accuracy of strain specific protein annotations is limited due to the high conservation of the target protein complexes, the two step approach of peptide-to-spectrum matching using deep paired metagenomics, does assign proteins at the level of clades."
 Lines: 215-218 
 
 
@@ -340,7 +343,7 @@ these different wavelengths?
 
 As outlined in responses to questions from Review 1, the implications of blue vs. red light wavebands indeed relate to the higher energy per photon in the blue light band.  In particular blue light is absorbed well by chlorophyll, but is also directly absorbed by the manganese cluster of PSII, provoking one major path of photoinactivation, as discussed in Murphy et al. 2017, and cited at lines 307, 434, 648, 663, 676, and 894 .  In contrast, red light is absorbed well by chlorophyll, driving photosynthesis, but does not provoke direct photoinactivation of the PSII manganese cluster, lowering the metabolic cost of maintaining the photosynthetic system, compared to equivalent rates of photosynthesis driven by blue light.
 
-These issues are now discussed in relation to Figure PUR GROWTH, with a given amount of absorbed red light PUR provoking more growth than the equivalent absorbed blue light PUR.  In particular:
+These issues are now discussed in relation to figures 6 and S4, with a given amount of absorbed red light PUR provoking more growth than the equivalent absorbed blue light PUR.  In particular:
 
 "...MED4 achieved more growth per unit diel cumulative PUR (Fig 6A and B), consistent with Murphy *et al*. [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For
 distinct fits for different photoperiods refer to S4A-C Fig..." 
@@ -356,5 +359,5 @@ limits in the dataset; please provide more context to help the reader understand
 just a small number problem with respect to MIT9313 in low O2 samples; Fig. 10 seems to just show a 
 binary detected/not detected value.
 
-Thank you for your suggestion. We agree that detection limits vary for different target proteins, particularly for detection of single proteins such as FtsH isoforms.  Such issues are less problematic for summed detections of multiple proteins assigned to multi-protein complexes such as PSII. An analyses of mass spectrophotometric proteomic detection limits is beyond the scope of the paper. We however edited figures 2 and 7 to add 'jitter' offsets up to 15% of full axes scales, to visualize multiple previously over-laid data points.  
+Thank you for your suggestion. We agree that detection limits vary for different target proteins, particularly for detection of single proteins such as FtsH isoforms.  Such issues are less problematic for summed detections of multiple proteins assigned to multi-protein complexes such as PSII. An analyses of mass spectrophotometric proteomic detection limits is beyond the scope of the paper. We, however, edited figures 2 and 7 to add 'jitter' offsets up to 15% of full axes scales, to visualize multiple previously over-laid data points.  
  
