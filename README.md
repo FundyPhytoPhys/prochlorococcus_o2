@@ -1,30 +1,27 @@
 # Project Title
+*Prochlorococcus marinus* responses to light and oxygen
 
 ## Summary
 
 *Prochlorococcus marinus*, the smallest picocyanobacterium, comprises
-multiple clades with distinct niches across tropical and sub-tropical
+multiple clades occupying distinct niches, currently across tropical and sub-tropical
 oligotrophic ocean regions, including Oxygen Minimum Zones. Ocean
-warming may open permissive temperatures in new, poleward photic
-regimes, along with expanded Oxygen Minimum Zones. We used ocean protein
-data to help guide testing of
-*Prochlorococcus marinus* growth across a matrix of peak irradiances,
+warming may open growth-permissive temperatures in new, poleward photic
+regimes, along with expanded Oxygen Minimum Zones. We used ocean metaproteomic
+data on current *Prochlorococcus marinus* niches, to guide testing of *Prochlorococcus marinus* growth across a matrix of peak irradiances,
 photoperiods, spectral bands and dissolved oxygen. MED4 from Clade HLI
 requires greater than 4 h photoperiod, grows at 25 µmol O~2~ L^-1^ and
-above, and exploits high cumulative diel photon doses, yet shows
-accelerated growth when the cost of photoinactivation is lowered under
-red, vs. blue, actinic light. MED4 relies upon an alternative oxidase to
-balance electron transport, which may exclude it from growth under our
-lowest, 2.5 µmol O~2~ L^-1^, condition. SS120 from Clade LLII/III is
+above, and exploits high cumulative diel photon doses. MED4, however, relies upon an alternative oxidase to balance electron transport, which may exclude it from growth under our
+lowest, 2.5 µmol O~2~ L^-1^, condition. SS120 from clade LLII/III is
 restricted to low light under full 250 µmol O~2~ L^-1^, shows expanded
 light exploitation under 25 µmol O~2~ L^-1^, but is excluded from growth
 under 2.5 µmol O~2~ L^-1^. Intermediate oxygen suppresses the cost of
-PSII photoinactivation, and enzymatic production of H~2~O~2~ in SS120,
-which has limited genomic capacity for PSII and DNA repair. MIT9313 from
+PSII photoinactivation, and possibly the enzymatic production of H~2~O~2~ in SS120,
+which has limitations on genomic capacity for PSII and DNA repair. MIT9313 from
 Clade LLIV is restricted to low blue irradiance under 250 µmol O~2~
 L^-1^, but exploits much higher irradiance under red light, or under
 lower O~2~ concentrations, conditions which slow photoinactivation of
-PSII and production of reactive oxygen species.
+PSII and production of reactive oxygen species. In warming oceans, range expansions and competition among clades will be governed not only by light levels. Short photoperiods governed by latitude, temperate winter, and depth attenuation of light, will exclude clade HLI (including MED4) from some habitats. In contrast, clade LLII/III (including SS120), and particularly clade LLIV (including MIT9313), may exploit higher light niches nearer the surface, under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition.
 
 ## Highly Qualified Personnel
 
@@ -74,6 +71,12 @@ PSII and production of reactive oxygen species.
 Data was imported and tidied into R (v4.1.3), running under R-studio (Posit Team, v2023.06.0), using the 'tidyverse' [@R-tidyverse], 'glue' [@R-glue], 'ggh4x' [@R-ggh4x], 'ggtext' [@R-ggtext], 'ggpubr' [@R-ggpubr], 'minpack.lm' [@R-minpack.lm], [@R-data.table], [@R-zoo], [@R-mgcv], [@R-kable] and 'nlstools' [@R-nlstools] packages. Formatted outputs were generated from Rmarkdown files using the 'knitr' [@R-knitr] and 'bookdown' [@R-bookdown] packages. The 'MultiCultiCatalog' googlesheet containing metadata was read using the [@R-googlesheets4] package. 
 
 ## Repo content information
+
+All data and annotated code for data import, transformations and analyses are
+available at are available on the figshare data repository (DOI: 10.6084/m9.figshare.25959061).
+
+All data and annotated code are also available at https://github.com/FundyPhytoPhys/prochlorococcus_o2
+
 
 ### MetaDataCatalog
 
