@@ -1466,7 +1466,7 @@ knitr::include_graphics(file.path(FiguresIn, "PhotoperiodPurFitsPlots.png"))
 ```{r ProchlorococcusLightEnzymes, fig.cap = ProchlorococcusLightEnzymes_cap, fig.height = 10, fig.width = 10, echo = FALSE}
 
 # This is S5_Fig.tiff 
-ProchlorococcusLightEnzymes_cap <- glue("***P. marinus* genes encoding enzymes activated or inhibited by light.**",
+ProchlorococcusLightEnzymes_cap <- glue("***Prochlorococcus marinus* genes encoding enzymes activated or inhibited by light.**",
                          "The y-axis represents *Prochlorococcus marinus* strains.",
                          "The x-axis represents enzymes encoding light-dependent enzymes found in at least one *Prochlorococcus marinus* strain in this study.",
                          "Point size indicate gene counts.",
