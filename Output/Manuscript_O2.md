@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-06-09"
+date: "2024-06-10"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -641,7 +641,7 @@ photosynthetic complexes were detected throughout the sampled ranges of depth/li
 ## *Prochlorococcus marinus* growth rate responses to photoperiod, PAR, spectral band, and [O~2~] {.unnumbered}
 
 Guided in part by the evidence of ocean distributions of proteins from
-*P. marinus* we set up a matrix of photoperiods, PAR, and [O~2~] to approximate current, and potential future, latitudinal, depth and seasonal niches for *P. marinus* strains. As
+*P. marinus*, we set up a matrix of photoperiods, PAR, and [O~2~] to approximate current, and potential future, latitudinal, depth and seasonal niches for *P. marinus* strains. As
 mentioned, growth rate trials under red light, although not representative of *P. marinus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII. We implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began, employing a sinusoidal photoperiod with a gradual increase in PAR exposure, and extracting growth rates from logistic curves fit over approximately 5 generations of growth, to accommodate multiple generations to acclimate to the imposed growth conditions [@mooreCulturingMarineCyanobacterium2007]. Although the current subtropical distribution of *P. marinus* spans a narrow range of photoperiods at the surface, light attenuation with depth shortens effective photoperiods as well as lowering peak PAR. Potential poleward
 latitudinal range expansions, in combination with attenuation of light with depth, mean *P. marinus* clades may potentially encounter a wider range of photoperiods. Our growth rate determinations generally agree with those from Moore *et al*. [@mooreComparativePhysiologySynechococcus1995], for white LED and 250 µM O~2~, but our study is, to our knowledge, the first to analyze the interactive growth rate responses of *P. marinus* strains
 to varying [O~2~], photoperiods and spectral wavebands.
@@ -649,7 +649,7 @@ to varying [O~2~], photoperiods and spectral wavebands.
 The growth rate for *P. marinus* MED4, clade HLI, under 250 µM O~2~, increased with higher imposed PAR and longer photoperiods (Fig \@ref(fig:MED4PARGAM)A), across all spectral wavebands. No growth was observed under any imposed conditions under a 4 h photoperiod. The maximum growth rate (µ~max~) was 0.68 d^-1^ achieved under 180 µE blue light and 16 h photoperiod.
 
 Similar to growth rate trends under 250 µM O~2~, MED4 maintained at 25 µM O~2~ showed fastest growth rate when the photoperiod was 16 h for each spectral waveband, across PAR levels (Fig \@ref(fig:MED4PARGAM)). The
-µ~max~ was 0.65 d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 180 µmol photons m^-2^ s^-1^ blue light and 16 h photoperiod. The 4 h photoperiod experiments under white LED light were not performed as no growth was achieved when grown under an 8 h photoperiod of white LED light.
+µ~max~ was 0.65 d^-1^ (Table \@ref(tab:MaxGrowthTable)) achieved under 90 µmol photons m^-2^ s^-1^ blue light and 12 h photoperiod. The 4 h photoperiod experiments under white LED light were not performed as no growth was achieved when grown under an 8 h photoperiod of white LED light.
 
 MED4 did not grow when sparged to the lowest [O~2~] of 2.5 µM (Fig \@ref(fig:MED4PARGAM)). 2.5 µM O~2~ growth rate experiments were not conducted for 4 and 16 h photoperiods, as no reproducible growth occurred when MED4 was exposed to 8 and 12 h photoperiods under [O~2~] of 2.5 µM .
 
@@ -689,7 +689,7 @@ warm into the clade HLI tolerance range.
 \newpage
 
 The growth rates for *Prochlorococcus marinus* SS120 clade LLII/III, under 250 µM O~2~, 30 µmol photons m^-2^ s^-1^ peak PAR and across all spectral wavebands,
-increased with longer photoperiods (Fig \@ref(fig:SS120PARGAM)).
+increased with longer photoperiods (Fig \@ref(fig:SS120PARGAM)A).
 No growth was observed under any blue light photoperiods when exposed to
 peak PAR of 90 µmol photons m^-2^ s^-1^ or greater. Growth rate, however
 increased with increasing photoperiods for white and red light under
@@ -705,7 +705,7 @@ m^-2^ s^-1^ white LED light and 16 h photoperiod.
 Under 25 µM O~2~ and PAR of 30 µmol photons m^-2^ s^-1^ growth rate trends
 were similar to 250 µM O~2~. SS120 showed no growth under a 4 h
 photoperiod for red spectral waveband, however under blue light, SS120
-was able to grow (Fig \@ref(fig:SS120PARGAM)). In contrast to the growth rate
+was able to grow (Fig \@ref(fig:SS120PARGAM)A). In contrast to the growth rate
 trends of the 250 µM O~2~ and PAR of 90 µmol photons m^-2^ s^-1^
 experiments, SS120 grew under 4 and 8 h blue light and 16 h red light
 photoperiods, however the growth rate decreased under 12 and 16 h white
@@ -719,7 +719,7 @@ h photoperiod and 180 µmol photons m^-2^ s^-1^ under white LED light
 experiments were not performed due to time constraints.
 
 SS120 did not reproducibly grow when sparged to the lowest O~2~ of 2.5
-µM (Fig \@ref(fig:SS120PARGAM)). 2.5 µM O~2~ growth rate experiments were not
+µM (Fig \@ref(fig:SS120PARGAM)A). 2.5 µM O~2~ growth rate experiments were not
 conducted for 4 and 16 h photoperiods under peak PAR of 180 µmol photons
 m^-2^ s^-1^ and for red light under peak PAR of 90 µmol photons
 m^-2^ s^-1^, as no growth occurred when SS120 was exposed to 8 and 12 h
@@ -1094,8 +1094,8 @@ Expansion of OMZ would drastically alter these patterns of potential niche exten
 \newpage
 
 <div class="figure">
-<img src="../Output/Figures/NichesMap.png" alt="**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.** The maps shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light. **A.** Potential clade occupancies under Full Oxygen (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light. **B.** Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV. Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies." width="6000" />
-<p class="caption">(\#fig:NichesMap)**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.** The maps shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light. **A.** Potential clade occupancies under Full Oxygen (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light. **B.** Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV. Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.</p>
+<img src="../Output/Figures/NichesMap.png" alt="**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.** The maps shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light. **A.** Potential clade occupancies under Full Oxygen Zones (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light. **B.** Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV. Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies." width="6000" />
+<p class="caption">(\#fig:NichesMap)**Potential Future Niches for *Prochlorococcus* clades in a warming ocean.** The maps shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands). Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light. **A.** Potential clade occupancies under Full Oxygen Zones (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light. **B.** Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV. Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.</p>
 </div>
 
 
@@ -1413,8 +1413,7 @@ Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) achieved f
 
 # Data availability {.unnumbered}
 
-All data and metadata obtained from the Multicultivator were saved as comma separated
-values files and are available on the Borealis data repository (DOI pending).
+All data are available on the figshare data repository (10.6084/m9.figshare.25959061).
 
 Annotated code for data import, transformations and analyses are
 available at
