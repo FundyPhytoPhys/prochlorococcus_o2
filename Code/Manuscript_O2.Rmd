@@ -1266,7 +1266,7 @@ NichesMap_cap <- glue("**Potential Future Niches for *Prochlorococcus* clades in
                       "The maps shows current latitudinal distribution limits for *Prochlorococcus* (between green dashed lines), along with tropical and temperate  latitudinal regions (yellow bands).",
 "Light levels, photoperiods and spectral bands, potentially permissive for growth of *Prochlorococcus* clades are determined by the interactions of latitude, season and depth attenuation of light.",
 "**A.** Potential clade occupancies under Full Oxygen Zones (250 µM O~2~) are shown for 10-50 m and 100 m depths, in temperate vs. tropical regions, under depth-resolved photoperiods, approximating Winter Solstice, Equinox and Summer Solstice. Clade HLI is excluded from temperate depths by short photoperiods at Winter Solstice. Clades LLII/III and LLIV are excluded from shallow depths by excessive light.",
-"**B.** Low Oxygen Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV.",
+"**B.** Oxygen Minimum Zones (25 µM O~2~) drastically alter these potential occupancy patterns by excluding clade HLI from the temperate winter solstice at all depths, and by expanding the exploitation of higher light zones by Clade LLIV.",
 "Potential clade occupancies for the southern temperate zone mirror the northern temperate zone occupancies.",
 
  .sep = " ")
