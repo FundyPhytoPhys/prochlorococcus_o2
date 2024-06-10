@@ -327,93 +327,6 @@ data_textB <- data.frame(label = c('B'))
 ```
 
 
-```{r create maps, fig.height = 10, fig.width = 6, warning = FALSE}
-
-d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
-d2=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-35), y2=c(-55))
-d3=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-Inf), y2=c(Inf))
-d4=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-15), y2=c(15))
-d5=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(-40), y2=c(40))
-
-
-FullO2map<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-    geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-    geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = 1),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-FullO2map
-
-
-OMZmap<-ggplot() + 
-  geom_rect(data=d3, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "lightskyblue1", color="lightskyblue3", alpha=0.5) +
-  geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="olivedrab3", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "white", fill = "gray50", size = 0.2) +
-     geom_text(data=data_textB, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
-  scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
-  coord_cartesian(ylim = c(-90, 120)) +
-  labs(y = "Latitude", x = "Longitude") +
-  # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank(),
-        strip.placement = "outside",
-        strip.switch.pad.grid = unit(1, "cm"),
-        axis.text = element_text(size=14),
-        axis.title = element_text(size=14),
-        strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=18),
-        axis.title.y = element_text(vjust = 1),
-        #axis.title.x = element_text(margin=margin(t=10)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.background = element_rect(fill="transparent"),
-        legend.position = c(0.12,0.76),
-        legend.key.height= unit(0.005, 'cm'),
-        legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14))
-OMZmap
-
-```
-
--------------------------------------------------------------------------------------------------------------------
----------------------------------------------- # SySl changes -----------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-
-
-
-fig.height = 10, fig.width = 6, warning = FALSE
 ```{r create map, fig.height = 16, fig.width = 10, warning = FALSE}
 
 d=data.frame(x1=c(-Inf), x2=c(Inf), y1=c(35), y2=c(55))
@@ -428,9 +341,9 @@ map<-ggplot() +
   geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
   geom_rect(data=d2, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
     geom_rect(data=d4, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill = "khaki1", color="khaki2", alpha=0.8) +
-  geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
-  geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1) +
-  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 0.2) +
+  geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1.5) +
+  geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1.5) +
+  geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 1.2) +
    # geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
@@ -440,10 +353,10 @@ map<-ggplot() +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        axis.text = element_text(size=25),
-        axis.title = element_text(size=28),
+        axis.text = element_text(size=28),
+        axis.title = element_text(size=30),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=20),
+        strip.text = element_text(size=30),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -452,7 +365,7 @@ map<-ggplot() +
         legend.position = c(0.12,0.76),
         legend.key.height= unit(0.005, 'cm'),
         legend.spacing.x = unit(0.01, 'cm'),
-        legend.text = element_text(size=14)) 
+        legend.text = element_text(size=20)) 
 map
 
 ```
@@ -530,7 +443,7 @@ ggplot()+
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
   #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   labs(title = "Full Oxygen Zones") +
@@ -541,7 +454,7 @@ ggplot()+
         axis.text = element_text(size=28),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=28),
+        strip.text = element_text(size=27),
         #axis.title.y = element_text(vjust = 1),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title = element_blank(),
@@ -575,7 +488,7 @@ ggplot()+
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
   #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
@@ -585,7 +498,7 @@ ggplot()+
         axis.text = element_text(size=28),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=28),
+        strip.text = element_text(size=27),
         #axis.title.y = element_text(vjust = 1),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title = element_blank(),
@@ -623,7 +536,7 @@ ggplot()+
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
   #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   labs(title = "Oxygen Minimum Zones") +
@@ -634,7 +547,7 @@ ggplot()+
         axis.text = element_text(size=28),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=28),
+        strip.text = element_text(size=27),
         #axis.title.y = element_text(vjust = 1),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title = element_blank(),
@@ -671,7 +584,7 @@ ggplot()+
   coord_fixed(ratio = 55, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   #geom_ellipse(aes(x0 = 555, y0 = 1.43, a = 10, b = 2, angle = pi / 1), fill = "transparent", colour = "transparent") +
   #geom_polygon(data=d, mapping=aes(x=x, y=y, group=t), fill = "white", show.legend = F) +
-  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8)  +
+  geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
   theme_bw() +
@@ -681,7 +594,7 @@ ggplot()+
         axis.text = element_text(size=28),
         #axis.title = element_text(size=14),
         strip.background = element_rect(fill="white"),
-        strip.text = element_text(size=28),
+        strip.text = element_text(size=27),
         #axis.title.y = element_text(vjust = 1),
         #axis.title.x = element_text(margin=margin(t=10)),
         axis.title = element_blank(),
@@ -747,70 +660,7 @@ BlankPanel
 ```
 
 
-#Cool web about merging plots
-http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/
 
-```{r join figures, fig.height = 4, fig.width = 8, warning = FALSE}
-
-NichesMap_1 <- ggdraw() +
-  draw_plot(NichesFullO2North, x = 0, y = 0.65, width = .3, height = .3) +
-  draw_plot(NichesFullO2Equat, x = 0, y = 0.455, width = .3, height = .3) +
-  draw_plot(map, x = .1, y = .2, width = 0.8, height = 0.8) +
-  draw_plot(NichesOMZNorth, x = 0.7, y = 0.65, width = .3, height = 0.3) +
-  draw_plot(NichesOMZEquat, x = 0.7, y = 0.455, width = .3, height = 0.3) 
-
-```
-
-
-```{r save plot}
-
-# ggsave(file = file.path(PlotsOut, paste("NichesMap",".png",sep = "")), height=12, width= 28,  dpi = 300, limitsize = TRUE)
-# 
-# ggsave(file = file.path(PlotsOutPLOS, "Fig10.tiff"), plot = NichesMap, device = NULL, scale = 1, height=20, width= 30, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE)
-
-```
-
-
-
-
-```{r}
-ggdraw() +
-  draw_plot(NichesFullO2North, x = 0, y = 0.68, width = .26, height = .26) +
-  draw_plot(NichesFullO2Equat, x = 0, y = 0.51, width = .26, height = .26) +
-  draw_plot(mapCircle, x = .26, y = .29, width = 0.46, height = 0.7) +
-  draw_plot(NichesOMZNorth, x = 0.72, y = 0.68, width = .26, height = 0.26) +
-  draw_plot(NichesOMZEquat, x = 0.72, y = 0.51, width = .26, height = 0.26) 
-
-# ggsave(file = file.path(PlotsOut, paste("NichesMap_2",".png",sep = "")), height=12, width= 28,  dpi = 300, limitsize = TRUE)
-```
-
-
-
-```{r, fig.height = 8, fig.width = 16, warning = FALSE}
-
-# P1<-ggdraw() +
-#   draw_plot(NichesFullO2North, x = 0.001, y = 0.695, width = .36, height = .22) +
-#   draw_plot(NichesFullO2Equat, x = 0.001, y = 0.485, width = .36, height = .22) +
-#   draw_plot(map, x = .179, y = .2, width = 0.8, height = 0.8) 
-# P1
-# 
-# P2<-ggdraw() +
-#   draw_plot(NichesOMZNorth, x = 0.001, y = 0.695, width = .36, height = .22) +
-#   draw_plot(NichesOMZEquat, x = 0.001, y = 0.485, width = .36, height = .22) +
-#   draw_plot(map, x = .179, y = .2, width = 0.8, height = 0.8) 
-# P2
-# 
-# 
-# 
-# ggarrange(P1, P2, ncol = 1, nrow = 2,
-#           labels = c("A", "B"),  
-#           font.label = list(size = 25, color = "black"),
-#           align = "hv")
-
-# ggsave(file = file.path(PlotsOut, paste("NichesMap_3",".png",sep = "")), height=18, width= 20,  dpi = 300, limitsize = TRUE, bg='white')
-# 
-# ggsave(file = file.path(PlotsOutPLOS, "Fig10.tiff"), device = NULL, scale = 1, height=55, width= 55, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE, bg='white')
-```
 
 ```{r NichesMap, fig.height = 8, fig.width = 16, warning = FALSE}
 
@@ -833,34 +683,5 @@ ggsave(file = file.path(PlotsOut, paste("NichesMap",".png",sep = "")), plot = Ni
 
 ggsave(file = file.path(PlotsOutPLOS, "Fig10.tiff"), plot = NichesMap, device = NULL, scale = 1, height=55, width= 55, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE, bg='white')
 ```
-
-```{r, fig.height = 8, fig.width = 16, warning = FALSE}
-
-
-P1<-ggdraw() +
-  draw_plot(NichesFullO2North, x = 0.001, y = 0.750, width = .350, height = .22) +
-  draw_plot(NichesFullO2Equat, x = 0.001, y = 0.510, width = .350, height = .22) +
-  draw_plot(mapCircle, x = .350, y = .28, width = 0.7, height = 0.7) 
-P1
-
-P2<-ggdraw() +
-  draw_plot(NichesOMZNorth, x = 0.001, y = 0.750, width = .350, height = .22) +
-  draw_plot(NichesOMZEquat, x = 0.001, y = 0.510, width = .350, height = .22) +
-  draw_plot(mapCircle, x = .350, y = .28, width = 0.7, height = 0.7) 
-P2
-
-
-ggarrange(P1, P2, ncol = 1, nrow = 2)
-
-ggsave(file = file.path(PlotsOut, paste("NichesMap_4",".png",sep = "")), height=18, width= 21,  dpi = 300, limitsize = TRUE)
-
-```
-
-
-
-
------------------------------------------------------------------------------------------------------------------
-------------------------------------------- SySl End ----------------------------------------------------------
----------------------------------------------------------------------------------------------------------------
 
 
