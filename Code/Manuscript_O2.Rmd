@@ -1543,8 +1543,7 @@ knitr::kable(MaxGrowthTable,
 
 # Data availability {.unnumbered}
 
-All data and metadata obtained from the Multicultivator were saved as comma separated
-values files and are available on the Borealis data repository (DOI pending).
+All data are available on the figshare data repository (10.6084/m9.figshare.25959061).
 
 Annotated code for data import, transformations and analyses are
 available at
