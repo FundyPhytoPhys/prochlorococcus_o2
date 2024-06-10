@@ -59,7 +59,7 @@ should be mentioned in the rebuttal letter that accompanies your revised manuscr
 a retracted article, indicate the article?s retracted status in the References list and also include a citation 
 and full reference for the retraction notice.
 
-XXX Check XXX
+Our reference list is complete.
  
  
 Reviewers' comments: 
@@ -86,7 +86,7 @@ Line 55: LLII/III and LLIV are not the ?oldest? clades, but the most basal or ea
 -We edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are
 grouped together as early branching phylogenetic lineage in
 the P. marinus radiation, with a preference for low light."
-Line: XXX
+Line: 64
  
 
 
@@ -95,9 +95,9 @@ MED4 ATP synthase. What does this mean? The MED4 genome surely contains ATP synt
 
 -We agree that the MED4 genome includes genes encoding ATP Synthase. Upon verifying our annotation assignments we discovered the problem with the absence of ATP Synthase from Clade HLI was not due to the limitations of the process but rather a mislabel of the column in figure 2. 'ATP Synthase' should have been labelled 'RUBISCO'
 and 'RUBISCO' should have been labelled 'ATP Synthase'. However, in the Ocean Protein Portal database no RUBISCO peptides are annotated as coming from MED4. This likely reflects an annotation assignment issue because the RUBISCO proteins are highly conserved, so assignments to strains or clades of Prochlorococcus may be ambiguous.
-We edited the figure #XXX to add 'jitter' offsets up to 15% of full axes scales, to visualize over-laid data points. 
-We edited the text in the revised manuscript to reflect the limitation of the annotation process as it pertains to the highly conserved RUBISCO complex: "Though present in the genome of MED4, the absence of proteins annotated as RUBISCO complex for Clade HLI, compared to annotated detections of RUBISCO across the other three clades suggests limitations in the OPP annotation process for highly conserved protein sequences."
-Line: XXX
+We edited the figure #2 to add 'jitter' offsets up to 15% of full axes scales, to visualize over-laid data points. 
+We edited the text in the revised manuscript to reflect the limitation of the annotation process as it pertains to the highly conserved RUBISCO complex: "Though present and expressed in the genome of MED4 [65], the absence of proteins annotated as RUBISCO complex for clade HLI, compared to annotated detections of RUBISCO across the other three clades, suggests limitations in the annotation process assigning highly conserved protein sequences to clades."
+Line: 394 to 398
 
  
 
@@ -108,7 +108,7 @@ under these conditions? Also, is it worth noting that LLIV is the only variety t
 deepest low O2 site -- which would appear to be consistent with subsequent findings in this study? 
 
  
-- We revised the text from lines 668 to XXX to incorporate these helpful observations. The following was added: " Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from HLI, LLI and LLII/III were notably absent from samples taken at lower [O~2~], suggesting limited capacity for carbon fixation by HLI,  LLI and LLII/III under low [O~2~] habitats."
+- We revised the text from lines 398 to 401 to incorporate these helpful observations. The following was added: "Notwithstanding limitations on assignments of proteins to clades, detections of the abundant carbon fixation complex RUBISCO derived from clades HLI, LLI and LLII/III were notably absent from stations at low [O2], suggesting limited capacity for carbon fixation by clades HLI, LLI and LLII/LLIII under low [O2] habitats."
 
 
 
@@ -126,10 +126,10 @@ rate curves together in one figure and all the model plots together in another.
 
 I'm also not sure I understand why the red light data is relevant -- perhaps by moving it to supplemental, it would be easier to compile these data into compound figures? 
 
-We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line XXX:
-" As mentioned, growth rate trials under red light, although not representative of *P. marinus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
+We briefly motivated the inclusion of the red light growth trials, as mechanistically informative, at line 432:
+"As mentioned, growth rate trials under red light, although not representative of *P. marinus* niches, are mechanistically informative [@murphyPhotoinactivationPhotosystemII2017] regarding photoinactivation of PSII."
 
--Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines XXXX-1032 (xXXX).
+-Through the Discussion, notably under the discussion of the GAM models and responses to growth rate to increasing PUR, we return to the responses to red light to show that some 'high light' limitations on growth are interpretable as photoinhibition of PSII, which is more severe under blue, compared to red, light, notably at lines 646-650.
 
 
 
@@ -141,14 +141,8 @@ ocean at various depths, or even comparing current with projected future conditi
 OMZs. This is merely a suggestion -- I don't expect the authors to necessarily do this, but I think if they 
 chose to it would make the manuscript of broader interest. 
 
--Thank you for the comment.
+-Thank you for the comment. We added a new figure (Fig 10) of potential clade occupancy in temperate and equatoral seasonal and depth niches, in future warmed oceans under full oxygen or oxygen minimum zones.
 
-XXXX  We added a new figure of potential strain growth in temperate seasonal and depth niches, in future temperate warmed oceans.
-The GAM model panels in figures XYZ show 'zones of exclusion' from light level, photoperiods, and oxygen regimes, as unshaded white areas where no growth is predicted.
-We indeed contemplated attempting global predicted distribution maps, but the interacting complexities of season, depth, changing extents of OMZ and extrapolation from culture growth, render it beyond the scope of this study.XXXX
-
-XXX 
- 
 
 
 L482, 536, 548: some experiments were not performed ?due to time constraints?. I'm not sure I 
@@ -159,21 +153,19 @@ so fishy?
 
 -Thank you for this suggestion. 
 We edited the text:
-Line: XXX 
+Lines: 454, 518, 586
 
  
 Figure S4 ? It is very hard to see the fit lines other than the pooled fit. Consider using different colors 
 and solid lines since this is online.
 
 -We edited the figure to clarify the fit lines:
-Line: XXX 
-
  
 
 
 Table 1: The trees described in the legend should be included in the supplemental material. 
 
--Thank you for bringing this to our attention. We clarified the wording on line XXXX of the revised manuscripted. "Protein homologies for FtsH isoforms between *Prochlorococcus marinus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018."
+-Thank you for bringing this to our attention. We clarified the wording on line 720 of the revised manuscripted. "Protein homologies for FtsH isoforms between *Prochlorococcus marinus* and *Synechocystis* were extracted from @bonisteelStrainSpecificDifferences2018."
 
 
 
@@ -182,33 +174,32 @@ Fig 11: Despite the fact that it is explained in the legend, the figure should p
 values are log Km, or else put actual values on the log-scale Y axis. Also, the axis should indicate the 
 units for Km. Finally, why is the red band so narrow compared to the green and blue? 
 
--We apologize for the omissions. We revised the axis labels to make the log scaling more noticeable. The narrowness of the red bar (spanning 230 to 280 ?M) results from the log scaling of the y axis. 
+-We apologize for the omissions. We revised the axis labels to make the log scaling more noticeable. The narrowness of the red bar (spanning 230 to 280 uM) results from the log scaling of the y axis. This is now Figure 8.
  
 L757: The authors should specify that this is a DNA repair ligase, not the DNA ligase that seals Okazaki 
 fragments during DNA replication (assuming this is the case). 
 
 Thank you for your comment, the revised text now reads "DNA repair ligase".  
-Line: XXX
+Lines: 800, 803, 815
  
 L 758: Photolyase should not have been relevant in the lab experiments because there is no UV light 
 emitted (AFAIK) by the bulbs used in the Multicultivator. Also, it is unlikely that the absence of these two 
 genes is sufficient to explain why these strains can?t grow at the ocean?s surface. 
 
 
-We agree. The added the following in the revised manuscript: "In this study we show that *P. marinus* SS120 and MIT9313 can tolerate light levels representative of the near ocean surface when the [O~2~] is 25 µM, however our growth rate experiments did not include wavebands in the UV range, we therefore do not know how the absence of deoxyribodipyrimidine photolyase under low [O~2] will impact the growth rates of *P. marinus* SS120 and MIT9313 when exposed to UV light."
-Lines: XXX
-To address the second part of your comment, the revised sentence now reads: "The absence of genes encoding deoxyribodipyrimidine photolyase and DNA ligase (ATP) in P. marinus MIT9313 and P. marinus SS120 may, in part, explain why these two strains cannot tolerate growth under full [O2] and high light, found at the ocean surface."
-Line: XXX
+We agree.  The following was added in the revised manuscript: "Our growth rate experiments did not include wavebands in the UV range, so we do not know whether the absence of deoxyribodipyrimidine photolyase would inhibit the growth rates of P. marinus SS120 and MIT9313 under low [O2] if exposed to full spectrum, ocean surface light. "
+Lines: 806-809
+To address the second part of your comment, the revised sentence now reads: "Conversely, P. marinus SS120 and MIT9313 lack genes encoding deoxyribodipyrimidine photolyase and DNA repair ligase (ATP), which may explain, in part, why these two strains cannot tolerate growth under full 250 µM [O2] and high light, as found at the ocean surface."
+Lines: 802-805
 
  
 Fig 12: Phosphoglycolate phosphatase is a major enzyme in the photorespiration pathway ? what does 
 it have to do with DNA repair? There is evidence that 2-phosphoglycolate causes oxidative stress, but I 
 don?t think this enzyme is properly a DNA repair enzyme. 
 
-Thank you for brining this to our attention, we removed phosphoglycolate phosphatase from the figure as it is indeed not directly involved in DNA repair but in clearing DNA damage repair products.
-Upon revisiting the interpretation of this figure, we edited the text: "As expected, *P. marinus* NATL2A possesses the largest,
-most complete suite of genes encoding DNA repair enzymes, followed by *P. marinus* MIT9313."
-Lines: XXX
+Thank you for bringing this to our attention, we removed phosphoglycolate phosphatase from the figure as it is indeed not directly involved in DNA repair but in clearing DNA damage repair products. This is now Figure 9.
+Upon revisiting the interpretation of this figure, we edited the text: "Prochlorococcus marinus NATL2A and MED4 possess the largest, most complete suites of genes encoding DNA repair enzymes."
+Lines: 796
  
 Summary and Conclusion: I feel like the authors really need to expand their discussion of how these 
 findings apply to the future ocean. Where are OMZs likely to expand? Are there specific examples of 
@@ -221,9 +212,8 @@ out in the introduction.
 
 
 We added the following to the Summary and Conclusion section:
-"In warming oceans *P. marinus* clades will differentially expand into new regions. Competition among clades will be driven not simply by light levels, but by their differing capacities to tolerate and exploit combinations of photoperiods, light levels, and [O~2~]. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winter, or light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under expanding OMZ conditions, where low O~2~ relieves the stresses of oxidation stress and PSII photoinhibition."
-
-Line:XXX
+"In warming oceans, P. marinus clades will differentially expand into new regions. Competition among clades will be driven not simply by light levels, but by their differing capacities to tolerate and exploit combinations of photoperiods, light levels, and [O2]. Clade HLI (including MED4) is excluded from short photoperiod regimes, typical of temperate winters at light attenuated depths. In contrast, clade LLIV (including MIT9313) may exploit higher light niches under expanding OMZ conditions, where low O2 relieves the stresses of oxidative stress and PSII photoinhibition."
+Lines:942-948
 
 Reviewer #2: Savoie et al describe a beautiful and extensive set of detailed Prochlorococcus growth rate 
 measurements for three strains, representing distinct ecotypes, under varied conditions of light and 
@@ -251,15 +241,12 @@ differences (as well as to evolutionarily adapt).
 
 Thank you for highlighting this issue. 
 We added the following in the materials and methods section of the revised manuscript:
-"Each tube containing 70 mL of Pro99 media
-was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22?C, sparged with the experimental [O~2~], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime.  Cultures were grown for  xx to yy days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth."
-Line: XXX
-
-
+"Each tube containing 70 mL of Pro99 media was inoculated around mid day of the 12 h maintenance photoperiod with 10 mL of growing maintenance preculture, to reach a starting OD680 of approximately 0.020. The tubes containing the cultures were then placed in the Multicultivator water bath set at 22°C, sparged with the experimental [O2], and kept at low light until late afternoon. Cultures were then in the dark for 12 to 16 hr until the photoregime of a sinusoidal photoperiod commenced the following morning, reaching peak PAR at noon each day. Cultures thus took approximately 24 h to move gradually from maintenance photoregime to the peak PAR of the experimental photoregime. Cultures were grown for 7 to 14 days, until they reached stationary phase at OD680 of approximately 0.4 to 0.8 after approximately 5 generations of growth."
+Lines: 237-247
 
 We added the following in the results and discussion section of the revised manuscript:
 "We implemented measures to minimize shock to cultures from exposure to experimental growth conditions by inoculating them the day before the experiment began, employing a sinusoidal photoperiod with a gradual increase in PAR exposure, and extracting exponential growth rates from logistic curves fit over approximately 5 generations of growth, to accommodate multiple generations to acclimate to the imposed growth conditions (Moore et al. 2007)."
-Line: XXX
+Line: 434-439
 
  
 This reviewer found the manuscript to be quite difficult to read as I kept wanting to understand how 
@@ -269,9 +256,8 @@ summary narrative early on, as opposed to presenting a laundry list of data, mig
 more clearly motivating the questions driving the analyses in each section would help; many paragraphs 
 simply start with ?Figure X shows??. But, the organization of the paper is of course up to the authors. 
  
-In response to reviewer 1 and reviewer 2 we have combined the growth rate figure with the GAM model for each strain to faciliate comparisons. 
+In response to reviewer 1 and reviewer 2 we have combined the growth rate figure with the GAM model for each strain to faciliate comparisons. These are now figures 3-5. 
 We edited the abstract, results and discussion texts to better convey the motivations and findings of the study. 
-In particular lines  XXX to YYY and XXXXX  
 
 
 
@@ -281,29 +267,29 @@ General note: the manuscript text at some points refers broadly to ?growth?, and
 specific about drawing conclusions about ?growth rate?. I would suggest being clearer in some way that 
 you are focused on growth rate and not growth yield. 
 
-We edited the text to use 'growth rate' throughout.
+Thank you for your suggestion. We edited the text to use 'growth rate' throughout.
 
 
  
 40: Despite _its_ small cell size (?) 
 
-We edited the text:
-Line: XXX
+We edited the text: "Despite its small cell size, "
+Line: 48
 
 
  
 56: ?Affinity? for low light? Consider rephrasing 
 
-We edited the text in the revised manuscript: " Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage in the *P. marinus* radiation, with a preference for low light."
-Line: XXX
+We edited the text in the revised manuscript: "Clades LLII and LLIII, including cultured strain SS120, are grouped together as early branching phylogenetic lineage in the *P. marinus* radiation, with a preference for low light."
+Line: 63
 
 
  
 84: Follett et al 2022 PNAS showed that temp is not the only factor influencing poleward issues - 
 ecological interactions may further impact poleward shift during warming 
 
-Thank you for  bringing this to our attention. We added the following text to the revised manuscript: "Follett et al 2022, however, model interactions of heterotrophic bacteria  that may influence latitudinal expansions of *P. marinus*."
-Line XXX:
+Thank you for  bringing this to our attention. We added the following text to the revised manuscript: "Follett *et al*. , however, model interactions of heterotrophic  bacteria  that may influence latitudinal expansions of *P. marinus*"
+Line: 93
 
 
  
@@ -312,7 +298,7 @@ metric leads you to this?
 
 Thank you for noting that this needs further clarification. 
 We edited the paragraph for clarity in the revised manuscript adding: "While the accuracy of strain specific protein annotations are limited due to the high conservation of the target protein complexes, the two step approach of peptide-to-spectrum matching using deep paired metagenomics, does assign proteins at the level of clades."
-Lines: XXX 
+Lines: 215-218 
 
 
  
@@ -320,9 +306,8 @@ Lines: XXX
 this context, it is the lack of just one gene (catalase) that matters, and reduced genomes reflect an 
 outcome of the ultimate suite of selective pressures acting on these systems. 
 
-Thank you for your comment. We edited the text in the revised manuscript: "*Prochlorococcus marinus* remain challenging to culture at high densities or under fluctuating environments, partially due to their dependence upon mutualistic heterotrophic bacteria to detoxify
-reactive oxygen species [48,49]." 
-Line XXX:
+Thank you for your comment. We edited the text in the revised manuscript: "*Prochlorococcus marinus* remain challenging to culture at high densities or under fluctuating environments, partially due to their dependence upon mutualistic heterotrophic bacteria to detoxify reactive oxygen species [48,49]." 
+Lines: 220-222
 
 
  
@@ -332,40 +317,38 @@ extensive metagenomic, amplicon, qPCR, etc datasets of ecotype abundances availa
 
 Thank you for your comment. Co-authors, Aurora Mattison and Dr. Amanda Cockshutt, used the metaproteomics database as an extension of their earlier studies on the functional implications of differential protein allocations across different Prochlorococcus strains [Zorz et al. 2015, Bonisteel et al. 2018]. Those studies indeed motivated the design of our growth matrix. Extending the study to include metagonomic analyses is valid but is beyond our scope.
 We edited the text in the revised manuscript: "Our analyses utilized a proteomics dataset; however, alternate approaches, such as metagenomics or metatranscriptomics, could have been employed to analyze ecotype abundances using the TARA Oceans [@pesantOpenScienceResources2015] dataset."
-Line: XXX
+Lines: 408-411
 
  
 407: growth -> grew? 
 
-We edited the text: "The growth rate for Prochlorococcus marinus MED4, clade HLI, under 250 ?M O2, increased with higher imposed PAR and longer photoperiods (Fig 3A), across all spectral wavebands."
-Line XXX:
+We edited the text: "The growth rate for P. marinus MED4, clade HLI, under 250 µM O2, increased with higher imposed PAR and longer photoperiods (Fig 3A), across all spectral wavebands."
+Line: 447
  
 
 428: How many replicates were carried out for most experiments? Perhaps I just missed it, but please be 
 sure this information is clear in the methods 
 
 Thank you for this comment. In this work we used 1 to 3 replicates depending on the experimental conditions. Specific number of replicates (shown as small dots in Figures (3 - 5)).
-We edited the text in the revised manuscript:" Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O~2~] meant we completed 268 growth factor treatment combinations with 1 to 3 replicates."
-Line: XXX
+We edited the text in the revised manuscript:"Consistent absence of growth of some strains under some levels of photoperiod, PAR, or [O2] meant we completed 268 growth rate factor treatment combinations with 1 to 3 replicates."
+Lines: 266-268
  
 
 431, and generally throughout the paper: Would the authors care to comment on any connection 
 between the differences in blue vs red light growth and the underlying amount of energy input from 
 these different wavelengths? 
 
-As outlined in responses to questions from Review 1, the implications of blue vs. red light wavebands indeed relate to the higher energy per photon in the blue light band.  In particular blue light is absorbed well by chlorophyll, but is also directly absorbed by the manganese cluster of PSII, provoking one major path of photoinactivation, as discussed in Murphy et al. 2017, and cited at lines XXX, YYY, ZZZ.  In contrast, red light is absorbed well by chlorophyll, driving photosynthesis, but does not provoke direct photoinactivation of the PSII manganese cluster, lowering the metabolic cost of maintaining the photosynthetic system, compared to equivalent rates of photosynthesis driven by blue light.
+As outlined in responses to questions from Review 1, the implications of blue vs. red light wavebands indeed relate to the higher energy per photon in the blue light band.  In particular blue light is absorbed well by chlorophyll, but is also directly absorbed by the manganese cluster of PSII, provoking one major path of photoinactivation, as discussed in Murphy et al. 2017, and cited at lines 307, 434, 648, 663, 676, and 894 .  In contrast, red light is absorbed well by chlorophyll, driving photosynthesis, but does not provoke direct photoinactivation of the PSII manganese cluster, lowering the metabolic cost of maintaining the photosynthetic system, compared to equivalent rates of photosynthesis driven by blue light.
 
 These issues are now discussed in relation to Figure PUR GROWTH, with a given amount of absorbed red light PUR provoking more growth than the equivalent absorbed blue light PUR.  In particular:
 
-"...MED4 achieved
-more growth per unit diel cumulative PUR (Fig \@ref(fig:BluevsRedPurFitsPlots)A and B), consistent with Murphy *et al*. [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for
-growth under red light, for MED4, because red light provokes less
-photoinactivation of PSII, than equivalent levels of blue light. For
-distinct fits for different photoperiods refer to Fig \@ref(fig:PhotoperiodPurFitsPlots) A-C..."
+"...MED4 achieved more growth per unit diel cumulative PUR (Fig 6A and B), consistent with Murphy *et al*. [@murphyPhotoinactivationPhotosystemII2017], who showed a lower cost for growth under red light, for MED4, because red light provokes less photoinactivation of PSII, than equivalent levels of blue light. For
+distinct fits for different photoperiods refer to S4A-C Fig..." 
+Lines: 647-650
 
 Fig 4 and related figures: It might be useful to plot the specific measured points within the countour plot 
 
-Thank you for your suggestion. We combined the growth rate figure with the GAM model for each strain. We believe this will aid the reader with interpreting both plots.
+Thank you for your suggestion. We combined the growth rate figure with the GAM model for each strain. We believe this will aid the reader with interpreting both plots. These are now figures 3 to 5.
  
 
 685: The lack of detected FtsH could simply be a factor of low overall spectral counts and detection 
@@ -373,5 +356,5 @@ limits in the dataset; please provide more context to help the reader understand
 just a small number problem with respect to MIT9313 in low O2 samples; Fig. 10 seems to just show a 
 binary detected/not detected value.
 
-Thank you for your suggestion. We agree that detection limits vary for different target proteins, particularly for detection of single proteins such as FtsH isoforms.  Such issues are less problematic for summed detections of multiple proteins assigned to multi-protein complexes such as PSII. An analyses of mass spectrophotometric proteomic detection limits is beyond the scope of the paper. We however edited the figure #XXX to add 'jitter' offsets up to 15% of full axes scales, to visualize multiple previously over-laid data points.  
+Thank you for your suggestion. We agree that detection limits vary for different target proteins, particularly for detection of single proteins such as FtsH isoforms.  Such issues are less problematic for summed detections of multiple proteins assigned to multi-protein complexes such as PSII. An analyses of mass spectrophotometric proteomic detection limits is beyond the scope of the paper. We however edited figures 2 and 7 to add 'jitter' offsets up to 15% of full axes scales, to visualize multiple previously over-laid data points.  
  
