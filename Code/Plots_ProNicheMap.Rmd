@@ -446,7 +446,7 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
-  labs(title = "Full Oxygen Zones") +
+  labs(title = "Temperate, Full Oxygen Zones") +
   theme_bw() +
   theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
@@ -491,8 +491,9 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
+  labs(title = "Tropical, Full Oxygen Zones") +
   theme_bw() +
-  theme(plot.title = element_text(vjust = 10),
+  theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
         axis.text = element_text(size=28),
@@ -539,7 +540,7 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
-  labs(title = "Oxygen Minimum Zones") +
+  labs(title = "Temperate, Oxygen Minimum Zones") +
   theme_bw() +
   theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
@@ -587,8 +588,9 @@ ggplot()+
   geom_text(aes(x = TextLocation, y = DepthNames, label = paste(TextLabel), show.legend = FALSE), hjust = 0, size = 8.5)  +
   ggh4x::facet_nested(cols = vars(DayofYear), labeller = labeller(lat = label_both)) +
   guides(color = "none") +
+  labs(title = "Tropical, Oxygen Minimum Zones") +
   theme_bw() +
-  theme(plot.title = element_text(vjust = 10),
+  theme(plot.title = element_text(size = 30),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
         axis.text = element_text(size=28),
@@ -664,12 +666,12 @@ BlankPanel
 
 ```{r NichesMap, fig.height = 8, fig.width = 16, warning = FALSE}
 
-RightSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(1, 2,2,3))
+RightSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(0.5, 2,2,3))
 FullO2 <- ggarrange(map, RightSide, ncol = 2, nrow = 1)
 FullO2
 
 
-RightSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(1, 2,2,3))
+RightSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(0.5, 2,2,3))
 FullOMZ <- ggarrange(map, RightSide,  ncol = 2, nrow = 1)
 FullOMZ
 
@@ -678,6 +680,7 @@ NichesMap<- ggarrange(FullO2, FullOMZ, ncol = 1, nrow = 2,
           font.label = list(size = 30, color = "black"),
           align = "hv")
 NichesMap
+
 
 ggsave(file = file.path(PlotsOut, paste("NichesMap",".png",sep = "")), plot = NichesMap, height=18, width= 20,  dpi = 300, limitsize = TRUE,  bg='white')
 
