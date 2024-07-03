@@ -52,7 +52,7 @@ library(grid) # for making one strip bigger - grid.draw
 Project <- "prochlorococcus_O2"
 
 PlotsOut <- file.path("..","Output", "Figures")
-PlotsOutPLOS <- file.path("..", "OutPut", "PLOSRound2")
+PlotsOutPLOS <- file.path("..", "OutPut", "PLOSRound3")
 ```
 
 ```{r read photoperiod depth data}
@@ -344,10 +344,10 @@ map<-ggplot() +
   geom_hline(yintercept = 40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1.5) +
   geom_hline(yintercept = -40, fill = "transparent", color="chartreuse4", linetype = "dashed", alpha=1, size = 1.5) +
   geom_map(data = world_coordinates, map = world_coordinates, aes(long, lat, map_id = region), color = "gray50", fill = "gray50", size = 1.2) +
-   # geom_text(data=data_textA, aes(x=180, y=120, label=label), size=7, parse=TRUE) +
+   # geom_text(data="Latitude", aes(x=0, y=45, label=label), size=7, parse=TRUE) +
   scale_y_continuous(breaks=seq(-90, 90, by = 45)) +
   coord_cartesian(ylim = c(-90, 120)) +
-  coord_fixed(ratio = 2, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
+  coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on") +
   labs(y = "Latitude", x = "Longitude") +
   # ggh4x::facet_nested(rows = vars(facetsFuture), labeller = label_parsed, switch = "y") +
   theme_bw() +
@@ -661,18 +661,15 @@ BlankPanel
 
 ```
 
-
-
-
 ```{r NichesMap, fig.height = 8, fig.width = 16, warning = FALSE}
 
-RightSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(0.5, 2,2,3))
-FullO2 <- ggarrange(map, RightSide, ncol = 2, nrow = 1)
+RightSide <-ggarrange(BlankPanel,NichesFullO2North, NichesFullO2Equat, BlankPanel,  ncol = 1, nrow = 4, heights = c(1, 2,2,2))
+FullO2 <- ggarrange(map, RightSide, ncol = 2, nrow = 1, widths = c(1, 1))
 FullO2
 
 
-RightSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(0.5, 2,2,3))
-FullOMZ <- ggarrange(map, RightSide,  ncol = 2, nrow = 1)
+RightSide <-ggarrange(BlankPanel, NichesOMZNorth, NichesOMZEquat, BlankPanel,  ncol = 1, nrow = 4 , heights = c(1, 2,2,2))
+FullOMZ <- ggarrange(map, RightSide,  ncol = 2, nrow = 1, widths = c(1, 1))
 FullOMZ
 
 NichesMap<- ggarrange(FullO2, FullOMZ, ncol = 1, nrow = 2,
@@ -682,9 +679,8 @@ NichesMap<- ggarrange(FullO2, FullOMZ, ncol = 1, nrow = 2,
 NichesMap
 
 
-ggsave(file = file.path(PlotsOut, paste("NichesMap",".png",sep = "")), plot = NichesMap, height=18, width= 20,  dpi = 300, limitsize = TRUE,  bg='white')
+ggsave(file = file.path(PlotsOut, paste("NichesMap",".png",sep = "")), plot = NichesMap, height=16, width= 25,  dpi = 300, limitsize = TRUE,  bg='white')
 
-ggsave(file = file.path(PlotsOutPLOS, "Fig10.tiff"), plot = NichesMap, device = NULL, scale = 1, height=55, width= 55, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE, bg='white')
+ggsave(file = file.path(PlotsOutPLOS, "Fig10.tiff"), plot = NichesMap, device = NULL, scale = 1, height=40, width= 70, units = c("cm"),dpi = 300, compression = "lzw", limitsize = TRUE, bg='white')
 ```
-
 

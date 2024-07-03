@@ -1,0 +1,19 @@
+Dear Dr. José A. Fernández Robledo,
+
+
+We thank you, the Editor, and the Reviewers for their constructive feedback and hope this manuscript version proves acceptable for publication. 
+
+ 
+Review Comments to the Author
+
+Reviewer #1: The authors have satisfactorily addressed my concerns. In particular the addition of the new Figure 10 is helpful for putting the results in context.
+Reviewer #2: I thank the authors for their responses to reviewer comments. They have made clarifications and changes to address my most important concerns about the underlying data and interpretation.
+
+I think the concept behind the new Fig 10 is a great way to sum up and apply the findings. I recognize that this is both inherently speculative and not the primary focus of the authors, but if this is going to be included, the current execution seems superficial. At a minimum, the same map is shown in both A and B - it would greatly help to indicate where the Full Oxygen vs OMZs are. Also, please label the temperate vs tropical tables for clarity.
+
+As suggested we have more fully labelled the tables of potential clade niche occupancies.
+We included the maps as visual references of current and potential latitudinal clade distributions.
+Adding current or future OMZ to the maps is beyond our capacity, but is indeed work for modeling of future niche occupancies.
+As noted by Reviewer #2 this final figure is a conceptual and indeed speculative extrapolation of our findings of interactions of photoperiod, light levels and oxygen levels on potential niches for Prochlorococcus clades. 
+It is not a global modeling exercise.
+ 
