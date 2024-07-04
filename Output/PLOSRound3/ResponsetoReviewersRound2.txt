@@ -11,9 +11,9 @@ Reviewer #2: I thank the authors for their responses to reviewer comments. They 
 
 I think the concept behind the new Fig 10 is a great way to sum up and apply the findings. I recognize that this is both inherently speculative and not the primary focus of the authors, but if this is going to be included, the current execution seems superficial. At a minimum, the same map is shown in both A and B - it would greatly help to indicate where the Full Oxygen vs OMZs are. Also, please label the temperate vs tropical tables for clarity.
 
-As suggested we have more fully labelled the tables of potential clade niche occupancies.
-We included the maps as visual references of current and potential latitudinal clade distributions.
-Adding current or future OMZ to the maps is beyond our capacity, but is indeed work for modeling of future niche occupancies.
-As noted by Reviewer #2 this final figure is a conceptual and indeed speculative extrapolation of our findings of interactions of photoperiod, light levels and oxygen levels on potential niches for Prochlorococcus clades. 
+
+As suggested, we have more fully labelled the tables of potential clade niche occupancies.
+We included the maps as visual references showing current and potential latitudinal clade distributions. 
+Adding current or future OMZ to the maps is beyond our capacity, but it is indeed work for modeling of future niche occupancies.
+As noted by Reviewer #2, this final figure represents a conceptual and indeed speculative extrapolation of our findings regarding the interactions of photoperiod, light levels and oxygen levels on potential niches for Prochlorococcus clades.
 It is not a global modeling exercise.
- 
