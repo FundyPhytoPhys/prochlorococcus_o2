@@ -1412,7 +1412,7 @@ Table: (\#tab:MaxGrowthTable)The maximum growth rate, µ~max~ (d^-1^) achieved f
 
 # Data availability {.unnumbered}
 
-All data and annotated code for data import, transformations and analyses are available on the figshare data repository (DOI: 10.6084/m9.figshare.25959061).
+All data and annotated code for data import, transformations and analyses are available on the figshare data repository (https://doi.org/10.6084/m9.figshare.25959061.v1).
 
 All data and annotated code are also available at https://github.com/FundyPhytoPhys/prochlorococcus_o2
 
