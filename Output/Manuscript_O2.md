@@ -36,7 +36,7 @@ institute:
   - ug: 'Institute of Oceanography, University of Gdansk, Gdynia, Poland'
   - algatech: 'Institute of Microbiology, Center Algatech, Laboratory of Photosynthesis, Trebon, Czech Republic'
   - sfx: 'Department of Chemistry, St. Frances Xavier University, Antigonish, Nova Scotia, Canada'
-date: "2024-07-04"
+date: "2024-07-11"
 output:
   bookdown::word_document2:
     code_folding: show
@@ -948,7 +948,7 @@ expression of these FtsH protease isoforms when shifted to high light,
 and thus has fewer of these FtsH hexamers serving each photosystem [@bonisteelStrainSpecificDifferences2018].
 Transcript analysis demonstrates that MIT9313 expressed primarily FtsH3,
 homologous to *Synechocystis* *sll*1463, possibly involved in PSI
-biogenesis [@mannInvolvementFtsHHomologue2000; @krynickaFtsH4ProteaseControls2022,
+biogenesis [@mannInvolvementFtsHHomologue2000; @krynickaFtsH4ProteaseControls2022;
 @konikCyanobacterialFtsH4Protease2024]. FtsH3 expression did not
 increase in response to light stress in MIT9313
 [@bonisteelStrainSpecificDifferences2018]. Through adaptation to steady
